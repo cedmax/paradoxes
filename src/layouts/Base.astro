@@ -1,0 +1,60 @@
+---
+import "../styles/global.css"
+
+interface Props {
+  title: string
+  description?: string
+}
+
+const {
+  title,
+  description = "Paradoxes in plain words. Each one is a problem, two claims that both seem true but cannot both stand, and what happens when you try to fix it.",
+} = Astro.props
+const canonical = new URL(Astro.url.pathname, Astro.site)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="px-gutter flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b-2 border-ink py-3">
+      <a
+        class="font-display py-2.5 text-2xl font-extrabold tracking-[-0.02em] no-underline"
+        href="/"
+      >
+        Paradoxes, plainly
+      </a>
+      <nav class="flex flex-wrap gap-x-7 gap-y-1 font-semibold" aria-label="Main">
+        <a class="inline-flex min-h-11 items-center no-underline hover:text-accent" href="/">
+          Index
+        </a>
+        <a
+          class="inline-flex min-h-11 items-center no-underline hover:text-accent"
+          href="/about/"
+        >
+          How we write these
+        </a>
+      </nav>
+    </header>
+    <slot />
+    <footer class="px-gutter flex flex-wrap justify-between gap-4 border-t-2 border-ink pt-7 pb-10 text-[15px]">
+      <div>Paradoxes, plainly. Working title.</div>
+      <div>Every entry flags where the explanation is simplified.</div>
+    </footer>
+  </body>
+</html>

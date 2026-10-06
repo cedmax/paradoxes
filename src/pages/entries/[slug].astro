@@ -1,0 +1,199 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content"
+import Base from "~/layouts/Base.astro"
+import { chapterById } from "~/data/chapters"
+import { statuses, simplifications } from "~/data/status"
+
+export async function getStaticPaths() {
+  const entries = await getCollection("entries")
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }))
+}
+
+interface Props {
+  entry: CollectionEntry<"entries">
+}
+
+const { entry } = Astro.props
+const d = entry.data
+const chapter = chapterById(d.chapter)
+const s = statuses[d.status]
+const simp = simplifications[d.simplification]
+
+const siblings = (await getCollection("entries"))
+  .filter((e) => e.data.chapter === d.chapter && e.id !== entry.id)
+  .sort((a, b) => a.data.order - b.data.order)
+
+// Split a title like "Sorites paradox" so the accent word can be highlighted.
+const accent = d.titleAccent
+const plain =
+  accent && d.title.endsWith(accent)
+    ? d.title.slice(0, d.title.length - accent.length).trimEnd()
+    : d.title
+
+const h2 = "display text-[44px]"
+const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[15px] font-bold"
+---
+
+<Base title={`${d.title}. Paradoxes, plainly`} description={d.problem}>
+  <section class="px-gutter flex flex-col gap-6 pt-4 pb-12">
+    <nav class="mono-label flex flex-wrap gap-x-2.5 gap-y-1" aria-label="Breadcrumb">
+      <a class="inline-flex min-h-11 items-center no-underline hover:text-accent" href="/">
+        Index
+      </a>
+      <span class="self-center" aria-hidden="true">
+        /
+      </span>
+      <span class="self-center">
+        {chapter.n} {chapter.title}
+      </span>
+    </nav>
+    <h1 class="font-display text-[clamp(48px,9.4vw,148px)] leading-[0.94] font-extrabold tracking-[-0.045em]">
+      {plain}
+      {accent && (
+        <>
+          {" "}
+          <span class="text-accent">{accent}</span>
+        </>
+      )}
+    </h1>
+    <div class="flex max-w-215 flex-col gap-2">
+      <div class="mono-label opacity-65">The problem</div>
+      <p class="font-display text-[clamp(26px,3.2vw,40px)] leading-[1.15] font-extrabold tracking-[-0.025em]">
+        {d.problem}
+      </p>
+    </div>
+    <div class="flex flex-wrap items-center gap-2.5">
+      <div class:list={[badge, s.bg]}>{s.label}</div>
+      {d.noMaths && <div class={badge}>No maths needed</div>}
+      <div class={badge}>{simp.label}</div>
+      {!d.sourcesVerified && (
+        <div class="bg-disputed px-2 py-0.5 text-[13px] font-bold">
+          Sources not yet verified
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section
+    class="flex flex-wrap items-stretch border-y-2 border-ink"
+    aria-label="The two claims"
+  >
+    <div class="px-gutter flex flex-[1_1_360px] flex-col justify-center gap-2.5 py-10">
+      <div class="mono-label opacity-65">Seems true</div>
+      <div class="display text-[clamp(28px,3.4vw,48px)] leading-[1.05] tracking-[-0.03em]">
+        {d.claimA}
+      </div>
+    </div>
+    <div
+      class="font-display flex-none self-center px-2 py-4 text-[40px] leading-none font-extrabold tracking-[-0.02em] text-accent uppercase sm:text-[56px]"
+      aria-hidden="true"
+    >
+      but
+    </div>
+    <div class="px-gutter flex flex-[1_1_360px] flex-col justify-center gap-2.5 py-10">
+      <div class="mono-label opacity-65">Also seems true</div>
+      <div class="display text-[clamp(28px,3.4vw,48px)] leading-[1.05] tracking-[-0.03em]">
+        {d.claimB}
+      </div>
+    </div>
+  </section>
+
+  <div class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
+    <article class="flex max-w-190 min-w-0 flex-[1_1_560px] flex-col gap-14 text-[19px] leading-[1.6] [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
+      {!d.written && (
+        <div class="border-2 border-dashed border-ink px-6 py-5 text-[17px]">
+          <strong>Full write-up in progress.</strong> The problem, the two claims and the
+          verdict are final. The explanation and sources are not written yet.
+        </div>
+      )}
+
+      {d.setup && (
+        <section>
+          <h2 class={h2}>The setup</h2>
+          <p>{d.setup}</p>
+        </section>
+      )}
+
+      {d.whyWrong && (
+        <section>
+          <h2 class={h2}>Why it feels wrong</h2>
+          <p>{d.whyWrong}</p>
+        </section>
+      )}
+
+      {(d.resolution.length > 0 || d.positions.length > 0) && (
+        <section>
+          <h2 class={h2}>
+            {d.status === "resolved" ? "The resolution" : "Why it's " + s.label.toLowerCase()}
+          </h2>
+          {d.resolution.map((p) => (
+            <p>{p}</p>
+          ))}
+          {d.positions.length > 0 && (
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3.5">
+              {d.positions.map((p) => (
+                <div class="flex flex-col gap-2 border-2 border-ink px-5.5 py-4.5">
+                  <div class="display text-2xl leading-[1.1] tracking-[-0.02em]">{p.title}</div>
+                  <div class="text-[17px] leading-[1.45]">{p.body}</div>
+                </div>
+              ))}
+            </div>
+          )}
+          {d.finePrint && (
+            <div class="mt-1 border-2 border-ink bg-disputed px-6 py-5 text-[17px] leading-normal">
+              <strong>The fine print.</strong> {d.finePrint}
+            </div>
+          )}
+        </section>
+      )}
+
+      {d.written && (
+        <section class="!gap-2 border-t-2 border-ink pt-6 text-base">
+          <div class="mono-label">Sources</div>
+          {d.sources.length === 0 ? (
+            <div>No sources listed yet.</div>
+          ) : (
+            <ul class="m-0 pl-5">
+              {d.sources.map((src) => (
+                <li>
+                  {src.url ? <a href={src.url}>{src.title}</a> : src.title}
+                  {src.note && <> ({src.note})</>}
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      )}
+    </article>
+
+    <aside class="flex max-w-85 flex-[1_1_260px] flex-col gap-6" aria-label="About this entry">
+      <div class="flex flex-col gap-3 border-2 border-ink p-6 text-[17px] leading-[1.45]">
+        <div class="mono-label text-accent">What breaks</div>
+        <div>{d.whatBreaks}</div>
+        <div class="mono-label text-accent">Status</div>
+        <div>
+          {s.label}: {d.statusNote}
+        </div>
+      </div>
+      {siblings.length > 0 && (
+        <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
+          <div class="mono-label mb-1.5 text-accent">Same chapter</div>
+          {siblings.map((e) => (
+            <a
+              class="inline-flex min-h-11 items-center font-bold no-underline hover:text-accent"
+              href={`/entries/${e.id}/`}
+            >
+              {e.data.title} →
+            </a>
+          ))}
+        </div>
+      )}
+      <a
+        class="inline-flex min-h-12 items-center font-bold no-underline hover:text-accent"
+        href="/"
+      >
+        ← Back to the index
+      </a>
+    </aside>
+  </div>
+</Base>

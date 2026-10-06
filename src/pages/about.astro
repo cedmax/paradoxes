@@ -1,0 +1,43 @@
+---
+import Base from "~/layouts/Base.astro"
+import { statuses, simplifications } from "~/data/status"
+---
+
+<Base title="How we write these. Paradoxes, plainly">
+  <main class="px-gutter flex max-w-225 flex-col gap-7 pt-12 pb-24">
+    <h1 class="font-display text-[clamp(40px,6vw,80px)] leading-[0.98] font-extrabold tracking-[-0.04em]">
+      How we write these
+    </h1>
+    <p>
+      Every entry says what the paradox claims, in two sentences that both seem true. Then it
+      says what gives. Where the answer is settled, we say so. Where it isn't, we say that
+      instead and show the competing positions.
+    </p>
+
+    <h2 class="display mt-3 text-[32px]">How a paradox ends</h2>
+    <dl class="grid gap-3.5">
+      {Object.values(statuses).map((s) => (
+        <div>
+          <dt class="font-bold">{s.label}</dt>
+          <dd class="m-0">{s.definition}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <h2 class="display mt-3 text-[32px]">How much we simplified</h2>
+    <dl class="grid gap-3.5">
+      {Object.values(simplifications).map((s) => (
+        <div>
+          <dt class="font-bold">{s.label}</dt>
+          <dd class="m-0">{s.definition}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <h2 class="display mt-3 text-[32px]">Sources</h2>
+    <p>
+      Each entry lists its sources. An entry marked as unverified has not yet been checked
+      against primary sources and should not be relied on.
+    </p>
+  </main>
+</Base>
