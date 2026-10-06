@@ -13,7 +13,7 @@ claimB: "We have found no sign of it."
 verdict: "Nobody knows. It is an open question, with many untested answers."
 whatBreaks: "Our guesses about how common intelligent life is, and how it behaves."
 statusNote: "it is a real puzzle and there is no agreed answer. Each proposal rests on guesses we cannot yet test."
-setup: 'In 1950, the physicist Enrico Fermi was at lunch with colleagues at Los Alamos, talking about the possibility of alien life. According to people who were there, he asked something like "Where is everybody?" His point was that if intelligent civilisations are common, some of them should have spread across the galaxy or been visible to us by now. Our galaxy has billions of planets that could be habitable, and it has existed for a very long time. Yet decades of searching have found no clear sign of aliens.'
+setup: "In 1950, the physicist Enrico Fermi was walking to lunch with colleagues at Los Alamos, talking about reports of flying saucers and whether travel faster than light was possible. At the table he asked a question that everyone took to be about alien life. Edward Teller remembered it as “Where is everybody?”, and the others recalled slightly different words. His point was that if intelligent civilisations are common, some of them should have spread across the galaxy or been visible to us by now. Our galaxy has billions of planets that could be habitable, and it has existed for a very long time. Yet decades of searching have found no clear sign of aliens."
 whyWrong: "This is not a contradiction in physics. It is a clash between an expectation and an observation, and the expectation rests on assumptions. We do not know how likely life is to start, how often it becomes intelligent, whether civilisations last, or whether they would travel or make themselves visible. The Drake equation, written down by Frank Drake in 1961, lists the factors, but several of them are completely unknown, so it cannot give a trustworthy number."
 resolution:
   - "Many answers have been proposed. They fall into a few families, and none has been shown to be right. The honest summary is that we have one example of life, our own, and cannot tell which family is closest to the truth."
@@ -30,6 +30,6 @@ finePrint: "These four are a plain summary of a long list of ideas, and the fami
 sources:
   - title: "Wikipedia: Fermi paradox"
     url: https://en.wikipedia.org/wiki/Fermi_paradox
-  - title: "Britannica: Fermi paradox"
-    url: https://www.britannica.com/science/Fermi-paradox
+  - title: "Eric M. Jones, “Where is everybody?” An account of Fermi’s question (Los Alamos report LA-10311-MS, 1985)"
+    url: https://www.osti.gov/biblio/5746675
 ---

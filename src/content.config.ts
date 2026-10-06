@@ -9,6 +9,8 @@ const entries = defineCollection({
     title: z.string(),
     // Title with the last word(s) highlighted on the entry page, e.g. "Sorites" + "paradox".
     titleAccent: z.string().optional(),
+    // Other names people search for (e.g. "Zeno", "surprise exam"). Search only, not shown.
+    aka: z.array(z.string()).default([]),
     chapter: z.enum(chapterIds),
     status: z.enum(["resolved", "disputed", "unreconciled"]),
     simplification: z.enum(["none", "light", "heavy"]).default("light"),

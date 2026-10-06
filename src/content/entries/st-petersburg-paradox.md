@@ -8,11 +8,11 @@ noMaths: true
 order: 6
 written: true
 problem: "A coin game has an infinite average prize. Why would nobody pay much to play it?"
-claimA: "If the average prize is infinite, you should pay any price to play."
-claimB: "No sensible person would pay more than a modest sum."
-verdict: "Several partial fixes exist, and none is accepted as the whole answer."
-whatBreaks: "The idea that a fair price is always the average prize."
-statusNote: "experts agree it is a real puzzle and offer several fixes, but no single one is accepted by everyone."
+claimA: "Since the average prize is endless, you should be willing to pay any price to play."
+claimB: "No sensible person would pay more than a modest sum to play."
+verdict: "Experts split over whether the average payout is the right guide to what a bet is worth, and no fix is accepted as the whole answer."
+whatBreaks: "The disputed premise is that a bet is worth its average payout. Grant it, and an endless average makes any price worth paying."
+statusNote: "some fixes replace the average payout with something else, while others keep it and blame the idealised game, and the Stanford Encyclopedia of Philosophy’s survey ends without settling which fix is right."
 setup: "A casino tosses a fair coin until it lands heads. If heads comes on the first toss, you win 2 pounds. If it first comes on the second toss, you win 4. On the third, 8. The prize doubles each time. How much would you pay to play?"
 whyWrong: "Work out the average prize. Heads on the first toss has a half chance and pays 2, so that adds 1 to the average. Heads first on the second toss has a quarter chance and pays 4, which adds another 1. Every possible round adds 1, and the rounds never stop. So the average prize is infinite. If a fair price is the average prize, you should be willing to pay everything you own. Yet seven times in eight the game pays 8 pounds or less, and commentators suggest most people would pay less than about 25."
 resolution:
@@ -25,7 +25,7 @@ positions:
   - title: "The casino has limited money"
     body: "No real casino can pay unlimited prizes, so the real game has a finite average. Cost: the puzzle is meant to be about the idea of an average itself, and this answer leaves the idealised game untouched."
   - title: "Ignore very unlikely outcomes"
-    body: "Buffon suggested in 1777 that outcomes this unlikely can be treated as impossible. Cost: it is hard to say where to draw the line, and modern versions of this idea can bring the paradox back."
+    body: "Buffon suggested in 1777 that outcomes this unlikely can be treated as impossible. Cost: it is hard to say where to draw the line. Every shuffle of a deck of cards produces an order that was extremely unlikely, yet nobody treats it as impossible."
   - title: "Averages are the wrong tool"
     body: "Some suggest looking at what happens to one player over time, or at the typical outcome, instead of the average. Cost: this means giving up expected value as the rule for decisions, which many decision theorists are not willing to do."
 finePrint: "The game was posed by Nicolaus Bernoulli in a letter in 1713. Daniel Bernoulli published his analysis in 1738 in the journal of the Imperial Academy of Science in Saint Petersburg, which gave the paradox its name. The figures for a limited casino are approximate, since the exact value depends on how the last round is handled. There are other fixes beyond the four given here."

@@ -1,6 +1,7 @@
 ---
 title: "Boy or girl paradox"
 titleAccent: "paradox"
+aka: ["two child problem", "two children problem"]
 chapter: probability
 status: resolved
 simplification: light
@@ -8,18 +9,18 @@ noMaths: true
 order: 7
 written: true
 problem: "A man has two children and at least one is a boy. What are the odds that both are?"
-claimA: "The other child is a boy or a girl with equal chance, so the odds are one half."
-claimB: "Of the families that fit, only one in three has two boys."
-verdict: "Both can be right, because the answer depends on how you learned the fact."
-whatBreaks: "The assumption that the same sentence always carries the same information."
-statusNote: "the question is ambiguous as worded, and once it is made precise the answer is not in dispute."
-setup: "Mr Smith has two children. You are told that at least one of them is a boy. What is the chance that both are boys? Take it that each child is equally likely to be a boy or a girl, independently of the other."
-whyWrong: "The quick thought is that one child is a boy, and the other is a coin toss, so one half. But another way of counting gives a different number. List the four equally likely families, older child first. Boy and boy, boy and girl, girl and boy, girl and girl. Learning that at least one is a boy rules out only the last one. Three families remain, and only one of them has two boys. That is one third."
+claimA: "As usually stated, the question has one right answer."
+claimB: "The answer depends on how you learned that at least one is a boy."
+verdict: "The question as usually stated has no single answer. It is one in three or one half, depending on how you found out."
+whatBreaks: "The assumption that the bare fact “at least one is a boy” fixes the odds, however you came to learn it."
+statusNote: "the question has no single answer until it says how you learned about the boy. Then it is one in three or one half, and both figures are agreed."
+setup: "Mr Smith has two children, and you learn that at least one of them is a boy. What is the chance that both are boys? Take it that each child is equally likely to be a boy or a girl, independently of the other."
+whyWrong: "Two quick answers both seem right. One says one child is a boy and the other is a coin toss, so one half. The other lists the four equally likely families, older child first: boy and boy, boy and girl, girl and boy, girl and girl. Knowing there is a boy rules out only the last, which leaves three families, and only one of them has two boys. That is one third. Each answer looks sound, so it seems one of them must contain a mistake."
 resolution:
-  - "Both counts are correct for different situations. It depends on how the fact reached you. Suppose someone looked at all the two-child families and picked out those with at least one boy. Then three families remain, and the answer is one third. Suppose instead that you met one of the children at random and saw that it was a boy. Then the other child is an ordinary coin toss, and the answer is one half."
-  - "A cleaner pair of questions shows the same thing. If you are told that the older child is a boy, only two families remain, boy and boy, or boy and girl. The answer is one half. If you are told only that at least one is a boy, the answer is one third. Knowing which child it is changes the count."
-  - "The wording does not settle which situation we are in, so the question as usually asked has no single answer until the way the information was obtained is stated. Martin Gardner posed it in 1959 and later accepted that it was ambiguous."
-finePrint: "This assumes boys and girls are equally likely and that the two children are independent. Real births are not exactly 50 to 50. A stranger version adds that one boy was born on a Tuesday. Working it through gives 13 chances in 27, about 48 percent, close to one half. The more details you are given about the boy, the closer the answer gets to one half. The Tuesday figure also assumes the information was given in the first way described above."
+  - "Neither calculation is wrong. They answer different questions, and the usual wording does not say which one is being asked. What decides it is how you came to know about the boy."
+  - "If a family was picked because it has at least one boy, for example because you asked Mr Smith whether he has a son and he said yes, every family except girl and girl is still in play. Those three are equally likely, and only one has two boys. The answer is one in three."
+  - "If instead one of the two children was picked at random and turned out to be a boy, for example because you met one of them by chance, the other child is an ordinary coin toss. The answer is one half."
+finePrint: "Martin Gardner posed the puzzle in his Mathematical Games column in Scientific American in May 1959. He first gave one third as the answer, and later accepted that the question was ambiguous, for the reason given here. Both answers assume boys and girls are equally likely and that the two children are independent. Real births are not exactly 50 to 50. A stranger version adds that one boy was born on a Tuesday. When the family was picked for having such a boy, this gives 13 chances in 27, about 48 percent, close to one half. The more details you are given about the boy, the closer the answer gets to one half."
 sources:
   - title: "Wikipedia: Boy or girl paradox"
     url: "https://en.wikipedia.org/wiki/Boy_or_girl_paradox"

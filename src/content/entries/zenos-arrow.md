@@ -1,35 +1,30 @@
 ---
 title: "Zeno's arrow paradox"
 titleAccent: "paradox"
+aka: ["Zeno", "flying arrow"]
 chapter: infinity
-status: disputed
+status: resolved
 simplification: light
 order: 4
 written: true
 sourcesVerified: false
 problem: "If a flying arrow is standing still at every instant, how can it ever move?"
-claimA: "At any single instant the arrow takes up one place and covers no distance, so it is not moving."
-claimB: "The arrow is made of nothing but instants, and yet it clearly moves."
-verdict: "Most accept that motion is about different places at different times, but not everyone is satisfied."
+claimA: "At each instant the arrow moves no distance, so it is at rest at every instant, so it never moves."
+claimB: "The arrow's flight is made of nothing but instants, and yet the arrow clearly moves."
+verdict: "Moving means being in different places at different times, not doing something inside one instant."
 whatBreaks: "The idea that motion is something an object does at a single instant."
-statusNote: "there is a standard answer, but experts still disagree on whether it explains what motion is."
-setup: "Freeze time at one instant. The arrow is in one place, exactly as big as itself. It has not gone anywhere, because there is no time for it to go. The same is true at the next instant, and the one after. Time is made of instants, and the arrow is still at every one of them. So when does it move? Aristotle reports the argument this way: it cannot move to where it is, because it is already there, and it cannot move to where it is not, because no time passes for it to get there."
-whyWrong: 'The argument slips from "not moving at any instant" to "not moving at all". Those only match if motion is something that happens inside an instant. If it is not, the first claim can be true and the arrow still moves.'
+statusNote: "the first claim is wrong. At a single instant the arrow covers no distance, but that does not make it at rest."
+setup: "Freeze time at one instant. The arrow is in one place, taking up a space exactly its own size. It covers no distance in that instant. The same is true at the next instant, and the one after. The flight is made of instants, and the arrow is still at every one of them. So when does it move? Aristotle reports the argument in his Physics: everything that takes up a space equal to itself is at rest, and the flying arrow takes up such a space at every instant, so the flying arrow is at rest. A later writer, Diogenes Laertius, gives a shorter version: what moves moves neither in the place where it is nor in a place where it is not."
+whyWrong: 'The argument slips from "covers no distance in an instant" to "is at rest at that instant", and then to "never moves". Those only match if motion is something that happens inside an instant. If it is not, the arrow covers no distance at each instant and still moves.'
 resolution:
-  - "The standard answer is that motion is not something an object does at an instant. It is a matter of the arrow being at one place at one time and at another place at another time. This is called the at-at theory of motion, and Bertrand Russell is the name usually attached to it. On this view, an instant is a snapshot, and a snapshot has no motion in it, so Zeno is right that the arrow is not moving at any instant. That does not stop it moving across a stretch of time."
-  - "Calculus fits with this. Speed at an instant is not distance divided by a zero length of time, which would be nonsense. It is defined by what happens over shorter and shorter stretches around that instant. That matter was worked out rigorously in the 19th century by Cauchy and Weierstrass."
-  - "The dispute is over whether this fully answers Zeno. These are three of the views that remain."
-positions:
-  - title: "Motion is just places at times"
-    body: "An arrow moves if it is at different places at different times, and nothing more is needed. Cost: it says nothing about what an arrow is doing at a single instant to make it a moving arrow. Henri Bergson criticised this kind of view in 1911 as saying that movement is composed of immobilities."
-  - title: "Motion cannot be cut into pieces"
-    body: "Bergson held that movement is one indivisible thing, even though the path it covers can be divided. Cost: it leaves Zeno's picture of time as a row of instants behind, and with it the usual maths of motion."
-  - title: "Instants do not really exist"
-    body: "Some, such as Peter Lynds, argue that instants and exact values at an instant do not physically exist, so the argument has nothing to stand on. Cost: ordinary physics talks about the state of things at an instant, so this view has to rebuild that talk."
-finePrint: "The Stanford Encyclopedia of Philosophy describes the at-at account as the dominant response, but notes that commentators still disagree on whether the maths reaches the original question, and that modern physics might not treat space and time as the smooth continuum these answers assume. This entry is marked Disputed for that reason. The costs listed for the three views are a plain-words summary and each view has more detail than shown."
+  - "The standard answer is that motion is not something an object does at an instant. It is a matter of the arrow being at one place at one time, at another place at another time, and at the points in between at the times in between. This is called the at-at theory of motion, and Bertrand Russell is the name usually attached to it. On this view, Zeno is right that the arrow covers no distance at any single instant, but that does not make it at rest there. Whether it is moving at an instant depends on whether it covers any distance over stretches of time that include that instant, and the flying arrow does."
+  - "Calculus fits with this. Speed at an instant is not distance divided by a zero length of time, which would be nonsense. It is defined by what happens over shorter and shorter stretches around that instant. That idea was made rigorous in the 19th century by Cauchy and Weierstrass."
+finePrint: 'Not everyone accepts the at-at picture. Henri Bergson, in Creative Evolution (1907, English translation 1911), summed it up as saying that "movement is composed of immobilities", which he thought was absurd. The Stanford Encyclopedia of Philosophy treats the at-at answer as the right one, but notes that modern mathematics may not be needed to answer what Zeno himself intended to ask. It also notes that quantum theories of gravity likely imply that space and time are not smooth and endlessly divisible, which would change the setting of the puzzle. This entry covers the standard answer only.'
 sources:
   - title: "Wikipedia: Zeno's paradoxes"
     url: https://en.wikipedia.org/wiki/Zeno%27s_paradoxes
   - title: "Stanford Encyclopedia of Philosophy: Zeno's Paradoxes"
     url: https://plato.stanford.edu/entries/paradox-zeno/
+  - title: "Wikipedia: Creative Evolution"
+    url: https://en.wikipedia.org/wiki/Creative_Evolution_(book)
 ---

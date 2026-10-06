@@ -1,5 +1,6 @@
 ---
 title: "Gabriel's horn"
+aka: ["Torricelli's trumpet"]
 chapter: infinity
 status: resolved
 simplification: light
@@ -10,10 +11,10 @@ sourcesVerified: false
 problem: "Can a horn hold a finite amount of paint and still have a surface you could never finish painting?"
 claimA: "The horn holds only a limited amount of paint, so a limited amount of paint should be enough."
 claimB: "Its surface is endless, so no limited amount of paint can cover it."
-verdict: "Endless area can be covered with finite paint if the layer keeps getting thinner."
+verdict: "The second claim is wrong. Endless area can be covered with finite paint if the layer keeps getting thinner."
 whatBreaks: "The idea that covering a surface always needs paint in proportion to its area."
-statusNote: "one claim is wrong. The paint layer does not have to stay the same thickness."
-setup: "Take the curve that starts wide and narrows as it goes, so that at distance x along it the width is in proportion to 1 divided by x. Spin it round to make a horn. It is open at the wide end and stretches off forever, getting thinner but never closing. The shape is called Gabriel's horn, after the angel said to blow the horn on Judgment Day. Two facts about the horn are true. The space inside it never adds up to more than about 3.14 cubic units, where the mouth is 2 units wide. And its surface area has no limit. If you took a section of length a, the surface would be at least 2 times 3.14 times the natural logarithm of a, and that keeps growing as the section gets longer."
+statusNote: "the second claim is wrong. A limited amount of paint can cover the endless surface, because the paint layer does not have to stay the same thickness."
+setup: "Take the curve that starts wide and narrows as it goes, so that at distance x along it the width is in proportion to 1 divided by x. Spin it round to make a horn. It is open at the wide end and stretches off forever, getting thinner but never closing. The shape is called Gabriel's horn, after the angel said to blow the horn on Judgment Day. Two facts about the horn are true. Where the mouth is 2 units wide, the space inside it is exactly pi cubic units, about 3.14. And its surface area has no limit. The part of the horn from x equals 1 to x equals a, a length of a minus 1, has a surface of at least 2 times pi times the natural logarithm of a, and that keeps growing as a gets bigger."
 whyWrong: "It sounds as if you could fill the horn with a finite tin of paint, but would need endless paint to coat the same surface. That cannot be right, since the paint touches the wall when you fill the horn. The slip is in the unspoken rule that paint covering a wall must have some set thickness."
 resolution:
   - "Fill the horn with paint and the paint does touch every part of the inner wall. So a finite amount of paint does cover an endless surface. What it cannot do is cover it with a coat of the same thickness all the way along. A coat of fixed thickness over an endless area would need endless paint. The paint in the filled horn is thick near the mouth and gets thinner and thinner down the tube, fast enough that the total stays finite."
