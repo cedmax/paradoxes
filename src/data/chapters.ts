@@ -22,13 +22,13 @@ export const chapters: Chapter[] = [
   {
     id: "self-reference",
     n: "01",
-    title: "Sentences that talk about themselves",
+    title: "Self-referencial sentences",
     blurb: "Contradictions that appear the moment a statement refers to itself.",
   },
   {
     id: "vague-words",
     n: "02",
-    title: "Words that are too vague",
+    title: "Vagueness and ambiguity",
     blurb: "Everyday words and measurements with no sharp edge, pushed until they break.",
   },
   {

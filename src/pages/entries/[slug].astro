@@ -34,7 +34,7 @@ const h2 = "display text-[44px]"
 const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[15px] font-bold"
 ---
 
-<Base title={`${d.title}. Paradoxes, plainly`} description={d.problem}>
+<Base title={`${d.title}. Logic Benders`} description={d.problem}>
   <section class="px-gutter flex flex-col gap-6 pt-4 pb-12">
     <nav class="mono-label flex flex-wrap gap-x-2.5 gap-y-1" aria-label="Breadcrumb">
       <a class="inline-flex min-h-11 items-center no-underline hover:text-accent" href="/">
@@ -130,7 +130,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[
             <p>{p}</p>
           ))}
           {d.positions.length > 0 && (
-            <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3.5">
+            <div class="grid mt-4 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3.5">
               {d.positions.map((p) => (
                 <div class="flex flex-col gap-2 border-2 border-ink px-5.5 py-4.5">
                   <div class="display text-2xl leading-[1.1] tracking-[-0.02em]">{p.title}</div>
