@@ -9,7 +9,7 @@ interface Props {
 const { entry } = Astro.props
 const d = entry.data
 const s = statuses[d.status]
-const haystack = [d.title, ...(d.aka ?? []), d.problem, d.claimA, d.claimB, d.verdict]
+const haystack = [d.title, ...d.aka, d.problem, d.claimA, d.claimB, d.verdict]
   .join(" ")
   .toLowerCase()
 ---
