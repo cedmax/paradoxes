@@ -1,0 +1,28 @@
+---
+title: "Russell's paradox"
+titleAccent: paradox
+chapter: self-reference
+status: resolved
+simplification: light
+order: 3
+written: true
+noMaths: true
+problem: "Does the collection of all collections that do not contain themselves contain itself?"
+claimA: "Any clear description picks out a collection of the things that fit it."
+claimB: "The collection of everything that does not contain itself cannot exist without contradicting itself."
+verdict: "The first claim is false, and set theory was rebuilt without it."
+whatBreaks: "The idea that any description at all can be used to build a collection."
+statusNote: "the idea that every description makes a collection is wrong. Experts still differ on which replacement rules are best."
+setup: "A collection of things is called a set. Most sets do not contain themselves: the set of all teaspoons is not a teaspoon. But some might. The set of everything that is not a teaspoon is not a teaspoon, so it would contain itself. Now gather every set that does not contain itself into one new set, and call it R. Does R contain itself? If it does, it breaks R's own entry rule, so it should not. If it does not, it fits the rule, so it should."
+whyWrong: "It looks harmless to say that any clear description gives you a set: all the things that are red, all the things that are not teaspoons. Mathematicians of the time relied on exactly that. The rule feels like plain common sense, and nothing in R's description looks broken."
+resolution:
+  - "The rule is the thing that has to go. The principle that every description makes a set is false. If you keep it, you get a contradiction, so any system of mathematics built on it is unsound."
+  - "Several replacements were developed. Russell himself built a theory of types, worked out between 1903 and 1910, which sorts things into levels so that a collection can only contain things from a lower level. Ernst Zermelo, in 1908, proposed that you may only pick out a set from a set you already have, which stops you building R from everything at once. Later, John von Neumann's approach, from 1925, allows collections that are too big to be sets, called proper classes. R is one of those."
+  - "So the contradiction is gone, and nobody defends the old rule. What mathematicians do not all agree on is which replacement is the best account of what a set really is."
+finePrint: "Russell found the problem in 1901 and wrote to the logician Gottlob Frege about it in 1902, just as Frege's own book was going to print. Zermelo is also said to have found it independently, but he did not publish it. The barber who shaves everyone who does not shave himself is a popular retelling, not the original form. The fixes shown here are a few of several, and they are technical. Read the sources for the details."
+sources:
+  - title: "Wikipedia: Russell's paradox"
+    url: https://en.wikipedia.org/wiki/Russell%27s_paradox
+  - title: "Stanford Encyclopedia of Philosophy: Russell's Paradox"
+    url: https://plato.stanford.edu/entries/russell-paradox/
+---
