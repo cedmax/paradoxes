@@ -130,7 +130,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[
             <p>{p}</p>
           ))}
           {d.positions.length > 0 && (
-            <div class="grid mt-4 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3.5">
+            <div class="grid mt-6 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3.5 -mb-6">
               {d.positions.map((p) => (
                 <div class="flex flex-col gap-2 border-2 border-ink px-5.5 py-4.5">
                   <div class="display text-2xl leading-[1.1] tracking-[-0.02em]">{p.title}</div>
@@ -140,28 +140,31 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[
             </div>
           )}
           {d.finePrint && (
-            <div class="mt-1 border-2 border-ink bg-disputed px-6 py-5 text-[17px] leading-normal">
+            <div class="mt-6 border-2 border-ink bg-disputed px-6 py-5 text-[17px] leading-normal">
               <strong>The fine print.</strong> {d.finePrint}
             </div>
           )}
         </section>
       )}
 
-      {d.written && (
-        <section class="!gap-2 border-t-2 border-ink pt-6 text-base">
+      {d.written && !!d.sources.length && (
+        <section class="gap-2! border-t-2 border-ink pt-6 text-base">
           <div class="mono-label">Sources</div>
-          {d.sources.length === 0 ? (
-            <div>No sources listed yet.</div>
-          ) : (
-            <ul class="m-0 pl-5">
-              {d.sources.map((src) => (
-                <li>
-                  {src.url ? <a href={src.url}>{src.title}</a> : src.title}
-                  {src.note && <> ({src.note})</>}
-                </li>
-              ))}
-            </ul>
-          )}
+
+          <ul class="m-0 pl-5">
+            {d.sources.map((src) => (
+              <li>
+                {src.url ? (
+                  <a class="underline font-bold" target="_blank" href={src.url}>
+                    {src.title}
+                  </a>
+                ) : (
+                  src.title
+                )}
+                {src.note && <span class="text-sm"> {src.note}</span>}
+              </li>
+            ))}
+          </ul>
         </section>
       )}
     </article>
