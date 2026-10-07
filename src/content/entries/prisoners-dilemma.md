@@ -23,7 +23,7 @@ positions:
   - title: Testify, even in one game
     body: "Keep the first claim. Your choice cannot change what the other player decides, and testifying is better against either choice. Cost: two people who reason this way reliably do worse than two who do not."
   - title: Stay silent if you reason alike
-    body: "Keep the second claim. If the other player thinks as you do, your choice is strong evidence of theirs, so stay silent. This is close to the reasoning for taking one box in Newcomb's paradox. Cost: it treats your choice as a sign of something it does not cause."
+    body: "Keep the second claim. If the other player thinks as you do, your choice is strong evidence of theirs, so stay silent. This is close to the reasoning for taking one box in [Newcomb's paradox](newcombs-paradox). Cost: it treats your choice as a sign of something it does not cause."
   - title: The one-shot game is rare
     body: "Most real situations repeat, or involve reputation, so the sensible question is what works over time. Cost: it does not answer the one-shot case, which is the one the puzzle asks about."
 finePrint: The prison sentences above are one common set of numbers. Any numbers work if temptation beats the reward for mutual cooperation, which beats the punishment for mutual betrayal, which beats being the one betrayed. The label "prisoner's dilemma" is often credited to Tucker, but the Stanford Encyclopedia says it first appeared in print in a 1957 book by Luce and Raiffa. The Stanford entry also says that, for players who reason alike, there remain people committed to each view on whether cooperating is rational.

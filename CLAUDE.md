@@ -75,6 +75,9 @@ How to apply them:
   hype, no first person and no inclusive "we".
 - `verdict` must make sense without the claims, because the mobile index card shows it alone.
   Never write “the first claim” or “the second claim” in it.
+- When a body field (`setup`, `whyWrong`, `resolution`, `positions`, `finePrint`, `whatBreaks`,
+  `statusNote`) mentions another entry, link it as `[shown text](entry-slug)`. The build fails on
+  an unknown slug. Never put links in `title`, `problem`, `claimA`, `claimB` or `verdict`.
 - `problem` is a question. `statusNote` starts lowercase, completes "Explained: …" etc., and is
   specific to the entry.
 - Political and religious entries take no side, including through word choice or which view

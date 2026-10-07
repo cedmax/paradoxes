@@ -20,7 +20,7 @@ resolution:
   - "Count coins, not boxes. There are six coins and three are gold. Each gold coin was equally likely to be the one you drew. Two of the gold coins are in the gold pair box, so the other coin is gold. One gold coin is in the mixed box, so the other coin is silver. Two cases out of three end with a second gold coin. The answer is two in three."
   - "Another way to see it: the gold pair box is certain to give you a gold coin, while the mixed box gives you one only half the time. So a gold coin is twice as likely to have come from the gold pair box."
   - "Joseph Bertrand's point, made in 1889, was that simply counting the cases left is not always correct. You have to weigh each case by how likely it was to produce what you saw."
-finePrint: "The puzzle is mathematically the same as the Monty Hall problem and the three prisoners problem. In each, a naive count of the remaining options gives one half, and the correct answer is two in three. This version assumes that you pick a box at random and then a coin at random from it."
+finePrint: "The puzzle is mathematically the same as the [Monty Hall problem](monty-hall-problem) and the three prisoners problem. In each, a naive count of the remaining options gives one half, and the correct answer is two in three. This version assumes that you pick a box at random and then a coin at random from it."
 sources:
   - title: "Wikipedia: Bertrand's box paradox"
     url: "https://en.wikipedia.org/wiki/Bertrand%27s_box_paradox"

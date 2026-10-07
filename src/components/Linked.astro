@@ -1,0 +1,33 @@
+---
+// Renders entry text, turning [shown text](entry-slug) into an underlined link to that entry.
+import { getCollection } from "astro:content"
+
+interface Props {
+  text: string
+}
+
+const { text } = Astro.props
+const ids = new Set((await getCollection("entries")).map((e) => e.id))
+const link = /\[([^\]]+)\]\(([a-z0-9-]+)\)/g
+
+const pieces: { text: string; href?: string }[] = []
+let last = 0
+for (const m of text.matchAll(link)) {
+  const [whole, shown, slug] = m
+  if (!ids.has(slug)) throw new Error(`Link to unknown entry "${slug}" in: ${text}`)
+  pieces.push({ text: text.slice(last, m.index) })
+  pieces.push({ text: shown, href: `/entries/${slug}/` })
+  last = m.index + whole.length
+}
+pieces.push({ text: text.slice(last) })
+---
+
+{pieces.map((p) =>
+  p.href ? (
+    <a class="underline" href={p.href}>
+      {p.text}
+    </a>
+  ) : (
+    p.text
+  ),
+)}

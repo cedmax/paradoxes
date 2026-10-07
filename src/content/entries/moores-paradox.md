@@ -24,7 +24,7 @@ positions:
     body: "“I believe it is not raining” often works as a cautious “it is not raining”, so “It is raining, but I believe it is not” comes down to “it is raining and it is not”. Cost: it only covers this second form, not “It is raining, but I don't believe it”, and “I believe” does not always work that way."
   - title: "It is about thinking, not speaking"
     body: "When we ask ourselves whether to believe something, we look at the facts, not at ourselves. This is Richard Moran's approach. Cost: it denies that the absurdity is a kind of contradiction at all, against most other explanations, which see one at the root."
-finePrint: "Philosophers call the two forms omissive (“I don't believe it”) and commissive (“I believe it is not”). The three positions are a plain summary of a larger set of proposals, and the sources do not say that any of them has won. Roy Sorensen, among others, has linked this puzzle to the unexpected hanging paradox."
+finePrint: "Philosophers call the two forms omissive (“I don't believe it”) and commissive (“I believe it is not”). The three positions are a plain summary of a larger set of proposals, and the sources do not say that any of them has won. Roy Sorensen, among others, has linked this puzzle to the [unexpected hanging paradox](unexpected-hanging-paradox)."
 sources:
   - title: "Wikipedia: Moore's paradox"
     url: https://en.wikipedia.org/wiki/Moore%27s_paradox

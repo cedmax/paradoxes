@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content"
 import Base from "~/layouts/Base.astro"
+import Linked from "~/components/Linked.astro"
 import { chapterById } from "~/data/chapters"
 import { statuses, simplifications } from "~/data/status"
 
@@ -108,14 +109,18 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
       {d.setup && (
         <section>
           <h2 class={h2}>The setup</h2>
-          <p>{d.setup}</p>
+          <p>
+            <Linked text={d.setup} />
+          </p>
         </section>
       )}
 
       {d.whyWrong && (
         <section>
           <h2 class={h2}>Why it feels wrong</h2>
-          <p>{d.whyWrong}</p>
+          <p>
+            <Linked text={d.whyWrong} />
+          </p>
         </section>
       )}
 
@@ -129,7 +134,9 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
                 : `Why it's ${s.label.toLowerCase()}`}
           </h2>
           {d.resolution.map((p) => (
-            <p>{p}</p>
+            <p>
+              <Linked text={p} />
+            </p>
           ))}
           {d.positions.length > 0 && (
             <div class="grid mt-6 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3.5 -mb-6">
@@ -137,7 +144,9 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
                 <div class="flex flex-col gap-2 border-2 border-ink px-5.5 py-4.5">
                   <div class="display text-2xl leading-none tracking-tight">{p.title}</div>
                   {p.body.split(/\s(?=Cost: )/).map((part) => (
-                    <p class="text-lg leading-normal">{part}</p>
+                    <p class="text-lg leading-normal">
+                      <Linked text={part} />
+                    </p>
                   ))}
                 </div>
               ))}
@@ -145,7 +154,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
           )}
           {d.finePrint && (
             <div class="mt-6 border-2 border-ink bg-disputed px-6 py-5 text-lg leading-normal">
-              <strong>The fine print.</strong> {d.finePrint}
+              <strong>The fine print.</strong> <Linked text={d.finePrint} />
             </div>
           )}
         </section>
@@ -176,10 +185,12 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
     <aside class="flex max-w-85 grow basis-65 flex-col gap-6" aria-label="About this entry">
       <div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
         <div class="mono-label text-accent">What breaks</div>
-        <div>{d.whatBreaks}</div>
+        <div>
+          <Linked text={d.whatBreaks} />
+        </div>
         <div class="mono-label text-accent">Status</div>
         <div>
-          {s.label}: {d.statusNote}
+          {s.label}: <Linked text={d.statusNote} />
         </div>
       </div>
       {siblings.length > 0 && (
