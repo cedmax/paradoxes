@@ -7,11 +7,11 @@ simplification: light
 order: 2
 written: true
 sourcesVerified: true
-problem: "A barber shaves everyone who doesn't shave themselves. Who shaves the barber?"
-claimA: "A village could have a barber who follows this rule."
-claimB: "Whatever the barber does about his own beard, he breaks the rule."
-verdict: "The first claim is wrong. The contradiction never goes away: it is the proof that no such barber can exist."
-whatBreaks: "The assumption that any rule you can state describes someone who exists."
+problem: "A barber shaves everyone who doesn't shave themselves, and nobody else. Who shaves the barber?"
+claimA: "A barber can follow any rule he likes about who he shaves."
+claimB: "The barber is one of the people his rule is about."
+verdict: "The first claim is wrong. The contradiction never goes away: it proves that no barber can follow this rule."
+whatBreaks: "The assumption that any rule about who to shave is one a barber could follow."
 statusNote: "the contradiction is real and it stays, but it proves something instead of leaving a puzzle open: no such barber can exist. Nobody disputes this, and giving up the barber costs nothing."
 setup: "In a village there is one barber. His rule is that he shaves every man in the village who does not shave himself, and nobody else. It sounds like a tidy arrangement. Then someone asks the obvious question, does the barber shave himself?"
 whyWrong: "The puzzle is told as if the barber is a given, a person we can ask questions about. We described him in one sentence and so we assume he exists. Descriptions do not guarantee that."
