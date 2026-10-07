@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "@fontsource-variable/archivo/wght.css";
+@import "@fontsource-variable/hanken-grotesk/wght.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";
 
 @theme {
   --color-ink: #0a0a0a;
@@ -7,9 +10,9 @@
   --color-resolved: #b9f2cb;
   --color-disputed: #ffe16b;
   --color-unreconciled: #ffb3a3;
-  --font-display: "Archivo", system-ui, sans-serif;
-  --font-body: "Hanken Grotesk", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Archivo Variable", system-ui, sans-serif;
+  --font-body: "Hanken Grotesk Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
   --spacing-gutter: clamp(20px, 3.5vw, 48px);
 }
 
