@@ -7,6 +7,7 @@ simplification: light
 noMaths: true
 order: 7
 written: true
+sourcesVerified: true
 problem: "If quantum rules say an atom can be in two states at once, what does that mean for a cat whose life depends on it?"
 claimA: "Quantum theory says an atom that may or may not have decayed is in a mix of both until it is measured, and, in principle, it applies to anything made of atoms."
 claimB: "A cat is either alive or dead, never some mix of the two."

@@ -6,7 +6,7 @@ status: disputed
 simplification: light
 order: 7
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: Why do people prefer a bet with known odds over one with unknown odds, when no single set of odds fits all their choices?
 claimA: A rational person acts as though each outcome has some definite probability.
 claimB: "A rational person can prefer bets whose odds are known, even when no single set of probabilities fits those choices."

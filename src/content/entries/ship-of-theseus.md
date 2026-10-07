@@ -5,7 +5,7 @@ status: disputed
 simplification: light
 order: 1
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: Replace every plank of a ship, one at a time. Is it still the same ship?
 claimA: Each swap leaves it the same ship.
 claimB: "A ship with none of its original planks is not the original ship."

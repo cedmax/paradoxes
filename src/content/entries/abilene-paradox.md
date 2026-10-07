@@ -7,7 +7,7 @@ simplification: light
 noMaths: true
 order: 10
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: How can a whole group agree to do something that not one of them wants?
 claimA: If a group does something, at least some of its members must want it.
 claimB: Every member can privately prefer another plan, and the group still goes ahead.

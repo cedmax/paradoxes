@@ -30,6 +30,6 @@ sources:
     url: https://en.wikipedia.org/wiki/Moore%27s_paradox
   - title: "Stanford Encyclopedia of Philosophy: Epistemic Paradoxes"
     url: https://plato.stanford.edu/entries/epistemic-paradoxes/
-sourcesVerified: false
+sourcesVerified: true
 noMaths: true
 ---

@@ -7,6 +7,7 @@ simplification: light
 noMaths: true
 order: 4
 written: true
+sourcesVerified: true
 problem: "Can a ladder too long for a barn fit inside it, if it runs through fast enough?"
 claimA: "Seen from the barn, the squashed ladder is inside with both doors shut at the same moment."
 claimB: "Whether both doors are shut at the same moment is a fact every observer must agree on."

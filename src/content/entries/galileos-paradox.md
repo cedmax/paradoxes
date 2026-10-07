@@ -6,7 +6,7 @@ status: explained
 simplification: light
 order: 5
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Are there as many square numbers as there are whole numbers?"
 claimA: "Squares are only some of the whole numbers, so there must be fewer of them."
 claimB: "Every whole number has exactly one square, so there must be exactly as many."

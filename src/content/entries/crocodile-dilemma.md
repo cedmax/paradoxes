@@ -7,6 +7,7 @@ status: defused
 simplification: light
 order: 6
 written: true
+sourcesVerified: true
 noMaths: true
 problem: "A crocodile promises to return a stolen child if and only if the parent correctly predicts what it will do. The parent says it will not return the child. What can the crocodile do?"
 claimA: "The crocodile can keep its promise whatever the parent predicts."

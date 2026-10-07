@@ -8,6 +8,7 @@ simplification: light
 noMaths: true
 order: 7
 written: true
+sourcesVerified: true
 problem: "A man has two children and at least one is a boy. What are the odds that both are?"
 claimA: "As usually stated, the question has one right answer."
 claimB: "The answer depends on how you learned that at least one is a boy."

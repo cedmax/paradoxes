@@ -86,7 +86,9 @@ How to apply them:
   actually fetched (Wikipedia, Stanford Encyclopedia of Philosophy, the original paper). Never
   invent URLs, quotes or figures. Recompute numbers.
 - Only list a URL in `sources` if it was fetched and supports what the entry uses it for.
-- `sourcesVerified` stays `false` until a human has reviewed the entry. Do not set it to `true`.
+- `sourcesVerified` means the cited sources have been checked and the entry's claims brought into
+  line with them, not that every claim is undisputed. New or substantially changed entries start
+  at `false`, and only a human sets it to `true` after review. Do not set it to `true` yourself.
 
 ## Editing rules
 

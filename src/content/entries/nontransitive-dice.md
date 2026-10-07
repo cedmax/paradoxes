@@ -30,5 +30,5 @@ sources:
   - title: "Wikipedia: Bradley Efron"
     url: https://en.wikipedia.org/wiki/Bradley_Efron
     note: "describes Efron as an American statistician who created Efron's dice"
-sourcesVerified: false
+sourcesVerified: true
 ---

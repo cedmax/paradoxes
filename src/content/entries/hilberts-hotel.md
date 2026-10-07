@@ -6,7 +6,7 @@ status: explained
 simplification: light
 order: 2
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "A hotel has infinitely many rooms and every one is full. Can it take one more guest?"
 claimA: "Full means there is no room for a new guest."
 claimB: "Move every guest up one room and there is."

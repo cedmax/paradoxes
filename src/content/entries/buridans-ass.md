@@ -6,7 +6,7 @@ status: disputed
 simplification: light
 order: 5
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: A hungry donkey stands exactly halfway between two identical piles of hay. What should it do?
 claimA: "A rational agent only chooses when it has a reason to prefer one option."
 claimB: "A rational agent facing a perfect tie should still choose and eat."

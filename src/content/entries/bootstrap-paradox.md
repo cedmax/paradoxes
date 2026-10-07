@@ -7,6 +7,7 @@ simplification: light
 noMaths: true
 order: 2
 written: true
+sourcesVerified: true
 problem: "If a time traveller hands you a watch that you later carry back to give to your younger self, where did the watch come from?"
 claimA: "Everything that exists has to come from somewhere."
 claimB: "A time loop could contain an object or a piece of information that has no origin."

@@ -7,6 +7,7 @@ status: explained
 simplification: light
 order: 2
 written: true
+sourcesVerified: true
 problem: "How many people need to be in a room before two probably share a birthday?"
 claimA: "There are 365 days, so you'd need far more than a few dozen people."
 claimB: "With just 23 people, it's more likely than not."

@@ -7,7 +7,7 @@ simplification: light
 noMaths: true
 order: 9
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: Can building a new road make everyone's journey slower?
 claimA: More road can only help drivers.
 claimB: When every driver picks their own fastest route, a new road can make all of them slower.

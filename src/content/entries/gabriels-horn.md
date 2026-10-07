@@ -7,7 +7,7 @@ simplification: light
 noMaths: false
 order: 7
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Can a horn hold a finite amount of paint and still have a surface you could never finish painting?"
 claimA: "The horn holds only a limited amount of paint, so a limited amount of paint should be enough."
 claimB: "Its surface is endless, so no limited amount of paint can cover it."

@@ -32,6 +32,6 @@ sources:
     url: https://plato.stanford.edu/entries/epistemic-paradoxes/
   - title: "Stanford Encyclopedia of Philosophy: Paraconsistent Logic"
     url: https://plato.stanford.edu/entries/logic-paraconsistent/
-sourcesVerified: false
+sourcesVerified: true
 noMaths: true
 ---

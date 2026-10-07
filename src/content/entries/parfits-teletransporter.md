@@ -6,7 +6,7 @@ status: disputed
 simplification: light
 order: 4
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "A machine scans and destroys your body, then builds a body exactly like yours on Mars from the scan. Have you travelled, or died?"
 claimA: "The person on Mars has a body exactly like yours, with all your memories and character, so it is you."
 claimB: Your original body was destroyed, so the person on Mars is someone else, a copy.

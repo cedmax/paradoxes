@@ -30,6 +30,6 @@ sources:
     url: https://en.wikipedia.org/wiki/Raven_paradox
   - title: "Stanford Encyclopedia of Philosophy: Confirmation"
     url: https://plato.stanford.edu/entries/confirmation/
-sourcesVerified: false
+sourcesVerified: true
 noMaths: true
 ---

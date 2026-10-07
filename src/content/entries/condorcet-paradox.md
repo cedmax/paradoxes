@@ -7,7 +7,7 @@ simplification: light
 noMaths: true
 order: 8
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: Can three sensible voters, choosing by majority, end up preferring A to B, B to C and C to A?
 claimA: "If every voter has a consistent ranking, majority voting gives a consistent group ranking."
 claimB: "Three voters with consistent rankings can make the majorities go round in a circle."

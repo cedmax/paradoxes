@@ -6,7 +6,7 @@ status: disputed
 simplification: light
 order: 6
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "If reason cannot settle whether God exists, is believing in God the sensible bet?"
 claimA: "An infinite reward, even if unlikely, outweighs any finite cost, so betting on God is wise."
 claimB: The argument would let any promise of an infinite reward force you to act, and many rival promises exist.

@@ -7,6 +7,7 @@ simplification: none
 noMaths: true
 order: 8
 written: true
+sourcesVerified: true
 problem: "You draw a gold coin from a box. What are the odds that the other coin in the box is gold too?"
 claimA: "The box is gold-gold or gold-silver, equally likely, so it is one half."
 claimB: "Counting the coins instead of the boxes gives two in three."

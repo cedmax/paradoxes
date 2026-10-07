@@ -6,7 +6,7 @@ status: explained
 simplification: light
 order: 6
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "A lamp is switched on and off faster and faster for two minutes. Is it on or off at the end?"
 claimA: "A lamp must be either on or off when the two minutes are up."
 claimB: "The switching rules out both, since every on is followed by an off and every off by an on."

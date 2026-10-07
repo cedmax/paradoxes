@@ -7,6 +7,7 @@ simplification: light
 noMaths: true
 order: 5
 written: true
+sourcesVerified: true
 problem: "If the universe is full of stars, why is the night sky dark?"
 claimA: "The universe has always existed, unchanging and full of stars, so every line of sight ends on a star."
 claimB: "The night sky is dark."

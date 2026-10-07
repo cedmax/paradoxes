@@ -7,6 +7,7 @@ simplification: light
 noMaths: true
 order: 4
 written: true
+sourcesVerified: true
 problem: "Two envelopes hold money, one with double the other. Should you swap the one you picked?"
 claimA: "Whatever amount you hold, the other envelope is equally likely to hold double or half."
 claimB: "Both envelopes were filled and handed out the same way, so before you look, swapping can't help."

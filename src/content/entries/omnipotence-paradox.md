@@ -6,6 +6,7 @@ status: defused
 simplification: light
 order: 5
 written: true
+sourcesVerified: true
 noMaths: true
 problem: "Can an all-powerful being make a stone so heavy that it cannot lift it?"
 claimA: "Being all-powerful means being able to do anything, even the logically impossible."

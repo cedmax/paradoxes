@@ -6,6 +6,7 @@ status: defused
 simplification: light
 order: 2
 written: true
+sourcesVerified: true
 problem: "A barber shaves everyone who doesn't shave themselves. Who shaves the barber?"
 claimA: "A village could have a barber who follows this rule."
 claimB: "Whatever the barber does about his own beard, he breaks the rule."

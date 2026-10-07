@@ -30,5 +30,5 @@ sources:
   - title: "Christakis and Fowler (2010): Social network sensors for early detection of contagious outbreaks"
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC2939797/
     note: "the 13.9 day lead of the friend group over the randomly chosen group"
-sourcesVerified: false
+sourcesVerified: true
 ---

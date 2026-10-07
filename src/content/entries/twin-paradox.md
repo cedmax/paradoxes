@@ -7,6 +7,7 @@ simplification: light
 noMaths: true
 order: 3
 written: true
+sourcesVerified: true
 problem: "If one twin flies off at high speed and comes back, why is she younger than her twin who stayed home?"
 claimA: "Motion is relative, so each twin can say the other one was moving, and each should find the other younger."
 claimB: "When they meet again, only one of them can be the younger."

@@ -7,7 +7,7 @@ simplification: light
 noMaths: true
 order: 11
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: Should a tolerant society tolerate people who want to end tolerance?
 claimA: "The intolerant should be tolerated unless they pose a real danger or incite violence."
 claimB: "A tolerant society may claim the right to suppress movements that preach intolerance, by force if necessary."

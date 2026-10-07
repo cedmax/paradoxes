@@ -30,6 +30,6 @@ sources:
     url: https://plato.stanford.edu/entries/epistemic-paradoxes/
   - title: "Stanford Encyclopedia of Philosophy: Formal Representations of Belief"
     url: https://plato.stanford.edu/entries/formal-belief/
-sourcesVerified: false
+sourcesVerified: true
 noMaths: true
 ---

@@ -6,6 +6,7 @@ status: disputed
 simplification: light
 order: 1
 written: true
+sourcesVerified: true
 problem: If you remove grains from a heap of sand one at a time, when does it stop being a heap?
 claimA: "Taking away one grain never turns a heap into a non-heap."
 claimB: "A million grains of sand make a heap, and a single grain does not."

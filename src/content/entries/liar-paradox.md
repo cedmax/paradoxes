@@ -6,6 +6,7 @@ status: unreconciled
 simplification: light
 order: 1
 written: true
+sourcesVerified: true
 problem: Is the sentence “This sentence is false” true or false?
 claimA: If it's true, then it's false.
 claimB: If it's false, then it's true.

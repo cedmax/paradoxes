@@ -6,6 +6,7 @@ status: unreconciled
 simplification: light
 order: 4
 written: true
+sourcesVerified: true
 noMaths: true
 problem: "Is the word “heterological” a heterological word?"
 claimA: "Every describing word either describes itself or does not."

@@ -7,7 +7,7 @@ status: explained
 simplification: light
 order: 3
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Can you ever walk across a room?"
 claimA: "Endlessly many steps can never all be finished."
 claimB: "People cross rooms all the time."

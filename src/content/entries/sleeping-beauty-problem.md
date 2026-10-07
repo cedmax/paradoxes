@@ -7,6 +7,7 @@ simplification: light
 noMaths: true
 order: 5
 written: true
+sourcesVerified: true
 problem: "A coin is tossed while Sleeping Beauty sleeps. When she wakes, how likely is it that it landed heads?"
 claimA: "When she wakes, she should give heads one chance in two, since she learns nothing new."
 claimB: "When she wakes, she should give heads one chance in three, since two of every three wakings follow tails."

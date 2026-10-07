@@ -7,6 +7,7 @@ status: explained
 simplification: light
 order: 1
 written: true
+sourcesVerified: true
 problem: "Three doors, one car. You pick one and the host opens a door with a goat behind it. Should you switch?"
 claimA: "Two doors left, so it's 50/50."
 claimB: "Switching wins 2 times in 3."

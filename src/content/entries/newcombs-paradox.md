@@ -6,7 +6,7 @@ status: disputed
 simplification: light
 order: 2
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Box A holds $1,000, and a near-perfect predictor has already decided whether Box B holds $1,000,000. Do you take Box B alone, or both?"
 claimA: "A rational chooser takes both boxes, because the contents are already fixed."
 claimB: "A rational chooser takes one box, because one-boxers reliably end up richer."
