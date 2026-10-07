@@ -16,8 +16,6 @@ const byChapter = chapters
 const statusKeys = Object.keys(statuses) as Status[]
 const counts: Record<string, number> = { all: all.length }
 statusKeys.forEach((k) => (counts[k] = all.filter((e) => e.data.status === k).length))
-
-const featured = all.find((e) => e.id === "monty-hall-problem")
 ---
 
 <Base title="Logic Benders">
@@ -31,6 +29,12 @@ const featured = all.find((e) => e.id === "monty-hall-problem")
       Paradoxes in plain words. Each one starts with a problem, and two claims that sound right
       but can't possibly be true at the same time. And what happens when you try to fix it.
     </p>
+  </section>
+
+  <section
+    class="px-gutter border-y-2 border-ink bg-accent py-7"
+    aria-label="Search and filter paradoxes"
+  >
     <div class="flex flex-wrap items-end gap-x-8 gap-y-4">
       <label class="flex max-w-115 min-w-0 grow basis-80 flex-col gap-2">
         <span class="mono-label">Search</span>
@@ -68,31 +72,28 @@ const featured = all.find((e) => e.id === "monty-hall-problem")
         ))}
       </div>
     </div>
-    <div class="flex max-w-225 flex-col gap-1.5 text-base">
-      <div class="mono-label">How a paradox ends</div>
+  </section>
+
+  <details class="group px-gutter pt-6">
+    <summary class="mono-label inline-flex min-h-11 cursor-pointer list-none items-center gap-2 [&::-webkit-details-marker]:hidden">
+      How a paradox ends
+      <span
+        aria-hidden="true"
+        class="transition-transform group-open:rotate-180 motion-reduce:transition-none"
+      >
+        ↓
+      </span>
+    </summary>
+    <div class="flex max-w-225 flex-col gap-1.5 pt-2 text-base">
       {statusKeys.map((k) => (
         <div>
           <strong>{statuses[k].label}</strong>: {statuses[k].definition}
         </div>
       ))}
     </div>
-  </section>
+  </details>
 
-  {featured && (
-    <a
-      class="px-gutter flex flex-wrap items-center justify-between gap-x-10 gap-y-5 border-y-2 border-ink bg-accent py-7 text-ink no-underline hover:bg-paper"
-      href={`/entries/${featured.id}/`}
-    >
-      <span class="font-display grow basis-120 text-[clamp(26px,3.2vw,44px)] leading-none font-extrabold tracking-tight">
-        {featured.data.problem}
-      </span>
-      <span class="inline-flex min-h-14 items-center bg-ink px-7 font-bold text-paper">
-        Commit to an answer →
-      </span>
-    </a>
-  )}
-
-  <main class="px-gutter flex flex-col gap-18 pt-16 pb-20">
+  <main class="px-gutter flex flex-col gap-18 pt-12 pb-20">
     {byChapter.map(({ chapter, items }) => (
       <section class="flex flex-col gap-5" data-chapter>
         <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2">
