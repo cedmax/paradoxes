@@ -9,7 +9,7 @@ noMaths: true
 order: 7
 written: true
 sourcesVerified: true
-problem: "A man has two children and at least one is a boy. What are the odds that both are?"
+problem: "A parent has two children and at least one is a boy. What are the odds that both are?"
 claimA: "As usually stated, the question has one right answer."
 claimB: "The answer depends on how you learned that at least one is a boy."
 verdict: "The question as usually stated has no single answer. It is one in three or one half, depending on how you found out."
