@@ -10,7 +10,7 @@ sourcesVerified: false
 problem: "How long is the coast of Britain?"
 claimA: "Every coastline is a real thing, so it must have one true length."
 claimB: "Measure it with a shorter ruler and you always get a longer answer."
-verdict: "A real coast has no single length, only a length for each ruler."
+verdict: "A real coast has no well-defined length. Its measured length depends on the scale you measure at."
 whatBreaks: "The assumption that every outline has one fixed length."
 statusNote: "the first claim is wrong for rough outlines. Nobody disputes the explanation."
 setup: "Measure the coast of Britain with a ruler 100 kilometres long, and you get about 2,800 kilometres. Use a ruler 50 kilometres long and you get about 3,400 kilometres. The shorter ruler can follow more bays and headlands, so the total grows. Try a ruler of one metre, then one centimetre, and the answer keeps growing. It does not settle on a number."

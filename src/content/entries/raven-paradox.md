@@ -9,7 +9,7 @@ written: true
 problem: "Can a green apple be evidence that all ravens are black?"
 claimA: "Seeing a thing that is not a raven tells you nothing about the colour of ravens."
 claimB: "Evidence for a claim is also evidence for any claim that says exactly the same thing in different words."
-verdict: "Philosophers still disagree on which rule to give up, though the Bayesian answer is widely favoured."
+verdict: "Philosophers still disagree on which rule to give up, though the Bayesian answer is one of the most popular."
 whatBreaks: "The idea that a simple, sensible rule can tell us what counts as evidence for a general claim."
 statusNote: "the popular Bayesian answer gives up the first claim, but Bayesians offer many rival versions of it, and other approaches give up the second claim instead."
 setup: "Take the claim “All ravens are black.” Each black raven you see seems to back it up. A white raven would knock it down. Now notice that “All ravens are black” says exactly the same thing as “Everything that is not black is not a raven.” Anything that is not black and not a raven should therefore back up that second claim. A green apple is not black and not a raven. So a green apple seems to be evidence that all ravens are black. You could do bird research from an armchair, by looking at your fruit bowl."

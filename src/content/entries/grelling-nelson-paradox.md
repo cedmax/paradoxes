@@ -10,7 +10,7 @@ noMaths: true
 problem: "Is the word “heterological” a heterological word?"
 claimA: "Every describing word either describes itself or does not."
 claimB: "Whichever way “heterological” goes, it contradicts itself."
-verdict: "Patching the definition just moves the problem to a neighbouring word."
+verdict: "There is no agreed fix. Each proposal, such as levels of language, gaps or allowing some contradictions, has a big cost."
 whatBreaks: "Either the first claim, that every describing word either describes itself or does not, or the rule that a contradiction cannot be true has to go. Which one goes is what the responses disagree on, and each choice costs something big."
 statusNote: "it is a version of the liar paradox about words, and the Stanford Encyclopedia of Philosophy says “no commonly agreed upon solution to the paradoxes of self-reference exists”."
 setup: "Some describing words describe themselves. “English” is an English word. “Pentasyllabic” has five syllables. Call these autological. Other describing words do not describe themselves. “Long” is a short word. “Monosyllabic” has five syllables. Call these heterological, meaning words that do not describe themselves. Now ask: is “heterological” heterological? If it is, then it describes itself, so it is not. If it is not, then it does not describe itself, which is exactly what heterological means, so it is."
