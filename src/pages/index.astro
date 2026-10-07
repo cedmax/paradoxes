@@ -22,24 +22,24 @@ const featured = all.find((e) => e.id === "monty-hall-problem")
 
 <Base title="Logic Benders">
   <section class="px-gutter flex flex-col gap-7 pt-12 pb-10 sm:pt-18">
-    <h1 class="font-display text-[clamp(44px,8.4vw,128px)] leading-[0.96] font-extrabold tracking-[-0.04em]">
+    <h1 class="font-display text-[clamp(44px,8.4vw,128px)] leading-none font-extrabold tracking-tighter">
       It can't be true.
       <br />
       <span class="text-accent">It can't be false.</span>
     </h1>
-    <p class="max-w-170 text-xl leading-[1.35] sm:text-2xl">
+    <p class="max-w-170 text-xl leading-snug sm:text-2xl">
       Paradoxes in plain words. Each one starts with a problem, and two claims that sound right
       but can't possibly be true at the same time. And what happens when you try to fix it.
     </p>
     <div class="flex flex-wrap items-end gap-x-8 gap-y-4">
-      <label class="flex max-w-115 min-w-0 flex-[1_1_320px] flex-col gap-2">
+      <label class="flex max-w-115 min-w-0 grow basis-80 flex-col gap-2">
         <span class="mono-label">Search</span>
         <input
           type="search"
           id="q"
           placeholder="sand, barber, doors"
           aria-label="Search paradoxes"
-          class="h-14 w-full rounded-none border-2 border-ink bg-paper px-4.5 text-[19px] text-ink"
+          class="h-14 w-full rounded-none border-2 border-ink bg-paper px-4.5 text-lg text-ink"
         />
       </label>
       <div
@@ -54,7 +54,7 @@ const featured = all.find((e) => e.id === "monty-hall-problem")
           data-filter="all"
           aria-pressed="true"
         >
-          All <span class="font-mono text-[13px] font-medium">{counts.all}</span>
+          All <span class="font-mono text-xs font-medium">{counts.all}</span>
         </button>
         {statusKeys.map((k) => (
           <button
@@ -63,8 +63,7 @@ const featured = all.find((e) => e.id === "monty-hall-problem")
             data-filter={k}
             aria-pressed="false"
           >
-            {statuses[k].label}{" "}
-            <span class="font-mono text-[13px] font-medium">{counts[k]}</span>
+            {statuses[k].label} <span class="font-mono text-xs font-medium">{counts[k]}</span>
           </button>
         ))}
       </div>
@@ -84,7 +83,7 @@ const featured = all.find((e) => e.id === "monty-hall-problem")
       class="px-gutter flex flex-wrap items-center justify-between gap-x-10 gap-y-5 border-y-2 border-ink bg-accent py-7 text-ink no-underline hover:bg-paper"
       href={`/entries/${featured.id}/`}
     >
-      <span class="font-display flex-[1_1_480px] text-[clamp(26px,3.2vw,44px)] leading-[1.05] font-extrabold tracking-[-0.03em]">
+      <span class="font-display grow basis-120 text-[clamp(26px,3.2vw,44px)] leading-none font-extrabold tracking-tight">
         {featured.data.problem}
       </span>
       <span class="inline-flex min-h-14 items-center bg-ink px-7 font-bold text-paper">
@@ -97,10 +96,10 @@ const featured = all.find((e) => e.id === "monty-hall-problem")
     {byChapter.map(({ chapter, items }) => (
       <section class="flex flex-col gap-5" data-chapter>
         <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2">
-          <div class="mono-label text-[15px] text-accent">{chapter.n}</div>
+          <div class="mono-label text-sm text-accent">{chapter.n}</div>
           <h2 class="display text-[clamp(30px,4vw,52px)]">{chapter.title}</h2>
         </div>
-        <p class="max-w-160 text-[19px]">{chapter.blurb}</p>
+        <p class="max-w-160 text-lg">{chapter.blurb}</p>
         <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,400px),1fr))] gap-6">
           {items.map((e) => (
             <EntryCard entry={e} />
@@ -108,7 +107,7 @@ const featured = all.find((e) => e.id === "monty-hall-problem")
         </div>
       </section>
     ))}
-    <p id="none" hidden class="font-display text-[40px] font-extrabold tracking-[-0.03em]">
+    <p id="none" hidden class="font-display text-4xl font-extrabold tracking-tight">
       Nothing matches. That's not a paradox, just a typo.
     </p>
   </main>
