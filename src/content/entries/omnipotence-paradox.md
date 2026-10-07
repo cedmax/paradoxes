@@ -9,8 +9,8 @@ written: true
 sourcesVerified: true
 noMaths: true
 problem: "Can an all-powerful being make a stone so heavy that it cannot lift it?"
-claimA: "Being all-powerful means being able to do anything, even the logically impossible."
-claimB: "Nothing can make a stone it cannot lift and then lift that stone."
+claimA: "An all-powerful being has no limits."
+claimB: "Some tasks are impossible for anyone, because they contradict themselves."
 verdict: "The first claim is wrong on the standard definition of omnipotence, which does not include doing the logically impossible."
 whatBreaks: "The idea that all-powerful means able to do absolutely anything, even what contradicts itself."
 statusNote: "all-powerful does not mean able to do the logically impossible, and the Stanford Encyclopedia of Philosophy gives two routes that need no such power. For a being that is all-powerful by its very nature, a stone it cannot lift is impossible, so making one is no real task. A being that is all-powerful but could stop being so can make the stone, lift it, and then give up its power."
