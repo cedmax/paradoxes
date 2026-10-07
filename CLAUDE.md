@@ -73,6 +73,8 @@ How to apply them:
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".
+- `verdict` must make sense without the claims, because the mobile index card shows it alone.
+  Never write “the first claim” or “the second claim” in it.
 - `problem` is a question. `statusNote` starts lowercase, completes "Explained: …" etc., and is
   specific to the entry.
 - Political and religious entries take no side, including through word choice or which view
