@@ -55,7 +55,10 @@ How to apply them:
   name the same wrong claim. The test between them: if the reasoning that produces the clash
   contains an error, it is explained; if the reasoning is sound and the clash knocks out a
   premise (barber, Russell, Olbers), it is defused. If experts agree the claim fails but disagree
-  on why, the status still applies; say the diagnosis is open in `statusNote` or `finePrint`.
+  only on how to describe the slip, the status still applies, provided the failure itself has been
+  shown (two envelopes: no proper odds make the claim true); say the diagnosis is open in
+  `statusNote` or `finePrint`. If there is no agreed error to point to, and every candidate fix
+  carries a big cost, the entry is unreconciled (St Petersburg).
 - **disputed**: the two claims are the positions expert camps actually hold; each camp gives up
   a different one (`newcombs-paradox.md` is the model). `whatBreaks`, `verdict`, `whyWrong` and
   `resolution` must not pick a side; phrase `whatBreaks` as the contested choice. Attribute
