@@ -8,8 +8,8 @@ order: 1
 written: true
 sourcesVerified: true
 problem: Is the sentence “This sentence is false” true or false?
-claimA: If it's true, then it's false.
-claimB: If it's false, then it's true.
+claimA: "Every sentence is true or false."
+claimB: "A sentence is true if what it says is right, and false if it isn't."
 verdict: Every known fix changes the rules of logic or language.
 whatBreaks: The assumption that every sentence is either true or false, even one that talks about itself.
 statusNote: every known fix costs something big, and none is widely accepted.
