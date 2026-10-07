@@ -10,7 +10,7 @@ written: true
 aka: ["waiting time paradox", "bus", "class size"]
 problem: "Why is your average wait for a bus longer than half the average gap between buses, and why does your class seem bigger than the college says?"
 claimA: "The average is the average, so what you see should match what the records say."
-claimB: "What you see is larger than the average, and both can be correct."
+claimB: "What you see is larger than the average."
 verdict: "Looking from the inside over-samples the long gaps and big groups."
 whatBreaks: "The assumption that asking students, or turning up at a random moment, gives the same average as the records. Picking classes at random from the list would give the right average. Picking a student, or a moment in time, favours big classes and long gaps in proportion to their size."
 statusNote: "the first claim is wrong. The two numbers answer different questions, and experts agree."

@@ -10,7 +10,7 @@ sourcesVerified: true
 noMaths: true
 problem: "Is the word “heterological” a heterological word?"
 claimA: "Every describing word either describes itself or does not."
-claimB: "Whichever way “heterological” goes, it contradicts itself."
+claimB: "“Heterological” is itself a describing word."
 verdict: "There is no agreed fix. Each proposal, such as levels of language, gaps or allowing some contradictions, has a big cost."
 whatBreaks: "Either the first claim, that every describing word either describes itself or does not, or the rule that a contradiction cannot be true has to go. Which one goes is what the responses disagree on, and each choice costs something big."
 statusNote: "it is a version of the liar paradox about words, and the Stanford Encyclopedia of Philosophy says “no commonly agreed upon solution to the paradoxes of self-reference exists”."

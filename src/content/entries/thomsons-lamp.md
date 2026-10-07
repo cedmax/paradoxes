@@ -9,7 +9,7 @@ written: true
 sourcesVerified: true
 problem: "A lamp is switched on and off faster and faster for two minutes. Is it on or off at the end?"
 claimA: "A lamp must be either on or off when the two minutes are up."
-claimB: "The switching rules out both, since every on is followed by an off and every off by an on."
+claimB: "If every on is followed by an off and vice versa, there is no end state."
 verdict: "The pattern says nothing about the end, so there is no contradiction."
 whatBreaks: "The assumption that the switching story, told up to the end, also decides what happens at the end."
 statusNote: "the second claim is wrong. The switching only covers times before two minutes, so it rules nothing out at two minutes."
