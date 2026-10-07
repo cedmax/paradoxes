@@ -34,7 +34,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site)
   <body>
     <header class="px-gutter flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b-2 border-ink py-3">
       <a
-        class="font-display py-2.5 text-2xl font-extrabold tracking-[-0.02em] no-underline"
+        class="font-display py-2.5 text-2xl font-extrabold tracking-tight no-underline"
         href="/"
       >
         Logic Benders
@@ -52,7 +52,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site)
       </nav>
     </header>
     <slot />
-    <footer class="px-gutter flex flex-wrap justify-between gap-4 border-t-2 border-ink pt-7 pb-10 text-[15px]">
+    <footer class="px-gutter flex flex-wrap justify-between gap-4 border-t-2 border-ink pt-7 pb-10 text-sm">
       <div>Logic Benders.</div>
       <div>Every entry flags where the explanation is simplified.</div>
     </footer>

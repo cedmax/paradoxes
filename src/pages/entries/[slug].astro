@@ -30,8 +30,8 @@ const plain =
     ? d.title.slice(0, d.title.length - accent.length).trimEnd()
     : d.title
 
-const h2 = "display text-[44px]"
-const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[15px] font-bold"
+const h2 = "display text-5xl"
+const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-sm font-bold"
 ---
 
 <Base title={`${d.title}. Logic Benders`} description={d.problem}>
@@ -47,7 +47,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[
         {chapter.n} {chapter.title}
       </span>
     </nav>
-    <h1 class="font-display text-[clamp(48px,9.4vw,148px)] leading-[0.94] font-extrabold tracking-[-0.045em]">
+    <h1 class="font-display text-[clamp(48px,9.4vw,148px)] leading-none font-extrabold tracking-tighter">
       {plain}
       {accent && (
         <>
@@ -58,7 +58,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[
     </h1>
     <div class="flex max-w-215 flex-col gap-2">
       <div class="mono-label opacity-65">The problem</div>
-      <p class="font-display text-[clamp(26px,3.2vw,40px)] leading-[1.15] font-extrabold tracking-[-0.025em]">
+      <p class="font-display text-[clamp(26px,3.2vw,40px)] leading-tight font-extrabold tracking-tight">
         {d.problem}
       </p>
     </div>
@@ -67,9 +67,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[
       {d.noMaths && <div class={badge}>No maths needed</div>}
       <div class={badge}>{simp.label}</div>
       {!d.sourcesVerified && (
-        <div class="bg-disputed px-2 py-0.5 text-[13px] font-bold">
-          Sources not yet verified
-        </div>
+        <div class="bg-disputed px-2 py-0.5 text-xs font-bold">Sources not yet verified</div>
       )}
     </div>
   </section>
@@ -78,30 +76,30 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[
     class="flex flex-wrap items-stretch border-y-2 border-ink"
     aria-label="The two claims"
   >
-    <div class="px-gutter flex flex-[1_1_360px] flex-col justify-center gap-2.5 py-10">
+    <div class="px-gutter flex grow basis-90 flex-col justify-center gap-2.5 py-10">
       <div class="mono-label opacity-65">Seems true</div>
-      <div class="display text-[clamp(28px,3.4vw,48px)] leading-[1.05] tracking-[-0.03em]">
+      <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
         {d.claimA}
       </div>
     </div>
     <div
-      class="font-display flex-none self-center px-2 py-4 text-[40px] leading-none font-extrabold tracking-[-0.02em] text-accent uppercase sm:text-[56px]"
+      class="font-display flex-none self-center px-2 py-4 text-4xl leading-none font-extrabold tracking-tight text-accent uppercase sm:text-6xl"
       aria-hidden="true"
     >
       but
     </div>
-    <div class="px-gutter flex flex-[1_1_360px] flex-col justify-center gap-2.5 py-10">
+    <div class="px-gutter flex grow basis-90 flex-col justify-center gap-2.5 py-10">
       <div class="mono-label opacity-65">Also seems true</div>
-      <div class="display text-[clamp(28px,3.4vw,48px)] leading-[1.05] tracking-[-0.03em]">
+      <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
         {d.claimB}
       </div>
     </div>
   </section>
 
   <div class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
-    <article class="flex max-w-190 min-w-0 flex-[1_1_560px] flex-col gap-14 text-[19px] leading-[1.6] [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
+    <article class="flex max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
       {!d.written && (
-        <div class="border-2 border-dashed border-ink px-6 py-5 text-[17px]">
+        <div class="border-2 border-dashed border-ink px-6 py-5 text-lg">
           <strong>Full write-up in progress.</strong> The problem, the two claims and the
           verdict are final. The explanation and sources are not written yet.
         </div>
@@ -133,14 +131,14 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[
             <div class="grid mt-6 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3.5 -mb-6">
               {d.positions.map((p) => (
                 <div class="flex flex-col gap-2 border-2 border-ink px-5.5 py-4.5">
-                  <div class="display text-2xl leading-[1.1] tracking-[-0.02em]">{p.title}</div>
-                  <div class="text-[17px] leading-[1.45]">{p.body}</div>
+                  <div class="display text-2xl leading-none tracking-tight">{p.title}</div>
+                  <div class="text-lg leading-normal">{p.body}</div>
                 </div>
               ))}
             </div>
           )}
           {d.finePrint && (
-            <div class="mt-6 border-2 border-ink bg-disputed px-6 py-5 text-[17px] leading-normal">
+            <div class="mt-6 border-2 border-ink bg-disputed px-6 py-5 text-lg leading-normal">
               <strong>The fine print.</strong> {d.finePrint}
             </div>
           )}
@@ -169,8 +167,8 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-[
       )}
     </article>
 
-    <aside class="flex max-w-85 flex-[1_1_260px] flex-col gap-6" aria-label="About this entry">
-      <div class="flex flex-col gap-3 border-2 border-ink p-6 text-[17px] leading-[1.45]">
+    <aside class="flex max-w-85 grow basis-65 flex-col gap-6" aria-label="About this entry">
+      <div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
         <div class="mono-label text-accent">What breaks</div>
         <div>{d.whatBreaks}</div>
         <div class="mono-label text-accent">Status</div>

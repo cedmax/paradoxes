@@ -5,7 +5,7 @@ import { statuses, simplifications } from "~/data/status"
 
 <Base title="How we write these. Logic Benders">
   <main class="px-gutter flex max-w-225 flex-col gap-7 pt-12 pb-24">
-    <h1 class="font-display text-[clamp(40px,6vw,80px)] leading-[0.98] font-extrabold tracking-[-0.04em]">
+    <h1 class="font-display text-[clamp(40px,6vw,80px)] leading-none font-extrabold tracking-tighter">
       How we write these
     </h1>
     <p>
@@ -14,7 +14,7 @@ import { statuses, simplifications } from "~/data/status"
       instead and show the competing positions.
     </p>
 
-    <h2 class="display mt-3 text-[32px]">How a paradox ends</h2>
+    <h2 class="display mt-3 text-3xl">How a paradox ends</h2>
     <dl class="grid gap-3.5">
       {Object.values(statuses).map((s) => (
         <div>
@@ -24,7 +24,7 @@ import { statuses, simplifications } from "~/data/status"
       ))}
     </dl>
 
-    <h2 class="display mt-3 text-[32px]">How much we simplified</h2>
+    <h2 class="display mt-3 text-3xl">How much we simplified</h2>
     <dl class="grid gap-3.5">
       {Object.values(simplifications).map((s) => (
         <div>
@@ -34,7 +34,7 @@ import { statuses, simplifications } from "~/data/status"
       ))}
     </dl>
 
-    <h2 class="display mt-3 text-[32px]">Sources</h2>
+    <h2 class="display mt-3 text-3xl">Sources</h2>
     <p>
       Each entry lists its sources. An entry marked as unverified has not yet been checked
       against primary sources and should not be relied on.
