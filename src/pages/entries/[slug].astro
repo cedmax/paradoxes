@@ -73,22 +73,22 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
   </section>
 
   <section
-    class="flex flex-wrap items-stretch border-y-2 border-ink"
+    class="flex flex-col items-stretch min-[920px]:flex-row border-y-2 border-ink"
     aria-label="The two claims"
   >
-    <div class="px-gutter flex grow basis-90 flex-col justify-center gap-2.5 py-10">
+    <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
       <div class="mono-label opacity-65">Seems true</div>
       <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
         {d.claimA}
       </div>
     </div>
     <div
-      class="font-display flex-none self-center px-2 py-4 text-4xl leading-none font-extrabold tracking-tight text-accent uppercase sm:text-6xl"
+      class="font-display flex-none self-center px-2 py-4 text-center text-4xl leading-none font-extrabold tracking-tight text-accent uppercase sm:text-6xl"
       aria-hidden="true"
     >
       but
     </div>
-    <div class="px-gutter flex grow basis-90 flex-col justify-center gap-2.5 py-10">
+    <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
       <div class="mono-label opacity-65">Also seems true</div>
       <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
         {d.claimB}
