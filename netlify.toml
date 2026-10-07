@@ -1,0 +1,14 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+# Hashed build assets (CSS, JS, fonts) never change under the same name.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
