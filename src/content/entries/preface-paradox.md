@@ -7,29 +7,31 @@ simplification: light
 order: 3
 written: true
 problem: "Can an author rightly believe every claim in a book and also that the book contains a mistake?"
-claimA: "She is right to believe every claim in her book."
-claimB: "She is right to believe the book contains at least one error."
+claimA: "It is reasonable for her to fully believe each claim in her book, and also that one of them is wrong."
+claimB: "A reasonable person's beliefs must all be able to be true together."
 verdict: "Philosophers disagree on whether such a set of beliefs can be reasonable."
-whatBreaks: "Her many beliefs, joined by the combining rule, lead her to believe that every claim is true, which she also believes is false, and the no-contradiction rule forbids that. Kyburg-style views drop the combining rule; others recast her beliefs as odds or relax the no-contradiction rule."
-statusNote: "experts agree the author's beliefs cannot all be true together, but disagree on whether to give up the combining rule, recast her beliefs as odds, or relax the no-contradiction rule."
+whatBreaks: "Either her full belief in every claim and in the error, or the demand that a reasonable person's beliefs can all be true together, has to go, and experts split on which."
+statusNote: "experts agree the author's beliefs cannot all be true together, but split on whether that can be reasonable, or whether her beliefs should be recast as degrees of confidence."
 setup: "An author finishes a long, careful book. She has checked every claim and believes each one. In the preface she writes that, in spite of her efforts, there will surely be mistakes, and she takes the blame. That is also reasonable, because long books nearly always contain errors. But look at what she now believes. Claim 1 is true, claim 2 is true, and so on to the last. And one of them is false. Those beliefs cannot all be right."
-whyWrong: "The lottery paradox rests on three rules: the high-odds rule (you may believe what is very likely), the combining rule (if you are right to believe each of several things, you are right to believe them all together) and the no-contradiction rule (never believe something you know is a contradiction). Here the first rule matters less, because her belief in each claim comes from checking, not just from odds. But the combining rule turns her beliefs about each claim into the belief that every claim is true, and the no-contradiction rule forbids holding that alongside her belief that one claim is false. Yet she looks like a modest, sensible person, not a muddled one."
+whyWrong: "The lottery paradox rests on three rules: the high-odds rule (you may believe what is very likely), the combining rule (if you are right to believe each of several things, you are right to believe them all together) and the no-contradiction rule (never believe something you know is a contradiction). This puzzle does not need the high-odds rule. As the Stanford Encyclopedia of Philosophy points out, her belief that the book contains an error does not come from a rule about probability. It comes from knowing that she is fallible, like other authors. But the combining rule turns her beliefs about each claim into the belief that every claim is true. Applied once more, it joins that with her belief that one claim is false into a single belief that she knows is a contradiction, which the no-contradiction rule forbids. Together the two rules amount to the second claim: a reasonable person's beliefs must all be able to be true together. Yet she looks like a modest, sensible person, not a muddled one."
 resolution:
   - "The paradox was published by the logician David Makinson in 1965. It has the same shape as the lottery paradox, but the Stanford Encyclopedia of Philosophy points out that it does not rely on a rule about probability. The author's doubt comes from knowing she is fallible, like other authors."
-  - "No answer is agreed. According to the Stanford Encyclopedia of Philosophy, many philosophers join Henry Kyburg in giving up the combining rule, and conclude that it can be rational to have beliefs that cannot all be true together. Wikipedia, on the other hand, says most philosophers find the combining rule natural, though some, Kyburg among them, do not. Others restate the author's beliefs in terms of probability, or use a logic that can live with some contradictions."
+  - "No answer is agreed. According to the Stanford Encyclopedia of Philosophy, many philosophers join the philosopher Henry Kyburg in giving up the combining rule, and conclude that it can be rational to have beliefs that cannot all be true together. Wikipedia, on the other hand, says most philosophers find the combining rule natural, though some, Kyburg among them, do not. Others restate the author's beliefs in terms of probability, or use a logic in which beliefs that cannot all be true do not let everything else follow."
 positions:
   - title: "Beliefs need not combine"
-    body: "Drop the combining rule. Believing each claim does not commit her to believing them all together, so she never believes the contradiction itself, even though her beliefs cannot all be true together. This is Kyburg's view. The Stanford Encyclopedia of Philosophy suggests he could add that a clash spread thinly over hundreds of claims is bearable in a way that a clash between a few claims is not. Cost: the Stanford Encyclopedia of Philosophy asks how a paradox could ever force us to change our minds if holding beliefs that cannot all be true is allowed."
+    body: "Drop the combining rule. Believing each claim does not commit her to believing them all together, so she never believes the contradiction itself, even though her beliefs cannot all be true together. This is Kyburg's view. Cost: if holding beliefs that cannot all be true together is allowed, it is unclear how a paradox could ever force anyone to change their mind. The Stanford Encyclopedia of Philosophy suggests Kyburg could reply that a clash spread thinly over hundreds of claims is bearable, while one packed into a few claims, as in a paradox, is not."
   - title: "Treat it as a matter of odds"
-    body: "Restate her beliefs as degrees of confidence. Each claim is very likely true, but with many claims the chance that at least one is wrong becomes high, and the two statements no longer contradict each other. Cost: her confidence comes from checking and from her own record, not from a probability rule, so recasting it as odds may miss what makes the case puzzling."
-  - title: "Use a logic that tolerates contradictions"
-    body: "Paraconsistent logics let a set of beliefs contain a contradiction without that contradiction spreading to everything else. Cost: it gives up the no-contradiction rule and needs a non-standard logic to do so."
+    body: "Replace full belief with degrees of confidence. Each claim is very likely true, but with many claims the chance that at least one is wrong becomes high, and the two statements no longer contradict each other. Cost: she can no longer simply believe what she has written, only be confident in it."
+  - title: "Reason with clashing beliefs"
+    body: "The Stanford Encyclopedia of Philosophy uses the preface as an example of why rules for revising beliefs may need to work on sets of beliefs that cannot all be true, and says a better account may be based on a paraconsistent logic, one in which a clash between beliefs does not let everything else follow. Like Kyburg's view, it gives up the second claim, but it focuses on how to reason and revise with such beliefs rather than on which beliefs to combine. Cost: it needs a non-standard logic."
 finePrint: "The three positions and the rules they discuss are simplified. The Stanford Encyclopedia of Philosophy says Makinson drew the example from a real preface, written by Raymond Wilder in 1952, and that the 1982 reprint of Wilder's book has three pages of corrections."
 sources:
   - title: "Wikipedia: Preface paradox"
     url: https://en.wikipedia.org/wiki/Preface_paradox
   - title: "Stanford Encyclopedia of Philosophy: Epistemic Paradoxes"
     url: https://plato.stanford.edu/entries/epistemic-paradoxes/
+  - title: "Stanford Encyclopedia of Philosophy: Paraconsistent Logic"
+    url: https://plato.stanford.edu/entries/logic-paraconsistent/
 sourcesVerified: false
 noMaths: true
 ---

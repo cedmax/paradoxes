@@ -10,11 +10,11 @@ sourcesVerified: false
 problem: "Are there as many square numbers as there are whole numbers?"
 claimA: "Squares are only some of the whole numbers, so there must be fewer of them."
 claimB: "Every whole number has exactly one square, so there must be exactly as many."
-verdict: 'Mathematicians settle it by defining "as many" as matching one to one.'
+verdict: "The first claim is wrong under the standard definition, which settles it by defining “as many” as matching one to one."
 whatBreaks: "The idea that a part is always smaller than the whole. Under the standard one-to-one measure of size this only holds for finite collections, though the theory of numerosities keeps it for infinite ones too."
 statusNote: "the first claim is wrong under the standard mathematical definition of size, which compares infinite collections by matching them one to one. That definition is a choice, not the only possible one."
 setup: "The squares are 1, 4, 9, 16, 25 and so on. Most whole numbers are not squares: 2, 3, 5, 6, 7, 8 and so on. So the squares look like a thin slice of all the whole numbers, and there should be fewer of them. But pair them off. Each whole number has exactly one square, and each square has exactly one root. Nobody is left without a partner on either side. That suggests the two lists are the same size."
-whyWrong: "With finite collections, a part is always smaller than the whole, and matching up one for one always gives the same count. Both rules work every time. With an endless collection they pull in opposite directions, and we had never tested them there."
+whyWrong: "With finite collections, a part is always smaller than the whole, and matching up one for one always gives the same count. Both rules work every time. With an endless collection they pull in opposite directions."
 resolution:
   - 'Galileo set this out in Two New Sciences, published in 1638, as a conversation between three characters. His own conclusion was that "equal", "greater" and "less" do not apply to infinite quantities, only to finite ones. He gave up on comparing them. In this he followed Nicole Oresme and Albert of Saxony, who had discussed similar issues in the 14th century.'
   - "In the 19th century Georg Cantor took the other route. He said two collections are the same size when their members can be matched one to one. By that test the whole numbers and the squares are the same size, and so are the whole numbers and the even numbers. An infinite collection can be matched with a part of itself, which finite ones cannot do. This is the same fact behind Hilbert's hotel."
