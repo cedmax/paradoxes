@@ -32,7 +32,7 @@ statusKeys.forEach((k) => (counts[k] = all.filter((e) => e.data.status === k).le
   </section>
 
   <section
-    class="px-gutter border-y-2 border-ink bg-accent py-7"
+    class="px-gutter border-y-2 border-ink bg-accent py-10 sm:py-12"
     aria-label="Search and filter paradoxes"
   >
     <div class="flex flex-wrap items-end gap-x-8 gap-y-4">
@@ -93,7 +93,7 @@ statusKeys.forEach((k) => (counts[k] = all.filter((e) => e.data.status === k).le
     </div>
   </details>
 
-  <main class="px-gutter flex flex-col gap-18 pt-12 pb-20">
+  <main class="px-gutter flex flex-col gap-18 pt-6 pb-20">
     {byChapter.map(({ chapter, items }) => (
       <section class="flex flex-col gap-5" data-chapter>
         <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2">
