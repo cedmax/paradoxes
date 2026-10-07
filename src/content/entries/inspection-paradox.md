@@ -8,12 +8,12 @@ noMaths: true
 order: 12
 written: true
 aka: ["waiting time paradox", "bus", "class size"]
-problem: "Why is your average wait for a bus longer than half the average gap between buses, and why does your class seem bigger than the college says?"
-claimA: "The average is the average, so what you see should match what the records say."
-claimB: "What you see is larger than the average."
-verdict: "Looking from the inside over-samples the long gaps and big groups."
-whatBreaks: "The assumption that asking students, or turning up at a random moment, gives the same average as the records. Picking classes at random from the list would give the right average. Picking a student, or a moment in time, favours big classes and long gaps in proportion to their size."
-statusNote: "the first claim is wrong. The two numbers answer different questions, and experts agree."
+problem: "Why is your average wait for a bus longer than half the average gap between buses?"
+claimA: "Turn up at a random moment and, on average, you should wait half the average gap."
+claimB: "A random moment is more likely to fall in a long gap than a short one."
+verdict: "Long gaps take up more of the clock, so a random arrival lands in them more often and waits longer."
+whatBreaks: "The assumption that turning up at a random moment samples every gap equally. A random moment lands in each gap in proportion to its length, so long gaps count for more."
+statusNote: "the first claim only holds when buses are evenly spaced. When gaps vary, the average wait is longer, and experts agree."
 setup: "A college reports that its average class has 31 students. A survey asking students how big their classes are gets an average of 56. Both figures are correct. The numbers come from a Purdue University example, written up by the statistician Allen Downey."
 whyWrong: "The college counts classes. The survey counts students, and asks each of them about the class they are in. A class of 100 students gets asked about 100 times. A class of 10 gets asked about 10 times. Large classes appear in the survey far more often than they appear in the college's list."
 resolution:
