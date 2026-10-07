@@ -10,7 +10,7 @@ sourcesVerified: true
 noMaths: true
 problem: "A teacher sues his student for unpaid fees. Who wins?"
 claimA: "If Protagoras wins, the court makes Euathlus pay; if Euathlus wins, the contract does."
-claimB: "Right now Euathlus owes nothing: he has not yet won a case, and the court should rule that way."
+claimB: "Until Euathlus wins a case he owes nothing, so this court has nothing to make him pay."
 verdict: "The first claim is wrong. The usual answer in the literature is that Euathlus should win this case, after which Protagoras could sue again and win."
 whatBreaks: "The assumption that winning this very case can make the fee due in this very case."
 statusNote: "when the suit is brought Euathlus has not yet won a case, so nothing is owed and he should win. Peter Suber reports that the small literature on the case all suggests Euathlus should have won, and that most commentators observe Protagoras could then sue a second time and win."
