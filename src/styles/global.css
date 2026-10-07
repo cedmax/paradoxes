@@ -39,6 +39,11 @@
   [hidden] {
     display: none !important;
   }
+
+  /* Safari still draws the disclosure triangle unless this pseudo-element is hidden. */
+  summary::-webkit-details-marker {
+    display: none;
+  }
 }
 
 /* Small label in mono caps. Used for section labels and captions. */
