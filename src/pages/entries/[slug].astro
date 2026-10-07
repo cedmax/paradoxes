@@ -136,7 +136,9 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
               {d.positions.map((p) => (
                 <div class="flex flex-col gap-2 border-2 border-ink px-5.5 py-4.5">
                   <div class="display text-2xl leading-none tracking-tight">{p.title}</div>
-                  <div class="text-lg leading-normal">{p.body}</div>
+                  {p.body.split(/\s(?=Cost: )/).map((part) => (
+                    <p class="text-lg leading-normal">{part}</p>
+                  ))}
                 </div>
               ))}
             </div>
