@@ -2,7 +2,7 @@
 title: "Protagoras and Euathlus"
 titleAccent: Euathlus
 chapter: self-reference
-status: resolved
+status: defused
 simplification: light
 order: 7
 written: true

@@ -3,7 +3,7 @@ title: "Zeno's dichotomy paradox"
 titleAccent: "paradox"
 aka: ["Zeno", "racecourse", "race course"]
 chapter: infinity
-status: resolved
+status: explained
 simplification: light
 order: 3
 written: true

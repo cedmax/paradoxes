@@ -2,7 +2,7 @@
 title: "Achilles and the tortoise"
 aka: ["Zeno", "Zeno's paradox"]
 chapter: infinity
-status: resolved
+status: explained
 simplification: light
 order: 1
 written: true

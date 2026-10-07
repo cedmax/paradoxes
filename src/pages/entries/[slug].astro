@@ -122,7 +122,11 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
       {(d.resolution.length > 0 || d.positions.length > 0) && (
         <section>
           <h2 class={h2}>
-            {d.status === "resolved" ? "The resolution" : "Why it's " + s.label.toLowerCase()}
+            {d.status === "explained"
+              ? "The explanation"
+              : d.status === "defused"
+                ? "How it's defused"
+                : `Why it's ${s.label.toLowerCase()}`}
           </h2>
           {d.resolution.map((p) => (
             <p>{p}</p>

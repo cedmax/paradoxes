@@ -3,7 +3,7 @@ title: "Crocodile dilemma"
 titleAccent: dilemma
 aka: ["crocodile paradox"]
 chapter: self-reference
-status: resolved
+status: defused
 simplification: light
 order: 6
 written: true

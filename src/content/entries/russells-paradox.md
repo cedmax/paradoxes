@@ -2,7 +2,7 @@
 title: "Russell's paradox"
 titleAccent: paradox
 chapter: self-reference
-status: resolved
+status: defused
 simplification: light
 order: 3
 written: true

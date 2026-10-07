@@ -2,7 +2,7 @@
 title: Nontransitive dice
 titleAccent: dice
 chapter: probability
-status: resolved
+status: explained
 simplification: light
 noMaths: true
 order: 13

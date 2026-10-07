@@ -7,7 +7,8 @@
   --color-ink: #0a0a0a;
   --color-paper: #fff;
   --color-accent: #ff3b1f;
-  --color-resolved: #b9f2cb;
+  --color-explained: #b9f2cb;
+  --color-defused: #b5d8ff;
   --color-disputed: #ffe16b;
   --color-unreconciled: #ffb3a3;
   --font-display: "Archivo Variable", system-ui, sans-serif;

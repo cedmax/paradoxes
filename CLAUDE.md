@@ -41,8 +41,10 @@ Routes (`/entries/<slug>/`) are stable: never rename an entry file without addin
 
 ### Status definitions (locked, do not change)
 
-- **resolved**: one of the two claims (`claimA` / `claimB`) turns out to be wrong, and experts
-  agree which.
+- **explained**: the contradiction was only apparent. One claim rests on a mistake in reasoning
+  or intuition, and once you see why, nothing contradicts anything.
+- **defused**: the contradiction is real and never goes away, but it proves one of the claims
+  false, and experts agree which.
 - **disputed**: experts agree it's a real puzzle but disagree on which claim to give up.
 - **unreconciled**: every known fix costs something big and none is widely accepted.
 
@@ -50,9 +52,11 @@ How to apply them:
 
 - `claimA` and `claimB` must genuinely conflict: they cannot both be true.
 - If the real wrong step is a hidden premise, make that premise one of the displayed claims.
-- **resolved**: `verdict`, `whatBreaks`, `statusNote` and `resolution` all name the same wrong
-  claim. If experts agree the claim fails but disagree on why, it is still resolved; say the
-  diagnosis is open in `statusNote` or `finePrint`.
+- **explained** and **defused**: `verdict`, `whatBreaks`, `statusNote` and `resolution` all
+  name the same wrong claim. The test between them: if the reasoning that produces the clash
+  contains an error, it is explained; if the reasoning is sound and the clash knocks out a
+  premise (barber, Russell, Olbers), it is defused. If experts agree the claim fails but disagree
+  on why, the status still applies; say the diagnosis is open in `statusNote` or `finePrint`.
 - **disputed**: the two claims are the positions expert camps actually hold; each camp gives up
   a different one (`newcombs-paradox.md` is the model). `whatBreaks`, `verdict`, `whyWrong` and
   `resolution` must not pick a side; phrase `whatBreaks` as the contested choice. Attribute
@@ -67,7 +71,7 @@ How to apply them:
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".
-- `problem` is a question. `statusNote` starts lowercase, completes "Resolved: …" etc., and is
+- `problem` is a question. `statusNote` starts lowercase, completes "Explained: …" etc., and is
   specific to the entry.
 - Political and religious entries take no side, including through word choice or which view
   gets the last word.

@@ -3,7 +3,7 @@ title: "Boy or girl paradox"
 titleAccent: "paradox"
 aka: ["two child problem", "two children problem"]
 chapter: probability
-status: resolved
+status: explained
 simplification: light
 noMaths: true
 order: 7

@@ -2,7 +2,7 @@
 title: "Omnipotence paradox"
 titleAccent: paradox
 chapter: self-reference
-status: resolved
+status: defused
 simplification: light
 order: 5
 written: true

@@ -2,7 +2,7 @@
 title: "Gabriel's horn"
 aka: ["Torricelli's trumpet"]
 chapter: infinity
-status: resolved
+status: explained
 simplification: light
 noMaths: false
 order: 7

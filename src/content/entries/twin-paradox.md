@@ -2,7 +2,7 @@
 title: "Twin paradox"
 titleAccent: "paradox"
 chapter: time-physics
-status: resolved
+status: explained
 simplification: light
 noMaths: true
 order: 3

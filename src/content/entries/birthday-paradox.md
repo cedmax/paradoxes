@@ -3,7 +3,7 @@ title: "Birthday paradox"
 titleAccent: "paradox"
 aka: ["birthday problem"]
 chapter: probability
-status: resolved
+status: explained
 simplification: light
 order: 2
 written: true

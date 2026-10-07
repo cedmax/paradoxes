@@ -2,7 +2,7 @@
 title: "Coastline paradox"
 titleAccent: "paradox"
 chapter: vague-words
-status: resolved
+status: explained
 simplification: light
 order: 2
 written: true

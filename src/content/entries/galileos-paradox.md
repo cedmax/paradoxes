@@ -2,7 +2,7 @@
 title: "Galileo's paradox"
 titleAccent: "paradox"
 chapter: infinity
-status: resolved
+status: explained
 simplification: light
 order: 5
 written: true

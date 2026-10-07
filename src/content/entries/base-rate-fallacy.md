@@ -2,7 +2,7 @@
 title: False positive paradox
 titleAccent: paradox
 chapter: probability
-status: resolved
+status: explained
 simplification: light
 noMaths: true
 order: 9

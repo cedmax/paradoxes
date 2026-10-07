@@ -2,7 +2,7 @@
 title: "Simpson's paradox"
 titleAccent: "paradox"
 chapter: probability
-status: resolved
+status: explained
 simplification: light
 order: 3
 written: true

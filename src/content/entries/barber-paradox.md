@@ -2,7 +2,7 @@
 title: "Barber paradox"
 titleAccent: "paradox"
 chapter: self-reference
-status: resolved
+status: defused
 simplification: light
 order: 2
 written: true

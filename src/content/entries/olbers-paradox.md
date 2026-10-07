@@ -2,7 +2,7 @@
 title: "Olbers' paradox"
 titleAccent: "paradox"
 chapter: time-physics
-status: resolved
+status: defused
 simplification: light
 noMaths: true
 order: 5

@@ -12,7 +12,7 @@ const entries = defineCollection({
     // Other names people search for (e.g. "Zeno", "surprise exam"). Search only, not shown.
     aka: z.array(z.string()).default([]),
     chapter: z.enum(chapterIds),
-    status: z.enum(["resolved", "disputed", "unreconciled"]),
+    status: z.enum(["explained", "defused", "disputed", "unreconciled"]),
     simplification: z.enum(["none", "light", "heavy"]).default("light"),
     noMaths: z.boolean().default(true),
 

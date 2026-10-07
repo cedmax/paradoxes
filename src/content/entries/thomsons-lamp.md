@@ -2,7 +2,7 @@
 title: "Thomson's lamp"
 aka: ["supertask"]
 chapter: infinity
-status: resolved
+status: explained
 simplification: light
 order: 6
 written: true
@@ -19,7 +19,7 @@ resolution:
   - 'Paul Benacerraf pointed out in 1962 that Thomson''s description only says what the lamp does at times before two minutes. It says nothing about the lamp at two minutes. You can add "it is on" or "it is off" to the story, and neither makes it contradict itself. So Thomson''s argument that the lamp is impossible does not work.'
   - "That is also why mathematics gives no answer here. The pattern on, off, on, off, forever has no limit that would pick a winner. You could say the lamp is half on, but Thomson himself pointed out that this means nothing for a lamp."
   - "The physical side is different. Some physical set-ups that switch more and more quickly, such as certain circuits built around a bouncing ball, have been shown to end up clearly on or clearly off, depending on how they are built. So the final state depends on the machine, not on the pattern alone."
-finePrint: 'This entry is marked Resolved because the trap is agreed to be an incomplete description and not a contradiction. John Earman and John Norton, writing on physical versions of the lamp, conclude with Benacerraf that it is "not a matter of paradox but of an incomplete description". Physical models using a bouncing ball can be built to end with the lamp on or with it off, so the ending depends on the set-up. Whether an endless sequence of tasks can be carried out in a finite time at all is a separate question, not covered here.'
+finePrint: 'This entry is marked Explained because the trap is agreed to be an incomplete description and not a contradiction. John Earman and John Norton, writing on physical versions of the lamp, conclude with Benacerraf that it is "not a matter of paradox but of an incomplete description". Physical models using a bouncing ball can be built to end with the lamp on or with it off, so the ending depends on the set-up. Whether an endless sequence of tasks can be carried out in a finite time at all is a separate question, not covered here.'
 sources:
   - title: "Wikipedia: Thomson's lamp"
     url: https://en.wikipedia.org/wiki/Thomson%27s_lamp

@@ -2,7 +2,7 @@
 title: Condorcet paradox
 titleAccent: paradox
 chapter: choice-identity
-status: resolved
+status: explained
 simplification: light
 noMaths: true
 order: 8

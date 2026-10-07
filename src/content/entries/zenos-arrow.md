@@ -3,7 +3,7 @@ title: "Zeno's arrow paradox"
 titleAccent: "paradox"
 aka: ["Zeno", "flying arrow"]
 chapter: infinity
-status: resolved
+status: explained
 simplification: light
 order: 4
 written: true

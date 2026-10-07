@@ -2,7 +2,7 @@
 title: "Two envelopes paradox"
 titleAccent: "paradox"
 chapter: probability
-status: resolved
+status: explained
 simplification: light
 noMaths: true
 order: 4

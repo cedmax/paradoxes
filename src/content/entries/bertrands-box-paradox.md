@@ -2,7 +2,7 @@
 title: "Bertrand's box paradox"
 titleAccent: "paradox"
 chapter: probability
-status: resolved
+status: explained
 simplification: none
 noMaths: true
 order: 8

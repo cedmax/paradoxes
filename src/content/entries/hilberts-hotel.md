@@ -2,7 +2,7 @@
 title: "Hilbert's hotel"
 aka: ["Grand Hotel", "infinite hotel"]
 chapter: infinity
-status: resolved
+status: explained
 simplification: light
 order: 2
 written: true

@@ -2,7 +2,7 @@
 title: Abilene paradox
 titleAccent: paradox
 chapter: choice-identity
-status: resolved
+status: explained
 simplification: light
 noMaths: true
 order: 10

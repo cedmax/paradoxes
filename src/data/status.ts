@@ -1,12 +1,19 @@
-export type Status = "resolved" | "disputed" | "unreconciled"
+export type Status = "explained" | "defused" | "disputed" | "unreconciled"
 export type Simplification = "none" | "light" | "heavy"
 
 // `bg` holds full Tailwind class names so the scanner can see them.
 export const statuses: Record<Status, { label: string; bg: string; definition: string }> = {
-  resolved: {
-    label: "Resolved",
-    bg: "bg-resolved",
-    definition: "One of the two claims turns out to be wrong, and experts agree which.",
+  explained: {
+    label: "Explained",
+    bg: "bg-explained",
+    definition:
+      "The contradiction was only apparent. One claim rests on a mistake in reasoning or intuition, and once you see why, nothing contradicts anything.",
+  },
+  defused: {
+    label: "Defused",
+    bg: "bg-defused",
+    definition:
+      "The contradiction is real and never goes away, but it proves one of the claims false, and experts agree which.",
   },
   disputed: {
     label: "Disputed",
