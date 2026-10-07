@@ -93,5 +93,7 @@ How to apply them:
 - Make focused changes only for the requested task.
 - Do not edit `dist/` (generated output).
 - Avoid adding dependencies unless the task requires it.
+- Tailwind: use standard utilities and theme tokens. Use a bracketed arbitrary value (e.g.
+  `text-[clamp(...)]`) only when nothing standard can express it.
 - Preserve semantic heading order and keyboard navigability.
 - Prettier: no semicolons, 2-space indent, print width 96. Husky + lint-staged run on commit.
