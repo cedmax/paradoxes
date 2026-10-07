@@ -10,7 +10,7 @@ written: true
 problem: "Two envelopes hold money, one with double the other. Should you swap the one you picked?"
 claimA: "Whatever amount you hold, the other envelope is equally likely to hold double or half."
 claimB: "Both envelopes were filled and handed out the same way, so before you look, swapping can't help."
-verdict: "The first claim is wrong: no proper set of odds makes it true for every amount you might hold."
+verdict: "The first claim is wrong: no proper set of odds makes it true for every amount you might hold. Writers still differ on exactly where the swapping argument slips."
 whatBreaks: "The claim that, whatever you hold, the other envelope is equally likely to hold double or half. No set of odds whose chances add up to one can make that true for every amount."
 statusNote: "the first claim is wrong, because no proper set of odds makes double and half equally likely whatever you hold. Writers still differ on exactly where the swapping argument slips, and a further puzzle, where other odds make swapping look good whatever amount you see, is still argued over."
 setup: "You are given two identical envelopes. One holds a sum of money and the other holds exactly double. You pick one at random but do not open it. You are then offered the chance to swap it for the other. Say your envelope holds 20 pounds. The other must hold either 40 or 10."
