@@ -31,5 +31,6 @@ sources:
   - title: "Stanford Encyclopedia of Philosophy: Formal Representations of Belief"
     url: https://plato.stanford.edu/entries/formal-belief/
 sourcesVerified: true
+reviewed: true
 noMaths: true
 ---
