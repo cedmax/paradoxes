@@ -9,6 +9,7 @@ simplification: light
 order: 5
 written: true
 sourcesVerified: true
+reviewed: true
 noMaths: true
 problem: "Can an all-powerful being make a stone so heavy that it cannot lift it?"
 claimA: "An all-powerful being has no limits."
