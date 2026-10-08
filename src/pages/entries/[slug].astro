@@ -88,6 +88,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
       {!d.sourcesVerified && (
         <div class="bg-disputed px-2 py-0.5 text-xs font-bold">Sources not yet verified</div>
       )}
+      {d.reviewed && <div class={badge}>Human reviewed</div>}
     </div>
     {anchor && (
       <a

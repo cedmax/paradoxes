@@ -53,6 +53,9 @@ const entries = defineCollection({
         )
         .default([]),
       sourcesVerified: z.boolean().default(false),
+      // Human approval. Set to true only by the site owner, after personally reviewing the entry.
+      // Shows the "Human reviewed" badge. Requires sourcesVerified.
+      reviewed: z.boolean().default(false),
       // Display order within a chapter.
       order: z.number().default(100),
     })
@@ -60,6 +63,11 @@ const entries = defineCollection({
       message:
         "anchor is required for related and variant entries, and not allowed for canonical ones",
       path: ["anchor"],
+    })
+    .refine((d) => !d.reviewed || d.sourcesVerified, {
+      message:
+        "reviewed requires sourcesVerified: an entry cannot be approved before its sources are verified",
+      path: ["reviewed"],
     }),
 })
 

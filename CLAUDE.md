@@ -111,7 +111,11 @@ How to apply them:
 - Only list a URL in `sources` if it was fetched and supports what the entry uses it for.
 - `sourcesVerified` means the cited sources have been checked and the entry's claims brought into
   line with them, not that every claim is undisputed. New or substantially changed entries start
-  at `false`, and only a human sets it to `true` after review. Do not set it to `true` yourself.
+  at `false`. Set it to `true` only after the site owner has approved doing so for that entry,
+  and never on your own initiative.
+- `reviewed` is the site owner's human-approval flag. It shows the "Human reviewed" badge on the
+  entry page, defaults to `false`, and requires `sourcesVerified: true` (the schema fails the
+  build otherwise). Only the site owner sets it. Never set it to `true` yourself.
 
 ## Editing rules
 
