@@ -7,6 +7,7 @@ simplification: light
 order: 2
 written: true
 sourcesVerified: true
+reviewed: true
 problem: "How long is the coast of Britain?"
 claimA: "Every coastline is a real thing, so it must have one true length."
 claimB: "Measure it with a shorter ruler and you always get a longer answer."
