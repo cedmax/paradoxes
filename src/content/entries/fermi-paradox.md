@@ -8,6 +8,7 @@ noMaths: true
 order: 6
 written: true
 sourcesVerified: true
+reviewed: true
 problem: "If the galaxy is so big and so old, where is everybody?"
 claimA: "With billions of habitable planets and billions of years, intelligent life should have appeared elsewhere and left some sign."
 claimB: "We have found no sign of it."
