@@ -7,6 +7,7 @@ simplification: light
 order: 1
 written: true
 sourcesVerified: true
+reviewed: true
 problem: Is the sentence “This sentence is false” true or false?
 claimA: "Every sentence is true or false."
 claimB: "A sentence is true if what it says is right, and false if it isn't."
