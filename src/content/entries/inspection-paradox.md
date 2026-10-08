@@ -29,4 +29,5 @@ sources:
     url: https://en.wikipedia.org/wiki/Inspection_paradox
     note: "lands on a section of the Renewal theory article. It supports only the general idea that a random moment tends to fall in a longer gap."
 sourcesVerified: true
+reviewed: true
 ---
