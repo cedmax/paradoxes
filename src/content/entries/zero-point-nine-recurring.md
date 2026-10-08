@@ -1,28 +1,38 @@
 ---
 title: "0.999… equals 1"
 titleAccent: "equals 1"
-aka: ["0.999 recurring", "0.9 repeating", "point nine recurring", "0.999..."]
+aka:
+  [
+    "0.999 recurring",
+    "point nine recurring",
+    "0.9 repeating",
+    "repeating decimal",
+    "infinite decimal",
+  ]
 chapter: infinity
 status: explained
+uniqueness: related
+anchor: achilles-and-the-tortoise
 simplification: light
 noMaths: false
-order: 205
 written: true
 sourcesVerified: false
-problem: "Is 0.999… with the nines going on for ever less than 1, or exactly 1?"
-claimA: "0.999… is always a little less than 1, however many nines there are."
-claimB: "0.999… is exactly the same number as 1."
-verdict: "No number sits between them, so the two are one and the same number."
-whatBreaks: "The idea that two different decimal writings must name two different numbers."
-statusNote: "the first claim is wrong. The nines never end, so no gap is left, and 0.999… is exactly 1."
-setup: "Write a decimal point and then nine, nine, nine, with the nines never stopping. The three dots mean the nines go on for ever. Is this number a hair below 1, or is it 1? Every finite string, such as 0.9, 0.99 or 0.999, is clearly less than 1. Wikipedia says that, by the standard rules for writing real numbers as decimals, 0.999… is the smallest number greater than or equal to every number in the list 0.9, 0.99, 0.999 and so on."
-whyWrong: "The mistake is to treat 0.999… as a number that is still on its way to 1. It is not a process. It names one fixed number. Wikipedia stresses that it is not “almost exactly 1” or “very, very nearly but not quite 1”: 0.999… and 1 are two ways of writing the same number."
+problem: "Is 0.999…, with nines that never stop, a tiny bit less than 1, or exactly 1?"
+claimA: "0.999… is a tiny bit less than 1, because however many nines there are, a small gap to 1 is always left."
+claimB: "0.999… is exactly 1."
+verdict: "An endless decimal names the single number its cut-off versions close in on. Every cut-off version falls short of 1, but 0.999… is not one of them, and the number it names is exactly 1."
+whatBreaks: "The idea that 0.999… is some stage of a process that is still going on, so the gap left at every stage is still there at the end."
+statusNote: "the first claim is wrong. Every cut-off version such as 0.999 does fall short of 1, but 0.999… is defined as the number those versions close in on, and that number is 1. In the standard real numbers this is a theorem, not a matter of opinion."
+setup: "Write 0.9, then 0.99, then 0.999, and keep going. Each one is closer to 1 than the last, and none of them reaches it: 0.9 is short by 0.1, 0.99 by 0.01, 0.999 by 0.001. Now imagine the nines never stop, and write the result as 0.999…, where the dots mean the nines go on for ever. It seems obvious that this is still a little short of 1. Yet the usual school arguments say it is exactly 1. One third is 0.333…, and three thirds make 1, so three times 0.333…, which is 0.999…, should be 1."
+whyWrong: "The feeling that a gap is left comes from picturing 0.999… as someone writing nines and never finishing. At every stage of that picture a gap remains, so it seems a gap remains at the end. But 0.999… is not any one of the stages. It is not 0.999 with a great many nines, nor with a trillion nines. There is no last nine, so there is no stage at which the last gap is left."
 resolution:
-  - "Put 0.9, 0.99, 0.999 and so on on a number line. All of them are to the left of 1, and they get closer and closer to it. Take any number smaller than 1. The list eventually passes it, so 0.999… cannot be that number. No number larger than 1 works either, because every number larger than 1 is bigger than every finite string of nines. A number that is neither larger nor smaller than 1 must be 1."
-  - "Wikipedia gives a short, rigorous version using only the Archimedean property, which says that for every real number there is a whole number greater than it. The gap between 1 and a string of n nines is 1 divided by 10 to the power n. There is no positive number smaller than all of those gaps, so no gap is left."
-  - "This is a special case of a general fact: every non-zero decimal that stops, such as 8.32, can also be written with endless nines, as 8.31999… The same thing happens in other number bases. In binary, 0.111… equals 1."
-finePrint: "The equality holds in the standard decimal system for real numbers. Wikipedia notes that in some other number systems 0.999… can have a different meaning or none. It also notes that why some people reject the equality is a question studied in mathematics education."
+  - "In standard mathematics an endless decimal is defined as the number that its cut-off versions close in on, called their limit. More exactly, it is the smallest number that is at least as big as every one of 0.9, 0.99, 0.999 and so on. The number 1 is at least as big as all of them. Any number smaller than 1 is passed sooner or later: a number short of 1 by 0.000001 is passed by 0.9999999. So the smallest number not passed is 1, and 0.999… is 1."
+  - "Put another way, if 0.999… and 1 were different numbers, their difference would be some positive amount. With n nines, the gap to 1 is one divided by 10 to the power n: 0.1, 0.01, 0.001 and so on. That gap gets smaller than any positive amount you choose. So the difference cannot be any positive amount, and it is zero."
+  - "This is the same kind of endless sum as in [Achilles and the tortoise](achilles-and-the-tortoise): 9 tenths, plus 9 hundredths, plus 9 thousandths, and so on, adds up to exactly 1, just as the shrinking catch-up times add up to a fixed time. There the puzzle was whether endless steps can ever be finished. Here the puzzle is about notation: what number an endless string of digits names. The sum was already given by Leonhard Euler in his Elements of Algebra in 1770."
+  - "The popular argument that multiplies by 10 (if x is 0.999…, then 10x is 9.999…, so 10x minus x is 9, and x is 1) and the argument from one third reach the right answer. But several writers on teaching, including Richman, Eisenmann and Cheng, point out that their steps quietly assume that 0.999… already has a meaning and that ordinary arithmetic works on it. The definition as a limit is what makes those steps safe."
+finePrint: "Many students resist this. Education researchers since David Tall in the 1970s have found that students often picture 0.999… as a process that keeps getting closer to 1 rather than as a fixed number, and William Byers reports that most of the undergraduate mathematics students he met called it very close to 1, some even infinitely close, without being ready to call it equal. The answer is about the standard real numbers. Some other number systems, such as ones with infinitely small quantities, can be set up so that a string written like 0.999… stands for something infinitely close to 1 but less than it, and in Fred Richman’s system of decimal numbers 0.999… is less than 1. These are different systems with different rules, not corrections to the standard one. Every decimal that stops has a twin of this kind: 0.25 is also 0.24999…."
 sources:
   - title: "Wikipedia: 0.999..."
-    url: https://en.wikipedia.org/wiki/0.999...
+    url: "https://en.wikipedia.org/wiki/0.999..."
+    note: "Source for the definition as the smallest number at least as big as all cut-off versions (least upper bound), the limit argument with gaps of one divided by 10 to the power n, Euler’s Elements of Algebra (1770), the one-third and multiply-by-10 arguments and the criticisms by Byers, Richman, Eisenmann and Cheng, the education research (Tall, Byers), the alternative number systems including Richman’s, and the example 0.25 = 0.24999…. Gaps recomputed in Python with exact fractions."
 ---

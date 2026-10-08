@@ -1,40 +1,46 @@
 ---
 title: "Curry's paradox"
-titleAccent: paradox
-aka: ["Löb's paradox", "if this sentence is true then", "Haskell Curry", "proves anything"]
+titleAccent: "paradox"
+aka: ["Curry", "Löb's paradox", "if this sentence is true", "Haskell Curry", "proves anything"]
 chapter: self-reference
 status: unreconciled
 uniqueness: related
 anchor: liar-paradox
-simplification: heavy
-noMaths: false
-order: 103
+simplification: light
+noMaths: true
 written: true
 sourcesVerified: false
-problem: "Can a sentence saying “if this sentence is true, then all numbers are prime” be used to prove anything at all?"
-claimA: "A sentence can say “if this sentence is true, then all numbers are prime”, and ordinary reasoning shows that sentence is true."
-claimB: "If that sentence is true, then all numbers are prime, which is false."
-verdict: "Every known fix gives up a basic rule of reasoning or a plain idea about truth, and none is widely accepted."
-whatBreaks: "A basic rule of reasoning, or the idea that a sentence’s truth works as it appears to."
-statusNote: "the Stanford Encyclopedia of Philosophy groups the responses into those that restrict truth or sets and those that change logic, and each gives up something big."
-setup: "Haskell Curry wrote about this in 1942, and Wikipedia says it has also been called Löb’s paradox. The Stanford Encyclopedia gives an informal version. Suppose a friend says: “If what I’m saying using this very sentence is true, then all numbers are prime.” Call the sentence k. Suppose k is true. Then, by what k says, if k is true then all numbers are prime. Since k is true, it follows that all numbers are prime. We have now shown, assuming only that k is true, that all numbers are prime. So, by the rule of conditional proof, we can affirm the conditional: if k is true, then all numbers are prime. But that is exactly what k says. So k is true. And so, by modus ponens, all numbers are prime."
-whyWrong: "The Internet Encyclopedia of Philosophy notes that, unlike the Liar, this paradox does not rely on negation. Wikipedia says the argument uses only a few apparently innocent deduction rules: the rule of assumption for conditional proof, the rule of contraction, and modus ponens, which are included in most common logical systems. Since the claim at the end is arbitrary, any logic with these rules would let one prove everything."
+problem: "Can the sentence “If this sentence is true, then Germany borders China” prove that Germany borders China?"
+claimA: "A sentence is true exactly when what it says is the case, and the everyday rules for reasoning with “if … then” are always safe."
+claimB: "Some claims, such as “Germany borders China”, are false and cannot be proved."
+verdict: "With a sentence that talks about its own truth and a few everyday rules of reasoning, any claim at all can be proved. There is no agreed fix, and each one costs something big."
+whatBreaks: "Either the rule that a sentence is true exactly when what it says is the case, or one of the everyday rules for reasoning with “if … then”. Which one goes is what the responses disagree on, and each choice costs something big."
+statusNote: "like the [liar paradox](liar-paradox), it has no fix that most experts accept, and the Stanford Encyclopedia of Philosophy treats the debate as ongoing. It is harder than the liar in one way: some fixes that work for the liar do not work here."
+setup: "Take the sentence: “If this sentence is true, then Germany borders China.” Call it C. Now reason in the ordinary way. To show that an “if … then” sentence holds, assume the “if” part and see whether the “then” part follows. So assume C is true. Then what C says holds: if C is true, Germany borders China. C is true, by the assumption, so Germany borders China. That shows: if C is true, then Germany borders China. But that is exactly what C says, so C is true. And since C is true and C says that if it is true then Germany borders China, Germany borders China."
+whyWrong: "Germany does not border China, and nothing in the argument looked like a trick. Every step uses a rule people trust everywhere else: assume something and see what follows, use an assumption you have already made a second time, and if you have “if A then B” and A, conclude B. The claim about Germany could be swapped for any claim at all. So the same argument proves everything, which means something in it must go."
 resolution:
-  - "The Stanford Encyclopedia of Philosophy divides the responses into two classes. Topic-specific responses accept that a theory in which the paradox can be built proves everything, but deny that the theories of truth, sets or properties are of that kind. Logical responses insist there can be a theory that allows the paradox without proving everything, and so must give up one of the logical principles in the derivation."
-  - "Wikipedia notes that the axiom of unrestricted comprehension, which would let one build such a self-referring set, is not supported by modern set theory, so the paradox is avoided there. In the 1930s Curry’s paradox and the related Kleene–Rosser paradox played a major role in showing that various formal logic systems with self-referring expressions were inconsistent."
+  - "Curry’s paradox is a close relative of the [liar paradox](liar-paradox), with two twists. First, it needs no “not”. The liar works by a sentence denying its own truth. Curry’s sentence only says “if I am true, then something”, and no denial appears anywhere. Second, it does not end in a plain contradiction. It ends by proving an arbitrary claim, which is worse, since a system that proves everything is useless."
+  - "The first twist matters because several well-known fixes for the liar work by changing how “not” behaves. Some allow certain sentences to be neither true nor false, and some allow certain sentences to be both. The philosopher P. T. Geach argued in 1955 that Curry’s paradox cannot be solved “merely by adopting a system that contains a queer sort of negation”. Some of these logics do resist Curry’s paradox and some do not, so a logic chosen to handle the liar has to be checked separately against Curry."
+  - "The responses fall into a few groups, and the Stanford Encyclopedia of Philosophy does not report that any of them is widely accepted."
 positions:
-  - title: Restrict the naive principle of truth or sets
-    body: "Keep classical logic, but deny that a sentence and the claim that it is true can always be swapped for each other, or that every description makes a set. Tarski’s levels of language, the revision theory of truth, contextualist views and Russell-style type theories are examples listed by the Stanford Encyclopedia. Cost: each gives up the plain principle that truth, or set membership, works without restriction, and the Stanford Encyclopedia notes that the objections to them are those raised against the answers to the Liar and Russell’s paradoxes."
-  - title: Give up contraction (keep modus ponens)
-    body: "Accept modus ponens but deny the principle that if assuming a conditional leads to its consequent, the consequent follows. Some do this by rejecting the form of modus ponens that merges repeated use of an assumption, using a framework that distinguishes using an assumption once from using it twice. Others keep that and deny conditional proof. The Stanford Encyclopedia says this strategy was first proposed by Moh in 1954. Cost: it means rejecting standard rules of reasoning for the conditional, and the strong version needs a special framework in which assumptions are not freely reused."
-  - title: Give up detachment (keep conditional proof)
-    body: "Accept that a theory’s conditional obeys contraction, but deny modus ponens, the step from “if A then B” and A to B. This is a more recent strategy, advocated in different ways by David Ripley and Jc Beall. Cost: the Stanford Encyclopedia says it is charged with being counterintuitive, and the replies appeal to a link between consequence and what is coherent to accept or reject."
-finePrint: "The Stanford Encyclopedia’s entry on Curry’s paradox is long and gives more detail than this entry. The Internet Encyclopedia of Philosophy adds that the paradox is a problem for the paraconsistent way out of the Liar, since that approach is said by critics not to solve Curry’s paradox. Which of the positions above is best is not settled by the sources."
+  - title: "Limit what can talk about its own truth"
+    body: "Keep ordinary logic, but block sentences like C, for example by splitting truth into levels, as some do for the liar, or by limiting which collections can be formed. Cost: the same cost as for the liar, since ordinary language plainly does talk about its own truth, and the Stanford Encyclopedia of Philosophy notes that these moves are judged on the same grounds as the fixes for the liar and for Russell’s paradox."
+  - title: "Do not reuse an assumption"
+    body: "Block the step that uses the assumption that C is true a second time, merging two uses into one. This is called rejecting contraction, and Moh Shaw-Kwei was the first to propose it, in 1954. Cost: contraction is part of most standard logics, including ordinary first-order logic, and a variant of Curry’s paradox about valid arguments poses an obstacle for one common form of this response."
+  - title: "Drop a basic rule about “if … then”"
+    body: "Give up the rule that you may prove “if A then B” by assuming A and deriving B, or the rule that from “if A then B” and A you may conclude B. Cost: these rules are about as basic as reasoning gets, the encyclopedia notes the charge that such responses are counterintuitive, and for some versions of the paradox the rules have seemed inescapable."
+finePrint: "The paradox is named after the logician Haskell Curry, who published it in 1942 in a form about formal logics. It is also called Löb’s paradox. Geach and Martin Löb showed in 1955 how it arises for sentences about truth. A version in set theory uses the collection of all things such that, if they belong to themselves, some chosen claim holds. Modern set theory avoids it by not allowing every description to form a set. The three groups of responses here are simplified, and the technical options within each are many."
 sources:
   - title: "Wikipedia: Curry's paradox"
-    url: https://en.wikipedia.org/wiki/Curry%27s_paradox
-  - title: "Stanford Encyclopedia of Philosophy: Curry’s Paradox"
-    url: https://plato.stanford.edu/entries/curry-paradox/
-  - title: "Internet Encyclopedia of Philosophy: Liar Paradox"
-    url: https://iep.utm.edu/liar-paradox/
+    url: "https://en.wikipedia.org/wiki/Curry%27s_paradox"
+    note: "Source for the Germany and China sentence, the step-by-step informal proof, the rules used (conditional proof, contraction and modus ponens) and that they are part of most common logics including first-order logic, Curry (1942), the name Löb’s paradox, the set-theory version and its avoidance in modern set theory."
+  - title: "Stanford Encyclopedia of Philosophy: Curry's Paradox (Lionel Shapiro and Jc Beall)"
+    url: "https://plato.stanford.edu/entries/curry-paradox/"
+    note: "Source for the absence of negation, Geach’s 1955 remark, the point that some logics that handle the liar do not handle Curry, the groups of responses (topic-specific, contraction-free, rejecting conditional proof or modus ponens) and the objections to each, Moh Shaw-Kwei (1954), Geach and Löb (1955), and the lack of any response reported as widely accepted."
+  - title: "Stanford Encyclopedia of Philosophy: Self-Reference"
+    url: "https://plato.stanford.edu/entries/self-reference/"
+    note: "Supports the description of Curry’s paradox as a paradox of self-reference that does not directly involve negation and needs fewer assumptions about logic than the liar."
+  - title: "Stanford Encyclopedia of Philosophy: Liar Paradox"
+    url: "https://plato.stanford.edu/entries/liar-paradox/"
+    note: "Source for the point that paraconsistent approaches must treat Curry’s paradox separately from the liar, and for the cost of level-based fixes: self-reference occurs without trouble in natural languages."
 ---

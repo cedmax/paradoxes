@@ -1,30 +1,41 @@
 ---
-title: Interesting number paradox
-titleAccent: paradox
-aka: ["dull number", "uninteresting numbers", "1729", "Hardy Ramanujan taxicab"]
+title: "Interesting number paradox"
+titleAccent: "paradox"
+aka:
+  [
+    "smallest uninteresting number",
+    "dull number",
+    "boring number",
+    "1729",
+    "taxicab number",
+    "Hardy and Ramanujan",
+  ]
 chapter: self-reference
-status: explained
+status: defused
 uniqueness: related
-anchor: liar-paradox
+anchor: berry-paradox
 simplification: light
-noMaths: false
-order: 101
+noMaths: true
 written: true
 sourcesVerified: false
-problem: "Can any whole number be dull, if the dullest one is interesting for being the dullest?"
-claimA: "Some whole numbers are uninteresting."
-claimB: "If any number were uninteresting, the smallest one would be interesting for that very reason."
-verdict: "“Interesting” is a matter of taste, so it does not sort numbers into two clean sets."
-whatBreaks: "The idea that “interesting” is a precise property that every number either has or lacks."
-statusNote: "the first claim is only a problem when interesting is treated as precise. Wikipedia calls it a humorous application of self-reference, and it goes away with an objective definition."
-setup: "Try sorting every natural number into “interesting” and “uninteresting”. The paradox says every number is interesting. The argument is by contradiction. If some numbers are uninteresting, there is a smallest one. But being the smallest uninteresting number is itself interesting, so it was not uninteresting after all. Wikipedia tells a story about the mathematicians G. H. Hardy and Srinivasa Ramanujan. Hardy remarked that the number 1729 on a taxi he had ridden in seemed rather dull. Ramanujan answered at once that it is interesting, being the smallest number that is the sum of two cubes in two different ways."
-whyWrong: "Wikipedia says the definition of “interesting” is usually a subjective, intuitive idea, so the paradox should be understood as a semi-humorous use of self-reference. A property that depends on taste cannot be fed back into an argument about which numbers have it. The argument treats “interesting” as if it were exact, and then uses the very label being sorted as a reason to join the interesting group."
+problem: "If some whole numbers are dull, wouldn’t the smallest dull number be interesting for that very reason?"
+claimA: "Whether a number is interesting is one fixed fact, and being the smallest uninteresting number is itself enough to make a number interesting."
+claimB: "Some whole numbers are uninteresting."
+verdict: "“Interesting” cannot be both a fixed label and one that lacking it can earn. Defined strictly, the smallest dull number simply stays dull. Left loose, there is no fixed list of dull numbers to take the smallest from."
+whatBreaks: "The assumption that “interesting” is one fixed property that also counts the fact of not having it."
+statusNote: "the first claim is wrong. Once “interesting” is given a fixed meaning, such as appearing in a published list of number sequences, being the smallest number without it does not give it. The sources treat the puzzle mostly as a joke, and this diagnosis, that the word is too loose to sort numbers once and for all, is the one Wikipedia gives."
+setup: "Some numbers seem interesting. One divides every whole number, two is the smallest prime, and so on. Others seem dull. Now suppose some whole numbers are dull, and take the smallest of them. Being the smallest dull number is a rather interesting fact. So that number is interesting after all, and not dull. Whatever number turns out to be the smallest dull one, the same thing happens to it. So it seems no number can be dull: every whole number is interesting."
+whyWrong: "The argument has the shape of a real proof. Any collection of whole numbers that has members has a smallest member, so if there are dull numbers, there is a smallest. The trouble is in the word “interesting”. The argument uses it as a fixed label, so that the dull numbers form a definite collection with a smallest member. Then it lets the label change because of the very collection it defined."
 resolution:
-  - "The paradox goes away if “interesting” is defined objectively. Wikipedia gives an example. In 2023, the smallest natural number that did not appear in an entry of the On-Line Encyclopedia of Integer Sequences was 20,067. This works only because each entry lists a finite number of terms. Otherwise every positive integer would appear, because one entry is the list of all positive integers."
-  - "Wikipedia also says that Alex Bellos suggested in 2014 that 224 could be a candidate for the lowest uninteresting number, because it was then the lowest number without its own page on the English-language Wikipedia."
-  - "A sharper version replaces taste with the length of a description. “The least number not expressible in fewer than eleven words” sounds as if it picks out one number, but the phrase has only ten words. Wikipedia says this is known as the Berry paradox, covered in the entry for [Berry’s paradox](berry-paradox)."
-finePrint: "Wikipedia notes that the paradox can be tied directly to Gödel’s incompleteness theorems if “interesting” means “can be computed by a program with fewer bits than the number itself”. The history section reports a 1945 letter by Edwin Beckenbach in The American Mathematical Monthly that gave a similar “proof by induction”. This entry does not cover that history in full."
+  - "The joke works because “interesting” is a loose, personal word. If it is pinned down, the paradox goes away. Take “interesting” to mean appearing somewhere in the On-Line Encyclopedia of Integer Sequences, a large database of number sequences. Then, according to a 2023 Scientific American article, the smallest whole number not appearing in it was 20,067. Being the smallest such number does not put it into the database, so it stays uninteresting in that fixed sense. The paradox needs “interesting” to be fixed enough to sort numbers and loose enough to change its mind about the result."
+  - "So the first claim is the one to drop. It is the same move as in the [Berry paradox](berry-paradox), where the smallest number that cannot be defined in a few words gets defined by that very phrase in a few words. In both, a word is used to sort the numbers and then also to describe the result of the sorting. The difference is that “definable” can be made precise, and then gives real theorems, while “interesting” is a matter of taste. Wikipedia calls the interesting number version a semi-humorous use of self-reference."
+  - "The mathematician Greg Chaitin linked the joke in 1977 to an older paradox of Bertrand Russell about the smallest undefinable ordinal, a kind of number used to count positions in endless orderings. And if a number is called interesting when some computer program shorter than the number’s own length in binary digits can produce it, the same idea connects to Gödel’s incompleteness theorems."
+finePrint: "The best-known story behind it comes from G. H. Hardy and Srinivasa Ramanujan. Hardy remarked that the number of his taxi, 1729, seemed rather a dull one, and Ramanujan replied that it is the smallest number that is the sum of two cubes in two different ways: 1 cubed plus 12 cubed, and 9 cubed plus 10 cubed. Edwin Beckenbach put the argument in print in a 1945 letter, ending “Is the proof valid?”, and Martin Gardner presented it in 1958 as a fallacy. David Wells, in The Penguin Dictionary of Curious and Interesting Numbers (1987), called 39 the first uninteresting number, which made it especially interesting. The figure 20,067 depends on the database at the time, partly because it stores only the first terms of each sequence, and it can change as entries are added."
 sources:
   - title: "Wikipedia: Interesting number paradox"
-    url: https://en.wikipedia.org/wiki/Interesting_number_paradox
+    url: "https://en.wikipedia.org/wiki/Interesting_number_paradox"
+    note: "Source for the argument, its description as humorous and semi-humorous, the point that “interesting” is usually subjective and that the paradox is alleviated by an objective definition, the OEIS example, Hardy and Ramanujan and 1729, Beckenbach (1945), Gardner (1958), Wells (1987), Chaitin (1977) and Russell, and the link to Gödel and to the Berry paradox. The sums of cubes recomputed in Python."
+  - title: "Scientific American: The Most Boring Number in the World Is ... (Manon Bischoff, 2023)"
+    url: "https://www.scientificamerican.com/article/the-most-boring-number-in-the-world-is/"
+    note: "Source for 20,067 as the smallest number not appearing in the OEIS at the time, and the point that the database stores only the first part of each sequence."
 ---
