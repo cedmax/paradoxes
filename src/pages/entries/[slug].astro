@@ -25,7 +25,7 @@ const simp = simplifications[d.simplification]
 const all = await getPublishedEntries()
 const u = uniqueness[d.uniqueness]
 const anchor = anchorOf(entry, all)
-// Related and variant entries that point here, shown on the canonical entry's page.
+// Related and variant entries that point here, shown on this entry's page.
 const echoes = all
   .filter((e) => e.data.anchor === entry.id)
   .sort((a, b) => a.data.title.localeCompare(b.data.title))

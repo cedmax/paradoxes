@@ -28,15 +28,22 @@ interface Tagged {
   data: { uniqueness: Uniqueness; anchor?: string }
 }
 
-// The canonical entry a related or variant entry points to. Throws on a bad anchor so the build fails.
+// The canonical or related entry a related or variant entry points to. Throws on an unknown
+// anchor, a variant anchor or a loop of anchors, so the build fails.
 export function anchorOf<T extends Tagged>(entry: T, all: T[]): T | undefined {
   if (entry.data.uniqueness === "canonical") return undefined
   const anchor = all.find((e) => e.id === entry.data.anchor)
   if (!anchor) throw new Error(`Entry "${entry.id}" has unknown anchor "${entry.data.anchor}"`)
-  if (anchor.data.uniqueness !== "canonical") {
-    throw new Error(
-      `Entry "${entry.id}" must point to a canonical entry, but "${anchor.id}" is ${anchor.data.uniqueness}`,
-    )
+  if (anchor.data.uniqueness === "variant") {
+    throw new Error(`Entry "${entry.id}" cannot point to "${anchor.id}", which is a variant`)
+  }
+  // Follow the chain of anchors up to a canonical entry, so a loop cannot slip through.
+  const seen = new Set([entry.id])
+  for (let e: T | undefined = anchor; e && e.data.uniqueness !== "canonical";) {
+    if (seen.has(e.id)) throw new Error(`Entry "${entry.id}" is part of a loop of anchors`)
+    seen.add(e.id)
+    const next: string | undefined = e.data.anchor
+    e = all.find((x) => x.id === next)
   }
   return anchor
 }

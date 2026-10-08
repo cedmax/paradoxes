@@ -30,7 +30,7 @@ in `src/styles/global.css`. `~` maps to `/src`.
   these ids.
 - `src/data/status.ts` — status and simplification labels and definitions (shown on the site).
 - `src/data/uniqueness.ts` — uniqueness labels and definitions, and `anchorOf`, which resolves
-  an entry's anchor and fails the build if it is unknown or not canonical.
+  an entry's anchor and fails the build if it is unknown, a variant, or part of a loop.
 - `src/pages/index.astro` — index with search and status filter (client script). Search matches
   `title`, `aka`, `problem`, `claimA`, `claimB`, `verdict`, plus the anchor's title for related
   and variant entries. The index lists canonical and related entries. Variants are hidden by
@@ -80,15 +80,17 @@ How to apply them:
 ### Uniqueness
 
 - **canonical** (the default, no field needed): works by its own mechanism. Listed on the index.
-- **related**: shares an idea with a canonical entry but adds a twist of its own. Listed on the
+- **related**: shares an idea with another entry but adds a twist of its own. Listed on the
   index, with a "Related to" strip.
-- **variant**: the identical puzzle as a canonical entry, in a different setting. Hidden from the
-  index by default (the "Hide variants" switch); always linked from the canonical entry's page.
-- `related` and `variant` entries must set `anchor` to the slug of a canonical entry (never to
-  another related or variant entry). `canonical` entries must not set `anchor`. The schema and
-  `anchorOf` enforce both.
+- **variant**: the identical puzzle as another entry, in a different setting. Hidden from the
+  index by default (the "Hide variants" switch); always linked from its anchor's page.
+- `related` and `variant` entries must set `anchor` to the slug of a canonical or related entry,
+  never a variant. `canonical` entries must not set `anchor`. Anchors must not form a loop. The
+  schema and `anchorOf` enforce all three.
 - Judge by mechanism, not by topic. Two entries are variants only if the same step in the
-  reasoning fails in both. The canonical entry's page lists its variants and related entries.
+  reasoning fails in both. Pick the closest anchor: a related entry if it shares the mechanism
+  more closely than its own canonical anchor. An entry's page lists the variants and related
+  entries anchored directly on it.
 
 ### Writing rules
 

@@ -17,9 +17,10 @@ const entries = defineCollection({
       status: z.enum(["explained", "defused", "disputed", "unreconciled"]),
       // Canonical and related entries are always listed on the index. Variants (the same puzzle in
       // a different setting) are hidden by the index's "Hide variants" switch, which is on by
-      // default. They are always reachable from the canonical entry named in `anchor`.
+      // default. They are always reachable from the entry named in `anchor`.
       uniqueness: z.enum(uniquenessIds).default("canonical"),
-      // Slug of the canonical entry. Required for related and variant, not allowed for canonical.
+      // Slug of a canonical or related entry, never a variant. Required for related and variant,
+      // not allowed for canonical.
       anchor: z.string().optional(),
       simplification: z.enum(["none", "light", "heavy"]).default("light"),
       noMaths: z.boolean().default(true),
