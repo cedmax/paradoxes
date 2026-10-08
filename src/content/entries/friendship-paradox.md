@@ -3,6 +3,8 @@ title: Friendship paradox
 titleAccent: paradox
 chapter: probability
 status: explained
+uniqueness: variant
+anchor: inspection-paradox
 simplification: light
 noMaths: true
 order: 11

@@ -3,6 +3,8 @@ title: "Hilbert's hotel"
 aka: ["Grand Hotel", "infinite hotel"]
 chapter: infinity
 status: explained
+uniqueness: related
+anchor: galileos-paradox
 simplification: light
 order: 2
 written: true

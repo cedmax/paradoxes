@@ -3,6 +3,8 @@ title: "Barber paradox"
 titleAccent: "paradox"
 chapter: self-reference
 status: defused
+uniqueness: variant
+anchor: russells-paradox
 simplification: light
 order: 2
 written: true

@@ -3,6 +3,8 @@ title: Prosecutor's fallacy
 titleAccent: fallacy
 chapter: probability
 status: explained
+uniqueness: variant
+anchor: base-rate-fallacy
 simplification: light
 noMaths: true
 order: 10

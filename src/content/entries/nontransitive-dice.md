@@ -3,6 +3,8 @@ title: Nontransitive dice
 titleAccent: dice
 chapter: probability
 status: explained
+uniqueness: related
+anchor: condorcet-paradox
 simplification: light
 noMaths: true
 order: 13

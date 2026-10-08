@@ -4,6 +4,8 @@ titleAccent: "paradox"
 aka: ["two child problem", "two children problem"]
 chapter: probability
 status: explained
+uniqueness: related
+anchor: monty-hall-problem
 simplification: light
 noMaths: true
 order: 7

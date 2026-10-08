@@ -3,6 +3,8 @@ title: "Thomson's lamp"
 aka: ["supertask"]
 chapter: infinity
 status: explained
+uniqueness: related
+anchor: achilles-and-the-tortoise
 simplification: light
 order: 6
 written: true

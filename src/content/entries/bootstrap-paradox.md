@@ -3,6 +3,8 @@ title: "Bootstrap paradox"
 titleAccent: "paradox"
 chapter: time-physics
 status: disputed
+uniqueness: related
+anchor: grandfather-paradox
 simplification: light
 noMaths: true
 order: 2

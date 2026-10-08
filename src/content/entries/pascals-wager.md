@@ -3,6 +3,8 @@ title: Pascal's wager
 titleAccent: wager
 chapter: choice-identity
 status: disputed
+uniqueness: related
+anchor: st-petersburg-paradox
 simplification: light
 order: 6
 written: true

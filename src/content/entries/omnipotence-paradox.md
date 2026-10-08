@@ -3,6 +3,8 @@ title: "Omnipotence paradox"
 titleAccent: paradox
 chapter: self-reference
 status: defused
+uniqueness: related
+anchor: russells-paradox
 simplification: light
 order: 5
 written: true

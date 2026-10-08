@@ -3,6 +3,8 @@ title: "Grelling–Nelson paradox"
 titleAccent: paradox
 chapter: self-reference
 status: unreconciled
+uniqueness: variant
+anchor: russells-paradox
 simplification: light
 order: 4
 written: true

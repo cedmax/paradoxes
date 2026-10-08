@@ -3,6 +3,8 @@ title: "Preface paradox"
 titleAccent: "paradox"
 chapter: belief
 status: disputed
+uniqueness: related
+anchor: lottery-paradox
 simplification: light
 order: 3
 written: true

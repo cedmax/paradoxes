@@ -3,6 +3,8 @@ title: Parfit's teletransporter
 titleAccent: teletransporter
 chapter: choice-identity
 status: disputed
+uniqueness: related
+anchor: ship-of-theseus
 simplification: light
 order: 4
 written: true

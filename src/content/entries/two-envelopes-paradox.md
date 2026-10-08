@@ -3,6 +3,8 @@ title: "Two envelopes paradox"
 titleAccent: "paradox"
 chapter: probability
 status: explained
+uniqueness: related
+anchor: st-petersburg-paradox
 simplification: light
 noMaths: true
 order: 4
