@@ -1,13 +1,13 @@
 ---
 // Renders entry text, turning [shown text](entry-slug) into an underlined link to that entry.
-import { getCollection } from "astro:content"
+import { getPublishedEntries } from "~/data/entries"
 
 interface Props {
   text: string
 }
 
 const { text } = Astro.props
-const ids = new Set((await getCollection("entries")).map((e) => e.id))
+const ids = new Set((await getPublishedEntries()).map((e) => e.id))
 const link = /\[([^\]]+)\]\(([a-z0-9-]+)\)/g
 
 const pieces: { text: string; href?: string }[] = []

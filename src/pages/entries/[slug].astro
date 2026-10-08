@@ -1,13 +1,14 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content"
+import type { CollectionEntry } from "astro:content"
 import Base from "~/layouts/Base.astro"
 import Linked from "~/components/Linked.astro"
 import { chapterById } from "~/data/chapters"
+import { getPublishedEntries } from "~/data/entries"
 import { statuses, simplifications } from "~/data/status"
 import { anchorOf, uniqueness } from "~/data/uniqueness"
 
 export async function getStaticPaths() {
-  const entries = await getCollection("entries")
+  const entries = await getPublishedEntries()
   return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }))
 }
 
@@ -21,7 +22,7 @@ const chapter = chapterById(d.chapter)
 const s = statuses[d.status]
 const simp = simplifications[d.simplification]
 
-const all = await getCollection("entries")
+const all = await getPublishedEntries()
 const u = uniqueness[d.uniqueness]
 const anchor = anchorOf(entry, all)
 // Related and variant entries that point here, shown on the canonical entry's page.
@@ -85,9 +86,6 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
       {anchor && <div class={badge}>{u.label}</div>}
       {d.noMaths && <div class={badge}>No maths needed</div>}
       <div class={badge}>{simp.label}</div>
-      {!d.sourcesVerified && (
-        <div class="bg-disputed px-2 py-0.5 text-xs font-bold">Sources not yet verified</div>
-      )}
       {d.reviewed && <div class={badge}>Human reviewed</div>}
     </div>
     {anchor && (
