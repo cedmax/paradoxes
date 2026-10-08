@@ -4,18 +4,24 @@ import Base from "~/layouts/Base.astro"
 import EntryCard from "~/components/EntryCard.astro"
 import { chapters } from "~/data/chapters"
 import { statuses, type Status } from "~/data/status"
+import { anchorOf } from "~/data/uniqueness"
 
 const all = await getCollection("entries")
 const sorted = all.sort(
   (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title),
 )
+// Every entry is in the page. Variants start hidden; turning the "Hide variants" switch off
+// shows them. The count chips follow the switch.
+const anchors = new Map(sorted.map((e) => [e.id, anchorOf(e, all)]))
+const listed = sorted.filter((e) => e.data.uniqueness !== "variant")
+const variantCount = sorted.length - listed.length
 const byChapter = chapters
   .map((chapter) => ({ chapter, items: sorted.filter((e) => e.data.chapter === chapter.id) }))
   .filter((g) => g.items.length > 0)
 
 const statusKeys = Object.keys(statuses) as Status[]
-const counts: Record<string, number> = { all: all.length }
-statusKeys.forEach((k) => (counts[k] = all.filter((e) => e.data.status === k).length))
+const counts: Record<string, number> = { all: listed.length }
+statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k).length))
 ---
 
 <Base title="Logic Benders. It can't be true. It can't be false.">
@@ -46,19 +52,17 @@ statusKeys.forEach((k) => (counts[k] = all.filter((e) => e.data.status === k).le
           class="h-14 w-full rounded-none border-2 border-ink bg-paper px-4.5 text-lg text-ink"
         />
       </label>
-      <div
-        class="flex flex-wrap gap-2"
-        role="group"
-        aria-label="Filter by how it ends"
-        id="chips"
-      >
+      <div class="flex flex-wrap gap-2" id="chips">
         <button
           type="button"
           class="min-h-14 cursor-pointer rounded-none border-2 border-ink bg-paper px-5.5 font-bold text-ink aria-pressed:bg-ink aria-pressed:text-paper"
           data-filter="all"
           aria-pressed="true"
         >
-          All <span class="font-mono text-xs font-medium">{counts.all}</span>
+          All{" "}
+          <span class="font-mono text-xs font-medium" data-count>
+            {counts.all}
+          </span>
         </button>
         {statusKeys.map((k) => (
           <button
@@ -67,9 +71,31 @@ statusKeys.forEach((k) => (counts[k] = all.filter((e) => e.data.status === k).le
             data-filter={k}
             aria-pressed="false"
           >
-            {statuses[k].label} <span class="font-mono text-xs font-medium">{counts[k]}</span>
+            {statuses[k].label}{" "}
+            <span class="font-mono text-xs font-medium" data-count>
+              {counts[k]}
+            </span>
           </button>
         ))}
+        <label
+          class="flex min-h-14 cursor-pointer items-center gap-3 border-2 border-ink bg-paper px-5.5 font-bold text-ink has-disabled:cursor-not-allowed"
+          title="Variants are the same puzzle as another entry, in a different setting. Searching always includes them."
+        >
+          <input
+            type="checkbox"
+            role="switch"
+            id="hide-variants"
+            class="peer sr-only"
+            checked
+          />
+          <span
+            aria-hidden="true"
+            class="relative h-7 w-12 shrink-0 border-2 border-ink bg-paper transition-colors after:absolute after:top-0.5 after:left-0.5 after:size-5 after:bg-ink after:transition-transform peer-checked:bg-ink peer-checked:after:translate-x-5 peer-checked:after:bg-paper peer-focus-visible:outline-4 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink peer-disabled:opacity-50 motion-reduce:transition-none motion-reduce:after:transition-none"
+          ></span>
+          <span class="peer-disabled:opacity-50">
+            Hide variants <span class="font-mono text-xs font-medium">{variantCount}</span>
+          </span>
+        </label>
       </div>
     </div>
   </section>
@@ -95,7 +121,11 @@ statusKeys.forEach((k) => (counts[k] = all.filter((e) => e.data.status === k).le
 
   <main class="px-gutter flex flex-col gap-18 pt-6 pb-20">
     {byChapter.map(({ chapter, items }) => (
-      <section class="flex flex-col gap-5" data-chapter>
+      <section
+        class="flex flex-col gap-5"
+        data-chapter
+        hidden={!items.some((e) => e.data.uniqueness !== "variant")}
+      >
         <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2">
           <div class="mono-label text-sm text-accent">{chapter.n}</div>
           <h2 class="display text-[clamp(30px,4vw,52px)]">{chapter.title}</h2>
@@ -103,7 +133,7 @@ statusKeys.forEach((k) => (counts[k] = all.filter((e) => e.data.status === k).le
         <p class="max-w-160 text-lg">{chapter.blurb}</p>
         <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,400px),1fr))] gap-6">
           {items.map((e) => (
-            <EntryCard entry={e} />
+            <EntryCard entry={e} anchor={anchors.get(e.id)} />
           ))}
         </div>
       </section>
@@ -120,17 +150,36 @@ statusKeys.forEach((k) => (counts[k] = all.filter((e) => e.data.status === k).le
   const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-card]"))
   const chapters = Array.from(document.querySelectorAll<HTMLElement>("[data-chapter]"))
   const none = document.getElementById("none") as HTMLElement
+  const hideVariants = document.getElementById("hide-variants") as HTMLInputElement
   let status = "all"
+  // What the visitor chose with the switch. While a search is active the switch is forced off
+  // and disabled, and this is restored when the search is cleared.
+  let hideChoice = input.value.trim() ? true : hideVariants.checked
+
+  const isShownByVariantRule = (card: HTMLElement) =>
+    !(hideVariants.checked && card.dataset.variant === "true")
 
   function apply() {
     const q = input.value.trim().toLowerCase()
+    hideVariants.disabled = q !== ""
+    hideVariants.checked = q === "" && hideChoice
     let shown = 0
     for (const card of cards) {
       const ok =
         (status === "all" || card.dataset.status === status) &&
-        (!q || (card.dataset.text ?? "").includes(q))
+        (!q || (card.dataset.text ?? "").includes(q)) &&
+        isShownByVariantRule(card)
       card.hidden = !ok
       if (ok) shown++
+    }
+    for (const chip of chips) {
+      const filter = chip.dataset.filter ?? "all"
+      const count = cards.filter(
+        (card) =>
+          (filter === "all" || card.dataset.status === filter) && isShownByVariantRule(card),
+      ).length
+      const label = chip.querySelector("[data-count]")
+      if (label) label.textContent = String(count)
     }
     for (const chapter of chapters) {
       chapter.hidden = !chapter.querySelector("[data-card]:not([hidden])")
@@ -139,6 +188,10 @@ statusKeys.forEach((k) => (counts[k] = all.filter((e) => e.data.status === k).le
   }
 
   input.addEventListener("input", apply)
+  hideVariants.addEventListener("change", () => {
+    hideChoice = hideVariants.checked
+    apply()
+  })
   for (const button of chips) {
     button.addEventListener("click", () => {
       status = button.dataset.filter ?? "all"
@@ -146,4 +199,6 @@ statusKeys.forEach((k) => (counts[k] = all.filter((e) => e.data.status === k).le
       apply()
     })
   }
+  // Browsers can restore the switch and the search box on reload, so sync the page to them.
+  apply()
 </script>
