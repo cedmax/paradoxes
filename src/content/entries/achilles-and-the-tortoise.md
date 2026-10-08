@@ -7,6 +7,7 @@ simplification: light
 order: 1
 written: true
 sourcesVerified: true
+reviewed: true
 problem: "Achilles gives a tortoise a head start. Can he ever catch it?"
 claimA: "An endless list of catch-up steps can never be finished."
 claimB: "A faster runner obviously overtakes a slower one."
