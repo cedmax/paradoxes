@@ -31,5 +31,6 @@ sources:
   - title: "Stanford Encyclopedia of Philosophy: Epistemic Paradoxes"
     url: https://plato.stanford.edu/entries/epistemic-paradoxes/
 sourcesVerified: true
+reviewed: true
 noMaths: true
 ---
