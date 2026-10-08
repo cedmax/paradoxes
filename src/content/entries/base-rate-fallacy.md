@@ -26,4 +26,5 @@ sources:
     url: https://en.wikipedia.org/wiki/Base_rate_fallacy
     note: "the example here uses different numbers, worked out separately"
 sourcesVerified: true
+reviewed: true
 ---
