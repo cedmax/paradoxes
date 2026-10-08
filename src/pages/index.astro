@@ -15,6 +15,7 @@ const sorted = all.sort(
 const anchors = new Map(sorted.map((e) => [e.id, anchorOf(e, all)]))
 const listed = sorted.filter((e) => e.data.uniqueness !== "variant")
 const variantCount = sorted.length - listed.length
+const reviewedCount = sorted.filter((e) => e.data.reviewed).length
 const byChapter = chapters
   .map((chapter) => ({ chapter, items: sorted.filter((e) => e.data.chapter === chapter.id) }))
   .filter((g) => g.items.length > 0)
@@ -77,26 +78,36 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
             </span>
           </button>
         ))}
-        <label
-          class="flex min-h-14 cursor-pointer items-center gap-3 border-2 border-ink bg-paper px-5.5 font-bold text-ink has-disabled:cursor-not-allowed"
-          title="Variants are the same puzzle as another entry, in a different setting. Searching always includes them."
-        >
-          <input
-            type="checkbox"
-            role="switch"
-            id="hide-variants"
-            class="peer sr-only"
-            checked
-          />
-          <span
-            aria-hidden="true"
-            class="relative h-7 w-12 shrink-0 border-2 border-ink bg-paper transition-colors after:absolute after:top-0.5 after:left-0.5 after:size-5 after:bg-ink after:transition-transform peer-checked:bg-ink peer-checked:after:translate-x-5 peer-checked:after:bg-paper peer-focus-visible:outline-4 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink peer-disabled:opacity-50 motion-reduce:transition-none motion-reduce:after:transition-none"
-          ></span>
-          <span class="peer-disabled:opacity-50">
-            Hide variants <span class="font-mono text-xs font-medium">{variantCount}</span>
-          </span>
-        </label>
       </div>
+    </div>
+    <!-- The two switches change what is listed, not the kind of paradox, so they sit apart from the status chips. -->
+    <div class="mt-5 flex flex-wrap items-center gap-x-8 gap-y-1 border-t-2 border-ink pt-4">
+      <label
+        class="flex min-h-11 cursor-pointer items-center gap-3 font-bold text-ink has-disabled:cursor-not-allowed"
+        title="Variants are the same puzzle as another entry, in a different setting. Searching always includes them."
+      >
+        <input type="checkbox" role="switch" id="hide-variants" class="peer sr-only" checked />
+        <span
+          aria-hidden="true"
+          class="relative h-7 w-12 shrink-0 border-2 border-ink bg-paper transition-colors after:absolute after:top-0.5 after:left-0.5 after:size-5 after:bg-ink after:transition-transform peer-checked:bg-ink peer-checked:after:translate-x-5 peer-checked:after:bg-paper peer-focus-visible:outline-4 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink peer-disabled:opacity-50 motion-reduce:transition-none motion-reduce:after:transition-none"
+        ></span>
+        <span class="peer-disabled:opacity-50">
+          Hide variants <span class="font-mono text-xs font-medium">{variantCount}</span>
+        </span>
+      </label>
+      <label
+        class="flex min-h-11 cursor-pointer items-center gap-3 font-bold text-ink"
+        title="Show only entries that a person has also reviewed."
+      >
+        <input type="checkbox" role="switch" id="only-reviewed" class="peer sr-only" />
+        <span
+          aria-hidden="true"
+          class="relative h-7 w-12 shrink-0 border-2 border-ink bg-paper transition-colors after:absolute after:top-0.5 after:left-0.5 after:size-5 after:bg-ink after:transition-transform peer-checked:bg-ink peer-checked:after:translate-x-5 peer-checked:after:bg-paper peer-focus-visible:outline-4 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink motion-reduce:transition-none motion-reduce:after:transition-none"
+        ></span>
+        <span>
+          Only reviewed <span class="font-mono text-xs font-medium">{reviewedCount}</span>
+        </span>
+      </label>
     </div>
   </section>
 
@@ -151,13 +162,19 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
   const chapters = Array.from(document.querySelectorAll<HTMLElement>("[data-chapter]"))
   const none = document.getElementById("none") as HTMLElement
   const hideVariants = document.getElementById("hide-variants") as HTMLInputElement
+  const onlyReviewed = document.getElementById("only-reviewed") as HTMLInputElement
   let status = "all"
   // What the visitor chose with the switch. While a search is active the switch is forced off
   // and disabled, and this is restored when the search is cleared.
   let hideChoice = input.value.trim() ? true : hideVariants.checked
 
+  // The two switches. "Only reviewed" is independent of the search: it applies to every result.
   const isShownByVariantRule = (card: HTMLElement) =>
     !(hideVariants.checked && card.dataset.variant === "true")
+  const isShownByReviewedRule = (card: HTMLElement) =>
+    !onlyReviewed.checked || card.dataset.reviewed === "true"
+  const isShownBySwitches = (card: HTMLElement) =>
+    isShownByVariantRule(card) && isShownByReviewedRule(card)
 
   function apply() {
     const q = input.value.trim().toLowerCase()
@@ -168,7 +185,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
       const ok =
         (status === "all" || card.dataset.status === status) &&
         (!q || (card.dataset.text ?? "").includes(q)) &&
-        isShownByVariantRule(card)
+        isShownBySwitches(card)
       card.hidden = !ok
       if (ok) shown++
     }
@@ -176,7 +193,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
       const filter = chip.dataset.filter ?? "all"
       const count = cards.filter(
         (card) =>
-          (filter === "all" || card.dataset.status === filter) && isShownByVariantRule(card),
+          (filter === "all" || card.dataset.status === filter) && isShownBySwitches(card),
       ).length
       const label = chip.querySelector("[data-count]")
       if (label) label.textContent = String(count)
@@ -192,6 +209,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
     hideChoice = hideVariants.checked
     apply()
   })
+  onlyReviewed.addEventListener("change", apply)
   for (const button of chips) {
     button.addEventListener("click", () => {
       status = button.dataset.filter ?? "all"
