@@ -36,6 +36,10 @@ in `src/styles/global.css`. `~` maps to `/src`.
   and variant entries. The index lists canonical and related entries. Variants are hidden by
   the "Hide variants" switch in the filters block (on by default); turning it off shows them.
   The switch is disabled and off while a search is active, so search always includes variants.
+  A second switch, "Only reviewed" (off by default), lists only entries with `reviewed: true`.
+  It works with or without a search. Both switches sit in their own row below the status chips.
+  The index and entry pages only include entries with `sourcesVerified: true`
+  (`getPublishedEntries()` in `src/data/entries.ts`).
 - `src/pages/entries/[slug].astro` — entry page. `src/pages/about.astro` — "How we write these".
 - `src/components/EntryCard.astro` — index card.
 
