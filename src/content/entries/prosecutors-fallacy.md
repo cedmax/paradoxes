@@ -32,4 +32,5 @@ sources:
     url: https://en.wikipedia.org/wiki/Sally_Clark
     note: "dates and the 1 in 73 million figure. The 4.5 to 9 times figure is attributed there to a calculation by Ray Hill."
 sourcesVerified: true
+reviewed: true
 ---
