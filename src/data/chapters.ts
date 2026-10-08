@@ -7,6 +7,7 @@ export const chapterIds = [
   "choice-identity",
   "belief",
   "time-physics",
+  "biology",
 ] as const
 
 export type ChapterId = (typeof chapterIds)[number]
@@ -62,6 +63,12 @@ export const chapters: Chapter[] = [
     title: "Time and physics",
     blurb:
       "Puzzles from the physical world, where the laws we trust seem to contradict each other.",
+  },
+  {
+    id: "biology",
+    n: "08",
+    title: "Biology",
+    blurb: "Puzzles from living things, where what should happen by the numbers does not.",
   },
 ]
 
