@@ -5,7 +5,7 @@ aka: ["definable real numbers", "Jules Richard", "diagonal definition", "Richard
 chapter: self-reference
 status: defused
 uniqueness: related
-anchor: liar-paradox
+anchor: berry-paradox
 simplification: heavy
 noMaths: false
 order: 105

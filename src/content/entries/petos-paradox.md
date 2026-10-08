@@ -2,7 +2,7 @@
 title: "Peto's paradox"
 titleAccent: paradox
 aka: ["whales and cancer", "elephants and cancer", "body size and cancer"]
-chapter: probability
+chapter: biology
 status: explained
 simplification: light
 noMaths: true

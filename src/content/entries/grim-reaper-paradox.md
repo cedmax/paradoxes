@@ -5,7 +5,7 @@ aka: ["Benardete paradox", "infinite reapers", "beginningless sequence"]
 chapter: infinity
 status: disputed
 uniqueness: related
-anchor: achilles-and-the-tortoise
+anchor: thomsons-lamp
 simplification: light
 noMaths: false
 order: 213
@@ -16,7 +16,7 @@ claimA: "The person is certain to be killed before 1pm."
 claimB: "No reaper can be the one who kills them, because an earlier reaper would always have acted first."
 verdict: "Experts offer different fixes, and each drops a different assumption."
 whatBreaks: "Which to give up: continuous time, endless chains of causes, or the logic of the set-up itself."
-statusNote: "Wikipedia lists several rival diagnoses, and none is presented as settled."
+statusNote: "experts disagree on which assumption fails: continuous time, endless chains of causes, or the logic of the set-up itself. None of the rival diagnoses is presented as settled."
 setup: "Imagine an infinite sequence of reapers, each assigned a time to kill one person. Each reaper kills the person only if no earlier reaper has already done so. It is 12pm. The first reaper is set to act at 1pm, the second at 12:30pm, the third at 12:15pm, and so on, each time halving the wait. The person will certainly be killed before 1pm, since some reaper’s time must come. Yet no individual reaper can be the one who kills them, because there is always an earlier reaper who would have done it first. So it seems impossible for the person to survive and also impossible for any reaper to kill them. The puzzle was inspired by J. A. Benardete’s 1964 book Infinity: An Essay in Metaphysics, and Wikipedia says paradoxes of this kind, where each member acts only if no earlier member has, are called Benardete paradoxes."
 whyWrong: "The set-up has no first reaper, since each one has an earlier one, and each reaper’s action depends on all the earlier ones. Wikipedia describes Benardete paradoxes as examples of supertasks, the same family as [Thomson’s lamp](thomsons-lamp)."
 resolution:

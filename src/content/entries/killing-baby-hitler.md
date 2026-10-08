@@ -16,7 +16,7 @@ claimA: "A traveller can go back and remove the person, so the later events neve
 claimB: "If those events never happen, the traveller has no reason to go back, so no one removes the person."
 verdict: "Experts disagree on how time must work for the trip to avoid contradicting itself."
 whatBreaks: "Which to give up: that the past can be changed, that there is one timeline, or that the trip is possible."
-statusNote: "Wikipedia reports several rival models of time, and the sources do not present any as settled."
+statusNote: "experts disagree on how time would have to work for such a trip to avoid contradicting itself, and no model of time is presented as settled."
 setup: "Wikipedia describes killing baby Hitler as a thought experiment about using backward time travel to kill the infant Adolf Hitler, and as a trope of science fiction since the Second World War. It says the question holds both an ethical dilemma and a version of the [grandfather paradox](grandfather-paradox), sometimes called the “Hitler’s murder paradox”. This entry covers only the timing puzzle. It does not take up the ethics of the act, which Wikipedia treats separately, and it takes no side on that question."
 whyWrong: "The structure is the same as in the grandfather paradox. A traveller goes back to remove someone before the later events happen. But if the later events never happen, there is nothing for the traveller to prevent, and so no reason for the trip."
 resolution:
