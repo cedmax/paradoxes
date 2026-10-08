@@ -29,8 +29,13 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/data/chapters.ts` — chapter ids, titles and blurbs. An entry's `chapter` must be one of
   these ids.
 - `src/data/status.ts` — status and simplification labels and definitions (shown on the site).
+- `src/data/uniqueness.ts` — uniqueness labels and definitions, and `anchorOf`, which resolves
+  an entry's anchor and fails the build if it is unknown or not canonical.
 - `src/pages/index.astro` — index with search and status filter (client script). Search matches
-  `title`, `aka`, `problem`, `claimA`, `claimB`, `verdict`.
+  `title`, `aka`, `problem`, `claimA`, `claimB`, `verdict`, plus the anchor's title for related
+  and variant entries. The index lists canonical and related entries. Variants are hidden by
+  the "Hide variants" switch in the filters block (on by default); turning it off shows them.
+  The switch is disabled and off while a search is active, so search always includes variants.
 - `src/pages/entries/[slug].astro` — entry page. `src/pages/about.astro` — "How we write these".
 - `src/components/EntryCard.astro` — index card.
 
@@ -67,6 +72,19 @@ How to apply them:
   is the unreconciled test; never use it to justify disputed.
 - Disputed and unreconciled entries need `positions` (2 to 4), each ending with its cost, all
   costs written in the same register.
+
+### Uniqueness
+
+- **canonical** (the default, no field needed): works by its own mechanism. Listed on the index.
+- **related**: shares an idea with a canonical entry but adds a twist of its own. Listed on the
+  index, with a "Related to" strip.
+- **variant**: the identical puzzle as a canonical entry, in a different setting. Hidden from the
+  index by default (the "Hide variants" switch); always linked from the canonical entry's page.
+- `related` and `variant` entries must set `anchor` to the slug of a canonical entry (never to
+  another related or variant entry). `canonical` entries must not set `anchor`. The schema and
+  `anchorOf` enforce both.
+- Judge by mechanism, not by topic. Two entries are variants only if the same step in the
+  reasoning fails in both. The canonical entry's page lists its variants and related entries.
 
 ### Writing rules
 
