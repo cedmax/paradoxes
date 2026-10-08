@@ -26,4 +26,5 @@ sources:
     url: https://allendowney.substack.com/p/the-inspection-paradox-is-everywhere
     note: "source of the Purdue class size figures (31 and 56). The small example is worked out here."
 sourcesVerified: true
+reviewed: true
 ---
