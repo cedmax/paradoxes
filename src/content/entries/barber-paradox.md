@@ -9,6 +9,7 @@ simplification: light
 order: 2
 written: true
 sourcesVerified: true
+reviewed: true
 problem: "A barber shaves everyone who doesn't shave themselves, and nobody else. Who shaves the barber?"
 claimA: "A barber can follow any rule they like about who they shave."
 claimB: "The barber is one of the people their rule is about."
