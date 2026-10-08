@@ -7,6 +7,7 @@ simplification: light
 order: 3
 written: true
 sourcesVerified: true
+reviewed: true
 noMaths: true
 problem: "Does the collection of all collections that do not contain themselves contain itself?"
 claimA: "Any description at all picks out a collection of the things that fit it."
