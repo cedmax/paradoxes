@@ -7,6 +7,7 @@ simplification: light
 order: 7
 written: true
 sourcesVerified: true
+reviewed: true
 noMaths: true
 problem: "A teacher sues his student for unpaid fees. Who wins?"
 claimA: "If Protagoras wins, the court makes Euathlus pay; if Euathlus wins, the contract does."
