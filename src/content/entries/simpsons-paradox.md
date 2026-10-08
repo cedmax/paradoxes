@@ -7,6 +7,7 @@ simplification: light
 order: 3
 written: true
 sourcesVerified: true
+reviewed: true
 problem: "Can one treatment beat another in every group of patients and still lose overall?"
 claimA: "A treatment that does better for every kind of patient must do better overall."
 claimB: "In this study, Treatment B did better overall, even though A did better for small stones and for large stones."
