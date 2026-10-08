@@ -86,7 +86,8 @@ How to apply them:
   index by default (the "Hide variants" switch); always linked from its anchor's page.
 - `related` and `variant` entries must set `anchor` to the slug of a canonical or related entry,
   never a variant. `canonical` entries must not set `anchor`. Anchors must not form a loop. The
-  schema and `anchorOf` enforce all three.
+  schema and `anchorOf` enforce all three. Publish an anchor before the entries anchored on it,
+  or the build fails.
 - Judge by mechanism, not by topic. Two entries are variants only if the same step in the
   reasoning fails in both. Pick the closest anchor: a related entry if it shares the mechanism
   more closely than its own canonical anchor. An entry's page lists the variants and related
@@ -101,7 +102,7 @@ How to apply them:
   Never write “the first claim” or “the second claim” in it.
 - When a body field (`setup`, `whyWrong`, `resolution`, `positions`, `finePrint`, `whatBreaks`,
   `statusNote`) mentions another entry, link it as `[shown text](entry-slug)`. The build fails on
-  an unknown slug. Never put links in `title`, `problem`, `claimA`, `claimB` or `verdict`.
+  an unknown slug. A link to an entry that is not published yet shows as plain text until it is. Never put links in `title`, `problem`, `claimA`, `claimB` or `verdict`.
 - `problem` is a question. `statusNote` starts lowercase, completes "Explained: …" etc., and is
   specific to the entry.
 - Political and religious entries take no side, including through word choice or which view

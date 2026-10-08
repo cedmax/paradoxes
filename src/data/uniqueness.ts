@@ -33,7 +33,10 @@ interface Tagged {
 export function anchorOf<T extends Tagged>(entry: T, all: T[]): T | undefined {
   if (entry.data.uniqueness === "canonical") return undefined
   const anchor = all.find((e) => e.id === entry.data.anchor)
-  if (!anchor) throw new Error(`Entry "${entry.id}" has unknown anchor "${entry.data.anchor}"`)
+  if (!anchor)
+    throw new Error(
+      `Entry "${entry.id}" has anchor "${entry.data.anchor}", which is unknown or not published yet`,
+    )
   if (anchor.data.uniqueness === "variant") {
     throw new Error(`Entry "${entry.id}" cannot point to "${anchor.id}", which is a variant`)
   }

@@ -1,5 +1,8 @@
 ---
 // Renders entry text, turning [shown text](entry-slug) into an underlined link to that entry.
+// A link to an entry that exists but is not published yet renders as plain text, so entries can
+// be published in any order. A link to a slug that does not exist fails the build.
+import { getCollection } from "astro:content"
 import { getPublishedEntries } from "~/data/entries"
 
 interface Props {
@@ -8,15 +11,16 @@ interface Props {
 
 const { text } = Astro.props
 const ids = new Set((await getPublishedEntries()).map((e) => e.id))
+const known = new Set((await getCollection("entries")).map((e) => e.id))
 const link = /\[([^\]]+)\]\(([a-z0-9-]+)\)/g
 
 const pieces: { text: string; href?: string }[] = []
 let last = 0
 for (const m of text.matchAll(link)) {
   const [whole, shown, slug] = m
-  if (!ids.has(slug)) throw new Error(`Link to unknown entry "${slug}" in: ${text}`)
+  if (!known.has(slug)) throw new Error(`Link to unknown entry "${slug}" in: ${text}`)
   pieces.push({ text: text.slice(last, m.index) })
-  pieces.push({ text: shown, href: `/entries/${slug}/` })
+  pieces.push(ids.has(slug) ? { text: shown, href: `/entries/${slug}/` } : { text: shown })
   last = m.index + whole.length
 }
 pieces.push({ text: text.slice(last) })
