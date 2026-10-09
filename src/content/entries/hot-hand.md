@@ -23,5 +23,14 @@ finePrint: "The size of the effect is still argued over. Pelechrinis and Winston
 sources:
   - title: "Wikipedia: Hot hand"
     url: "https://en.wikipedia.org/wiki/Hot_hand"
-    note: "Source for the 1985 study, the Miller and Sanjurjo reanalysis (Econometrica 86(6), 2018), the sampling bias, and the state of the debate. The 5 out of 12 coin example is not on this page. It was recomputed by listing all eight three-flip sequences."
+    note: "Source for the 1985 study, the Miller and Sanjurjo reanalysis (Econometrica 86(6), 2018; the paper itself could not be fetched), the sampling bias, and the state of the debate. The 5 out of 12 coin example is not on this page. It was recomputed by listing all eight three-flip sequences."
+  - title: "Pelechrinis and Winston (2022), The hot hand in the wild, PLOS ONE 17(1), e0261890"
+    url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0261890"
+    note: "Source for the 2022 study: some individual NBA players show a hot hand in varying degrees, while the average player regresses after consecutive makes."
+  - title: "Yaari and Eisenmann (2011), The Hot (Invisible?) Hand, PLOS ONE 6(10), e24532"
+    url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0024532"
+    note: "Source for the free-throw study of five NBA regular seasons, 2005/6 to 2009/10, reporting evidence of a hot hand, which the authors suggest may reflect better and worse periods."
+  - title: "Yale News (2011): Athletes’ winning streaks may not be all in our, or their, heads"
+    url: "https://news.yale.edu/2011/10/06/athletes-winning-streaks-may-not-be-all-our-or-their-heads"
+    note: "Source for the figure of more than 300,000 free throws in the Yaari and Eisenmann study."
 ---
