@@ -11,11 +11,11 @@ noMaths: true
 written: true
 sourcesVerified: false
 problem: "Can the sentence “If this sentence is true, then Germany borders China” prove that Germany borders China?"
-claimA: "A sentence is true exactly when what it says is the case, and the everyday rules for reasoning with “if … then” are always safe."
+claimA: "A sentence is true exactly when what it says is the case, and the familiar rules for reasoning with “if … then” can be applied to this sentence."
 claimB: "Some claims, such as “Germany borders China”, are false and cannot be proved."
-verdict: "With a sentence that talks about its own truth and a few everyday rules of reasoning, any claim at all can be proved. There is no agreed fix, and each one costs something big."
+verdict: "With a sentence that talks about its own truth and a few familiar rules of reasoning, any claim at all can be proved. There is no agreed fix, and each proposed fix gives up a principle that is widely relied on."
 whatBreaks: "Either the rule that a sentence is true exactly when what it says is the case, or one of the everyday rules for reasoning with “if … then”. Which one goes is what the responses disagree on, and each choice costs something big."
-statusNote: "like the [liar paradox](liar-paradox), it has no fix that most experts accept, and the Stanford Encyclopedia of Philosophy treats the debate as ongoing. It is harder than the liar in one way: some fixes that work for the liar do not work here."
+statusNote: "like the [liar paradox](liar-paradox), it has no agreed fix. The Stanford Encyclopedia of Philosophy presents the responses as competing strategies, with ongoing disputes between them, and notes that the paradox resists some resolutions that work for the liar, because it needs no negation."
 setup: "Take the sentence: “If this sentence is true, then Germany borders China.” Call it C. Now reason in the ordinary way. To show that an “if … then” sentence holds, assume the “if” part and see whether the “then” part follows. So assume C is true. Then what C says holds: if C is true, Germany borders China. C is true, by the assumption, so Germany borders China. That shows: if C is true, then Germany borders China. But that is exactly what C says, so C is true. And since C is true and C says that if it is true then Germany borders China, Germany borders China."
 whyWrong: "Germany does not border China, and nothing in the argument looked like a trick. Every step uses a rule people trust everywhere else: assume something and see what follows, use an assumption you have already made a second time, and if you have “if A then B” and A, conclude B. The claim about Germany could be swapped for any claim at all. So the same argument proves everything, which means something in it must go."
 resolution:
