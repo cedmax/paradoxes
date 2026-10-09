@@ -18,12 +18,15 @@ setup: "In 1985 Gilovich, Vallone and Tversky published a study of basketball. T
 whyWrong: "The study counted the shots that came right after a streak of hits or misses. Taking only those shots seems fair. It is not, when the records are short. In a short fair sequence, counting what follows a streak of hits makes the leftover shots lean towards misses. A shooter with no streaks at all would therefore be expected to hit less often after hits than after misses, so finding no difference is a sign that something real is going on."
 resolution:
   - "Take three flips of a fair coin. Look at every flip that comes straight after a head, work out the share of those flips that are heads, and average that share over all the three-flip sequences that have such a flip. The answer is 5 out of 12, about 42 percent, not 50 percent. The coin has no streaks, yet the counting method gives less than one half."
-  - "In 2018 Miller and Sanjurjo reanalysed the 1985 data with this bias in mind and found significant evidence of streak shooting. So the first claim is false: the missing rise after streaks did not show that streaks are a myth."
+  - "In their 2018 paper, Miller and Sanjurjo reanalysed the 1985 study’s controlled shooting experiment with this bias in mind and found significant evidence of streak shooting. So the first claim is false: the missing rise after streaks did not show that streaks are a myth."
 finePrint: "The size of the effect is still argued over. Pelechrinis and Winston (2022) suggest that only a small number of players show a hot hand and that the effect is small. Other studies found strong evidence, such as an analysis of more than 300,000 free throws, and some recent studies found none. Open questions include how far results carry across sports and how large the effect is. The coin figure of 5 out of 12 was recomputed for this entry, and it is the three-flip case, not a result stated on the source page."
 sources:
   - title: "Wikipedia: Hot hand"
     url: "https://en.wikipedia.org/wiki/Hot_hand"
-    note: "Source for the 1985 study, the Miller and Sanjurjo reanalysis (Econometrica 86(6), 2018; the paper itself could not be fetched), the sampling bias, and the state of the debate. The 5 out of 12 coin example is not on this page. It was recomputed by listing all eight three-flip sequences."
+    note: "Source for the 1985 study, the sampling bias, and the state of the debate. The 5 out of 12 coin example is not on this page. It was recomputed by listing all eight three-flip sequences."
+  - title: "Miller and Sanjurjo (2018), Surprised by the Hot Hand Fallacy? A Truth in the Law of Small Numbers, Econometrica 86(6), 2019 to 2047"
+    url: "https://arxiv.org/pdf/1902.01265"
+    note: "Accessible full paper checked: streak-selection bias and the bias-corrected reanalysis of Gilovich, Vallone and Tversky’s controlled shooting experiment, which found significant evidence of streak shooting. The journal paper appeared in 2018; this arXiv copy was posted in 2019."
   - title: "Pelechrinis and Winston (2022), The hot hand in the wild, PLOS ONE 17(1), e0261890"
     url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0261890"
     note: "Source for the 2022 study: some individual NBA players show a hot hand in varying degrees, while the average player regresses after consecutive makes."
