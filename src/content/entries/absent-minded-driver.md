@@ -20,7 +20,7 @@ sourcesVerified: false
 problem: "A driver who cannot tell two motorway exits apart plans to leave at an exit one time in three. Should she change her plan when she reaches an exit?"
 claimA: "At an exit, working out the odds afresh shows that leaving two times in three pays better than the plan, so she should switch."
 claimB: "She should keep to leaving one time in three, since that was the best plan and she learns nothing new on the road."
-verdict: "The papers on the problem agree that she has no reason to switch. They differ on the formal model that shows why, but each finds a flaw in the calculation done at the exit."
+verdict: "The replies in the 1997 journal issue favour keeping the driver’s earlier exit plan despite forgetting the way, though they disagree about why."
 whatBreaks: "The calculation done at the exit. It lets her new choice also decide what she does at the other exit, but keeps her estimate of which exit she is at, which came from the old plan."
 statusNote: "the case for switching rests on a calculation that mixes two things: it lets her new choice also decide what she does at the other exit, but keeps odds that only hold under the old plan. According to the philosopher Wolfgang Schwarz, every paper in the 1997 journal issue devoted to the problem supports keeping the plan, mostly through different formal models. Agreeing on the plan is not agreeing on the diagnosis, and one diagnosis ties the slip to the [Sleeping Beauty problem](sleeping-beauty-problem)."
 setup: "A driver is heading home late at night on a motorway with two exits that look exactly alike. The first exit leads to a dangerous area, worth 0 to her. The second exit leads home, worth 4. If she misses both, she spends the night in a motel, worth 1. She is absent-minded: at an exit she cannot tell whether it is the first or the second, and she cannot remember whether she has already passed one. So whatever she decides at one exit, she decides at the other too. The best she can do is leave with some fixed chance, for example by tossing a weighted coin at each exit."
@@ -40,7 +40,4 @@ sources:
   - title: "IDEAS/RePEc: Piccione and Rubinstein, On the Interpretation of Decision Problems with Imperfect Recall"
     url: "https://ideas.repec.org/a/eee/gamebe/v20y1997i1p3-24.html"
     note: "Source for the bibliographic details of the original paper: Games and Economic Behavior 20(1), 3 to 24, July 1997."
-  - title: "Futility Closet: The Absent-Minded Driver’s Paradox"
-    url: "https://futilitycloset.com/2016/08/26/absent-minded-drivers-paradox"
-    note: "Supports the story (home, hazardous exit, a hotel or motel) and the payoffs 4, 1 and 0, credited to Piccione and Rubinstein."
 ---

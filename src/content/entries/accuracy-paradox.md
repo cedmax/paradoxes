@@ -27,12 +27,12 @@ resolution:
 finePrint: "This is a point about how classifiers are scored, not a contradiction in logic. Nothing about the numbers is in dispute. Which measure to use depends on what the classifier is for: if missing a rare case is costly, recall matters most; if false alarms are costly, precision does. Valverde-Albacete and Peláez-Moreno propose their own replacement measures, based on information theory, which are not covered here. The 99% split in the setup is an illustration."
 sources:
   - title: "Wikipedia: Accuracy paradox"
-    url: https://en.wikipedia.org/wiki/Accuracy_paradox
-    note: "Statement of the paradox, the always-negative classifier scoring 99% when 99% of cases are negative, the definitions of precision, recall, F1 and balanced accuracy, and the worked example (10 positives in 1,000,000 cases; 10 true positives, 990 false positives, 0 false negatives). Accuracy 99.901%, precision 1%, recall 100% and F1 = 2/101, about 1.98%, recomputed."
+    url: "https://en.wikipedia.org/wiki/Accuracy_paradox"
+    note: "Statement of the paradox, the always-negative classifier scoring 99% when 99% of cases are negative, the definitions of precision, recall and F1, and the worked example (10 positives in 1,000,000 cases; 10 true positives, 990 false positives, 0 false negatives). Accuracy 99.901%, precision 1%, recall 100% and F1 = 2/101, about 1.98%, recomputed."
   - title: "Valverde-Albacete and Peláez-Moreno (2014), 100% Classification Accuracy Considered Harmful, PLOS ONE 9(1), abstract on RePEc"
-    url: https://ideas.repec.org/a/plo/pone00/0084217.html
+    url: "https://ideas.repec.org/a/plo/pone00/0084217.html"
     note: "Citation and abstract, including the quoted statement of the paradox. The full text on PLOS ONE could not be fetched."
-  - title: "Universidad Carlos III de Madrid, GPM group: Accuracy paradox project page"
-    url: https://gpm.webs.tsc.uc3m.es/projects/acc-paradox/
-    note: "The authors’ group page: class imbalance as the cause, and a classifier labelling every case as the majority class."
+  - title: "scikit-learn documentation: balanced_accuracy_score"
+    url: "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html"
+    note: "Definition of balanced accuracy as the average recall across classes, which gives each class equal weight."
 ---

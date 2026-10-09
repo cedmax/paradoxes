@@ -43,7 +43,7 @@ sources:
   - title: "Johns Hopkins Magazine (2025): A paradox no more?"
     url: "https://hub.jhu.edu/magazine/2025/fall/petos-paradox-animals-size-cancer"
     note: "The 2025 PNAS study led by George Butler, “No evidence for Peto’s paradox in terrestrial vertebrates”: prompted by the Arizona State University dataset, whose data the team examined; more than 16,000 necropsies from zoo and aquarium records; cancer rates generally increase with body size but rise less than expected."
-  - title: "Butler, Baker, Amend, Pienta and Venditti (2025), No evidence for Peto's paradox in terrestrial vertebrates, PNAS 122(9) (Europe PMC record, PMID 39993196)"
-    url: "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1073/pnas.2422861122&format=json&resultType=core"
-    note: "Abstract: larger species have higher cancer prevalence than smaller species across amphibians, birds, mammals and squamate reptiles, which contradicts Peto’s paradox; earlier work had found no association. The full paper could not be fetched."
+  - title: "Johns Hopkins University: No evidence for Peto’s paradox in terrestrial vertebrates (2025)"
+    url: "https://pure.johnshopkins.edu/en/publications/no-evidence-for-petos-paradox-in-terrestrial-vertebrates/"
+    note: "Publication record and abstract for the Butler study in PNAS, volume 122, issue 9, e2422861122: evidence for increasing cancer prevalence with body size in terrestrial vertebrates."
 ---

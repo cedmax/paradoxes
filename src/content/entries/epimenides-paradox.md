@@ -32,15 +32,12 @@ resolution:
 finePrint: "Even read strictly, as “every statement made by a Cretan is false”, the line cannot be true, since then Epimenides’ own statement would be false. It can only be false, and that is no contradiction, as long as some Cretan has said something true. Read loosely, it can even be true: a liar can be someone prone to deceiving for gain, who still often tells the truth. The line was probably meant as an opinion about the Cretans, not a puzzle, and it has been treated as a paradox only since the 19th century. A sentence like Russell’s, whose trouble depends on facts outside it, is sometimes called a contingent liar. The Epimenides paradox is usually classed as a variation on the Liar, and the two are sometimes not told apart. The origins of the phrase, including ancient poems and stories about why Cretans were called liars, are not covered here."
 sources:
   - title: "Wikipedia: Epimenides paradox"
-    url: https://en.wikipedia.org/wiki/Epimenides_paradox
+    url: "https://en.wikipedia.org/wiki/Epimenides_paradox"
     note: "Epimenides alive circa 600 BC; Hofstadter’s description, with an inaccurate quote; the claim that there is no paradox because the statement may simply be false; Fowler’s 1869 version and its logic error, made by Fowler and many others; the negation as “at least one Cretan is honest”; Russell’s 1908 version, quoted from Mathematical Logic as Based on the Theory of Types; the reading of “liar” as prone to deception for gain; the line as an opinion, seen as a paradox only since the 19th century; Eubulides’ modification; the usual classification as a variation on the Liar."
-  - title: "Encyclopaedia Britannica: Liar paradox"
-    url: https://www.britannica.com/topic/liar-paradox
-    note: "On the reading that all statements made by Cretans are false, Epimenides’ statement must itself be false, so not all Cretans are liars."
   - title: "Stanford Encyclopedia of Philosophy: Insolubles"
-    url: https://plato.stanford.edu/entries/insolubles/
+    url: "https://plato.stanford.edu/entries/insolubles/"
     note: "The line in the Epistle to Titus, “The Cretians are always liars, evil beasts, slow bellies”, traditionally attributed to Epimenides, and the Liar sometimes being called “the Epimenides”."
   - title: "Internet Encyclopedia of Philosophy: Liar Paradox (Bradley Dowden)"
-    url: https://iep.utm.edu/liar-paradox/
+    url: "https://iep.utm.edu/liar-paradox/"
     note: "Eubulides’ version, “A man says that he is lying”; contingent liars, which may or may not lead to a paradox depending on what happens in the world beyond the sentence."
 ---
