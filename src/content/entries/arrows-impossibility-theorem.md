@@ -19,8 +19,8 @@ noMaths: true
 written: true
 sourcesVerified: false
 problem: "Is there a fair way to turn everyone's rankings of three or more options into one ranking for the group?"
-claimA: "Any fair way of turning everyone's rankings into a group ranking must meet all five of Arrow's conditions."
-claimB: "Some way of turning everyone's rankings into a group ranking is fair."
+claimA: "Any way of turning everyone's rankings into a group ranking that is fair, in the everyday sense of the word, must meet all five of Arrow's conditions."
+claimB: "Some way of turning everyone's rankings into a group ranking is fair, in that same everyday sense."
 verdict: "No method of turning rankings into a group ranking meets every reasonable-sounding condition, and each choice of which condition to drop has a real cost."
 whatBreaks: "The hope that one ranking rule can meet all five conditions. Each fix drops a condition or asks voters for more than a ranking, and each pays a cost."
 statusNote: "the theorem is proved and not in doubt. What is open is which condition to give up. Restricting which rankings are allowed, relaxing the demand for a full group ranking, letting other options affect the choice between two, and asking for grades instead of rankings each has a known cost, and the Stanford Encyclopedia of Philosophy sets them out as options, not as a settled answer."
