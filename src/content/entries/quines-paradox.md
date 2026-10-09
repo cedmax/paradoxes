@@ -1,33 +1,48 @@
 ---
 title: "Quine's paradox"
-titleAccent: paradox
-aka: ["yields falsehood when preceded by its quotation", "Quine sentence", "Liar without this"]
+titleAccent: "paradox"
+aka:
+  [
+    "yields falsehood when preceded by its quotation",
+    "Quine sentence",
+    "Liar without this",
+    "indirect self-reference",
+  ]
 chapter: self-reference
 status: unreconciled
 uniqueness: variant
 anchor: liar-paradox
-simplification: heavy
+simplification: light
 noMaths: true
 order: 104
 written: true
 sourcesVerified: false
-problem: "Can a sentence be paradoxical without saying “this sentence” and without pointing at itself?"
-claimA: "A sentence is paradoxical only if it refers to itself."
-claimB: "A sentence built from a phrase and its own quotation can be as paradoxical as the Liar, without pointing at itself."
-verdict: "Every known fix gives up something big, and the Liar entry lists the same trade-offs."
-whatBreaks: "The idea that removing direct self-reference removes the paradox."
-statusNote: "the answers offered for it are the same kind as for the Liar, and each has a large cost."
-setup: "Willard Van Orman Quine stated this paradox. It is related to the [Liar paradox](liar-paradox), and it purports to show that a sentence can be paradoxical even if it is not self-referring and does not use words like “this”. The sentence is: “yields falsehood when preceded by its quotation” yields falsehood when preceded by its quotation. Take the phrase “yields falsehood when preceded by its quotation”. Its quotation is that phrase in quotation marks. The phrase preceded by its quotation is the whole sentence above. So the sentence says that the sentence itself is false. If it is false, then what it says is true."
-whyWrong: "Many philosophers who tried to explain the Liar concluded that the trouble lay in the word “this” or its replacements. Wikipedia says Quine’s construction shows that this kind of paradox arises independently of such direct self-reference, because no word of the sentence refers to the sentence. It does contain a word, “its”, near the end, whose antecedent is the very predicate in which it occurs. So the sentence is not self-referring, but it contains a self-referring predicate."
+problem: "Is a sentence that calls itself false, without ever saying “this sentence”, true or false?"
+claimA: "Every sentence is true or false, including one that never uses a word like “this”."
+claimB: "A sentence is true if what it says is right, and false if it isn’t."
+verdict: "Taking out the word “this” does not help: the sentence traps truth exactly as the Liar does, and every known fix costs something big."
+whatBreaks: "The same assumption as in the Liar: that every sentence is either true or false, even one that talks about itself by an indirect route."
+statusNote: "every known fix for the Liar costs something big and none is widely accepted. Quine’s sentence adds that blaming or banning words like “this” is not a way out."
+setup: "The philosopher Willard Van Orman Quine gave this version of the [Liar paradox](liar-paradox) in an article called “Paradox” in Scientific American in 1962, reprinted in 1966 as “The Ways of Paradox”. Start with the phrase “yields falsehood when preceded by its quotation”. Its quotation is the same phrase inside quotation marks. Now write the phrase straight after its own quotation: “yields falsehood when preceded by its quotation” yields falsehood when preceded by its quotation. That is a complete sentence. It says that the phrase, put after its own quotation, makes a false sentence. But the phrase put after its own quotation is this very sentence. So the sentence says that it is false. If it is true, it is false. If it is false, what it says is right, so it is true."
+whyWrong: "Many philosophers who tried to explain the Liar put the blame on the word “this”, or on words that do the same job. Quine’s sentence has no such word. No part of it names the sentence. It reaches itself by a roundabout route: the word “its” points back to the phrase it sits in, and the sentence is that phrase applied to its own quotation. The writer Douglas Hofstadter, in Gödel, Escher, Bach (1979), called this indirect self-reference. Logicians build Liar sentences inside formal languages by a similar roundabout method, called diagonalisation: any language that can describe its own grammar can produce a sentence that, in effect, says of itself that it is not true. So the trap does not depend on any one word."
 resolution:
-  - "The positions below are those Wikipedia reports for this paradox. They are the same families of answer that the Liar entry lists, including the idea that truth comes in levels."
+  - "Once the sentence has been built, the reasoning that follows is the Liar’s, step for step, and so are the possible ways out. Quine’s sentence shows that one tempting answer is not available: a rule against words like “this” would leave Quine’s sentence untouched. The responses that remain are the Liar’s own, and each one has a big cost."
 positions:
-  - title: Attach levels to terms such as “falsehood” (Quine)
-    body: "Inspired by Russell’s type theory and Tarski’s work, Quine suggested labelling expressions like “falsehood” and “denote” with levels, so that whole sentences stand higher than their parts. A form like “Clause about falsehood0 yields falsehood1” is then correct, while an expression that denotes itself is not. Cost: Wikipedia calls it an unnatural linguistic resolution."
-  - title: Quotation marks are ambiguous (Boolos)
-    body: "George Boolos, inspired by his student Michael Ernst, wrote that the sentence might be syntactically ambiguous, because its several quotation marks cannot be matched up for certain. He revised ordinary quotation into a system where the length of the outer q-marks is set by the q-marks inside the expression. Cost: it requires revising traditional quotation into a new system of marks."
-finePrint: "Wikipedia also reports that Douglas Hofstadter, in Gödel, Escher, Bach, suggests Quine’s sentence uses an indirect type of self-reference, and shows that indirect self-reference is crucial in many proofs of Gödel’s incompleteness theorems. That is a comment on the sentence, not a fix, so it is not listed as a position."
+  - title: "Some sentences are neither"
+    body: "The sentence is neither true nor false. Cost: say “not true” instead of “falsehood” and the trap comes back, because being neither means being not true, which is what the sentence says. Defenders of this view struggle to state their own answer without walking into it."
+  - title: "Some sentences are both"
+    body: "The sentence is both true and false, and that is accepted. Cost: it gives up the rule that nothing is both true and false, and needs a special logic to stop one contradiction from spreading to everything."
+  - title: "Truth and falsehood come in levels"
+    body: "Quine’s own suggestion, inspired by Bertrand Russell’s theory of types and by Alfred Tarski, was to give words like “falsehood” levels, so that a sentence can only call sentences at a lower level false. The paradoxical form of his sentence is then ruled out. Cost: ordinary language has one word “false”, not many, and Saul Kripke showed that ordinary claims about what other people say can be hard to place on any fixed level."
+finePrint: "The logician George Boolos, prompted by his student Michael Ernst, argued that the sentence as usually written may be ambiguous, because it is not clear which quotation marks pair up with which, and he proposed a new way of writing quotations to fix this. That is a point about how to write the sentence down, and the source does not present it as removing the paradox. Yablo’s paradox, which uses an endless list of sentences, is often said to avoid self-reference altogether, even by a roundabout route, though Graham Priest has argued that it does not."
 sources:
   - title: "Wikipedia: Quine's paradox"
-    url: https://en.wikipedia.org/wiki/Quine%27s_paradox
+    url: "https://en.wikipedia.org/wiki/Quine%27s_paradox"
+    note: "Source for the sentence and how it works, Quine’s 1962 Scientific American article and its 1966 reprint, the point that philosophers blamed “this” and that the sentence has no such word, the role of “its”, Hofstadter’s comment, Quine’s levels proposal (inspired by Russell and Tarski) and Boolos and Ernst on quotation marks."
+  - title: "Stanford Encyclopedia of Philosophy: Liar Paradox"
+    url: "https://plato.stanford.edu/entries/liar-paradox/"
+    note: "Source for diagonalisation producing Liar sentences in any language that can express basic syntax, and for the costs of the three families of response: the revenge problem for “neither”, the need for a special logic for “both”, and Kripke’s objection to fixed levels."
+  - title: "Stanford Encyclopedia of Philosophy: Self-Reference"
+    url: "https://plato.stanford.edu/entries/self-reference/"
+    note: "Source for the distinction between direct and indirect self-reference, and for Yablo’s paradox as a candidate paradox without self-reference, and Priest’s objection that it is self-referential."
 ---
