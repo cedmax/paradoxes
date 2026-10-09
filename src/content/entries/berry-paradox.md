@@ -21,12 +21,12 @@ whyWrong: "The count of definable numbers seems solid, and so does the reading o
 resolution:
   - "Logicians trace the trouble to words like “definable”, “nameable” and “true”, which shift their meaning when a phrase uses them about itself. One standard repair gives such words levels. A phrase at level one may talk about what can be defined at level zero, but not about what can be defined at level one. The troublesome phrase then belongs to a higher level than the definitions it was supposed to be counted among, and the contradiction does not arise. This hierarchy of levels goes back to Alfred Tarski, and the same idea is used to treat the [liar paradox](liar-paradox)."
   - "So the first claim is the one to drop: “definable” has no single fixed meaning that a phrase can apply to itself. Precise versions of the argument give theorems rather than contradictions. In 1989 George Boolos used a formal version of the Berry argument to prove Gödel’s incompleteness theorem in a much simpler way. Gregory Chaitin built a version using the lengths of computer programs and proofs, which proves certain impossibility results."
-finePrint: "The level-by-level repair is not without critics. The strict hierarchy of levels is known to be incomplete, a point credited to Saul Kripke. The paradox is also sometimes called Richard’s paradox."
+finePrint: "The level-by-level repair is not without critics. The strict hierarchy of levels is known to be incomplete, a point credited to Saul Kripke. The logician Jean-Yves Girard has called it “Richard’s paradox”, but that name normally belongs to a different puzzle, [Richard’s paradox](richards-paradox), which lists definable real numbers rather than whole numbers."
 sources:
   - title: "Wikipedia: Berry paradox"
     url: "https://en.wikipedia.org/wiki/Berry_paradox"
-    note: "Source for the sixty-letter version (fifty-seven letters long), the history, Russell and Berry, the stratified repair, and the Boolos and Chaitin results. Letter count checked by hand."
+    note: "Source for the sixty-letter version (fifty-seven letters long), the history, Russell and Berry, the stratified repair, the Boolos and Chaitin results, and Girard calling it “Richard’s paradox”. Letter count checked by hand."
   - title: "Stanford Encyclopedia of Philosophy: Paradoxes and Contemporary Logic"
     url: "https://plato.stanford.edu/entries/paradoxes-contemporary-logic/"
-    note: "Checked: Russell’s 1906 statement, the syllable version, and the treatment of the paradox alongside Russell’s analysis of the Liar. This page does not itself state the diagnosis used here."
+    note: "Checked: Russell’s 1906 statement, the syllable version, and the treatment of the paradox alongside Russell’s analysis of the Liar. It treats Berry’s and Richard’s paradoxes as two separate paradoxes of definability. This page does not itself state the diagnosis used here."
 ---
