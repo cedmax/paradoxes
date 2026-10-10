@@ -13,7 +13,7 @@ reviewed: false
 problem: "If God can stop suffering and wants to, why is suffering still here?"
 claimA: "A God both willing and able to stop all suffering would leave no suffering."
 claimB: "Suffering exists even though a God might be both willing and able to prevent it."
-verdict: "The ancient dilemma raises the [problem of evil](problem-of-evil), but its usual attribution to Epicurus is uncertain."
+verdict: "The ancient dilemma raises the problem of evil, but its usual attribution to Epicurus is uncertain."
 whatBreaks: "Whether the willingness and ability to prevent suffering are compatible with suffering that occurs."
 statusNote: "the dilemma has disputed answers, and there is no surviving text proving Epicurus himself wrote its familiar formulation."
 setup: "The dilemma asks whether God wishes to prevent suffering but cannot, can prevent it but will not, or can and wishes to prevent it. Each branch seems troublesome for the idea of an all-good, all-powerful God."
