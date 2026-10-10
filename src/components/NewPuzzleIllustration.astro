@@ -1,39 +1,153 @@
 ---
-interface Props { slug: string }
+interface Props {
+  slug: string
+}
+
 const { slug } = Astro.props
 ---
+
 {slug === "bertrand-paradox-economics" && (
   <figure class="flex flex-col gap-3 border-2 border-ink p-4 sm:p-6">
-    <svg viewBox="0 0 620 255" role="img" aria-labelledby="bertrand-fig-title bertrand-fig-desc" class="w-full">
+    <svg
+      viewBox="0 0 420 200"
+      role="img"
+      aria-labelledby="bertrand-fig-title bertrand-fig-desc"
+      class="w-full"
+    >
       <title id="bertrand-fig-title">Two shops undercutting one another</title>
-      <desc id="bertrand-fig-desc">Shop A and Shop B start at 12 pounds with a unit cost of 8 pounds. One cuts to 11, the other to 10, and competition continues until both charge 8 pounds. Prices are illustrative, not an exact model of every price step.</desc>
-      <g fill="none" stroke="currentColor" stroke-width="2"><rect x="20" y="30" width="270" height="160"/><rect x="330" y="30" width="270" height="160"/><path d="M20 212 H600" stroke-dasharray="7 6"/></g>
-      <g fill="currentColor" font-size="19" font-family="sans-serif" text-anchor="middle"><text x="155" y="60">Shop A</text><text x="465" y="60">Shop B</text><text x="155" y="102">£12 → £11 → £9</text><text x="465" y="102">£12 → £10 → £8</text><text x="155" y="159" font-weight="bold">Final: £8</text><text x="465" y="159" font-weight="bold">Final: £8</text><text x="310" y="238">Unit cost: £8</text></g>
+      <desc id="bertrand-fig-desc">
+        Shop A and Shop B start at 12 pounds with a unit cost of 8 pounds. One cuts to 11, the
+        other to 10, and competition continues until both charge 8 pounds. Prices are
+        illustrative, not an exact model of every price step.
+      </desc>
+      <g fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="10" y="12" width="190" height="136" />
+        <rect x="220" y="12" width="190" height="136" />
+        <path d="M10 168 H410" stroke-dasharray="7 6" />
+      </g>
+      <g fill="currentColor" font-size="18" font-family="sans-serif" text-anchor="middle">
+        <text x="105" y="44">
+          Shop A
+        </text>
+        <text x="315" y="44">
+          Shop B
+        </text>
+        <text x="105" y="88">
+          £12 → £11 → £9
+        </text>
+        <text x="315" y="88">
+          £12 → £10 → £8
+        </text>
+        <text x="105" y="128" font-weight="bold">
+          Final: £8
+        </text>
+        <text x="315" y="128" font-weight="bold">
+          Final: £8
+        </text>
+        <text x="210" y="192">
+          Unit cost: £8
+        </text>
+      </g>
     </svg>
-    <figcaption class="text-base leading-normal">Illustrative price cuts. In the model, any price above cost can be undercut. At £8, a further cut would make a loss.</figcaption>
+    <figcaption class="text-base leading-normal">
+      Illustrative price cuts. In the model, any price above cost can be undercut. At £8, a
+      further cut would make a loss.
+    </figcaption>
   </figure>
 )}
 {slug === "rietdijk-putnam-argument" && (
   <figure class="flex flex-col gap-3 border-2 border-ink p-4 sm:p-6">
-    <svg viewBox="0 0 620 340" role="img" aria-labelledby="rp-fig-title rp-fig-desc" class="w-full">
+    <svg
+      viewBox="0 0 420 290"
+      role="img"
+      aria-labelledby="rp-fig-title rp-fig-desc"
+      class="w-full"
+    >
       <title id="rp-fig-title">Different lines of simultaneity</title>
-      <desc id="rp-fig-desc">Two observers meet at the origin. The stationary observer's simultaneous events lie on a horizontal line. A relatively moving observer's simultaneous events lie on a tilted line through the same meeting point. A distant event can be future to one observer but simultaneous for the other.</desc>
-      <g fill="none" stroke="currentColor" stroke-width="2"><path d="M75 285 H580 M145 306 V26"/><path d="M145 170 H545" stroke="#387a91" stroke-width="4"/><path d="M145 170 L545 64" stroke="#bd4b37" stroke-width="4"/><path d="M145 170 L290 30" stroke-dasharray="8 6"/></g>
-      <circle cx="465" cy="85" r="7" fill="#bd4b37"/><circle cx="145" cy="170" r="7" fill="currentColor"/>
-      <g fill="currentColor" font-size="16" font-family="sans-serif"><text x="28" y="25">Time</text><text x="521" y="314">Space</text><text x="345" y="191">Observer A: now</text><text x="350" y="42">Observer B: now</text><text x="474" y="90">Event</text><text x="155" y="159">Meet</text></g>
+      <desc id="rp-fig-desc">
+        Two observers meet at the origin. The stationary observer's simultaneous events lie on a
+        horizontal line. A relatively moving observer's simultaneous events lie on a tilted line
+        through the same meeting point. A distant event can be future to one observer but
+        simultaneous for the other.
+      </desc>
+      <g fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M30 255 H400 M90 270 V20" />
+        <path d="M90 150 H390" stroke="#387a91" stroke-width="4" />
+        <path d="M90 150 L390 95" stroke="#bd4b37" stroke-width="4" />
+        <path d="M90 150 L165 55" stroke-dasharray="8 6" />
+      </g>
+      <circle cx="330" cy="106" r="7" fill="#bd4b37" />
+      <circle cx="90" cy="150" r="7" fill="currentColor" />
+      <g fill="currentColor" font-size="18" font-family="sans-serif">
+        <text x="100" y="26">
+          Time
+        </text>
+        <text x="400" y="280" text-anchor="end">
+          Space
+        </text>
+        <text x="390" y="178" text-anchor="end">
+          Observer A: now
+        </text>
+        <text x="390" y="76" text-anchor="end">
+          Observer B: now
+        </text>
+        <text x="330" y="136" text-anchor="middle">
+          Event
+        </text>
+        <text x="100" y="176">
+          Meet
+        </text>
+      </g>
     </svg>
-    <figcaption class="text-base leading-normal">Schematic spacetime diagram, not to scale. The lines show different answers to which distant events happen now. Whether that makes the future already real is a separate claim.</figcaption>
+    <figcaption class="text-base leading-normal">
+      Schematic spacetime diagram, not to scale. The lines show different answers to which
+      distant events happen now. Whether that makes the future already real is a separate claim.
+    </figcaption>
   </figure>
 )}
 {slug === "lighthouse-paradox" && (
   <figure class="flex flex-col gap-3 border-2 border-ink p-4 sm:p-6">
-    <svg viewBox="0 0 620 295" role="img" aria-labelledby="light-fig-title light-fig-desc" class="w-full">
+    <svg
+      viewBox="0 0 420 260"
+      role="img"
+      aria-labelledby="light-fig-title light-fig-desc"
+      class="w-full"
+    >
       <title id="light-fig-title">A sweeping lighthouse beam</title>
-      <desc id="light-fig-desc">Two light rays leave a lighthouse at slightly different angles and meet far-apart points on a distant wall. The spots can change position along the wall faster than light even though the individual rays travel outwards at light speed.</desc>
-      <g fill="none" stroke="currentColor" stroke-width="2"><path d="M550 25 V248" stroke-width="6"/><path d="M75 255 L550 75" stroke="#bd4b37" stroke-width="4"/><path d="M75 255 L550 215" stroke="#387a91" stroke-width="4"/><path d="M550 75 V215" stroke-dasharray="6 6" stroke-width="4"/></g>
-      <g fill="#d7a13d" stroke="currentColor" stroke-width="2"><path d="M48 260 H103 L94 276 H56 Z"/><rect x="65" y="225" width="20" height="34"/><circle cx="75" cy="255" r="6"/></g>
-      <g fill="currentColor" font-size="17" font-family="sans-serif"><text x="20" y="208">Lighthouse</text><text x="560" y="35">Wall</text><text x="561" y="82">A</text><text x="561" y="218">B</text><text x="320" y="278">Different rays, not a sideways-moving object</text></g>
+      <desc id="light-fig-desc">
+        Two light rays leave a lighthouse at slightly different angles and meet far-apart points
+        on a distant wall. The spots can change position along the wall faster than light even
+        though the individual rays travel outwards at light speed.
+      </desc>
+      <g fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M370 30 V215" stroke-width="6" />
+        <path d="M50 200 L370 70" stroke="#bd4b37" stroke-width="4" />
+        <path d="M50 200 L370 170" stroke="#387a91" stroke-width="4" />
+        <path d="M370 70 V170" stroke-dasharray="6 6" stroke-width="4" />
+      </g>
+      <g fill="#d7a13d" stroke="currentColor" stroke-width="2">
+        <path d="M22 216 H78 L70 232 H30 Z" />
+        <rect x="40" y="182" width="20" height="34" />
+        <circle cx="50" cy="200" r="6" />
+      </g>
+      <g fill="currentColor" font-size="18" font-family="sans-serif">
+        <text x="50" y="254" text-anchor="middle">
+          Lighthouse
+        </text>
+        <text x="360" y="40" text-anchor="end">
+          Wall
+        </text>
+        <text x="380" y="78">
+          A
+        </text>
+        <text x="380" y="178">
+          B
+        </text>
+      </g>
     </svg>
-    <figcaption class="text-base leading-normal">The wall receives separate rays. A moving patch of light is not a message travelling from point A to point B along the wall.</figcaption>
+    <figcaption class="text-base leading-normal">
+      The wall receives separate rays, not a sideways-moving object. A moving patch of light is
+      not a message travelling from point A to point B along the wall.
+    </figcaption>
   </figure>
 )}
