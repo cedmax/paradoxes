@@ -232,3 +232,83 @@ const roads = [
     </figcaption>
   </figure>
 )}
+
+{slug === "simpsons-paradox" && (
+  <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+    <p class="font-bold">Which treatment succeeds more often?</p>
+    <svg
+      class="mx-auto w-full max-w-sm"
+      viewBox="0 0 300 366"
+      role="img"
+      aria-labelledby="simpson-title simpson-desc"
+    >
+      <title id="simpson-title">Treatment A wins in both stone-size groups, but B wins overall</title>
+      <desc id="simpson-desc">
+        With small stones, A succeeds in 81 of 87 cases (93 percent), while B succeeds in 234 of
+        270 (87 percent). With large stones, A succeeds in 192 of 263 (73 percent), while B
+        succeeds in 55 of 80 (69 percent). Combined, A succeeds in 273 of 350 (78 percent) and B
+        in 289 of 350 (83 percent).
+      </desc>
+      <g fill="currentColor" font-family="sans-serif">
+        <text x="8" y="18" font-size="18" font-weight="bold">
+          Small stones
+        </text>
+        <text x="8" y="44" font-size="16">
+          A: 81 of 87
+        </text>
+        <rect x="8" y="50" width="223.2" height="14" fill="#bd4b37" />
+        <text x="237.2" y="63" font-size="16" font-weight="bold">
+          93%
+        </text>
+        <text x="8" y="88" font-size="16">
+          B: 234 of 270
+        </text>
+        <rect x="8" y="94" width="208.8" height="14" fill="#387a91" />
+        <text x="222.8" y="107" font-size="16" font-weight="bold">
+          87%
+        </text>
+        <path d="M8 116 H292" stroke="currentColor" stroke-width="1" stroke-opacity="0.2" />
+        <text x="8" y="144" font-size="18" font-weight="bold">
+          Large stones
+        </text>
+        <text x="8" y="170" font-size="16">
+          A: 192 of 263
+        </text>
+        <rect x="8" y="176" width="175.2" height="14" fill="#bd4b37" />
+        <text x="189.2" y="189" font-size="16" font-weight="bold">
+          73%
+        </text>
+        <text x="8" y="214" font-size="16">
+          B: 55 of 80
+        </text>
+        <rect x="8" y="220" width="165.6" height="14" fill="#387a91" />
+        <text x="179.6" y="233" font-size="16" font-weight="bold">
+          69%
+        </text>
+        <path d="M8 242 H292" stroke="currentColor" stroke-width="1" stroke-opacity="0.2" />
+        <text x="8" y="270" font-size="18" font-weight="bold">
+          All patients
+        </text>
+        <text x="8" y="296" font-size="16">
+          A: 273 of 350
+        </text>
+        <rect x="8" y="302" width="187.2" height="14" fill="#bd4b37" />
+        <text x="201.2" y="315" font-size="16" font-weight="bold">
+          78%
+        </text>
+        <text x="8" y="340" font-size="16">
+          B: 289 of 350
+        </text>
+        <rect x="8" y="346" width="199.2" height="14" fill="#387a91" />
+        <text x="213.2" y="359" font-size="16" font-weight="bold">
+          83%
+        </text>
+      </g>
+    </svg>
+    <figcaption class="text-base leading-normal">
+      Bars show success rates from the kidney stone study. A wins for small stones and large
+      stones separately. But A treated mostly large, harder stones (263 of 350 patients), while
+      B treated mostly small stones (270 of 350). Combining the groups reverses the result.
+    </figcaption>
+  </figure>
+)}
