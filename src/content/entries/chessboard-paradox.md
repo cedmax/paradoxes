@@ -11,7 +11,7 @@ aka:
   ]
 chapter: geometry-arithmetic
 status: explained
-uniqueness: related
+uniqueness: variant
 anchor: missing-square-puzzle
 simplification: light
 noMaths: false
