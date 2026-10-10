@@ -1,0 +1,14 @@
+---
+const rows = [{seats:10,a:4,b:4,c:2},{seats:11,a:5,b:5,c:1}]
+---
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+<p class="font-bold">A parliament gets one more seat. State C loses one.</p>
+<div class="overflow-x-auto border-2 border-ink"><table class="w-full text-base">
+<thead><tr class="border-b-2 border-ink"><th class="p-3 text-left">Total seats</th><th class="p-3">State A</th><th class="p-3">State B</th><th class="p-3">State C</th></tr></thead>
+<tbody>{rows.map(({seats,a,b,c})=><tr class="border-b border-ink last:border-0"><th class="p-3 text-left">{seats}</th><td class="p-3 text-center">{a}</td><td class="p-3 text-center">{b}</td><td class="p-3 text-center font-bold">{c}</td></tr>)}</tbody>
+</table></div>
+<div class="flex flex-col gap-2 text-base">
+<div class="grid grid-cols-[4rem_1fr] items-center gap-2"><span>10 seats</span><div class="flex h-9"><div class="bg-[#387a91] flex-[4]"></div><div class="bg-[#d7a13d] flex-[4]"></div><div class="bg-[#bd4b37] flex-[2]"></div></div></div>
+<div class="grid grid-cols-[4rem_1fr] items-center gap-2"><span>11 seats</span><div class="flex h-9"><div class="bg-[#387a91] flex-[5]"></div><div class="bg-[#d7a13d] flex-[5]"></div><div class="bg-[#bd4b37] flex-1"></div></div></div></div>
+<figcaption class="text-base leading-normal">Populations are in the fixed ratio 6 : 6 : 2. With the largest-remainder method, 10 seats divide 4, 4 and 2, while 11 divide 5, 5 and 1. The overall pie grows, but State C’s share falls by a whole seat.</figcaption>
+</figure>
