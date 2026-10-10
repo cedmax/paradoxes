@@ -17,16 +17,16 @@ simplification: light
 noMaths: true
 written: true
 sourcesVerified: true
-problem: "If every truth could in principle be known, does it follow that every truth already is known?"
+problem: "If every truth could in principle be known, must every truth actually be known by someone at some time?"
 claimA: "Every truth could be known by someone at some time."
-claimB: "Some truths are unknown to anyone."
-verdict: "A short proof shows that if every truth is knowable, every truth is already known. Most blame the knowability principle, some change the logic instead, and there is no consensus."
+claimB: "Some truths are never known by anyone, at any time."
+verdict: "Under familiar rules of logic, saying every truth could be known entails that every truth is actually known by someone at some time. There is no consensus on whether to reject the principle, restrict it or change the logic."
 whatBreaks: "Whether to give up unrestricted knowability or the ordinary logic that turns it into universal knowledge."
 statusNote: "the proof has no consensus diagnosis. Many reject unrestricted knowability; others try to restrict it or revise the logic."
-setup: "“Every truth could be known” sounds much weaker than “every truth is known”. It leaves room for things nobody has discovered. Fitch’s puzzle shows that, under familiar rules of logic, the first claim unexpectedly leads to the second."
-whyWrong: "Suppose a truth is unknown. Then this whole statement is true: “That fact is true and nobody knows it.” If every truth could be known, someone could know that whole statement. But then they would know the fact and also know that nobody knows it. What they know must be true, so the fact would be both known and unknown."
+setup: "“Every truth could be known” sounds much weaker than “every truth is actually known by someone at some time”. It seems to leave room for truths that nobody ever knows. Fitch’s puzzle shows that, under familiar rules of logic, the first claim unexpectedly leads to the second."
+whyWrong: "Suppose a true fact is never known by anyone. Then this whole statement is true: “That fact is true and nobody ever knows it.” If every truth could be known, someone could know that whole statement. They would then know the fact and also know that nobody ever knows it. What they know must be true, so the fact would be both known at some time and never known."
 resolution:
-  - "The statement about an unknown truth cannot itself be known. The unrestricted principle says that every true statement can be known. Ordinary logic therefore rules out unknown truths if the principle is kept."
+  - "The statement about a never-known truth cannot itself be known. The unrestricted principle says that every true statement can be known. Ordinary logic therefore rules out never-known truths if the principle is kept."
   - "The dispute is over whether to reject that principle, restrict it or change the logic. The puzzle is related to [Moore’s paradox](moores-paradox), where a true statement becomes problematic when someone asserts or believes it."
 positions:
   - title: "Some truths cannot be known"
@@ -35,7 +35,7 @@ positions:
     body: "Exclude troublesome statements about what nobody knows, or apply the principle only to basic truths. Cost: critics dispute whether these restrictions are principled, and related puzzles challenge them."
   - title: "Change the logic"
     body: "Block the final inference using a logic that does not accept every classical proof. Cost: the replacement must still express ordinary ignorance without accepting new counterintuitive rules."
-finePrint: "The principle applies to all truths, including truths about knowledge. Knowing a statement with two parts requires knowing each part, and only truths can be known. The statement must keep its meaning in the situation where it is supposedly known: learning a fact later does not make “nobody knows it” true at the moment of learning. The final move from “there is no unknown truth” to “every truth is known” uses classical logic. Intuitionistic responses block that move but face further difficulties. Fitch published the result in 1963; an earlier referee report by Church contained it. This summary omits the formal notation and many variants."
+finePrint: "Here, “known” means known by someone at some time, and “never known” excludes knowledge at any time, past or future. It does not mean merely “not known yet”. The principle applies to all truths, including truths about knowledge. Knowing a statement with two parts requires knowing each part, and only truths can be known. The final move from “there is no never-known truth” to “every truth is known by someone at some time” uses classical logic. Intuitionistic responses block that move but face further difficulties. Fitch published the result in 1963; an earlier referee report by Church contained it. This summary omits the formal notation and many variants."
 sources:
   - title: "Stanford Encyclopedia of Philosophy: Fitch's Paradox of Knowability"
     url: "https://plato.stanford.edu/entries/fitch-paradox/"

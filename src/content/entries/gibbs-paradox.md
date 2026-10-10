@@ -17,7 +17,7 @@ noMaths: false
 order: 102
 written: true
 sourcesVerified: true
-problem: "Why does a counting rule say that mixing two boxes of identical gas changes something, when the gas ends up just as before?"
+problem: "Why does a calculation say that opening a door between two boxes of identical gas raises entropy, when the gas looks and behaves just as before?"
 claimA: "Opening and closing a door between identical gases at the same temperature and pressure leaves their total entropy unchanged."
 claimB: "Counting every swap of identical particles as a new arrangement gives the correct entropy, even though it predicts a change when the door opens and closes."
 verdict: "The naive count treats swaps of identical particles as extra arrangements. Correcting the count gives no entropy change when identical gases mix."
