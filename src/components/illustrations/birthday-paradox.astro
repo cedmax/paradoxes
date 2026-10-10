@@ -1,0 +1,19 @@
+---
+const sizes = [5, 10, 15, 20, 23, 30, 40, 50]
+const chance = (n: number) => {
+  let noMatch = 1
+  for (let i = 0; i < n; i++) noMatch *= (365 - i) / 365
+  return (1 - noMatch) * 100
+}
+---
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+<p class="font-bold">Chance that at least two people share a birthday</p>
+<div class="flex flex-col gap-2 text-base">
+{sizes.map(n=><div class="grid grid-cols-[3rem_1fr_4rem] items-center gap-2" aria-label={`${n} people: ${chance(n).toFixed(1)} percent`}>
+<span class={n===23?"font-bold":"font-normal"}>{n}</span>
+<div class="h-5 border border-ink"><div class="h-full bg-accent" style={`width: ${chance(n)}%`}></div></div>
+<strong>{chance(n).toFixed(1)}%</strong>
+</div>)}
+</div>
+<figcaption class="text-base leading-normal">Just 23 people make <strong>253 different pairs</strong> that might share a birthday. The chance of any match is already about 50.7%. The calculation assumes 365 equally likely birthdays, without leap days.</figcaption>
+</figure>
