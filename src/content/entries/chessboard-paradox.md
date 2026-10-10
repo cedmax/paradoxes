@@ -9,7 +9,7 @@ aka:
     "Sam Loyd chessboard",
     "checkerboard paradox",
   ]
-chapter: probability
+chapter: geometry-arithmetic
 status: explained
 uniqueness: variant
 anchor: missing-square-puzzle

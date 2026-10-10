@@ -8,7 +8,7 @@ aka:
     "belt around the world",
     "rope round the world",
   ]
-chapter: probability
+chapter: geometry-arithmetic
 status: explained
 simplification: light
 noMaths: false

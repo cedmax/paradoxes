@@ -2,7 +2,7 @@
 title: "Missing square puzzle"
 titleAccent: "puzzle"
 aka: ["Curry triangle", "disappearing square", "dissection paradox", "13 by 5 triangle"]
-chapter: probability
+chapter: geometry-arithmetic
 status: explained
 simplification: light
 noMaths: false

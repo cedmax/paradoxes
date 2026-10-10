@@ -9,7 +9,7 @@ aka:
     "geometrical vanish",
     "concealed distribution",
   ]
-chapter: probability
+chapter: geometry-arithmetic
 status: explained
 uniqueness: related
 anchor: missing-square-puzzle

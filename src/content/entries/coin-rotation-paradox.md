@@ -2,7 +2,7 @@
 title: "Coin rotation paradox"
 titleAccent: "paradox"
 aka: ["rolling coin", "two coins", "SAT coin question", "coin paradox", "rolling circles"]
-chapter: probability
+chapter: geometry-arithmetic
 status: explained
 simplification: light
 noMaths: false

@@ -2,7 +2,7 @@
 title: "Potato paradox"
 titleAccent: "paradox"
 aka: ["potatoes", "99 percent water", "dried potatoes", "porch potatoes"]
-chapter: probability
+chapter: geometry-arithmetic
 status: explained
 simplification: light
 noMaths: false
