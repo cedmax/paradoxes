@@ -18,7 +18,7 @@ anchor: prisoners-dilemma
 simplification: light
 noMaths: false
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "If a single vote almost never decides a large election, can it be rational to vote in order to change the result?"
 claimA: "Voting to change the result of a large election is irrational, because one vote almost never decides it."
 claimB: "Voting to change the result of a large election can be rational, even though one vote almost never decides it."

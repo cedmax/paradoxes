@@ -18,7 +18,7 @@ simplification: light
 noMaths: false
 order: 12
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Three judges each reason consistently, yet the majority on the reasons and the majority on the verdict point opposite ways. Which should the court follow?"
 claimA: "The court should decide each reason by majority and let the verdict follow from those decisions."
 claimB: "The court should decide the verdict itself by majority, whatever the majorities on the reasons."

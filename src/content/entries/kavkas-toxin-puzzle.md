@@ -14,7 +14,7 @@ status: disputed
 simplification: light
 noMaths: true
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "You will be paid a million for intending tonight to drink a mild poison tomorrow, and you need not actually drink it. Can a rational person form that intention?"
 claimA: "A rational person cannot form the intention, because they know that once the money is paid they will have no reason to drink."
 claimB: "A rational person can form the intention and win the million."

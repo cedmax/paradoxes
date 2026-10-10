@@ -17,7 +17,7 @@ anchor: condorcet-paradox
 simplification: light
 noMaths: true
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Is there a fair way to turn everyone's rankings of three or more options into one ranking for the group?"
 claimA: "Any way of turning everyone's rankings into a group ranking that is fair, in the everyday sense of the word, must meet all five of Arrow's conditions."
 claimB: "Some way of turning everyone's rankings into a group ranking is fair, in that same everyday sense."

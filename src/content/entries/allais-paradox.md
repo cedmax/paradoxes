@@ -16,7 +16,7 @@ anchor: ellsberg-paradox
 simplification: light
 noMaths: false
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Most people take a sure million over a gamble with a bigger prize, yet prefer the bigger prize when both options are long shots. Is that consistent?"
 claimA: "A rational person’s choices obey the independence rule: a chance of an outcome that two options share should not affect which one is chosen."
 claimB: "A rational person can prefer a sure $1 million to a gamble with a 10 percent chance of $5 million, an 89 percent chance of $1 million and a 1 percent chance of nothing, and yet prefer a 10 percent chance of $5 million to an 11 percent chance of $1 million."
