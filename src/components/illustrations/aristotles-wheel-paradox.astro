@@ -1,51 +1,179 @@
 <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">The wheels turn together, but only the outer rim rolls on the ground.</p>
-  <svg
-    class="mx-auto w-full max-w-sm"
-    viewBox="0 0 300 256"
-    role="img"
-    aria-labelledby="figure-title figure-desc"
-  >
-    <title id="figure-title">The wheels turn together, but only the outer rim rolls on the ground.</title>
-    <desc id="figure-desc">
-      Two concentric wheels start and end in the same relative positions. The outer
-      circumference determines the distance moved. The inner wheel slides relative to an
-      imaginary lower track.
-    </desc>
-    <path d="M10 190 H290" stroke="currentColor" stroke-width="2" />
-    <path
-      d="M10 165 H290"
-      stroke="currentColor"
-      stroke-width="1.5"
-      stroke-dasharray="6 5"
-      opacity=".5"
+  <p class="font-bold">Two different-sized wheels are fixed together. Turn one, and both turn.</p>
+
+  <div class="flex flex-col gap-2">
+    <label class="font-bold" for="aristotle-turn">Roll the outer wheel</label>
+    <input
+      id="aristotle-turn"
+      type="range"
+      min="0"
+      max="100"
+      step="1"
+      value="100"
+      class="w-full accent-ink"
+      aria-describedby="aristotle-turn-label"
     />
-    <g fill="none" stroke-width="3">
-      <circle cx="62" cy="140" r="50" stroke="#bd4b37" />
-      <circle cx="62" cy="140" r="25" stroke="#387a91" />
-      <circle cx="238" cy="140" r="50" stroke="#bd4b37" />
-      <circle cx="238" cy="140" r="25" stroke="#387a91" />
+    <p id="aristotle-turn-label" aria-live="polite" class="text-base">
+      <output id="aristotle-angle">One full turn (360°)</output>
+    </p>
+  </div>
+
+  <svg
+    class="mx-auto w-full max-w-xl"
+    viewBox="0 0 500 212"
+    role="img"
+    aria-labelledby="aristotle-diagram-title aristotle-diagram-description"
+  >
+    <title id="aristotle-diagram-title">Two attached wheels rolling forward together</title>
+    <desc id="aristotle-diagram-description">
+      The large wheel has radius two units, and the small wheel has radius one.
+      Their centres stay together, and both turn through the same angle.
+      The outer wheel rolls on the solid ground line. The inner wheel is
+      compared with a dashed imaginary track; it slides along that track.
+      One complete revolution moves both forward 12.57 units, although
+      the smaller rim is only 6.28 units around.
+    </desc>
+
+    <!-- End-to-end arrow is the distance rolled in one complete turn. -->
+    <path d="M78 34 H367.03" fill="none" stroke="currentColor" stroke-width="1.5" />
+    <path d="M78 34 l9 -5 v10 Z M367.03 34 l-9 -5 v10 Z" fill="currentColor" />
+    <text
+      x="223"
+      y="21"
+      fill="currentColor"
+      font-family="sans-serif"
+      font-size="16"
+      text-anchor="middle"
+    >
+      One large circumference = 12.57 units
+    </text>
+
+    <!-- The smaller wheel's comparison track runs above the true ground. -->
+    <path
+      d="M24 144 H477"
+      fill="none"
+      stroke="#387a91"
+      stroke-width="2"
+      stroke-dasharray="6 6"
+    />
+    <path d="M24 167 H477" fill="none" stroke="currentColor" stroke-width="2.5" />
+
+    <!-- Translucent start position, always visible for comparison. -->
+    <g fill="none" stroke-width="2" opacity="0.3">
+      <circle cx="78" cy="121" r="46" stroke="#bd4b37" />
+      <circle cx="78" cy="121" r="23" stroke="#387a91" />
     </g>
-    <g fill="currentColor" font-size="16" text-anchor="middle">
-      <text x="62" y="70">
-        Start
-      </text>
-      <text x="238" y="70">
-        After one turn
-      </text>
-      <text x="150" y="222">
-        Same forward distance
-      </text>
-      <text x="150" y="244">
-        for both rims
-      </text>
+    <circle cx="78" cy="121" r="3" fill="currentColor" opacity="0.4" />
+
+    <!-- Translate the shared centre and turn both circles in lockstep. -->
+    <g id="aristotle-moving-wheel" transform="translate(289.03 0)">
+      <circle
+        cx="78"
+        cy="121"
+        r="46"
+        fill="#f5f0e8"
+        stroke="#bd4b37"
+        stroke-width="3.5"
+      />
+      <circle
+        cx="78"
+        cy="121"
+        r="23"
+        fill="#dae5e3"
+        stroke="#387a91"
+        stroke-width="3"
+      />
+      <g id="aristotle-turning-markers" transform="rotate(360 78 121)">
+        <path d="M78 121 V167" fill="none" stroke="#272622" stroke-width="2" />
+        <circle cx="78" cy="144" r="5" fill="#387a91" stroke="#f5f0e8" stroke-width="1" />
+        <circle cx="78" cy="167" r="5" fill="#bd4b37" stroke="#f5f0e8" stroke-width="1" />
+      </g>
+      <circle cx="78" cy="121" r="3.5" fill="#272622" />
     </g>
-    <path d="M100 64 H170" stroke="currentColor" stroke-width="2" />
-    <path d="M163 58 L172 64 L163 70" fill="none" stroke="currentColor" stroke-width="2" />
+
+    <g fill="currentColor" font-family="sans-serif" font-size="16" text-anchor="middle">
+      <text x="78" y="198">Start</text>
+      <text x="367" y="198">After one turn</text>
+    </g>
   </svg>
+
+  <p class="text-sm">
+    Solid line: the ground under the big wheel.
+    Dashed line: an imaginary track under the small wheel.
+    The coloured dots mark matching parts of the two rims.
+  </p>
+
+  <div class="flex flex-col gap-3 text-base">
+    <p>The outer wheel has radius <strong>2</strong>. The inner wheel has radius <strong>1</strong>.</p>
+
+    <div class="flex flex-col gap-1">
+      <div class="flex items-baseline justify-between gap-3">
+        <strong>Both wheels move forward</strong>
+        <span class="shrink-0 tabular-nums"><output id="aristotle-forward">12.57</output> units</span>
+      </div>
+      <div class="h-4 overflow-hidden border border-ink">
+        <div id="aristotle-forward-bar" class="h-full" style="width:100%;background:#bd4b37"></div>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <div class="flex items-baseline justify-between gap-3">
+        <strong>Length turned by the small rim</strong>
+        <span class="shrink-0 tabular-nums"><output id="aristotle-small-rim">6.28</output> units</span>
+      </div>
+      <div class="h-4 overflow-hidden border border-ink">
+        <div id="aristotle-inner-bar" class="h-full" style="width:50%;background:#387a91"></div>
+      </div>
+    </div>
+
+    <p class="font-bold">
+      The small rim must slide the remaining <output id="aristotle-slip">6.28</output> units
+      along the imaginary track.
+    </p>
+  </div>
+
   <figcaption class="text-base leading-normal">
-    The large rim rolls without slipping on the solid ground line. The smaller rim never touches
-    that ground; compared with the dashed imaginary track, it slides. Sharing the same journey
-    does not mean the two circumferences are equal.
+    After one turn, both attached wheels have moved the same distance.
+    But the smaller rim is only half as long as the larger one.
+    The mistake is assuming that the smaller wheel rolls without slipping too.
   </figcaption>
 </figure>
+
+<script>
+  const slider = document.querySelector<HTMLInputElement>("#aristotle-turn")
+  const movingWheel = document.querySelector<SVGGElement>("#aristotle-moving-wheel")
+  const turningMarkers = document.querySelector<SVGGElement>("#aristotle-turning-markers")
+  const angleLabel = document.querySelector<HTMLOutputElement>("#aristotle-angle")
+  const forward = document.querySelector<HTMLOutputElement>("#aristotle-forward")
+  const smallRim = document.querySelector<HTMLOutputElement>("#aristotle-small-rim")
+  const slip = document.querySelector<HTMLOutputElement>("#aristotle-slip")
+  const forwardBar = document.querySelector<HTMLElement>("#aristotle-forward-bar")
+  const innerBar = document.querySelector<HTMLElement>("#aristotle-inner-bar")
+
+  if (
+    slider && movingWheel && turningMarkers && angleLabel &&
+    forward && smallRim && slip && forwardBar && innerBar
+  ) {
+    const render = () => {
+      const portion = Number(slider.value) / 100
+      const degrees = 360 * portion
+      const distance = 4 * Math.PI * portion
+      const smallerDistance = 2 * Math.PI * portion
+
+      // The SVG large-wheel radius is 46 px, so one revolution travels 2π × 46 px.
+      movingWheel.setAttribute("transform", `translate(${2 * Math.PI * 46 * portion} 0)`)
+      turningMarkers.setAttribute("transform", `rotate(${degrees} 78 121)`)
+
+      angleLabel.textContent =
+        portion === 1 ? "One full turn (360°)" : `${Math.round(degrees)}° of a turn`
+      forward.textContent = distance.toFixed(2)
+      smallRim.textContent = smallerDistance.toFixed(2)
+      slip.textContent = smallerDistance.toFixed(2)
+      forwardBar.style.width = `${portion * 100}%`
+      innerBar.style.width = `${portion * 50}%`
+    }
+
+    slider.addEventListener("input", render)
+    render()
+  }
+</script>
