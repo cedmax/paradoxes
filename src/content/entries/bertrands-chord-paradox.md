@@ -3,6 +3,7 @@ title: "Bertrand's chord paradox"
 titleAccent: "paradox"
 aka: ["Bertrand's paradox", "random chord", "Bertrand paradox"]
 chapter: probability
+order: 70
 status: explained
 simplification: light
 written: true

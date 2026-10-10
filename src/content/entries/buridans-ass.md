@@ -1,10 +1,10 @@
 ---
 title: Buridan's ass
 titleAccent: ass
-chapter: choice-identity
+chapter: individual
 status: disputed
 simplification: light
-order: 5
+order: 40
 written: true
 sourcesVerified: true
 problem: A hungry donkey stands exactly halfway between two identical piles of hay. What should it do?

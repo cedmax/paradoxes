@@ -9,11 +9,11 @@ aka:
     "arrow spine",
     "centre shot bow",
   ]
-chapter: time-physics
+chapter: models
 status: explained
 simplification: light
 noMaths: true
-order: 104
+order: 150
 written: true
 sourcesVerified: true
 problem: "On a traditional bow the arrow rests against the side of the bow and points a little off the target. Why does it still fly to the target?"

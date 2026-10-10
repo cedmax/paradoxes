@@ -1,11 +1,11 @@
 ---
 title: "Sleeping Beauty problem"
 titleAccent: "problem"
-chapter: probability
+chapter: belief
 status: disputed
 simplification: light
 noMaths: true
-order: 5
+order: 10
 written: true
 sourcesVerified: true
 problem: "A coin is tossed while Sleeping Beauty sleeps. When she wakes, how likely is it that it landed heads?"

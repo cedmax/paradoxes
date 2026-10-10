@@ -1,12 +1,12 @@
 ---
 title: "Low birth-weight paradox"
-chapter: "biology"
+chapter: numbers-mislead
 status: "explained"
 uniqueness: "related"
 anchor: "berksons-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 180
 written: true
 sourcesVerified: true
 reviewed: false

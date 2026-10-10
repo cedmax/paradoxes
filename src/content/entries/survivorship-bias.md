@@ -10,7 +10,8 @@ aka:
     "planes that came back",
     "missing data",
   ]
-chapter: probability
+chapter: numbers-mislead
+order: 100
 status: explained
 uniqueness: related
 anchor: inspection-paradox

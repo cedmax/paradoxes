@@ -2,7 +2,8 @@
 title: "Loschmidt's paradox"
 titleAccent: "paradox"
 aka: ["reversibility paradox", "arrow of time", "second law", "Boltzmann", "time-reversal"]
-chapter: time-physics
+chapter: models
+order: 90
 status: disputed
 simplification: heavy
 noMaths: true
