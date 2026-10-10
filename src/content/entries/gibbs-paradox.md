@@ -16,7 +16,7 @@ simplification: heavy
 noMaths: false
 order: 102
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Does opening a door between two identical boxes of gas raise entropy, and closing it lower it again?"
 claimA: "Opening a door between two boxes of the same gas, at the same temperature and pressure, and then closing it again leaves the total entropy unchanged."
 claimB: "The entropy of a gas can be worked out by counting the arrangements of its particles as if each one carried a label, so the entropy rises when the door opens and falls when it closes."
