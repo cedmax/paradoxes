@@ -19,7 +19,7 @@ noMaths: true
 written: true
 sourcesVerified: true
 problem: "Is there a fair way to turn everyone's rankings of three or more options into one ranking for the group?"
-claimA: "A fair rule for combining rankings must accept any rankings, produce a consistent group ranking, respect unanimous preferences, give nobody control and ignore unrelated options when comparing a pair."
+claimA: "A fair rule for combining rankings must accept any individual rankings, produce a full, consistent group ranking, respect unanimous preferences, give nobody complete control and ignore other options when comparing a pair."
 claimB: "There is a fair rule for combining rankings of three or more options."
 verdict: "No rule for combining rankings meets all these reasonable-sounding demands. Choosing a rule means deciding which demand to relax."
 whatBreaks: "The hope that a ranking rule can meet every demand. The theorem settles the clash; it does not settle which demand fairness requires giving up."
@@ -28,6 +28,7 @@ setup: "A committee asks everyone to rank three or more proposals. It wants one 
 whyWrong: "Each demand sounds fair on its own. Arrow proved that no rule can meet all of them. The [Condorcet paradox](condorcet-paradox) shows majority voting getting stuck in a circle. Arrow’s result reaches every rule that combines rankings, not just majority voting."
 resolution:
   - "The proof does not say that every voting system is unfair. It says these particular demands cannot all be met by a rule working from rankings alone."
+  - "For example, give an option 2 points for first place, 1 for second and 0 for third. Three voters rank A, then B, then C. Two rank B, then C, then A. B wins with 7 points to A’s 6. Remove C and give 1 point for first place and 0 for second: A now beats B by 3 to 2. Nobody changed their preference between A and B, but the group’s answer changed. The points rule lets another option affect that comparison."
   - "Calling all the demands essential to fairness rules out a fair ranking rule. Keeping the hope of such a rule means relaxing a demand or asking voters for more information. The theorem does not choose the trade-off."
 positions:
   - title: "Limit the rankings"

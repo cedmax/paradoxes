@@ -9,9 +9,9 @@ noMaths: false
 order: 202
 written: true
 sourcesVerified: true
-problem: "The same four pieces make two triangles, and one has a square-shaped hole. Where did the square come from?"
+problem: "The same four pieces seem to make two identical triangles, but one has a square-shaped hole. Where did the square come from?"
 claimA: "Both shapes are the same 13 by 5 triangle with a straight long edge, so they cover the same area."
-claimB: "One shape has a 1 by 1 hole in it, so its pieces cover one square less than the other’s."
+claimB: "The same pieces leave a 1 by 1 hole in the second outline, so the outlines enclose different areas."
 verdict: "Neither shape is a true triangle. The long edge has a tiny bend, and the two bends differ by exactly one square."
 whatBreaks: "The assumption that the long edge of each shape is a straight line."
 statusNote: "the idea that both shapes are the same straight-edged triangle is wrong. The long edge of each is slightly bent, one inwards and one outwards, and the difference between the two outlines is exactly one square."
@@ -20,7 +20,7 @@ whyWrong: "The two small triangles have slightly different slopes. One rises 3 s
 resolution:
   - "Neither outline is a true triangle. One long edge bends slightly inwards; the other bends slightly outwards. That changes the area inside the outline by exactly one square."
   - "The pieces always cover 32 squares. The first outline encloses 32, so it is filled. The second encloses 33, leaving a one-square hole. Nothing has vanished: the apparent triangle has changed."
-finePrint: "The slopes are 3/8 and 2/5. A true 13 by 5 triangle would cover 32.5 squares; the two bent outlines lie half a square either side of that. The pieces have areas 12, 5 and 15. The bend is about 1.2 degrees, which is why it is easy to miss. The diagram uses the actual slopes, rather than drawing a straight edge over them. Paul Curry devised this version in 1953, according to Martin Gardner. The [chessboard paradox](chessboard-paradox) uses the same slope mismatch. The [vanishing puzzle](vanishing-puzzle) instead changes how a drawing is shared among figures."
+finePrint: "The slopes are 3/8 and 2/5. A true 13 by 5 triangle would cover 32.5 squares; the two bent outlines lie half a square either side of that. The four pieces have areas 12, 5, 8 and 7 squares. The bend is about 1.2 degrees, which is why it is easy to miss. The diagram uses the actual slopes, rather than drawing a straight edge over them. Paul Curry devised this version in 1953, according to Martin Gardner. The [chessboard paradox](chessboard-paradox) uses the same slope mismatch. The [vanishing puzzle](vanishing-puzzle) instead changes how a drawing is shared among figures."
 sources:
   - title: "Wikipedia: Missing square puzzle"
     url: "https://en.wikipedia.org/wiki/Missing_square_puzzle"
