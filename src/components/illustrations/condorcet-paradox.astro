@@ -1,14 +1,82 @@
 <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">Every voter is consistent. The majority goes round in a circle.</p>
-<div class="overflow-x-auto border-2 border-ink"><table class="w-full text-base">
-<thead><tr class="border-b-2 border-ink"><th class="p-2 text-left">Voter</th><th class="p-2">First</th><th class="p-2">Second</th><th class="p-2">Third</th></tr></thead>
-<tbody><tr class="border-b border-ink"><th class="p-2 text-left">1</th><td class="p-2 text-center">A</td><td class="p-2 text-center">B</td><td class="p-2 text-center">C</td></tr><tr class="border-b border-ink"><th class="p-2 text-left">2</th><td class="p-2 text-center">B</td><td class="p-2 text-center">C</td><td class="p-2 text-center">A</td></tr><tr><th class="p-2 text-left">3</th><td class="p-2 text-center">C</td><td class="p-2 text-center">A</td><td class="p-2 text-center">B</td></tr></tbody>
-</table></div>
-<svg viewBox="0 0 440 180" class="mx-auto w-full max-w-lg" role="img" aria-labelledby="condorcet-title condorcet-desc">
-<title id="condorcet-title">The majority cycle is A beats B, B beats C, C beats A</title><desc id="condorcet-desc">Three arrows form a triangle, each showing a majority vote of two to one.</desc>
-<defs><marker id="vote-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="currentColor"/></marker></defs>
-<g fill="none" stroke="currentColor" stroke-width="2.5" marker-end="url(#vote-arrow)"><path d="M125 45 H308"/><path d="M344 69 L245 154"/><path d="M194 155 L98 69"/></g>
-<g fill="currentColor" font-size="22" text-anchor="middle" font-weight="bold"><text x="90" y="47">A</text><text x="346" y="47">B</text><text x="220" y="172">C</text></g>
-<g fill="currentColor" font-size="15" text-anchor="middle"><text x="220" y="33">2–1</text><text x="302" y="121">2–1</text><text x="138" y="120">2–1</text></g>
-</svg>
-<figcaption class="text-base leading-normal">Two voters prefer A to B. Two prefer B to C. And two prefer C to A. The deciding pairs of voters are different, so perfectly sensible rankings can create a cycle.</figcaption></figure>
+  <p class="font-bold">Every voter is consistent. The majority goes round in a circle.</p>
+  <div class="overflow-x-auto border-2 border-ink">
+    <table class="w-full text-base">
+      <thead>
+        <tr class="border-b-2 border-ink">
+          <th class="p-2 text-left">Voter</th>
+          <th class="p-2">First</th>
+          <th class="p-2">Second</th>
+          <th class="p-2">Third</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-ink">
+          <th class="p-2 text-left">1</th>
+          <td class="p-2 text-center">A</td>
+          <td class="p-2 text-center">B</td>
+          <td class="p-2 text-center">C</td>
+        </tr>
+        <tr class="border-b border-ink">
+          <th class="p-2 text-left">2</th>
+          <td class="p-2 text-center">B</td>
+          <td class="p-2 text-center">C</td>
+          <td class="p-2 text-center">A</td>
+        </tr>
+        <tr>
+          <th class="p-2 text-left">3</th>
+          <td class="p-2 text-center">C</td>
+          <td class="p-2 text-center">A</td>
+          <td class="p-2 text-center">B</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <svg
+    viewBox="0 0 300 168"
+    class="mx-auto w-full max-w-sm"
+    role="img"
+    aria-labelledby="condorcet-title condorcet-desc"
+  >
+    <title id="condorcet-title">The majority cycle is A beats B, B beats C, C beats A</title>
+    <desc id="condorcet-desc">
+      Three arrows form a triangle, each showing a majority vote of two to one.
+    </desc>
+    <defs>
+      <marker id="vote-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+        <path d="M0 0 L6 3 L0 6" fill="none" stroke="currentColor" />
+      </marker>
+    </defs>
+    <g fill="none" stroke="currentColor" stroke-width="2.5" marker-end="url(#vote-arrow)">
+      <path d="M62 36 H236" />
+      <path d="M252 54 L168 122" />
+      <path d="M132 122 L48 54" />
+    </g>
+    <g fill="currentColor" font-size="22" text-anchor="middle" font-weight="bold">
+      <text x="40" y="44">
+        A
+      </text>
+      <text x="260" y="44">
+        B
+      </text>
+      <text x="150" y="152">
+        C
+      </text>
+    </g>
+    <g fill="currentColor" font-size="16" text-anchor="middle">
+      <text x="150" y="26">
+        2–1
+      </text>
+      <text x="236" y="94">
+        2–1
+      </text>
+      <text x="64" y="94">
+        2–1
+      </text>
+    </g>
+  </svg>
+  <figcaption class="text-base leading-normal">
+    Two voters prefer A to B. Two prefer B to C. And two prefer C to A. The deciding pairs of
+    voters are different, so perfectly sensible rankings can create a cycle.
+  </figcaption>
+</figure>
