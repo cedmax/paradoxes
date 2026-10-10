@@ -10,7 +10,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can a billiard ball knock its younger self away from a time machine and still have made the trip?"
 claimA: "A starting path that makes the ball collide with its younger self has no consistent outcome: the collision stops the trip that caused it."

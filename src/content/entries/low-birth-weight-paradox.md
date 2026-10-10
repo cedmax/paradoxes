@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Why have low-weight babies of mothers who smoke sometimes shown lower death rates than other low-weight babies?"
 claimA: "A lower death rate within the low-weight group means smoking protects babies in that group."

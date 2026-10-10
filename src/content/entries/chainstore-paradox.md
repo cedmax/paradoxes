@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Why does backward reasoning tell a large chain never to fight a new rival?"
 claimA: "A chain facing many entrants should fight early rivals to protect a reputation that deters later rivals."

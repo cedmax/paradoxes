@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "What happens when an unstoppable force meets an immovable object?"
 claimA: "An unstoppable force and an immovable object can both exist in the same world."

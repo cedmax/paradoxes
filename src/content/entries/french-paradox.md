@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Why did France appear to have relatively little heart disease despite a diet high in saturated fat?"
 claimA: "High average saturated-fat consumption must produce a similarly high recorded rate of heart disease across countries."

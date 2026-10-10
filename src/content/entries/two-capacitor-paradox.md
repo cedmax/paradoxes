@@ -6,7 +6,7 @@ simplification: light
 noMaths: false
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Where does half the stored electrical energy go when a charged capacitor shares its charge?"
 claimA: "Joining two equal capacitors, one charged and one empty, must leave the same energy stored in their electric fields."

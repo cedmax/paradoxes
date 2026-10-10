@@ -6,7 +6,7 @@ simplification: light
 noMaths: false
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can a ball that is perfectly still begin to move at an arbitrary time under Newton’s laws?"
 claimA: "Norton’s ideal dome is a legitimate Newtonian example in which a ball can start moving without a push."

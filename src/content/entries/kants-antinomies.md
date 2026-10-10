@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can reason establish both that the world began and that it never began?"
 claimA: "Reason alone can settle whether the world as a whole had a first moment."

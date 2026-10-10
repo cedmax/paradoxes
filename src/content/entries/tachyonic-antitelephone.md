@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Could a message that travels faster than light get a reply before it was sent?"
 claimA: "Allowing freely sent faster-than-light messages would leave the order of sending and receiving unchanged for everyone."

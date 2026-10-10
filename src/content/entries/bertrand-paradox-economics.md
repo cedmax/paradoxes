@@ -6,7 +6,7 @@ simplification: light
 noMaths: false
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Why do two shops selling the same product end up pricing almost as if there were countless competitors?"
 claimA: "Two competing shops can both keep prices above cost even when buyers always choose the cheaper identical product."

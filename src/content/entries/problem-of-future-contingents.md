@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Is the sentence “There will be a sea battle tomorrow” already true or false today?"
 claimA: "Every definite statement about tomorrow is already either true or false today."

@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Do Lewis Carroll’s rules about a barbershop prove that one barber must always be in?"
 claimA: "If Carr is out, the rules force Allen to be both in and out, so Carr cannot be out."

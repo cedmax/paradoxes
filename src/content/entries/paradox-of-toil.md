@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can everyone becoming more willing to work make employment fall?"
 claimA: "When everyone offers more work during a severe slump, employment must rise."

@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can trying too hard to feel happy make happiness harder to find?"
 claimA: "Deliberately chasing pleasure always increases the pleasure obtained."

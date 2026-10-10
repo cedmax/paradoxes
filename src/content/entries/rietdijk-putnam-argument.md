@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Does disagreement about what is happening now mean tomorrow already exists?"
 claimA: "Special relativity shows that events which one observer calls future are already real."

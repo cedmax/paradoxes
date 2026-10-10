@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can the bright spot from a turning lighthouse cross a distant wall faster than light?"
 claimA: "No bright spot produced by a lighthouse can appear to move across a wall faster than light."

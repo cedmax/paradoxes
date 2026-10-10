@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "How can an all-powerful, perfectly good God exist when suffering exists?"
 claimA: "If an all-powerful, all-knowing and perfectly good God exists, suffering cannot exist."

@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can a voting rule respect everyone’s private choices and always follow unanimous preferences?"
 claimA: "A person’s private right should prevail even when everyone prefers a different complete outcome."

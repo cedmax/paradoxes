@@ -6,7 +6,7 @@ simplification: light
 noMaths: false
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "How can 100 prisoners find their numbers with about a 31 percent chance that every one succeeds?"
 claimA: "Any plan giving each prisoner only 50 chances must make the whole group’s success almost impossible."

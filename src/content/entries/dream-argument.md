@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can what is happening right now prove that it is not a dream?"
 claimA: "Knowing that someone is awake requires ruling out the possibility that they are dreaming."

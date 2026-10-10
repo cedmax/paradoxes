@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Must there always be a person in a pub whose drinking means everyone is drinking?"
 claimA: "The drinker’s theorem needs one person whose choice controls the whole pub."

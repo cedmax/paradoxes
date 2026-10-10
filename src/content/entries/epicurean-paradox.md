@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "If God can stop suffering and wants to, why is suffering still here?"
 claimA: "The suffering in the world rules out a God who is both all-good and all-powerful."

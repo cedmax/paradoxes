@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Why does the first lift to arrive so often seem to be going the wrong way?"
 claimA: "A lift passing a floor once going up and once going down should be equally likely to arrive next in either direction."

@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "How do two fixed-together wheels of different sizes travel the same distance in one turn?"
 claimA: "The small and large wheels both roll without slipping across the same distance."

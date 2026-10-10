@@ -6,7 +6,7 @@ simplification: light
 noMaths: false
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can the same experiment be statistically significant and still favour no effect?"
 claimA: "A conventionally significant result necessarily means the data favour an effect over no effect."

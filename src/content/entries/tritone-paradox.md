@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "How can the same two tones sound as if they rise to one listener and fall to another?"
 claimA: "A fixed pair of tones must have the same apparent upward or downward direction for every listener."

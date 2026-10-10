@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "How can a false claim logically imply absolutely anything?"
 claimA: "The everyday word “if” means no more than the truth rule used by classical logic."

@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can killing more members of a species actually leave a larger population?"
 claimA: "Raising a population’s death rate must make its long-term population smaller."

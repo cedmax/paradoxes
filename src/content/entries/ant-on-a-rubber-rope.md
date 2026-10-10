@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can an ant ever reach the end of a rope that keeps stretching faster than it walks?"
 claimA: "If the far end moves away faster than the ant walks, the ant never reaches it."

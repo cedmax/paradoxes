@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "How can giving a parliament one more seat cause a state to lose a seat?"
 claimA: "Adding a seat to the total cannot reduce any state’s allocated number."

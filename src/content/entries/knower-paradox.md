@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "What happens to the sentence “This sentence is not known” if someone proves it?"
 claimA: "Anything established by a valid proof can be known."

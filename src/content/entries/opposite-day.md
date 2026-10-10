@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can someone truthfully announce “Today is Opposite Day” on Opposite Day?"
 claimA: "The announcement “Today is Opposite Day” correctly says what kind of day it is."

@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "If someone accepts every premise of an argument, can they still refuse its conclusion forever?"
 claimA: "Writing down enough extra premises must eventually force the tortoise to accept the conclusion."

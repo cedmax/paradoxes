@@ -6,7 +6,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "If stock prices told everyone everything worth knowing, who would pay to discover new information?"
 claimA: "Prices can reveal all costly information while investors still have an incentive to pay for finding it."

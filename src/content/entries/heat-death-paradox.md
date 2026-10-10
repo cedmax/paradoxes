@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "If the universe had already existed forever, why had it not run out of usable energy?"
 claimA: "Our universe has existed forever as a closed, unchanging system with a finite supply of usable energy."

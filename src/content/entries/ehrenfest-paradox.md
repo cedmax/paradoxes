@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "Can a spinning disc keep the ordinary relation between its radius and its rim?"
 claimA: "A spinning disc can remain perfectly rigid and keep ordinary flat geometry for all its co-rotating measurements."
