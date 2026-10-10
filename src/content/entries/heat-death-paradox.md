@@ -13,7 +13,7 @@ reviewed: false
 problem: "If the universe had already existed forever, why had it not run out of usable energy?"
 claimA: "Our universe has existed forever as a closed, unchanging system with a finite supply of usable energy."
 claimB: "The universe still contains usable energy, even though an eternally unchanged closed system should already have run down."
-verdict: "The old picture of an eternal, static universe fails; the living, changing cosmos does not fit that picture."
+verdict: "The old picture of an eternal, static universe fails; the evolving cosmos does not fit that picture."
 whatBreaks: "The premise that the universe has always existed as an unchanged closed system with finite usable energy."
 statusNote: "the eternal, static-universe premise is not a description of the observed cosmos, and the thermodynamic argument does not refute every conceivable eternal model."
 setup: "If a closed system had always been running down, with no replenishment, it should have reached a state where no useful energy differences remain. Nineteenth-century accounts sometimes pictured the whole universe as eternal and unchanging."

@@ -1,5 +1,7 @@
 ---
-title: "Novikov self-consistency"
+title: "Polchinski’s paradox"
+titleAccent: "paradox"
+aka: ["Novikov self-consistency", "Novikov self-consistency principle", "Novikov principle", "Polchinski billiard-ball paradox"]
 chapter: "time-physics"
 status: "explained"
 uniqueness: "related"
@@ -10,18 +12,18 @@ order: 300
 written: true
 sourcesVerified: false
 reviewed: false
-problem: "Can a ball from the future collide with its younger self and still complete the time loop?"
-claimA: "Any collision between a ball and its older self must prevent the younger ball entering the time machine."
-claimB: "A glancing collision can send the younger ball into the time machine, causing the older ball to emerge and collide with it."
-verdict: "A gentle, self-consistent collision can complete the time loop instead of cancelling the journey."
-whatBreaks: "The assumption that every collision with the ball’s older self must stop the earlier journey."
-statusNote: "the claim that all self-collisions block the loop is false in the billiard-ball model, which allows consistent paths."
-setup: "Imagine a wormhole, a hypothetical passage through space and time, that sends a billiard ball to an earlier moment. An older copy of the ball could come out and strike the younger copy before it reaches the entrance."
-whyWrong: "A hard collision seems able to knock the younger ball away from the entrance. But then the older ball could not have emerged to deliver the blow. That is the same sort of loop found in the [grandfather paradox](grandfather-paradox)."
+problem: "Can a billiard ball knock its younger self away from a time machine and still have made the trip?"
+claimA: "A starting path that makes the ball collide with its younger self has no consistent outcome: the collision stops the trip that caused it."
+claimB: "That same starting path can have a consistent outcome: a glancing collision still sends the younger ball into the time machine."
+verdict: "A glancing collision can complete the time loop instead of stopping it. The model may allow several consistent paths."
+whatBreaks: "The assumption that the apparently self-defeating starting path has no possible consistent continuation."
+statusNote: "the apparently impossible starting path has consistent solutions in the studied billiard-ball model, although the model does not prove time travel is possible."
+setup: "Joseph Polchinski imagined a ball entering a wormhole, a hypothetical passage that sends it into the past. Its older self comes out just in time to hit the younger ball, seemingly knocking it away from the entrance."
+whyWrong: "On the path Polchinski described, the impact seems to stop the younger ball entering the wormhole. But if it never enters, the older ball cannot emerge and deliver the impact. The apparent contradiction resembles the [grandfather paradox](grandfather-paradox)."
 resolution:
-  - "Not every collision knocks the younger ball away. In one possible path, the older ball gives its younger self a glancing blow that sends it through the entrance along just the right route. It later emerges and makes that same glancing collision."
-  - "Echeverria, Klinkhammer and Thorne investigated such self-consistent billiard-ball paths in a hypothetical wormhole. The maths does not prove that real wormholes or travel to the past exist."
-finePrint: "Novikov’s self-consistency principle says that only events fitting one consistent history can take place on a time loop. This entry uses a collision model rather than repeating the choice-based [grandfather paradox](grandfather-paradox) or the object-origin puzzle of the [bootstrap paradox](bootstrap-paradox). Some initial conditions in time-loop models allow multiple consistent solutions."
+  - "Fernando Echeverria, Gunnar Klinkhammer and Kip Thorne found that the apparently impossible starting paths in their model can develop into consistent collisions. An older ball gives its younger self a glancing blow, yet the younger ball still enters the wormhole and later delivers that same blow."
+  - "The model can permit several consistent paths for one starting path, rather than none. This does not establish that real wormholes or travel into the past are possible."
+finePrint: "Polchinski raised the challenge in correspondence with Thorne’s group. Echeverria, Klinkhammer and Thorne published their analysis in 1991. They found multiple, sometimes infinitely many, consistent paths for a wide class of troubling starts, and found no case with none in their search. This is not a proof about every conceivable time machine. Novikov’s self-consistency principle is a proposed way to rule out inconsistent histories. The [grandfather paradox](grandfather-paradox) tests choices in the past; the [bootstrap paradox](bootstrap-paradox) asks where an object or idea came from."
 sources:
   - title: "Wikipedia: Novikov self-consistency principle"
     url: "https://en.wikipedia.org/wiki/Novikov_self-consistency_principle"
