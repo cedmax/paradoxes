@@ -34,7 +34,7 @@ export const chapters: Chapter[] = [
   {
     id: "self-reference",
     n: "02",
-    title: "Self-referential sentences",
+    title: "Self-reference",
     blurb: "Contradictions that appear the moment a statement refers to itself.",
   },
   {
@@ -83,7 +83,7 @@ export const chapters: Chapter[] = [
     id: "models",
     n: "10",
     title: "Models meeting reality",
-    blurb: "Tidy theories that predict one thing while the world does another.",
+    blurb: "Tidy theories that clash with what the world does, or with each other.",
   },
   {
     id: "shapes-sums",

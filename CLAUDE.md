@@ -62,7 +62,7 @@ explain it. Read the entry's `whatBreaks` and place it where that assumption liv
 | Chapter                        | The assumption that breaks                                          |
 | ------------------------------ | ------------------------------------------------------------------- |
 | What counts as what            | A word or a thing picks out one clear thing with sharp edges.       |
-| Self-referential sentences     | A statement can safely talk about itself.                           |
+| Self-reference                 | A statement or collection can safely refer to itself.               |
 | Infinity misbehaving           | Endless things behave like very big finite ones.                    |
 | Probability tricking intuition | Odds, chance and random set-ups are what they look like.            |
 | Numbers that mislead           | A sample, average or comparison gives a fair picture.               |
@@ -70,17 +70,21 @@ explain it. Read the entry's `whatBreaks` and place it where that assumption liv
 | Individual choices             | One consistent rule for deciding or valuing works in every case.    |
 | What we should believe         | Reasonable rules about evidence and belief lead somewhere sensible. |
 | Time and causation             | Everyone shares one “now” and one order of cause and effect.        |
-| Models meeting reality         | A tidy model or theory matches the world.                           |
+| Models meeting reality         | A tidy model or theory matches the world and the other theories.    |
 | Shapes and sums deceiving      | Figures and quick calculations are right at first look.             |
 
-- **What counts as what**: only when fixing the definition makes the clash disappear and the
-  world, the maths and the logic stay as they were. If self-application is what breaks, it is
-  Self-referential sentences.
+- **What counts as what**: the conflict is over how a word or concept applies: classification,
+  boundaries, or whether something stays the same thing. The conflict need not disappear once a
+  definition is fixed (Sorites and Ship of Theseus are disputed). If self-application is what
+  breaks, it is Self-reference. If the question is whether observed examples justify a general
+  claim, it is What we should believe.
 - **Collective outcomes** vs **Individual choices**: if the paradox disappears with one person
-  alone, it is Individual choices.
+  alone, it is Collective outcomes. If it survives with one person alone, it is Individual
+  choices.
 - **Models meeting reality**: the central conflict must be between a model's prediction and an
   observation, or between two established theoretical accounts. A surprising observation alone
   is not enough. Identify the conflicting prediction or principles before assigning it.
+- Place an entry by its own `whatBreaks`, not by its anchor's chapter.
 - Chapter sizes are not a reason to move an entry. A small coherent chapter is fine.
 - An entry's `anchor` may sit in another chapter; do not change uniqueness to match chapters.
 - `order` sorts entries within a chapter.

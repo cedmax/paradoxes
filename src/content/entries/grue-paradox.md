@@ -9,8 +9,8 @@ aka:
     "projectible predicates",
     "Nelson Goodman",
   ]
-chapter: what-counts
-order: 110
+chapter: belief
+order: 85
 status: unreconciled
 uniqueness: related
 anchor: raven-paradox
