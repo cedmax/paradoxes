@@ -24,4 +24,7 @@ finePrint: "The exact success probability is one minus the sum of the reciprocal
 sources:
   - title: "Wikipedia: 100 prisoners problem"
     url: "https://en.wikipedia.org/wiki/100_prisoners_problem"
+  - title: "University of Bielefeld: Permutations and 100 Prisoners"
+    url: "https://www.math.uni-bielefeld.de/~ringel/lectures/vortrag-sjtu/100-1.htm"
+    note: "Independent derivation using cycles of a permutation; confirms the approximate 31 percent success chance."
 ---

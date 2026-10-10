@@ -34,4 +34,10 @@ sources:
     url: "https://doi.org/10.1007/BF00131770"
   - title: "Yale Open Courses: Backward Induction, Reputation and Duels"
     url: "https://oyc.yale.edu/economics/econ-159/lecture-16"
+  - title: "Kreps and Wilson (1982): Reputation and Imperfect Information"
+    url: "https://www.sciencedirect.com/science/article/pii/0022053182900308"
+    note: "Models how a small amount of incomplete information changes the chain-store result by allowing reputation effects."
+  - title: "Milgrom and Roberts (1982): Predation, Reputation and Entry Deterrence"
+    url: "https://www.sciencedirect.com/science/article/pii/002205318290031X"
+    note: "Shows why early costly predation can deter later entrants in an asymmetric-information model."
 ---

@@ -23,4 +23,7 @@ finePrint: "This pattern is often called the Jeffreys–Lindley paradox. It depe
 sources:
   - title: "Wikipedia: Lindley’s paradox"
     url: "https://en.wikipedia.org/wiki/Lindley%27s_paradox"
+  - title: "History and Nature of the Jeffreys–Lindley Paradox"
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11442617/"
+    note: "Reviews the origins of the frequentist versus Bayesian disagreement and the conditions under which it occurs."
 ---

@@ -23,4 +23,7 @@ finePrint: "This is an ideal geometry example. A real beam spreads and takes tim
 sources:
   - title: "Wikipedia: Lighthouse paradox"
     url: "https://en.wikipedia.org/wiki/Lighthouse_paradox"
+  - title: "Duke University Department of Physics: Fast-Light Tutorial"
+    url: "https://physics.duke.edu/fast-light-tutorial"
+    note: "Explains why a rapidly moving light spot carries no information faster than light."
 ---

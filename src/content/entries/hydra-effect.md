@@ -23,4 +23,7 @@ finePrint: "The exact mechanism differs between ecological models, and field evi
 sources:
   - title: "Wikipedia: Hydra effect"
     url: "https://en.wikipedia.org/wiki/Hydra_effect"
+  - title: "Grosholz et al. (2021): Stage-specific Overcompensation and the Hydra Effect"
+    url: "https://pubmed.ncbi.nlm.nih.gov/33727416/"
+    note: "Reports a controlled field example of population increase following culling and explains the density-dependent mechanism."
 ---

@@ -30,4 +30,7 @@ sources:
     url: "https://plato.stanford.edu/entries/logic-relevance/"
   - title: "Stanford Encyclopedia of Philosophy: The Logic of Conditionals"
     url: "https://plato.stanford.edu/entries/logic-conditionals/"
+  - title: "Stanford Encyclopedia of Philosophy: Paul Grice"
+    url: "https://plato.stanford.edu/entries/grice/"
+    note: "Discusses Grice’s argument for treating ordinary conditionals as material conditionals, with conversational implications explaining their apparent relevance."
 ---

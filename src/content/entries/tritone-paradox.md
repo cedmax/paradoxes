@@ -23,4 +23,7 @@ finePrint: "The tritone is an interval of six semitones. This effect requires ca
 sources:
   - title: "Wikipedia: Tritone paradox"
     url: "https://en.wikipedia.org/wiki/Tritone_paradox"
+  - title: "Diana Deutsch: Tritone Paradox"
+    url: "https://deutsch.ucsd.edu/psychology/pages.php?i=206"
+    note: "The researcher’s account of the Shepard-tone experiment and why different listeners hear opposite directions."
 ---

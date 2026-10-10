@@ -25,4 +25,7 @@ finePrint: "The causes and interpretation of the observed pattern have a broader
 sources:
   - title: "Wikipedia: Low birth-weight paradox"
     url: "https://en.wikipedia.org/wiki/Low_birth-weight_paradox"
+  - title: "Hernández-Díaz, Schisterman and Hernán (2006): The Birth Weight Paradox Uncovered?"
+    url: "https://pubmed.ncbi.nlm.nih.gov/16931543/"
+    note: "Documents the smoker comparison and shows how conditioning on birth weight can produce the apparent protective association."
 ---
