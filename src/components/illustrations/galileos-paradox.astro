@@ -1,0 +1,9 @@
+---
+const pairs = [1, 2, 3, 4, 5, 6, 7, 8]
+---
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+<p class="font-bold">Every positive whole number has one square, and every square has one root.</p>
+<div class="grid grid-cols-4 gap-2 sm:grid-cols-8 text-center text-base">{pairs.map(n=><div class="flex flex-col gap-1"><div class="border border-ink p-2">{n}</div><span>↓</span><div class="border-2 border-ink bg-disputed p-2">{n*n}</div></div>)}</div>
+<div class="grid grid-cols-2 gap-3 text-base"><div class="border border-ink p-3"><strong>Up to 100</strong><p>100 whole numbers</p><p>10 squares</p></div><div class="border border-ink p-3"><strong>Up to 10,000</strong><p>10,000 whole numbers</p><p>100 squares</p></div></div>
+<figcaption class="text-base leading-normal">Squares get sparser among the whole numbers. Yet the endless pairing n ↔ n² misses no positive whole number and no perfect square. Density and the ability to pair two infinite collections are different ways of counting.</figcaption>
+</figure>
