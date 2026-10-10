@@ -17,7 +17,7 @@ simplification: light
 noMaths: true
 order: 20
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Which came first, the chicken or the egg?"
 claimA: "Every chicken hatched from an egg laid by a chicken, so the chain of chickens and eggs has no first link."
 claimB: "Chickens have not always existed, so the chain of chickens and eggs must have a first link."
