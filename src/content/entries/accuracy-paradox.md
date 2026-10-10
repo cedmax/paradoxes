@@ -11,7 +11,7 @@ simplification: light
 noMaths: false
 order: 209
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Can a predictor that is right 99% of the time be useless?"
 claimA: "A predictor that is right more often must be the more useful predictor."
 claimB: "A predictor that always guesses the common answer is right 99% of the time and never finds a single rare case."

@@ -16,7 +16,7 @@ anchor: sleeping-beauty-problem
 simplification: light
 noMaths: false
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "A driver who cannot tell two motorway exits apart plans to leave at an exit one time in three. Should she change her plan when she reaches an exit?"
 claimA: "At an exit, working out the odds afresh shows that leaving two times in three pays better than the plan, so she should switch."
 claimB: "She should keep to leaving one time in three, since that was the best plan and she learns nothing new on the road."

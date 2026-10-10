@@ -17,7 +17,7 @@ anchor: inspection-paradox
 simplification: light
 noMaths: false
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "If the bombers that come back have bullet holes in some places and hardly any in others, where should the armour go?"
 claimA: "The damage on the planes that come back shows where planes most need protecting."
 claimB: "Planes hit in their weakest spots tend not to come back, so the damage on returning planes can hide where protection is most needed."

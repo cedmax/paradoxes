@@ -16,7 +16,7 @@ anchor: berksons-paradox
 simplification: light
 noMaths: true
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Why do some studies find that heavier patients with certain diseases die less often than patients of normal weight?"
 claimA: "Among people who already have certain diseases, the extra weight itself helps them survive."
 claimB: "The extra weight does not help these patients survive. Their lower death rate is produced by who ends up in the studies and how weight is measured."

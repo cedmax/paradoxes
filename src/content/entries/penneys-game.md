@@ -16,7 +16,7 @@ anchor: nontransitive-dice
 simplification: light
 noMaths: false
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Two players each pick a run of three coin tosses, and a coin is tossed until one run turns up. Can the second player always pick a run that is more likely to turn up first?"
 claimA: "Every run of three tosses is equally likely, so no run can be more likely than another to turn up first."
 claimB: "Whatever run the first player picks, the second can pick one that turns up first at least two times in three."

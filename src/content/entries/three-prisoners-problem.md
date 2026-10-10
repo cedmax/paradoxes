@@ -10,7 +10,7 @@ simplification: light
 noMaths: false
 order: 208
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "A prisoner asks the warden to name one of the other two who will be executed, tossing a coin if both will be. Told “B”, has his own chance of a pardon gone up?"
 claimA: "With B ruled out, it is now a choice between A and C, so A’s chance of a pardon has risen from 1 in 3 to 1 in 2."
 claimB: "A’s chance of a pardon is still 1 in 3, and C’s has risen to 2 in 3."

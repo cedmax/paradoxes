@@ -18,7 +18,7 @@ simplification: light
 noMaths: false
 order: 210
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Two careful analyses of the same before and after weights give opposite answers about boys and girls. Can both be right?"
 claimA: "Two correct analyses of the same data must give the same answer about whether the diet affected boys and girls differently."
 claimB: "In Lord’s data, one correct analysis finds no difference between boys and girls, and another finds that boys gained more."
