@@ -16,7 +16,7 @@ simplification: light
 noMaths: true
 order: 8
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "If a time traveller killed Hitler as a baby, what would later send the traveller back to do it?"
 claimA: "The past can be changed: a traveller could kill the infant Hitler, and history would then run differently."
 claimB: "The past cannot be changed: Hitler grew up and died in 1945, so any traveller sent to kill him as a baby must fail."

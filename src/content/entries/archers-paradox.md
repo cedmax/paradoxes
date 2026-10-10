@@ -15,7 +15,7 @@ simplification: light
 noMaths: true
 order: 104
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "On a traditional bow the arrow rests against the side of the bow and points a little off the target. Why does it still fly to the target?"
 claimA: "The arrow stays straight and rigid as it is shot, so it leaves along the line it pointed at full draw, which is off to one side of the target."
 claimB: "A well-matched arrow shot from a traditional bow flies to the target it was aimed at."

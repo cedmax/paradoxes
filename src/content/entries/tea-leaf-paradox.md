@@ -16,7 +16,7 @@ simplification: light
 noMaths: true
 order: 103
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Stir a cup of tea. Why do the leaves gather in the middle of the bottom, not at the edge?"
 claimA: "In spinning water, the outward push from the spin carries everything outwards at every depth, so the leaves should end up at the edge of the cup."
 claimB: "After stirring, the tea leaves gather in the middle of the bottom of the cup."

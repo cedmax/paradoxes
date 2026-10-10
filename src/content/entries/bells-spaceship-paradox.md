@@ -17,7 +17,7 @@ anchor: ladder-paradox
 simplification: light
 noMaths: true
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Two spaceships joined by a string speed up in exactly the same way at the same moment. Does the string break?"
 claimA: "The gap between the ships stays the same length, so a string that spanned it at the start is never stretched."
 claimB: "A moving string is shorter than the same string at rest, so a string spanning a gap that does not shrink is stretched until it breaks."

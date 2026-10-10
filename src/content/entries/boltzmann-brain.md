@@ -16,7 +16,7 @@ anchor: loschmidts-paradox
 simplification: heavy
 noMaths: true
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "If a universe that lasts for ever produces far more lone brains by chance than evolved observers, why trust that you are not one of them?"
 claimA: "In a universe that lasts for ever with a fixed amount of dark energy, random fluctuations produce far more lone brains with false memories than evolved observers, so any observer should expect to be one of those brains."
 claimB: "Observers who find themselves in an orderly universe can trust that their memories, and their view of a long cosmic history, are real."
