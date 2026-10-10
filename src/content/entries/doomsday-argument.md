@@ -18,14 +18,14 @@ anchor: sleeping-beauty-problem
 simplification: light
 noMaths: false
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Does being born among the first 60 billion or so humans make an early end for humanity more likely?"
 claimA: "If you count yourself as a random pick from all humans who will ever live, an early place in the birth order makes a small total far more likely."
 claimB: "Your place in the birth order, on its own, is no evidence about how many humans will ever live."
 verdict: "The argument has serious defenders and many critics, and the critics disagree among themselves about what is wrong with it."
 whatBreaks: "Experts split on whether you may treat yourself as a random pick from all humans who will ever live, past and future, and so read humanity’s future from your own birth rank."
 statusNote: "philosophers and physicists still split over whether your birth rank is evidence about how long humanity will last. Wikipedia reports that no consensus has emerged on a solution, and the critics do not agree on a single flaw."
-setup: "Number every human in order of birth. About 60 billion humans have been born so far, a figure the philosopher John Leslie uses, so your number is somewhere near 60 billion. Now take two guesses about the future, equally likely before you think about your number. On the first, 60 billion humans will ever live, so the end is close. On the second, 6,000 billion will live. If the first guess is right, a number near 60 billion is just what you would expect. If the second is right, only one human in 100 has a number that low."
+setup: "Number every human in order of birth. In the philosopher John Leslie’s example, about 60 billion humans have been born, so your number is somewhere near 60 billion. Now take two guesses about the future, equally likely before you think about your number. On the first, 60 billion humans will ever live, so the end is close. On the second, 6,000 billion will live. If the first guess is right, a number near 60 billion is just what you would expect. If the second is right, only one human in 100 has a number that low."
 whyWrong: "The argument says you should reason as if you were picked at random from all humans who will ever live. Then your low number is 100 times more likely on the first guess than on the second, so the odds swing from even to 100 to 1, about 99 percent, in favour of an early end. The general form goes like this. You are probably not among the first 5 percent of all humans who will ever live. So, with 95 percent confidence, the total is less than 20 times the number born so far, which is 1.2 trillion. With a steady population of 10 billion and lives of 80 years, the remaining 1,140 billion births would take about 9,120 years. Against this, it seems absurd that a plain fact like your own birth order could say when humanity ends, without any data about wars, disease or technology. Both cannot be right."
 resolution:
   - "The astrophysicist Brandon Carter proposed the argument in 1983, and the philosopher John Leslie championed it. J. Richard Gott, in a 1993 paper in Nature, and Holger Bech Nielsen, in 1989, arrived at it independently. Gott’s version uses time instead of births. If humans have existed for about 200,000 years and now is a random moment in the species’ lifetime, then with 95 percent confidence humanity will last between about 5,100 years and 7.8 million years more."
@@ -49,6 +49,9 @@ sources:
   - title: "Anthropic Preprint Archive: Papers"
     url: "https://anthropic-principle.com/resources/papers/"
     note: "Nick Bostrom’s archive. Source for Bostrom’s view, in A Primer on the Doomsday Argument, that the argument is inconclusive, his reply to Olum against the self-indication assumption, and his replies to Sowers, and to Korb and Oliver. This page does not say that Bostrom thinks the argument is invalid."
+  - title: "Leslie (1994), Testing the Doomsday Argument"
+    url: "https://doi.org/10.1111/j.1468-5930.1994.tb00088.x"
+    note: "Primary source for Leslie’s defence of the argument. Title, DOI and abstract were checked by the site owner on the publisher’s page. The page could not be fetched for this entry, so no figure or quotation here rests on it."
   - title: "Gott (1993), Implications of the Copernican principle for our future prospects, Nature 363, 315-319"
     url: "https://www.nature.com/articles/363315a0"
     note: "Source for Gott’s version: assuming only that you are a random intelligent observer, limits of 0.2 million to 8 million years for the total longevity of the species at 95 percent confidence. Abstract only."
