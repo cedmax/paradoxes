@@ -1,6 +1,6 @@
 ---
 title: "Drinker paradox"
-chapter: "self-reference"
+chapter: "belief"
 status: "explained"
 uniqueness: "related"
 anchor: "paradoxes-of-material-implication"

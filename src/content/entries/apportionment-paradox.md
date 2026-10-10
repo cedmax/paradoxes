@@ -2,8 +2,6 @@
 title: "Apportionment paradox"
 chapter: "choice-identity"
 status: "explained"
-uniqueness: "related"
-anchor: "condorcet-paradox"
 simplification: light
 noMaths: true
 order: 300
@@ -20,7 +18,7 @@ setup: "Suppose a fixed number of seats is divided between states according to p
 whyWrong: "When the total increases, all the fractional shares change. A state that won a leftover seat before may lose the race for one afterwards."
 resolution:
   - "For populations in the ratio 6 to 6 to 2, dividing 10 seats by largest remainder gives 4, 4 and 2. Dividing 11 gives 5, 5 and 1. The smallest state loses a seat."
-  - "The result is a flaw of this rounding rule, not a claim that adding seats always causes a loss. Different allocation methods make different trade-offs, much as voting rules do in the [Condorcet paradox](condorcet-paradox)."
+  - "The outcome depends on how fractional shares are rounded and awarded. It is not the same mechanism as a majority-voting cycle, so this puzzle stands on its own."
 finePrint: "The Alabama paradox was identified in historical United States apportionment calculations. Methods designed to prevent seat losses when the total grows may give up other desirable rules."
 sources:
   - title: "Wikipedia: Apportionment paradox"

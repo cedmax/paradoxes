@@ -1,8 +1,8 @@
 ---
 title: "Irresistible force paradox"
-chapter: "self-reference"
+chapter: "belief"
 status: "defused"
-uniqueness: "variant"
+uniqueness: "related"
 anchor: "omnipotence-paradox"
 simplification: light
 noMaths: true
@@ -21,7 +21,7 @@ whyWrong: "The force cannot be stopped, but the wall cannot be moved. Every imag
 resolution:
   - "At least one label must fail. In a world with a truly unstoppable force, the wall cannot remain absolutely immovable against it."
   - "This is a word-level impossibility, like the [omnipotence paradox](omnipotence-paradox), not a physics experiment involving very strong forces and sturdy walls."
-finePrint: "Real forces and materials have physical limits. The puzzle works only because both descriptions are absolute."
+finePrint: "The puzzle is related to the [omnipotence paradox](omnipotence-paradox) because both ask what absolute powers or properties mean. They are not identical puzzles: one involves incompatible descriptions of two things, the other a task assigned to an all-powerful being."
 sources:
   - title: "Wikipedia: Irresistible force paradox"
     url: "https://en.wikipedia.org/wiki/Irresistible_force_paradox"
