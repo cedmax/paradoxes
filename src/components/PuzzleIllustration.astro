@@ -59,6 +59,11 @@ const gambles = [
       <p id="staircase-step-description" class="text-base" aria-live="polite">
         <span id="staircase-step-label">4 steps</span> along each side
       </p>
+      <div class="flex flex-col gap-1 border-l-4 border-ink pl-4 text-base">
+        <p class="font-bold">Staircase length: 2</p>
+        <p id="staircase-length-breakdown">4 × 1/4 across + 4 × 1/4 up = 2</p>
+        <p>Diagonal length: √2 ≈ 1.4142</p>
+      </div>
     </div>
     <svg
       class="mx-auto w-full max-w-lg"
@@ -111,7 +116,8 @@ const gambles = [
   const stairSlider = document.querySelector<HTMLInputElement>("#staircase-step-count")
   const stairPath = document.querySelector<SVGPathElement>("#staircase-path")
   const stairLabel = document.querySelector<HTMLElement>("#staircase-step-label")
-  if (stairSlider && stairPath && stairLabel) {
+  const stairBreakdown = document.querySelector<HTMLElement>("#staircase-length-breakdown")
+  if (stairSlider && stairPath && stairLabel && stairBreakdown) {
     const stepCounts = [1, 2, 4, 8, 16, 32]
     const updateStaircase = () => {
       const n = stepCounts[Number(stairSlider.value)] ?? 4
@@ -123,6 +129,9 @@ const gambles = [
       }
       stairPath.setAttribute("d", d)
       stairLabel.textContent = `${n} ${n === 1 ? "step" : "steps"}`
+      const segmentLength = n === 1 ? "1" : `1/${n}`
+      stairBreakdown.textContent =
+        `${n} × ${segmentLength} across + ${n} × ${segmentLength} up = 2`
     }
     stairSlider.addEventListener("input", updateStaircase)
     updateStaircase()
