@@ -8,7 +8,7 @@ simplification: light
 noMaths: false
 order: 201
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "A coin rolls once around the rim of an identical coin. How many times does it turn?"
 claimA: "The rolling coin turns once for each length of its own rim it rolls over, and the other coin’s rim is exactly that long, so it turns once."
 claimB: "The rolling coin is upright again halfway round, and turns twice by the time it is back where it started."

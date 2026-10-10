@@ -8,7 +8,7 @@ simplification: light
 noMaths: false
 order: 202
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "The same four pieces make two triangles, and one has a square-shaped hole. Where did the square come from?"
 claimA: "Both shapes are the same 13 by 5 triangle with a straight long edge, so they cover the same area."
 claimB: "One shape has a 1 by 1 hole in it, so its pieces cover one square less than the other’s."

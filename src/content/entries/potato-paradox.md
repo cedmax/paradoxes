@@ -8,7 +8,7 @@ simplification: light
 noMaths: false
 order: 200
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Potatoes that are 99% water dry out until they are 98% water. Do they lose much weight?"
 claimA: "Going from 99% water to 98% water is a tiny change, so the potatoes lose very little weight."
 claimB: "The potatoes end up weighing half as much as before."
