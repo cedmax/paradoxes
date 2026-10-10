@@ -1,6 +1,7 @@
 ---
 title: "Paradox of hedonism"
 chapter: individual
+subject: "psychology"
 status: "explained"
 simplification: light
 noMaths: true

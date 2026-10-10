@@ -2,6 +2,7 @@
 title: "Two envelopes paradox"
 titleAccent: "paradox"
 chapter: probability
+subject: "decision-theory"
 status: explained
 uniqueness: related
 anchor: st-petersburg-paradox

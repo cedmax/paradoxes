@@ -10,6 +10,7 @@ aka:
     "sure million",
   ]
 chapter: individual
+subject: "decision-theory"
 order: 70
 status: disputed
 uniqueness: related

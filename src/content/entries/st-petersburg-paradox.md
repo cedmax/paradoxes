@@ -2,6 +2,7 @@
 title: "St Petersburg paradox"
 titleAccent: "paradox"
 chapter: individual
+subject: "decision-theory"
 status: unreconciled
 simplification: light
 noMaths: true

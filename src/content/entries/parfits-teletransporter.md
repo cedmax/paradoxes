@@ -2,6 +2,7 @@
 title: Parfit's teletransporter
 titleAccent: teletransporter
 chapter: what-counts
+subject: "philosophy"
 status: disputed
 uniqueness: related
 anchor: ship-of-theseus

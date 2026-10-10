@@ -2,6 +2,7 @@
 title: "Preface paradox"
 titleAccent: "paradox"
 chapter: belief
+subject: "philosophy"
 status: disputed
 uniqueness: related
 anchor: lottery-paradox

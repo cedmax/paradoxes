@@ -11,6 +11,7 @@ aka:
     "Frederic Lord",
   ]
 chapter: numbers-mislead
+subject: "statistics"
 status: explained
 uniqueness: related
 anchor: simpsons-paradox

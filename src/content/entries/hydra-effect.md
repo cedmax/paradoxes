@@ -1,6 +1,7 @@
 ---
 title: "Hydra effect"
 chapter: models
+subject: "biology"
 status: "explained"
 simplification: light
 noMaths: true

@@ -2,6 +2,7 @@ import { defineCollection } from "astro:content"
 import { glob } from "astro/loaders"
 import { z } from "astro/zod"
 import { chapterIds } from "./data/chapters"
+import { subjectIds } from "./data/subjects"
 import { uniquenessIds } from "./data/uniqueness"
 
 const entries = defineCollection({
@@ -14,6 +15,8 @@ const entries = defineCollection({
       // Other names people search for (e.g. "Zeno", "surprise exam"). Search only, not shown.
       aka: z.array(z.string()).default([]),
       chapter: z.enum(chapterIds),
+      // One primary field of study, separate from the assumption challenged by the chapter.
+      subject: z.enum(subjectIds),
       status: z.enum(["explained", "defused", "disputed", "unreconciled"]),
       // Canonical and related entries are always listed on the index. Variants (the same puzzle in
       // a different setting) are hidden by the index's "Hide variants" switch, which is on by

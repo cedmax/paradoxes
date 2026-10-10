@@ -1,6 +1,7 @@
 ---
 title: "Paradox of thrift"
 chapter: collective
+subject: "economics"
 status: "disputed"
 simplification: light
 noMaths: true

@@ -1,6 +1,7 @@
 ---
 title: "Problem of evil"
 chapter: belief
+subject: "philosophy"
 status: "disputed"
 simplification: light
 noMaths: true

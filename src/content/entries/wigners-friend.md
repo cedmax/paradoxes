@@ -11,6 +11,7 @@ aka:
     "consciousness causes collapse",
   ]
 chapter: models
+subject: "physics"
 order: 110
 status: unreconciled
 uniqueness: related

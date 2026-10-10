@@ -3,6 +3,7 @@ title: "Giffen paradox"
 titleAccent: "paradox"
 aka: ["Giffen good", "law of demand", "Giffen goods", "rice Hunan", "Gray good"]
 chapter: individual
+subject: "economics"
 order: 80
 status: explained
 simplification: light

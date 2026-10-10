@@ -4,6 +4,7 @@ titleAccent: "paradox"
 aka:
   ["class imbalance", "99 percent accurate", "accuracy is misleading", "precision and recall"]
 chapter: numbers-mislead
+subject: "statistics"
 status: explained
 uniqueness: related
 anchor: base-rate-fallacy

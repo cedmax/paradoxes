@@ -3,6 +3,7 @@ title: "Banach–Tarski paradox"
 titleAccent: "paradox"
 aka: ["doubling the ball", "pea and the Sun", "Banach Tarski"]
 chapter: infinity
+subject: "mathematics"
 order: 90
 status: explained
 simplification: heavy

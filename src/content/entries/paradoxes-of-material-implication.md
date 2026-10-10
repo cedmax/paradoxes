@@ -1,6 +1,7 @@
 ---
 title: "Paradoxes of material implication"
 chapter: belief
+subject: "logic"
 status: "disputed"
 simplification: light
 noMaths: true

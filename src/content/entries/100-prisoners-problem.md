@@ -1,6 +1,7 @@
 ---
 title: "100 prisoners problem"
 chapter: probability
+subject: "probability"
 status: "explained"
 simplification: light
 noMaths: false

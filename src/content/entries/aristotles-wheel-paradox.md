@@ -1,6 +1,7 @@
 ---
 title: "Aristotle's wheel paradox"
 chapter: shapes-sums
+subject: "geometry"
 status: "explained"
 uniqueness: "related"
 anchor: "galileos-paradox"

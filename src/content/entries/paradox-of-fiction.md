@@ -3,6 +3,7 @@ title: "Paradox of fiction"
 titleAccent: "fiction"
 aka: ["Radford", "emotions toward fiction", "why we cry at films", "suspension of disbelief"]
 chapter: what-counts
+subject: "philosophy"
 order: 100
 status: explained
 simplification: light

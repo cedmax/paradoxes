@@ -1,6 +1,7 @@
 ---
 title: "Chainstore paradox"
 chapter: collective
+subject: "game-theory"
 status: "disputed"
 uniqueness: "related"
 anchor: "unexpected-hanging-paradox"

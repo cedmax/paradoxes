@@ -1,6 +1,7 @@
 ---
 title: "Two capacitor paradox"
 chapter: models
+subject: "physics"
 status: "explained"
 simplification: light
 noMaths: false

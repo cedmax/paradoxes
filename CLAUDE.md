@@ -99,6 +99,14 @@ been shown wrong; the chapter never implies a status.
 - An entry's `anchor` may sit in another chapter; do not change uniqueness to match chapters.
 - `order` sorts entries within a chapter.
 
+### Subjects
+
+Each entry has one required `subject` describing its primary field of study, independent of its
+chapter. Subjects answer "what is this about?", while chapters answer "what assumption does it
+challenge?". Use a subject id from `src/data/subjects.ts` and apply the most relevant discipline,
+not the setting used for an example. Avoid multiplying labels for a single entry; choose one
+primary subject. Subjects appear as a badge immediately after status on entry pages.
+
 ### Status definitions (locked, do not change)
 
 - **explained**: the contradiction was only apparent. One claim rests on a mistake in reasoning

@@ -2,6 +2,7 @@
 title: "Simpson's paradox"
 titleAccent: "paradox"
 chapter: numbers-mislead
+subject: "statistics"
 status: explained
 simplification: light
 order: 10

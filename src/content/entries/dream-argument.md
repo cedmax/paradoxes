@@ -1,6 +1,7 @@
 ---
 title: "Dream argument"
 chapter: belief
+subject: "philosophy"
 status: "disputed"
 simplification: light
 noMaths: true

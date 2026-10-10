@@ -9,6 +9,7 @@ aka:
     "rope round the world",
   ]
 chapter: shapes-sums
+subject: "geometry"
 status: explained
 simplification: light
 noMaths: false

@@ -3,6 +3,7 @@ title: "Berry paradox"
 titleAccent: "paradox"
 aka: ["Berry's paradox", "smallest number not nameable", "definable numbers", "nameable number"]
 chapter: self-reference
+subject: "logic"
 order: 70
 status: defused
 uniqueness: related

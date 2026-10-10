@@ -11,6 +11,7 @@ aka:
     "strong Mpemba effect",
   ]
 chapter: models
+subject: "physics"
 status: disputed
 simplification: light
 noMaths: true

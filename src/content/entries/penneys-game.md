@@ -10,6 +10,7 @@ aka:
     "nontransitive coin game",
   ]
 chapter: probability
+subject: "probability"
 order: 90
 status: explained
 uniqueness: related

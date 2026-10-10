@@ -10,6 +10,7 @@ aka:
     "no greatest cardinal",
   ]
 chapter: infinity
+subject: "mathematics"
 status: defused
 uniqueness: related
 anchor: russells-paradox

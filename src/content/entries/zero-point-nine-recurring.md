@@ -10,6 +10,7 @@ aka:
     "infinite decimal",
   ]
 chapter: infinity
+subject: "mathematics"
 order: 80
 status: explained
 uniqueness: related

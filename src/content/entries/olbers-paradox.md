@@ -2,6 +2,7 @@
 title: "Olbers' paradox"
 titleAccent: "paradox"
 chapter: models
+subject: "physics"
 status: defused
 simplification: light
 noMaths: true

@@ -3,6 +3,7 @@ title: "Zeno's dichotomy paradox"
 titleAccent: "paradox"
 aka: ["Zeno", "racecourse", "race course"]
 chapter: infinity
+subject: "mathematics"
 status: explained
 uniqueness: variant
 anchor: achilles-and-the-tortoise

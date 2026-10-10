@@ -3,6 +3,7 @@ title: "Jevons paradox"
 titleAccent: "paradox"
 aka: ["rebound effect", "efficiency paradox", "The Coal Question", "Khazzoom-Brookes"]
 chapter: collective
+subject: "economics"
 order: 100
 status: explained
 simplification: light

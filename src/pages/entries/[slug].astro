@@ -6,6 +6,7 @@ import PuzzleIllustration from "~/components/PuzzleIllustration.astro"
 import { chapterById } from "~/data/chapters"
 import { getPublishedEntries } from "~/data/entries"
 import { statuses, simplifications } from "~/data/status"
+import { subjectLabels } from "~/data/subjects"
 import { anchorOf, uniqueness } from "~/data/uniqueness"
 
 export async function getStaticPaths() {
@@ -84,6 +85,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
     </div>
     <div class="flex flex-wrap items-center gap-2.5">
       <div class:list={[badge, s.bg]}>{s.label}</div>
+      <div class={badge}>Subject: {subjectLabels[d.subject]}</div>
       {anchor && <div class={badge}>{u.label}</div>}
       {d.noMaths && <div class={badge}>No maths needed</div>}
       <div class={badge}>{simp.label}</div>

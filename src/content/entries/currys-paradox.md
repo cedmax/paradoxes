@@ -3,6 +3,7 @@ title: "Curry's paradox"
 titleAccent: "paradox"
 aka: ["Curry", "Löb's paradox", "if this sentence is true", "Haskell Curry", "proves anything"]
 chapter: self-reference
+subject: "logic"
 order: 90
 status: unreconciled
 uniqueness: related

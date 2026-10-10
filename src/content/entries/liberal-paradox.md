@@ -1,6 +1,7 @@
 ---
 title: "Liberal paradox"
 chapter: collective
+subject: "politics"
 status: "disputed"
 uniqueness: "related"
 anchor: "condorcet-paradox"

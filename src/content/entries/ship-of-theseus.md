@@ -1,6 +1,7 @@
 ---
 title: Ship of Theseus
 chapter: what-counts
+subject: "philosophy"
 status: disputed
 simplification: light
 order: 70

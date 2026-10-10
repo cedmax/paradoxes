@@ -2,6 +2,7 @@
 title: Abilene paradox
 titleAccent: paradox
 chapter: collective
+subject: "psychology"
 status: explained
 simplification: light
 noMaths: true

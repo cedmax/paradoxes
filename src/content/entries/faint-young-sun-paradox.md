@@ -3,6 +3,7 @@ title: "Faint young Sun paradox"
 titleAccent: "paradox"
 aka: ["early Earth", "Sagan and Mullen", "young Sun", "early climate", "snowball Earth"]
 chapter: models
+subject: "physics"
 order: 80
 status: disputed
 simplification: light

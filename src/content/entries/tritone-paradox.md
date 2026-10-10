@@ -1,6 +1,7 @@
 ---
 title: "Tritone paradox"
 chapter: what-counts
+subject: "psychology"
 status: "explained"
 simplification: light
 noMaths: true

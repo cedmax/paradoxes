@@ -10,6 +10,7 @@ aka:
     "checkerboard paradox",
   ]
 chapter: shapes-sums
+subject: "geometry"
 status: explained
 uniqueness: variant
 anchor: missing-square-puzzle

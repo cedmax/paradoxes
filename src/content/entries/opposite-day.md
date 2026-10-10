@@ -1,6 +1,7 @@
 ---
 title: "Opposite Day"
 chapter: self-reference
+subject: "logic"
 status: "explained"
 uniqueness: "related"
 anchor: "liar-paradox"

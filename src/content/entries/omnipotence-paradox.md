@@ -2,6 +2,7 @@
 title: "Omnipotence paradox"
 titleAccent: paradox
 chapter: what-counts
+subject: "philosophy"
 status: defused
 uniqueness: related
 anchor: russells-paradox

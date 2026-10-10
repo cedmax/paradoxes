@@ -3,6 +3,7 @@ title: "Grandi's series"
 titleAccent: series
 aka: ["1-1+1-1", "1 − 1 + 1 − 1", "Grandi", "Cesàro sum", "Abel sum", "one half"]
 chapter: infinity
+subject: "mathematics"
 status: explained
 uniqueness: related
 anchor: sum-of-all-whole-numbers

@@ -1,6 +1,7 @@
 ---
 title: "Apportionment paradox"
 chapter: collective
+subject: "politics"
 status: "explained"
 simplification: light
 noMaths: true

@@ -3,6 +3,7 @@ title: "Boy or girl paradox"
 titleAccent: "paradox"
 aka: ["two child problem", "two children problem"]
 chapter: probability
+subject: "probability"
 status: explained
 uniqueness: related
 anchor: monty-hall-problem

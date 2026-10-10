@@ -1,6 +1,7 @@
 ---
 title: "Ant on a rubber rope"
 chapter: infinity
+subject: "mathematics"
 status: "explained"
 simplification: light
 noMaths: true

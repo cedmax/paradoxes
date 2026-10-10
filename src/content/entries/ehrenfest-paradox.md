@@ -1,6 +1,7 @@
 ---
 title: "Ehrenfest paradox"
 chapter: models
+subject: "physics"
 status: "explained"
 uniqueness: "related"
 anchor: "ladder-paradox"

@@ -2,6 +2,7 @@
 title: Sorites paradox
 titleAccent: paradox
 chapter: what-counts
+subject: "philosophy"
 status: disputed
 simplification: light
 order: 30

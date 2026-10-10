@@ -11,6 +11,7 @@ aka:
     "Hardy and Ramanujan",
   ]
 chapter: what-counts
+subject: "logic"
 order: 20
 status: defused
 uniqueness: related

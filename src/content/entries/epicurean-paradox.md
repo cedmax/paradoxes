@@ -1,6 +1,7 @@
 ---
 title: "Epicurean paradox"
 chapter: belief
+subject: "philosophy"
 status: "disputed"
 uniqueness: "variant"
 anchor: "problem-of-evil"

@@ -2,6 +2,7 @@
 title: "Achilles and the tortoise"
 aka: ["Zeno", "Zeno's paradox"]
 chapter: infinity
+subject: "mathematics"
 status: explained
 simplification: light
 order: 10

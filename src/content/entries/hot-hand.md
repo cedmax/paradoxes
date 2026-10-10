@@ -3,6 +3,7 @@ title: "Hot hand"
 titleAccent: "hand"
 aka: ["hot hand fallacy", "streak shooting", "Gilovich Vallone Tversky", "Miller Sanjurjo"]
 chapter: numbers-mislead
+subject: "statistics"
 order: 80
 status: explained
 simplification: light

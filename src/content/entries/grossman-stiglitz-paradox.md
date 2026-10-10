@@ -1,6 +1,7 @@
 ---
 title: "Grossman–Stiglitz paradox"
 chapter: collective
+subject: "economics"
 status: "defused"
 simplification: light
 noMaths: true

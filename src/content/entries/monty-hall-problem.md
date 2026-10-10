@@ -3,6 +3,7 @@ title: "Monty Hall problem"
 titleAccent: "problem"
 aka: ["three doors", "game show"]
 chapter: probability
+subject: "probability"
 status: explained
 simplification: light
 order: 10

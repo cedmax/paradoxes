@@ -10,6 +10,7 @@ aka:
     "happiness economics",
   ]
 chapter: numbers-mislead
+subject: "economics"
 order: 160
 status: disputed
 simplification: light

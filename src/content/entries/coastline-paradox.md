@@ -2,6 +2,7 @@
 title: "Coastline paradox"
 titleAccent: "paradox"
 chapter: what-counts
+subject: "geometry"
 status: explained
 simplification: light
 order: 40

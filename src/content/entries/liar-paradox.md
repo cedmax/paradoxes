@@ -2,6 +2,7 @@
 title: Liar paradox
 titleAccent: paradox
 chapter: self-reference
+subject: "logic"
 status: unreconciled
 simplification: light
 order: 10

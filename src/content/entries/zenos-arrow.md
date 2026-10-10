@@ -3,6 +3,7 @@ title: "Zeno's arrow paradox"
 titleAccent: "paradox"
 aka: ["Zeno", "flying arrow"]
 chapter: infinity
+subject: "mathematics"
 status: explained
 simplification: light
 order: 40

@@ -10,6 +10,7 @@ aka:
     "centre shot bow",
   ]
 chapter: models
+subject: "physics"
 status: explained
 simplification: light
 noMaths: true

@@ -10,6 +10,7 @@ aka:
     "ovocleidin",
   ]
 chapter: what-counts
+subject: "biology"
 status: defused
 uniqueness: related
 anchor: sorites-paradox

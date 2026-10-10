@@ -1,6 +1,7 @@
 ---
 title: "Drinker paradox"
 chapter: belief
+subject: "logic"
 status: "explained"
 uniqueness: "related"
 anchor: "paradoxes-of-material-implication"

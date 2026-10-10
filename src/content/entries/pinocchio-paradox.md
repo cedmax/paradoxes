@@ -10,6 +10,7 @@ aka:
     "Pinocchio's nose",
   ]
 chapter: self-reference
+subject: "logic"
 status: disputed
 uniqueness: related
 anchor: liar-paradox

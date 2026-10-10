@@ -3,6 +3,7 @@ title: "Moral luck"
 titleAccent: "luck"
 aka: ["Nagel", "Williams", "control principle", "resultant luck", "constitutive luck"]
 chapter: individual
+subject: "ethics"
 order: 100
 status: disputed
 simplification: light

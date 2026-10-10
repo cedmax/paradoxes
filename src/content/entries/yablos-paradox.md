@@ -10,6 +10,7 @@ aka:
     "paradox without self-reference",
   ]
 chapter: self-reference
+subject: "logic"
 order: 100
 status: unreconciled
 uniqueness: related

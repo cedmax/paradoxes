@@ -2,6 +2,7 @@
 title: Pascal's wager
 titleAccent: wager
 chapter: individual
+subject: "decision-theory"
 status: disputed
 uniqueness: related
 anchor: st-petersburg-paradox

@@ -11,6 +11,7 @@ aka:
     "missing data",
   ]
 chapter: numbers-mislead
+subject: "statistics"
 order: 100
 status: explained
 uniqueness: related

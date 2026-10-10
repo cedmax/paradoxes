@@ -2,6 +2,7 @@
 title: "Gabriel's horn"
 aka: ["Torricelli's trumpet"]
 chapter: infinity
+subject: "mathematics"
 status: explained
 simplification: light
 noMaths: false

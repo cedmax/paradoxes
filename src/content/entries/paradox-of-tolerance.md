@@ -2,6 +2,7 @@
 title: Paradox of tolerance
 titleAccent: paradox
 chapter: collective
+subject: "politics"
 status: disputed
 simplification: light
 noMaths: true

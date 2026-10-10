@@ -2,6 +2,7 @@
 title: Prisoner's dilemma
 titleAccent: dilemma
 chapter: collective
+subject: "game-theory"
 status: disputed
 simplification: light
 order: 10

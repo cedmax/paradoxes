@@ -2,6 +2,7 @@
 title: "Barber paradox"
 titleAccent: "paradox"
 chapter: self-reference
+subject: "logic"
 status: defused
 uniqueness: variant
 anchor: russells-paradox

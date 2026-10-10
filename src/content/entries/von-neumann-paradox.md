@@ -10,6 +10,7 @@ aka:
     "amenable groups",
   ]
 chapter: infinity
+subject: "mathematics"
 status: explained
 uniqueness: variant
 anchor: banach-tarski-paradox

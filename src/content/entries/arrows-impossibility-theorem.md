@@ -11,6 +11,7 @@ aka:
     "social choice",
   ]
 chapter: collective
+subject: "politics"
 order: 70
 status: unreconciled
 uniqueness: related

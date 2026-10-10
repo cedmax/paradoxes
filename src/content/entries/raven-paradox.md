@@ -2,6 +2,7 @@
 title: "Raven paradox"
 titleAccent: "paradox"
 chapter: belief
+subject: "philosophy"
 status: disputed
 simplification: light
 order: 30

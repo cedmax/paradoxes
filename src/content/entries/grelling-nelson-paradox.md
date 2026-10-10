@@ -2,6 +2,7 @@
 title: "Grelling–Nelson paradox"
 titleAccent: paradox
 chapter: self-reference
+subject: "logic"
 status: unreconciled
 uniqueness: variant
 anchor: russells-paradox

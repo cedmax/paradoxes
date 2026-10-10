@@ -10,6 +10,7 @@ aka:
     "locality",
   ]
 chapter: models
+subject: "physics"
 order: 70
 status: disputed
 simplification: heavy

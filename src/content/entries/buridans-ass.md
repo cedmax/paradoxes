@@ -2,6 +2,7 @@
 title: Buridan's ass
 titleAccent: ass
 chapter: individual
+subject: "decision-theory"
 status: disputed
 simplification: light
 order: 40

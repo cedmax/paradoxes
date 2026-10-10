@@ -4,6 +4,7 @@ titleAccent: "paradox"
 aka:
   ["Tristram Shandy", "Russell", "Sterne", "endless autobiography", "biography that never ends"]
 chapter: infinity
+subject: "mathematics"
 order: 120
 status: explained
 uniqueness: related

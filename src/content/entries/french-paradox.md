@@ -1,6 +1,7 @@
 ---
 title: "French paradox"
 chapter: numbers-mislead
+subject: "biology"
 status: "disputed"
 simplification: light
 noMaths: true

@@ -10,6 +10,7 @@ aka:
     "all truths are knowable",
   ]
 chapter: belief
+subject: "logic"
 order: 80
 status: disputed
 uniqueness: related

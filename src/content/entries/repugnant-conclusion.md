@@ -3,6 +3,7 @@ title: "Repugnant conclusion"
 titleAccent: "conclusion"
 aka: ["Parfit", "mere addition paradox", "population ethics", "Reasons and Persons"]
 chapter: individual
+subject: "ethics"
 order: 120
 status: unreconciled
 simplification: light

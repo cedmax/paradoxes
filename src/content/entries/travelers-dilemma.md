@@ -3,6 +3,7 @@ title: "Traveler's dilemma"
 titleAccent: "dilemma"
 aka: ["Traveller's dilemma", "Basu", "lost luggage game", "lost suitcase game", "undercutting"]
 chapter: collective
+subject: "game-theory"
 order: 120
 status: disputed
 uniqueness: related

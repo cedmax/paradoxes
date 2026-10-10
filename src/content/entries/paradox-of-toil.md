@@ -1,6 +1,7 @@
 ---
 title: "Paradox of toil"
 chapter: collective
+subject: "economics"
 status: "disputed"
 uniqueness: "related"
 anchor: "paradox-of-thrift"

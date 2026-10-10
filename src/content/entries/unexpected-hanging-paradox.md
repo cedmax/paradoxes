@@ -2,6 +2,7 @@
 title: "Unexpected hanging paradox"
 titleAccent: "paradox"
 chapter: belief
+subject: "logic"
 status: disputed
 simplification: light
 order: 70

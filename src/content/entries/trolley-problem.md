@@ -11,6 +11,7 @@ aka:
     "doctrine of double effect",
   ]
 chapter: individual
+subject: "ethics"
 order: 130
 status: disputed
 simplification: light

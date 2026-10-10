@@ -2,6 +2,7 @@
 title: "Thomson's lamp"
 aka: ["supertask"]
 chapter: infinity
+subject: "mathematics"
 status: explained
 uniqueness: related
 anchor: achilles-and-the-tortoise

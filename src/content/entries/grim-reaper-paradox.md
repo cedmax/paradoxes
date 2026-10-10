@@ -10,6 +10,7 @@ aka:
     "unsatisfiable pair diagnosis",
   ]
 chapter: infinity
+subject: "philosophy"
 status: disputed
 uniqueness: related
 anchor: thomsons-lamp

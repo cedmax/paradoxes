@@ -1,6 +1,7 @@
 ---
 title: "Norton's dome"
 chapter: models
+subject: "physics"
 status: "disputed"
 simplification: light
 noMaths: false

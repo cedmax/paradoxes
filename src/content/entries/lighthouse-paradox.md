@@ -1,6 +1,7 @@
 ---
 title: "Lighthouse paradox"
 chapter: what-counts
+subject: "physics"
 status: "explained"
 simplification: light
 noMaths: true

@@ -10,6 +10,7 @@ aka:
     "boundary layer",
   ]
 chapter: models
+subject: "physics"
 order: 60
 status: explained
 simplification: heavy

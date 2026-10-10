@@ -2,6 +2,7 @@
 title: "Fermi paradox"
 titleAccent: "paradox"
 chapter: models
+subject: "physics"
 status: disputed
 simplification: light
 noMaths: true

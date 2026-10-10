@@ -2,6 +2,7 @@
 title: "Bertrand's box paradox"
 titleAccent: "paradox"
 chapter: probability
+subject: "probability"
 status: explained
 uniqueness: variant
 anchor: monty-hall-problem

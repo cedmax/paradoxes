@@ -1,6 +1,7 @@
 ---
 title: "Low birth-weight paradox"
 chapter: numbers-mislead
+subject: "biology"
 status: "explained"
 uniqueness: "related"
 anchor: "berksons-paradox"

@@ -9,6 +9,7 @@ aka:
     "Polchinski billiard-ball paradox",
   ]
 chapter: time-causation
+subject: "philosophy"
 status: "explained"
 uniqueness: "related"
 anchor: "grandfather-paradox"

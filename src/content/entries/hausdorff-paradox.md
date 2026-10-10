@@ -9,6 +9,7 @@ aka:
     "a third, a half and two thirds",
   ]
 chapter: infinity
+subject: "mathematics"
 status: explained
 uniqueness: variant
 anchor: banach-tarski-paradox

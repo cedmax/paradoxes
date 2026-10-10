@@ -10,6 +10,7 @@ aka:
     "Nelson Goodman",
   ]
 chapter: belief
+subject: "philosophy"
 order: 85
 status: unreconciled
 uniqueness: related

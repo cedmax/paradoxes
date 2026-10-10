@@ -2,6 +2,7 @@
 title: "Protagoras and Euathlus"
 titleAccent: Euathlus
 chapter: self-reference
+subject: "logic"
 status: defused
 simplification: light
 order: 60

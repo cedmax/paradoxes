@@ -2,6 +2,7 @@
 title: Condorcet paradox
 titleAccent: paradox
 chapter: collective
+subject: "politics"
 status: explained
 simplification: light
 noMaths: true

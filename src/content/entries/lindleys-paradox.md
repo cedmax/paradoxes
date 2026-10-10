@@ -1,6 +1,7 @@
 ---
 title: "Lindley's paradox"
 chapter: numbers-mislead
+subject: "statistics"
 status: "explained"
 simplification: light
 noMaths: false

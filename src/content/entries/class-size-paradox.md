@@ -2,6 +2,7 @@
 title: Class size paradox
 titleAccent: paradox
 chapter: numbers-mislead
+subject: "statistics"
 status: explained
 uniqueness: variant
 anchor: inspection-paradox

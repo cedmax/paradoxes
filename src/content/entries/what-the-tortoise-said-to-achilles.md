@@ -1,6 +1,7 @@
 ---
 title: "What the Tortoise Said to Achilles"
 chapter: belief
+subject: "logic"
 status: "explained"
 simplification: light
 noMaths: true

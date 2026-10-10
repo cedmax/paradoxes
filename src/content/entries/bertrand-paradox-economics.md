@@ -1,6 +1,7 @@
 ---
 title: "Bertrand paradox (economics)"
 chapter: collective
+subject: "economics"
 status: "explained"
 simplification: light
 noMaths: false

@@ -2,6 +2,7 @@
 title: "Schrödinger's cat"
 titleAccent: "cat"
 chapter: models
+subject: "physics"
 status: unreconciled
 simplification: light
 noMaths: true

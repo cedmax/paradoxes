@@ -1,6 +1,7 @@
 ---
 title: "Kant's antinomies"
 chapter: belief
+subject: "philosophy"
 status: "disputed"
 simplification: light
 noMaths: true

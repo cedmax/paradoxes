@@ -1,6 +1,7 @@
 ---
 title: "Elevator paradox"
 chapter: numbers-mislead
+subject: "statistics"
 status: "explained"
 uniqueness: "related"
 anchor: "inspection-paradox"

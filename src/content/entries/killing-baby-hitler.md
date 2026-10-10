@@ -9,6 +9,7 @@ aka:
     "kill Hitler as a baby",
   ]
 chapter: time-causation
+subject: "ethics"
 status: disputed
 uniqueness: variant
 anchor: grandfather-paradox

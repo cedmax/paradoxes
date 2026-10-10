@@ -12,6 +12,7 @@ aka:
     "end of humanity",
   ]
 chapter: belief
+subject: "philosophy"
 order: 20
 status: disputed
 uniqueness: related

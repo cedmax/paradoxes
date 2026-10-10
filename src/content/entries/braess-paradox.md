@@ -2,6 +2,7 @@
 title: Braess's paradox
 titleAccent: paradox
 chapter: collective
+subject: "game-theory"
 status: explained
 simplification: light
 noMaths: true

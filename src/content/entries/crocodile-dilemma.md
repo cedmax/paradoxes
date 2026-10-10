@@ -3,6 +3,7 @@ title: "Crocodile dilemma"
 titleAccent: dilemma
 aka: ["crocodile paradox"]
 chapter: self-reference
+subject: "logic"
 status: defused
 uniqueness: variant
 anchor: protagoras-and-euathlus

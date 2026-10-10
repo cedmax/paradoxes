@@ -10,6 +10,7 @@ aka:
     "motorway exits",
   ]
 chapter: individual
+subject: "decision-theory"
 order: 20
 status: explained
 uniqueness: related

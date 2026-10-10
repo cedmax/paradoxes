@@ -10,6 +10,7 @@ aka:
     "cognitive instability",
   ]
 chapter: models
+subject: "physics"
 order: 50
 status: unreconciled
 uniqueness: related

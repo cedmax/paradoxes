@@ -9,6 +9,7 @@ aka:
     "Burali-Forti antinomy",
   ]
 chapter: self-reference
+subject: "mathematics"
 status: defused
 uniqueness: related
 anchor: russells-paradox

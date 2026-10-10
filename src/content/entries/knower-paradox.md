@@ -1,6 +1,7 @@
 ---
 title: "Knower paradox"
 chapter: self-reference
+subject: "logic"
 status: "disputed"
 uniqueness: "related"
 anchor: "liar-paradox"

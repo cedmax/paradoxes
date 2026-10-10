@@ -9,6 +9,7 @@ aka:
     "indirect self-reference",
   ]
 chapter: self-reference
+subject: "logic"
 status: unreconciled
 uniqueness: variant
 anchor: liar-paradox

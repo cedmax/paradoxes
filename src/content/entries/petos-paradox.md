@@ -3,6 +3,7 @@ title: "Peto's paradox"
 titleAccent: paradox
 aka: ["whales and cancer", "elephants and cancer", "body size and cancer", "TP53 elephants"]
 chapter: models
+subject: "biology"
 status: disputed
 simplification: light
 noMaths: true

@@ -10,6 +10,7 @@ aka:
     "rational intention",
   ]
 chapter: individual
+subject: "decision-theory"
 order: 90
 status: disputed
 simplification: light

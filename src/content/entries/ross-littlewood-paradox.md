@@ -10,6 +10,7 @@ aka:
     "supertask",
   ]
 chapter: infinity
+subject: "mathematics"
 order: 100
 status: explained
 uniqueness: related

@@ -1,6 +1,7 @@
 ---
 title: "Heat death paradox"
 chapter: models
+subject: "physics"
 status: "defused"
 uniqueness: "related"
 anchor: "olbers-paradox"

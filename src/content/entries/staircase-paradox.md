@@ -11,6 +11,7 @@ aka:
     "arc length",
   ]
 chapter: infinity
+subject: "geometry"
 status: explained
 uniqueness: related
 anchor: coastline-paradox

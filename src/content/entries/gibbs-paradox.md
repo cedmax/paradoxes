@@ -11,6 +11,7 @@ aka:
     "extensive entropy",
   ]
 chapter: models
+subject: "physics"
 status: explained
 simplification: heavy
 noMaths: false

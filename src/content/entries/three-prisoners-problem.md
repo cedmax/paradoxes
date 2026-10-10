@@ -3,6 +3,7 @@ title: "Three prisoners problem"
 titleAccent: "problem"
 aka: ["three prisoners", "warden", "prisoner pardon", "Martin Gardner"]
 chapter: probability
+subject: "probability"
 status: explained
 uniqueness: variant
 anchor: monty-hall-problem

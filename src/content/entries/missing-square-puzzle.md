@@ -3,6 +3,7 @@ title: "Missing square puzzle"
 titleAccent: "puzzle"
 aka: ["Curry triangle", "disappearing square", "dissection paradox", "13 by 5 triangle"]
 chapter: shapes-sums
+subject: "geometry"
 status: explained
 simplification: light
 noMaths: false

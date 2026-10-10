@@ -12,6 +12,7 @@ aka:
     "pivotal vote",
   ]
 chapter: individual
+subject: "politics"
 order: 115
 status: disputed
 uniqueness: related

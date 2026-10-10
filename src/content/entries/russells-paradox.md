@@ -2,6 +2,7 @@
 title: "Russell's paradox"
 titleAccent: paradox
 chapter: self-reference
+subject: "logic"
 status: defused
 simplification: light
 order: 30

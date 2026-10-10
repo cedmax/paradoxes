@@ -10,6 +10,7 @@ aka:
     "coin piles game",
   ]
 chapter: collective
+subject: "game-theory"
 order: 80
 status: disputed
 uniqueness: related

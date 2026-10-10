@@ -3,6 +3,7 @@ title: "Maxwell's demon"
 titleAccent: "demon"
 aka: ["Landauer", "Bennett", "Szilard engine", "second law", "information and entropy"]
 chapter: models
+subject: "physics"
 order: 100
 status: explained
 simplification: heavy

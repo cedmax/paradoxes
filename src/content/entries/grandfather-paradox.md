@@ -2,6 +2,7 @@
 title: "Grandfather paradox"
 titleAccent: "paradox"
 chapter: time-causation
+subject: "philosophy"
 status: disputed
 simplification: light
 noMaths: true

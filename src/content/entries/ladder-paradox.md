@@ -2,6 +2,7 @@
 title: "Ladder paradox"
 titleAccent: "paradox"
 chapter: time-causation
+subject: "physics"
 status: explained
 simplification: light
 noMaths: true

@@ -2,6 +2,7 @@
 title: "Bootstrap paradox"
 titleAccent: "paradox"
 chapter: time-causation
+subject: "philosophy"
 status: disputed
 uniqueness: related
 anchor: grandfather-paradox

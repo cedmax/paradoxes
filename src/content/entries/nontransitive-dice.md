@@ -2,6 +2,7 @@
 title: Nontransitive dice
 titleAccent: dice
 chapter: probability
+subject: "probability"
 status: explained
 uniqueness: related
 anchor: condorcet-paradox

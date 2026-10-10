@@ -2,6 +2,7 @@
 title: "Galileo's paradox"
 titleAccent: "paradox"
 chapter: infinity
+subject: "mathematics"
 status: explained
 simplification: light
 order: 50

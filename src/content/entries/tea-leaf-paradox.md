@@ -11,6 +11,7 @@ aka:
     "river meanders",
   ]
 chapter: models
+subject: "physics"
 status: explained
 simplification: light
 noMaths: true

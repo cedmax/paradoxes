@@ -3,6 +3,7 @@ title: "Dollar auction"
 titleAccent: "auction"
 aka: ["Shubik", "escalation", "sunk cost", "war of attrition", "dollar auction game"]
 chapter: collective
+subject: "game-theory"
 order: 90
 status: explained
 simplification: light

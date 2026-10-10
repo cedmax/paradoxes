@@ -10,6 +10,7 @@ aka:
     "concealed distribution",
   ]
 chapter: shapes-sums
+subject: "geometry"
 status: explained
 uniqueness: related
 anchor: missing-square-puzzle

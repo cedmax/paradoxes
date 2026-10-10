@@ -9,6 +9,7 @@ aka:
     "relativity of countability",
   ]
 chapter: infinity
+subject: "mathematics"
 status: explained
 simplification: heavy
 noMaths: false

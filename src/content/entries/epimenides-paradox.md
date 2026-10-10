@@ -9,6 +9,7 @@ aka:
     "the Cretans are always liars",
   ]
 chapter: self-reference
+subject: "logic"
 status: explained
 uniqueness: related
 anchor: liar-paradox

@@ -2,6 +2,7 @@
 title: "Hilbert's hotel"
 aka: ["Grand Hotel", "infinite hotel"]
 chapter: infinity
+subject: "mathematics"
 status: explained
 uniqueness: related
 anchor: galileos-paradox

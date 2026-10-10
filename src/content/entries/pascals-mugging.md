@@ -10,6 +10,7 @@ aka:
     "Yudkowsky mugging",
   ]
 chapter: individual
+subject: "decision-theory"
 order: 110
 status: unreconciled
 uniqueness: related

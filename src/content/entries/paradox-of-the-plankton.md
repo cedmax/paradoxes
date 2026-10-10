@@ -10,6 +10,7 @@ aka:
     "plankton paradox",
   ]
 chapter: models
+subject: "biology"
 order: 200
 status: defused
 simplification: light

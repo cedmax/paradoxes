@@ -2,6 +2,7 @@
 title: False positive paradox
 titleAccent: paradox
 chapter: numbers-mislead
+subject: "statistics"
 status: explained
 simplification: light
 noMaths: true

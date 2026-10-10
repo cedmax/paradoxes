@@ -2,6 +2,7 @@
 title: Ellsberg paradox
 titleAccent: paradox
 chapter: individual
+subject: "decision-theory"
 status: disputed
 simplification: light
 order: 60

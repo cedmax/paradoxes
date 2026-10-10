@@ -2,6 +2,7 @@
 title: Newcomb's paradox
 titleAccent: paradox
 chapter: individual
+subject: "decision-theory"
 status: disputed
 simplification: light
 order: 30
