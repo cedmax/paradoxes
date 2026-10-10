@@ -1,5 +1,49 @@
 <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">When you decide, the predictor has already filled or emptied Box B.</p>
-<div class="overflow-x-auto border-2 border-ink"><table class="w-full text-base"><thead><tr class="border-b-2 border-ink"><th class="p-3 text-left">Already in B</th><th class="p-3 text-right">Take B only</th><th class="p-3 text-right">Take A and B</th></tr></thead><tbody><tr class="border-b border-ink"><th class="p-3 text-left">$1,000,000</th><td class="p-3 text-right">$1,000,000</td><td class="p-3 text-right">$1,001,000</td></tr><tr><th class="p-3 text-left">Empty</th><td class="p-3 text-right">$0</td><td class="p-3 text-right">$1,000</td></tr></tbody></table></div>
-<div class="grid grid-cols-2 gap-3 text-base"><div class="border-l-4 border-[#387a91] pl-3"><strong>Take both</strong><p>Whatever is in B, the extra open box adds $1,000.</p></div><div class="border-l-4 border-[#bd4b37] pl-3"><strong>Take only B</strong><p>The highly accurate prediction means this choice is usually linked to $1,000,000 in B.</p></div></div>
-<figcaption class="text-base leading-normal">Box A contains $1,000. The predictor put the million in B if it expected you to take B alone and left B empty if it expected both boxes. The numbers in each row are certain once B is filled; the dispute is how to choose when your action strongly predicts which row you are in but cannot now change its contents.</figcaption></figure>
+  <p class="font-bold">When you decide, the predictor has already filled or emptied Box B.</p>
+  <div class="grid gap-3 sm:grid-cols-2">
+    <div class="border-2 border-ink">
+      <p class="border-b-2 border-ink px-3 py-2 font-bold">Already in B: $1,000,000</p>
+      <dl class="text-base">
+        <div class="flex justify-between gap-3 border-b border-ink px-3 py-2">
+          <dt>Take B only</dt>
+          <dd>$1,000,000</dd>
+        </div>
+        <div class="flex justify-between gap-3 px-3 py-2">
+          <dt>Take A and B</dt>
+          <dd>$1,001,000</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="border-2 border-ink">
+      <p class="border-b-2 border-ink px-3 py-2 font-bold">Already in B: empty</p>
+      <dl class="text-base">
+        <div class="flex justify-between gap-3 border-b border-ink px-3 py-2">
+          <dt>Take B only</dt>
+          <dd>$0</dd>
+        </div>
+        <div class="flex justify-between gap-3 px-3 py-2">
+          <dt>Take A and B</dt>
+          <dd>$1,000</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-3 text-base">
+    <div class="border-l-4 border-[#387a91] pl-3">
+      <strong>Take both</strong>
+      <p>Whatever is in B, the extra open box adds $1,000.</p>
+    </div>
+    <div class="border-l-4 border-[#bd4b37] pl-3">
+      <strong>Take only B</strong>
+      <p>
+        The highly accurate prediction means this choice is usually linked to $1,000,000 in B.
+      </p>
+    </div>
+  </div>
+  <figcaption class="text-base leading-normal">
+    Box A contains $1,000. The predictor put the million in B if it expected you to take B alone
+    and left B empty if it expected both boxes. The numbers in each row are certain once B is
+    filled; the dispute is how to choose when your action strongly predicts which row you are in
+    but cannot now change its contents.
+  </figcaption>
+</figure>
