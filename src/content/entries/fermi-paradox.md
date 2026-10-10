@@ -21,10 +21,10 @@ resolution:
   - "Many answers have been proposed. They fall into a few families, and none has been shown to be right. The honest summary is that only one example of life is known, on Earth, and it is not possible to tell which family is closest to the truth."
 positions:
   - title: "Life or intelligence is rare"
-    body: "Something in the path from chemistry to a technological civilisation is very unlikely. Robin Hanson called such a barrier a great filter. Cost: with only one known case of life, it cannot be tested, and it is unclear whether the hard step is behind us or ahead of us."
+    body: "Something in the path from chemistry to a technological civilisation is very unlikely. Robin Hanson called such a barrier a great filter. Cost: with only one known case of life, it cannot be tested, and it is unclear whether the hard step is behind humanity or ahead of it."
   - title: "Civilisations do not last"
     body: "They destroy themselves or fail before they spread. Cost: it must apply to nearly every civilisation, without exception."
-  - title: "They exist, but we cannot see them"
+  - title: "They exist, but cannot be seen"
     body: "They might be silent, use methods current searches would miss, avoid contact on purpose, or prefer not to travel. Cost: it assumes the same choices in every civilisation, and it can explain any silence, so it is hard to test."
   - title: "Too little searching, or too early"
     body: "Only a tiny part of space and time has been searched, and humanity may be among the first. Cost: it leaves the expectation intact and just says more time or searching is needed."
