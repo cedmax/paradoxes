@@ -15,17 +15,17 @@ simplification: heavy
 noMaths: true
 written: true
 sourcesVerified: true
-problem: "If measuring one particle lets someone predict a distant particle’s result, was that result already fixed before either measurement?"
-claimA: "Measuring one particle does not disturb its distant partner; a result predictable with certainty therefore reveals a definite property, even when quantum theory does not specify it."
-claimB: "Quantum theory completely describes the particles, including cases where it does not assign those definite properties."
-verdict: "EPR argued that undisturbed, predictable properties make quantum theory incomplete. Later Bell tests rule out large classes of local hidden-property theories, but do not select a single interpretation."
-whatBreaks: "Whether to keep EPR’s account of definite, undisturbed properties or the completeness of the quantum description, and what later Bell tests require changing."
-statusNote: "the original argument challenges quantum theory’s completeness. Later experiments violate Bell’s bounds, including tests that close the main detection and locality loopholes. Their interpretation still depends on assumptions and does not choose one theory."
+problem: "If two particles are linked, can measuring one change the other instantly, however far apart they are?"
+claimA: "Nothing done to one particle can instantly change a distant one, so quantum mechanics must leave something about the particles out."
+claimB: "Quantum mechanics gives a complete description of the particles, and measuring one gives a definite result correlated with the other’s."
+verdict: "The dispute is how to account for distant correlations: whether quantum theory leaves properties out, whether locality must change, or whether another assumption should go. There is no agreed interpretation."
+whatBreaks: "The contested choice is between completeness of quantum mechanics, the idea that nothing acts instantly at a distance, and other assumptions the experiments also depend on."
+statusNote: "the original argument pits locality against completeness given EPR’s assumptions about definite properties. The proposed interpretations give up different assumptions, and there is no consensus on which account is right."
 setup: "Two particles interact, then move far apart. Their properties are linked so that measuring the position of one lets someone predict the other’s position. Measuring its momentum instead lets someone predict the other’s momentum, a measure of its motion. Quantum theory does not assign the distant particle definite values for both together."
 whyWrong: "Einstein, Podolsky and Rosen argued that a measurement here cannot disturb a particle far away. If either result can be predicted without disturbing it, they said, both properties must already be definite. Quantum theory would then leave something out. Other accounts challenge what counts as a definite property or a disturbance."
 resolution:
-  - "This is the original EPR argument about whether quantum theory is complete. It is not a demonstration that a usable message travels faster than light."
-  - "Bell later derived bounds on correlations for a class of theories with local underlying properties and independent measurement choices. Experiments violate those bounds. Tests have closed the main detection and locality loopholes, making the simple local hidden-property answer much harder to maintain. The debate over which assumptions to change remains."
+  - "EPR argued that if measuring one particle cannot disturb its distant partner, the predictable properties must already be definite and quantum theory must leave something out. Bohr challenged the reasoning about what a distant property means. Later interpretations revise locality, completeness or other assumptions in different ways."
+  - "Bell’s later argument adds a test for a class of local hidden-property theories. Its experimental results constrain those theories, but do not select one interpretation of quantum mechanics. The original EPR dispute and the later Bell-test question should not be treated as the same argument."
 positions:
   - title: "Keep EPR’s picture"
     body: "Treat the predictable results as definite properties that quantum theory leaves out. Cost: the simple local versions face Bell-test violations, so retaining this picture requires changing further assumptions."

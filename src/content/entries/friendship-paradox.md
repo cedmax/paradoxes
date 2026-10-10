@@ -21,7 +21,7 @@ whyWrong: "Your friends are not a random sample of people. A popular person has 
 resolution:
   - "Imagine Sam is friends with four people who are friends only with Sam. The average person has 1.6 friends. Pool all the friend lists: Sam appears four times with 4 friends, and the others once each with 1. The average listed friend has 2.5."
   - "Averaging each person’s answer instead gives 3.4 in this example. Both methods expose the over-counting, though they produce different averages. The effect concerns averages; it does not say every person has fewer friends than their friends."
-finePrint: "Feld described the paradox in 1991. Pooling friendship links and averaging each person’s neighbour average are different calculations. The mathematical result about averages does not guarantee that most individuals in every network show the effect. In Christakis and Fowler’s 2010 Harvard study, nominated friends showed a flu outbreak roughly two weeks ahead of randomly sampled students. Friendship can therefore help identify more connected people, but the result is not a prediction about every individual."
+finePrint: "Feld described the paradox in 1991. Pooling friendship links and averaging each person’s neighbour average are different calculations. The mathematical result about averages does not guarantee that most individuals in every network show the effect. In Christakis and Fowler’s 2010 Harvard study, nominated friends showed a flu outbreak roughly two weeks ahead of randomly sampled students. Friendship can therefore help identify more connected people, but the result is not a prediction about every individual. Feld also argued that in real social networks most people have fewer friends than the average of their friends. That is a claim about real networks, not a guarantee for every possible network."
 sources:
   - title: "Wikipedia: Friendship paradox"
     url: https://en.wikipedia.org/wiki/Friendship_paradox
@@ -30,5 +30,5 @@ sources:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC2939797/
     note: "the 13.9 day lead of the friend group over the randomly chosen group"
 sourcesVerified: true
-reviewed: true
+reviewed: false
 ---

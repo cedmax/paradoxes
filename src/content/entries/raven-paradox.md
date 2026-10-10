@@ -9,14 +9,14 @@ written: true
 problem: "Can a green apple be evidence that all ravens are black?"
 claimA: "Observing a green apple gives no evidence that all ravens are black."
 claimB: "A green apple supports the claim that all ravens are black: it matches the equivalent rule about non-black things, and matching instances support general rules."
-verdict: "The apple becomes evidence only under particular rules about instances and equivalent claims. Philosophers dispute those rules and the role of background knowledge."
+verdict: "Philosophers disagree about whether the apple counts as evidence and which evidential rule to revise. Bayesian accounts that let it count are among the most popular responses."
 whatBreaks: "Whether to accept the apple as evidence or revise a rule about matching instances and equivalent claims."
 statusNote: "the popular Bayesian answer gives up the first claim, but Bayesians offer many rival versions of it, and other approaches give up the second claim instead."
 setup: "“All ravens are black” means the same as “Everything that is not black is not a raven”. A green apple matches the second rule: it is not black and not a raven. If a matching instance supports a rule, and equivalent rules share their evidence, the apple supports the claim about ravens."
 whyWrong: "Seeing a black raven seems to support a rule about ravens. Apply that same idea to non-black things and the apple counts too. The reasoning also needs the rule that equivalent claims have the same evidence. Neither rule alone gives the surprising conclusion."
 resolution:
-  - "Hempel accepted the surprising result. Bayesian accounts can also let the apple count, often by a tiny amount, but its contribution depends on background assumptions."
-  - "Other responses revise what counts as an instance or how evidence transfers between equivalent statements. There is no single agreed treatment of all these cases."
+  - "Hempel accepted the surprising result. Bayesian accounts are among the most popular later responses: they can let the apple count, often by a tiny amount, but its contribution depends on background assumptions."
+  - "Other responses revise what counts as an instance or how evidence transfers between equivalent statements. Bayesians also disagree among themselves. There is no single agreed treatment of all these cases."
 positions:
   - title: "The apple counts"
     body: "Accept that it can provide evidence, often much weaker than a black raven. Cost: the result depends on background knowledge, and different assumptions can change the comparison."

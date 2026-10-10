@@ -7,10 +7,10 @@ simplification: light
 order: 1
 written: true
 sourcesVerified: true
-reviewed: true
+reviewed: false
 problem: Is the sentence “This sentence is false” true or false?
-claimA: "Every statement, including one about itself, is either true or false, but never both."
-claimB: "“This statement is false” is true exactly when it is false."
+claimA: "Every sentence is true or false."
+claimB: "A sentence is true if what it says is right, and false if it isn't."
 verdict: "The liar sentence defeats the ordinary rules for assigning truth and falsehood. The main fixes change language or logic, and none is widely accepted."
 whatBreaks: "Whether to restrict self-applied truth, allow gaps or allow contradictions. The proposals give up different parts of the ordinary rules."
 statusNote: every known fix costs something big, and none is widely accepted.

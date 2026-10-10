@@ -7,8 +7,8 @@ simplification: light
 order: 4
 written: true
 problem: "Why does “It's raining, but I don't believe it” sound absurd, when it could be true?"
-claimA: "A statement whose parts can be true together involves no contradiction, even when sincerely asserted."
-claimB: "Sincerely asserting “It is raining, but I do not believe it” involves a contradiction in the speaker’s commitments, even though its parts can be true together."
+claimA: "The sentence could be true, so saying it contradicts nothing."
+claimB: "A sentence that sounds absurd to say must contain some contradiction."
 verdict: "A statement can be consistent yet sound absurd when sincerely asserted. Philosophers disagree about the connection between assertion, belief and awareness of belief."
 whatBreaks: "Whether the apparent clash lies in what assertion communicates, in the speaker’s beliefs or in their reasoning about those beliefs."
 statusNote: "experts agree the sentence is consistent yet absurd to say, but disagree on whether the absurdity is a contradiction and, if so, where it lies."
@@ -31,6 +31,6 @@ sources:
   - title: "Stanford Encyclopedia of Philosophy: Epistemic Paradoxes"
     url: https://plato.stanford.edu/entries/epistemic-paradoxes/
 sourcesVerified: true
-reviewed: true
+reviewed: false
 noMaths: true
 ---

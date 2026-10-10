@@ -17,8 +17,8 @@ statusNote: "both sides accept that two of every three wakings follow tails, but
 setup: "A fair coin decides Sleeping Beauty’s wakings. Heads means one, on Monday. Tails means two, on Monday and Tuesday. After each waking her memory is erased, so they feel identical. She knows the rules. On waking, what chance should she give heads?"
 whyWrong: "One argument says the coin was fair and waking tells her nothing new about it: one half. Another counts wakings. Heads produces one waking per heads result; tails produces two. Over many experiments, only one waking in three follows heads."
 resolution:
-  - "Both counts are agreed. The dispute is which one should guide her belief at an indistinguishable waking."
-  - "Counting experiments gives one half. Counting wakings gives one third. The philosophical question is whether that difference explains two legitimate questions or two rival answers to the same question."
+  - "Halfers such as Lewis say waking gives her no new information about the coin, so she should retain one half. Thirders such as Elga argue that the indistinguishable possibilities should each get one third. They dispute the answer to her belief question, not the arithmetic of repeated experiments."
+  - "Elga’s argument uses two symmetry claims. Given tails, Monday and Tuesday should seem equally likely. Given Monday, heads and tails should seem equally likely. Together these make heads-Monday, tails-Monday and tails-Tuesday equally likely. Halfers challenge that reasoning. A separate response says there are two questions; that is one disputed position, not the framework in which all sides agree to debate."
 positions:
   - title: "One third"
     body: "Treat this waking as one among the indistinguishable wakings. Bets offered at each waking favour this calculation. Cost: the probability changes without a new fact about the coin, which halfers challenge."

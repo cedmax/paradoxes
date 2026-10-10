@@ -9,19 +9,19 @@ simplification: light
 order: 4
 written: true
 sourcesVerified: true
-reviewed: true
+reviewed: false
 noMaths: true
 problem: "Is the word “heterological” a heterological word?"
-claimA: "Every describing word either describes itself or does not, but never both."
-claimB: "“Heterological” describes exactly the words that do not describe themselves, including itself if it fits that rule."
-verdict: "Applying “does not describe itself” to that phrase itself produces a clash. Proposed fixes change the rules for language, truth or logic, and none is widely accepted."
+claimA: "Every describing word either describes itself or does not."
+claimB: "“Heterological” is itself a describing word."
+verdict: "There is no agreed fix. Each proposal, such as levels of language, gaps or allowing some contradictions, has a big cost."
 whatBreaks: "How to keep the ordinary rules for describing words when a word’s definition includes its own case. The responses give up different parts of those rules."
 statusNote: "it is a version of the [liar paradox](liar-paradox) about words, and the Stanford Encyclopedia of Philosophy says “no commonly agreed upon solution to the paradoxes of self-reference exists”."
 setup: "“English” is an English word, so it describes itself. “Long” is a short word, so it does not. Call a word heterological if it does not describe itself. Now ask whether “heterological” is heterological."
 whyWrong: "If it is heterological, it does not describe itself. But saying it is heterological says that it does. If it is not heterological, it does not fit its own description, which makes it heterological after all. Neither answer fits the ordinary rules."
 resolution:
-  - "The trouble is not just an awkward word. Replacing it with “non-self-describing” raises the same question. A definition that covers all describing words also covers the word being defined."
-  - "This belongs to the [liar paradox](liar-paradox) family. Restricting self-description, leaving a gap or accepting a contradiction each changes something basic. The main proposals remain contested."
+  - "Replacing “heterological” with “non-self-describing” raises the same question. It has the shape of [Russell’s paradox](russells-paradox): the collection of things that do not contain themselves creates the same reversal when asked whether it contains itself."
+  - "The difference is the available fix. Set theory restricts which collections can be formed. For describing words, as for the [liar paradox](liar-paradox), there is no generally accepted restriction that preserves everything wanted from ordinary language. Levels, gaps and contradictions each have a serious cost. That is why this entry is Unreconciled rather than Defused."
 positions:
   - title: "Words come in levels"
     body: "Let a word describe only words at a lower level. Cost: ordinary language has no such hierarchy, and harmless self-description is restricted too."

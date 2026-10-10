@@ -7,10 +7,10 @@ simplification: light
 order: 2
 written: true
 problem: "If you believe every ticket will lose, do you believe that no ticket will win?"
-claimA: "High enough odds justify believing that each ticket will lose, even while knowing exactly one will win."
-claimB: "Reasonable beliefs must be consistent when combined, so someone who knows one ticket will win cannot reasonably believe that each will lose."
-verdict: "The lottery pits belief based on high odds against the demand for consistent beliefs. Philosophers disagree over which requirement to relax."
-whatBreaks: "Whether high odds justify outright belief in each loss, or reasonable beliefs must remain consistent when combined."
+claimA: "It is reasonable to believe each ticket will lose, since each almost certainly will."
+claimB: "If it is reasonable to believe each of several things, it is reasonable to believe them all together."
+verdict: "High odds seem to justify each belief, but combining those beliefs gives a conclusion known to be false. Philosophers disagree on whether to give up the high-odds rule or the combining rule."
+whatBreaks: "Either the high-odds rule or the combining rule has to go, and experts split on which."
 statusNote: "experts agree the three rules clash, and the main camps split between giving up the high-odds rule and giving up the combining rule."
 setup: "A fair lottery has 1,000 tickets and exactly one winner. Any particular ticket is almost certain to lose. It seems reasonable to believe it will. The same reasoning applies to every ticket, yet believing all those losses together means believing there will be no winner."
 whyWrong: "High odds make each belief look reasonable. Combining reasonable beliefs also looks safe. But the combined belief conflicts with something known: exactly one ticket will win. The puzzle needs that consistency requirement as well as the two tempting rules."
@@ -33,6 +33,6 @@ sources:
   - title: "Stanford Encyclopedia of Philosophy: Formal Representations of Belief"
     url: https://plato.stanford.edu/entries/formal-belief/
 sourcesVerified: true
-reviewed: true
+reviewed: false
 noMaths: true
 ---

@@ -9,8 +9,8 @@ order: 7
 written: true
 sourcesVerified: true
 problem: "If quantum rules say an atom can be in two states at once, what does that mean for a cat whose life depends on it?"
-claimA: "Quantum theory can describe the whole sealed box as a superposition of a living cat and a dead cat, rather than one settled result."
-claimB: "The cat already has one settled state, alive or dead, and the ordinary quantum description is complete."
+claimA: "Quantum theory says an atom that may or may not have decayed is in a mix of both until it is measured, and, in principle, it applies to anything made of atoms."
+claimB: "A cat is either alive or dead, never some mix of the two."
 verdict: "The cat tests how a quantum combination of alternatives becomes one observed result. The main interpretations make different changes, and there is no consensus on which is right."
 whatBreaks: "How to combine a complete quantum description of the box with one definite outcome. The interpretations change different assumptions."
 statusNote: "each main answer carries a big cost. Bohr’s view is vague about where the quantum world ends, many-worlds needs countless equally real branches and, critics say, struggles to make sense of statistical testing, Bohmian mechanics sits badly with relativity, and collapse theories add new physics that no experiment has yet shown. The Stanford Encyclopedia of Philosophy says there is no consensus on what quantum theory says about the world."
