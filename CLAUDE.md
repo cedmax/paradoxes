@@ -55,11 +55,13 @@ Routes (`/entries/<slug>/`) are stable: never rename an entry file without addin
 
 ### Chapters
 
-A chapter is "what breaks": the assumption in the reader's head that the paradox attacks.
-Classify by the mechanism that creates the conflict, not by the subject or the setting used to
-explain it. Read the entry's `whatBreaks` and place it where that assumption lives.
+A chapter is "what breaks": the assumption, rule or expectation in the reader's head that the
+paradox challenges. Classify by the mechanism that creates the conflict, not by the subject or
+the setting used to explain it. Read the entry's `whatBreaks` and place it where that assumption
+lives. For disputed and unreconciled entries, the chapter names what is contested, not what has
+been shown wrong; the chapter never implies a status.
 
-| Chapter                        | The assumption that breaks                                          |
+| Chapter                        | The assumption it challenges                                        |
 | ------------------------------ | ------------------------------------------------------------------- |
 | What counts as what            | A word or a thing picks out one clear thing with sharp edges.       |
 | Self-reference                 | A statement or collection can safely refer to itself.               |
@@ -78,9 +80,17 @@ explain it. Read the entry's `whatBreaks` and place it where that assumption liv
   definition is fixed (Sorites and Ship of Theseus are disputed). If self-application is what
   breaks, it is Self-reference. If the question is whether observed examples justify a general
   claim, it is What we should believe.
-- **Collective outcomes** vs **Individual choices**: if the paradox disappears with one person
-  alone, it is Collective outcomes. If it survives with one person alone, it is Individual
-  choices.
+- **Self-reference**: direct self-reference, and closely related truth and set contradictions,
+  including cases such as Yablo's paradox that test whether direct self-reference is needed. Do
+  not move an entry out only because its statements do not refer to themselves directly.
+- **Probability tricking intuition** vs **Numbers that mislead**: if the surprise comes from the
+  odds or structure of a random process, it is Probability tricking intuition. If it comes from
+  how observations are sampled, grouped, measured or compared, it is Numbers that mislead.
+- **Collective outcomes** vs **Individual choices**: if the conflict arises from combining
+  people's choices, aggregating preferences or reacting strategically to one another, it is
+  Collective outcomes. If it concerns how one decision or moral judgement should be evaluated,
+  it is Individual choices, even when other people are involved (Trolley, Moral luck, Paradox of
+  voting).
 - **Models meeting reality**: the central conflict must be between a model's prediction and an
   observation, or between two established theoretical accounts. A surprising observation alone
   is not enough. Identify the conflicting prediction or principles before assigning it.

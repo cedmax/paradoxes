@@ -35,7 +35,8 @@ export const chapters: Chapter[] = [
     id: "self-reference",
     n: "02",
     title: "Self-reference",
-    blurb: "Contradictions that appear the moment a statement refers to itself.",
+    blurb:
+      "Contradictions that appear when statements or collections are allowed to refer to themselves.",
   },
   {
     id: "infinity",

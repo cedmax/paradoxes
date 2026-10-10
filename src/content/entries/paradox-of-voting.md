@@ -11,8 +11,8 @@ aka:
     "decisive vote",
     "pivotal vote",
   ]
-chapter: collective
-order: 110
+chapter: individual
+order: 115
 status: disputed
 uniqueness: related
 anchor: prisoners-dilemma
