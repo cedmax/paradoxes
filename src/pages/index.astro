@@ -130,25 +130,61 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
     </div>
   </details>
 
-  <main class="px-gutter flex flex-col gap-18 pt-6 pb-20">
+  <main class="px-gutter flex flex-col gap-8 pt-6 pb-20 md:gap-18">
     {byChapter.map(({ chapter, items }) => (
       <section
-        class="flex flex-col gap-5"
-        data-chapter
+        class="group/chapter flex flex-col gap-5"
+        data-chapter={chapter.id}
+        data-open={chapter.id === byChapter[0]?.chapter.id ? "" : undefined}
         hidden={!items.some((e) => e.data.uniqueness !== "variant")}
       >
-        <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2">
-          <div class="mono-label text-sm text-accent">{chapter.n}</div>
-          <h2 class="display text-[clamp(30px,4vw,52px)]">{chapter.title}</h2>
-        </div>
-        <p class="max-w-160 text-lg">{chapter.blurb}</p>
-        <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,400px),1fr))] gap-6">
-          {items.map((e) => (
-            <EntryCard entry={e} anchor={anchors.get(e.id)} />
-          ))}
+        <h2 class="contents">
+          <button
+            type="button"
+            class="flex w-full cursor-pointer items-center gap-4 text-left max-md:min-h-11 max-md:border-b-2 max-md:border-ink max-md:pb-3 md:pointer-events-none"
+            aria-expanded="true"
+            aria-controls={`chapter-${chapter.id}`}
+            data-toggle
+          >
+            <span class="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-6 gap-y-2 max-md:flex-col max-md:items-start max-md:gap-1">
+              <span class="mono-label text-sm text-accent">{chapter.n}</span>
+              <span class="display text-[clamp(30px,4vw,52px)]">{chapter.title}</span>
+            </span>
+            <span
+              class="mono-label flex shrink-0 items-center gap-3 md:hidden"
+              aria-hidden="true"
+            >
+              <span data-chapter-count>
+                {items.filter((e) => e.data.uniqueness !== "variant").length}
+              </span>
+              <span class="text-2xl leading-none transition-transform group-data-open/chapter:rotate-45 motion-reduce:transition-none">
+                +
+              </span>
+            </span>
+          </button>
+        </h2>
+        <!-- Below md the chapters fold up, one open at a time. From md up they are always open. -->
+        <div
+          id={`chapter-${chapter.id}`}
+          data-body
+          class="flex flex-col gap-5 max-md:group-not-data-open/chapter:hidden"
+        >
+          <p class="max-w-160 text-lg">{chapter.blurb}</p>
+          <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,300px),1fr))] gap-5">
+            {items.map((e) => (
+              <EntryCard entry={e} anchor={anchors.get(e.id)} />
+            ))}
+          </div>
         </div>
       </section>
     ))}
+    <noscript>
+      <style>
+        [data-body] {
+          display: flex !important;
+        }
+      </style>
+    </noscript>
     <p id="none" hidden class="font-display text-4xl font-extrabold tracking-tight">
       Nothing matches. That's not a paradox, just a typo.
     </p>
@@ -163,6 +199,9 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
   const none = document.getElementById("none") as HTMLElement
   const hideVariants = document.getElementById("hide-variants") as HTMLInputElement
   const onlyReviewed = document.getElementById("only-reviewed") as HTMLInputElement
+  const mobile = window.matchMedia("(max-width: 767.98px)")
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+  const STORE = "open-chapter"
   let status = "all"
   // What the visitor chose with the switch. While a search is active the switch is forced off
   // and disabled, and this is restored when the search is cleared.
@@ -176,8 +215,45 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
   const isShownBySwitches = (card: HTMLElement) =>
     isShownByVariantRule(card) && isShownByReviewedRule(card)
 
+  // Below md the chapters fold up and only one is open. A search or a filter opens every chapter
+  // that has results, and the headings stop toggling until the filter is cleared.
+  const readOpen = () => {
+    try {
+      return sessionStorage.getItem(STORE)
+    } catch {
+      return null
+    }
+  }
+  const writeOpen = (id: string) => {
+    try {
+      sessionStorage.setItem(STORE, id)
+    } catch {
+      // Storage can be blocked. The page still works without it.
+    }
+  }
+  const stored = readOpen()
+  let openId: string | null = chapters.some((c) => c.dataset.chapter === stored)
+    ? stored
+    : (chapters[0]?.dataset.chapter ?? null)
+  let filtering = false
+
+  function renderChapters() {
+    for (const chapter of chapters) {
+      const open = filtering || chapter.dataset.chapter === openId
+      const toggle = chapter.querySelector<HTMLButtonElement>("[data-toggle]")
+      chapter.toggleAttribute("data-open", open)
+      if (!toggle) continue
+      // From md up the headings are plain headings: always open, not interactive.
+      toggle.tabIndex = mobile.matches ? 0 : -1
+      toggle.disabled = mobile.matches && filtering
+      if (mobile.matches) toggle.setAttribute("aria-expanded", String(open))
+      else toggle.removeAttribute("aria-expanded")
+    }
+  }
+
   function apply() {
     const q = input.value.trim().toLowerCase()
+    filtering = q !== "" || status !== "all" || onlyReviewed.checked
     hideVariants.disabled = q !== ""
     hideVariants.checked = q === "" && hideChoice
     let shown = 0
@@ -188,6 +264,18 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
         isShownBySwitches(card)
       card.hidden = !ok
       if (ok) shown++
+      // The card ends on the question. Reveal the claim or verdict a search matched, unless the
+      // match is already in what the card shows.
+      const revealed = ok && q !== "" && !(card.dataset.shown ?? "").includes(q)
+      const hits = card.querySelectorAll<HTMLElement>("[data-hit]")
+      let any = false
+      hits.forEach((hit) => {
+        const on = revealed && (hit.dataset.text ?? "").includes(q)
+        hit.hidden = !on
+        any ||= on
+      })
+      const box = card.querySelector<HTMLElement>("[data-hits]")
+      if (box) box.hidden = !any
     }
     for (const chip of chips) {
       const filter = chip.dataset.filter ?? "all"
@@ -199,10 +287,32 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
       if (label) label.textContent = String(count)
     }
     for (const chapter of chapters) {
-      chapter.hidden = !chapter.querySelector("[data-card]:not([hidden])")
+      const visible = chapter.querySelectorAll("[data-card]:not([hidden])").length
+      chapter.hidden = visible === 0
+      const count = chapter.querySelector("[data-chapter-count]")
+      if (count) count.textContent = String(visible)
     }
     none.hidden = shown !== 0
+    renderChapters()
   }
+
+  for (const chapter of chapters) {
+    chapter.querySelector("[data-toggle]")?.addEventListener("click", () => {
+      if (!mobile.matches || filtering) return
+      const id = chapter.dataset.chapter ?? null
+      openId = openId === id ? null : id
+      if (id && openId) writeOpen(id)
+      renderChapters()
+      // Opening one closes the one above it, which would push the heading off screen.
+      if (openId) {
+        chapter.scrollIntoView({
+          block: "start",
+          behavior: reducedMotion.matches ? "auto" : "smooth",
+        })
+      }
+    })
+  }
+  mobile.addEventListener("change", renderChapters)
 
   input.addEventListener("input", apply)
   hideVariants.addEventListener("change", () => {
