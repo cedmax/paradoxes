@@ -1,7 +1,7 @@
 ---
 title: "Paradoxes of material implication"
-chapter: "self-reference"
-status: "explained"
+chapter: "belief"
+status: "disputed"
 simplification: light
 noMaths: true
 order: 300
@@ -9,18 +9,25 @@ written: true
 sourcesVerified: false
 reviewed: false
 problem: "How can a false claim logically imply absolutely anything?"
-claimA: "A true statement of the form “if this, then that” must link the two ideas."
-claimB: "In standard logic, “if this, then that” is true whenever “this” is false, even without any link."
-verdict: "Formal implication is a rule about truth and falsity, not a promise of cause or relevance."
-whatBreaks: "The assumption that the formal word “if” always means the same as everyday “if”."
-statusNote: "the claim that a formal conditional must express a meaningful connection is wrong in classical logic."
-setup: "Imagine saying, “If the moon is made of cheese, then two plus two is five.” That sounds plainly wrong. Yet classical logic counts the full conditional as true, because its starting statement is false."
-whyWrong: "In this logic, “if A, then B” says only that A cannot be true while B is false. Nothing in that rule requires the two statements to be about the same subject."
+claimA: "The everyday word “if” means no more than the truth rule used by classical logic."
+claimB: "The everyday word “if” means more than that truth rule, so the rule alone does not capture what people say."
+verdict: "Classical logic treats a conditional with a false starting statement as true; whether this captures everyday “if” is disputed."
+whatBreaks: "Whether everyday “if” can be explained by the classical truth rule plus conversational context, or requires a different kind of conditional."
+statusNote: "the classical truth rule is agreed, but philosophers dispute how well it captures ordinary conditional statements."
+setup: "“If the moon is made of cheese, then two plus two is five” sounds absurd. Yet classical logic counts the complete conditional as true because its starting statement is false."
+whyWrong: "The classical rule for “if A, then B” only rules out A being true while B is false. It does not require any link between the topics. Ordinary “if” often suggests a link."
 resolution:
-  - "A false starting statement can never be true alongside a false conclusion, so the formal condition is satisfied. A true conclusion also makes every such conditional true."
-  - "Everyday “if” can suggest evidence, causes or a real connection. Logicians may use different systems when those extra demands matter."
-finePrint: "The rule is called material implication. This is not the claim that a false fact causes anything; it is a definition of a particular logical connective."
+  - "The mathematical rule is exact: a false starting statement makes the classical conditional true. Nobody disputes that calculation."
+  - "The dispute is how well it represents ordinary language. H. P. Grice argued that conversational expectations can explain why unrelated examples sound strange. Relevance logicians think implication itself should demand a connection."
+positions:
+  - title: "Keep classical truth conditions"
+    body: "On an account associated with H. P. Grice, the formal truth rule supplies basic meaning, while conversational expectations add relevance. Cost: it must explain strong judgements about everyday “if” through context."
+  - title: "Require a relevant connection"
+    body: "Relevance logicians reject some implications that contain no connection between their two parts. Cost: the alternative logic gives up some familiar classical inference rules."
+finePrint: "Material implication is a defined logical connective, not a claim of cause or everyday relevance. The disagreement concerns its use to represent ordinary conditional language."
 sources:
   - title: "Stanford Encyclopedia of Philosophy: Relevance Logic"
     url: "https://plato.stanford.edu/entries/logic-relevance/"
+  - title: "Stanford Encyclopedia of Philosophy: The Logic of Conditionals"
+    url: "https://plato.stanford.edu/entries/logic-conditionals/"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Paradox of thrift"
 chapter: "choice-identity"
-status: "explained"
+status: "disputed"
 simplification: light
 noMaths: true
 order: 300
@@ -9,17 +9,22 @@ written: true
 sourcesVerified: false
 reviewed: false
 problem: "How can everybody trying to save more leave a country saving no more, or even less?"
-claimA: "If every household saves a larger share of income, total saving must rise."
-claimB: "In a demand-starved economy, everyone trying to save more can cut incomes so much that total saving fails to rise."
-verdict: "One person’s spending is another person’s income, so a collective cut in spending can shrink the amount available to save."
-whatBreaks: "The assumption that a sensible household choice has the same effect when every household makes it together."
-statusNote: "the effect can occur when demand is weak and resources are unused; it does not hold under every economic condition."
-setup: "A family saves more by cutting restaurant visits and new purchases. That is sensible for its own budget. Now imagine every family doing the same thing in a recession."
-whyWrong: "Shops take less money, reduce hours or jobs, and workers then spend less too. The income from which everyone hoped to save becomes smaller."
+claimA: "When households all try to save more during a slump, the economy still ends up saving more."
+claimB: "When households all try to save more during a slump, falling spending and income can stop total saving rising."
+verdict: "Collective thrift can weaken demand and income enough to frustrate saving; how far that happens depends on the economy."
+whatBreaks: "Whether reduced spending mainly cuts incomes or releases resources for investment during a slump."
+statusNote: "Keynesian accounts stress falling demand and income, while other accounts allow saving to fund more investment; the outcome depends on the conditions."
+setup: "A family saves more by cutting restaurant visits and purchases. That helps its own budget. Now imagine every family doing the same in a recession, while businesses struggle to sell what they make."
+whyWrong: "Shops receive less money and may reduce jobs and hours. Workers then spend less. The income from which families hoped to save becomes smaller."
 resolution:
-  - "The plan to save more reduces total spending. If businesses respond by producing less, national income can fall until actual saving is no higher than before."
-  - "This is not a claim that personal saving is bad. It is a warning that everyone’s behaviour together can have a different effect from one household’s behaviour alone."
-finePrint: "The size and even the direction of the effect depend on interest rates, spending responses, unused capacity and government policy. Outside a slump, more saving can help fund investment."
+  - "In the Keynesian account, when businesses cannot sell more goods and resources are idle, a collective cut in spending can reduce national income so much that total saving fails to rise."
+  - "Other macroeconomic models allow interest rates, prices and investment to adjust, so extra saving can help finance production. The paradox is a conditional argument, not an economic law that saving is always harmful."
+positions:
+  - title: "Demand falls and saving stalls"
+    body: "Keynesian reasoning says that, in a demand-starved slump, lower spending can cut income enough to prevent more aggregate saving. Cost: the size of the effect depends on weak demand and limited economic adjustment."
+  - title: "Saving finances more investment"
+    body: "Accounts emphasising price, interest-rate and investment responses expect greater saving to support future output. Cost: those responses can be too weak or slow in a severe slump."
+finePrint: "The central question concerns aggregate outcomes under specific economic conditions, not whether an individual household should save. Different economic models and policy settings give different results."
 sources:
   - title: "Wikipedia: Paradox of thrift"
     url: "https://en.wikipedia.org/wiki/Paradox_of_thrift"
