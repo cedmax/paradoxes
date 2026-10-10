@@ -17,7 +17,7 @@ anchor: schrodingers-cat
 simplification: heavy
 noMaths: true
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "When a friend in a sealed lab sees a quantum measurement give one result, is that result already a fact for someone outside who has not yet asked?"
 claimA: "Quantum theory applies to everything and describes it completely, so for Wigner outside, the lab, friend included, is in a mix of both results until he asks."
 claimB: "The friend saw one definite result, and it was a fact before Wigner asked."
