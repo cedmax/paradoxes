@@ -1,0 +1,15 @@
+---
+const turns = [
+{player:"Alice",choice:"Take or pass"},{player:"Bob",choice:"Take or pass"},
+{player:"Alice",choice:"Take or pass"},{player:"Bob",choice:"Last take decision"},
+]
+---
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+<p class="font-bold">The chance to grow the pot keeps tempting the players forward.</p>
+<div class="grid grid-cols-4 gap-2 text-center text-sm">{turns.map(({player,choice},i)=><div class="border-2 border-ink p-2"><p class="font-bold">Turn {i+1}</p><p>{player}</p><p class="mt-2">{choice}</p><p class="mt-2 font-bold">{i===3?"End":"Pass →"}</p></div>)}</div>
+<div class="flex flex-col gap-2 border-l-4 border-accent pl-4 text-base">
+<p><strong>Start at the end:</strong> The final player prefers taking to passing.</p>
+<p>So the previous player expects the final player to take and prefers taking earlier.</p>
+<p>Repeating that step sends the argument all the way back to turn one.</p>
+</div>
+<figcaption class="text-base leading-normal">This schematic shows only the chain of reasoning, not the game’s exact coin piles. The backward calculation is agreed. What is disputed is whether the required shared knowledge of rationality makes immediate taking the right prediction when people do pass.</figcaption></figure>
