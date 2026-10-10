@@ -1,0 +1,10 @@
+---
+const rounds=[{round:"1",added:"1–10",removed:"1",remaining:"9"},{round:"2",added:"11–20",removed:"2",remaining:"18"},{round:"3",added:"21–30",removed:"3",remaining:"27"},{round:"n",added:"10n−9 to 10n",removed:"n",remaining:"9n"}]
+---
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+<p class="font-bold">Every round adds ten balls and removes one.</p>
+<div class="overflow-x-auto"><table class="w-full text-base"><thead><tr class="border-b-2 border-ink"><th class="p-2 text-left">Round</th><th class="p-2 text-left">Balls added</th><th class="p-2">Taken out</th><th class="p-2 text-right">Inside</th></tr></thead><tbody>{rounds.map(x=><tr class="border-b border-ink last:border-0"><td class="p-2">{x.round}</td><td class="p-2">{x.added}</td><td class="p-2 text-center">{x.removed}</td><td class="p-2 text-right">{x.remaining}</td></tr>)}</tbody></table></div>
+<div class="grid grid-cols-2 gap-3 text-base">
+<div class="border-2 border-ink p-3"><strong>Before noon</strong><p>9, 18, 27, … balls</p><p>The count keeps rising.</p></div>
+<div class="border-2 border-ink p-3"><strong>At noon</strong><p>Zero balls.</p><p>Every numbered ball has been taken out.</p></div></div>
+<figcaption class="text-base leading-normal">Ball 1 leaves in round 1. Ball 500 is put in during round 50 and removed in round 500. Every individual ball has a removal time. That is why the count growing without bound before noon does not settle how many remain at noon. The result depends on the removal rule.</figcaption></figure>
