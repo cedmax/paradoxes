@@ -26,11 +26,26 @@ const dice = [
   { name: "C", faces: [6, 6, 2, 2, 2, 2], beats: "D" },
   { name: "D", faces: [5, 5, 5, 1, 1, 1], beats: "A" },
 ]
-const roadNodes = [
-  { x: 40, y: 170, label: "Start" },
-  { x: 260, y: 50, label: "A" },
-  { x: 480, y: 170, label: "End" },
-  { x: 260, y: 290, label: "B" },
+const nodeRadius = 36
+const nodes = {
+  start: { x: 56, y: 185, label: "Start" },
+  a: { x: 260, y: 52, label: "A" },
+  end: { x: 464, y: 185, label: "End" },
+  b: { x: 260, y: 318, label: "B" },
+}
+const road = (from: { x: number; y: number }, to: { x: number; y: number }) => {
+  const length = Math.hypot(to.x - from.x, to.y - from.y)
+  const ux = (to.x - from.x) / length
+  const uy = (to.y - from.y) / length
+  const gap = nodeRadius + 3
+  const f = (n: number) => Math.round(n * 10) / 10
+  return `M${f(from.x + ux * gap)},${f(from.y + uy * gap)} L${f(to.x - ux * gap)},${f(to.y - uy * gap)}`
+}
+const roads = [
+  { d: road(nodes.start, nodes.a), label: "cars ÷ 100", x: 150, y: 108, anchor: "end" },
+  { d: road(nodes.a, nodes.end), label: "45", x: 370, y: 108, anchor: "start" },
+  { d: road(nodes.start, nodes.b), label: "45", x: 150, y: 282, anchor: "end" },
+  { d: road(nodes.b, nodes.end), label: "cars ÷ 100", x: 370, y: 282, anchor: "start" },
 ]
 ---
 
@@ -40,11 +55,11 @@ const roadNodes = [
       <div class="flex flex-col gap-2">
         <p class="font-bold">
           {shortcut
-            ? "With the shortcut: everyone takes A → B"
+            ? "With the shortcut: everyone takes A\u00a0→\u00a0B"
             : "Before: 2,000 drivers on each route"}
         </p>
         <svg
-          viewBox="0 0 520 340"
+          viewBox="0 0 520 392"
           role="img"
           aria-labelledby={`braess-title-${i} braess-desc-${i}`}
         >
@@ -72,46 +87,38 @@ const roadNodes = [
             </marker>
           </defs>
           <g fill="none" stroke="#272622" stroke-width="3" marker-end={`url(#road-arrow-${i})`}>
-            <path d="M63,157 L239,62" />
-            <path d="M281,62 L457,157" />
-            <path d="M63,183 L239,278" />
-            <path d="M281,278 L457,183" />
-            {shortcut && <path d="M260,74 V265" stroke-dasharray="8 5" />}
+            {roads.map(({ d }) => (
+              <path d={d} />
+            ))}
+            {shortcut && <path d={road(nodes.a, nodes.b)} stroke-dasharray="8 5" />}
           </g>
-          <g class="fill-ink" font-size="18" text-anchor="middle">
-            <text x="130" y="78">
-              cars ÷ 100 min
-            </text>
-            <text x="390" y="78">
-              45 min
-            </text>
-            <text x="130" y="276">
-              45 min
-            </text>
-            <text x="390" y="276">
-              cars ÷ 100 min
-            </text>
+          <g class="fill-ink" font-size="26">
+            {roads.map(({ label, x, y, anchor }) => (
+              <text x={x} y={y} text-anchor={anchor}>
+                {label}
+              </text>
+            ))}
             {shortcut && (
-              <text x="301" y="176">
-                0 min
+              <text x="280" y="193" text-anchor="start">
+                0
               </text>
             )}
           </g>
-          {roadNodes.map(({ x, y, label }) => (
+          {Object.values(nodes).map(({ x, y, label }) => (
             <g>
               <circle
                 class="fill-paper"
                 cx={x}
                 cy={y}
-                r="24"
+                r={nodeRadius}
                 stroke="#272622"
                 stroke-width="2"
               />
               <text
                 class="fill-ink"
                 x={x}
-                y={y + 6}
-                font-size={label.length > 1 ? "16" : "20"}
+                y={y + 7}
+                font-size="22"
                 font-weight="bold"
                 text-anchor="middle"
               >
@@ -122,8 +129,8 @@ const roadNodes = [
           <text
             class="fill-ink"
             x="260"
-            y="332"
-            font-size="18"
+            y="384"
+            font-size="24"
             font-weight="bold"
             text-anchor="middle"
           >
@@ -133,9 +140,9 @@ const roadNodes = [
       </div>
     ))}
     <figcaption class="text-base leading-normal">
-      Arrows show the permitted direction. “cars ÷ 100 min” uses the number of cars on that
-      road. With all 4,000 drivers taking the shortcut, switching alone to an old route would
-      take 85 minutes.
+      Arrows show the permitted direction. Road times are in minutes. “cars ÷ 100” means the
+      number of cars on that road divided by 100. With all 4,000 drivers taking the shortcut,
+      switching alone to an old route would take 85 minutes.
     </figcaption>
   </figure>
 )}
