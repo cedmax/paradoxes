@@ -15,7 +15,7 @@ claimA: "When everyone offers more work during a severe slump, employment must r
 claimB: "During that same slump, increased willingness to work can reduce employment."
 verdict: "Eggertsson’s slump model predicts that greater willingness to work can reduce jobs; whether this occurs depends on the economic conditions."
 whatBreaks: "Whether lower labour costs mainly encourage hiring or deepen weak demand when borrowing rates cannot fall."
-statusNote: "Eggertsson’s model predicts a reversal at very low interest rates, while other models find that result is not universal."
+statusNote: "the original model predicts a reversal at very low interest rates, while other models find that result is not universal."
 setup: "In a serious slump, more people become willing to work for less pay. A business would normally be expected to hire when wages fall."
 whyWrong: "If spending is already weak and borrowing rates cannot fall further, lower wages can lower prices, raise the real burden of debt and further depress demand. Firms may then employ fewer people despite cheaper labour."
 resolution:
