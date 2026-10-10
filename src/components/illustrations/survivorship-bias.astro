@@ -4,21 +4,59 @@
  * Deliberately illustrative: dots are not historical bullet-hole measurements.
  */
 const leftWingHoles = [
-  [76, 298], [105, 294], [134, 306], [161, 292], [189, 308],
-  [217, 297], [246, 311], [273, 305], [303, 319], [336, 315],
-  [368, 326], [55, 323], [88, 334], [117, 321], [144, 335],
-  [172, 325], [200, 347], [228, 334], [255, 343], [283, 348],
-  [312, 359], [347, 358], [375, 372], [110, 346], [161, 350],
-  [220, 368], [275, 369], [332, 378],
+  [76, 298],
+  [105, 294],
+  [134, 306],
+  [161, 292],
+  [189, 308],
+  [217, 297],
+  [246, 311],
+  [273, 305],
+  [303, 319],
+  [336, 315],
+  [368, 326],
+  [55, 323],
+  [88, 334],
+  [117, 321],
+  [144, 335],
+  [172, 325],
+  [200, 347],
+  [228, 334],
+  [255, 343],
+  [283, 348],
+  [312, 359],
+  [347, 358],
+  [375, 372],
+  [110, 346],
+  [161, 350],
+  [220, 368],
+  [275, 369],
+  [332, 378],
 ]
 const centreHoles = [
-  [430, 267], [469, 294], [426, 319], [459, 326], [481, 344],
-  [414, 357], [449, 371], [485, 395], [422, 414], [470, 432],
-  [438, 456], [480, 480], [449, 507],
+  [430, 267],
+  [469, 294],
+  [426, 319],
+  [459, 326],
+  [481, 344],
+  [414, 357],
+  [449, 371],
+  [485, 395],
+  [422, 414],
+  [470, 432],
+  [438, 456],
+  [480, 480],
+  [449, 507],
 ]
 const tailHoles = [
-  [308, 594], [330, 592], [357, 584], [380, 576],
-  [520, 576], [544, 585], [570, 591], [596, 595],
+  [308, 594],
+  [330, 592],
+  [357, 584],
+  [380, 576],
+  [520, 576],
+  [544, 585],
+  [570, 591],
+  [596, 595],
 ]
 const holes = [
   ...leftWingHoles,
@@ -27,11 +65,12 @@ const holes = [
   ...tailHoles,
 ]
 ---
+
 <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
   <p class="font-bold">Where should the armour go?</p>
 
   <svg
-    viewBox="0 0 900 705"
+    viewBox="0 0 900 650"
     class="mx-auto w-full max-w-3xl"
     role="img"
     aria-labelledby="survivor-bomber-title survivor-bomber-description"
@@ -39,11 +78,10 @@ const holes = [
   >
     <title id="survivor-bomber-title">Bullet holes on a bomber that returned, with areas needing reinforcement</title>
     <desc id="survivor-bomber-description">
-      A top-down four-engine bomber. Red dots mark bullet holes on the wings,
-      fuselage, and tail of planes that made it home. Dashed blue outlines
-      highlight engines, cockpit, and the central tail area, where there
-      are fewer observed holes. Those critical hits could have stopped other
-      planes returning, so the gaps are where reinforcement matters.
+      A top-down four-engine bomber. Red dots mark bullet holes on the wings, fuselage, and tail
+      of planes that made it home. Dashed blue outlines highlight engines, cockpit, and the
+      central tail area, where there are fewer observed holes. Those critical hits could have
+      stopped other planes returning, so the gaps are where reinforcement matters.
     </desc>
 
     <!-- One continuous, recognisable silhouette: wings, fuselage, tail. -->
@@ -136,14 +174,7 @@ const holes = [
 
     <!-- The only sample is the returning aircraft. -->
     {holes.map(([x, y]) => (
-      <circle
-        cx={x}
-        cy={y}
-        r="7"
-        fill="#bd4b37"
-        stroke="#772b21"
-        stroke-width="1.2"
-      />
+      <circle cx={x} cy={y} r="7" fill="#bd4b37" stroke="#772b21" stroke-width="1.2" />
     ))}
 
     <!-- Mark weak spots with sparse observed damage, not hole clusters. -->
@@ -159,29 +190,37 @@ const holes = [
       <rect x="512" y="160" width="149" height="136" rx="7" />
       <rect x="410" y="521" width="80" height="110" rx="7" />
     </g>
-
-    <g fill="#272622" font-size="19" font-family="sans-serif">
-      <circle cx="66" cy="677" r="8" fill="#bd4b37" stroke="#772b21" stroke-width="1.2" />
-      <text x="85" y="684">Holes on returning planes</text>
-      <rect
-        x="480"
-        y="665"
-        width="36"
-        height="24"
-        rx="3"
-        fill="none"
-        stroke="#387a91"
-        stroke-width="3"
-        stroke-dasharray="7 5"
-      />
-      <text x="527" y="684">Areas to reinforce</text>
-    </g>
   </svg>
 
+  <ul class="flex flex-wrap gap-x-6 gap-y-2 text-base">
+    <li class="flex items-center gap-2">
+      <svg aria-hidden="true" viewBox="0 0 20 20" class="h-5 w-5 shrink-0">
+        <circle cx="10" cy="10" r="7" fill="#bd4b37" stroke="#772b21" stroke-width="1.2" />
+      </svg>
+      Holes on returning planes
+    </li>
+    <li class="flex items-center gap-2">
+      <svg aria-hidden="true" viewBox="0 0 28 20" class="h-5 w-7 shrink-0">
+        <rect
+          x="2"
+          y="3"
+          width="24"
+          height="14"
+          rx="3"
+          fill="none"
+          stroke="#387a91"
+          stroke-width="2.5"
+          stroke-dasharray="6 4"
+        />
+      </svg>
+      Areas to reinforce
+    </li>
+  </ul>
+
   <figcaption class="text-base leading-normal">
-    The holes are on planes that <strong>came back</strong>. Few holes near
-    the engines and cockpit could mean hits there stopped other planes from
-    returning. Reinforcing the most visibly damaged parts would miss the danger.
-    This is a schematic illustration, not historical bullet-hole data.
+    The holes are on planes that <strong>came back</strong>. Few holes near the engines and
+    cockpit could mean hits there stopped other planes from returning. Reinforcing the most
+    visibly damaged parts would miss the danger. This is a schematic illustration, not
+    historical bullet-hole data.
   </figcaption>
 </figure>
