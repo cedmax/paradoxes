@@ -40,8 +40,14 @@ in `src/styles/global.css`. `~` maps to `/src`.
   It works with or without a search. Both switches sit in their own row below the status chips.
   The index and entry pages only include entries with `sourcesVerified: true`
   (`getPublishedEntries()` in `src/data/entries.ts`).
+  Chapters are always open from `md` up. Below `md` they fold up, one open at a time (the first
+  by default, the last one opened is kept in `sessionStorage`). A search or a filter opens every
+  chapter with results and the headings stop toggling until it is cleared.
 - `src/pages/entries/[slug].astro` — entry page. `src/pages/about.astro` — "How we write these".
-- `src/components/EntryCard.astro` — index card.
+- `src/components/EntryCard.astro` — index card. It shows title, status, anchor link and
+  `problem` only, so the card ends on the question. `claimA`, `claimB` and `verdict` stay on
+  the entry page; the card carries them hidden and the index script reveals the ones a search
+  matched when the match is not in the shown text.
 
 Routes (`/entries/<slug>/`) are stable: never rename an entry file without adding a redirect.
 
@@ -98,8 +104,8 @@ How to apply them:
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".
-- `verdict` must make sense without the claims, because the mobile index card shows it alone.
-  Never write “the first claim” or “the second claim” in it.
+- `verdict` should make sense without the claims, because a search hit can show it alone on the
+  index card. Never write “the first claim” or “the second claim” in it.
 - When a body field (`setup`, `whyWrong`, `resolution`, `positions`, `finePrint`, `whatBreaks`,
   `statusNote`) mentions another entry, link it as `[shown text](entry-slug)`. The build fails on
   an unknown slug. A link to an entry that is not published yet shows as plain text until it is. Never put links in `title`, `problem`, `claimA`, `claimB` or `verdict`.
