@@ -21,6 +21,6 @@ resolution:
   - "The endless demand does not expose a flaw in the particular triangle proof. It exposes the difference between knowing a rule and using it."
 finePrint: "This is Lewis Carroll’s logic puzzle, not [Zeno’s race](achilles-and-the-tortoise) with the same characters."
 sources:
-  - title: "Stanford Encyclopedia of Philosophy: Instrumental Rationality"
-    url: "https://plato.stanford.edu/entries/rationality-instrumental/"
+  - title: "Wikipedia: What the Tortoise Said to Achilles"
+    url: "https://en.wikipedia.org/wiki/What_the_Tortoise_Said_to_Achilles"
 ---
