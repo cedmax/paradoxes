@@ -1,0 +1,234 @@
+---
+interface Props {
+  slug: string
+}
+
+const { slug } = Astro.props
+const ellSbergBets = [
+  {
+    pair: "First choice",
+    rows: [
+      ["A: red", "£100", "£0", "£0"],
+      ["B: black", "£0", "£100", "£0"],
+    ],
+  },
+  {
+    pair: "Second choice",
+    rows: [
+      ["C: red or yellow", "£100", "£0", "£100"],
+      ["D: black or yellow", "£0", "£100", "£100"],
+    ],
+  },
+]
+const dice = [
+  { name: "A", faces: [4, 4, 4, 4, 0, 0], beats: "B" },
+  { name: "B", faces: [3, 3, 3, 3, 3, 3], beats: "C" },
+  { name: "C", faces: [6, 6, 2, 2, 2, 2], beats: "D" },
+  { name: "D", faces: [5, 5, 5, 1, 1, 1], beats: "A" },
+]
+const nodeRadius = 36
+const nodes = {
+  start: { x: 56, y: 185, label: "Start" },
+  a: { x: 260, y: 52, label: "A" },
+  end: { x: 464, y: 185, label: "End" },
+  b: { x: 260, y: 318, label: "B" },
+}
+const road = (from: { x: number; y: number }, to: { x: number; y: number }) => {
+  const length = Math.hypot(to.x - from.x, to.y - from.y)
+  const ux = (to.x - from.x) / length
+  const uy = (to.y - from.y) / length
+  const gap = nodeRadius + 3
+  const f = (n: number) => Math.round(n * 10) / 10
+  return `M${f(from.x + ux * gap)},${f(from.y + uy * gap)} L${f(to.x - ux * gap)},${f(to.y - uy * gap)}`
+}
+const roads = [
+  { d: road(nodes.start, nodes.a), label: "cars ÷ 100", x: 150, y: 108, anchor: "end" },
+  { d: road(nodes.a, nodes.end), label: "45", x: 370, y: 108, anchor: "start" },
+  { d: road(nodes.start, nodes.b), label: "45", x: 150, y: 282, anchor: "end" },
+  { d: road(nodes.b, nodes.end), label: "cars ÷ 100", x: 370, y: 282, anchor: "start" },
+]
+---
+
+{slug === "braess-paradox" && (
+  <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+    {[false, true].map((shortcut, i) => (
+      <div class="flex flex-col gap-2">
+        <p class="font-bold">
+          {shortcut
+            ? "With the shortcut: everyone takes A\u00a0→\u00a0B"
+            : "Before: 2,000 drivers on each route"}
+        </p>
+        <svg
+          viewBox="0 0 520 392"
+          role="img"
+          aria-labelledby={`braess-title-${i} braess-desc-${i}`}
+        >
+          <title
+            id={`braess-title-${i}`}
+          >{shortcut ? "The new route from Start through A and B to End takes 80 minutes" : "Two routes from Start to End each take 65 minutes"}</title>
+          <desc id={`braess-desc-${i}`}>
+            Start to A and B to End take the number of cars divided by 100 minutes. Start to B
+            and A to End take 45 minutes each.{" "}
+            {shortcut
+              ? "A new zero-minute one-way road connects A to B."
+              : "There is no road between A and B."}
+          </desc>
+          <defs>
+            <marker
+              id={`road-arrow-${i}`}
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="5"
+              markerHeight="5"
+              orient="auto-start-reverse"
+            >
+              <path d="M0,0 L10,5 L0,10 Z" fill="#272622" />
+            </marker>
+          </defs>
+          <g fill="none" stroke="#272622" stroke-width="3" marker-end={`url(#road-arrow-${i})`}>
+            {roads.map(({ d }) => (
+              <path d={d} />
+            ))}
+            {shortcut && <path d={road(nodes.a, nodes.b)} stroke-dasharray="8 5" />}
+          </g>
+          <g class="fill-ink" font-size="26">
+            {roads.map(({ label, x, y, anchor }) => (
+              <text x={x} y={y} text-anchor={anchor}>
+                {label}
+              </text>
+            ))}
+            {shortcut && (
+              <text x="280" y="193" text-anchor="start">
+                0
+              </text>
+            )}
+          </g>
+          {Object.values(nodes).map(({ x, y, label }) => (
+            <g>
+              <circle
+                class="fill-paper"
+                cx={x}
+                cy={y}
+                r={nodeRadius}
+                stroke="#272622"
+                stroke-width="2"
+              />
+              <text
+                class="fill-ink"
+                x={x}
+                y={y + 7}
+                font-size="22"
+                font-weight="bold"
+                text-anchor="middle"
+              >
+                {label}
+              </text>
+            </g>
+          ))}
+          <text
+            class="fill-ink"
+            x="260"
+            y="384"
+            font-size="24"
+            font-weight="bold"
+            text-anchor="middle"
+          >
+            {shortcut ? "40 + 0 + 40 = 80 minutes" : "20 + 45 = 65 minutes"}
+          </text>
+        </svg>
+      </div>
+    ))}
+    <figcaption class="text-base leading-normal">
+      Arrows show the permitted direction. Road times are in minutes. “cars ÷ 100” means the
+      number of cars on that road divided by 100. With all 4,000 drivers taking the shortcut,
+      switching alone to an old route would take 85 minutes.
+    </figcaption>
+  </figure>
+)}
+
+{slug === "ellsberg-paradox" && (
+  <div class="flex flex-col gap-4">
+    {ellSbergBets.map(({ pair, rows }) => (
+      <div class="overflow-x-auto border-2 border-ink">
+        <table class="w-full text-base leading-normal">
+          <caption class="border-b-2 border-ink p-3 text-left font-bold">
+            {pair}: payout for the colour drawn
+          </caption>
+          <thead>
+            <tr>
+              <th class="p-3 text-left" scope="col">
+                Bet
+              </th>
+              <th class="p-3 text-left" scope="col">
+                Red
+              </th>
+              <th class="p-3 text-left" scope="col">
+                Black
+              </th>
+              <th class="p-3 text-left" scope="col">
+                Yellow
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(([bet, red, black, yellow]) => (
+              <tr class="border-t border-ink">
+                <th class="p-3 text-left" scope="row">
+                  {bet}
+                </th>
+                <td class="p-3">{red}</td>
+                <td class="p-3">{black}</td>
+                <td class="p-3">{yellow}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ))}
+    <p class="text-base leading-normal">
+      There are 30 red balls. The other 60 are black or yellow in an unknown mix. Many people
+      choose A, then D: the two bets with known chances of winning.
+    </p>
+  </div>
+)}
+
+{slug === "nontransitive-dice" && (
+  <figure class="flex flex-col gap-4">
+    <div class="overflow-x-auto border-2 border-ink">
+      <table class="w-full text-base leading-normal">
+        <caption class="border-b-2 border-ink p-3 text-left font-bold">
+          Efron’s dice: six equally likely faces on each die
+        </caption>
+        <thead>
+          <tr>
+            <th class="p-3 text-left" scope="col">
+              Die
+            </th>
+            <th class="p-3 text-left" scope="col">
+              Face values
+            </th>
+            <th class="p-3 text-left" scope="col">
+              Beats
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {dice.map(({ name, faces, beats }) => (
+            <tr class="border-t border-ink">
+              <th class="p-3 text-left" scope="row">
+                {name}
+              </th>
+              <td class="p-3">{faces.join(", ")}</td>
+              <td class="p-3">{beats}: 2 in 3</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <figcaption class="text-base leading-normal">
+      A → B → C → D → A. Each arrow means the first die wins two thirds of single-roll contests
+      against the next. Higher numbers win.
+    </figcaption>
+  </figure>
+)}
