@@ -8,7 +8,7 @@ simplification: light
 noMaths: true
 order: 214
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "A whale has about 1,000 times more cells than a human. Do large animals really get no more cancer than small ones?"
 claimA: "Large animals do not have higher cancer prevalence than small animals, despite having many more cells."
 claimB: "Large animals have higher cancer prevalence than small animals, consistent with the number of cells contributing to cancer risk."
