@@ -1,0 +1,22 @@
+---
+const methods = [
+  { name: "Two points on the rim", chance: "1/3", d: "M 56 48 L 134 152" },
+  { name: "Distance from centre", chance: "1/2", d: "M 206 56 L 206 144" },
+  { name: "Midpoint by area", chance: "1/4", d: "M 350 44 L 350 156" },
+]
+---
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+<p class="font-bold">Three meanings of “pick a random chord”</p>
+<svg class="w-full" viewBox="0 0 450 180" role="img" aria-labelledby="bertrand-methods-title bertrand-methods-desc">
+<title id="bertrand-methods-title">Three circle and chord diagrams</title><desc id="bertrand-methods-desc">All three methods choose chords in a circle. They sample different things, producing different chances of exceeding the triangle side.</desc>
+{[95,225,355].map(x=><g><circle cx={x} cy="87" r="64" fill="none" stroke="currentColor" stroke-width="2"/><circle cx={x} cy="87" r="32" fill="#d7a13d" fill-opacity=".3" stroke="#d7a13d" stroke-dasharray="4 4" stroke-width="2"/></g>)}
+<path d="M56 38 L134 136 M193 55 L257 119 M355 23 L355 151" fill="none" stroke="#bd4b37" stroke-width="3"/>
+<g fill="currentColor" font-size="19" text-anchor="middle"><text x="95" y="172">1/3</text><text x="225" y="172">1/2</text><text x="355" y="172">1/4</text></g>
+</svg>
+<div class="overflow-x-auto"><table class="w-full text-base"><thead><tr class="border-b border-ink"><th class="p-2 text-left">What is sampled uniformly?</th><th class="p-2 text-right">Chance of a long chord</th></tr></thead><tbody>
+<tr class="border-b border-ink"><td class="p-2">Two points on the circle’s edge</td><td class="p-2 text-right">1/3</td></tr>
+<tr class="border-b border-ink"><td class="p-2">The chord’s distance from the centre</td><td class="p-2 text-right">1/2</td></tr>
+<tr><td class="p-2">The chord’s midpoint by area</td><td class="p-2 text-right">1/4</td></tr>
+</tbody></table></div>
+<figcaption class="text-base leading-normal">The dashed inner circle has half the radius. Long chords have midpoints inside it. That means half of the possible distances, but only a quarter of the possible midpoint area. The pictured chords are examples, not the full random distributions.</figcaption>
+</figure>
