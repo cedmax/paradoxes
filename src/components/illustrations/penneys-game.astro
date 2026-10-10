@@ -1,0 +1,12 @@
+---
+const examples=[
+{first:"HHH",second:"THH",chance:"7 in 8"},
+{first:"HHT",second:"THH",chance:"3 in 4"},
+{first:"HTH",second:"HHT",chance:"2 in 3"},
+]
+---
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+<p class="font-bold">A run can be more likely to appear first, even though every three-toss run has probability 1 in 8.</p>
+<table class="w-full text-base"><thead><tr class="border-b-2 border-ink"><th class="p-2 text-left">First picks</th><th class="p-2 text-left">Second counters</th><th class="p-2 text-right">Second wins</th></tr></thead><tbody>{examples.map(x=><tr class="border-b border-ink last:border-0"><td class="p-2 font-bold">{x.first}</td><td class="p-2 font-bold">{x.second}</td><td class="p-2 text-right">{x.chance}</td></tr>)}</tbody></table>
+<div class="border-l-4 border-accent pl-4 text-base"><p class="font-bold">Make the counter:</p><p>Flip the first player’s middle toss, then add their first two tosses.</p><p>Example: HHT → THH.</p></div>
+<figcaption class="text-base leading-normal">H is heads and T is tails. The game keeps tossing until one chosen run of three appears. Earlier tosses overlap later ones, so the first run to appear is not a race between independent blocks of three tosses.</figcaption></figure>
