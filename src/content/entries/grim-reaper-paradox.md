@@ -17,7 +17,7 @@ simplification: light
 noMaths: false
 order: 213
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "An endless line of reapers, each killing a man only if no earlier reaper has, cannot exist. What does that show?"
 claimA: "Something can have infinitely many causes, with no first cause among them."
 claimB: "If endless chains of causes are possible, then reapers that are each possible on their own can be put together into the endless line."

@@ -17,7 +17,7 @@ simplification: heavy
 noMaths: false
 order: 206
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Is there a biggest infinity, or a set that holds every possible size of a set?"
 claimA: "There is a set that contains every cardinal number, that is, every possible size of a set."
 claimB: "For any set of sizes, there is a size bigger than every size in it."

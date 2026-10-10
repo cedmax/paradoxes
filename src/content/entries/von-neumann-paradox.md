@@ -17,7 +17,7 @@ simplification: heavy
 noMaths: false
 order: 215
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Can a square be cut into pieces that are moved without changing any area, to make two squares of the same size?"
 claimA: "Every piece of a flat figure has an area that area-preserving moves cannot change, so the pieces of one square cannot make two."
 claimB: "A square can be split into sets of points that, moved by area-preserving stretches and shears, make two squares the same size as the first."

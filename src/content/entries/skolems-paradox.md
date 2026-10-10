@@ -14,7 +14,7 @@ simplification: heavy
 noMaths: false
 order: 207
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "How can a theory that proves some sets are uncountable be satisfied by a model with only countably many things in it?"
 claimA: "In a model with only countably many things, every set has only countably many members, so the model must count every set as countable."
 claimB: "Set theory proves that some sets are uncountable, so every model of it, even a countable one, has sets it counts as uncountable."

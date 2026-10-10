@@ -16,7 +16,7 @@ simplification: heavy
 noMaths: false
 order: 212
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Can every piece of a sphere’s surface be given an area, so that pieces of the same shape and size always have the same area?"
 claimA: "Every piece of a sphere’s surface, however ragged, has an area, the areas of separate pieces add up, and pieces that can be turned onto each other have equal areas."
 claimB: "Most of a sphere’s surface can be split into three pieces, each the same shape and size as the other two and as the other two put together."

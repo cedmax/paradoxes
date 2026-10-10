@@ -10,7 +10,7 @@ simplification: heavy
 noMaths: false
 order: 214
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "How can 1 − 2 + 3 − 4 + … be said to equal one quarter, when its running totals swing wider and wider?"
 claimA: "The running totals of 1 − 2 + 3 − 4 + … swing ever wider between positive and negative whole numbers, so the series cannot add up to 1/4."
 claimB: "The sum 1 − 2 + 3 − 4 + … is 1/4, the value Leonhard Euler gave it and summation methods still give it."

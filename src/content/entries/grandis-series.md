@@ -10,7 +10,7 @@ simplification: heavy
 noMaths: false
 order: 211
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Does 1 − 1 + 1 − 1 + … add up to 0, to 1, or to one half?"
 claimA: "The endless sum 1 − 1 + 1 − 1 + … has a definite value, and regrouping its terms cannot change that value."
 claimB: "Grouping the terms as (1 − 1) + (1 − 1) + … gives 0, while grouping them as 1 + (−1 + 1) + (−1 + 1) + … gives 1."

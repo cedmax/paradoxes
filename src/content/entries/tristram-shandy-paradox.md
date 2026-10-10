@@ -10,7 +10,7 @@ anchor: galileos-paradox
 simplification: light
 noMaths: false
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "A man takes a year to write up each day of his life. If he lived for ever, would any day go unwritten?"
 claimA: "He falls further behind every year, so some part of his life will never be written about."
 claimB: "The events of day 1 are written in year 1, day 2 in year 2, and so on, so every day of his life gets written about."
