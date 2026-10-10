@@ -1,0 +1,9 @@
+---
+const legs = [{distance:"100 m",time:"10 s"},{distance:"10 m",time:"1 s"},{distance:"1 m",time:"0.1 s"},{distance:"0.1 m",time:"0.01 s"}]
+---
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+<p class="font-bold">Each remaining gap takes one tenth as long to close.</p>
+<div class="overflow-x-auto border-2 border-ink"><table class="w-full text-base"><thead><tr class="border-b-2 border-ink"><th class="p-3 text-left">Achilles closes</th><th class="p-3 text-right">Time needed</th></tr></thead><tbody>{legs.map(x=><tr class="border-b border-ink last:border-0"><td class="p-3">{x.distance}</td><td class="p-3 text-right">{x.time}</td></tr>)}</tbody></table></div>
+<div class="border-l-4 border-accent pl-4"><p class="font-bold">10 + 1 + 0.1 + 0.01 + … = 11.111… seconds</p><p class="text-base">Infinitely many shrinking parts, but a finite total.</p></div>
+<figcaption class="text-base leading-normal">Achilles runs at 10 m/s; the tortoise at 1 m/s, starting 100 m ahead. Each time Achilles reaches where the tortoise was, it has gone another tenth as far. The endless stages sum to 100/9 seconds, and Achilles catches it.</figcaption>
+</figure>
