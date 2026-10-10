@@ -19,9 +19,9 @@ simplification: light
 noMaths: false
 written: true
 sourcesVerified: true
-problem: "Does being born among the first 60 billion or so humans make an early end for humanity more likely?"
-claimA: "If you count yourself as a random pick from all humans who will ever live, an early place in the birth order makes a small total far more likely."
-claimB: "Your place in the birth order, on its own, is no evidence about how many humans will ever live."
+problem: "Does being among the first 117 billion or so humans ever born make an early end for humanity more likely?"
+claimA: "An early birth rank is evidence that the total number of humans will be smaller."
+claimB: "An early birth rank gives no reason to expect a smaller total."
 verdict: "The argument has serious defenders and many critics, and the critics disagree among themselves about what is wrong with it."
 whatBreaks: "Whether a person may treat their birth rank as a random sample from everyone who will ever live."
 statusNote: "there is no agreed answer about using birth rank this way. Critics dispute both the sampling assumption and the statistical reasoning."
@@ -36,7 +36,7 @@ positions:
     body: "A future with more people also gives more opportunities for you to exist. This can cancel the shift. Cost: critics argue that the same rule can make implausibly strong predictions about the universe from existence alone."
   - title: "Reject the inference"
     body: "Being alive now need not make you a random sample of all future humans. Critics also challenge how the statistical intervals are used. Cost: objections to simple versions do not dispose of every more carefully stated version."
-finePrint: "Leslie’s historical example compares totals of 60 billion and 6,000 billion people, initially equally likely. Treating birth rank as uniformly sampled makes a rank in the first 60 billion favour the smaller total by 100 to 1. These are illustrative totals, not present population estimates or an unconditional forecast. The separate “95 percent” argument also depends on the sampling assumption. Gott uses a random moment in a species’ lifetime instead of a birth rank. The competing rules are often called self-sampling and self-indication. Closely related disputes occur in the [Sleeping Beauty problem](sleeping-beauty-problem)."
+finePrint: "The Population Reference Bureau estimated that around 117 billion humans had ever been born as of November 2022; the number is an approximate historical estimate, not a current count. Leslie’s historical example compares totals of 60 billion and 6,000 billion people, initially equally likely. Treating birth rank as uniformly sampled makes a rank in the first 60 billion favour the smaller total by 100 to 1. These are illustrative totals, not present population estimates or an unconditional forecast. The separate “95 percent” argument also depends on the sampling assumption. Gott uses a random moment in a species’ lifetime instead of a birth rank. The competing rules are often called self-sampling and self-indication. Closely related disputes occur in the [Sleeping Beauty problem](sleeping-beauty-problem)."
 sources:
   - title: "Wikipedia: Doomsday argument"
     url: "https://en.wikipedia.org/wiki/Doomsday_argument"
