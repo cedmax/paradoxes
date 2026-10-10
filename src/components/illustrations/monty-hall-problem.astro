@@ -1,0 +1,19 @@
+---
+const cases = [
+  { car: "Your door", stay: "Win", switch: "Lose" },
+  { car: "Other door A", stay: "Lose", switch: "Win" },
+  { car: "Other door B", stay: "Lose", switch: "Win" },
+]
+---
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+<p class="font-bold">Fix your first choice. Put the car behind each door in turn.</p>
+<div class="overflow-x-auto border-2 border-ink"><table class="w-full text-base">
+<thead><tr class="border-b-2 border-ink"><th class="p-3 text-left">Car starts behind</th><th class="p-3 text-left">Stay</th><th class="p-3 text-left">Switch</th></tr></thead>
+<tbody>{cases.map(row=><tr class="border-b border-ink last:border-0"><th class="p-3 text-left font-normal">{row.car}</th><td class="p-3">{row.stay}</td><td class="p-3 font-bold">{row.switch}</td></tr>)}</tbody>
+</table></div>
+<div class="grid grid-cols-2 gap-3 text-base">
+<div class="border-2 border-ink p-3"><p class="font-bold">Stay</p><p>1 win in 3</p></div>
+<div class="border-2 border-ink p-3"><p class="font-bold">Switch</p><p>2 wins in 3</p></div>
+</div>
+<figcaption class="text-base leading-normal">The host knows where the car is and always reveals a goat. Switching wins whenever your first choice was wrong, which happens two times out of three. Each row describes one equally likely car position.</figcaption>
+</figure>
