@@ -17,13 +17,13 @@ statusNote: "the truth of future-contingent statements is treated differently in
 setup: "Suppose two fleets might fight tomorrow, but the decision has not yet been made. A sentence about the battle looks as though it must already be true or false."
 whyWrong: "If it is true today, perhaps the battle must happen. If it is false, perhaps it cannot happen. Either way, the decision begins to look fixed."
 resolution:
-  - "A statement being true is not obviously the same thing as its event being forced to happen. Some accounts keep truth and distinguish it from necessity."
-  - "Other accounts deny that every open future statement has a definite truth value already. The choice changes how truth and the future are understood."
+  - "William of Ockham defended the idea that claims about future choices can already be true or false without making those choices inevitable. On this view, being true is different from being forced to happen."
+  - "Other accounts, such as Richmond Thomason’s treatment of branching possible futures, deny that an unsettled future claim must already be true or false. The disagreement changes how truth at a moment is understood."
 positions:
   - title: "Truth is already definite"
-    body: "Tomorrow’s battle either will or will not happen, even if it is not predetermined. Cost: it must explain how truth about an open future is grounded."
+    body: "William of Ockham held that tomorrow’s battle is already either true or false, without making it unavoidable. Cost: a truth about an open future needs an explanation."
   - title: "Truth is not yet settled"
-    body: "Some statements about future choices gain definite truth only when the choice happens. Cost: a familiar rule that every statement is true or false must be restricted."
+    body: "On an account associated with Richmond Thomason, a statement is true now only if it holds on every possible future path. Cost: the everyday rule that every definite claim is already true or false must be restricted."
 finePrint: "Aristotle’s sea-battle example is the classic version. Saying an outcome is already true does not, without another premise, prove it is inevitable."
 sources:
   - title: "Stanford Encyclopedia of Philosophy: Future Contingents"

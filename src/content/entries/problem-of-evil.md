@@ -17,13 +17,13 @@ statusNote: "philosophers disagree about the logical and evidential force of suf
 setup: "The world contains terrible suffering, including suffering that appears undeserved. A perfectly good being would seem to want to prevent it, and an all-knowing, all-powerful being could seem able to do so."
 whyWrong: "Those claims look difficult to combine. One response says the suffering counts strongly against such a God. Another says goodness might permit some suffering for reasons people cannot fully see."
 resolution:
-  - "The logical argument says the ideas cannot fit together at all. A separate argument says suffering makes the existence of God less likely even if there is no strict contradiction."
-  - "Responses include free choice, the value of certain goods and limits on human understanding. Whether these adequately address suffering is contested."
+  - "William Rowe argued that apparently pointless suffering provides evidence against a God who is all-powerful, all-knowing and perfectly good. This does not require proving that the combination is logically impossible."
+  - "Alvin Plantinga gave a free-choice defence against a strict contradiction, while other defenders appeal to possible reasons that human observers cannot fully know. Critics reply that a possible logical defence does not by itself explain the scale of actual suffering."
 positions:
   - title: "Suffering counts against such a God"
-    body: "A perfectly good and powerful being would prevent at least apparently pointless suffering. Cost: the argument must defend what such a being would or could permit."
+    body: "William Rowe’s evidential argument says apparently pointless suffering makes such a God less likely. Cost: it must justify drawing conclusions from the absence of known good reasons."
   - title: "Suffering can be permitted"
-    body: "Good reasons might permit suffering without abandoning perfect goodness. Cost: a proposed reason must face the scale and apparent unfairness of actual suffering."
+    body: "Alvin Plantinga’s free-choice defence shows how God and suffering might be logically compatible. Cost: a defence of bare possibility does not explain every case of suffering."
 finePrint: "This entry concerns a specific account of God, not every religious belief. The question includes both logical and evidence-based forms. No religious or non-religious answer is assumed."
 sources:
   - title: "Stanford Encyclopedia of Philosophy: The Problem of Evil"

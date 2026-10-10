@@ -11,11 +11,11 @@ written: true
 sourcesVerified: false
 reviewed: false
 problem: "Can a voting rule respect everyone’s private choices and always follow unanimous preferences?"
-claimA: "When a decision is a person’s private right, that person’s choice should prevail over other people’s preferences."
-claimB: "When everybody prefers one complete outcome to another, the social rule should always choose the unanimously preferred outcome."
+claimA: "A person’s private right should prevail even when everyone prefers a different complete outcome."
+claimB: "An outcome everyone prefers should prevail even when that overrides someone’s private right."
 verdict: "Sen proved that even minimal rights and a rule respecting everyone’s shared preferences can sometimes clash."
 whatBreaks: "The choice between unconditional rights over private decisions and always following unanimous rankings of complete outcomes."
-statusNote: "Sen’s impossibility result is established for its formal rules; the dispute is whether to limit the rights rule, the unanimity rule or the range of preferences."
+statusNote: "the formal impossibility is established under Sen’s assumptions; the dispute concerns which attractive rule should be restricted."
 setup: "Amartya Sen imagined two people with opposite views about reading a controversial book. Each is given a say over their own reading. But each also cares about what the other reads."
 whyWrong: "The two private choices can force a social ranking that conflicts with a comparison both people agree on. The problem is not that Sen’s maths is in doubt, but that no ranking can respect every condition at once."
 resolution:

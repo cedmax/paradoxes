@@ -9,8 +9,8 @@ written: true
 sourcesVerified: false
 reviewed: false
 problem: "Can what is happening right now prove that it is not a dream?"
-claimA: "A person cannot know they are awake without first ruling out the possibility that they are dreaming."
-claimB: "A person can know they are awake without proving that they are not dreaming."
+claimA: "Knowing that someone is awake requires ruling out the possibility that they are dreaming."
+claimB: "Knowing that someone is awake does not require ruling out the possibility that they are dreaming."
 verdict: "Dreams raise a serious doubt about what experience can prove; whether knowledge requires excluding dreams is disputed."
 whatBreaks: "Whether knowing that one is awake requires excluding every possible dream that feels the same."
 statusNote: "the dream challenge is widely discussed, but philosophers disagree about whether it defeats ordinary knowledge."

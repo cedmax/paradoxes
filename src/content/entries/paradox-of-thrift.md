@@ -9,11 +9,11 @@ written: true
 sourcesVerified: false
 reviewed: false
 problem: "How can everybody trying to save more leave a country saving no more, or even less?"
-claimA: "When households all try to save more during a slump, the economy still ends up saving more."
-claimB: "When households all try to save more during a slump, falling spending and income can stop total saving rising."
+claimA: "Every household saving more during a slump must make the country save more in total."
+claimB: "Every household trying to save more during that same slump can leave the country saving no more."
 verdict: "Collective thrift can weaken demand and income enough to frustrate saving; how far that happens depends on the economy."
 whatBreaks: "Whether reduced spending mainly cuts incomes or releases resources for investment during a slump."
-statusNote: "Keynesian accounts stress falling demand and income, while other accounts allow saving to fund more investment; the outcome depends on the conditions."
+statusNote: "Keynesian accounts stress falling income and demand; other accounts allow more saving to fund investment. The outcome depends on conditions."
 setup: "A family saves more by cutting restaurant visits and purchases. That helps its own budget. Now imagine every family doing the same in a recession, while businesses struggle to sell what they make."
 whyWrong: "Shops receive less money and may reduce jobs and hours. Workers then spend less. The income from which families hoped to save becomes smaller."
 resolution:
@@ -24,7 +24,7 @@ positions:
     body: "Keynesian reasoning says that, in a demand-starved slump, lower spending can cut income enough to prevent more aggregate saving. Cost: the size of the effect depends on weak demand and limited economic adjustment."
   - title: "Saving finances more investment"
     body: "Accounts emphasising price, interest-rate and investment responses expect greater saving to support future output. Cost: those responses can be too weak or slow in a severe slump."
-finePrint: "The central question concerns aggregate outcomes under specific economic conditions, not whether an individual household should save. Different economic models and policy settings give different results."
+finePrint: "The opposing predictions concern the economy as a whole under a slump, rather than the benefit of saving to one family. Keynesian and other models differ over how interest rates, prices, demand and investment respond."
 sources:
   - title: "Wikipedia: Paradox of thrift"
     url: "https://en.wikipedia.org/wiki/Paradox_of_thrift"

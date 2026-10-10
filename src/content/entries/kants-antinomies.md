@@ -13,7 +13,7 @@ claimA: "Reason alone can settle whether the world as a whole had a first moment
 claimB: "Reason alone cannot settle whether the world as a whole had a first moment."
 verdict: "Kant used opposing arguments about the world’s beginning to challenge what pure reason can establish about the whole universe."
 whatBreaks: "Whether reasoning that works about things within experience can decide the beginning of all time."
-statusNote: "Kant argued that neither proof settles the world’s beginning, but philosophers disagree about his limits on metaphysical knowledge."
+statusNote: "Kant argued that neither proof establishes the world’s beginning, but his limits on metaphysical knowledge remain disputed."
 setup: "Kant presented arguments that time must have a beginning and arguments that time cannot have a beginning. Both look persuasive when the world is treated as one complete thing."
 whyWrong: "The first argument says an endless past could never be completed. The second says a beginning seems to need a time before it. They pull towards opposite answers to one question."
 resolution:

@@ -17,15 +17,17 @@ statusNote: "the national pattern has several possible explanations; it does not
 setup: "France was reported to have lower rates of coronary heart disease than expected from its saturated-fat intake. This was dubbed the French paradox."
 whyWrong: "A population average seems to contradict a familiar link between diet and heart disease. But people in different countries differ in far more than one food."
 resolution:
-  - "Recording practices, other parts of diets, lifestyles and delays between eating patterns and later disease can all complicate the comparison."
-  - "A country-level relationship cannot by itself tell whether an individual’s diet causes or prevents heart disease."
+  - "Serge Renaud and other researchers drew attention to factors beyond saturated fat, including wider patterns of diet and lifestyle, as possible explanations for the French figures."
+  - "Malcolm Law and Nicholas Wald argued that differences in recording heart-disease deaths and a delay between past diets and later illness could explain much of the apparent gap. Neither explanation makes national averages proof of cause and effect."
 positions:
-  - title: "The pattern reflects further protective factors"
-    body: "Other foods, lifestyle or historical factors could help explain the reported difference. Cost: the responsible factors need evidence beyond a national correlation."
-  - title: "The pattern is partly a measurement effect"
-    body: "Differences in reporting and time lags may exaggerate the apparent gap. Cost: this view must explain how much of the gap those differences account for."
+  - title: "Other factors help protect health"
+    body: "Researchers including Serge Renaud argued that wider dietary and lifestyle factors may help explain France’s recorded rates. Cost: the role of any proposed factor needs direct evidence beyond national comparisons."
+  - title: "The gap is partly statistical"
+    body: "Malcolm Law and Nicholas Wald highlighted differences in recorded deaths and the delay from past diet to later disease. Cost: it must establish how much of the observed difference these effects explain."
 finePrint: "The puzzle became associated with claims about red wine, but the national observation does not establish that drinking alcohol prevents disease. Avoid interpreting it as dietary or medical advice."
 sources:
   - title: "Wikipedia: French paradox"
     url: "https://en.wikipedia.org/wiki/French_paradox"
+  - title: "Law and Wald (1999): Why Heart Disease Mortality Is Low in France"
+    url: "https://doi.org/10.1136/bmj.318.7196.1471"
 ---

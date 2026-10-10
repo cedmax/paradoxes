@@ -13,7 +13,7 @@ claimA: "Norton’s ideal dome is a legitimate Newtonian example in which a ball
 claimB: "Norton’s ideal dome is not a legitimate Newtonian example of spontaneous motion."
 verdict: "The equations allow spontaneous motion on the ideal dome, but whether that is a valid physical counterexample to determinism is disputed."
 whatBreaks: "Whether the unusual force and idealisations belong among legitimate Newtonian systems, or must be excluded."
-statusNote: "Norton defends the dome as an example of Newtonian indeterminism, while critics challenge its physical or mathematical legitimacy."
+statusNote: "Norton defends the dome as a counterexample to determinism, while critics challenge its physical or mathematical legitimacy."
 setup: "A point-sized ball rests at the summit of a specially shaped, frictionless dome. Norton’s chosen shape gives a force equation with an unusual property near the top."
 whyWrong: "The equation allows the ball to stay still forever. It also allows the ball to wait and then slide, without a new push, at any chosen time. Whether this is a genuine Newtonian possibility is the dispute."
 resolution:
