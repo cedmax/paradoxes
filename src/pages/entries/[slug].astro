@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content"
 import Base from "~/layouts/Base.astro"
 import Linked from "~/components/Linked.astro"
+import PuzzleIllustration from "~/components/PuzzleIllustration.astro"
 import { chapterById } from "~/data/chapters"
 import { getPublishedEntries } from "~/data/entries"
 import { statuses, simplifications } from "~/data/status"
@@ -141,6 +142,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
           <p>
             <Linked text={d.setup} />
           </p>
+          <PuzzleIllustration slug={entry.id} />
         </section>
       )}
 

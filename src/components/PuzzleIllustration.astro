@@ -1,0 +1,245 @@
+---
+interface Props {
+  slug: string
+}
+
+const { slug } = Astro.props
+const colours = ["#bd4b37", "#387a91", "#d7a13d", "#5d8560"]
+const missingLayouts = [
+  [
+    "0,0 8,0 8,3",
+    "8,3 13,3 13,5",
+    "8,2 10,2 10,1 13,1 13,3 8,3",
+    "8,0 13,0 13,1 10,1 10,2 8,2",
+  ],
+  ["5,2 13,2 13,5", "0,0 5,0 5,2", "8,1 10,1 10,0 13,0 13,2 8,2", "5,0 10,0 10,1 7,1 7,2 5,2"],
+]
+const boardLayouts = [
+  ["0,0 8,0 8,3", "0,0 0,3 8,3", "3,3 8,3 8,8 5,8", "0,3 3,3 5,8 0,8"],
+  ["0,0 8,0 8,3", "5,2 5,5 13,5", "0,0 0,5 5,5 5,2", "8,0 13,0 13,5 8,3"],
+]
+const gambles = [
+  {
+    pair: "First pair",
+    rows: [
+      ["A", "$1m", "$1m", "$1m"],
+      ["B", "$5m", "$0", "$1m"],
+    ],
+  },
+  {
+    pair: "Second pair",
+    rows: [
+      ["A", "$1m", "$1m", "$0"],
+      ["B", "$5m", "$0", "$0"],
+    ],
+  },
+]
+---
+
+{slug === "missing-square-puzzle" && (
+  <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+    <div class="grid gap-6">
+      {missingLayouts.map((pieces, i) => (
+        <div class="flex flex-col gap-2">
+          <p class="font-bold">{i === 0 ? "Filled outline" : "Rearranged: one square empty"}</p>
+          <svg viewBox="-0.2 -0.2 13.4 5.4" role="img" aria-labelledby={`missing-title-${i}`}>
+            <title id={`missing-title-${i}`}>
+              {i === 0 ? "Four pieces fill a bent 13 by 5 outline" : "The same four pieces leave a one-square hole in a different bent outline"}
+            </title>
+            <g
+              transform="translate(0 5) scale(1 -1)"
+              stroke="#272622"
+              stroke-width="0.035"
+              stroke-linejoin="round"
+            >
+              {pieces.map((points, j) => (
+                <polygon points={points} fill={colours[j]} />
+              ))}
+              {Array.from({ length: 14 }, (_, x) => (
+                <path d={`M${x},0 V5`} fill="none" opacity="0.25" />
+              ))}
+              {Array.from({ length: 6 }, (_, y) => (
+                <path d={`M0,${y} H13`} fill="none" opacity="0.25" />
+              ))}
+              {i === 1 && (
+                <rect x="7" y="1" width="1" height="1" fill="none" stroke-width="0.08" />
+              )}
+            </g>
+          </svg>
+        </div>
+      ))}
+    </div>
+    <figcaption class="text-base leading-normal">
+      The same colours mark the same pieces. Both outlines are 13 squares wide and 5 tall. Their
+      long edges are drawn with the actual tiny bends.
+    </figcaption>
+    <details class="border-t-2 border-ink pt-3">
+      <summary class="cursor-pointer font-bold">Compare the two long edges</summary>
+      <svg
+        class="mt-4"
+        viewBox="-0.2 -0.2 13.4 5.4"
+        role="img"
+        aria-labelledby="missing-edge-title"
+      >
+        <title id="missing-edge-title">The two bent edges enclose a sliver of area one square</title>
+        <g transform="translate(0 5) scale(1 -1)" stroke-width="0.07" fill="none">
+          <polygon points="0,0 8,3 13,5 5,2" fill="#d7a13d" stroke="#272622" />
+          <path d="M0,0 L13,5" stroke="#272622" stroke-dasharray="0.2 0.15" />
+        </g>
+      </svg>
+      <p class="mt-2 text-base">
+        The dashed line is straight. The two bent edges enclose exactly one square of area.
+      </p>
+    </details>
+  </figure>
+)}
+
+{slug === "chessboard-paradox" && (
+  <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+    <div class="grid gap-6">
+      {boardLayouts.map((pieces, i) => (
+        <div class="flex flex-col gap-2">
+          <p class="font-bold">
+            {i === 0 ? "8 × 8: 64 squares" : "13 × 5: an outline of 65 squares"}
+          </p>
+          <svg
+            class={i === 0 ? "mx-auto w-full max-w-80" : "w-full"}
+            viewBox={i === 0 ? "-0.2 -0.2 8.4 8.4" : "-0.2 -0.2 13.4 5.4"}
+            role="img"
+            aria-labelledby={`board-title-${i}`}
+          >
+            <title id={`board-title-${i}`}>
+              {i === 0 ? "An 8 by 8 square divided into two triangles and two trapezoids" : "The same pieces inside a 13 by 5 rectangle with a thin diagonal gap"}
+            </title>
+            <g
+              transform={`translate(0 ${i === 0 ? 8 : 5}) scale(1 -1)`}
+              stroke="#272622"
+              stroke-width="0.035"
+              stroke-linejoin="round"
+            >
+              {pieces.map((points, j) => (
+                <polygon points={points} fill={colours[j]} />
+              ))}
+              {Array.from({ length: i === 0 ? 9 : 14 }, (_, x) => (
+                <path d={`M${x},0 V${i === 0 ? 8 : 5}`} fill="none" opacity="0.25" />
+              ))}
+              {Array.from({ length: i === 0 ? 9 : 6 }, (_, y) => (
+                <path d={`M0,${y} H${i === 0 ? 8 : 13}`} fill="none" opacity="0.25" />
+              ))}
+            </g>
+          </svg>
+        </div>
+      ))}
+    </div>
+    <figcaption class="text-base leading-normal">
+      The same colours mark the same pieces. The rectangle has a real, very thin diagonal gap.
+      Each small grid square has the same area; the two drawings use different display scales.
+    </figcaption>
+    <details class="border-t-2 border-ink pt-3">
+      <summary class="cursor-pointer font-bold">See the gap enlarged</summary>
+      <svg
+        class="mt-4 w-full"
+        viewBox="0 0 400 100"
+        role="img"
+        aria-labelledby="board-gap-title"
+      >
+        <title id="board-gap-title">The diagonal gap enlarged sideways to show its parallelogram shape</title>
+        <polygon
+          points="10,50 156,15 390,50 244,85"
+          fill="#d7a13d"
+          stroke="#272622"
+          stroke-width="2"
+        />
+      </svg>
+      <p class="mt-2 text-base">
+        The gap is a parallelogram with area one square. Its width is exaggerated here.
+      </p>
+    </details>
+  </figure>
+)}
+
+{slug === "vanishing-puzzle" && (
+  <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+    {[0, 1].map((layout) => (
+      <div class="flex flex-col gap-2">
+        <p class="font-bold">
+          {layout === 0
+            ? "Six bars, each five units tall"
+            : "The same pieces: five bars, each six units tall"}
+        </p>
+        <svg viewBox="-0.3 -0.3 9.1 6.6" role="img" aria-labelledby={`vanish-title-${layout}`}>
+          <title id={`vanish-title-${layout}`}>
+            {layout === 0 ? "Six bars split into lower pieces of heights zero to five and upper pieces of heights five to zero" : "The lower pieces pair with the next taller upper pieces to make five bars of height six"}
+          </title>
+          <g transform="translate(0 6) scale(1 -1)" stroke="#272622" stroke-width="0.04">
+            {Array.from({ length: layout === 0 ? 6 : 5 }, (_, i) => {
+              const bottom = i + layout
+              const top = 5 - i
+              return (
+                <>
+                  {bottom > 0 && (
+                    <rect x={i * 1.5} y="0" width="1" height={bottom} fill={colours[3]} />
+                  )}
+                  {top > 0 && (
+                    <rect x={i * 1.5} y={bottom} width="1" height={top} fill={colours[2]} />
+                  )}
+                </>
+              )
+            })}
+          </g>
+        </svg>
+      </div>
+    ))}
+    <figcaption class="text-base leading-normal">
+      A simple model of the trick, rather than Loyd’s original picture. Re-pairing the upper and
+      lower pieces makes fewer, taller bars. Both arrangements contain 30 units of drawing. In a
+      picture of people, small gains across the remaining figures conceal the missing one.
+    </figcaption>
+  </figure>
+)}
+
+{slug === "allais-paradox" && (
+  <div class="flex flex-col gap-4">
+    {gambles.map(({ pair, rows }) => (
+      <div class="overflow-x-auto border-2 border-ink">
+        <table class="w-full text-base leading-normal">
+          <caption class="border-b-2 border-ink p-3 text-left font-bold">
+            {pair}: imagine 100 equally likely tickets
+          </caption>
+          <thead>
+            <tr>
+              <th class="p-3 text-left" scope="col">
+                Option
+              </th>
+              <th class="p-3 text-left" scope="col">
+                10 tickets
+              </th>
+              <th class="p-3 text-left" scope="col">
+                1 ticket
+              </th>
+              <th class="bg-disputed p-3 text-left" scope="col">
+                89 shared tickets
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(([option, ten, one, shared]) => (
+              <tr class="border-t border-ink">
+                <th class="p-3 text-left" scope="row">
+                  {option}
+                </th>
+                <td class="p-3">{ten}</td>
+                <td class="p-3">{one}</td>
+                <td class="bg-disputed p-3">{shared}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ))}
+    <p class="text-base leading-normal">
+      $1m means $1 million. Only the shared column changes. The usual choices are A in the first
+      pair and B in the second.
+    </p>
+  </div>
+)}
