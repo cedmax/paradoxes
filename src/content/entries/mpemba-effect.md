@@ -53,9 +53,9 @@ sources:
   - title: "Teza, Bechhoefer, Lasanta, Raz and Vucelja, preprint of the review, arXiv:2502.01758"
     url: https://arxiv.org/abs/2502.01758
     note: "Source for the controversy over water lasting to this day, strong evidence for kinds of the effect linked to evaporation and frost, solutes and supercooling being less supported, Auerbach on supercooling, Burridge and Linden questioning whether the effect is real, and the broader effect in classical and quantum systems. The preprint version, submitted to Physics Reports."
-  - title: "Janni, Botero Ampudia and Dahlberg (2026), An experimental investigation of the Mpemba effect"
+  - title: "Janni, Botero Ampudia and Dahlberg (2026), An experimental investigation of the Mpemba effect, RSC Applied Interfaces 3, 442-449"
     url: https://pubs.rsc.org/en/content/articlehtml/2026/lf/d5lf00296f
-    note: "Source for the 2026 experiment: 176 measurements, 46 and 58 instances under the two meanings of the effect (reaching 0 °C first, and entering the liquid-to-ice transition first after supercooling), and the conclusion that observations arise from two paths, fluctuations in convective air currents and variations in supercooling. Published 16 January 2026."
+    note: "Source for the 2026 experiment: 176 samples, with hotter water reaching 0 °C first in 46 instances and beginning to freeze first in 58, and the conclusion that observations arise from two paths, fluctuations in convective air currents and variations in supercooling. Published 16 January 2026. The pairing of counts with definitions and the journal details were confirmed by the site owner from the full paper."
   - title: "Kumar and Bechhoefer (2020), Exponentially faster cooling in a colloidal system, arXiv:2008.02373"
     url: https://arxiv.org/abs/2008.02373
     note: "Source for the experiment on a colloidal system in water showing cooling exponentially faster than usual, matching the predicted strong Mpemba effect. Published in Nature in 2020 according to Wikipedia."
