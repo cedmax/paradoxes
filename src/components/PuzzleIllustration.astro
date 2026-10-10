@@ -73,8 +73,13 @@ const gambles = [
       The same colours mark the same pieces. Both outlines are 13 squares wide and 5 tall. Their
       long edges are drawn with the actual tiny bends.
     </figcaption>
-    <details class="border-t-2 border-ink pt-3">
-      <summary class="cursor-pointer font-bold">Compare the two long edges</summary>
+    <details class="group border-t-2 border-ink pt-3">
+      <summary class="flex min-h-11 cursor-pointer items-center gap-2 font-bold">
+        <span aria-hidden="true" class="text-sm transition-transform group-open:rotate-90">
+          ▶
+        </span>
+        Compare the two long edges
+      </summary>
       <svg
         class="mt-4"
         viewBox="-0.2 -0.2 13.4 5.4"
@@ -135,8 +140,13 @@ const gambles = [
       The same colours mark the same pieces. The rectangle has a real, very thin diagonal gap.
       Each small grid square has the same area; the two drawings use different display scales.
     </figcaption>
-    <details class="border-t-2 border-ink pt-3">
-      <summary class="cursor-pointer font-bold">See the gap enlarged</summary>
+    <details class="group border-t-2 border-ink pt-3">
+      <summary class="flex min-h-11 cursor-pointer items-center gap-2 font-bold">
+        <span aria-hidden="true" class="text-sm transition-transform group-open:rotate-90">
+          ▶
+        </span>
+        See the gap enlarged
+      </summary>
       <svg
         class="mt-4 w-full"
         viewBox="0 0 400 100"
@@ -208,16 +218,16 @@ const gambles = [
           </caption>
           <thead>
             <tr>
-              <th class="p-3 text-left" scope="col">
+              <th class="px-2 py-3 text-left sm:px-3" scope="col">
                 Option
               </th>
-              <th class="p-3 text-left" scope="col">
+              <th class="px-2 py-3 text-left sm:px-3" scope="col">
                 10 tickets
               </th>
-              <th class="p-3 text-left" scope="col">
+              <th class="px-2 py-3 text-left sm:px-3" scope="col">
                 1 ticket
               </th>
-              <th class="bg-disputed p-3 text-left" scope="col">
+              <th class="bg-disputed px-2 py-3 text-left sm:px-3" scope="col">
                 89 shared tickets
               </th>
             </tr>
@@ -225,12 +235,12 @@ const gambles = [
           <tbody>
             {rows.map(([option, ten, one, shared]) => (
               <tr class="border-t border-ink">
-                <th class="p-3 text-left" scope="row">
+                <th class="px-2 py-3 text-left sm:px-3" scope="row">
                   {option}
                 </th>
-                <td class="p-3">{ten}</td>
-                <td class="p-3">{one}</td>
-                <td class="bg-disputed p-3">{shared}</td>
+                <td class="px-2 py-3 sm:px-3">{ten}</td>
+                <td class="px-2 py-3 sm:px-3">{one}</td>
+                <td class="bg-disputed px-2 py-3 sm:px-3">{shared}</td>
               </tr>
             ))}
           </tbody>
