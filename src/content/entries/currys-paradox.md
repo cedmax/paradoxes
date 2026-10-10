@@ -6,7 +6,7 @@ chapter: self-reference
 status: unreconciled
 uniqueness: related
 anchor: liar-paradox
-simplification: light
+simplification: "heavy"
 noMaths: true
 written: true
 sourcesVerified: true
@@ -14,22 +14,21 @@ problem: "Can the sentence “If this sentence is true, then Germany borders Chi
 claimA: "A sentence is true exactly when what it says is the case, and the familiar rules for reasoning with “if … then” can be applied to this sentence."
 claimB: "Some claims, such as “Germany borders China”, are false and cannot be proved."
 verdict: "With a sentence that talks about its own truth and a few familiar rules of reasoning, any claim at all can be proved. There is no agreed fix, and each proposed fix gives up a principle that is widely relied on."
-whatBreaks: "Either the rule that a sentence is true exactly when what it says is the case, or one of the everyday rules for reasoning with “if … then”. Which one goes is what the responses disagree on, and each choice costs something big."
-statusNote: "like the [liar paradox](liar-paradox), it has no agreed fix. The Stanford Encyclopedia of Philosophy presents the responses as competing strategies, with ongoing disputes between them, and notes that the paradox resists some resolutions that work for the liar, because it needs no negation."
-setup: "Take the sentence: “If this sentence is true, then Germany borders China.” Call it C. Now reason in the ordinary way. To show that an “if … then” sentence holds, assume the “if” part and see whether the “then” part follows. So assume C is true. Then what C says holds: if C is true, Germany borders China. C is true, by the assumption, so Germany borders China. That shows: if C is true, then Germany borders China. But that is exactly what C says, so C is true. And since C is true and C says that if it is true then Germany borders China, Germany borders China."
-whyWrong: "Germany does not border China, and nothing in the argument looked like a trick. Every step uses a rule people trust everywhere else: assume something and see what follows, use an assumption you have already made a second time, and if you have “if A then B” and A, conclude B. The claim about Germany could be swapped for any claim at all. So the same argument proves everything, which means something in it must go."
+whatBreaks: "Either unrestricted talk about a sentence’s own truth or a familiar rule for “if … then” must change. There is no agreed choice."
+statusNote: "there is no agreed fix. Unlike the [liar paradox](liar-paradox), the argument uses no denial, so changing the rules for “not” alone is not enough."
+setup: "Take the sentence “If this sentence is true, then Germany borders China.” Suppose it is true. The rule that a true sentence says something that is the case lets the supposition yield what it says: “If this sentence is true, then Germany borders China.” Its condition is met by the same supposition, so Germany borders China follows. That seems to prove exactly what the sentence says: if it is true, Germany borders China. If what a sentence says is the case, the sentence is true. That rule now lets the conclusion establish that this sentence is true. Apply the conditional once more and Germany borders China follows outright."
+whyWrong: "Germany does not border China. Replace that claim with any other claim and the same reasoning seems to prove it. The argument uses both directions of the truth rule, reuses its supposition, turns a conclusion drawn under a supposition into an “if … then” statement and applies a conditional whose condition has been met."
 resolution:
-  - "Curry’s paradox is a close relative of the [liar paradox](liar-paradox), with two twists. First, it needs no “not”. The liar works by a sentence denying its own truth. Curry’s sentence only says “if I am true, then something”, and no denial appears anywhere. Second, it does not end in a plain contradiction. It ends by proving an arbitrary claim, which is worse, since a system that proves everything is useless."
-  - "The first twist matters because several well-known fixes for the liar work by changing how “not” behaves. Some allow certain sentences to be neither true nor false, and some allow certain sentences to be both. The philosopher P. T. Geach argued in 1955 that Curry’s paradox cannot be solved “merely by adopting a system that contains a queer sort of negation”. Some of these logics do resist Curry’s paradox and some do not, so a logic chosen to handle the liar has to be checked separately against Curry."
-  - "The responses fall into a few groups, and the Stanford Encyclopedia of Philosophy does not report that any of them is widely accepted."
+  - "A system that proves any claim at all cannot distinguish good reasoning from bad. Something in the argument has to be restricted."
+  - "The [liar paradox](liar-paradox) says a sentence is untrue. Curry’s sentence only uses “if … then”. That makes it a separate test for proposed fixes to the liar."
 positions:
-  - title: "Limit what can talk about its own truth"
-    body: "Keep ordinary logic, but block sentences like C, for example by splitting truth into levels, as some do for the liar, or by limiting which collections can be formed. Cost: the same cost as for the liar, since ordinary language plainly does talk about its own truth, and the Stanford Encyclopedia of Philosophy notes that these moves are judged on the same grounds as the fixes for the liar and for Russell’s paradox."
-  - title: "Do not reuse an assumption"
-    body: "Block the step that uses the assumption that C is true a second time, merging two uses into one. This is called rejecting contraction, and Moh Shaw-Kwei was the first to propose it, in 1954. Cost: contraction is part of most standard logics, including ordinary first-order logic, and a variant of Curry’s paradox about valid arguments poses an obstacle for one common form of this response."
-  - title: "Drop a basic rule about “if … then”"
-    body: "Give up the rule that you may prove “if A then B” by assuming A and deriving B, or the rule that from “if A then B” and A you may conclude B. Cost: these rules are about as basic as reasoning gets, the encyclopedia notes the charge that such responses are counterintuitive, and for some versions of the paradox the rules have seemed inescapable."
-finePrint: "The paradox is named after the logician Haskell Curry, who published it in 1942 in a form about formal logics. It is also called Löb’s paradox. Geach and Martin Löb showed in 1955 how it arises for sentences about truth. A version in set theory uses the collection of all things such that, if they belong to themselves, some chosen claim holds. Modern set theory avoids it by not allowing every description to form a set. The three groups of responses here are simplified, and the technical options within each are many."
+  - title: "Limit talk about truth"
+    body: "Block this kind of sentence from talking about its own truth. Cost: ordinary language can talk about its own truth, so the restriction needs explaining."
+  - title: "Limit reuse of assumptions"
+    body: "Reject the step that reuses the assumption that the sentence is true. Cost: repeating an assumption is allowed in ordinary logic, and related versions of Curry’s puzzle still challenge some such approaches."
+  - title: "Change “if … then”"
+    body: "Restrict proving a conditional from an assumption, or drawing its conclusion when the condition holds. Cost: both are basic rules of everyday reasoning."
+finePrint: "The proof is heavily compressed. The principles at issue include unrestricted truth, conditional proof, contraction, which permits reusing an assumption, and modus ponens, which draws B from A and “if A then B”. Haskell Curry published a formal version in 1942; truth-based versions followed. Some logics that permit gaps or contradictions can block Curry, while others cannot. The three families of responses contain many technical variants. This entry preserves the arbitrary-conclusion mechanism rather than surveying those variants."
 sources:
   - title: "Wikipedia: Curry's paradox"
     url: "https://en.wikipedia.org/wiki/Curry%27s_paradox"
