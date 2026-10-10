@@ -1,0 +1,15 @@
+---
+const boxes = [
+  { n: 1, value: 5 }, { n: 2, value: 8 }, { n: 3, value: 7 }, { n: 4, value: 6 },
+  { n: 5, value: 3 }, { n: 6, value: 2 }, { n: 7, value: 1 }, { n: 8, value: 4 },
+]
+---
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+<p class="font-bold">A miniature example: eight boxes, four permitted openings</p>
+<div class="grid grid-cols-4 gap-2">{boxes.map(({n,value})=><div class="border-2 border-ink p-2 text-center"><p class="font-bold">Box {n}</p><p class="text-sm">contains {value}</p></div>)}</div>
+<div class="grid gap-2 sm:grid-cols-2">
+<div class="border-l-4 border-accent pl-4"><p class="font-bold">Prisoner 1</p><p>1 → 5 → 3 → 7 → 1</p><p class="text-base">Finds their number in four boxes.</p></div>
+<div class="border-l-4 border-ink pl-4"><p class="font-bold">Prisoner 2</p><p>2 → 8 → 4 → 6 → 2</p><p class="text-base">Follows the other four-box loop.</p></div>
+</div>
+<figcaption class="text-base leading-normal">Open the box with your own number first; then open the box whose number you just found. These boxes form two closed loops of length four. In the real puzzle, 100 prisoners may each open 50 boxes: everyone succeeds exactly when there is no loop longer than 50.</figcaption>
+</figure>
