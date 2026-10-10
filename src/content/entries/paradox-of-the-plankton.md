@@ -14,7 +14,7 @@ status: defused
 simplification: light
 noMaths: true
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Dozens of kinds of phytoplankton share the same water and compete for the same few nutrients. Why has one not driven out the rest?"
 claimA: "Phytoplankton live in the conditions the competitive exclusion principle assumes: uniform, steady water, competition only for the same few resources, and time to settle at equilibrium, so no more species survive than there are limiting resources."
 claimB: "Dozens of phytoplankton species live side by side in the same water, on only a few limiting resources."
