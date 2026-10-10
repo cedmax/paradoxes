@@ -9,7 +9,8 @@ aka:
     "entanglement",
     "locality",
   ]
-chapter: time-physics
+chapter: models
+order: 70
 status: disputed
 simplification: heavy
 noMaths: true

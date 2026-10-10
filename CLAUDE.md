@@ -53,6 +53,38 @@ Routes (`/entries/<slug>/`) are stable: never rename an entry file without addin
 
 ## Entries
 
+### Chapters
+
+A chapter is "what breaks": the assumption in the reader's head that the paradox attacks.
+Classify by the mechanism that creates the conflict, not by the subject or the setting used to
+explain it. Read the entry's `whatBreaks` and place it where that assumption lives.
+
+| Chapter                        | The assumption that breaks                                          |
+| ------------------------------ | ------------------------------------------------------------------- |
+| What counts as what            | A word or a thing picks out one clear thing with sharp edges.       |
+| Self-referential sentences     | A statement can safely talk about itself.                           |
+| Infinity misbehaving           | Endless things behave like very big finite ones.                    |
+| Probability tricking intuition | Odds, chance and random set-ups are what they look like.            |
+| Numbers that mislead           | A sample, average or comparison gives a fair picture.               |
+| Collective outcomes            | Choices that are sensible one by one add up to a sensible whole.    |
+| Individual choices             | One consistent rule for deciding or valuing works in every case.    |
+| What we should believe         | Reasonable rules about evidence and belief lead somewhere sensible. |
+| Time and causation             | Everyone shares one “now” and one order of cause and effect.        |
+| Models meeting reality         | A tidy model or theory matches the world.                           |
+| Shapes and sums deceiving      | Figures and quick calculations are right at first look.             |
+
+- **What counts as what**: only when fixing the definition makes the clash disappear and the
+  world, the maths and the logic stay as they were. If self-application is what breaks, it is
+  Self-referential sentences.
+- **Collective outcomes** vs **Individual choices**: if the paradox disappears with one person
+  alone, it is Individual choices.
+- **Models meeting reality**: the central conflict must be between a model's prediction and an
+  observation, or between two established theoretical accounts. A surprising observation alone
+  is not enough. Identify the conflicting prediction or principles before assigning it.
+- Chapter sizes are not a reason to move an entry. A small coherent chapter is fine.
+- An entry's `anchor` may sit in another chapter; do not change uniqueness to match chapters.
+- `order` sorts entries within a chapter.
+
 ### Status definitions (locked, do not change)
 
 - **explained**: the contradiction was only apparent. One claim rests on a mistake in reasoning

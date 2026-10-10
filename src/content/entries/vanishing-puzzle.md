@@ -9,13 +9,13 @@ aka:
     "geometrical vanish",
     "concealed distribution",
   ]
-chapter: geometry-arithmetic
+chapter: shapes-sums
 status: explained
 uniqueness: related
 anchor: missing-square-puzzle
 simplification: light
 noMaths: true
-order: 203
+order: 40
 written: true
 sourcesVerified: true
 problem: "Turning part of a picture changes how many people it shows. Where does the missing one go?"

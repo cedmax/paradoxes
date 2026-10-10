@@ -1,12 +1,12 @@
 ---
 title: "Aristotle's wheel paradox"
-chapter: "geometry-arithmetic"
+chapter: infinity
 status: "explained"
 uniqueness: "related"
 anchor: "galileos-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 220
 written: true
 sourcesVerified: true
 reviewed: false

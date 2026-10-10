@@ -10,7 +10,8 @@ aka:
     "independence of irrelevant alternatives",
     "social choice",
   ]
-chapter: choice-identity
+chapter: collective
+order: 70
 status: unreconciled
 uniqueness: related
 anchor: condorcet-paradox
