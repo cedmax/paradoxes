@@ -1,0 +1,38 @@
+---
+const snapshots = [
+  { x: 286, y: 134, a: 0, label: "Start" },
+  { x: 182, y: 30, a: 180, label: "Quarter" },
+  { x: 78, y: 134, a: 360, label: "Halfway" },
+  { x: 182, y: 238, a: 540, label: "Three quarters" },
+]
+---
+<figure class="flex flex-col gap-3 border-2 border-ink p-4 sm:p-6">
+  <p class="font-bold">Watch the centre of the rolling coin, not just the edge of the fixed one.</p>
+  <svg class="mx-auto w-full max-w-lg" viewBox="0 0 440 285" role="img" aria-labelledby="coin-rotation-title coin-rotation-desc">
+    <title id="coin-rotation-title">A coin rolling around an equal coin</title>
+    <desc id="coin-rotation-desc">The centre of the moving coin follows a circle of twice the radius of either coin. One full orbit rotates the moving coin twice.</desc>
+    <circle cx="182" cy="134" r="104" stroke="currentColor" stroke-width="2" stroke-dasharray="7 6" fill="none" opacity=".4" />
+    <circle cx="182" cy="134" r="52" fill="#d7a13d" fill-opacity=".45" stroke="currentColor" stroke-width="2" />
+    <text x="182" y="140" text-anchor="middle" font-size="18" fill="currentColor">Fixed</text>
+    {snapshots.map(({x,y,a,label},i)=>(
+      <g>
+        <circle cx={x} cy={y} r="52" fill="#387a91" fill-opacity=".16" stroke="#387a91" stroke-width="2" stroke-dasharray={i===0 ? undefined : "5 5"} />
+        <g transform={`translate(${x} ${y}) rotate(${a})`}>
+          <path d="M0 0 V-44" stroke="#bd4b37" stroke-width="4" stroke-linecap="round" />
+          <circle r="5" fill="#bd4b37" />
+        </g>
+      </g>
+    ))}
+    <g fill="currentColor" font-size="16">
+      <text x="350" y="30">Each coin</text>
+      <text x="350" y="51">radius r</text>
+      <text x="350" y="94">Centre orbit</text>
+      <text x="350" y="115">radius 2r</text>
+    </g>
+  </svg>
+  <div class="grid grid-cols-2 gap-3 text-base">
+    <div class="border border-ink p-3"><strong>Moving coin circumference</strong><p>2πr</p></div>
+    <div class="border border-ink p-3"><strong>Path of its centre</strong><p>4πr</p></div>
+  </div>
+  <figcaption class="text-base leading-normal">The rolling coin travels two of its own circumferences on the path taken by its centre: 4πr ÷ 2πr = <strong>2 turns</strong>. The four outlines are snapshots, not four different moving coins.</figcaption>
+</figure>
