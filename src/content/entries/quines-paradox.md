@@ -16,7 +16,7 @@ simplification: light
 noMaths: true
 order: 104
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Is a sentence that calls itself false, without ever saying “this sentence”, true or false?"
 claimA: "Every sentence is true or false, including one that never uses a word like “this”."
 claimB: "A sentence is true if what it says is right, and false if it isn’t."

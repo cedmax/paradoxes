@@ -17,7 +17,7 @@ simplification: light
 noMaths: false
 order: 105
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Can the numbers that English can define be listed, and then a new number defined that is not on the list?"
 claimA: "It is settled exactly which English phrases define a real number, so those phrases form one fixed list."
 claimB: "The paragraph that builds a new number from that list is an English phrase, and it defines a number that is not on the list."

@@ -16,7 +16,7 @@ simplification: light
 noMaths: true
 order: 106
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "A Cretan says that all Cretans are liars. Can that be true, and can it be false?"
 claimA: "The statement cannot be false without a contradiction, because if it is false, every Cretan, Epimenides included, is honest, and then what he said is true."
 claimB: "The statement can be false without any contradiction, because it only needs one honest Cretan, who need not be Epimenides."

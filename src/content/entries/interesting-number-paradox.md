@@ -17,7 +17,7 @@ anchor: berry-paradox
 simplification: light
 noMaths: true
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "If some whole numbers are dull, wouldn’t the smallest dull number be interesting for that very reason?"
 claimA: "Whether a number is interesting is one fixed fact, and being the smallest uninteresting number is itself enough to make a number interesting."
 claimB: "Some whole numbers are uninteresting."

@@ -16,7 +16,7 @@ simplification: heavy
 noMaths: false
 order: 100
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Is there a set containing every ordinal number, the numbers that say where something comes in a list?"
 claimA: "There is a set that contains every ordinal number."
 claimB: "No set can contain every ordinal number, because such a set would itself be an ordinal number bigger than every ordinal, including itself."

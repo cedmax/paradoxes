@@ -16,7 +16,7 @@ anchor: liar-paradox
 simplification: light
 noMaths: true
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "In an endless list where each sentence says that all the later ones are untrue, is any sentence true?"
 claimA: "Every sentence on the list is either true or untrue."
 claimB: "A sentence on the list is true if what it says is right, and untrue if it isn’t."

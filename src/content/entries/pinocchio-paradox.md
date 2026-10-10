@@ -17,7 +17,7 @@ simplification: light
 noMaths: true
 order: 107
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Pinocchio’s nose grows exactly when he says something false. What happens when he says “My nose is growing”?"
 claimA: "The clash only arises through a rule about truth, so the Pinocchio story is a genuine Liar paradox, even though it has no word like “true” or “false”."
 claimB: "The Pinocchio story is simply an impossible story, like that of a barber who shaves exactly the people who do not shave themselves, so it raises no new problem about truth."
