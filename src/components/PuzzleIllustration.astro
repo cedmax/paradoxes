@@ -1,4 +1,6 @@
 ---
+import OlderPuzzleIllustration from "./OlderPuzzleIllustration.astro"
+
 interface Props {
   slug: string
 }
@@ -35,6 +37,8 @@ const gambles = [
   },
 ]
 ---
+
+<OlderPuzzleIllustration slug={slug} />
 
 {slug === "missing-square-puzzle" && (
   <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">

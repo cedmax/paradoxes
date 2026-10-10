@@ -9,15 +9,16 @@ written: true
 sourcesVerified: true
 reviewed: true
 problem: Is the sentence “This sentence is false” true or false?
-claimA: "Every sentence is true or false."
-claimB: "A sentence is true if what it says is right, and false if it isn't."
-verdict: Every known fix changes the rules of logic or language.
-whatBreaks: The assumption that every sentence is either true or false, even one that talks about itself.
+claimA: "Every statement, including one about itself, is either true or false, but never both."
+claimB: "“This statement is false” is true exactly when it is false."
+verdict: "The liar sentence defeats the ordinary rules for assigning truth and falsehood. The main fixes change language or logic, and none is widely accepted."
+whatBreaks: "Whether to restrict self-applied truth, allow gaps or allow contradictions. The proposals give up different parts of the ordinary rules."
 statusNote: every known fix costs something big, and none is widely accepted.
-setup: "Take the sentence “This sentence is false.” It is a perfectly ordinary sentence in English, and all it does is describe itself. Now ask whether it is true. If it is true, then what it says must hold, so it is false. If it is false, then what it says is wrong, so it must be true. Either answer sends you straight to the other."
-whyWrong: We take it for granted that every statement is either true or false, and that a statement can talk about anything, including itself. Both rules work everywhere else. Here they cannot both hold, and nothing in the sentence looks broken enough to blame.
+setup: "Consider “This statement is false”. If it is true, what it says holds, so it is false. If it is false, what it says holds, so it is true. Either answer leads to the other."
+whyWrong: "Ordinary truth rules let a statement say something about itself and let its truth follow what it says. They also seem to require one answer, true or false. For this statement those demands cannot all hold."
 resolution:
-  - "There is no agreed fix. Every serious response gives up something that looks basic, and each one has its own trouble. This is why the entry is Unreconciled rather than Disputed: the price of each answer is a change to how truth or logic works, not just a choice between two claims."
+  - "There is no agreed fix. The difficulty is choosing which rule to change while preserving useful reasoning and ordinary talk about truth."
+  - "Each of the main responses below has a serious cost. Related puzzles, including [Curry’s paradox](currys-paradox), also test whether a proposed replacement works."
 positions:
   - title: Some sentences are neither
     body: "The sentence is neither true nor false. Cost: say “this sentence is not true” instead, and the same trap comes back, because being neither means it is not true, which is what it says."
