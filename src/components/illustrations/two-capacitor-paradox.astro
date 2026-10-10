@@ -1,8 +1,50 @@
 <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">Two identical capacitors share charge, but only half the initial energy remains stored.</p>
-<div class="grid grid-cols-2 gap-3 text-base"><div class="border-2 border-ink p-3"><strong>Before connecting</strong><p>Capacitor 1: voltage V</p><p>Capacitor 2: empty</p><p class="mt-2 font-bold">Stored energy = ½CV²</p></div><div class="border-2 border-ink p-3"><strong>After settling</strong><p>Each capacitor: voltage V/2</p><p>Each holds half the charge</p><p class="mt-2 font-bold">Total energy = ¼CV²</p></div></div>
-<svg viewBox="0 0 460 110" class="w-full" role="img" aria-labelledby="capacitor-title capacitor-desc"><title id="capacitor-title">Half the initial stored energy transfers outside the capacitors</title><desc id="capacitor-desc">Of the initial energy, one half remains in the two capacitors and one half transfers via the connecting circuit and fields.</desc>
-<rect x="18" y="20" width="424" height="34" fill="#d7a13d"/>
-<rect x="18" y="20" width="212" height="34" fill="#387a91"/>
-<g fill="currentColor" font-size="17"><text x="18" y="14">Initial energy</text><text x="18" y="84">½ remains stored</text><text x="260" y="84">½ leaves the capacitors</text></g></svg>
-<figcaption class="text-base leading-normal">Each final capacitor stores ½C(V/2)², so together they store ¼CV²: half the original ½CV². The other half is transferred to heating, electromagnetic fields or radiation during the current flow. An ideal resistance-free circuit cannot simply be assumed to settle instantly into that static state.</figcaption></figure>
+  <p class="font-bold">
+    Two identical capacitors share charge, but only half the initial energy remains stored.
+  </p>
+  <div class="grid grid-cols-2 gap-3 text-base">
+    <div class="border-2 border-ink p-3">
+      <strong>Before connecting</strong>
+      <p>Capacitor 1: voltage V</p>
+      <p>Capacitor 2: empty</p>
+      <p class="mt-2 font-bold">Stored energy = ½CV²</p>
+    </div>
+    <div class="border-2 border-ink p-3">
+      <strong>After settling</strong>
+      <p>Each capacitor: voltage V/2</p>
+      <p>Each holds half the charge</p>
+      <p class="mt-2 font-bold">Total energy = ¼CV²</p>
+    </div>
+  </div>
+  <svg
+    viewBox="0 0 300 114"
+    class="mx-auto w-full max-w-sm"
+    role="img"
+    aria-labelledby="capacitor-title capacitor-desc"
+  >
+    <title id="capacitor-title">Half the initial stored energy transfers outside the capacitors</title>
+    <desc id="capacitor-desc">
+      Of the initial energy, one half remains in the two capacitors and one half transfers via
+      the connecting circuit and fields.
+    </desc>
+    <rect x="10" y="32" width="280" height="30" fill="#d7a13d" />
+    <rect x="10" y="32" width="140" height="30" fill="#387a91" />
+    <g fill="currentColor" font-size="16">
+      <text x="10" y="22">
+        Initial energy
+      </text>
+      <text x="10" y="84">
+        ½ remains stored
+      </text>
+      <text x="290" y="106" text-anchor="end">
+        ½ leaves the capacitors
+      </text>
+    </g>
+  </svg>
+  <figcaption class="text-base leading-normal">
+    Each final capacitor stores ½C(V/2)², so together they store ¼CV²: half the original ½CV².
+    The other half is transferred to heating, electromagnetic fields or radiation during the
+    current flow. An ideal resistance-free circuit cannot simply be assumed to settle instantly
+    into that static state.
+  </figcaption>
+</figure>
