@@ -1,0 +1,9 @@
+---
+const events = [{t:"0",state:"On"},{t:"1",state:"Off"},{t:"1½",state:"On"},{t:"1¾",state:"Off"},{t:"1⅞",state:"On"},{t:"2",state:"Not specified"}]
+---
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
+<p class="font-bold">The lamp switches infinitely often before two minutes have passed.</p>
+<div class="grid grid-cols-3 gap-2 text-center text-base sm:grid-cols-6">{events.map((ev,i)=><div class="border-2 border-ink p-2"><p class="font-bold">{ev.t} min</p><p class={i===5?"text-accent font-bold":"font-normal"}>{ev.state}</p></div>)}</div>
+<svg class="w-full" viewBox="0 0 480 115" role="img" aria-labelledby="lamp-title lamp-desc"><title id="lamp-title">Switching events gather closer to the two-minute mark</title><desc id="lamp-desc">At one minute, one and a half, one and three quarters, and so forth, the switch intervals halve and crowd toward two minutes.</desc><path d="M20 55 H465" fill="none" stroke="currentColor" stroke-width="2"/>{[20,242.5,353.75,409.375,437.1875,465].map((x,i)=><g><circle cx={x} cy="55" r="5" fill={i===5?"#bd4b37":"#387a91"}/></g>)}<g fill="currentColor" font-size="17"><text x="20" y="35">0</text><text x="242" y="35">1</text><text x="435" y="35">2 min</text><text x="20" y="89">Half the remaining wait every time</text></g></svg>
+<figcaption class="text-base leading-normal">The rules say what happens at each switching time <em>before</em> minute two. There is no last switch. The story does not specify a state at exactly two minutes, so neither “on” nor “off” is forced by the alternating pattern.</figcaption>
+</figure>
