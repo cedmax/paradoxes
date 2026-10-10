@@ -1,8 +1,8 @@
 <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
   <p class="font-bold">A shorter measuring ruler follows more of the bends.</p>
   <svg
-    viewBox="0 0 300 226"
-    class="mx-auto w-full max-w-sm"
+    viewBox="0 0 300 240"
+    class="w-full max-w-sm"
     role="img"
     aria-labelledby="coast-title coast-desc"
   >
@@ -11,28 +11,31 @@
       A coarse ruler replaces the bends with a few straight segments, while a smaller ruler
       traces more of the details, producing a longer total measurement.
     </desc>
-    <g transform="translate(6 70) scale(.64)">
+    <g
+      transform="translate(6 64) scale(.64 .85)"
+      fill="none"
+      stroke-linejoin="round"
+      vector-effect="non-scaling-stroke"
+    >
       <path
         d="M20 145 L80 60 L140 125 L215 48 L280 125 L355 70 L450 145"
-        fill="none"
         stroke="#d7a13d"
-        stroke-width="16"
-        stroke-linejoin="round"
+        stroke-width="10"
         opacity=".45"
+        vector-effect="non-scaling-stroke"
       />
       <path
         d="M20 145 L80 60 L140 125 L215 48 L280 125 L355 70 L450 145"
-        fill="none"
         stroke="currentColor"
-        stroke-width="3.5"
-        stroke-dasharray="10 8"
+        stroke-width="2"
+        stroke-dasharray="6 5"
+        vector-effect="non-scaling-stroke"
       />
       <path
         d="M20 145 L40 115 L51 130 L80 60 L90 86 L105 79 L117 110 L140 125 L160 90 L178 105 L197 70 L215 48 L229 84 L244 65 L257 106 L280 125 L297 92 L319 110 L335 80 L355 70 L377 106 L398 91 L421 131 L450 145"
-        fill="none"
         stroke="#bd4b37"
-        stroke-width="5"
-        stroke-linejoin="round"
+        stroke-width="3"
+        vector-effect="non-scaling-stroke"
       />
     </g>
     <path d="M8 20 H34" stroke="currentColor" stroke-width="2" stroke-dasharray="6 5" />
@@ -44,10 +47,10 @@
       <text x="42" y="47">
         Red: smaller steps
       </text>
-      <text x="8" y="196">
+      <text x="8" y="208">
         Same endpoints.
       </text>
-      <text x="8" y="218">
+      <text x="8" y="230">
         Different total lengths.
       </text>
     </g>
