@@ -1,9 +1,9 @@
 ---
 const snapshots = [
-  { x: 286, y: 134, a: 0, label: "Start" },
-  { x: 182, y: 30, a: 180, label: "Quarter" },
-  { x: 78, y: 134, a: 360, label: "Halfway" },
-  { x: 182, y: 238, a: 540, label: "Three quarters" },
+  { x: 286, y: 134, a: 0 },
+  { x: 182, y: 30, a: 180 },
+  { x: 78, y: 134, a: 360 },
+  { x: 182, y: 238, a: 540 },
 ]
 ---
 <figure class="flex flex-col gap-3 border-2 border-ink p-4 sm:p-6">
@@ -14,7 +14,7 @@ const snapshots = [
     <circle cx="182" cy="134" r="104" stroke="currentColor" stroke-width="2" stroke-dasharray="7 6" fill="none" opacity=".4" />
     <circle cx="182" cy="134" r="52" fill="#d7a13d" fill-opacity=".45" stroke="currentColor" stroke-width="2" />
     <text x="182" y="140" text-anchor="middle" font-size="18" fill="currentColor">Fixed</text>
-    {snapshots.map(({x,y,a,label},i)=>(
+    {snapshots.map(({x,y,a},i)=>(
       <g>
         <circle cx={x} cy={y} r="52" fill="#387a91" fill-opacity=".16" stroke="#387a91" stroke-width="2" stroke-dasharray={i===0 ? undefined : "5 5"} />
         <g transform={`translate(${x} ${y}) rotate(${a})`}>
