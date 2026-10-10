@@ -157,39 +157,58 @@ const { slug } = Astro.props
     <p class="font-bold">Two bus gaps, repeating</p>
     <svg
       class="w-full"
-      viewBox="0 0 480 206"
+      viewBox="0 0 300 156"
       role="img"
       aria-labelledby="inspection-title inspection-desc"
     >
       <title id="inspection-title">A five-minute gap followed by a fifteen-minute gap</title>
       <desc id="inspection-desc">
         Buses arrive at zero, five and twenty minutes. A random arrival falls in the short gap
-        one quarter of the time, and in the long gap three quarters of the time.
-        The average bus gap is ten minutes, but the average passenger wait is 6.25 minutes.
+        one quarter of the time, and in the long gap three quarters of the time. The average bus
+        gap is ten minutes, but the average passenger wait is 6.25 minutes.
       </desc>
       <g fill="none" stroke="currentColor" stroke-width="2.5">
-        <path d="M40 75 H424" />
-        <path d="M40 63 V89 M136 63 V89 M424 63 V89" />
+        <path d="M15 50 H285" />
+        <path d="M15 40 V60 M82.5 40 V60 M285 40 V60" />
       </g>
-      <g fill="currentColor" font-family="sans-serif" font-size="18" text-anchor="middle">
-        <text x="40" y="46">0</text>
-        <text x="136" y="46">5</text>
-        <text x="424" y="46">20 min</text>
+      <g fill="currentColor" font-family="sans-serif" font-size="16" text-anchor="middle">
+        <text x="15" y="28">
+          0
+        </text>
+        <text x="82.5" y="28">
+          5
+        </text>
+        <text x="296" y="28" text-anchor="end">
+          20 min
+        </text>
       </g>
-      <rect x="40" y="102" width="96" height="44" fill="#387a91" opacity="0.25" />
-      <rect x="136" y="102" width="288" height="44" fill="#bd4b37" opacity="0.25" />
-      <path d="M40 102 H424 M40 146 H424 M40 102 V146 M136 102 V146 M424 102 V146" fill="none" stroke="currentColor" stroke-width="1.5" />
-      <g fill="currentColor" font-family="sans-serif" text-anchor="middle">
-        <text x="88" y="130" font-size="18" font-weight="bold">5 min</text>
-        <text x="280" y="130" font-size="18" font-weight="bold">15 min</text>
-        <text x="88" y="173" font-size="17">25%</text>
-        <text x="280" y="173" font-size="17">75% of arrival times</text>
+      <rect x="15" y="72" width="67.5" height="40" fill="#387a91" opacity="0.25" />
+      <rect x="82.5" y="72" width="202.5" height="40" fill="#bd4b37" opacity="0.25" />
+      <path
+        d="M15 72 H285 M15 112 H285 M15 72 V112 M82.5 72 V112 M285 72 V112"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      />
+      <g fill="currentColor" font-family="sans-serif" font-size="16" text-anchor="middle">
+        <text x="48.8" y="98" font-weight="bold">
+          5 min
+        </text>
+        <text x="183.8" y="98" font-weight="bold">
+          15 min
+        </text>
+        <text x="48.8" y="140">
+          25%
+        </text>
+        <text x="183.8" y="140">
+          75% of arrival times
+        </text>
       </g>
     </svg>
     <figcaption class="text-base leading-normal">
       The gaps average 10 minutes, so half the average gap is 5 minutes. But a person arriving
-      at a random moment is three times as likely to land in the long gap. Their average wait
-      is 6.25 minutes, not 5.
+      at a random moment is three times as likely to land in the long gap. Their average wait is
+      6.25 minutes, not 5.
     </figcaption>
   </figure>
 )}
