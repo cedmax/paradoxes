@@ -16,7 +16,7 @@ anchor: thomsons-lamp
 simplification: light
 noMaths: false
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Ten balls go into a vase and one comes out, over and over, faster and faster until noon. How many balls are in the vase at noon?"
 claimA: "The vase must hold infinitely many balls at noon, because the number inside grows at every step."
 claimB: "If ball 1 is taken out at step 1, ball 2 at step 2, and so on, every ball is out before noon, so the vase is empty."
