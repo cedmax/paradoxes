@@ -22,7 +22,7 @@ resolution:
   - "The logical question and the question about the weight of the evidence are different. Neither the challenge from suffering nor a possible defence settles both by itself."
 positions:
   - title: "Suffering can be permitted"
-    body: "Alvin Plantinga’s free-choice defence shows how God and suffering might be logically compatible. Cost: a defence of bare possibility does not explain every case of suffering."
+    body: "Alvin Plantinga’s free-choice defence argues that God and suffering might be logically compatible. Cost: a defence of bare possibility does not explain every case of suffering."
   - title: "Suffering counts against such a God"
     body: "William Rowe’s evidential argument says apparently pointless suffering makes such a God less likely. Cost: it must justify drawing conclusions from the absence of known good reasons."
 finePrint: "This entry concerns a specific account of God, not every religious belief. The question includes both logical and evidence-based forms. No religious or non-religious answer is assumed."
