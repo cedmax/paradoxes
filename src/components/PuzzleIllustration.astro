@@ -159,22 +159,48 @@ const gambles = [
         </span>
         See the gap enlarged
       </summary>
-      <svg
-        class="mt-4 w-full"
-        viewBox="0 0 400 100"
-        role="img"
-        aria-labelledby="board-gap-title"
-      >
-        <title id="board-gap-title">The diagonal gap enlarged sideways to show its parallelogram shape</title>
-        <polygon
-          points="10,50 156,15 390,50 244,85"
-          fill="#d7a13d"
-          stroke="#272622"
-          stroke-width="2"
-        />
-      </svg>
+      <div class="mt-4 flex flex-col gap-4">
+        {[false, true].map((zoom, i) => (
+          <div class="flex flex-col gap-2">
+            <p class="font-bold">
+              {zoom ? "Close-up of the boxed section" : "The gap highlighted"}
+            </p>
+            <svg
+              class="w-full"
+              viewBox={zoom ? "4.5 1.5 4 2" : "-0.2 -0.2 13.4 5.4"}
+              role="img"
+              aria-labelledby={`board-gap-title-${i}`}
+            >
+              <title id={`board-gap-title-${i}`}>
+                {zoom
+                  ? "A close-up of the diagonal gap with equal magnification in both directions"
+                  : "The exact parallelogram gap highlighted in gold, with a box marking the close-up"}
+              </title>
+              <g transform="translate(0 5) scale(1 -1)" stroke="#272622" stroke-width="0.015">
+                {boardLayouts[1].map((points, j) => (
+                  <polygon points={points} fill={colours[j]} fill-opacity="0.25" />
+                ))}
+                <polygon points="0,0 5,2 13,5 8,3" fill="#d7a13d" />
+                {!zoom && (
+                  <rect
+                    x="4.5"
+                    y="1.5"
+                    width="4"
+                    height="2"
+                    fill="none"
+                    stroke-width="0.04"
+                    stroke-dasharray="0.1 0.08"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
+        ))}
+      </div>
       <p class="mt-2 text-base">
-        The gap is a parallelogram with area one square. Its width is exaggerated here.
+        Gold marks the gap, whose total area is one square. The box marks the section enlarged
+        below. Both views keep the true proportions; the close-up magnifies horizontally and
+        vertically by the same amount.
       </p>
     </details>
   </figure>
