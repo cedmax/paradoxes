@@ -114,7 +114,7 @@ const gambles = [
             {i === 0 ? "8 × 8: 64 squares" : "13 × 5: an outline of 65 squares"}
           </p>
           <svg
-            class="mx-auto w-full max-w-96"
+            class="mx-auto w-full max-w-80"
             viewBox={i === 0 ? "-2.7 -0.2 13.4 8.4" : "-0.2 -0.2 13.4 5.4"}
             role="img"
             aria-labelledby={`board-title-${i}`}
@@ -125,11 +125,11 @@ const gambles = [
             <g
               transform={`translate(0 ${i === 0 ? 8 : 5}) scale(1 -1)`}
               stroke="#272622"
-              stroke-width="0.1"
+              stroke-width="0.035"
               stroke-linejoin="round"
             >
               {pieces.map((points, j) => (
-                <polygon points={points} fill={colours[j]} />
+                <polygon points={points} fill={colours[j]} stroke="none" />
               ))}
               {Array.from({ length: i === 0 ? 9 : 14 }, (_, x) => (
                 <path d={`M${x},0 V${i === 0 ? 8 : 5}`} fill="none" opacity="0.25" />
@@ -137,6 +137,12 @@ const gambles = [
               {Array.from({ length: i === 0 ? 9 : 6 }, (_, y) => (
                 <path d={`M0,${y} H${i === 0 ? 8 : 13}`} fill="none" opacity="0.25" />
               ))}
+              <g fill="none" stroke-width="0.16">
+                <rect x="0" y="0" width={i === 0 ? 8 : 13} height={i === 0 ? 8 : 5} />
+                <path
+                  d={i === 0 ? "M0,0 L8,3 M0,3 H8 M3,3 L5,8" : "M0,0 L13,5 M5,2 V5 M8,0 V3"}
+                />
+              </g>
             </g>
           </svg>
         </div>
