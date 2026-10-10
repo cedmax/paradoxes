@@ -114,13 +114,13 @@ const gambles = [
             {i === 0 ? "8 × 8: 64 squares" : "13 × 5: an outline of 65 squares"}
           </p>
           <svg
-            class={i === 0 ? "mx-auto w-full max-w-80" : "w-full"}
-            viewBox={i === 0 ? "-0.2 -0.2 8.4 8.4" : "-0.2 -0.2 13.4 5.4"}
+            class="mx-auto w-full max-w-80"
+            viewBox={i === 0 ? "-2.7 -0.2 13.4 8.4" : "-0.2 -0.2 13.4 5.4"}
             role="img"
             aria-labelledby={`board-title-${i}`}
           >
             <title id={`board-title-${i}`}>
-              {i === 0 ? "An 8 by 8 square divided into two triangles and two trapezoids" : "The same pieces inside a 13 by 5 rectangle with a thin diagonal gap"}
+              {i === 0 ? "An 8 by 8 square divided into two triangles and two trapezoids" : "The same four pieces rearranged into an apparent 13 by 5 rectangle"}
             </title>
             <g
               transform={`translate(0 ${i === 0 ? 8 : 5}) scale(1 -1)`}
@@ -129,7 +129,7 @@ const gambles = [
               stroke-linejoin="round"
             >
               {pieces.map((points, j) => (
-                <polygon points={points} fill={colours[j]} />
+                <polygon points={points} fill={colours[j]} stroke="none" />
               ))}
               {Array.from({ length: i === 0 ? 9 : 14 }, (_, x) => (
                 <path d={`M${x},0 V${i === 0 ? 8 : 5}`} fill="none" opacity="0.25" />
@@ -137,38 +137,45 @@ const gambles = [
               {Array.from({ length: i === 0 ? 9 : 6 }, (_, y) => (
                 <path d={`M0,${y} H${i === 0 ? 8 : 13}`} fill="none" opacity="0.25" />
               ))}
+              <g fill="none" stroke-width="0.16">
+                <rect x="0" y="0" width={i === 0 ? 8 : 13} height={i === 0 ? 8 : 5} />
+                <path
+                  d={i === 0 ? "M0,0 L8,3 M0,3 H8 M3,3 L5,8" : "M0,0 L13,5 M5,2 V5 M8,0 V3"}
+                />
+              </g>
             </g>
           </svg>
         </div>
       ))}
     </div>
     <figcaption class="text-base leading-normal">
-      The same colours mark the same pieces. The rectangle has a real, very thin diagonal gap.
-      Each small grid square has the same area; the two drawings use different display scales.
+      The same colours mark the same pieces. Each grid square represents one square unit, and
+      both drawings use the same scale.
     </figcaption>
     <details class="group border-t-2 border-ink pt-3">
       <summary class="flex min-h-11 cursor-pointer items-center gap-2 font-bold">
         <span aria-hidden="true" class="text-sm transition-transform group-open:rotate-90">
           ▶
         </span>
-        See the gap enlarged
+        See the gap highlighted
       </summary>
       <svg
         class="mt-4 w-full"
-        viewBox="0 0 400 100"
+        viewBox="-0.2 -0.2 13.4 5.4"
         role="img"
         aria-labelledby="board-gap-title"
       >
-        <title id="board-gap-title">The diagonal gap enlarged sideways to show its parallelogram shape</title>
-        <polygon
-          points="10,50 156,15 390,50 244,85"
-          fill="#d7a13d"
-          stroke="#272622"
-          stroke-width="2"
-        />
+        <title id="board-gap-title">The exact parallelogram gap highlighted in gold</title>
+        <g transform="translate(0 5) scale(1 -1)" stroke="#272622" stroke-width="0.015">
+          {boardLayouts[1].map((points, j) => (
+            <polygon points={points} fill={colours[j]} fill-opacity="0.25" />
+          ))}
+          <polygon points="0,0 5,2 13,5 8,3" fill="#d7a13d" />
+        </g>
       </svg>
       <p class="mt-2 text-base">
-        The gap is a parallelogram with area one square. Its width is exaggerated here.
+        Gold marks the gap, whose total area is one square. The drawing keeps its true
+        proportions.
       </p>
     </details>
   </figure>
