@@ -45,10 +45,12 @@ const gambles = [
 {slug === "staircase-paradox" && (
   <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
     <div class="flex flex-col gap-2">
-      <label for="staircase-step-count" class="font-bold">Make the steps smaller</label>
+      <label for="staircase-step-count" class="font-bold">
+        Make the steps smaller
+      </label>
       <input
         id="staircase-step-count"
-        class="w-full accent-ink"
+        class="h-11 w-full accent-ink"
         type="range"
         min="0"
         max="5"
@@ -66,21 +68,20 @@ const gambles = [
       </div>
     </div>
     <svg
-      class="mx-auto w-full max-w-lg"
-      viewBox="0 0 430 265"
+      class="mx-auto w-full max-w-xs"
+      viewBox="0 0 300 258"
       role="img"
       aria-labelledby="staircase-title staircase-desc"
     >
       <title id="staircase-title">A staircase approaching a straight diagonal</title>
       <desc id="staircase-desc">
-        The staircase runs from the bottom left to the top right corner of a unit square.
-        Its steps become smaller as the slider moves. Each path still covers one unit
-        horizontally and one vertically, for a total length of two. The diagonal is
-        about 1.414 units long.
+        The staircase runs from the bottom left to the top right corner of a unit square. Its
+        steps become smaller as the slider moves. Each path still covers one unit horizontally
+        and one vertically, for a total length of two. The diagonal is about 1.414 units long.
       </desc>
       <rect
-        x="60"
-        y="10"
+        x="40"
+        y="8"
         width="220"
         height="220"
         fill="none"
@@ -88,27 +89,41 @@ const gambles = [
         stroke-width="1.5"
         opacity="0.35"
       />
-      <path d="M60 230 L280 10" fill="none" stroke="#bd4b37" stroke-width="3" stroke-dasharray="7 6" />
+      <path
+        d="M40 228 L260 8"
+        fill="none"
+        stroke="#bd4b37"
+        stroke-width="3"
+        stroke-dasharray="7 6"
+      />
       <path
         id="staircase-path"
-        d="M60 230 H115 V175 H170 V120 H225 V65 H280 V10"
+        d="M40 228 H95 V173 H150 V118 H205 V63 H260 V8"
         fill="none"
         stroke="#387a91"
         stroke-width="3"
         stroke-linejoin="round"
       />
+      <path d="M48 30 H68" stroke="#bd4b37" stroke-width="3" stroke-dasharray="5 4" />
+      <path d="M48 54 H68" stroke="#387a91" stroke-width="3" />
       <g fill="currentColor" font-size="18" font-family="sans-serif">
-        <text x="294" y="28">Diagonal</text>
-        <text x="294" y="51">≈ 1.414</text>
-        <text x="294" y="198">Staircase</text>
-        <text x="294" y="221">= 2</text>
-        <text x="54" y="252" text-anchor="middle">0</text>
-        <text x="282" y="252" text-anchor="middle">1</text>
+        <text x="74" y="36">
+          Diagonal ≈ 1.414
+        </text>
+        <text x="74" y="60">
+          Staircase = 2
+        </text>
+        <text x="40" y="251" text-anchor="middle">
+          0
+        </text>
+        <text x="260" y="251" text-anchor="middle">
+          1
+        </text>
       </g>
     </svg>
     <figcaption class="text-base leading-normal">
-      The path always goes one unit right and one unit up. Making the steps smaller
-      changes its shape, not its length. The dashed diagonal takes a shorter route.
+      The path always goes one unit right and one unit up. Making the steps smaller changes its
+      shape, not its length. The dashed diagonal takes a shorter route.
     </figcaption>
   </figure>
 )}
@@ -121,17 +136,18 @@ const gambles = [
     const stepCounts = [1, 2, 4, 8, 16, 32]
     const updateStaircase = () => {
       const n = stepCounts[Number(stairSlider.value)] ?? 4
-      let d = "M60 230"
+      let d = "M40 228"
       for (let i = 1; i <= n; i++) {
-        const x = 60 + (220 * i) / n
-        const y = 230 - (220 * i) / n
+        const x = 40 + (220 * i) / n
+        const y = 228 - (220 * i) / n
         d += ` H${x} V${y}`
       }
       stairPath.setAttribute("d", d)
-      stairLabel.textContent = `${n} ${n === 1 ? "step" : "steps"}`
+      const stepText = `${n} ${n === 1 ? "step" : "steps"}`
+      stairLabel.textContent = stepText
+      stairSlider.setAttribute("aria-valuetext", stepText)
       const segmentLength = n === 1 ? "1" : `1/${n}`
-      stairBreakdown.textContent =
-        `${n} × ${segmentLength} across + ${n} × ${segmentLength} up = 2`
+      stairBreakdown.textContent = `${n} × ${segmentLength} across + ${n} × ${segmentLength} up = 2`
     }
     stairSlider.addEventListener("input", updateStaircase)
     updateStaircase()
