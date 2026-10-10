@@ -16,7 +16,7 @@ anchor: moores-paradox
 simplification: light
 noMaths: true
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "If every truth could in principle be known, does it follow that every truth already is known?"
 claimA: "Every truth could be known by someone at some time."
 claimB: "Some truths are never known by anyone."

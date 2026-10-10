@@ -16,7 +16,7 @@ anchor: raven-paradox
 simplification: light
 noMaths: true
 written: true
-sourcesVerified: false
+sourcesVerified: true
 problem: "Every emerald seen so far is green. Why does that support “all emeralds are green” and not “all emeralds are grue”?"
 claimA: "The emeralds seen so far are good evidence that emeralds examined later will be green, and not that they will be blue."
 claimB: "The emeralds seen so far fit “all emeralds are grue” exactly as well, and nothing in the evidence or in logic favours green over grue."
