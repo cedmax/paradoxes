@@ -20,7 +20,7 @@ content cache: `rm -rf .astro node_modules/.astro`.
 
 ## Architecture
 
-Logic Benders (logicbenders.com) is a static **Astro 7** site of paradoxes explained in plain words, deployed to Netlify (`netlify.toml`). Package manager is **pnpm** (version pinned in `package.json`); Node version in `.nvmrc`.
+Logic Benders (logicbenders.com) is a static **Astro 7** site of paradoxes explained in plain words, built in GitHub Actions and deployed to Netlify with the CLI (`.github/workflows/deploy.yml`; needs the `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` secrets). Netlify does not build; `netlify.toml` only holds headers. Package manager is **pnpm** (version pinned in `package.json`); Node version in `.nvmrc`.
 Tailwind CSS 4 via the Vite plugin. Fonts are self-hosted with `@fontsource-variable/*`, imported
 in `src/styles/global.css`. `~` maps to `/src`.
 
@@ -130,8 +130,11 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   from `render` to keep `aria-valuetext` current.
 - A script that sets `style.display` on a wrapper must give the wrapper its own layout classes
   (for example `flex flex-col`); the kit does not add them for you.
-- Write spaces around inline tags in text (`produces <strong>two</strong>`). Prettier will not
-  add them for you.
+- Astro 7 uses JSX whitespace rules by default: whitespace containing a newline
+  around an inline tag disappears, while a same-line space is preserved. Use explicit
+  `{" "}` wherever a space is needed across a line break. Prettier's
+  `astroCompressHTML: "jsx"` setting mirrors Astro, so formatting should preserve
+  rendered spaces. Check the page as well as `prettier --check`.
 
 ### Colours and buttons
 

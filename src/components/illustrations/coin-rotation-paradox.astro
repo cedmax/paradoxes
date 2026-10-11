@@ -75,7 +75,7 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
     endLabel="One complete orbit"
   >
     <p id="coin-rotation-readout" class="text-base" aria-live="off">
-      <span id="coin-orbit-progress">0%</span> of the orbit ·
+      <span id="coin-orbit-progress">0%</span> of the orbit ·{" "}
       <strong>
         <span id="coin-turns">0.00</span> turns
       </strong>
@@ -91,7 +91,7 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   </SideBySide>
   <Fragment slot="caption">
     The moving coin's centre travels a circle of radius 2r, so the path is 4πr long. Its own
-    circumference is 2πr. One trip around the fixed coin therefore produces
+    circumference is 2πr. One trip around the fixed coin therefore produces{" "}
     <strong>two full turns</strong>.
   </Fragment>
 </IllustrationFigure>

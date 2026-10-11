@@ -1,0 +1,85 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+const turns = [
+  { player: "Alice", large: 4, small: 1, y: 32 },
+  { player: "Bob", large: 8, small: 2, y: 108 },
+  { player: "Alice", large: 16, small: 4, y: 184 },
+  { player: "Bob", large: 32, small: 8, y: 260 },
+]
+---
+
+<IllustrationFigure
+  name="centipede-game"
+  lead="Take the bigger pile now, or pass and double both piles."
+>
+  <p class="text-base leading-normal">
+    Alice starts with two piles: 4 coins and 1 coin. The game has 4 turns. She can take the
+    larger pile and end the game, leaving Bob the smaller one. Or she can pass: both piles
+    double to 8 and 2, and Bob chooses next. They take turns with the same choice.
+  </p>
+
+  <SvgFigure
+    name="centipede-four-turns"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 360 298"
+    title="Four-turn game showing Alice and Bob choosing between taking coins and passing"
+    desc="Turn 1: Alice sees piles of 4 and 1 coins. Turn 2, if Alice passes: Bob sees 8 and 2. Turn 3, if Bob passes: Alice sees 16 and 4. Turn 4, if Alice passes: Bob sees 32 and 8. At each turn, taking means keeping the bigger pile and giving the smaller one to the other player. Passing doubles the piles and moves to the next turn. If Bob passes on the final turn, the game ends with Alice receiving 64 and Bob 16. Bob therefore prefers taking 32."
+  >
+    {turns.map(({ player, large, small, y }, i) => (
+      <g>
+        <rect
+          x="8"
+          y={y - 18}
+          width="344"
+          height="40"
+          fill={i === 3 ? series.gold : series.blue}
+          fill-opacity={i === 3 ? ".22" : ".09"}
+          stroke={stroke}
+          stroke-width="1"
+        />
+        <text x="18" y={y - 3} font-size="12" fill="currentColor">
+          Turn {i + 1}
+        </text>
+        <text x="18" y={y + 14} font-size="13" font-weight="700" fill="currentColor">
+          {player}
+        </text>
+        <text x="100" y={y + 5} font-size="14" font-weight="700" fill="currentColor">
+          {large} + {small} coins
+        </text>
+        <text x="225" y={y + 5} font-size="12" fill="currentColor">
+          Take {large}
+        </text>
+        {i < 3 && (
+          <g>
+            <path
+              d={`M180 ${y + 21} V${y + 53} m-4 -5 4 5 4 -5`}
+              fill="none"
+              stroke={series.blue}
+              stroke-width="1.5"
+            />
+            <text x="190" y={y + 42} font-size="12" fill="currentColor">
+              Pass: double
+            </text>
+          </g>
+        )}
+      </g>
+    ))}
+  </SvgFigure>
+
+  <p class="text-base leading-normal">
+    On the last turn, if Bob passes, the piles double one last time and Alice would get 64 and
+    Bob 16. Bob would rather take 32 instead.
+  </p>
+  <p class="text-base leading-normal">
+    Alice knows that, so on turn 3 she takes 16 rather than pass and get 8. The same argument
+    works backward to the first turn: Alice takes immediately, even though passing could make
+    both richer.
+  </p>
+
+  <Fragment slot="caption">
+    The prediction depends on strong assumptions about what each player knows.
+  </Fragment>
+</IllustrationFigure>
