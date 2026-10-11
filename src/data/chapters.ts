@@ -1,14 +1,17 @@
-// Chapters are "what breaks": the thing in your head that the paradox attacks.
+// Chapters are "what breaks": the thing in your head the paradox attacks.
+// Classify by the mechanism that creates the conflict, not by subject or setting.
 export const chapterIds = [
+  "what-counts",
   "self-reference",
-  "vague-words",
   "infinity",
   "probability",
-  "choice-identity",
+  "numbers-mislead",
+  "collective",
+  "individual",
   "belief",
-  "time-physics",
-  "biology",
-  "geometry-arithmetic",
+  "time-causation",
+  "models",
+  "shapes-sums",
 ] as const
 
 export type ChapterId = (typeof chapterIds)[number]
@@ -22,16 +25,18 @@ export interface Chapter {
 
 export const chapters: Chapter[] = [
   {
-    id: "self-reference",
+    id: "what-counts",
     n: "01",
-    title: "Self-referential sentences",
-    blurb: "Contradictions that appear the moment a statement refers to itself.",
+    title: "What counts as what",
+    blurb:
+      "Words and things that seem to have clear edges, until you try to say exactly where they are.",
   },
   {
-    id: "vague-words",
+    id: "self-reference",
     n: "02",
-    title: "Vagueness",
-    blurb: "Everyday words and measurements with no sharp edge, pushed until they break.",
+    title: "Self-reference",
+    blurb:
+      "Contradictions that appear when statements or collections are allowed to refer to themselves.",
   },
   {
     id: "infinity",
@@ -46,36 +51,46 @@ export const chapters: Chapter[] = [
     blurb: "Maths that is correct and still feels wrong.",
   },
   {
-    id: "choice-identity",
+    id: "numbers-mislead",
     n: "05",
-    title: "Choices and identity",
-    blurb:
-      "Questions about what stays the same, what to do when others are choosing too, and what counts as a good decision.",
+    title: "Numbers that mislead",
+    blurb: "Figures that are accurate but come from a skewed sample or a bad comparison.",
+  },
+  {
+    id: "collective",
+    n: "06",
+    title: "Collective outcomes",
+    blurb: "Choices that are sensible one by one but add up to a result nobody wanted.",
+  },
+  {
+    id: "individual",
+    n: "07",
+    title: "Individual choices",
+    blurb: "Rules for deciding and valuing that seem obvious, until one case breaks them.",
   },
   {
     id: "belief",
-    n: "06",
+    n: "08",
     title: "What we should believe",
     blurb: "Reasonable-looking rules about evidence and belief that lead somewhere strange.",
   },
   {
-    id: "time-physics",
-    n: "07",
-    title: "Time and physics",
-    blurb:
-      "Puzzles from the physical world, where the laws we trust seem to contradict each other.",
-  },
-  {
-    id: "biology",
-    n: "08",
-    title: "Biology",
-    blurb: "Puzzles from living things, where what should happen by the numbers does not.",
-  },
-  {
-    id: "geometry-arithmetic",
+    id: "time-causation",
     n: "09",
-    title: "Geometry and arithmetic",
-    blurb: "Figures and sums that look fine until you measure or count them again.",
+    title: "Time and causation",
+    blurb: "The shared “now” and the fixed order of cause and effect come apart.",
+  },
+  {
+    id: "models",
+    n: "10",
+    title: "Models meeting reality",
+    blurb: "Tidy theories that clash with what the world does, or with each other.",
+  },
+  {
+    id: "shapes-sums",
+    n: "11",
+    title: "Shapes and sums deceiving",
+    blurb: "Figures and quick calculations that look right until you measure or count again.",
   },
 ]
 

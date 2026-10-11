@@ -2,7 +2,8 @@
 title: "Berkson's paradox"
 titleAccent: "paradox"
 aka: ["Berkson's fallacy", "selection bias", "collider bias", "explaining away"]
-chapter: probability
+chapter: numbers-mislead
+order: 70
 status: explained
 simplification: light
 noMaths: true

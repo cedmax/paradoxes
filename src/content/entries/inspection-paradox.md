@@ -1,11 +1,11 @@
 ---
 title: "Inspection paradox"
 titleAccent: "paradox"
-chapter: probability
+chapter: numbers-mislead
 status: explained
 simplification: light
 noMaths: true
-order: 12
+order: 50
 written: true
 aka: ["waiting time paradox", "bus", "bus paradox", "why is my bus always late"]
 problem: "Why is your average wait for a bus longer than half the average gap between buses?"

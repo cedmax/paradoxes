@@ -10,6 +10,7 @@ aka:
     "all truths are knowable",
   ]
 chapter: belief
+order: 80
 status: disputed
 uniqueness: related
 anchor: moores-paradox

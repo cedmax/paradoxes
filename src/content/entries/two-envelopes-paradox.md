@@ -7,7 +7,7 @@ uniqueness: related
 anchor: st-petersburg-paradox
 simplification: light
 noMaths: true
-order: 4
+order: 30
 written: true
 sourcesVerified: true
 problem: "Two envelopes hold money, one with double the other. Should you swap the one you picked?"

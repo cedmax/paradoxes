@@ -3,6 +3,7 @@ title: "Parrondo's paradox"
 titleAccent: "paradox"
 aka: ["two losing games make a winning game", "Parrondo games", "Brownian ratchet"]
 chapter: probability
+order: 80
 status: explained
 simplification: light
 noMaths: false
