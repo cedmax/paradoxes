@@ -1,0 +1,136 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Callout from "~/components/illustration-kit/Callout.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+---
+
+<IllustrationFigure name="vanishing-wheel">
+  <div class="flex flex-wrap items-center justify-between gap-2">
+    <p class="font-bold" data-wheel-position aria-live="polite">
+      Position A
+    </p>
+    <p class="mono-label">Count the boys</p>
+  </div>
+  <SvgFigure
+    name="vanishing-wheel"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 400 410"
+    xmlns="http://www.w3.org/2000/svg"
+    title="The disappearing bicyclist puzzle"
+    desc="A historical picture of boys on a wheel. Slide the control to turn the central disc, rearranging the parts of the figures without swapping images."
+  >
+    <defs>
+      <image
+        id="vanishing-source"
+        href="/illustrations/vanishing-bicyclist.jpg"
+        x="0"
+        y="0"
+        width="800"
+        height="480"
+      />
+      <clipPath id="vanishing-disc">
+        <circle cx="204" cy="239" r="156" />
+      </clipPath>
+      <clipPath id="vanishing-frame">
+        <rect width="400" height="410" />
+      </clipPath>
+    </defs>
+    <g clip-path="url(#vanishing-frame)">
+      <use href="#vanishing-source" />
+      <g clip-path="url(#vanishing-disc)">
+        <g data-wheel-rotor transform="rotate(0 204 239)">
+          <use href="#vanishing-source" />
+        </g>
+      </g>
+      <circle
+        data-wheel-cut
+        cx="204"
+        cy="239"
+        r="156"
+        fill="none"
+        stroke="var(--color-accent)"
+        stroke-width="2.5"
+        stroke-dasharray="7 5"
+        visibility="hidden"
+      />
+    </g>
+  </SvgFigure>
+  <Slider
+    id="vanishing-rotate"
+    accent="accent"
+    label="Turn the disc"
+    startLabel="A · Before"
+    endLabel="B · After"
+    valuetext="Position A"
+  />
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div class="flex flex-wrap gap-2">
+      <button data-wheel-before type="button" aria-pressed="true" class="btn-ghost">
+        Before
+      </button>
+      <button data-wheel-after type="button" aria-pressed="false" class="btn-ghost">
+        After
+      </button>
+    </div>
+    <label class="flex min-h-11 cursor-pointer items-center gap-2 text-base font-bold">
+      <input data-wheel-reveal type="checkbox" class="size-5 accent-accent" />
+      Show the cut
+    </label>
+  </div>
+  <Callout tone="accent" class="hidden" data-wheel-explanation>
+    The orange line marks the cut around the turning disc. Each turn joins different pieces of
+    the boys. The figures change slightly in size, even though no part of the picture is
+    removed.
+  </Callout>
+  <Fragment slot="caption">
+    Count the boys, then turn the disc and count again. The centre rotates, but the artwork
+    never switches. Original puzzle by Sam Loyd, reproduced by{" "}
+    <a
+      class="font-bold underline"
+      href="https://mathshistory.st-andrews.ac.uk/Extras/Get_off_the_earth/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      MacTutor
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("vanishing-wheel")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#vanishing-rotate")
+    const rotor = find<SVGGElement>(root, "[data-wheel-rotor]")
+    const position = find<HTMLElement>(root, "[data-wheel-position]")
+    const before = find<HTMLButtonElement>(root, "[data-wheel-before]")
+    const after = find<HTMLButtonElement>(root, "[data-wheel-after]")
+    const reveal = find<HTMLInputElement>(root, "[data-wheel-reveal]")
+    const cut = find<SVGCircleElement>(root, "[data-wheel-cut]")
+    const explanation = find<HTMLElement>(root, "[data-wheel-explanation]")
+
+    // User-approved endpoint. The cut and rotation share the same measured centre.
+    const finalAngle = 29.75
+    const update = bindSlider(slider, (progress) => {
+      rotor.setAttribute("transform", `rotate(${(-finalAngle * progress) / 100} 204 239)`)
+      position.textContent =
+        progress === 0 ? "Position A" : progress === 100 ? "Position B" : "Turning the disc"
+      before.setAttribute("aria-pressed", String(progress === 0))
+      after.setAttribute("aria-pressed", String(progress === 100))
+      return position.textContent
+    })
+    const goTo = (value: number) => {
+      slider.value = String(value)
+      update()
+    }
+    before.addEventListener("click", () => goTo(0))
+    after.addEventListener("click", () => goTo(100))
+    reveal.addEventListener("change", () => {
+      cut.setAttribute("visibility", reveal.checked ? "visible" : "hidden")
+      explanation.classList.toggle("hidden", !reveal.checked)
+    })
+  }
+</script>
