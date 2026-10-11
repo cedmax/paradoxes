@@ -31,11 +31,6 @@ const barStarts = [94, 161, 228, 295]
   name="gabriels-horn"
   lead="An endlessly long horn can hold a finite amount, but have endless wall."
 >
-  <p class="text-base leading-normal">
-    The horn keeps narrowing. Divide it into longer and longer stretches, each twice as long as
-    the last. What happens to the space inside and the wall?
-  </p>
-
   <SvgFigure
     name="gabriels-horn-sections"
     class="mx-auto w-full max-w-md"
@@ -83,8 +78,7 @@ const barStarts = [94, 161, 228, 295]
 
   <Panel title="The space shrinks faster than the wall" class="flex flex-col gap-2">
     <p class="text-base leading-normal">
-      Each new stretch is <strong>twice as long</strong> as the previous one. Watch what happens
-      to its share of the horn's total volume, compared with the amount of wall in that stretch.
+      Each stretch is <strong>twice as long</strong> as the one before it.
     </p>
     <SvgFigure
       name="gabriels-horn-volume-area"
@@ -149,17 +143,13 @@ const barStarts = [94, 161, 228, 295]
       </text>
     </SvgFigure>
     <p class="text-base leading-normal">
-      The inside volume keeps halving and adds up to a finite amount. But each longer stretch
-      adds <strong>roughly the same amount of wall</strong>. Infinitely many such stretches give
-      an infinite surface.
+      The volume halves each time, so the total stays finite. But each stretch adds
+      <strong>roughly the same amount of wall</strong>, making the total area infinite.
     </p>
   </Panel>
 
   <Fragment slot="caption">
-    The horn is the mathematical shape made by rotating y = 1/x (starting at x = 1). The volume
-    fractions are exact; the similar wall-area bars are approximate. Ideal liquid can touch the
-    whole inside wall with finite volume, but a coat of fixed positive thickness would require
-    infinitely much paint. A real material cannot reach infinitely far down an ever-narrowing
-    tube.
+    The volume fractions are exact; the wall-area bars are approximate. Ideal paint can fill
+    the horn and touch its endless inner wall. Real paint cannot behave this way.
   </Fragment>
 </IllustrationFigure>
