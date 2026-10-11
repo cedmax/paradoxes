@@ -104,6 +104,74 @@
     </div>
   </div>
 
+  <details id="twin-symmetry" class="group border-t-2 border-ink pt-3">
+    <summary class="flex min-h-11 cursor-pointer items-center gap-2 font-bold">
+      <span aria-hidden="true" class="text-sm transition-transform group-open:rotate-90">▶</span>
+      Why isn't it symmetric? What changes when Stella turns?
+    </summary>
+    <div class="mt-3 flex flex-col gap-4">
+      <p class="text-base leading-normal">
+        At the star, Stella's own clock reads 3 years. As she switches from travelling
+        away to travelling home, she changes which moment on distant Earth she calls
+        <strong>"now".</strong>
+      </p>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <div class="border-l-4 pl-3" style="border-color: #387a91;">
+          <p class="font-bold">Before turning</p>
+          <p class="text-sm">Stella's outward viewpoint</p>
+          <p class="font-mono text-3xl font-bold tabular-nums">1.8 <span class="text-base font-normal">years</span></p>
+          <p class="text-base">The moment she counts as "now" on Earth.</p>
+        </div>
+        <div class="border-l-4 pl-3" style="border-color: #bd4b37;">
+          <p class="font-bold">After turning</p>
+          <p class="text-sm">Stella's homeward viewpoint</p>
+          <p class="font-mono text-3xl font-bold tabular-nums">8.2 <span class="text-base font-normal">years</span></p>
+          <p class="text-base">The new moment she counts as "now" on Earth.</p>
+        </div>
+      </div>
+      <svg
+        class="w-full max-w-xl"
+        viewBox="0 0 500 104"
+        role="img"
+        aria-labelledby="twin-symmetry-title twin-symmetry-desc"
+      >
+        <title id="twin-symmetry-title">Two different moments Stella calls now on distant Earth</title>
+        <desc id="twin-symmetry-desc">
+          Stella's outward viewpoint assigns Earth time 1.8 years to her turnaround,
+          and her homeward viewpoint assigns Earth time 8.2 years. The underlying
+          Earth clock continues normally, without jumping.
+        </desc>
+        <text x="250" y="16" text-anchor="middle" fill="currentColor" font-size="14">
+          Earth's timeline · 0 to 10 years
+        </text>
+        <path d="M 32 58 H 468" stroke="currentColor" stroke-width="2" opacity=".4" />
+        {[0, 2, 4, 6, 8, 10].map((n) => (
+          <g>
+            <path d={`M ${32 + n * 43.6} 53 v 10`} stroke="currentColor" stroke-width="1.2" opacity=".5" />
+            <text x={32 + n * 43.6} y="87" text-anchor="middle" fill="currentColor" font-size="13">
+              {n}
+            </text>
+          </g>
+        ))}
+        <circle cx={32 + 1.8 * 43.6} cy="58" r="7" fill="#387a91" />
+        <circle cx={32 + 8.2 * 43.6} cy="58" r="7" fill="#bd4b37" />
+        <text x={32 + 1.8 * 43.6} y="43" text-anchor="middle" fill="#387a91" font-size="14" font-weight="700">
+          1.8
+        </text>
+        <text x={32 + 8.2 * 43.6} y="43" text-anchor="middle" fill="#bd4b37" font-size="14" font-weight="700">
+          8.2
+        </text>
+      </svg>
+      <p class="text-base leading-normal">
+        <strong>Nothing on Earth jumps forward.</strong> The live Earth clock above shows
+        5 years at Stella's turnaround because it uses Earth's viewpoint.
+        The 1.8 and 8.2 are not clock readings she receives from Earth; they are
+        different answers to which distant Earth moment is happening "now".
+        This is why Stella cannot treat the whole trip as one steady motion.
+      </p>
+    </div>
+  </details>
+
   <figcaption class="text-base leading-normal">
     This is the journey as measured in Earth's frame. Each leg takes five Earth years,
     but Stella's moving clock records only three. At the reunion, Terence has aged
@@ -130,6 +198,7 @@
     const status = find<HTMLElement>("#twin-journey-status")!
     const note = find<HTMLElement>("#twin-journey-note")!
     const playButton = find<HTMLButtonElement>("#twin-play")!
+    const symmetryPanel = find<HTMLDetailsElement>("#twin-symmetry")!
     const jumps = Array.from(twinDemo.querySelectorAll<HTMLButtonElement>("[data-twin-jump]"))
 
     // In Earth's frame Stella travels at 0.8c.
@@ -145,12 +214,20 @@
     let animationStart: number | null = null
     let startingTime = 0
     let lastStage = ""
+    let hasReachedTurn = false
 
     const stageFor = (t: number) =>
       t === 0 ? "Departure" : t < 5 ? "Outbound" : t === 5 ? "Turnaround" : t < 10 ? "Returning" : "Reunion"
 
     const render = (earthYears: number) => {
+      const previousTime = time
       time = Math.max(0, Math.min(totalEarthYears, earthYears))
+      // Reveal the explanation once the slider, a jump, or playback passes the star.
+      // Keep it available thereafter, but do not reopen it if the reader closes it.
+      if (!hasReachedTurn && previousTime < turnEarthYears && time >= turnEarthYears) {
+        symmetryPanel.open = true
+        hasReachedTurn = true
+      }
       const shipYears = shipClockRate * time
       const stage = stageFor(time)
       const progress = time <= turnEarthYears
