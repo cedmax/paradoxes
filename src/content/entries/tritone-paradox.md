@@ -1,10 +1,10 @@
 ---
 title: "Tritone paradox"
-chapter: "biology"
+chapter: what-counts
 status: "explained"
 simplification: light
 noMaths: true
-order: 300
+order: 140
 written: true
 sourcesVerified: true
 reviewed: false

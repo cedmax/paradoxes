@@ -1,11 +1,11 @@
 ---
 title: "Schrödinger's cat"
 titleAccent: "cat"
-chapter: time-physics
+chapter: models
 status: unreconciled
 simplification: light
 noMaths: true
-order: 7
+order: 30
 written: true
 sourcesVerified: true
 problem: "If quantum rules say an atom can be in two states at once, what does that mean for a cat whose life depends on it?"
