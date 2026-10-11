@@ -87,9 +87,9 @@ const fullCoast = line(levels[4])
     describedby="coastline-paradox-readout"
     valuetext={`Bigger steps, ${start.length - 1} segments, about ${Math.round(total(start))} units`}
   >
-    <p id="coastline-paradox-readout" class="text-base font-bold sm:text-right" aria-live="polite" aria-atomic="true">
-      <strong>{start.length - 1} segments</strong> add up to about
-      <strong>{Math.round(total(start))} units</strong>.
+    <p id="coastline-paradox-readout" class="text-base sm:text-right" aria-live="polite" aria-atomic="true">
+      <strong id="coastline-paradox-count">{start.length - 1} segments</strong> add up to about
+      <strong id="coastline-paradox-distance">{Math.round(total(start))} units</strong>.
     </p>
   </Slider>
   <Fragment slot="caption">
@@ -110,7 +110,8 @@ const fullCoast = line(levels[4])
     const measurement = find<SVGPolylineElement>(root, "#coastline-paradox-measurement")
     const markers = find<SVGGElement>(root, "#coastline-paradox-markers")
     const slider = find<HTMLInputElement>(root, "#coastline-paradox-slider")
-    const readout = find<HTMLElement>(root, "#coastline-paradox-readout")
+    const countLabel = find<HTMLElement>(root, "#coastline-paradox-count")
+    const distanceLabel = find<HTMLElement>(root, "#coastline-paradox-distance")
     const namespace = "http://www.w3.org/2000/svg"
 
     bindSlider(slider, (value) => {
@@ -135,7 +136,8 @@ const fullCoast = line(levels[4])
       }, 0)
       const count = indexes.length - 1
       const rounded = Math.round(distance)
-      readout.textContent = `${count} segments add up to about ${rounded} units.`
+      countLabel.textContent = `${count} segments`
+      distanceLabel.textContent = `${rounded} units`
       const size =
         value === 0
           ? "Bigger steps"
