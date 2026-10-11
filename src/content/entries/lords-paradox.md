@@ -10,13 +10,13 @@ aka:
     "change scores",
     "Frederic Lord",
   ]
-chapter: probability
+chapter: numbers-mislead
 status: explained
 uniqueness: related
 anchor: simpsons-paradox
 simplification: light
 noMaths: false
-order: 210
+order: 130
 written: true
 sourcesVerified: true
 problem: "Two careful analyses of the same before and after weights give opposite answers about boys and girls. Can both be right?"

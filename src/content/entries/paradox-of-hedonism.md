@@ -1,10 +1,10 @@
 ---
 title: "Paradox of hedonism"
-chapter: "choice-identity"
+chapter: individual
 status: "explained"
 simplification: light
 noMaths: true
-order: 300
+order: 140
 written: true
 sourcesVerified: true
 reviewed: false

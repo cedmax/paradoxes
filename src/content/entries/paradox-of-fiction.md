@@ -2,7 +2,8 @@
 title: "Paradox of fiction"
 titleAccent: "fiction"
 aka: ["Radford", "emotions toward fiction", "why we cry at films", "suspension of disbelief"]
-chapter: choice-identity
+chapter: what-counts
+order: 100
 status: explained
 simplification: light
 noMaths: true
