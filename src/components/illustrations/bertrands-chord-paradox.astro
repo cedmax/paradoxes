@@ -1,77 +1,183 @@
+---
+const methods = [
+  {
+    rule: "Two points on the circle's edge",
+    explanation: "Choose two edge points independently and uniformly, then join them.",
+    probability: "1/3",
+  },
+  {
+    rule: "Distance from the centre",
+    explanation: "Choose a direction and a distance uniformly from zero to the radius.",
+    probability: "1/2",
+  },
+  {
+    rule: "Midpoint by area",
+    explanation: "Choose the chord's midpoint uniformly from the area of the circle.",
+    probability: "1/4",
+  },
+]
+---
+
 <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">Three meanings of “pick a random chord”</p>
+  <p class="font-bold">
+    Which chords are longer than a side of the triangle fitted inside the circle?
+  </p>
   <svg
-    class="mx-auto w-full max-w-sm"
-    viewBox="0 0 300 128"
+    class="mx-auto w-full max-w-xl"
+    viewBox="0 0 380 245"
     role="img"
-    aria-labelledby="bertrand-methods-title bertrand-methods-desc"
+    aria-labelledby="bertrand-title bertrand-desc"
   >
-    <title id="bertrand-methods-title">Three circle and chord diagrams</title>
-    <desc id="bertrand-methods-desc">
-      All three methods choose chords in a circle. They sample different things, producing
-      different chances of exceeding the triangle side.
+    <title id="bertrand-title">Compare a moving chord with a side of a fitted equilateral triangle</title>
+    <desc id="bertrand-desc">
+      An equilateral triangle fits exactly inside a circle. Its left side is highlighted in orange.
+      Move the blue chord with the slider. The inner dotted circle has half the outer radius. A
+      chord is longer than a triangle side precisely when its midpoint is inside that dotted circle.
     </desc>
-    {[50, 150, 250].map((x) => (
-      <g>
-        <circle cx={x} cy="50" r="44" fill="none" stroke="currentColor" stroke-width="2" />
-        <circle
-          cx={x}
-          cy="50"
-          r="22"
-          fill="#d7a13d"
-          fill-opacity=".3"
-          stroke="#d7a13d"
-          stroke-dasharray="4 4"
-          stroke-width="2"
-        />
-      </g>
-    ))}
-    <path
-      d="M21.7 16.3 L78.3 83.7 M165 8.6 V91.4 M272 12 L212 72"
+
+    <circle cx="130" cy="112" r="86" fill="none" stroke="currentColor" stroke-width="2" />
+    <polygon
+      points="130,26 55.52,155 204.48,155"
       fill="none"
-      stroke="#bd4b37"
-      stroke-width="3"
+      stroke="currentColor"
+      stroke-width="2"
+      opacity=".6"
     />
-    <circle cx="242" cy="42" r="3.5" fill="#bd4b37" />
-    <g fill="currentColor" font-size="18" text-anchor="middle">
-      <text x="50" y="118">
-        1/3
-      </text>
-      <text x="150" y="118">
-        1/2
-      </text>
-      <text x="250" y="118">
-        1/4
-      </text>
+    <line
+      x1="130"
+      y1="26"
+      x2="55.52"
+      y2="155"
+      stroke="var(--color-accent)"
+      stroke-width="4"
+      stroke-linecap="round"
+    />
+    <circle
+      cx="130"
+      cy="112"
+      r="43"
+      fill="#d7a13d"
+      fill-opacity=".12"
+      stroke="#d7a13d"
+      stroke-width="2"
+      stroke-dasharray="5 5"
+    />
+    <line
+      id="bertrand-chord"
+      x1="49.44"
+      y1="142.1"
+      x2="210.56"
+      y2="142.1"
+      stroke="#387a91"
+      stroke-width="4"
+      stroke-linecap="round"
+    />
+    <circle id="bertrand-midpoint" cx="130" cy="142.1" r="5" fill="#387a91" />
+    <circle cx="130" cy="112" r="2.5" fill="currentColor" />
+
+    <g font-size="15" fill="currentColor">
+      <line x1="236" y1="43" x2="254" y2="43" stroke="var(--color-accent)" stroke-width="4" />
+      <text x="262" y="48">Triangle side</text>
+      <line x1="236" y1="79" x2="254" y2="79" stroke="#387a91" stroke-width="4" />
+      <text x="262" y="84">Moving chord</text>
+      <text x="236" y="128">Dotted circle:</text>
+      <text x="236" y="148">half the radius</text>
+      <text x="236" y="178">Midpoint inside</text>
+      <text x="236" y="198">means longer</text>
+      <text x="236" y="218">than triangle side</text>
     </g>
   </svg>
+
+  <div class="flex flex-col gap-2">
+    <label for="bertrand-chord-slider" class="font-bold">Move the chord away from the centre</label>
+    <input
+      id="bertrand-chord-slider"
+      class="h-11 w-full accent-ink"
+      type="range"
+      min="0"
+      max="100"
+      step="1"
+      value="35"
+      aria-describedby="bertrand-chord-readout"
+      aria-valuetext="35 percent of the radius, longer than the triangle side"
+    />
+    <p id="bertrand-chord-readout" class="text-base" aria-live="polite">
+      <span id="bertrand-chord-distance">35%</span> of the radius from the centre.
+      <strong id="bertrand-chord-comparison">Longer than the triangle side.</strong>
+    </p>
+  </div>
+
   <div class="overflow-x-auto">
     <table class="w-full text-base">
+      <caption class="pb-2 text-left font-bold">
+        Three ways to pick a random chord, three different answers
+      </caption>
       <thead>
         <tr class="border-b border-ink">
-          <th class="p-2 text-left">What is sampled uniformly?</th>
-          <th class="p-2 text-right">Chance of a long chord</th>
+          <th class="p-2 text-left" scope="col">What is chosen uniformly?</th>
+          <th class="p-2 text-right" scope="col">Chance of a long chord</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="border-b border-ink">
-          <td class="p-2">Two points on the circle’s edge</td>
-          <td class="p-2 text-right">1/3</td>
-        </tr>
-        <tr class="border-b border-ink">
-          <td class="p-2">The chord’s distance from the centre</td>
-          <td class="p-2 text-right">1/2</td>
-        </tr>
-        <tr>
-          <td class="p-2">The chord’s midpoint by area</td>
-          <td class="p-2 text-right">1/4</td>
-        </tr>
+        {methods.map((method) => (
+          <tr class="border-b border-ink last:border-0">
+            <td class="p-2">
+              <strong>{method.rule}</strong>
+              <p class="mt-1">{method.explanation}</p>
+            </td>
+            <td class="p-2 text-right font-bold">{method.probability}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   </div>
+
   <figcaption class="text-base leading-normal">
-    The dashed inner circle has half the radius. Long chords have midpoints inside it. That
-    means half of the possible distances, but only a quarter of the possible midpoint area. The
-    pictured chords are examples, not the full random distributions.
+    The slider is a comparison, not a random selection. It shows why half the possible distances
+    produce a long chord, while the midpoint region covers only a quarter of the circle's area.
+    Picking two points on the edge follows a third rule and gives one third.
   </figcaption>
 </figure>
+
+<script>
+  const slider = document.querySelector<HTMLInputElement>("#bertrand-chord-slider")
+  const chord = document.querySelector<SVGLineElement>("#bertrand-chord")
+  const midpoint = document.querySelector<SVGCircleElement>("#bertrand-midpoint")
+  const distanceLabel = document.querySelector<HTMLElement>("#bertrand-chord-distance")
+  const comparison = document.querySelector<HTMLElement>("#bertrand-chord-comparison")
+
+  if (slider && chord && midpoint && distanceLabel && comparison) {
+    const centreX = 130
+    const centreY = 112
+    const radius = 86
+
+    const update = () => {
+      const fraction = Number(slider.value) / 100
+      const distance = radius * fraction
+      const halfLength = Math.sqrt(radius * radius - distance * distance)
+      const y = centreY + distance
+
+      chord.setAttribute("x1", String(centreX - halfLength))
+      chord.setAttribute("x2", String(centreX + halfLength))
+      chord.setAttribute("y1", String(y))
+      chord.setAttribute("y2", String(y))
+      midpoint.setAttribute("cy", String(y))
+
+      const description =
+        fraction < 0.5
+          ? "Longer than the triangle side."
+          : fraction === 0.5
+            ? "Exactly as long as the triangle side."
+            : "Shorter than the triangle side."
+      distanceLabel.textContent = `${slider.value}%`
+      comparison.textContent = description
+      slider.setAttribute(
+        "aria-valuetext",
+        `${slider.value} percent of the radius, ${description.toLowerCase()}`,
+      )
+    }
+
+    slider.addEventListener("input", update)
+    update()
+  }
+</script>
