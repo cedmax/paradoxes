@@ -25,10 +25,13 @@ const gambles = [
 ]
 ---
 
-<IllustrationFigure name="allais-paradox" lead="Only 89 tickets change. Why do people's choices flip?">
+<IllustrationFigure
+  name="allais-paradox"
+  lead="Only 89 tickets change. Why do people's choices flip?"
+>
   <p class="text-base leading-normal">
-    Imagine 100 equally likely tickets. Each small square is one ticket. Both bets use the
-    same tickets, but offer different prizes. Switch between the two choices.
+    Imagine 100 equally likely tickets. Each small square is one ticket. Both bets use the same
+    tickets, but offer different prizes. Switch between the two choices.
   </p>
   <div class="flex flex-wrap gap-2" role="group" aria-label="Choose the Allais gamble pair">
     <button type="button" class="btn-toggle" data-allais-pair="0" aria-pressed="true">
@@ -41,11 +44,18 @@ const gambles = [
 
   <SideBySide>
     <Panel title="Option A" class="flex min-w-0 flex-col gap-2">
-      <div data-allais-grid-a class="grid grid-cols-10 gap-0.5"
-        role="img" aria-label="Option A: all 100 tickets pay one million dollars">
+      <div
+        data-allais-grid-a
+        class="grid grid-cols-10 gap-0.5"
+        role="img"
+        aria-label="Option A: all 100 tickets pay one million dollars"
+      >
         {tickets.map(() => (
-          <span data-allais-ticket-a class="aspect-square min-w-0 bg-series-green ring-1 ring-inset ring-ink/20"
-            aria-hidden="true"></span>
+          <span
+            data-allais-ticket-a
+            class="aspect-square min-w-0 bg-series-green ring-1 ring-inset ring-ink/20"
+            aria-hidden="true"
+          ></span>
         ))}
       </div>
       <p id="allais-a-payout" class="text-sm leading-normal">
@@ -53,13 +63,21 @@ const gambles = [
       </p>
     </Panel>
     <Panel title="Option B" class="flex min-w-0 flex-col gap-2">
-      <div data-allais-grid-b class="grid grid-cols-10 gap-0.5"
-        role="img" aria-label="Option B: ten tickets pay five million dollars, one pays nothing, and eighty-nine pay one million">
+      <div
+        data-allais-grid-b
+        class="grid grid-cols-10 gap-0.5"
+        role="img"
+        aria-label="Option B: ten tickets pay five million dollars, one pays nothing, and eighty-nine pay one million"
+      >
         {tickets.map((i) => (
-          <span data-allais-ticket-b
-            class:list={["aspect-square min-w-0 ring-1 ring-inset ring-ink/20",
-              i < 10 ? "bg-series-gold" : i === 10 ? "bg-paper" : "bg-series-green"]}
-            aria-hidden="true"></span>
+          <span
+            data-allais-ticket-b
+            class:list={[
+              "aspect-square min-w-0 ring-1 ring-inset ring-ink/20",
+              i < 10 ? "bg-series-gold" : i === 10 ? "bg-paper" : "bg-series-green",
+            ]}
+            aria-hidden="true"
+          ></span>
         ))}
       </div>
       <p id="allais-b-payout" class="text-sm leading-normal">
@@ -69,26 +87,39 @@ const gambles = [
   </SideBySide>
 
   <div class="flex flex-wrap gap-3 text-sm">
-    <span class="flex items-center gap-2"><span class="size-4 bg-series-green ring-1 ring-inset ring-ink/20" aria-hidden="true"></span>$1m</span>
-    <span class="flex items-center gap-2"><span class="size-4 bg-series-gold ring-1 ring-inset ring-ink/20" aria-hidden="true"></span>$5m</span>
-    <span class="flex items-center gap-2"><span class="size-4 bg-paper ring-1 ring-inset ring-ink/40" aria-hidden="true"></span>$0</span>
+    <span class="flex items-center gap-2">
+      <span
+        class="size-4 bg-series-green ring-1 ring-inset ring-ink/20"
+        aria-hidden="true"
+      ></span>
+      $1m
+    </span>
+    <span class="flex items-center gap-2">
+      <span
+        class="size-4 bg-series-gold ring-1 ring-inset ring-ink/20"
+        aria-hidden="true"
+      ></span>
+      $5m
+    </span>
+    <span class="flex items-center gap-2">
+      <span class="size-4 bg-paper ring-1 ring-inset ring-ink/40" aria-hidden="true"></span>$0
+    </span>
   </div>
 
   <Callout>
     <p id="allais-explanation" class="text-base leading-normal" aria-live="polite">
-      In the first pair, A guarantees $1m. Many people choose A.
-      Look at the big green block of 89 shared tickets: both options pay $1m on those.
+      In the first pair, A guarantees $1m. Many people choose A. Look at the big green block of
+      89 shared tickets: both options pay $1m on those.
     </p>
   </Callout>
   <p class="text-base leading-normal">
-    The first row of 10 tickets and the next single ticket never change.
-    Only the remaining 89 tickets switch from $1m to $0 <strong>for both options</strong>.
-    Many people then choose B instead of A.
+    The first row of 10 tickets and the next single ticket never change. Only the remaining 89
+    tickets switch from $1m to $0 <strong>for both options</strong>. Many people then choose B
+    instead of A.
   </p>
   <Fragment slot="caption">
-    The usual choices are A in the first pair and B in the second, even though only a
-    shared outcome changes. $1m means $1 million. The puzzle is whether that switch
-    can be rational.
+    The usual choices are A in the first pair and B in the second, even though only a shared
+    outcome changes. $1m means $1 million. The puzzle is whether that switch can be rational.
   </Fragment>
 
   <Disclosure slot="after" summary="See the exact payouts in tables">
@@ -134,12 +165,18 @@ const gambles = [
       descriptionB.textContent = first
         ? "10 pay $5m, 1 pays $0, 89 pay $1m."
         : "10 pay $5m, 90 pay $0."
-      gridA.setAttribute("aria-label", first
-        ? "Option A: all 100 tickets pay one million dollars"
-        : "Option A: eleven tickets pay one million dollars, eighty-nine pay nothing")
-      gridB.setAttribute("aria-label", first
-        ? "Option B: ten tickets pay five million dollars, one pays nothing, eighty-nine pay one million"
-        : "Option B: ten tickets pay five million dollars, ninety pay nothing")
+      gridA.setAttribute(
+        "aria-label",
+        first
+          ? "Option A: all 100 tickets pay one million dollars"
+          : "Option A: eleven tickets pay one million dollars, eighty-nine pay nothing",
+      )
+      gridB.setAttribute(
+        "aria-label",
+        first
+          ? "Option B: ten tickets pay five million dollars, one pays nothing, eighty-nine pay one million"
+          : "Option B: ten tickets pay five million dollars, ninety pay nothing",
+      )
       explanation.textContent = first
         ? "In the first pair, A guarantees $1m. Many people choose A. The same 89 tickets pay $1m on both options."
         : "In the second pair, those same 89 tickets now pay $0 on both options. Many people switch to B, although the part that differs between A and B has not changed."
