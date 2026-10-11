@@ -2,7 +2,8 @@
 title: "Traveler's dilemma"
 titleAccent: "dilemma"
 aka: ["Traveller's dilemma", "Basu", "lost luggage game", "lost suitcase game", "undercutting"]
-chapter: choice-identity
+chapter: collective
+order: 120
 status: disputed
 uniqueness: related
 anchor: unexpected-hanging-paradox

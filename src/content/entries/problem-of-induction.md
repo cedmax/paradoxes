@@ -3,6 +3,7 @@ title: "Problem of induction"
 titleAccent: "induction"
 aka: ["Hume's problem", "Hume's fork", "why will the sun rise tomorrow", "uniformity of nature"]
 chapter: belief
+order: 100
 status: unreconciled
 simplification: light
 noMaths: true

@@ -2,11 +2,11 @@
 title: "Missing square puzzle"
 titleAccent: "puzzle"
 aka: ["Curry triangle", "disappearing square", "dissection paradox", "13 by 5 triangle"]
-chapter: geometry-arithmetic
+chapter: shapes-sums
 status: explained
 simplification: light
 noMaths: false
-order: 202
+order: 30
 written: true
 sourcesVerified: true
 problem: "The same four pieces seem to make two identical triangles, but one has a square-shaped hole. Where did the square come from?"

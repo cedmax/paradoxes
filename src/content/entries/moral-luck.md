@@ -2,7 +2,8 @@
 title: "Moral luck"
 titleAccent: "luck"
 aka: ["Nagel", "Williams", "control principle", "resultant luck", "constitutive luck"]
-chapter: choice-identity
+chapter: individual
+order: 100
 status: disputed
 simplification: light
 noMaths: true

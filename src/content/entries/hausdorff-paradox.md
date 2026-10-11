@@ -14,7 +14,7 @@ uniqueness: variant
 anchor: banach-tarski-paradox
 simplification: heavy
 noMaths: false
-order: 212
+order: 160
 written: true
 sourcesVerified: true
 problem: "Can every piece of a sphere’s surface be given an area, so that pieces of the same shape and size always have the same area?"

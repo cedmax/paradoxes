@@ -1,12 +1,12 @@
 ---
 title: "Elevator paradox"
-chapter: "probability"
+chapter: numbers-mislead
 status: "explained"
 uniqueness: "related"
 anchor: "inspection-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 140
 written: true
 sourcesVerified: true
 reviewed: false
