@@ -1,12 +1,12 @@
 ---
 title: Pascal's wager
 titleAccent: wager
-chapter: choice-identity
+chapter: individual
 status: disputed
 uniqueness: related
 anchor: st-petersburg-paradox
 simplification: light
-order: 6
+order: 50
 written: true
 sourcesVerified: true
 problem: "If reason cannot settle whether God exists, is believing in God the sensible bet?"

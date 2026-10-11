@@ -14,7 +14,7 @@ uniqueness: related
 anchor: russells-paradox
 simplification: heavy
 noMaths: false
-order: 100
+order: 80
 written: true
 sourcesVerified: true
 problem: "Can one set contain every number that marks a position in an ordered list, including positions beyond an infinite list?"

@@ -10,6 +10,7 @@ aka:
     "infinite decimal",
   ]
 chapter: infinity
+order: 80
 status: explained
 uniqueness: related
 anchor: achilles-and-the-tortoise

@@ -6,7 +6,7 @@ status: explained
 uniqueness: related
 anchor: achilles-and-the-tortoise
 simplification: light
-order: 6
+order: 60
 written: true
 sourcesVerified: true
 problem: "A lamp is switched on and off faster and faster for two minutes. Is it on or off at the end?"
