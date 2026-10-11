@@ -1,0 +1,23 @@
+---
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+
+const dice = [
+  { name: "A", faces: [4, 4, 4, 4, 0, 0], beats: "B" },
+  { name: "B", faces: [3, 3, 3, 3, 3, 3], beats: "C" },
+  { name: "C", faces: [6, 6, 2, 2, 2, 2], beats: "D" },
+  { name: "D", faces: [5, 5, 5, 1, 1, 1], beats: "A" },
+]
+---
+
+<IllustrationFigure frame={false}>
+  <ComparisonTable
+    caption="Efron’s dice: six equally likely faces on each die"
+    columns={["Die", "Face values", "Beats"]}
+    rows={dice.map(({ name, faces, beats }) => [name, faces.join(", "), `${beats}: 2 in 3`])}
+  />
+  <Fragment slot="caption">
+    A → B → C → D → A. Each arrow means the first die wins two thirds of single-roll contests
+    against the next. Higher numbers win.
+  </Fragment>
+</IllustrationFigure>

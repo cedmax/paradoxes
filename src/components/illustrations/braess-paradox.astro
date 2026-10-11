@@ -1,0 +1,126 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+const nodeRadius = 36
+const nodes = {
+  start: { x: 56, y: 185, label: "Start" },
+  a: { x: 260, y: 52, label: "A" },
+  end: { x: 464, y: 185, label: "End" },
+  b: { x: 260, y: 318, label: "B" },
+}
+const road = (from: { x: number; y: number }, to: { x: number; y: number }) => {
+  const length = Math.hypot(to.x - from.x, to.y - from.y)
+  const ux = (to.x - from.x) / length
+  const uy = (to.y - from.y) / length
+  const gap = nodeRadius + 3
+  const f = (n: number) => Math.round(n * 10) / 10
+  return `M${f(from.x + ux * gap)},${f(from.y + uy * gap)} L${f(to.x - ux * gap)},${f(to.y - uy * gap)}`
+}
+const roads = [
+  { d: road(nodes.start, nodes.a), label: "cars ÷ 100", x: 150, y: 108, anchor: "end" },
+  { d: road(nodes.a, nodes.end), label: "45", x: 370, y: 108, anchor: "start" },
+  { d: road(nodes.start, nodes.b), label: "45", x: 150, y: 282, anchor: "end" },
+  { d: road(nodes.b, nodes.end), label: "cars ÷ 100", x: 370, y: 282, anchor: "start" },
+]
+---
+
+<IllustrationFigure>
+  {[false, true].map((shortcut, i) => (
+    <div class="flex flex-col gap-2">
+      <p class="font-bold">
+        {shortcut
+          ? "With the shortcut: everyone takes A → B"
+          : "Before: 2,000 drivers on each route"}
+      </p>
+      <SvgFigure
+        name={`braess-${i}`}
+        viewBox="0 0 520 392"
+        title={
+          shortcut
+            ? "The new route from Start through A and B to End takes 80 minutes"
+            : "Two routes from Start to End each take 65 minutes"
+        }
+        desc={`Start to A and B to End take the number of cars divided by 100 minutes. Start to B and A to End take 45 minutes each. ${
+          shortcut
+            ? "A new zero-minute one-way road connects A to B."
+            : "There is no road between A and B."
+        }`}
+      >
+        <defs>
+          <marker
+            id={`road-arrow-${i}`}
+            viewBox="0 0 10 10"
+            refX="9"
+            refY="5"
+            markerWidth="5"
+            markerHeight="5"
+            orient="auto-start-reverse"
+          >
+            <path d="M0,0 L10,5 L0,10 Z" fill="var(--color-stroke)" />
+          </marker>
+        </defs>
+        <g
+          fill="none"
+          stroke="var(--color-stroke)"
+          stroke-width="3"
+          marker-end={`url(#road-arrow-${i})`}
+        >
+          {roads.map(({ d }) => (
+            <path d={d} />
+          ))}
+          {shortcut && <path d={road(nodes.a, nodes.b)} stroke-dasharray="8 5" />}
+        </g>
+        <g class="fill-ink" font-size="26">
+          {roads.map(({ label, x, y, anchor }) => (
+            <text x={x} y={y} text-anchor={anchor}>
+              {label}
+            </text>
+          ))}
+          {shortcut && (
+            <text x="280" y="193" text-anchor="start">
+              0
+            </text>
+          )}
+        </g>
+        {Object.values(nodes).map(({ x, y, label }) => (
+          <g>
+            <circle
+              class="fill-paper"
+              cx={x}
+              cy={y}
+              r={nodeRadius}
+              stroke="var(--color-stroke)"
+              stroke-width="2"
+            />
+            <text
+              class="fill-ink"
+              x={x}
+              y={y + 7}
+              font-size="22"
+              font-weight="bold"
+              text-anchor="middle"
+            >
+              {label}
+            </text>
+          </g>
+        ))}
+        <text
+          class="fill-ink"
+          x="260"
+          y="384"
+          font-size="24"
+          font-weight="bold"
+          text-anchor="middle"
+        >
+          {shortcut ? "40 + 0 + 40 = 80 minutes" : "20 + 45 = 65 minutes"}
+        </text>
+      </SvgFigure>
+    </div>
+  ))}
+  <Fragment slot="caption">
+    Arrows show the permitted direction. Road times are in minutes. “cars ÷ 100” means the
+    number of cars on that road divided by 100. With all 4,000 drivers taking the shortcut,
+    switching alone to an old route would take 85 minutes.
+  </Fragment>
+</IllustrationFigure>
