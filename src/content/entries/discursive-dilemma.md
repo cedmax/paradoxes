@@ -10,13 +10,13 @@ aka:
     "premise-based vs conclusion-based",
     "court of three judges",
   ]
-chapter: choice-identity
+chapter: collective
 status: disputed
 uniqueness: related
 anchor: condorcet-paradox
 simplification: light
 noMaths: false
-order: 12
+order: 60
 written: true
 sourcesVerified: true
 problem: "Three judges each reason consistently, yet the majority on the reasons and the majority on the verdict point opposite ways. Which should the court follow?"

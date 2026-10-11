@@ -1,13 +1,13 @@
 ---
 title: Friendship paradox
 titleAccent: paradox
-chapter: probability
+chapter: numbers-mislead
 status: explained
 uniqueness: variant
 anchor: inspection-paradox
 simplification: light
 noMaths: true
-order: 11
+order: 40
 written: true
 aka: ["why your friends have more friends", "Scott Feld", "social networks"]
 problem: "Why do your friends have more friends than you do?"

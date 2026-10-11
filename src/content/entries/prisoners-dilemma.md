@@ -1,10 +1,10 @@
 ---
 title: Prisoner's dilemma
 titleAccent: dilemma
-chapter: choice-identity
+chapter: collective
 status: disputed
 simplification: light
-order: 3
+order: 10
 written: true
 sourcesVerified: true
 problem: If each of two people does best by betraying the other, why do both end up worse off than if they had trusted each other?

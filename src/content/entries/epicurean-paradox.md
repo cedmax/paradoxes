@@ -1,12 +1,12 @@
 ---
 title: "Epicurean paradox"
-chapter: "belief"
+chapter: belief
 status: "disputed"
 uniqueness: "variant"
 anchor: "problem-of-evil"
 simplification: light
 noMaths: true
-order: 300
+order: 140
 written: true
 sourcesVerified: true
 reviewed: false

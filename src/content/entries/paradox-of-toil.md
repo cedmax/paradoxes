@@ -1,12 +1,12 @@
 ---
 title: "Paradox of toil"
-chapter: "choice-identity"
+chapter: collective
 status: "disputed"
 uniqueness: "related"
 anchor: "paradox-of-thrift"
 simplification: light
 noMaths: true
-order: 300
+order: 190
 written: true
 sourcesVerified: true
 reviewed: false

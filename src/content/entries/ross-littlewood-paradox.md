@@ -10,6 +10,7 @@ aka:
     "supertask",
   ]
 chapter: infinity
+order: 100
 status: explained
 uniqueness: related
 anchor: thomsons-lamp

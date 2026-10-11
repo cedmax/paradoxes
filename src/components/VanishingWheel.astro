@@ -1,0 +1,127 @@
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6" data-vanishing-wheel>
+  <div class="flex flex-wrap items-center justify-between gap-2">
+    <p class="font-bold" data-wheel-position aria-live="polite">Position A</p>
+    <p class="mono-label">Count the boys</p>
+  </div>
+  <svg
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 400 410"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-labelledby="vanishing-wheel-title vanishing-wheel-desc"
+  >
+    <title id="vanishing-wheel-title">The disappearing bicyclist puzzle</title>
+    <desc id="vanishing-wheel-desc">
+      A historical picture of boys on a wheel. Slide the control to turn the central disc,
+      rearranging the parts of the figures without swapping images.
+    </desc>
+    <defs>
+      <image
+        id="vanishing-source"
+        href="/illustrations/vanishing-bicyclist.jpg"
+        x="0"
+        y="0"
+        width="800"
+        height="480"
+      />
+      <clipPath id="vanishing-disc"><circle cx="204" cy="239" r="156" /></clipPath>
+      <clipPath id="vanishing-frame"><rect width="400" height="410" /></clipPath>
+    </defs>
+    <g clip-path="url(#vanishing-frame)">
+      <use href="#vanishing-source" />
+      <g clip-path="url(#vanishing-disc)">
+        <g data-wheel-rotor transform="rotate(0 204 239)">
+          <use href="#vanishing-source" />
+        </g>
+      </g>
+      <circle
+        data-wheel-cut
+        cx="204"
+        cy="239"
+        r="156"
+        fill="none"
+        stroke="var(--color-accent)"
+        stroke-width="2.5"
+        stroke-dasharray="7 5"
+        visibility="hidden"
+      />
+    </g>
+  </svg>
+  <div class="flex flex-col gap-1">
+    <label class="font-bold" for="vanishing-rotate">Turn the disc</label>
+    <input
+      id="vanishing-rotate"
+      data-wheel-slider
+      class="h-11 w-full accent-accent"
+      type="range"
+      min="0"
+      max="100"
+      step="1"
+      value="0"
+      aria-valuetext="Position A"
+    />
+    <div class="flex justify-between gap-3 text-base">
+      <span>A · Before</span>
+      <span>B · After</span>
+    </div>
+  </div>
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div class="flex flex-wrap gap-2">
+      <button data-wheel-before type="button" aria-pressed="true" class="btn-ghost">Before</button>
+      <button data-wheel-after type="button" aria-pressed="false" class="btn-ghost">After</button>
+    </div>
+    <label class="flex min-h-11 cursor-pointer items-center gap-2 text-base font-bold">
+      <input data-wheel-reveal type="checkbox" class="size-5 accent-accent" />
+      Show the cut
+    </label>
+  </div>
+  <p class="hidden border-l-4 border-accent pl-4 text-base" data-wheel-explanation>
+    The orange line marks the cut around the turning disc. Each turn joins different pieces of
+    the boys. The figures change slightly in size, even though no part of the picture is removed.
+  </p>
+  <figcaption class="text-base leading-normal">
+    Count the boys, then turn the disc and count again. The centre rotates, but the artwork
+    never switches. Original puzzle by Sam Loyd, reproduced by{" "}
+    <a
+      class="font-bold underline"
+      href="https://mathshistory.st-andrews.ac.uk/Extras/Get_off_the_earth/"
+      target="_blank"
+      rel="noopener noreferrer">MacTutor</a
+    >.
+  </figcaption>
+</figure>
+
+<script>
+  const wheel = document.querySelector<HTMLElement>("[data-vanishing-wheel]")
+  const slider = wheel?.querySelector<HTMLInputElement>("[data-wheel-slider]")
+  const rotor = wheel?.querySelector<SVGGElement>("[data-wheel-rotor]")
+  const position = wheel?.querySelector<HTMLElement>("[data-wheel-position]")
+  const before = wheel?.querySelector<HTMLButtonElement>("[data-wheel-before]")
+  const after = wheel?.querySelector<HTMLButtonElement>("[data-wheel-after]")
+  const reveal = wheel?.querySelector<HTMLInputElement>("[data-wheel-reveal]")
+  const cut = wheel?.querySelector<SVGCircleElement>("[data-wheel-cut]")
+  const explanation = wheel?.querySelector<HTMLElement>("[data-wheel-explanation]")
+
+  if (slider && rotor && position && before && after && reveal && cut && explanation) {
+    // User-approved endpoint. The cut and rotation share the same measured centre.
+    const finalAngle = 29.75
+    const update = (value: number) => {
+      const progress = Math.max(0, Math.min(100, value))
+      slider.value = String(progress)
+      rotor.setAttribute("transform", `rotate(${(-finalAngle * progress) / 100} 204 239)`)
+      position.textContent =
+        progress === 0 ? "Position A" : progress === 100 ? "Position B" : "Turning the disc"
+      slider.setAttribute("aria-valuetext", position.textContent)
+      before.setAttribute("aria-pressed", String(progress === 0))
+      after.setAttribute("aria-pressed", String(progress === 100))
+    }
+    slider.addEventListener("input", () => update(Number(slider.value)))
+    before.addEventListener("click", () => update(0))
+    after.addEventListener("click", () => update(100))
+    reveal.addEventListener("change", () => {
+      cut.setAttribute("visibility", reveal.checked ? "visible" : "hidden")
+      explanation.classList.toggle("hidden", !reveal.checked)
+    })
+    update(0)
+  }
+</script>
