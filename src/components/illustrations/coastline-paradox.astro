@@ -71,7 +71,9 @@ const fullCoast = line(levels[4])
       stroke-linecap="round"
     />
     <g id="coastline-paradox-markers" fill="var(--color-series-blue)">
-      {start.map((index) => <circle cx={points[index][0]} cy={points[index][1]} r="3.5" />)}
+      {start.map((index) => (
+        <circle cx={points[index][0]} cy={points[index][1]} r="3.5" />
+      ))}
     </g>
   </SvgFigure>
   <Slider
