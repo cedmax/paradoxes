@@ -131,7 +131,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
     <article class="flex max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
       {!d.written && (
         <div class="border-2 border-dashed border-ink px-6 py-5 text-lg">
-          <strong>Full write-up in progress.</strong>{"\u0020"}The problem, the two claims and the
+          <strong>Full write-up in progress.</strong> The problem, the two claims and the
           verdict are final. The explanation and sources are not written yet.
         </div>
       )}
@@ -185,7 +185,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
           )}
           {d.finePrint && (
             <div class="mt-6 border-2 border-ink bg-disputed px-6 py-5 text-lg leading-normal">
-              <strong>The fine print.</strong>{"\u0020"}<Linked text={d.finePrint} />
+              <strong>The fine print.</strong> <Linked text={d.finePrint} />
             </div>
           )}
         </section>
@@ -227,7 +227,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
           </div>
           <div class="mono-label text-accent">Status</div>
           <div>
-            {s.label}:{"\u0020"}<Linked text={d.statusNote} />
+            {s.label}: <Linked text={d.statusNote} />
           </div>
         </div>
         {echoes.length > 0 && (
