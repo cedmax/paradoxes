@@ -1,10 +1,10 @@
 ---
 title: "Dream argument"
-chapter: "belief"
+chapter: belief
 status: "disputed"
 simplification: light
 noMaths: true
-order: 300
+order: 120
 written: true
 sourcesVerified: true
 reviewed: false

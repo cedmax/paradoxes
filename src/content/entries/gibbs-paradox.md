@@ -10,11 +10,11 @@ aka:
     "N factorial",
     "extensive entropy",
   ]
-chapter: time-physics
+chapter: models
 status: explained
 simplification: heavy
 noMaths: false
-order: 102
+order: 130
 written: true
 sourcesVerified: true
 problem: "Why does a calculation say that opening a door between two boxes of identical gas raises entropy, when the gas looks and behaves just as before?"
