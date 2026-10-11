@@ -130,8 +130,10 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   from `render` to keep `aria-valuetext` current.
 - A script that sets `style.display` on a wrapper must give the wrapper its own layout classes
   (for example `flex flex-col`); the kit does not add them for you.
-- Write spaces around inline tags in text (`produces <strong>two</strong>`). Prettier will not
-  add them for you.
+- Astro 7 can drop plain-text whitespace next to inline tags. Use explicit `{" "}` between
+  words and tags, including after a closing tag. Prettier may collapse same-line `{" "}` into
+  literal whitespace; when it does, use `{"\\u0020"}` (an escaped ordinary space) so the
+  rendered space survives formatting. Check the actual output, not only `prettier --check`.
 
 ### Colours and buttons
 
