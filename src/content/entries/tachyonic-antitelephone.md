@@ -1,12 +1,12 @@
 ---
 title: "Tachyonic antitelephone"
-chapter: "time-physics"
+chapter: time-causation
 status: "explained"
 uniqueness: "related"
 anchor: "grandfather-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 90
 written: true
 sourcesVerified: true
 reviewed: false

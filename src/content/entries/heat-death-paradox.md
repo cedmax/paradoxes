@@ -1,12 +1,12 @@
 ---
 title: "Heat death paradox"
-chapter: "time-physics"
+chapter: models
 status: "defused"
 uniqueness: "related"
 anchor: "olbers-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 170
 written: true
 sourcesVerified: true
 reviewed: false

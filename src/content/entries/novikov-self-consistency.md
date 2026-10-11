@@ -1,14 +1,20 @@
 ---
 title: "Polchinski’s paradox"
 titleAccent: "paradox"
-aka: ["Novikov self-consistency", "Novikov self-consistency principle", "Novikov principle", "Polchinski billiard-ball paradox"]
-chapter: "time-physics"
+aka:
+  [
+    "Novikov self-consistency",
+    "Novikov self-consistency principle",
+    "Novikov principle",
+    "Polchinski billiard-ball paradox",
+  ]
+chapter: time-causation
 status: "explained"
 uniqueness: "related"
 anchor: "grandfather-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 70
 written: true
 sourcesVerified: true
 reviewed: false
