@@ -1,23 +1,150 @@
 ---
-import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import SideBySide from "~/components/illustration-kit/SideBySide.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import Callout from "~/components/illustration-kit/Callout.astro"
+import { series, stroke } from "~/data/palette"
 
 const dice = [
-  { name: "A", faces: [4, 4, 4, 4, 0, 0], beats: "B" },
-  { name: "B", faces: [3, 3, 3, 3, 3, 3], beats: "C" },
-  { name: "C", faces: [6, 6, 2, 2, 2, 2], beats: "D" },
-  { name: "D", faces: [5, 5, 5, 1, 1, 1], beats: "A" },
+  { name: "A", faces: [4, 4, 4, 4, 0, 0] },
+  { name: "B", faces: [3, 3, 3, 3, 3, 3] },
+  { name: "C", faces: [6, 6, 2, 2, 2, 2] },
+  { name: "D", faces: [5, 5, 5, 1, 1, 1] },
 ]
+const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) => first > second))
 ---
 
-<IllustrationFigure frame={false}>
-  <ComparisonTable
-    caption="Efron’s dice: six equally likely faces on each die"
-    columns={["Die", "Face values", "Beats"]}
-    rows={dice.map(({ name, faces, beats }) => [name, faces.join(", "), `${beats}: 2 in 3`])}
-  />
+<IllustrationFigure name="nontransitive-dice" lead="How can every die have a winning opponent?">
+  <p class="text-base leading-normal">
+    Each die has six equally likely faces. Choose any pairing, then count which of the 36
+    possible rolls favour the first die.
+  </p>
+  {[
+    dice.slice(0, 2),
+    dice.slice(2, 4),
+  ].map((pair) => (
+    <SideBySide>
+      {pair.map(({ name, faces }) => (
+        <Panel title={`Die ${name}`} data-dice-values={faces.join(",")}>
+          <p class="font-mono text-base tabular-nums">{faces.join(" · ")}</p>
+        </Panel>
+      ))}
+    </SideBySide>
+  ))}
+
+  <div class="flex flex-wrap gap-2" role="group" aria-label="Choose two dice to compare">
+    {["A beats B", "B beats C", "C beats D", "D beats A"].map((label, i) => (
+      <button
+        type="button"
+        class="btn-toggle"
+        data-nontransitive-pair={i}
+        aria-pressed={i === 0 ? "true" : "false"}
+      >
+        {label}
+      </button>
+    ))}
+  </div>
+
+  <SvgFigure
+    name="nontransitive-grid"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 370 340"
+    title="Check all 36 possible pairs of dice faces"
+    desc="Initially comparing die A to die B. Each of six rows is a face of A and each of six columns a face of B. A wins on 24 of the 36 equally likely combinations. Choose another pairing to update the comparison."
+  >
+    <text id="nontransitive-top-label" x="220" y="23" text-anchor="middle"
+      font-size="17" font-weight="700" fill="currentColor">Die B faces</text>
+    <text id="nontransitive-left-label" x="20" y="78"
+      font-size="17" font-weight="700" fill="currentColor">A</text>
+    {dice[1].faces.map((number, col) => (
+      <text data-nontransitive-column={col} x={103 + col * 40 + 19.5} y="72"
+        text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">{number}</text>
+    ))}
+    {dice[0].faces.map((number, row) => (
+      <text data-nontransitive-row={row} x="89" y={100 + row * 40 + 21}
+        text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">{number}</text>
+    ))}
+    {initialWins.map((win, index) => (
+      <g>
+        <rect data-nontransitive-cell={index} x={103 + (index % 6) * 40}
+          y={100 + Math.floor(index / 6) * 40} width="39" height="39"
+          fill={win ? series.green : "var(--color-paper)"} fill-opacity={win ? "0.4" : "1"}
+          stroke={stroke} stroke-width="1" />
+        <text data-nontransitive-result={index} x={103 + (index % 6) * 40 + 19.5}
+          y={100 + Math.floor(index / 6) * 40 + 25} text-anchor="middle"
+          font-size="17" font-weight="700" fill="currentColor">{win ? "✓" : "–"}</text>
+      </g>
+    ))}
+  </SvgFigure>
+  <p class="text-sm">✓ means the first die wins. – means it loses. Each square is one equally likely pair of faces.</p>
+  <Callout>
+    <p id="nontransitive-count" class="font-bold" aria-live="polite">
+      A wins 24 of 36 rolls against B: 2 in 3.
+    </p>
+    <p id="nontransitive-reason" class="text-base leading-normal">
+      A has four faces marked 4, and all six of B's faces show 3. That gives 4 × 6 = 24 wins.
+    </p>
+  </Callout>
   <Fragment slot="caption">
-    A → B → C → D → A. Each arrow means the first die wins two thirds of single-roll contests
-    against the next. Higher numbers win.
+    Follow the circle: A beats B, B beats C, C beats D, and D beats A, each 2 times in 3.
+    “Usually beats” is not a ranking like height. The result depends on which two dice meet.
   </Fragment>
 </IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("nontransitive-dice")
+  if (root) {
+    const values = Array.from(root.querySelectorAll<HTMLElement>("[data-dice-values]")).map(
+      (card) => (card.dataset.diceValues ?? "").split(",").map(Number),
+    )
+    const pairs = [[0, 1], [1, 2], [2, 3], [3, 0]]
+    const names = ["A", "B", "C", "D"]
+    const reasons = [
+      "A has four faces marked 4, and all six of B's faces show 3. That gives 4 × 6 = 24 wins.",
+      "All six faces on B show 3, which beats the four faces on C showing 2. That gives 6 × 4 = 24 wins.",
+      "C's two 6s beat all six of D's faces (12 wins). C's four 2s beat D's three 1s (12 more).",
+      "D's three 5s beat all six of A's faces (18 wins). D's three 1s beat A's two 0s (6 more).",
+    ]
+    const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-nontransitive-pair]"))
+    const cols = Array.from(root.querySelectorAll<SVGTextElement>("[data-nontransitive-column]"))
+    const rows = Array.from(root.querySelectorAll<SVGTextElement>("[data-nontransitive-row]"))
+    const cells = Array.from(root.querySelectorAll<SVGRectElement>("[data-nontransitive-cell]"))
+    const results = Array.from(root.querySelectorAll<SVGTextElement>("[data-nontransitive-result]"))
+    const title = find<SVGTextElement>(root, "#nontransitive-top-label")
+    const left = find<SVGTextElement>(root, "#nontransitive-left-label")
+    const desc = find<SVGDescElement>(root, "#nontransitive-grid-desc")
+    const count = find<HTMLElement>(root, "#nontransitive-count")
+    const reason = find<HTMLElement>(root, "#nontransitive-reason")
+
+    const render = (index: number) => {
+      const [first, second] = pairs[index]
+      const facesA = values[first]
+      const facesB = values[second]
+      let wins = 0
+      rows.forEach((text, r) => {
+        text.textContent = String(facesA[r])
+      })
+      cols.forEach((text, c) => {
+        text.textContent = String(facesB[c])
+      })
+      cells.forEach((cell, i) => {
+        const win = facesA[Math.floor(i / 6)] > facesB[i % 6]
+        if (win) wins++
+        cell.setAttribute("fill", win ? "var(--color-series-green)" : "var(--color-paper)")
+        cell.setAttribute("fill-opacity", win ? "0.4" : "1")
+        results[i].textContent = win ? "✓" : "–"
+      })
+      title.textContent = `Die ${names[second]} faces`
+      left.textContent = names[first]
+      count.textContent = `${names[first]} wins ${wins} of 36 rolls against ${names[second]}: ${wins === 24 ? "2 in 3" : `${wins}/36`}.`
+      reason.textContent = reasons[index]
+      desc.textContent = `Die ${names[first]} faces down the rows and die ${names[second]} faces across the columns. ${wins} of 36 combinations favour ${names[first]}; each square shows a win or loss.`
+      buttons.forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)))
+    }
+    buttons.forEach((button, index) => button.addEventListener("click", () => render(index)))
+    render(0)
+  }
+</script>
