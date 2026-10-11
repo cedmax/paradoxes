@@ -15,9 +15,8 @@ const shorterEnd = 214
   lead="The rockets keep the same gap. How can the string between them stretch?"
 >
   <p class="text-base leading-normal">
-    Imagine watching two rockets from where they launched. They are connected by a
-    taut string and will speed up together, so the distance between them stays fixed
-    in your measurements.
+    Imagine watching two rockets from where they launched. They are connected by a taut string
+    and will speed up together, so the distance between them stays fixed in your measurements.
   </p>
 
   <Panel title="1. Before accelerating" class="flex flex-col gap-2">
@@ -62,7 +61,14 @@ const shorterEnd = 214
         stroke={stroke}
         stroke-width="1.5"
       />
-      <text x="175" y="95" font-size="15" font-weight="700" fill="currentColor" text-anchor="middle">
+      <text
+        x="175"
+        y="95"
+        font-size="15"
+        font-weight="700"
+        fill="currentColor"
+        text-anchor="middle"
+      >
         Original gap = unstretched string
       </text>
     </SvgFigure>
@@ -70,15 +76,15 @@ const shorterEnd = 214
   </Panel>
 
   <p class="text-base leading-normal">
-    <strong>One rule of relativity:</strong> a fast-moving object is measured shorter
-    along the direction it travels than when it is at rest, provided it isn't
-    stretched. This is called <em>length contraction</em>.
+    <strong>One rule of relativity:</strong> a fast-moving object is measured shorter along the
+    direction it travels than when it is at rest, provided it isn't stretched. This is called{" "}
+    <em>length contraction</em>.
   </p>
 
   <Panel title="2. After accelerating" accent="red" class="flex flex-col gap-2">
     <p class="text-base leading-normal">
-      The rockets have travelled, but their gap is still the same. The actual string
-      has to reach between them.
+      The rockets have travelled, but their gap is still the same. The actual string has to
+      reach between them.
     </p>
     <SvgFigure
       name="bell-after"
@@ -121,7 +127,14 @@ const shorterEnd = 214
         stroke={stroke}
         stroke-width="1.5"
       />
-      <text x="175" y="87" font-size="15" font-weight="700" fill="currentColor" text-anchor="middle">
+      <text
+        x="175"
+        y="87"
+        font-size="15"
+        font-weight="700"
+        fill="currentColor"
+        text-anchor="middle"
+      >
         Same gap as before
       </text>
       <text x="9" y="114" font-size="14" fill="currentColor">
@@ -156,20 +169,20 @@ const shorterEnd = 214
       </text>
     </SvgFigure>
     <p class="text-base leading-normal">
-      If the string stayed unstretched, it would not reach the front rocket.
-      To span the unchanged gap, the real string must stretch.
+      If the string stayed unstretched, it would not reach the front rocket. To span the
+      unchanged gap, the real string must stretch.
     </p>
   </Panel>
 
   <p class="text-base font-bold">
-    Same gap, but a stretched string. If the rockets keep accelerating, the strain
-    eventually breaks it.
+    Same gap, but a stretched string. If the rockets keep accelerating, the strain eventually
+    breaks it.
   </p>
 
   <Fragment slot="caption">
-    Both drawings use measurements made from the launch site. The rockets are
-    repositioned in the picture to compare their gap; their real positions do move.
-    The shortening and stretching are exaggerated. How soon a string breaks depends
-    on its strength, and a small increase in speed need not snap it.
+    Both drawings use measurements made from the launch site. The rockets are repositioned in
+    the picture to compare their gap; their real positions do move. The shortening and
+    stretching are exaggerated. How soon a string breaks depends on its strength, and a small
+    increase in speed need not snap it.
   </Fragment>
 </IllustrationFigure>
