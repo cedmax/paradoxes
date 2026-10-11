@@ -1,10 +1,10 @@
 ---
 title: "Coastline paradox"
 titleAccent: "paradox"
-chapter: vague-words
+chapter: what-counts
 status: explained
 simplification: light
-order: 2
+order: 40
 written: true
 sourcesVerified: true
 reviewed: false

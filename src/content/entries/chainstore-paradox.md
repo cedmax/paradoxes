@@ -1,12 +1,12 @@
 ---
 title: "Chainstore paradox"
-chapter: "choice-identity"
+chapter: collective
 status: "disputed"
 uniqueness: "related"
 anchor: "unexpected-hanging-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 150
 written: true
 sourcesVerified: true
 reviewed: false

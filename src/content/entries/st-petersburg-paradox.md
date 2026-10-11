@@ -1,11 +1,11 @@
 ---
 title: "St Petersburg paradox"
 titleAccent: "paradox"
-chapter: probability
+chapter: individual
 status: unreconciled
 simplification: light
 noMaths: true
-order: 6
+order: 10
 written: true
 sourcesVerified: true
 reviewed: false

@@ -4,7 +4,7 @@ titleAccent: "paradox"
 chapter: infinity
 status: explained
 simplification: light
-order: 5
+order: 50
 written: true
 sourcesVerified: true
 problem: "Are there as many square numbers as there are whole numbers?"

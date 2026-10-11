@@ -4,7 +4,7 @@ titleAccent: paradox
 chapter: self-reference
 status: defused
 simplification: light
-order: 3
+order: 30
 written: true
 sourcesVerified: true
 reviewed: true

@@ -1,10 +1,10 @@
 ---
 title: "Ant on a rubber rope"
-chapter: "infinity"
+chapter: infinity
 status: "explained"
 simplification: light
 noMaths: true
-order: 300
+order: 210
 written: true
 sourcesVerified: true
 reviewed: false
