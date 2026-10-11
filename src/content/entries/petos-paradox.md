@@ -2,11 +2,11 @@
 title: "Peto's paradox"
 titleAccent: paradox
 aka: ["whales and cancer", "elephants and cancer", "body size and cancer", "TP53 elephants"]
-chapter: biology
+chapter: models
 status: disputed
 simplification: light
 noMaths: true
-order: 214
+order: 210
 written: true
 sourcesVerified: true
 problem: "Larger animals have more cells that could become cancerous. Do they actually get more cancer?"

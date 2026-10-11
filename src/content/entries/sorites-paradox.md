@@ -1,10 +1,10 @@
 ---
 title: Sorites paradox
 titleAccent: paradox
-chapter: vague-words
+chapter: what-counts
 status: disputed
 simplification: light
-order: 1
+order: 30
 written: true
 sourcesVerified: true
 reviewed: true
