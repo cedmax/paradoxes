@@ -205,7 +205,7 @@ const methods = [
       make a longer chord.
     </p>
   </div>
-  <div id="bertrand-area-controls" class="flex flex-col gap-3" hidden>
+  <div id="bertrand-area-controls" class="flex flex-col gap-3" style="display: none;">
     <p class="text-base leading-normal">
       Each click chooses a midpoint equally likely to fall anywhere in the circle.
       Only the shaded inner quarter of its area makes a chord longer than the triangle side.
@@ -432,8 +432,8 @@ const methods = [
       const isDistance = mode === "distance"
       const isEdge = mode === "edge"
       const isArea = mode === "area"
-      sliderControls.hidden = isArea
-      areaControls.hidden = !isArea
+      sliderControls.style.display = isArea ? "none" : "flex"
+      areaControls.style.display = isArea ? "flex" : "none"
       distanceButton.setAttribute("aria-pressed", String(isDistance))
       edgeButton.setAttribute("aria-pressed", String(isEdge))
       areaButton.setAttribute("aria-pressed", String(isArea))
