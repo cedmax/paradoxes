@@ -1,11 +1,15 @@
 {
-  "plugins": ["prettier-plugin-astro"],
+  "plugins": [
+    "prettier-plugin-astro"
+  ],
   "semi": false,
   "printWidth": 96,
   "overrides": [
     {
       "files": "**/*.astro",
-      "options": { "parser": "astro" }
+      "options": {
+        "parser": "astro"
+      }
     },
     {
       "files": ".*rc",
@@ -13,5 +17,6 @@
         "trailingComma": "none"
       }
     }
-  ]
+  ],
+  "astroCompressHTML": "jsx"
 }
