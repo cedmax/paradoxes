@@ -6,7 +6,6 @@ import Callout from "~/components/illustration-kit/Callout.astro"
 import { series, stroke } from "~/data/palette"
 
 const startingPeople = 23
-const pairCount = (n: number) => (n * (n - 1)) / 2
 const matchChance = (n: number) => {
   let noMatch = 1
   for (let i = 0; i < n; i++) noMatch *= (365 - i) / 365
