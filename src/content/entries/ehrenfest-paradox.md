@@ -1,12 +1,12 @@
 ---
 title: "Ehrenfest paradox"
-chapter: "time-physics"
+chapter: models
 status: "explained"
 uniqueness: "related"
 anchor: "ladder-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 160
 written: true
 sourcesVerified: true
 reviewed: false
