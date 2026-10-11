@@ -97,9 +97,9 @@ const marks = [0.2, 0.4, 0.6, 0.8]
       id="ant-rope-play"
       type="button"
       class="min-h-11 border-2 border-ink px-4 py-2 font-bold"
-      aria-pressed="true"
+      aria-pressed="false"
     >
-      Pause
+      Start
     </button>
     <button
       id="ant-rope-replay"
@@ -137,7 +137,8 @@ const marks = [0.2, 0.4, 0.6, 0.8]
     const duration = 18000
     const finishTime = Math.exp(2) - 1
     let progress = 0
-    let running = !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    let running = false
+    let started = false
     let lastFrame: number | null = null
     let frame = 0
 
@@ -167,7 +168,8 @@ const marks = [0.2, 0.4, 0.6, 0.8]
 
     const setRunning = (next: boolean) => {
       running = next && progress < 1
-      play.textContent = running ? "Pause" : "Play"
+      if (running) started = true
+      play.textContent = running ? "Pause" : progress >= 1 ? "Replay" : started ? "Resume" : "Start"
       play.setAttribute("aria-pressed", String(running))
       lastFrame = null
       if (running) frame = requestAnimationFrame(tick)
@@ -190,6 +192,7 @@ const marks = [0.2, 0.4, 0.6, 0.8]
     play.addEventListener("click", () => {
       if (progress >= 1) {
         progress = 0
+        started = false
         render()
       }
       setRunning(!running)
@@ -204,7 +207,6 @@ const marks = [0.2, 0.4, 0.6, 0.8]
       if (document.hidden && running) setRunning(false)
     })
     render()
-    if (running) setRunning(true)
-    else setRunning(false)
+    setRunning(false)
   }
 </script>
