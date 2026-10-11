@@ -123,10 +123,7 @@ const fullCoast = line(levels[4])
 
     bindSlider(slider, (value) => {
       const indexes = levels[value]
-      measurement.setAttribute(
-        "points",
-        indexes.map((i) => points[i].join(",")).join(" "),
-      )
+      measurement.setAttribute("points", indexes.map((i) => points[i].join(",")).join(" "))
       markers.replaceChildren(
         ...indexes.map((i) => {
           const circle = document.createElementNS(namespace, "circle")
