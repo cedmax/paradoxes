@@ -2,6 +2,7 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Panel from "~/components/illustration-kit/Panel.astro"
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
 import { series, stroke } from "~/data/palette"
 
 const states = [
@@ -97,22 +98,33 @@ const groupsFor = (counts: number[]) => {
 
   <p class="text-base font-bold">A gains one. B gains one. C loses one.</p>
 
-  <Panel title="Why C loses out" class="flex flex-col gap-2">
+  <Panel title="How the rounding works" class="flex flex-col gap-3">
     <p class="text-base leading-normal">
-      The rule first gives out the same nine whole seats both times: A gets 4, B gets 4, and C
-      gets 1.
+      First, round every state's share <strong>down</strong> to a whole seat.
+      Both times, that gives A four, B four and C one: nine seats in all.
     </p>
-    <div class="flex flex-col gap-2 text-base leading-normal">
-      <p>
-        <strong>With 10 seats:</strong> one seat is left over. C wins it.
-      </p>
-      <p>
-        <strong>With 11 seats:</strong> two seats are left over. A and B win them.
-      </p>
-    </div>
+    <ComparisonTable
+      caption="Share before rounding → final seats"
+      columns={["State", "10 seats", "11 seats"]}
+      rows={[
+        ["A", "4.29 → 4", "4.71 → 5"],
+        ["B", "4.29 → 4", "4.71 → 5"],
+        ["C", "1.43 → 2", "1.57 → 1"],
+      ]}
+      align="center"
+    />
     <p class="text-base leading-normal">
-      As the total changes, so do the leftover fractions. The extra seat changes who wins the
-      leftovers, even though nobody's population changes.
+      <strong>10 seats:</strong> one seat remains. C has the biggest fraction left over
+      (0.43, versus 0.29 for A and B), so C gets it.
+    </p>
+    <p class="text-base leading-normal">
+      <strong>11 seats:</strong> two seats remain. A and B have the biggest fractions
+      (0.71 each, versus C's 0.57), so they get the two seats instead.
+    </p>
+    <p class="text-base leading-normal">
+      This is not ordinary rounding to the nearest whole number: the leftover seats
+      go to the largest fractions. That's how C's share rises from 1.43 to 1.57
+      while its awarded seats fall from two to one.
     </p>
   </Panel>
 
