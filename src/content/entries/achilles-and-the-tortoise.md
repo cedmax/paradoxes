@@ -4,7 +4,7 @@ aka: ["Zeno", "Zeno's paradox"]
 chapter: infinity
 status: explained
 simplification: light
-order: 1
+order: 10
 written: true
 sourcesVerified: true
 reviewed: true

@@ -9,7 +9,8 @@ aka:
     "cosmological constant",
     "cognitive instability",
   ]
-chapter: time-physics
+chapter: models
+order: 50
 status: unreconciled
 uniqueness: related
 anchor: loschmidts-paradox

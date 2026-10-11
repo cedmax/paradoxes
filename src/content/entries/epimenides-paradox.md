@@ -14,7 +14,7 @@ uniqueness: related
 anchor: liar-paradox
 simplification: light
 noMaths: true
-order: 106
+order: 130
 written: true
 sourcesVerified: true
 problem: "A Cretan says that all Cretans are liars. Can that be true, and can it be false?"
