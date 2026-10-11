@@ -1,0 +1,35 @@
+name: Vendor vanishing wheel artwork
+on:
+  push:
+    branches:
+      - feat/vanishing-wheel-self-hosted
+permissions:
+  contents: write
+jobs:
+  vendor-artwork:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download and validate the historical illustration
+        run: |
+          mkdir -p public/illustrations
+          curl --fail --location --retry 3 --connect-timeout 15 --max-time 90 \
+            https://mathshistory.st-andrews.ac.uk/Diagrams/dcp.jpg \
+            --output public/illustrations/vanishing-bicyclist.jpg
+          python3 - <<'PY'
+          from pathlib import Path
+          art = Path('public/illustrations/vanishing-bicyclist.jpg').read_bytes()
+          assert len(art) > 10000, 'Asset too small'
+          assert art[:2] == b'\xff\xd8' and art[-2:] == b'\xff\xd9', 'Not a JPEG'
+          print(f'Validated illustration: {len(art)} bytes')
+          PY
+      - name: Commit the image to this branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/illustrations/vanishing-bicyclist.jpg
+          git commit -m "Vendor original vanishing bicyclist JPEG" || exit 0
+          git push
