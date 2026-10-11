@@ -3,84 +3,86 @@ import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Panel from "~/components/illustration-kit/Panel.astro"
 import { series, stroke } from "~/data/palette"
+
+const turns = [
+  { player: "Alice", large: 4, small: 1, y: 35 },
+  { player: "Bob", large: 8, small: 2, y: 95 },
+  { player: "Alice", large: 16, small: 4, y: 155 },
+  { player: "Bob", large: 32, small: 8, y: 215 },
+]
 ---
 
 <IllustrationFigure
   name="centipede-game"
-  lead="Passing grows the money. Reasoning backward says to take it now."
+  lead="Take the bigger pile now, or pass and double both piles."
 >
+  <p class="text-base leading-normal">
+    Alice and Bob take turns. Taking ends the game: you get the bigger pile, and the other player
+    gets the smaller one. Passing doubles both piles and gives the other player a turn.
+  </p>
+
   <SvgFigure
-    name="centipede-two-paths"
+    name="centipede-four-turns"
     class="mx-auto w-full max-w-md"
-    viewBox="0 0 360 211"
-    title="Two contrasting paths through the centipede game"
-    desc="The upper path, labelled What looks tempting, shows three passes leading to much bigger piles of coins for both players. The lower path, labelled What backward reasoning predicts, shows Alice taking immediately at the first turn. The diagram contrasts the attraction of cooperation with the outcome predicted by backward reasoning, not two equally rational outcomes under the same assumptions."
+    viewBox="0 0 360 291"
+    title="Four-turn game showing Alice and Bob choosing between taking coins and passing"
+    desc="Turn 1: Alice sees piles of 4 and 1 coins. Turn 2, if Alice passes: Bob sees 8 and 2. Turn 3, if Bob passes: Alice sees 16 and 4. Turn 4, if Alice passes: Bob sees 32 and 8. At each turn, taking means keeping the bigger pile and giving the smaller one to the other player. Passing doubles the piles and moves to the next turn. If Bob passes on the final turn, the game ends with Alice receiving 64 and Bob 16. Bob therefore prefers taking 32."
   >
-    <text x="8" y="20" fill="currentColor" font-size="16" font-weight="700">
-      What looks tempting
-    </text>
-    <g stroke={stroke} stroke-width="1.5" fill="none" stroke-linecap="round">
-      <path d="M33 73 H325" />
-      <path d="M317 67 L325 73 L317 79" />
-    </g>
-    {[45, 122, 199].map((x) => (
+    {turns.map(({ player, large, small, y }, i) => (
       <g>
-        <circle cx={x} cy="73" r="22" fill={series.blue} fill-opacity=".2" stroke={stroke} />
-        <text x={x} y="77" text-anchor="middle" font-size="13" fill="currentColor">
-          Pass
+        <rect
+          x="8"
+          y={y - 21}
+          width="344"
+          height="46"
+          fill={i === 3 ? series.gold : series.blue}
+          fill-opacity={i === 3 ? ".22" : ".09"}
+          stroke={stroke}
+          stroke-width="1"
+        />
+        <text x="18" y={y - 3} font-size="12" fill="currentColor">
+          Turn {i + 1}
         </text>
+        <text x="18" y={y + 14} font-size="13" font-weight="700" fill="currentColor">
+          {player}
+        </text>
+        <text x="100" y={y + 5} font-size="14" font-weight="700" fill="currentColor">
+          {large} + {small} coins
+        </text>
+        <text x="225" y={y + 5} font-size="12" fill="currentColor">
+          Take {large}
+        </text>
+        {i < 3 && (
+          <g>
+            <path
+              d={`M180 ${y + 26} V${y + 39} m-4 -5 4 5 4 -5`}
+              fill="none"
+              stroke={series.blue}
+              stroke-width="1.5"
+            />
+            <text x="190" y={y + 37} font-size="12" fill="currentColor">
+              Pass: double
+            </text>
+          </g>
+        )}
       </g>
     ))}
-    <circle cx="304" cy="73" r="30" fill={series.green} fill-opacity=".25" stroke={stroke} />
-    <text
-      x="304"
-      y="68"
-      text-anchor="middle"
-      font-size="13"
-      font-weight="700"
-      fill="currentColor"
-    >
-      Bigger
-    </text>
-    <text x="304" y="83" text-anchor="middle" font-size="13" fill="currentColor">
-      piles
-    </text>
-
-    <path d="M8 113 H352" stroke={stroke} stroke-opacity=".35" stroke-width="1" />
-
-    <text x="8" y="139" fill="currentColor" font-size="16" font-weight="700">
-      What backward reasoning predicts
-    </text>
-    <circle cx="45" cy="179" r="22" fill={series.gold} fill-opacity=".3" stroke={stroke} />
-    <text
-      x="45"
-      y="183"
-      text-anchor="middle"
-      font-size="13"
-      font-weight="700"
-      fill="currentColor"
-    >
-      Take
-    </text>
-    <path d="M72 179 H193" stroke={series.red} stroke-width="2.5" />
-    <path
-      d="M185 173 L193 179 L185 185"
-      fill="none"
-      stroke={series.red}
-      stroke-width="2.5"
-    />
-    <text x="204" y="183" fill="currentColor" font-size="15" font-weight="700">
-      Game ends
+    <text x="10" y="274" font-size="12" fill="currentColor">
+      Last turn: Bob can take 32, or pass and receive 16.
     </text>
   </SvgFigure>
-  <Panel title="Why take immediately?">
+
+  <Panel title="Now reason backward">
     <p class="text-base leading-normal">
-      At the last turn, taking pays better than passing. That makes taking better on the turn
-      before it, too. Repeat the argument backward to the first move.
+      Bob takes 32 on the last turn rather than pass and receive 16. Alice knows this, so on
+      turn 3 she takes 16 rather than end up with 8. The same reasoning reaches turn 1: Alice
+      takes immediately, even though passing could make both richer.
     </p>
   </Panel>
+
   <Fragment slot="caption">
-    Passing could make both players richer. The immediate-taking prediction depends on strong
-    assumptions about what each player knows.
+    A four-turn example. If Bob passes on the final turn, the game ends after doubling once more:
+    Alice gets 64 and Bob gets 16. The backward prediction relies on strong assumptions about
+    what each player knows.
   </Fragment>
 </IllustrationFigure>
