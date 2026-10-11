@@ -1,0 +1,60 @@
+---
+interface Props {
+  id: string
+  label: string
+  /** Only needed when a page script rewrites the label text. */
+  labelId?: string
+  min?: number
+  max?: number
+  step?: number
+  value?: number
+  /** Short captions under the two ends of the slider. */
+  startLabel?: string
+  endLabel?: string
+  /** Initial spoken value. The page script keeps it up to date with bindSlider. */
+  valuetext?: string
+  /** Id of the readout element, which goes in the default slot. */
+  describedby?: string
+  accent?: "ink" | "accent"
+}
+
+const {
+  id,
+  label,
+  labelId,
+  min = 0,
+  max = 100,
+  step = 1,
+  value = 0,
+  startLabel,
+  endLabel,
+  valuetext,
+  describedby,
+  accent = "ink",
+} = Astro.props
+const accents = { ink: "accent-ink", accent: "accent-accent" }
+---
+
+<div class="flex flex-col gap-2">
+  <label id={labelId} for={id} class="font-bold">
+    {label}
+  </label>
+  <input
+    id={id}
+    class:list={["h-11 w-full", accents[accent]]}
+    type="range"
+    min={min}
+    max={max}
+    step={step}
+    value={value}
+    aria-valuetext={valuetext}
+    aria-describedby={describedby}
+  />
+  {(startLabel || endLabel) && (
+    <div class="flex justify-between gap-3 text-base">
+      <span>{startLabel}</span>
+      <span>{endLabel}</span>
+    </div>
+  )}
+  <slot />
+</div>
