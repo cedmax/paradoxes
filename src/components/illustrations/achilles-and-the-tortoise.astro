@@ -118,9 +118,9 @@ import { series, stroke } from "~/data/palette"
     // Achilles is at 10t and the tortoise is at 100+t.
     const gaps = [100, 10, 1, 0.1]
     const stageStartTimes = [0, 10, 11, 11.1]
-    // Four chases and three zooms, each lasting 15 seconds.
+    // Each chase takes 15 seconds; the camera zoom takes 1 second.
     const runDuration = 15000
-    const zoomDuration = 15000
+    const zoomDuration = 1000
     const totalDuration = gaps.length * runDuration + (gaps.length - 1) * zoomDuration
     const pixelsPerMetre = 4.2
     const screenMiddle = 300
