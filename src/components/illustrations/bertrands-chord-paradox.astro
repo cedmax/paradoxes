@@ -45,10 +45,11 @@ const methods = [
       class="btn-ghost aria-pressed:bg-ink aria-pressed:text-paper"
       aria-pressed="false"
     >
-      Random midpoint (1/4)
+      Midpoint by area (1/4)
     </button>
   </div>
   <svg
+    id="bertrand-diagram"
     class="mx-auto w-full max-w-xl"
     viewBox="0 0 380 245"
     role="img"
@@ -61,8 +62,9 @@ const methods = [
       has half the outer radius; longer chords have midpoints inside it. In the edge-points view,
       the top endpoint is fixed and the other moves around the rim. The highlighted lower arc
       is one third of the circumference and produces chords longer than the triangle side.
-      In the midpoint-by-area view, sample points uniformly from the whole disc. Points within
-      the dotted half-radius circle make longer chords; that region covers one quarter of the area.
+      In the midpoint-by-area view, drag a midpoint anywhere in the circle. The corresponding
+      chord is longer if that midpoint lies in the shaded half-radius disc, whose area is one
+      quarter of the whole circle.
     </desc>
 
     <circle cx="130" cy="112" r="86" fill="none" stroke="currentColor" stroke-width="2" />
@@ -129,28 +131,41 @@ const methods = [
       <circle id="bertrand-edge-point" cx="130" cy="198" r="5" fill="#387a91" />
     </g>
     <g id="bertrand-area-art" visibility="hidden">
-      <g id="bertrand-area-dots"></g>
       <line
         id="bertrand-area-chord"
-        x1="130"
-        y1="26"
-        x2="130"
-        y2="198"
+        x1="45.91"
+        y1="130"
+        x2="214.09"
+        y2="130"
         stroke="#387a91"
         stroke-width="4"
         stroke-linecap="round"
-        visibility="hidden"
+        pointer-events="none"
       />
       <circle
         id="bertrand-area-point"
         cx="130"
-        cy="112"
-        r="5"
+        cy="130"
+        r="6"
         fill="#387a91"
-        visibility="hidden"
+        stroke="currentColor"
+        stroke-width="1.5"
+        pointer-events="none"
+      />
+      <circle
+        id="bertrand-area-hit"
+        cx="130"
+        cy="112"
+        r="86"
+        fill="transparent"
+        stroke="none"
+        tabindex="0"
+        role="button"
+        aria-label="Move the midpoint by touching or dragging in the circle, or use arrow keys."
+        style="cursor: crosshair; touch-action: none;"
       />
     </g>
-    <circle cx="130" cy="112" r="2.5" fill="currentColor" />
+    <circle cx="130" cy="112" r="2.5" fill="currentColor" pointer-events="none" />
 
     <g font-size="15" fill="currentColor">
       <line x1="236" y1="43" x2="254" y2="43" stroke="var(--color-accent)" stroke-width="4" />
@@ -171,11 +186,10 @@ const methods = [
         <text x="236" y="208">A long chord</text>
       </g>
       <g id="bertrand-area-legend" visibility="hidden">
-        <text x="236" y="128">Midpoints chosen</text>
-        <text x="236" y="148">across the circle</text>
-        <text x="236" y="178">Inner disc:</text>
-        <text x="236" y="198">1/4 of the area</text>
-        <text x="236" y="218">Green = long</text>
+        <text x="236" y="128">Shaded disc:</text>
+        <text x="236" y="148">25% of the area</text>
+        <text x="236" y="178">Inside = long</text>
+        <text x="236" y="208">Outside = short</text>
       </g>
     </g>
   </svg>
@@ -207,18 +221,17 @@ const methods = [
   </div>
   <div id="bertrand-area-controls" class="flex flex-col gap-3" style="display: none;">
     <p class="text-base leading-normal">
-      Each click chooses a midpoint equally likely to fall anywhere in the circle.
-      Only the shaded inner quarter of its area makes a chord longer than the triangle side.
+      Touch or drag anywhere inside the big circle to move the blue midpoint. The chord follows
+      it, always crossing the midpoint at right angles to the line from the centre.
     </p>
-    <div class="flex flex-wrap gap-2">
-      <button id="bertrand-pick-one" class="btn-ghost" type="button">Pick one midpoint</button>
-      <button id="bertrand-pick-hundred" class="btn-ghost" type="button">Pick 100 midpoints</button>
-      <button id="bertrand-clear-samples" class="btn-ghost" type="button">Clear</button>
-    </div>
-    <p id="bertrand-area-readout" class="text-base" aria-live="polite">
-      Long chords: <strong id="bertrand-area-long">0</strong> of
-      <strong id="bertrand-area-total">0</strong> samples
-      <span id="bertrand-area-rate"></span>
+    <p class="text-base" id="bertrand-area-readout" aria-live="polite">
+      Midpoint distance:
+      <strong id="bertrand-area-distance">21%</strong> of the radius.
+      <strong id="bertrand-area-comparison">Longer than the triangle side.</strong>
+    </p>
+    <p class="border-l-4 border-ink pl-3 text-base leading-normal">
+      <strong>Why one quarter?</strong> The shaded circle has half the radius of the big circle,
+      so it covers one quarter of its area. Only midpoints in that region give longer chords.
     </p>
   </div>
 
@@ -258,19 +271,16 @@ const methods = [
   const distanceButton = document.querySelector<HTMLButtonElement>("#bertrand-distance-mode")
   const edgeButton = document.querySelector<HTMLButtonElement>("#bertrand-edge-mode")
   const areaButton = document.querySelector<HTMLButtonElement>("#bertrand-area-mode")
+  const diagram = document.querySelector<SVGSVGElement>("#bertrand-diagram")
   const sliderControls = document.querySelector<HTMLElement>("#bertrand-slider-controls")
   const areaControls = document.querySelector<HTMLElement>("#bertrand-area-controls")
-  const pickOne = document.querySelector<HTMLButtonElement>("#bertrand-pick-one")
-  const pickHundred = document.querySelector<HTMLButtonElement>("#bertrand-pick-hundred")
-  const clearSamples = document.querySelector<HTMLButtonElement>("#bertrand-clear-samples")
-  const areaDots = document.querySelector<SVGGElement>("#bertrand-area-dots")
   const areaArt = document.querySelector<SVGGElement>("#bertrand-area-art")
   const areaChord = document.querySelector<SVGLineElement>("#bertrand-area-chord")
   const areaPoint = document.querySelector<SVGCircleElement>("#bertrand-area-point")
+  const areaHit = document.querySelector<SVGCircleElement>("#bertrand-area-hit")
   const areaLegend = document.querySelector<SVGGElement>("#bertrand-area-legend")
-  const areaLongLabel = document.querySelector<HTMLElement>("#bertrand-area-long")
-  const areaTotalLabel = document.querySelector<HTMLElement>("#bertrand-area-total")
-  const areaRate = document.querySelector<HTMLElement>("#bertrand-area-rate")
+  const areaDistance = document.querySelector<HTMLElement>("#bertrand-area-distance")
+  const areaComparison = document.querySelector<HTMLElement>("#bertrand-area-comparison")
   const slider = document.querySelector<HTMLInputElement>("#bertrand-chord-slider")
   const sliderLabel = document.querySelector<HTMLElement>("#bertrand-slider-label")
   const positionDescription = document.querySelector<HTMLElement>("#bertrand-position-description")
@@ -291,19 +301,16 @@ const methods = [
     distanceButton &&
     edgeButton &&
     areaButton &&
+    diagram &&
     sliderControls &&
     areaControls &&
-    pickOne &&
-    pickHundred &&
-    clearSamples &&
-    areaDots &&
     areaArt &&
     areaChord &&
     areaPoint &&
+    areaHit &&
     areaLegend &&
-    areaLongLabel &&
-    areaTotalLabel &&
-    areaRate &&
+    areaDistance &&
+    areaComparison &&
     slider &&
     sliderLabel &&
     positionDescription &&
@@ -326,51 +333,77 @@ const methods = [
     let mode: "distance" | "edge" | "area" = "distance"
     let distanceValue = 35
     let edgeValue = 180
-    let totalSamples = 0
-    let longSamples = 0
+    let areaX = centreX
+    let areaY = centreY + 18
 
-    const sampleMidpoints = (count: number) => {
-      // sqrt(U) produces a point uniformly by AREA, not uniformly by radius.
-      for (let i = 0; i < count; i++) {
-        const distance = radius * Math.sqrt(Math.random())
-        const angle = 2 * Math.PI * Math.random()
-        const dx = distance * Math.cos(angle)
-        const dy = distance * Math.sin(angle)
-        const x = centreX + dx
-        const y = centreY + dy
-        const longChord = distance < radius / 2
-        totalSamples++
-        if (longChord) longSamples++
-
-        const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-        dot.setAttribute("cx", String(x))
-        dot.setAttribute("cy", String(y))
-        dot.setAttribute("r", "2.5")
-        dot.setAttribute("fill", longChord ? "#5d8560" : "#387a91")
-        dot.setAttribute("opacity", ".75")
-        areaDots.appendChild(dot)
-        // Keep the plotted points readable after many batches.
-        if (areaDots.childElementCount > 200) areaDots.firstElementChild?.remove()
-
-        const chordHalfLength = Math.sqrt(radius * radius - distance * distance)
-        const ux = distance === 0 ? 0 : -dy / distance
-        const uy = distance === 0 ? 1 : dx / distance
-        areaChord.setAttribute("x1", String(x - ux * chordHalfLength))
-        areaChord.setAttribute("y1", String(y - uy * chordHalfLength))
-        areaChord.setAttribute("x2", String(x + ux * chordHalfLength))
-        areaChord.setAttribute("y2", String(y + uy * chordHalfLength))
-        areaPoint.setAttribute("cx", String(x))
-        areaPoint.setAttribute("cy", String(y))
-        areaPoint.setAttribute("fill", longChord ? "#5d8560" : "#387a91")
+    // A chord is perpendicular to the radius through its midpoint.
+    const drawAreaMidpoint = (x: number, y: number) => {
+      let dx = x - centreX
+      let dy = y - centreY
+      const requestedDistance = Math.hypot(dx, dy)
+      if (requestedDistance > radius) {
+        dx = (dx * radius) / requestedDistance
+        dy = (dy * radius) / requestedDistance
       }
-      areaChord.setAttribute("visibility", "visible")
-      areaPoint.setAttribute("visibility", "visible")
-      areaLongLabel.textContent = String(longSamples)
-      areaTotalLabel.textContent = String(totalSamples)
-      areaRate.textContent = totalSamples
-        ? `(${Math.round((100 * longSamples) / totalSamples)}% so far; expected about 25%)`
-        : ""
+      const distance = Math.hypot(dx, dy)
+      areaX = centreX + dx
+      areaY = centreY + dy
+      const halfLength = Math.sqrt(Math.max(0, radius * radius - distance * distance))
+      const ux = distance === 0 ? 1 : -dy / distance
+      const uy = distance === 0 ? 0 : dx / distance
+
+      areaChord.setAttribute("x1", String(areaX - ux * halfLength))
+      areaChord.setAttribute("y1", String(areaY - uy * halfLength))
+      areaChord.setAttribute("x2", String(areaX + ux * halfLength))
+      areaChord.setAttribute("y2", String(areaY + uy * halfLength))
+      areaPoint.setAttribute("cx", String(areaX))
+      areaPoint.setAttribute("cy", String(areaY))
+
+      const fraction = distance / radius
+      const comparisonText =
+        Math.abs(fraction - 0.5) < 0.005
+          ? "Exactly as long as the triangle side."
+          : fraction < 0.5
+            ? "Longer than the triangle side."
+            : "Shorter than the triangle side."
+      areaDistance.textContent = `${Math.round(fraction * 100)}%`
+      areaComparison.textContent = comparisonText
     }
+
+    const moveFromPointer = (event: PointerEvent) => {
+      const transform = diagram.getScreenCTM()
+      if (!transform) return
+      const point = diagram.createSVGPoint()
+      point.x = event.clientX
+      point.y = event.clientY
+      const local = point.matrixTransform(transform.inverse())
+      drawAreaMidpoint(local.x, local.y)
+    }
+
+    areaHit.addEventListener("pointerdown", (event) => {
+      if (mode !== "area") return
+      event.preventDefault()
+      areaHit.setPointerCapture(event.pointerId)
+      moveFromPointer(event)
+    })
+    areaHit.addEventListener("pointermove", (event) => {
+      if (mode === "area" && areaHit.hasPointerCapture(event.pointerId)) {
+        moveFromPointer(event)
+      }
+    })
+    areaHit.addEventListener("keydown", (event) => {
+      if (mode !== "area") return
+      const step = event.shiftKey ? 8 : 2
+      let dx = 0
+      let dy = 0
+      if (event.key === "ArrowLeft") dx = -step
+      else if (event.key === "ArrowRight") dx = step
+      else if (event.key === "ArrowUp") dy = -step
+      else if (event.key === "ArrowDown") dy = step
+      else return
+      event.preventDefault()
+      drawAreaMidpoint(areaX + dx, areaY + dy)
+    })
 
     const update = () => {
       if (mode === "distance") {
@@ -448,6 +481,7 @@ const methods = [
       }
       innerCircle.setAttribute("visibility", isEdge ? "hidden" : "visible")
       innerCircle.setAttribute("fill-opacity", isArea ? ".35" : ".12")
+      if (isArea) drawAreaMidpoint(areaX, areaY)
 
       if (!isArea) {
         slider.min = "0"
@@ -466,6 +500,7 @@ const methods = [
       }
     }
 
+
     slider.addEventListener("input", () => {
       if (mode === "distance") distanceValue = Number(slider.value)
       else edgeValue = Number(slider.value)
@@ -474,18 +509,6 @@ const methods = [
     distanceButton.addEventListener("click", () => setMode("distance"))
     edgeButton.addEventListener("click", () => setMode("edge"))
     areaButton.addEventListener("click", () => setMode("area"))
-    pickOne.addEventListener("click", () => sampleMidpoints(1))
-    pickHundred.addEventListener("click", () => sampleMidpoints(100))
-    clearSamples.addEventListener("click", () => {
-      totalSamples = 0
-      longSamples = 0
-      areaDots.replaceChildren()
-      areaChord.setAttribute("visibility", "hidden")
-      areaPoint.setAttribute("visibility", "hidden")
-      areaLongLabel.textContent = "0"
-      areaTotalLabel.textContent = "0"
-      areaRate.textContent = ""
-    })
     setMode("distance")
   }
 </script>
