@@ -1,0 +1,90 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import { series, stroke } from "~/data/palette"
+
+const circles = [
+  { name: "Earth", x: 101, radius: 68 },
+  { name: "Small ball", x: 280, radius: 18 },
+]
+
+const drawnGap = 15
+---
+
+<IllustrationFigure
+  name="string-girdling-earth"
+  lead="One extra metre of string. Two very different circles."
+>
+  <SvgFigure
+    name="girdling-same-gap"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 360 224"
+    title="A large Earth and a much smaller ball, both with the same clearance from an extra metre of string"
+    desc="Two differently sized circles, an Earth on the left and a small ball on the right. Each has an inner blue circle and an outer gold string loop. The space between the blue circle and the gold loop is drawn the same width in both diagrams. Adding one metre of string raises either loop approximately sixteen centimetres all the way around, independent of the circle's size. The circles and gaps are not to scale."
+  >
+    {circles.map(({ name, x, radius }) => (
+      <g>
+        <text
+          x={x}
+          y="19"
+          text-anchor="middle"
+          font-size="16"
+          font-weight="700"
+          fill="currentColor"
+        >
+          {name}
+        </text>
+        <circle
+          cx={x}
+          cy="118"
+          r={radius}
+          fill={series.blue}
+          fill-opacity=".2"
+          stroke={stroke}
+          stroke-width="2"
+        />
+        <circle
+          cx={x}
+          cy="118"
+          r={radius + drawnGap}
+          fill="none"
+          stroke={series.gold}
+          stroke-width="3.5"
+        />
+        <path
+          d={`M${x} ${118 - radius - drawnGap} V${118 - radius}`}
+          stroke={series.red}
+          stroke-width="3"
+        />
+        <path
+          d={`M${x - 5} ${118 - radius - drawnGap} H${x + 5} M${x - 5} ${118 - radius} H${x + 5}`}
+          fill="none"
+          stroke={series.red}
+          stroke-width="1.5"
+        />
+        <text
+          x={x}
+          y="220"
+          text-anchor="middle"
+          font-size="16"
+          font-weight="700"
+          fill="currentColor"
+        >
+          Same gap: 16 cm
+        </text>
+      </g>
+    ))}
+  </SvgFigure>
+
+  <Panel title="Why the size doesn't matter" class="flex flex-col gap-2">
+    <p class="text-base leading-normal">
+      Raising a string by one metre around any circle needs about 6.28 extra metres of string.
+    </p>
+    <p class="text-base font-bold">1 ÷ 6.28 ≈ 0.16 metres = 16 cm</p>
+  </Panel>
+
+  <Fragment slot="caption">
+    The gaps are exaggerated for clarity. The string is held evenly away from each circle.
+  </Fragment>
+</IllustrationFigure>
