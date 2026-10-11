@@ -62,9 +62,30 @@ import { series, stroke } from "~/data/palette"
         stroke-width="6"
         stroke-linecap="round"
       />
-      <ellipse cx="0" cy="-15" rx="21" ry="14" fill={series.green} stroke={stroke} stroke-width="1.5" />
-      <path d="M-15 -20 L0 -27 L14 -18 M-12 -12 H13 M0 -27 V-12" fill="none" stroke={stroke} stroke-width="1" opacity=".5" />
-      <circle cx="23" cy="-16" r="8" fill={series.green} stroke={stroke} stroke-width="1.5" />
+      <ellipse
+        cx="0"
+        cy="-15"
+        rx="21"
+        ry="14"
+        fill={series.green}
+        stroke={stroke}
+        stroke-width="1.5"
+      />
+      <path
+        d="M-15 -20 L0 -27 L14 -18 M-12 -12 H13 M0 -27 V-12"
+        fill="none"
+        stroke={stroke}
+        stroke-width="1"
+        opacity=".5"
+      />
+      <circle
+        cx="23"
+        cy="-16"
+        r="8"
+        fill={series.green}
+        stroke={stroke}
+        stroke-width="1.5"
+      />
       <circle cx="26" cy="-18" r="1.5" fill={stroke} />
     </g>
     <circle cx="40" cy="191" r="6" fill={series.blue} />
@@ -229,7 +250,9 @@ import { series, stroke } from "~/data/palette"
     }
 
     const tick = (timestamp: number) => {
-      if (lastTimestamp !== null) elapsed = Math.min(totalDuration, elapsed + timestamp - lastTimestamp)
+      if (lastTimestamp !== null) {
+        elapsed = Math.min(totalDuration, elapsed + timestamp - lastTimestamp)
+      }
       lastTimestamp = timestamp
       if (elapsed >= totalDuration) frame = null
       render()
