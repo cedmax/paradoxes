@@ -19,8 +19,12 @@ const marks = [0.2, 0.4, 0.6, 0.8]
     title="An ant walking along a continuously stretching rope"
     desc="The rope grows smoothly, its marked material points separating as it stretches. The red ant moves along the rope and walks past its material marks. The far end moves outward at twice the ant's walking speed relative to the rope, yet the ant's fraction crossed increases until it reaches the end. The animation is a time-compressed model with uniform stretching."
   >
-    <text x="14" y="20" fill="currentColor" font-size="13">Ant walking: ½ unit / time</text>
-    <text x="14" y="40" fill="currentColor" font-size="13">End moving: 1 unit / time</text>
+    <text x="14" y="20" fill="currentColor" font-size="13">
+      Ant walking: ½ unit / time
+    </text>
+    <text x="14" y="40" fill="currentColor" font-size="13">
+      End moving: 1 unit / time
+    </text>
     <line
       id="ant-rope-line"
       x1="18"
@@ -71,8 +75,17 @@ const marks = [0.2, 0.4, 0.6, 0.8]
       stroke="currentColor"
       stroke-width="1"
     />
-    <text x="18" y="126" fill="currentColor" font-size="13">Start</text>
-    <text id="ant-rope-end-label" x="75" y="126" fill="currentColor" font-size="13" text-anchor="end">
+    <text x="18" y="126" fill="currentColor" font-size="13">
+      Start
+    </text>
+    <text
+      id="ant-rope-end-label"
+      x="75"
+      y="126"
+      fill="currentColor"
+      font-size="13"
+      text-anchor="end"
+    >
       End
     </text>
     <text x="160" y="149" text-anchor="middle" fill="currentColor" font-size="12">
@@ -85,12 +98,16 @@ const marks = [0.2, 0.4, 0.6, 0.8]
       type="button"
       class="min-h-11 border-2 border-ink px-4 py-2 font-bold"
       aria-pressed="true"
-    >Pause</button>
+    >
+      Pause
+    </button>
     <button
       id="ant-rope-replay"
       type="button"
       class="min-h-11 border border-ink px-4 py-2 font-bold"
-    >Restart</button>
+    >
+      Restart
+    </button>
     <p id="ant-rope-readout" class="text-base" aria-live="off">
       <strong id="ant-rope-percent">0% crossed</strong>
     </p>
@@ -98,8 +115,8 @@ const marks = [0.2, 0.4, 0.6, 0.8]
   <Fragment slot="caption">
     <strong>Watch the short marks.</strong> Stretching carries both the marks and the ant away
     from the start. Walking lets the ant pass those marks, gaining a little more of the rope.
-    Although its gains become smaller, they keep adding up until the ant reaches the end.
-    The animation compresses a much longer process into a few seconds.
+    Although its gains become smaller, they keep adding up until the ant reaches the end. The
+    animation compresses a much longer process into a few seconds.
   </Fragment>
 </IllustrationFigure>
 
@@ -142,7 +159,10 @@ const marks = [0.2, 0.4, 0.6, 0.8]
         mark.setAttribute("x1", String(markX))
         mark.setAttribute("x2", String(markX))
       }
-      percent.textContent = progress >= 1 ? "100% crossed — the ant arrives!" : `${Math.round(fraction * 100)}% crossed`
+      percent.textContent =
+        progress >= 1
+          ? "100% crossed — the ant arrives!"
+          : `${Math.round(fraction * 100)}% crossed`
     }
 
     const setRunning = (next: boolean) => {
