@@ -1,0 +1,256 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+---
+
+<IllustrationFigure name="prisoner-loops" lead="The part that matters: how long the loops are">
+  <p class="text-base leading-normal">
+    The top of each card is the <strong>box you open</strong>. The bottom is the
+    <strong>number found inside</strong>, which tells you which box to open next. Blue cards are
+    boxes you can open. A red card marks a box that would come next, but is beyond the
+    four-opening limit.
+  </p>
+
+  <div class="flex flex-wrap gap-2" role="group" aria-label="Compare loop lengths">
+    <button type="button" class="btn-toggle" data-example="short" aria-pressed="true">
+      Everyone survives: 4 + 4
+    </button>
+    <button type="button" class="btn-toggle" data-example="long" aria-pressed="false">
+      Group loses: 5 + 3
+    </button>
+  </div>
+
+  <div class="border-l-4 border-ink pl-4" aria-live="polite" aria-atomic="true">
+    <p id="prisoners-result" class="font-bold">
+      All eight prisoners succeed.
+    </p>
+    <p id="prisoners-reason" class="text-base leading-normal">
+      Both loops have four boxes. Every prisoner can complete their loop in four openings.
+    </p>
+  </div>
+
+  <div id="prisoners-loop-panels" class="grid gap-4 sm:grid-cols-2">
+    <p class="text-base">Loading the two loops…</p>
+  </div>
+
+  <Fragment slot="caption">
+    Each prisoner starts at their own numbered box and follows the numbers found inside. All
+    prisoners in one loop share the same fate. In the full puzzle there are 100 boxes and 50
+    openings per prisoner: everybody succeeds when every loop has 50 boxes or fewer. Random
+    arrangements meet that condition about 31% of the time.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { illustrationRoot } from "~/scripts/illustration"
+  import { series } from "~/data/palette"
+
+  const root = illustrationRoot("prisoner-loops")
+  if (root) {
+    const examples = {
+      short: [5, 8, 7, 6, 3, 2, 1, 4],
+      long: [5, 8, 7, 1, 3, 2, 4, 6],
+    } as const
+
+    type Example = keyof typeof examples
+    const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-example]"))
+    const panels = root.querySelector<HTMLElement>("#prisoners-loop-panels")!
+    const result = root.querySelector<HTMLElement>("#prisoners-result")!
+    const reason = root.querySelector<HTMLElement>("#prisoners-reason")!
+    const ns = "http://www.w3.org/2000/svg"
+
+    const svgNode = <T extends SVGElement>(name: string): T =>
+      document.createElementNS(ns, name) as T
+
+    const cyclesIn = (contents: readonly number[]) => {
+      const visited = new Set<number>()
+      const cycles: number[][] = []
+      for (let n = 1; n <= contents.length; n++) {
+        if (visited.has(n)) continue
+        const cycle: number[] = []
+        let box = n
+        while (!visited.has(box)) {
+          visited.add(box)
+          cycle.push(box)
+          box = contents[box - 1]
+        }
+        cycles.push(cycle)
+      }
+      return cycles
+    }
+
+    const addText = (
+      parent: SVGElement,
+      value: string,
+      x: number,
+      y: number,
+      colour: string,
+      size: number,
+      weight: string,
+    ) => {
+      const text = svgNode<SVGTextElement>("text")
+      text.setAttribute("x", String(x))
+      text.setAttribute("y", String(y))
+      text.setAttribute("text-anchor", "middle")
+      text.setAttribute("font-size", String(size))
+      text.setAttribute("font-weight", weight)
+      text.setAttribute("fill", colour)
+      text.textContent = value
+      parent.appendChild(text)
+    }
+
+    const drawLoop = (cycle: number[], contents: readonly number[], i: number) => {
+      const succeeds = cycle.length <= 4
+      const colour = series.blue
+      const missedColour = series.red
+      const availableOpenings = 4
+      const card = document.createElement("section")
+      card.className = "flex flex-col gap-2 border-2 border-ink p-3"
+      const heading = document.createElement("h3")
+      heading.className = "font-bold"
+      heading.textContent = `${cycle.length}-box loop — ${succeeds ? "all succeed" : "all fail"}`
+      card.appendChild(heading)
+
+      const svg = svgNode<SVGSVGElement>("svg")
+      svg.setAttribute("viewBox", "0 0 350 280")
+      svg.setAttribute("class", "mx-auto w-full max-w-sm")
+      svg.setAttribute("role", "img")
+      const svgTitle = svgNode<SVGTitleElement>("title")
+      svgTitle.setAttribute("id", `prisoner-loop-title-${i}`)
+      svgTitle.textContent = `${cycle.length}-box loop: ${cycle.map((n, step) => (!succeeds && step >= availableOpenings ? `box ${n} not reached in time` : `box ${n} contains ${contents[n - 1]}`)).join(", ")}. ${succeeds ? "All in this loop succeed." : "All in this loop fail."}`
+      svg.appendChild(svgTitle)
+      svg.setAttribute("aria-labelledby", `prisoner-loop-title-${i}`)
+
+      const defs = svgNode<SVGDefsElement>("defs")
+      const marker = svgNode<SVGMarkerElement>("marker")
+      const markerId = `prisoner-loop-arrow-${i}`
+      marker.setAttribute("id", markerId)
+      marker.setAttribute("viewBox", "0 0 10 10")
+      marker.setAttribute("refX", "9")
+      marker.setAttribute("refY", "5")
+      marker.setAttribute("markerWidth", "6")
+      marker.setAttribute("markerHeight", "6")
+      marker.setAttribute("orient", "auto")
+      const arrowHead = svgNode<SVGPathElement>("path")
+      arrowHead.setAttribute("d", "M0 0 L10 5 L0 10 Z")
+      arrowHead.setAttribute("fill", colour)
+      marker.appendChild(arrowHead)
+      defs.appendChild(marker)
+      svg.appendChild(defs)
+
+      const count = cycle.length
+      const radius = 102
+      const nodes = cycle.map((box, index) => {
+        const theta = -Math.PI / 2 + (index * 2 * Math.PI) / count
+        return { box, x: 175 + radius * Math.cos(theta), y: 140 + radius * Math.sin(theta) }
+      })
+
+      // Show only the arrows that a prisoner can actually follow. For a
+      // five-box loop, the last arrow leads to a red, unopened fifth box.
+      // Don't draw an arrow out of that unopened box back to the start.
+      for (let j = 0; j < (succeeds ? count : availableOpenings); j++) {
+        const from = nodes[j]
+        const to = nodes[(j + 1) % count]
+        const dx = to.x - from.x
+        const dy = to.y - from.y
+        const length = Math.hypot(dx, dy)
+        const ux = dx / length
+        const uy = dy / length
+        // Intersect the line between centres with the rectangular card boundaries.
+        const edgeDistance = Math.min(
+          Math.abs(ux) < 0.0001 ? Infinity : 39 / Math.abs(ux),
+          Math.abs(uy) < 0.0001 ? Infinity : 29 / Math.abs(uy),
+        )
+        const startX = from.x + ux * (edgeDistance + 3)
+        const startY = from.y + uy * (edgeDistance + 3)
+        const endX = to.x - ux * (edgeDistance + 10)
+        const endY = to.y - uy * (edgeDistance + 10)
+        const edge = svgNode<SVGPathElement>("path")
+        edge.setAttribute("d", `M ${startX} ${startY} L ${endX} ${endY}`)
+        edge.setAttribute("stroke", colour)
+        edge.setAttribute("stroke-width", "3")
+        edge.setAttribute("fill", "none")
+        edge.setAttribute("marker-end", `url(#${markerId})`)
+        svg.appendChild(edge)
+      }
+
+      for (const [step, node] of nodes.entries()) {
+        const missed = !succeeds && step >= availableOpenings
+        const nodeColour = missed ? missedColour : colour
+        const box = svgNode<SVGRectElement>("rect")
+        box.setAttribute("x", String(node.x - 39))
+        box.setAttribute("y", String(node.y - 29))
+        box.setAttribute("width", "78")
+        box.setAttribute("height", "58")
+        box.setAttribute("fill", missed ? "#fbe9e5" : "#e5f0f3")
+        box.setAttribute("stroke", nodeColour)
+        box.setAttribute("stroke-width", "2.5")
+        svg.appendChild(box)
+
+        const separator = svgNode<SVGLineElement>("line")
+        separator.setAttribute("x1", String(node.x - 35))
+        separator.setAttribute("x2", String(node.x + 35))
+        separator.setAttribute("y1", String(node.y))
+        separator.setAttribute("y2", String(node.y))
+        separator.setAttribute("stroke", "var(--color-ink)")
+        separator.setAttribute("opacity", ".25")
+        svg.appendChild(separator)
+
+        addText(svg, `BOX ${node.box}`, node.x, node.y - 8, "var(--color-ink)", 15, "700")
+        addText(
+          svg,
+          missed ? "NOT REACHED" : `FOUND ${contents[node.box - 1]}`,
+          node.x,
+          node.y + 20,
+          nodeColour,
+          missed ? 10.5 : 14,
+          "700",
+        )
+      }
+
+      card.appendChild(svg)
+      const path = document.createElement("p")
+      path.className = "text-base"
+      path.textContent = succeeds
+        ? `Follow: ${[...cycle, cycle[0]].map((n) => `box ${n}`).join(" → ")}`
+        : `Prisoner ${cycle[0]}: ${cycle
+            .slice(0, availableOpenings)
+            .map((n) => `box ${n}`)
+            .join(" → ")} → [box ${cycle[availableOpenings]} not reached in time]`
+      card.appendChild(path)
+      const explanation = document.createElement("p")
+      explanation.className = "text-base leading-normal"
+      explanation.textContent = succeeds
+        ? `All ${count} prisoners in this loop find their number within four openings.`
+        : `This loop has ${count} boxes, but each prisoner can open only four. Prisoner ${cycle[0]} cannot reach the red fifth box, where their number would be. The same problem affects everyone in this loop.`
+      card.appendChild(explanation)
+      return card
+    }
+
+    const selectExample = (name: Example) => {
+      const contents = examples[name]
+      const cycles = cyclesIn(contents)
+      const survivors = cycles
+        .filter((cycle) => cycle.length <= 4)
+        .reduce((n, cycle) => n + cycle.length, 0)
+      const allSucceed = survivors === 8
+      buttons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.example === name))
+      })
+      result.textContent = allSucceed
+        ? "All eight prisoners succeed. The group survives."
+        : `Only ${survivors} of eight prisoners succeed. The group loses.`
+      reason.textContent = allSucceed
+        ? "Both loops have four boxes. Every prisoner can complete their loop in four openings."
+        : "One loop contains five boxes. Its five prisoners all fail, even though the other three succeed."
+      panels.replaceChildren(...cycles.map((cycle, i) => drawLoop(cycle, contents, i)))
+    }
+
+    for (const button of buttons) {
+      button.addEventListener("click", () => {
+        const example = button.dataset.example
+        if (example === "short" || example === "long") selectExample(example)
+      })
+    }
+    selectExample("short")
+  }
+</script>
