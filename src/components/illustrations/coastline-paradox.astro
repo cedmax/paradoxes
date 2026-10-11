@@ -1,75 +1,132 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
-const coast =
-  "M12 78 L35 52 L52 68 L70 30 L87 54 L109 45 L132 82 L153 60 L170 88 L188 40 L205 61 L224 48 L242 80 L262 57 L280 71 L308 45"
-const coarse = "M12 78 L70 30 L132 82 L188 40 L242 80 L308 45"
-const coarseCorners = [
-  [12, 78],
-  [70, 30],
-  [132, 82],
-  [188, 40],
-  [242, 80],
-  [308, 45],
+// A schematic coast: each slider stop uses a nested set of points from this same line.
+const points = [
+  [12, 78], [35, 52], [52, 68], [70, 30], [87, 54], [109, 45],
+  [132, 82], [153, 60], [170, 88], [188, 40], [205, 61], [224, 48],
+  [242, 80], [262, 57], [280, 71], [308, 45],
 ]
-const fineCorners = [
-  [12, 78],
-  [35, 52],
-  [52, 68],
-  [70, 30],
-  [87, 54],
-  [109, 45],
-  [132, 82],
-  [153, 60],
-  [170, 88],
-  [188, 40],
-  [205, 61],
-  [224, 48],
-  [242, 80],
-  [262, 57],
-  [280, 71],
-  [308, 45],
+const levels = [
+  [0, 5, 10, 15],
+  [0, 3, 5, 8, 10, 12, 15],
+  [0, 2, 3, 5, 7, 8, 10, 12, 13, 15],
+  [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14, 15],
+  points.map((_, i) => i),
 ]
+const line = (indexes: number[]) =>
+  indexes.map((i) => points[i].join(",")).join(" ")
+const total = (indexes: number[]) =>
+  indexes.slice(1).reduce((sum, index, i) => {
+    const a = points[indexes[i]]
+    const b = points[index]
+    return sum + Math.hypot(b[0] - a[0], b[1] - a[1])
+  }, 0)
+const start = levels[0]
+const fullCoast = line(levels[4])
 ---
 
 <IllustrationFigure
   name="coastline-paradox"
-  lead="The same shore, measured in bigger and smaller steps"
+  lead="Shorten the measuring steps and see what happens to the total length."
 >
   <SvgFigure
     name="coastline-paradox"
     class="mx-auto w-full max-w-sm"
-    viewBox="0 0 320 239"
-    title="Two ways to measure the same jagged shoreline"
-    desc="The first drawing joins six points along a jagged coastline using five long straight steps, cutting across many small bends. The second joins sixteen points on the same coastline using fifteen shorter steps that follow every illustrated bend. Its route is longer although the start and finish stay the same. This is a schematic, not a map or a measurement of Britain."
+    viewBox="0 0 320 125"
+    title="Measuring the same jagged coastline at different scales"
+    desc="A fixed, faint, jagged coastline sits behind a coloured line joining points along it. Move the slider toward smaller steps to include more bends in the measurement. The live readout gives the number of straight segments and their summed lengths in illustrative units, not kilometres."
+    data-points={JSON.stringify(points)}
+    data-levels={JSON.stringify(levels)}
   >
-    <g fill="currentColor" font-size="15" font-weight="bold">
-      <text x="12" y="16">Bigger steps: cut across bends</text>
-      <text x="12" y="134">Smaller steps: follow more bends</text>
-    </g>
-    <g fill="none" stroke-linejoin="round" stroke-linecap="round">
-      <path d={coast} stroke="currentColor" stroke-width="2" opacity=".25" />
-      <path d={coarse} stroke="var(--color-series-blue)" stroke-width="3" />
-      <g fill="var(--color-series-blue)" stroke="none">
-        {coarseCorners.map(([x, y]) => <circle cx={x} cy={y} r="3.5" />)}
-      </g>
-      <g transform="translate(0 118)">
-        <path d={coast} stroke="currentColor" stroke-width="2" opacity=".25" />
-        <path d={coast} stroke="var(--color-series-red)" stroke-width="3" />
-        <g fill="var(--color-series-red)" stroke="none">
-          {fineCorners.map(([x, y]) => <circle cx={x} cy={y} r="2.5" />)}
-        </g>
-      </g>
+    <polyline
+      points={fullCoast}
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linejoin="round"
+      opacity=".3"
+    />
+    <polyline
+      id="coastline-paradox-measurement"
+      points={line(start)}
+      fill="none"
+      stroke="var(--color-series-blue)"
+      stroke-width="3"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+    />
+    <g id="coastline-paradox-markers" fill="var(--color-series-blue)">
+      {start.map((index) => (
+        <circle cx={points[index][0]} cy={points[index][1]} r="3.5" />
+      ))}
     </g>
   </SvgFigure>
-  <div class="flex flex-col gap-2 text-base">
-    <p><strong class="text-series-blue">Bigger steps:</strong> 5 segments add up to about <strong>368 units</strong>.</p>
-    <p><strong class="text-series-red">Smaller steps:</strong> 15 segments add up to about <strong>490 units</strong>.</p>
-  </div>
+  <Slider
+    id="coastline-paradox-slider"
+    label="Measuring step size"
+    min={0}
+    max={4}
+    step={1}
+    value={0}
+    startLabel="Bigger steps"
+    endLabel="Smaller steps"
+    describedby="coastline-paradox-readout"
+    valuetext={`Bigger steps, ${start.length - 1} segments, about ${Math.round(total(start))} units`}
+  >
+    <p id="coastline-paradox-readout" class="text-base" aria-live="polite" aria-atomic="true">
+      <strong>{start.length - 1} segments</strong> add up to about
+      <strong>{Math.round(total(start))} units</strong>.
+    </p>
+  </Slider>
   <Fragment slot="caption">
-    Both measurements use the same endpoints. The sums are calculated from the straight
-    segments in the drawing, in illustrative units, not kilometres of real coastline.
-    Smaller steps include bends the bigger steps skip.
+    The faint coastline never changes. Each shorter measuring step can follow more of its bends,
+    increasing the sum of the straight segments. The distances are calculated from this drawing,
+    not from Britain's actual coast.
   </Fragment>
 </IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("coastline-paradox")
+  if (root) {
+    const svg = find<SVGSVGElement>(root, "svg[data-points]")
+    const points = JSON.parse(svg.dataset.points ?? "[]") as number[][]
+    const levels = JSON.parse(svg.dataset.levels ?? "[]") as number[][]
+    const measurement = find<SVGPolylineElement>(root, "#coastline-paradox-measurement")
+    const markers = find<SVGGElement>(root, "#coastline-paradox-markers")
+    const slider = find<HTMLInputElement>(root, "#coastline-paradox-slider")
+    const readout = find<HTMLElement>(root, "#coastline-paradox-readout")
+    const namespace = "http://www.w3.org/2000/svg"
+
+    bindSlider(slider, (value) => {
+      const indexes = levels[value]
+      measurement.setAttribute(
+        "points",
+        indexes.map((i) => points[i].join(",")).join(" "),
+      )
+      markers.replaceChildren(
+        ...indexes.map((i) => {
+          const circle = document.createElementNS(namespace, "circle")
+          circle.setAttribute("cx", String(points[i][0]))
+          circle.setAttribute("cy", String(points[i][1]))
+          circle.setAttribute("r", "3.5")
+          return circle
+        }),
+      )
+      const distance = indexes.slice(1).reduce((sum, index, i) => {
+        const a = points[indexes[i]]
+        const b = points[index]
+        return sum + Math.hypot(b[0] - a[0], b[1] - a[1])
+      }, 0)
+      const count = indexes.length - 1
+      const rounded = Math.round(distance)
+      readout.textContent = `${count} segments add up to about ${rounded} units.`
+      const size = value === 0 ? "Bigger steps" : value === 4 ? "Smaller steps" : "Step " + (value + 1) + " of 5"
+      return `${size}, ${count} segments, about ${rounded} units`
+    })
+  }
+</script>
