@@ -14,13 +14,13 @@ const numbers = [1, 2, 3, 4, 5]
   <SvgFigure
     name="galileos-paradox"
     class="mx-auto w-full max-w-lg"
-    viewBox="0 0 320 178"
+    viewBox="0 0 320 190"
     title="Five whole numbers matched one to one with five squares"
     desc="The top row shows the positive whole numbers 1 through 5. Five arrows connect them to their squares, 1, 4, 9, 16 and 25. Each number has exactly one partner, and none of these squares is left unmatched. The pattern continues for every positive whole number."
   >
     <g fill="currentColor" font-size="14" font-weight="bold">
       <text x="8" y="16">Whole numbers</text>
-      <text x="8" y="120">Squares</text>
+      <text x="8" y="144">Squares</text>
     </g>
     {numbers.map((number, index) => (
       <g>
@@ -60,7 +60,7 @@ const numbers = [1, 2, 3, 4, 5]
         </text>
       </g>
     ))}
-    <text x="160" y="154" text-anchor="middle" fill="currentColor" font-size="15">
+    <text x="160" y="178" text-anchor="middle" fill="currentColor" font-size="15">
       And the pairing continues forever…
     </text>
   </SvgFigure>
