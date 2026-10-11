@@ -147,6 +147,13 @@ import { series, stroke } from "~/data/palette"
 
     const smooth = (value: number) => value * value * (3 - 2 * value)
     const showNumber = (value: number) => String(Number(value.toFixed(2)))
+    const formatGap = (metres: number) => {
+      // Use units appropriate to the shrinking gap; preserve the 10 mm endpoint.
+      const gap = Math.max(0.01, metres)
+      if (gap >= 1) return showNumber(gap) + " m"
+      if (gap >= 0.1) return showNumber(gap * 100) + " cm"
+      return showNumber(gap * 1000) + " mm"
+    }
     const viewAt = (milliseconds: number) => {
       let remaining = Math.min(milliseconds, totalDuration)
       for (let stage = 0; stage < gaps.length; stage++) {
@@ -228,7 +235,7 @@ import { series, stroke } from "~/data/palette"
         labelPhase !== lastGapLabelPhase ||
         elapsed - lastGapLabelUpdate >= 125
       ) {
-        const nextGapLabel = showNumber(t - a) + " m"
+        const nextGapLabel = formatGap(t - a)
         if (gapLabel.textContent !== nextGapLabel) gapLabel.textContent = nextGapLabel
         lastGapLabelPhase = labelPhase
         lastGapLabelUpdate = elapsed
@@ -247,7 +254,7 @@ import { series, stroke } from "~/data/palette"
               : "The tortoise is still ahead. Achilles heads for its old position."
       }
       if (elapsed === totalDuration) {
-        status.textContent = "The next gap is smaller still. The pattern continues."
+        status.textContent = "A 10 mm gap still remains. The pattern continues."
       }
       updateButton()
     }
