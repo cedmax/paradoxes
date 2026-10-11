@@ -1,83 +1,150 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
-// Illustrative model: L(t) = 1 + t, and the ant walks at half the rope's growth speed.
-// The fraction crossed is f(t) = ln(1 + t) / 2; it reaches the end at t = e² - 1.
-const times = [0, 1, 3, Math.exp(2) - 1]
-const stages = times.map((time, index) => {
-  const length = 1 + time
-  return {
-    label: ["Start", "Later", "Later still", "Eventually"][index],
-    width: (296 * length) / Math.exp(2),
-    fraction: Math.min(1, Math.log(length) / 2),
-    y: 38 + index * 59,
-  }
-})
+// A step-by-step toy model: the ant walks 0.5 units, then the rope uniformly
+// stretches by one unit. Stretching preserves the fraction already crossed.
+const stages = [{ length: 1, fraction: 0, action: "Start" }]
+let length = 1
+let fraction = 0
+for (let step = 1; step <= 4; step++) {
+  fraction = Math.min(1, fraction + 0.5 / length)
+  stages.push({ length, fraction, action: step === 4 ? "Arrives!" : "Walk" })
+  if (fraction === 1) break
+  length += 1
+  stages.push({ length, fraction, action: "Stretch" })
+}
+const initial = stages[0]
+const endX = (stage: (typeof stages)[number]) => 20 + stage.length * 68
+const antX = (stage: (typeof stages)[number]) => 20 + stage.length * 68 * stage.fraction
 ---
 
 <IllustrationFigure
   name="ant-on-a-rubber-rope"
-  lead="The rope grows, but the ant's share of it keeps increasing."
+  lead="Watch what walking does, then what stretching does."
 >
   <SvgFigure
     name="ant-on-a-rubber-rope"
     class="mx-auto w-full max-w-md"
-    viewBox="0 0 320 254"
-    title="Four stages of an ant crossing a uniformly stretching rope"
-    desc="Four rows show the same rope getting longer, with the ant marked by a circle. At the start the ant has crossed zero percent. As the rope doubles and then quadruples in length, the ant has crossed about 35 and 69 percent. Eventually the rope is about 7.4 times its starting length and the ant reaches the end. The fractions follow a model in which the rope length grows at a constant rate and the ant walks at half that rate relative to the rope."
+    viewBox="0 0 320 118"
+    title="The ant walks and is then carried forward as the rope stretches"
+    desc="A slider switches between walking and stretching a uniform rope. On walking steps the ant increases its fraction crossed. On stretching steps the whole rope lengthens, and the ant moves with it while its fraction crossed remains unchanged. In the final stage the ant reaches the far end."
+    data-stages={JSON.stringify(stages)}
   >
-    {stages.map((stage) => (
-      <g>
-        <text x="12" y={stage.y - 15} fill="currentColor" font-size="14" font-weight="bold">
-          {stage.label}
-        </text>
-        <text x="308" y={stage.y - 15} text-anchor="end" fill="currentColor" font-size="14">
-          {Math.round(stage.fraction * 100)}% crossed
-        </text>
-        <line
-          x1="12"
-          y1={stage.y}
-          x2={12 + stage.width}
-          y2={stage.y}
-          stroke="currentColor"
-          stroke-opacity=".3"
-          stroke-width="8"
-          stroke-linecap="round"
-        />
-        <line
-          x1="12"
-          y1={stage.y}
-          x2={12 + stage.width * stage.fraction}
-          y2={stage.y}
-          stroke="var(--color-series-blue)"
-          stroke-width="8"
-          stroke-linecap="round"
-        />
-        <circle
-          cx={12 + stage.width * stage.fraction}
-          cy={stage.y}
-          r="7"
-          fill="var(--color-series-red)"
-          stroke="currentColor"
-          stroke-width="1"
-        />
-        <line
-          x1={12 + stage.width}
-          y1={stage.y - 8}
-          x2={12 + stage.width}
-          y2={stage.y + 8}
-          stroke="currentColor"
-          stroke-width="2"
-        />
-      </g>
-    ))}
+    <text id="ant-rope-action" x="20" y="23" fill="currentColor" font-size="16" font-weight="bold">
+      Start
+    </text>
+    <line
+      id="ant-rope-full"
+      x1="20"
+      y1="64"
+      x2={endX(initial)}
+      y2="64"
+      stroke="currentColor"
+      stroke-opacity=".3"
+      stroke-width="9"
+      stroke-linecap="round"
+    />
+    <line
+      id="ant-rope-progress"
+      x1="20"
+      y1="64"
+      x2={antX(initial)}
+      y2="64"
+      stroke="var(--color-series-blue)"
+      stroke-width="9"
+      stroke-linecap="round"
+    />
+    <line
+      id="ant-rope-end"
+      x1={endX(initial)}
+      x2={endX(initial)}
+      y1="53"
+      y2="75"
+      stroke="currentColor"
+      stroke-width="2"
+    />
+    <circle
+      id="ant-rope-ant"
+      cx={antX(initial)}
+      cy="64"
+      r="7"
+      fill="var(--color-series-red)"
+      stroke="currentColor"
+    />
+    <text x="20" y="101" fill="currentColor" font-size="13">Start</text>
+    <text id="ant-rope-end-label" x={endX(initial)} y="101" fill="currentColor" font-size="13" text-anchor="end">
+      End
+    </text>
   </SvgFigure>
+  <Slider
+    id="ant-rope-slider"
+    label="Walk, then stretch"
+    min={0}
+    max={stages.length - 1}
+    step={1}
+    value={0}
+    startLabel="Start"
+    endLabel="Ant arrives"
+    describedby="ant-rope-readout"
+    valuetext="Start, 0% crossed"
+  >
+    <p id="ant-rope-readout" class="text-base" aria-live="polite" aria-atomic="true">
+      <strong>Start:</strong> 0% crossed.
+    </p>
+  </Slider>
   <Fragment slot="caption">
-    <strong>The grey rope stretches, carrying the ant along.</strong> Walking adds to the blue
-    portion, which marks the fraction crossed. Each gain gets smaller, but the gains keep adding
-    up. These snapshots use a simplified, consistent model: the rope's far end moves twice as
-    fast as the ant walks relative to the rope. The ant still arrives, although the final stage
-    can take an extraordinarily long time in a real example.
+    <strong>Walk:</strong> The ant moves along the rope, increasing the fraction crossed.
+    <strong>Stretch:</strong> The ant is carried forward with the rope, but that fraction stays
+    the same. Repeat, and the small walking gains add up. This is a slowed-down example with
+    alternating steps, not the continuous-motion calculation; uniform stretching is what makes
+    the same principle work in the original paradox.
   </Fragment>
 </IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("ant-on-a-rubber-rope")
+  if (root) {
+    const svg = find<SVGSVGElement>(root, "svg[data-stages]")
+    const stages = JSON.parse(svg.dataset.stages ?? "[]") as {
+      length: number
+      fraction: number
+      action: string
+    }[]
+    const slider = find<HTMLInputElement>(root, "#ant-rope-slider")
+    const full = find<SVGLineElement>(root, "#ant-rope-full")
+    const progress = find<SVGLineElement>(root, "#ant-rope-progress")
+    const ant = find<SVGCircleElement>(root, "#ant-rope-ant")
+    const end = find<SVGLineElement>(root, "#ant-rope-end")
+    const endLabel = find<SVGTextElement>(root, "#ant-rope-end-label")
+    const action = find<SVGTextElement>(root, "#ant-rope-action")
+    const readout = find<HTMLElement>(root, "#ant-rope-readout")
+
+    bindSlider(slider, (value) => {
+      const stage = stages[value]
+      const ropeEnd = 20 + stage.length * 68
+      const antPosition = 20 + stage.length * 68 * stage.fraction
+      full.setAttribute("x2", String(ropeEnd))
+      progress.setAttribute("x2", String(antPosition))
+      ant.setAttribute("cx", String(antPosition))
+      end.setAttribute("x1", String(ropeEnd))
+      end.setAttribute("x2", String(ropeEnd))
+      endLabel.setAttribute("x", String(ropeEnd))
+      action.textContent = stage.action
+      const percent = Math.round(stage.fraction * 100)
+      const explanation =
+        stage.action === "Stretch"
+          ? "The ant is carried forward; its fraction crossed stays the same."
+          : stage.action === "Walk"
+            ? "Walking increases the fraction of the rope crossed."
+            : stage.action === "Arrives!"
+              ? "The ant reaches the end."
+              : "The ant is at the start."
+      readout.textContent = `${stage.action}: ${percent}% crossed. ${explanation}`
+      return `${stage.action}, ${percent}% crossed`
+    })
+  }
+</script>
