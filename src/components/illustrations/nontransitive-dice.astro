@@ -84,30 +84,30 @@ const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) 
     <SvgFigure
       name="nontransitive-outcomes-grid"
       class="mx-auto mt-3 w-full max-w-md"
-      viewBox="0 0 370 340"
+      viewBox="0 0 370 360"
       title="All possible outcomes for the selected dice"
       desc="Six faces of the first die form the rows and six faces of the second die form the columns. Green squares show the 24 winning combinations out of 36. Choose another pair of dice to change the grid."
     >
-      <text id="nontransitive-top-label" x="220" y="23" text-anchor="middle"
-        font-size="17" font-weight="700" fill="currentColor">Die B faces</text>
-      <text id="nontransitive-left-label" x="20" y="78"
-        font-size="17" font-weight="700" fill="currentColor">A</text>
+      <text id="nontransitive-top-label" x="223" y="61" text-anchor="middle"
+        font-size="17" font-weight="700" fill="currentColor">Columns: Die B</text>
+      <text id="nontransitive-left-label" x="48" y="229" text-anchor="middle"
+        transform="rotate(-90 48 229)" font-size="17" font-weight="700" fill="currentColor">Rows: Die A</text>
       {dice[1].faces.map((number, col) => (
-        <text data-nontransitive-column={col} x={103 + col * 40 + 19.5} y="72"
+        <text data-nontransitive-column={col} x={103 + col * 40 + 19.5} y="93"
           text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">{number}</text>
       ))}
       {dice[0].faces.map((number, row) => (
-        <text data-nontransitive-row={row} x="89" y={100 + row * 40 + 21}
+        <text data-nontransitive-row={row} x="89" y={109 + row * 40 + 21}
           text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">{number}</text>
       ))}
       {initialWins.map((win, index) => (
         <g>
           <rect data-nontransitive-cell={index} x={103 + (index % 6) * 40}
-            y={100 + Math.floor(index / 6) * 40} width="39" height="39"
+            y={109 + Math.floor(index / 6) * 40} width="39" height="39"
             fill={win ? series.green : "var(--color-paper)"} fill-opacity={win ? "0.4" : "1"}
             stroke={stroke} stroke-width="1" />
           <text data-nontransitive-result={index} x={103 + (index % 6) * 40 + 19.5}
-            y={100 + Math.floor(index / 6) * 40 + 25} text-anchor="middle"
+            y={109 + Math.floor(index / 6) * 40 + 25} text-anchor="middle"
             font-size="17" font-weight="700" fill="currentColor">{win ? "✓" : "–"}</text>
         </g>
       ))}
@@ -177,8 +177,8 @@ const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) 
         cell.setAttribute("fill-opacity", win ? "0.4" : "1")
         results[i].textContent = win ? "✓" : "–"
       })
-      title.textContent = `Die ${names[second]} faces`
-      left.textContent = names[first]
+      title.textContent = `Columns: Die ${names[second]}`
+      left.textContent = `Rows: Die ${names[first]}`
       desc.textContent = `Die ${names[first]} down the rows and die ${names[second]} across the columns. ${wins} of 36 combinations favour die ${names[first]}.`
       count.textContent = `${names[first]} wins ${wins} of the 36 combinations against ${names[second]}.`
       buttons.forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)))
