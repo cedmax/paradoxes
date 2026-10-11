@@ -18,9 +18,8 @@ const initialRemainders = [2 / 7, 2 / 7, 3 / 7]
   lead="A parliament gains a seat. How does State C lose one?"
 >
   <p class="text-base leading-normal">
-    The populations stay at a ratio of 6 : 6 : 2. The largest-remainder
-    method first gives A four seats, B four, and C one. The remaining
-    seats go to the biggest leftover fractions.
+    The populations stay at a ratio of 6 : 6 : 2. The largest-remainder method first gives A
+    four seats, B four, and C one. The remaining seats go to the biggest leftover fractions.
   </p>
 
   <div class="flex flex-wrap gap-2" role="group" aria-label="Choose parliament size">
@@ -36,8 +35,12 @@ const initialRemainders = [2 / 7, 2 / 7, 3 / 7]
     {states.map(({ name, tile, initial }) => (
       <div class="grid grid-cols-[4rem_minmax(0,1fr)_4.5rem] items-center gap-2">
         <strong>State {name}</strong>
-        <div class="grid grid-cols-5 gap-1" data-apportionment-row={name}
-          role="img" aria-label={`State ${name} has ${initial} seats`}>
+        <div
+          class="grid grid-cols-5 gap-1"
+          data-apportionment-row={name}
+          role="img"
+          aria-label={`State ${name} has ${initial} seats`}
+        >
           {Array.from({ length: 5 }, (_, i) => (
             <span
               data-apportionment-seat={name}
@@ -78,17 +81,43 @@ const initialRemainders = [2 / 7, 2 / 7, 3 / 7]
           <text x="9" y={52 + i * 42} font-size="16" font-weight="700" fill="currentColor">
             {name}
           </text>
-          <rect x="39" y={33 + i * 42} width="190" height="26"
-            fill="none" stroke={stroke} stroke-width="0.8" stroke-opacity="0.3" />
-          <rect data-apportionment-bar={name}
-            x="39" y={33 + i * 42} width={190 * initialRemainders[i]}
-            height="26" fill={colour} />
-          <text data-apportionment-fraction={name} x="238" y={52 + i * 42}
-            font-size="14" font-weight="700" fill="currentColor">
+          <rect
+            x="39"
+            y={33 + i * 42}
+            width="190"
+            height="26"
+            fill="none"
+            stroke={stroke}
+            stroke-width="0.8"
+            stroke-opacity="0.3"
+          />
+          <rect
+            data-apportionment-bar={name}
+            x="39"
+            y={33 + i * 42}
+            width={190 * initialRemainders[i]}
+            height="26"
+            fill={colour}
+          />
+          <text
+            data-apportionment-fraction={name}
+            x="238"
+            y={52 + i * 42}
+            font-size="14"
+            font-weight="700"
+            fill="currentColor"
+          >
             {initialRemainders[i].toFixed(2)}
           </text>
-          <text data-apportionment-winner={name} x="348" y={52 + i * 42}
-            font-size="14" text-anchor="end" font-weight="700" fill="currentColor">
+          <text
+            data-apportionment-winner={name}
+            x="348"
+            y={52 + i * 42}
+            font-size="14"
+            text-anchor="end"
+            font-weight="700"
+            fill="currentColor"
+          >
             {name === "C" ? "+1 seat" : ""}
           </text>
         </g>
@@ -104,15 +133,15 @@ const initialRemainders = [2 / 7, 2 / 7, 3 / 7]
       10 seats: A gets 4, B gets 4, C gets 2.
     </p>
     <p class="text-base leading-normal">
-      The population never changes. Only the total number of seats changes
-      the fractions competing for the leftover seats.
+      The population never changes. Only the total number of seats changes the fractions
+      competing for the leftover seats.
     </p>
   </Callout>
 
   <Fragment slot="caption">
-    Each filled square is one seat; empty outlined squares are unused slots.
-    The bars compare the leftover fractions, not population sizes.
-    Switch between 10 and 11 seats to see C lose one despite the extra seat.
+    Each filled square is one seat; empty outlined squares are unused slots. The bars compare
+    the leftover fractions, not population sizes. Switch between 10 and 11 seats to see C lose
+    one despite the extra seat.
   </Fragment>
 </IllustrationFigure>
 
@@ -121,7 +150,9 @@ const initialRemainders = [2 / 7, 2 / 7, 3 / 7]
 
   const root = illustrationRoot("apportionment-paradox")
   if (root) {
-    const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-apportionment-total]"))
+    const buttons = Array.from(
+      root.querySelectorAll<HTMLButtonElement>("[data-apportionment-total]"),
+    )
     const names = ["A", "B", "C"]
     const tileClasses = ["bg-series-blue", "bg-series-gold", "bg-series-red"]
     const initial = [4, 4, 2]
@@ -130,14 +161,24 @@ const initialRemainders = [2 / 7, 2 / 7, 3 / 7]
       10: [2 / 7, 2 / 7, 3 / 7],
       11: [5 / 7, 5 / 7, 4 / 7],
     }
-    const rows = names.map((name) => find<HTMLElement>(root, `[data-apportionment-row="${name}"]`))
+    const rows = names.map((name) =>
+      find<HTMLElement>(root, `[data-apportionment-row="${name}"]`),
+    )
     const seats = names.map((name) =>
       Array.from(root.querySelectorAll<HTMLElement>(`[data-apportionment-seat="${name}"]`)),
     )
-    const counts = names.map((name) => find<HTMLElement>(root, `[data-apportionment-count="${name}"]`))
-    const bars = names.map((name) => find<SVGRectElement>(root, `[data-apportionment-bar="${name}"]`))
-    const remainders = names.map((name) => find<SVGTextElement>(root, `[data-apportionment-fraction="${name}"]`))
-    const winners = names.map((name) => find<SVGTextElement>(root, `[data-apportionment-winner="${name}"]`))
+    const counts = names.map((name) =>
+      find<HTMLElement>(root, `[data-apportionment-count="${name}"]`),
+    )
+    const bars = names.map((name) =>
+      find<SVGRectElement>(root, `[data-apportionment-bar="${name}"]`),
+    )
+    const remainders = names.map((name) =>
+      find<SVGTextElement>(root, `[data-apportionment-fraction="${name}"]`),
+    )
+    const winners = names.map((name) =>
+      find<SVGTextElement>(root, `[data-apportionment-winner="${name}"]`),
+    )
     const change = find<HTMLElement>(root, "#apportionment-change")
     const leftover = find<HTMLElement>(root, "#apportionment-leftover")
     const reason = find<HTMLElement>(root, "#apportionment-reason")
@@ -157,7 +198,7 @@ const initialRemainders = [2 / 7, 2 / 7, 3 / 7]
         })
         bars[i].setAttribute("width", String(frac[i] * 190))
         remainders[i].textContent = frac[i].toFixed(2)
-        winners[i].textContent = bigger ? (i < 2 ? "+1 seat" : "") : (i === 2 ? "+1 seat" : "")
+        winners[i].textContent = bigger ? (i < 2 ? "+1 seat" : "") : i === 2 ? "+1 seat" : ""
       })
       change.textContent = bigger
         ? "A gains 1 seat. B gains 1 seat. C loses 1 seat — even though parliament has grown by just 1."
@@ -174,9 +215,18 @@ const initialRemainders = [2 / 7, 2 / 7, 3 / 7]
       desc.textContent = bigger
         ? "With 11 seats, A and B have remainders of 0.71 each, while C has 0.57. A and B each win a remaining seat and C loses its previous extra seat."
         : "With 10 seats, A and B have remainders of 0.29, and C has 0.43. C has the largest fraction and wins the one remaining seat."
-      buttons.forEach((button) => button.setAttribute("aria-pressed", String(Number(button.dataset.apportionmentTotal) === total)))
+      buttons.forEach((button) =>
+        button.setAttribute(
+          "aria-pressed",
+          String(Number(button.dataset.apportionmentTotal) === total),
+        ),
+      )
     }
-    buttons.forEach((button) => button.addEventListener("click", () => render(Number(button.dataset.apportionmentTotal) as 10 | 11)))
+    buttons.forEach((button) =>
+      button.addEventListener("click", () =>
+        render(Number(button.dataset.apportionmentTotal) as 10 | 11),
+      ),
+    )
     render(10)
   }
 </script>
