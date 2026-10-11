@@ -299,7 +299,15 @@ const methods = [
       edgePoint.setAttribute("cy", String(y))
       const mx = (cx + x) / 2
       const my = (cy - radius + y) / 2
-      rotateTriangle(mx - cx, my - cy)
+      // When the chord is a diameter its midpoint is the centre, so use
+      // the chord's perpendicular instead of the undefined centre-to-midpoint direction.
+      const normalX = mx - cx
+      const normalY = my - cy
+      if (Math.hypot(normalX, normalY) < 0.00001) {
+        rotateTriangle(y - (cy - radius), -(x - cx))
+      } else {
+        rotateTriangle(normalX, normalY)
+      }
       const length = Math.hypot(x - cx, y - (cy - radius))
       const sideLength = radius * Math.sqrt(3)
       const result =
