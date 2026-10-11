@@ -43,6 +43,17 @@ import { series, stroke } from "~/data/palette"
       stroke={series.gold}
       stroke-width="2.5"
     />
+    <text
+      id="achilles-gap-label"
+      x="300"
+      y="34"
+      text-anchor="middle"
+      font-size="14"
+      font-weight="700"
+      fill="currentColor"
+    >
+      100 m
+    </text>
     <g id="achilles-marker" transform="translate(120 0)">
       <path d="M0 113 V125" stroke={series.blue} stroke-width="2" />
       <circle cx="0" cy="92" r="18" fill={series.blue} />
@@ -76,13 +87,6 @@ import { series, stroke } from "~/data/palette"
     </text>
   </SvgFigure>
 
-  <div>
-    <p class="text-sm">Gap remaining</p>
-    <p class="font-mono text-2xl font-bold tabular-nums">
-      <span id="achilles-gap">100</span> <span class="text-base font-normal">m</span>
-    </p>
-  </div>
-
   <div class="flex flex-wrap items-center gap-3">
     <button type="button" id="achilles-play" class="btn-ghost">Play chase</button>
     <p id="achilles-status" class="text-sm" aria-live="polite">
@@ -106,7 +110,7 @@ import { series, stroke } from "~/data/palette"
     const tortoiseMarker = find<SVGGElement>(root, "#achilles-tortoise-marker")
     const gapLine = find<SVGLineElement>(root, "#achilles-gap-line")
     const ticksGroup = find<SVGGElement>(root, "#achilles-ticks")
-    const gapLabel = find<HTMLElement>(root, "#achilles-gap")
+    const gapLabel = find<SVGTextElement>(root, "#achilles-gap-label")
     const zoomLabel = find<HTMLElement>(root, "#achilles-zoom-label")
     const status = find<HTMLElement>(root, "#achilles-status")
     const playButton = find<HTMLButtonElement>(root, "#achilles-play")
@@ -116,9 +120,9 @@ import { series, stroke } from "~/data/palette"
     // Achilles is at 10t and the tortoise is at 100+t.
     const gaps = [100, 10, 1, 0.1]
     const stageStartTimes = [0, 10, 11, 11.1]
-    // Four equally paced chase phases and three equally paced zooms: 15 seconds total.
-    const runDuration = 2250
-    const zoomDuration = 2000
+    // Four chases and three zooms, each lasting 15 seconds.
+    const runDuration = 15000
+    const zoomDuration = 15000
     const totalDuration = gaps.length * runDuration + (gaps.length - 1) * zoomDuration
     const pixelsPerMetre = 4.2
     const screenMiddle = 300
@@ -236,7 +240,8 @@ import { series, stroke } from "~/data/palette"
         ticks[i].setAttribute("opacity", x < 45 || x > 555 ? "0" : ".4")
       }
 
-      gapLabel.textContent = showNumber(t - a)
+      gapLabel.textContent = showNumber(t - a) + " m"
+      gapLabel.setAttribute("x", String((ax + tx) / 2))
       const zoomFactor = Math.round(scale / pixelsPerMetre)
       zoomLabel.textContent = "View ×" + zoomFactor.toLocaleString("en-GB")
 
