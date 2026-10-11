@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"div"> {
+  title?: string
+  /** Without an accent the panel is a boxed card. With one it is a bar down the left edge. */
+  accent?: "red" | "blue" | "gold" | "green"
+}
+
+const accents = {
+  red: "border-series-red",
+  blue: "border-series-blue",
+  gold: "border-series-gold",
+  green: "border-series-green",
+}
+const { title, accent, class: className, ...rest } = Astro.props
+---
+
+<div
+  class:list={[
+    accent ? ["border-l-4 pl-4", accents[accent]] : "border border-ink p-3",
+    className,
+  ]}
+  {...rest}
+>
+  {title && <strong>{title}</strong>}
+  <slot />
+</div>
