@@ -10,6 +10,7 @@ aka:
     "nontransitive coin game",
   ]
 chapter: probability
+order: 90
 status: explained
 uniqueness: related
 anchor: nontransitive-dice

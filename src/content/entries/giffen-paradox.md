@@ -2,7 +2,8 @@
 title: "Giffen paradox"
 titleAccent: "paradox"
 aka: ["Giffen good", "law of demand", "Giffen goods", "rice Hunan", "Gray good"]
-chapter: choice-identity
+chapter: individual
+order: 80
 status: explained
 simplification: light
 noMaths: true

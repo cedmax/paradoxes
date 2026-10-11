@@ -1,12 +1,12 @@
 ---
 title: Parfit's teletransporter
 titleAccent: teletransporter
-chapter: choice-identity
+chapter: what-counts
 status: disputed
 uniqueness: related
 anchor: ship-of-theseus
 simplification: light
-order: 4
+order: 80
 written: true
 sourcesVerified: true
 problem: "A machine scans and destroys your body, then builds a body exactly like yours on Mars from the scan. Have you travelled, or died?"

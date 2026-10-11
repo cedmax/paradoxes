@@ -10,7 +10,8 @@ aka:
     "Born rigidity",
     "length contraction",
   ]
-chapter: time-physics
+chapter: time-causation
+order: 60
 status: explained
 uniqueness: related
 anchor: ladder-paradox

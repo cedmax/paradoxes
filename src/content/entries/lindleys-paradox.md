@@ -1,10 +1,10 @@
 ---
 title: "Lindley's paradox"
-chapter: "probability"
+chapter: numbers-mislead
 status: "explained"
 simplification: light
 noMaths: false
-order: 300
+order: 150
 written: true
 sourcesVerified: true
 reviewed: false
