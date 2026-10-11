@@ -1,0 +1,18 @@
+---
+interface Props {
+  /** The always-visible line that opens and closes the extra detail. */
+  summary: string
+}
+
+const { summary } = Astro.props
+---
+
+<details class="group border-t-2 border-ink pt-3">
+  <summary class="flex min-h-11 cursor-pointer items-center gap-2 font-bold">
+    <span aria-hidden="true" class="text-sm transition-transform group-open:rotate-90">
+      ▶
+    </span>
+    {summary}
+  </summary>
+  <slot />
+</details>

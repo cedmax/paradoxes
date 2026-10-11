@@ -1,0 +1,37 @@
+---
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+
+const gambles = [
+  {
+    pair: "First pair",
+    rows: [
+      ["A", "$1m", "$1m", "$1m"],
+      ["B", "$5m", "$0", "$1m"],
+    ],
+  },
+  {
+    pair: "Second pair",
+    rows: [
+      ["A", "$1m", "$1m", "$0"],
+      ["B", "$5m", "$0", "$0"],
+    ],
+  },
+]
+---
+
+<IllustrationFigure frame={false}>
+  {gambles.map(({ pair, rows }) => (
+    <ComparisonTable
+      dense
+      caption={`${pair}: imagine 100 equally likely tickets`}
+      columns={["Option", "10 tickets", "1 ticket", "89 shared tickets"]}
+      rows={rows}
+      highlight={[3]}
+    />
+  ))}
+  <Fragment slot="caption">
+    $1m means $1 million. Only the shared column changes. The usual choices are A in the first
+    pair and B in the second.
+  </Fragment>
+</IllustrationFigure>
