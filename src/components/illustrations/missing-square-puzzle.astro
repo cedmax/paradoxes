@@ -1,0 +1,75 @@
+---
+import Disclosure from "~/components/illustration-kit/Disclosure.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { seriesList, stroke } from "~/data/palette"
+
+const layouts = [
+  [
+    "0,0 8,0 8,3",
+    "8,3 13,3 13,5",
+    "8,2 10,2 10,1 13,1 13,3 8,3",
+    "8,0 13,0 13,1 10,1 10,2 8,2",
+  ],
+  ["5,2 13,2 13,5", "0,0 5,0 5,2", "8,1 10,1 10,0 13,0 13,2 8,2", "5,0 10,0 10,1 7,1 7,2 5,2"],
+]
+---
+
+<IllustrationFigure>
+  <div class="grid gap-6">
+    {layouts.map((pieces, i) => (
+      <div class="flex flex-col gap-2">
+        <p class="font-bold">{i === 0 ? "Filled outline" : "Rearranged: one square empty"}</p>
+        <SvgFigure
+          name={`missing-${i}`}
+          viewBox="-0.2 -0.2 13.4 5.4"
+          title={
+            i === 0
+              ? "Four pieces fill a bent 13 by 5 outline"
+              : "The same four pieces leave a one-square hole in a different bent outline"
+          }
+        >
+          <g
+            transform="translate(0 5) scale(1 -1)"
+            stroke={stroke}
+            stroke-width="0.035"
+            stroke-linejoin="round"
+          >
+            {pieces.map((points, j) => (
+              <polygon points={points} fill={seriesList[j]} />
+            ))}
+            {Array.from({ length: 14 }, (_, x) => (
+              <path d={`M${x},0 V5`} fill="none" opacity="0.25" />
+            ))}
+            {Array.from({ length: 6 }, (_, y) => (
+              <path d={`M0,${y} H13`} fill="none" opacity="0.25" />
+            ))}
+            {i === 1 && (
+              <rect x="7" y="1" width="1" height="1" fill="none" stroke-width="0.08" />
+            )}
+          </g>
+        </SvgFigure>
+      </div>
+    ))}
+  </div>
+  <Fragment slot="caption">
+    The same colours mark the same pieces. Both outlines are 13 squares wide and 5 tall. Their
+    long edges are drawn with the actual tiny bends.
+  </Fragment>
+  <Disclosure slot="after" summary="Compare the two long edges">
+    <SvgFigure
+      name="missing-edge"
+      class="mt-4"
+      viewBox="-0.2 -0.2 13.4 5.4"
+      title="The two bent edges enclose a sliver of area one square"
+    >
+      <g transform="translate(0 5) scale(1 -1)" stroke-width="0.07" fill="none">
+        <polygon points="0,0 8,3 13,5 5,2" fill={seriesList[2]} stroke={stroke} />
+        <path d="M0,0 L13,5" stroke={stroke} stroke-dasharray="0.2 0.15" />
+      </g>
+    </SvgFigure>
+    <p class="mt-2 text-base">
+      The dashed line is straight. The two bent edges enclose exactly one square of area.
+    </p>
+  </Disclosure>
+</IllustrationFigure>
