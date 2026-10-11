@@ -22,14 +22,14 @@ const antX = (stage: (typeof stages)[number]) => 20 + stage.length * 68 * stage.
 
 <IllustrationFigure
   name="ant-on-a-rubber-rope"
-  lead="Watch what walking does, then what stretching does."
+  lead="The rope grows twice as fast as the ant can walk."
 >
   <SvgFigure
     name="ant-on-a-rubber-rope"
     class="mx-auto w-full max-w-md"
-    viewBox="0 0 320 118"
+    viewBox="0 0 320 174"
     title="The ant walks and is then carried forward as the rope stretches"
-    desc="A slider switches between walking and stretching a uniform rope. On walking steps the ant increases its fraction crossed. On stretching steps the whole rope lengthens, and the ant moves with it while its fraction crossed remains unchanged. In the final stage the ant reaches the far end."
+    desc="A slider switches between walking and stretching a uniform rope. On walking steps the ant increases its fraction crossed. On stretching steps the whole rope lengthens, and the ant moves with it while its fraction crossed remains unchanged. A scale comparison below shows the ant walking at most half a unit per round while the rope grows one full unit. In the final stage the ant reaches the far end."
     data-stages={JSON.stringify(stages)}
   >
     <text
@@ -93,6 +93,10 @@ const antX = (stage: (typeof stages)[number]) => 20 + stage.length * 68 * stage.
     >
       End
     </text>
+    <text x="20" y="135" fill="currentColor" font-size="13">Ant walks (up to ½ unit)</text>
+    <line x1="238" y1="131" x2="272" y2="131" stroke="var(--color-series-red)" stroke-width="5" stroke-linecap="round" />
+    <text x="20" y="160" fill="currentColor" font-size="13">Rope grows (+1 unit)</text>
+    <line x1="204" y1="156" x2="272" y2="156" stroke="var(--color-series-blue)" stroke-width="5" stroke-linecap="round" />
   </SvgFigure>
   <Slider
     id="ant-rope-slider"
@@ -111,8 +115,8 @@ const antX = (stage: (typeof stages)[number]) => 20 + stage.length * 68 * stage.
     </p>
   </Slider>
   <Fragment slot="caption">
-    <strong>Walk:</strong> The ant moves along the rope, increasing the fraction crossed.
-    <strong>Stretch:</strong> The ant is carried forward with the rope, but that fraction stays
+    <strong>Walk:</strong> The ant moves up to half a unit along the rope, increasing the fraction crossed.
+    <strong>Stretch:</strong> The rope grows one whole unit—twice the ant’s walking distance. The ant is carried forward, but its fraction stays
     the same. Repeat, and the small walking gains add up. This is a slowed-down example with
     alternating steps, not the continuous-motion calculation; uniform stretching is what makes
     the same principle work in the original paradox.
@@ -153,9 +157,9 @@ const antX = (stage: (typeof stages)[number]) => 20 + stage.length * 68 * stage.
       const percent = Math.round(stage.fraction * 100)
       const explanation =
         stage.action === "Stretch"
-          ? "The ant is carried forward; its fraction crossed stays the same."
+          ? "Rope +1 unit. The ant is carried forward; its fraction crossed stays the same."
           : stage.action === "Walk"
-            ? "Walking increases the fraction of the rope crossed."
+            ? "Ant walks up to ½ unit, increasing the fraction crossed."
             : stage.action === "Arrives!"
               ? "The ant reaches the end."
               : "The ant is at the start."
