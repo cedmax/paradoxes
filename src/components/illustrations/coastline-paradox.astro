@@ -44,24 +44,6 @@ const fullCoast = line(levels[4])
   name="coastline-paradox"
   lead="Shorten the measuring steps and see what happens to the total length."
 >
-  <Slider
-    id="coastline-paradox-slider"
-    label="Measuring step size"
-    inlineReadout
-    min={0}
-    max={4}
-    step={1}
-    value={0}
-    startLabel="Bigger steps"
-    endLabel="Smaller steps"
-    describedby="coastline-paradox-readout"
-    valuetext={`Bigger steps, ${start.length - 1} segments, about ${Math.round(total(start))} units`}
-  >
-    <p id="coastline-paradox-readout" class="text-base font-bold sm:text-right" aria-live="polite" aria-atomic="true">
-      <strong>{start.length - 1} segments</strong> add up to about
-      <strong>{Math.round(total(start))} units</strong>.
-    </p>
-  </Slider>
   <SvgFigure
     name="coastline-paradox"
     class="mx-auto w-full max-w-sm"
@@ -92,6 +74,24 @@ const fullCoast = line(levels[4])
       {start.map((index) => <circle cx={points[index][0]} cy={points[index][1]} r="3.5" />)}
     </g>
   </SvgFigure>
+  <Slider
+    id="coastline-paradox-slider"
+    label="Measuring step size"
+    inlineReadout
+    min={0}
+    max={4}
+    step={1}
+    value={0}
+    startLabel="Bigger steps"
+    endLabel="Smaller steps"
+    describedby="coastline-paradox-readout"
+    valuetext={`Bigger steps, ${start.length - 1} segments, about ${Math.round(total(start))} units`}
+  >
+    <p id="coastline-paradox-readout" class="text-base font-bold sm:text-right" aria-live="polite" aria-atomic="true">
+      <strong>{start.length - 1} segments</strong> add up to about
+      <strong>{Math.round(total(start))} units</strong>.
+    </p>
+  </Slider>
   <Fragment slot="caption">
     The faint coastline never changes. Each shorter measuring step can follow more of its bends,
     increasing the sum of the straight segments. The distances are calculated from this drawing,
