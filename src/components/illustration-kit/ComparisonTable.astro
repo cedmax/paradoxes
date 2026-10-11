@@ -1,0 +1,52 @@
+---
+interface Props {
+  /** Visible table title. Always give the table one. */
+  caption?: string
+  columns: string[]
+  /** One array per row. The first cell of each row becomes the row header. */
+  rows: (string | number)[][]
+  /** Indexes of columns shaded as the part that changes. */
+  highlight?: number[]
+  align?: "left" | "center"
+  /** Tighter horizontal padding on small screens, for tables with 4 or more columns. */
+  dense?: boolean
+}
+
+const { caption, columns, rows, highlight = [], align = "left", dense = false } = Astro.props
+const pad = dense ? "px-2 py-3 sm:px-3" : "p-3"
+const cell = (i: number) => [pad, highlight.includes(i) && "bg-disputed"]
+const head = (i: number) => [
+  ...cell(i),
+  i === 0 || align === "left" ? "text-left" : "text-center",
+]
+const body = (i: number) => [...cell(i), align === "center" && "text-center"]
+---
+
+<div class="overflow-x-auto border-2 border-ink">
+  <table class="w-full text-base leading-normal">
+    {caption && (
+      <caption class="border-b-2 border-ink p-3 text-left font-bold">{caption}</caption>
+    )}
+    <thead>
+      <tr>
+        {columns.map((name, i) => (
+          <th class:list={head(i)} scope="col">
+            {name}
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map(([first, ...rest]) => (
+        <tr class="border-t border-ink">
+          <th class:list={head(0)} scope="row">
+            {first}
+          </th>
+          {rest.map((value, i) => (
+            <td class:list={body(i + 1)}>{value}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
