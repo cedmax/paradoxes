@@ -394,14 +394,25 @@ const methods = [
       }
     }
 
+    const setEdgePosition = (degrees: number) => {
+      // Keep the nearest equivalent angle, including when the pointer loops
+      // past 360/0. Both the slider and direct dragging use this same rule.
+      const previous = ((edgeAngleUnwrapped % 360) + 360) % 360
+      let delta = degrees - previous
+      if (delta > 180) delta -= 360
+      if (delta < -180) delta += 360
+      edgeAngleUnwrapped += delta
+      edgeValue = degrees
+      slider.value = String(edgeValue)
+      updateEdge()
+    }
+
     slider.addEventListener("input", () => {
       if (mode === "distance") {
         distanceValue = Number(slider.value)
         updateDistance()
       } else if (mode === "edge") {
-        edgeValue = Number(slider.value)
-        edgeAngleUnwrapped = edgeValue
-        updateEdge()
+        setEdgePosition(Number(slider.value))
       }
     })
     xSlider.addEventListener("input", () => {
@@ -431,15 +442,7 @@ const methods = [
       const p = localPoint(event)
       if (!p) return
       const angle = ((Math.atan2(p.y - cy, p.x - cx) * 180) / Math.PI + 90 + 360) % 360
-      const next = Math.round(angle) % 360
-      const previous = ((edgeAngleUnwrapped % 360) + 360) % 360
-      let delta = next - previous
-      if (delta > 180) delta -= 360
-      if (delta < -180) delta += 360
-      edgeAngleUnwrapped += delta
-      edgeValue = next
-      slider.value = String(edgeValue)
-      updateEdge()
+      setEdgePosition(Math.round(angle) % 360)
     }
     const dragArea = (event: PointerEvent) => {
       const p = localPoint(event)
