@@ -1,64 +1,94 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">The ladder and barn are measured differently in two frames.</p>
-  <svg
-    viewBox="0 0 300 244"
-    class="w-full max-w-sm"
-    role="img"
-    aria-labelledby="ladder-fig-title ladder-fig-desc"
-  >
-    <title id="ladder-fig-title">The ladder fits in the barn frame but not in its own</title>
-    <desc id="ladder-fig-desc">
-      Top: in the barn frame, a 10 metre ladder fits in a 12 metre barn. Bottom: in the ladder
-      frame, the ladder is 20 metres and the barn is 6 metres. Door closing times also differ
-      between the frames.
-    </desc>
-    <g fill="currentColor" font-size="17" font-family="sans-serif">
-      <text x="12" y="22" font-weight="bold">
-        Barn’s frame
-      </text>
-      <text x="12" y="144" font-weight="bold">
-        Ladder’s frame
-      </text>
-      <text x="12" y="52">
-        Barn: 12 m
-      </text>
-      <text x="12" y="112">
-        Ladder: 10 m
-      </text>
-      <text x="12" y="172">
-        Ladder: 20 m
-      </text>
-      <text x="12" y="234">
-        Barn: 6 m
-      </text>
-    </g>
-    <rect
-      x="12"
-      y="60"
-      width="276"
-      height="26"
-      fill="#d7a13d"
-      fill-opacity=".25"
-      stroke="currentColor"
-      stroke-width="2"
-    />
-    <rect x="35" y="68" width="230" height="10" fill="#387a91" />
-    <rect
-      x="12"
-      y="186"
-      width="83"
-      height="26"
-      fill="#d7a13d"
-      fill-opacity=".25"
-      stroke="currentColor"
-      stroke-width="2"
-    />
-    <rect x="12" y="194" width="276" height="10" fill="#387a91" />
-  </svg>
-  <figcaption class="text-base leading-normal">
-    At about 0.87 times light speed, the ladder is 10 m in the barn’s frame and fits in its 12 m
-    barn. In the ladder’s frame, the barn is just 6 m and the ladder stays 20 m. The missing
-    piece is timing: the two doors are not closed simultaneously in the ladder’s frame. Bar
-    lengths compare objects <strong>within</strong> each frame, not between the two panels.
-  </figcaption>
-</figure>
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="ladder-paradox"
+  lead="The lengths change between observers. So does the timing of the doors."
+>
+  <p class="text-base leading-normal">
+    The ladder moves through the barn close to the speed of light. Both observers agree
+    that the doors close, but not that they close at the same moment.
+  </p>
+
+  <div class="flex flex-col gap-4">
+    <Panel title="From the barn" accent="gold" class="flex min-w-0 flex-col gap-2">
+      <SvgFigure
+        name="ladder-barn-view"
+        class="w-full max-w-md"
+        viewBox="0 0 360 205"
+        title="Barn's view: the short ladder fits and both doors close together"
+        desc="A 10 metre blue ladder fits completely inside a 12 metre gold barn. Beneath it, the near-door and far-door closing events line up at the same point in time."
+      >
+        <g fill="currentColor" font-size="15">
+          <text x="10" y="18" font-weight="700">Barn: 12 m</text>
+          <rect x="10" y="30" width="340" height="34" fill={series.gold}
+            fill-opacity="0.25" stroke={stroke} stroke-width="1.5" />
+          <rect x="38" y="40" width="284" height="14" fill={series.blue} />
+          <line x1="10" x2="10" y1="27" y2="67" stroke={series.red} stroke-width="5" />
+          <line x1="350" x2="350" y1="27" y2="67" stroke={series.red} stroke-width="5" />
+          <text x="10" y="87">Ladder: 10 m — wholly inside</text>
+          <text x="10" y="115" font-weight="700">When the doors shut</text>
+          <text x="10" y="145">Near</text>
+          <text x="10" y="175">Far</text>
+          <path d="M88 140 H344 M88 170 H344" stroke={stroke} stroke-width="1"
+            stroke-opacity="0.35" fill="none" />
+          <line x1="224" x2="224" y1="136" y2="174" stroke={series.red}
+            stroke-width="2" stroke-dasharray="3 3" />
+          <circle cx="224" cy="140" r="6" fill={series.red} />
+          <circle cx="224" cy="170" r="6" fill={series.red} />
+          <text x="224" y="131" text-anchor="middle" font-size="13" font-weight="700">
+            Same moment
+          </text>
+          <text x="88" y="197" font-size="13">Earlier</text>
+          <text x="344" y="197" text-anchor="end" font-size="13">Later →</text>
+        </g>
+      </SvgFigure>
+      <p class="text-base leading-normal">
+        Both doors close together while the shortened ladder is entirely inside.
+      </p>
+    </Panel>
+
+    <Panel title="From the ladder" accent="blue" class="flex min-w-0 flex-col gap-2">
+      <SvgFigure
+        name="ladder-ladder-view"
+        class="w-full max-w-md"
+        viewBox="0 0 360 205"
+        title="Ladder's view: the barn is short but the far door closes first"
+        desc="A 20 metre ladder is longer than the 6 metre barn in this frame. The separate door-closing timeline shows the far door closing earlier than the near door, so the two are never closed together at one moment."
+      >
+        <g fill="currentColor" font-size="15">
+          <text x="10" y="18" font-weight="700">Ladder: 20 m</text>
+          <rect x="10" y="27" width="340" height="14" fill={series.blue} />
+          <text x="10" y="65" font-weight="700">Barn: 6 m</text>
+          <rect x="10" y="74" width="102" height="18" fill={series.gold}
+            fill-opacity="0.25" stroke={stroke} stroke-width="1.5" />
+          <text x="10" y="115" font-weight="700">When the doors shut</text>
+          <text x="10" y="145">Near</text>
+          <text x="10" y="175">Far</text>
+          <path d="M88 140 H344 M88 170 H344" stroke={stroke} stroke-width="1"
+            stroke-opacity="0.35" fill="none" />
+          <circle cx="304" cy="140" r="6" fill={series.red} />
+          <circle cx="136" cy="170" r="6" fill={series.red} />
+          <text x="88" y="197" font-size="13">Earlier</text>
+          <text x="344" y="197" text-anchor="end" font-size="13">Later →</text>
+        </g>
+      </SvgFigure>
+      <p class="text-base leading-normal">
+        The far door shuts first, then opens before the front of the ladder reaches it.
+        The near door shuts later, after the back has passed. There is no moment when
+        both doors are shut around the ladder.
+      </p>
+    </Panel>
+  </div>
+
+  <Fragment slot="caption">
+    The coloured bars compare lengths <strong>within</strong> each observer's frame;
+    the dots below show the order of the same two door-closing events.
+    The paradox disappears when we stop assuming everyone agrees what happens
+    at the same time.
+  </Fragment>
+</IllustrationFigure>
