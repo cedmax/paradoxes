@@ -16,7 +16,9 @@ import { series, stroke } from "~/data/palette"
         Tortoise
       </span>
     </div>
-    <span id="achilles-zoom-label" class="font-mono tabular-nums">View ×1</span>
+    <span id="achilles-zoom-label" class="font-mono tabular-nums">
+      View ×1
+    </span>
   </div>
 
   <SvgFigure
@@ -26,13 +28,7 @@ import { series, stroke } from "~/data/palette"
     title="Achilles approaches the tortoise through an ever-magnifying view"
     desc="A single horizontal track with blue Achilles and green tortoise markers. Achilles advances to each place the tortoise previously occupied. The tortoise is still ahead each time. The camera magnifies their smaller gap tenfold, without either runner moving backwards in the world. The animation shows four stages and never depicts an overtaking."
   >
-    <path
-      d="M45 125 H555"
-      fill="none"
-      stroke={stroke}
-      stroke-width="1.5"
-      opacity=".55"
-    />
+    <path d="M45 125 H555" fill="none" stroke={stroke} stroke-width="1.5" opacity=".55" />
     <g id="achilles-ticks" aria-hidden="true"></g>
     <line
       id="achilles-gap-line"
@@ -88,7 +84,9 @@ import { series, stroke } from "~/data/palette"
   </SvgFigure>
 
   <div class="flex flex-wrap items-center gap-3">
-    <button type="button" id="achilles-play" class="btn-ghost">Play chase</button>
+    <button type="button" id="achilles-play" class="btn-ghost">
+      Play chase
+    </button>
     <p id="achilles-status" class="text-sm" aria-live="polite">
       Achilles heads for the tortoise's starting position.
     </p>
@@ -96,8 +94,8 @@ import { series, stroke } from "~/data/palette"
 
   <Fragment slot="caption">
     Each time Achilles reaches the tortoise's previous position, another smaller gap remains.
-    The view keeps zooming in. The times shrink too:
-    10 + 1 + 0.1 + 0.01 + … = <strong>11.111… seconds</strong>.
+    The view keeps zooming in. The times shrink too: 10 + 1 + 0.1 + 0.01 + … ={" "}
+    <strong>11.111… seconds</strong>.
   </Fragment>
 </IllustrationFigure>
 
@@ -194,32 +192,26 @@ import { series, stroke } from "~/data/palette"
       const startingTime = stageStartTimes[stage]
       const runTime = gaps[stage] / 10
       const time =
-        view.mode === "run"
-          ? startingTime + runTime * view.progress
-          : startingTime + runTime
+        view.mode === "run" ? startingTime + runTime * view.progress : startingTime + runTime
       const a = 10 * time
       const t = 100 + time
 
       // Zoom and pan the same world. The two positions never move back
       // in ground coordinates; only their projected screen positions change.
       const scale =
-        pixelsPerMetre *
-        10 ** (stage + (view.mode === "zoom" ? smooth(view.progress) : 0))
+        pixelsPerMetre * 10 ** (stage + (view.mode === "zoom" ? smooth(view.progress) : 0))
       let middle = stageMiddle(stage)
       if (view.mode === "zoom") {
         const progress = smooth(view.progress)
         const nextMiddle = stageMiddle(stage + 1)
         const previousScale = pixelsPerMetre * 10 ** stage
-        const previousMidpointOnScreen =
-          screenMiddle + (nextMiddle - middle) * previousScale
+        const previousMidpointOnScreen = screenMiddle + (nextMiddle - middle) * previousScale
         const focusOnScreen =
-          previousMidpointOnScreen +
-          (screenMiddle - previousMidpointOnScreen) * progress
+          previousMidpointOnScreen + (screenMiddle - previousMidpointOnScreen) * progress
         middle = nextMiddle - (focusOnScreen - screenMiddle) / scale
       }
 
-      const screenX = (worldX: number) =>
-        screenMiddle + (worldX - middle) * scale
+      const screenX = (worldX: number) => screenMiddle + (worldX - middle) * scale
       const ax = screenX(a)
       const tx = screenX(t)
       achillesMarker.setAttribute("transform", "translate(" + ax + " 0)")
@@ -229,8 +221,7 @@ import { series, stroke } from "~/data/palette"
 
       // Ruler marks use world-space positions through the same camera.
       const visibleWorldWidth = 510 / scale
-      const interval =
-        10 ** Math.floor(Math.log10(visibleWorldWidth / 10))
+      const interval = 10 ** Math.floor(Math.log10(visibleWorldWidth / 10))
       const leftWorld = middle - 255 / scale
       const firstTick = Math.ceil(leftWorld / interval) * interval
       for (let i = 0; i < ticks.length; i++) {
