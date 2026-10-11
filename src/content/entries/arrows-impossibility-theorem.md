@@ -10,7 +10,8 @@ aka:
     "independence of irrelevant alternatives",
     "social choice",
   ]
-chapter: choice-identity
+chapter: collective
+order: 70
 status: unreconciled
 uniqueness: related
 anchor: condorcet-paradox
@@ -19,8 +20,8 @@ noMaths: true
 written: true
 sourcesVerified: true
 problem: "Is there a fair way to turn everyone's rankings of three or more options into one ranking for the group?"
-claimA: "A fair rule for combining rankings must accept any individual rankings, produce a full, consistent group ranking, respect unanimous preferences, give nobody complete control and ignore other options when comparing a pair."
-claimB: "There is a fair rule for combining rankings of three or more options."
+claimA: "A voting rule that fairly combines rankings of three or more options must exist."
+claimB: "Any rule for three or more options that respects unanimity and ignores irrelevant options gives one voter total control."
 verdict: "No rule for combining rankings meets all these reasonable-sounding demands. Choosing a rule means deciding which demand to relax."
 whatBreaks: "The hope that a ranking rule can meet every demand. The theorem settles the clash; it does not settle which demand fairness requires giving up."
 statusNote: "the theorem is proved. There is no settled choice of which demand to relax, and the main alternatives each have a cost."

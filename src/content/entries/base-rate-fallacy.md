@@ -1,11 +1,11 @@
 ---
 title: False positive paradox
 titleAccent: paradox
-chapter: probability
+chapter: numbers-mislead
 status: explained
 simplification: light
 noMaths: true
-order: 9
+order: 20
 written: true
 aka: ["base rate fallacy", "medical test", "false positive"]
 problem: "A test for a rare condition catches 90% of people who have it. You test positive. Are you probably ill?"

@@ -10,6 +10,7 @@ aka:
     "Nelson Goodman",
   ]
 chapter: belief
+order: 85
 status: unreconciled
 uniqueness: related
 anchor: raven-paradox

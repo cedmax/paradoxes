@@ -10,11 +10,11 @@ aka:
     "supercooling",
     "strong Mpemba effect",
   ]
-chapter: time-physics
+chapter: models
 status: disputed
 simplification: light
 noMaths: true
-order: 101
+order: 120
 written: true
 sourcesVerified: true
 problem: "Can hot water freeze sooner than cooler water put in the same freezer?"

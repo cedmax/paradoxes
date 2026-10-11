@@ -9,13 +9,13 @@ aka:
     "Sam Loyd chessboard",
     "checkerboard paradox",
   ]
-chapter: geometry-arithmetic
+chapter: shapes-sums
 status: explained
 uniqueness: variant
 anchor: missing-square-puzzle
 simplification: light
 noMaths: false
-order: 216
+order: 60
 written: true
 sourcesVerified: true
 problem: "An 8 by 8 square is cut into four pieces that make a 13 by 5 rectangle. Where did the extra square come from?"

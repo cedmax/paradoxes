@@ -9,7 +9,8 @@ aka:
     "independence axiom",
     "sure million",
   ]
-chapter: choice-identity
+chapter: individual
+order: 70
 status: disputed
 uniqueness: related
 anchor: ellsberg-paradox

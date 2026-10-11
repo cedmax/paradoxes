@@ -1,10 +1,10 @@
 ---
 title: "Simpson's paradox"
 titleAccent: "paradox"
-chapter: probability
+chapter: numbers-mislead
 status: explained
 simplification: light
-order: 3
+order: 10
 written: true
 sourcesVerified: true
 reviewed: true

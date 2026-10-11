@@ -1,12 +1,12 @@
 ---
 title: "Liberal paradox"
-chapter: "choice-identity"
+chapter: collective
 status: "disputed"
 uniqueness: "related"
 anchor: "condorcet-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 170
 written: true
 sourcesVerified: true
 reviewed: false

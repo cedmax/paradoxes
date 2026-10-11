@@ -12,7 +12,7 @@ chapter: infinity
 status: explained
 simplification: heavy
 noMaths: false
-order: 207
+order: 140
 written: true
 sourcesVerified: true
 problem: "How can a mathematical world with only enough objects to list still contain a set it calls impossible to list?"
