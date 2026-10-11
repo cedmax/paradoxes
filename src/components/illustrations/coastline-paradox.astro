@@ -63,8 +63,13 @@ const fineCorners = [
       </g>
     </g>
   </SvgFigure>
+  <div class="flex flex-col gap-2 text-base">
+    <p><strong class="text-series-blue">Bigger steps:</strong> 5 segments add up to about <strong>368 units</strong>.</p>
+    <p><strong class="text-series-red">Smaller steps:</strong> 15 segments add up to about <strong>490 units</strong>.</p>
+  </div>
   <Fragment slot="caption">
-    Both routes start and finish at the same points. Smaller steps include bends that larger
-    steps skip, so the measured distance grows.
+    Both measurements use the same endpoints. The sums are calculated from the straight
+    segments in the drawing, in illustrative units, not kilometres of real coastline.
+    Smaller steps include bends the bigger steps skip.
   </Fragment>
 </IllustrationFigure>
