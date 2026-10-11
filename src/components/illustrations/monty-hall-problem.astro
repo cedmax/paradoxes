@@ -16,8 +16,8 @@ const doors = [1, 2, 3]
   lead="You pick door 1. Now try hiding the car behind each door."
 >
   <p class="text-base leading-normal">
-    The host knows where the car is and always opens another door with a goat.
-    You can either stay with door 1 or switch to the only other closed door.
+    The host knows where the car is and always opens another door with a goat. You can either
+    stay with door 1 or switch to the only other closed door.
   </p>
 
   <div class="flex flex-col gap-4">
@@ -42,7 +42,10 @@ const doors = [1, 2, 3]
         </div>
         <p class="text-base leading-normal">
           Host opens door {opened} (goat). Switching takes you to door {switchTo}.
-          <strong> {stayWins ? "Staying wins; switching loses." : "Switching wins; staying loses."}</strong>
+          <strong>
+            {" "}
+            {stayWins ? "Staying wins; switching loses." : "Switching wins; staying loses."}
+          </strong>
         </p>
       </Panel>
     ))}
@@ -51,14 +54,13 @@ const doors = [1, 2, 3]
   <Callout class="flex flex-col gap-2">
     <p class="font-bold">Stay wins 1 out of 3. Switch wins 2 out of 3.</p>
     <p class="text-base leading-normal">
-      Switching wins every time your first choice was wrong. That happens in
-      two of the three equally likely cases.
+      Switching wins every time your first choice was wrong. That happens in two of the three
+      equally likely cases.
     </p>
   </Callout>
 
   <Fragment slot="caption">
-    In the first case the host could open either goat door; door 3 is one example.
-    The result assumes the host knows where the car is, always reveals a goat,
-    and always offers a switch.
+    In the first case the host could open either goat door; door 3 is one example. The result
+    assumes the host knows where the car is, always reveals a goat, and always offers a switch.
   </Fragment>
 </IllustrationFigure>
