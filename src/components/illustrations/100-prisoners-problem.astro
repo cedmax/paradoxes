@@ -3,7 +3,8 @@
   <p class="text-base leading-normal">
     The top of each card is the <strong>box you open</strong>. The bottom is the
     <strong>number found inside</strong>, which tells you which box to open next.
-    Follow the arrows until you return to where you started.
+    Blue cards are boxes you can open. A red card marks a box that would come next,
+    but is beyond the four-opening limit.
   </p>
 
   <div class="flex flex-wrap gap-2" role="group" aria-label="Compare loop lengths">
@@ -91,7 +92,9 @@
 
     const drawLoop = (cycle: number[], contents: readonly number[], i: number) => {
       const succeeds = cycle.length <= 4
-      const colour = succeeds ? "#387a91" : "#bd4b37"
+      const colour = "#387a91"
+      const missedColour = "#bd4b37"
+      const availableOpenings = 4
       const card = document.createElement("section")
       card.className = "flex flex-col gap-2 border-2 border-ink p-3"
       const heading = document.createElement("h3")
@@ -105,7 +108,7 @@
       svg.setAttribute("role", "img")
       const svgTitle = svgNode<SVGTitleElement>("title")
       svgTitle.setAttribute("id", `prisoner-loop-title-${i}`)
-      svgTitle.textContent = `${cycle.length}-box loop: ${cycle.map((n) => `box ${n} contains ${contents[n - 1]}`).join(", ")}. ${succeeds ? "All in this loop succeed." : "All in this loop fail."}`
+      svgTitle.textContent = `${cycle.length}-box loop: ${cycle.map((n, step) => !succeeds && step >= availableOpenings ? `box ${n} not reached in time` : `box ${n} contains ${contents[n - 1]}`).join(", ")}. ${succeeds ? "All in this loop succeed." : "All in this loop fail."}`
       svg.appendChild(svgTitle)
       svg.setAttribute("aria-labelledby", `prisoner-loop-title-${i}`)
 
@@ -133,8 +136,10 @@
         return { box, x: 175 + radius * Math.cos(theta), y: 140 + radius * Math.sin(theta) }
       })
 
-      // Draw connectors first, behind the clearly labelled box cards.
-      for (let j = 0; j < count; j++) {
+      // Show only the arrows that a prisoner can actually follow. For a
+      // five-box loop, the last arrow leads to a red, unopened fifth box.
+      // Don't draw an arrow out of that unopened box back to the start.
+      for (let j = 0; j < (succeeds ? count : availableOpenings); j++) {
         const from = nodes[j]
         const to = nodes[(j + 1) % count]
         const dx = to.x - from.x
@@ -160,14 +165,16 @@
         svg.appendChild(edge)
       }
 
-      for (const node of nodes) {
+      for (const [step, node] of nodes.entries()) {
+        const missed = !succeeds && step >= availableOpenings
+        const nodeColour = missed ? missedColour : colour
         const box = svgNode<SVGRectElement>("rect")
         box.setAttribute("x", String(node.x - 39))
         box.setAttribute("y", String(node.y - 29))
         box.setAttribute("width", "78")
         box.setAttribute("height", "58")
-        box.setAttribute("fill", "var(--color-paper)")
-        box.setAttribute("stroke", colour)
+        box.setAttribute("fill", missed ? "#fbe9e5" : "#e5f0f3")
+        box.setAttribute("stroke", nodeColour)
         box.setAttribute("stroke-width", "2.5")
         svg.appendChild(box)
 
@@ -181,19 +188,29 @@
         svg.appendChild(separator)
 
         addText(svg, `BOX ${node.box}`, node.x, node.y - 8, "var(--color-ink)", 15, "700")
-        addText(svg, `FOUND ${contents[node.box - 1]}`, node.x, node.y + 20, colour, 14, "700")
+        addText(
+          svg,
+          missed ? "NOT REACHED" : `FOUND ${contents[node.box - 1]}`,
+          node.x,
+          node.y + 20,
+          nodeColour,
+          missed ? 10.5 : 14,
+          "700",
+        )
       }
 
       card.appendChild(svg)
       const path = document.createElement("p")
       path.className = "text-base"
-      path.textContent = `Follow: ${[...cycle, cycle[0]].map((n) => `box ${n}`).join(" → ")}`
+      path.textContent = succeeds
+        ? `Follow: ${[...cycle, cycle[0]].map((n) => `box ${n}`).join(" → ")}`
+        : `Prisoner ${cycle[0]}: ${cycle.slice(0, availableOpenings).map((n) => `box ${n}`).join(" → ")} → [box ${cycle[availableOpenings]} not reached in time]`
       card.appendChild(path)
       const explanation = document.createElement("p")
       explanation.className = "text-base leading-normal"
       explanation.textContent = succeeds
         ? `All ${count} prisoners in this loop find their number within four openings.`
-        : `All ${count} prisoners in this loop need ${count} openings. Four are not enough.`
+        : `This loop has ${count} boxes, but each prisoner can open only four. Prisoner ${cycle[0]} cannot reach the red fifth box, where their number would be. The same problem affects everyone in this loop.`
       card.appendChild(explanation)
       return card
     }
