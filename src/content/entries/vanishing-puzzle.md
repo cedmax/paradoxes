@@ -9,13 +9,13 @@ aka:
     "geometrical vanish",
     "concealed distribution",
   ]
-chapter: geometry-arithmetic
+chapter: shapes-sums
 status: explained
 uniqueness: related
 anchor: missing-square-puzzle
 simplification: light
 noMaths: true
-order: 203
+order: 40
 written: true
 sourcesVerified: true
 problem: "Turning part of a picture changes how many people it shows. Where does the missing one go?"
@@ -28,8 +28,8 @@ setup: "A picture is cut into parts. In one arrangement it shows a certain numbe
 whyWrong: "The eye counts complete figures and assumes they stay the same size. But the cut passes through them. Moving the parts joins each figure to a different neighbour’s piece, so the boundaries between figures change."
 resolution:
   - "Nothing vanishes. The same amount of drawing is shared among fewer figures. Each remaining figure gains a little, and those small gains together account for the missing one."
-  - "The diagram shows this with simple bars. In the actual picture, arms, legs and other details make the redistribution harder to notice. Unlike the [missing square puzzle](missing-square-puzzle), no hidden gap in the overall area is needed."
-finePrint: "The bar diagram illustrates the mechanism, rather than reproducing Loyd’s artwork or its exact counts. Its six bars of height five become five bars of height six. Loyd’s rotating puzzles appeared in the 1890s; Get Off the Earth used figures around a disc. An earlier Magic Egg Puzzle could be rearranged to show 8, 9 or 10 eggs. Martin Gardner called the mechanism “concealed distribution” and distinguished vanishing figures from vanishing areas in Mathematics, Magic and Mystery (1956)."
+  - "The turning disc shows this with the original puzzle artwork. Arms, legs and other details make the redistribution harder to notice. Unlike the [missing square puzzle](missing-square-puzzle), no hidden gap in the overall area is needed."
+finePrint: "The interactive illustration uses a copy of the historical artwork, hosted on this site. Loyd’s rotating puzzles appeared in the 1890s; Get Off the Earth used figures around a disc. An earlier Magic Egg Puzzle could be rearranged to show 8, 9 or 10 eggs. Martin Gardner called the mechanism “concealed distribution” and distinguished vanishing figures from vanishing areas in Mathematics, Magic and Mystery (1956)."
 sources:
   - title: "Wikipedia: Vanishing puzzle"
     url: "https://en.wikipedia.org/wiki/Vanishing_puzzle"

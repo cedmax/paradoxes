@@ -1,13 +1,13 @@
 ---
 title: Class size paradox
 titleAccent: paradox
-chapter: probability
+chapter: numbers-mislead
 status: explained
 uniqueness: variant
 anchor: inspection-paradox
 simplification: light
 noMaths: true
-order: 14
+order: 60
 written: true
 aka: ["class size"]
 problem: "Why do students report bigger classes than their college does?"
