@@ -41,8 +41,9 @@ const methods = [
   >
     <title id="bertrand-title">Interactive Bertrand chord comparison</title>
     <desc id="bertrand-desc">
-      A fitted equilateral triangle has one highlighted red side. That side rotates to remain
-      parallel and close to the blue chord. The three modes let you move a chord by distance,
+      A fitted equilateral triangle has one highlighted red side. The triangle turns continuously,
+      keeping that side parallel to the moving chord in the edge-points view, rather than
+      suddenly flipping when the chord crosses the centre. The three modes let you move a chord by distance,
       move an endpoint along the circumference, or position its midpoint within the disc.
       The smaller shaded disc, shown only in the third mode, occupies one quarter of the area.
     </desc>
@@ -238,6 +239,8 @@ const methods = [
     let mode: Mode = "distance"
     let distanceValue = 35
     let edgeValue = 180
+    // Preserve continuous rotation when a dragged endpoint crosses the 0°/360° seam.
+    let edgeAngleUnwrapped = 180
     let midpointX = cx
     let midpointY = cy + 18
 
@@ -297,17 +300,13 @@ const methods = [
       setLine(edgeChord, cx, cy - radius, x, y)
       edgePoint.setAttribute("cx", String(x))
       edgePoint.setAttribute("cy", String(y))
-      const mx = (cx + x) / 2
-      const my = (cy - radius + y) / 2
-      // When the chord is a diameter its midpoint is the centre, so use
-      // the chord's perpendicular instead of the undefined centre-to-midpoint direction.
-      const normalX = mx - cx
-      const normalY = my - cy
-      if (Math.hypot(normalX, normalY) < 0.00001) {
-        rotateTriangle(y - (cy - radius), -(x - cx))
-      } else {
-        rotateTriangle(normalX, normalY)
-      }
+      // The chord's midpoint changes sides at the diameter. Using its direction
+      // made the entire triangle flip by 180 degrees. Instead, follow the
+      // continuously turning perpendicular to the chord (half the endpoint angle).
+      // Past the diameter, the red side can be opposite the midpoint; keeping the
+      // triangle's motion continuous is more useful than instantly swapping sides.
+      const referenceAngle = ((edgeAngleUnwrapped / 2 - 90) * Math.PI) / 180
+      rotateTriangle(Math.cos(referenceAngle), Math.sin(referenceAngle))
       const length = Math.hypot(x - cx, y - (cy - radius))
       const sideLength = radius * Math.sqrt(3)
       const result =
@@ -401,6 +400,7 @@ const methods = [
         updateDistance()
       } else if (mode === "edge") {
         edgeValue = Number(slider.value)
+        edgeAngleUnwrapped = edgeValue
         updateEdge()
       }
     })
@@ -431,7 +431,13 @@ const methods = [
       const p = localPoint(event)
       if (!p) return
       const angle = ((Math.atan2(p.y - cy, p.x - cx) * 180) / Math.PI + 90 + 360) % 360
-      edgeValue = Math.round(angle)
+      const next = Math.round(angle) % 360
+      const previous = ((edgeAngleUnwrapped % 360) + 360) % 360
+      let delta = next - previous
+      if (delta > 180) delta -= 360
+      if (delta < -180) delta += 360
+      edgeAngleUnwrapped += delta
+      edgeValue = next
       slider.value = String(edgeValue)
       updateEdge()
     }
@@ -466,3 +472,11 @@ const methods = [
     refreshMode("distance")
   }
 </script>
+
+<style>
+  button[aria-pressed="true"] {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    border-color: var(--color-ink);
+  }
+</style>
