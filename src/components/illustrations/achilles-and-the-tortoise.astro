@@ -76,19 +76,11 @@ import { series, stroke } from "~/data/palette"
     </text>
   </SvgFigure>
 
-  <div class="flex flex-wrap items-end justify-between gap-4">
-    <div>
-      <p class="text-sm">Gap remaining</p>
-      <p class="font-mono text-2xl font-bold tabular-nums">
-        <span id="achilles-gap">100</span> <span class="text-base font-normal">m</span>
-      </p>
-    </div>
-    <div>
-      <p class="text-sm">Time elapsed</p>
-      <p class="font-mono text-2xl font-bold tabular-nums">
-        <span id="achilles-time">0</span> <span class="text-base font-normal">s</span>
-      </p>
-    </div>
+  <div>
+    <p class="text-sm">Gap remaining</p>
+    <p class="font-mono text-2xl font-bold tabular-nums">
+      <span id="achilles-gap">100</span> <span class="text-base font-normal">m</span>
+    </p>
   </div>
 
   <div class="flex flex-wrap items-center gap-3">
@@ -115,7 +107,6 @@ import { series, stroke } from "~/data/palette"
     const gapLine = find<SVGLineElement>(root, "#achilles-gap-line")
     const ticksGroup = find<SVGGElement>(root, "#achilles-ticks")
     const gapLabel = find<HTMLElement>(root, "#achilles-gap")
-    const timeLabel = find<HTMLElement>(root, "#achilles-time")
     const zoomLabel = find<HTMLElement>(root, "#achilles-zoom-label")
     const status = find<HTMLElement>(root, "#achilles-status")
     const playButton = find<HTMLButtonElement>(root, "#achilles-play")
@@ -125,9 +116,10 @@ import { series, stroke } from "~/data/palette"
     // Achilles is at 10t and the tortoise is at 100+t.
     const gaps = [100, 10, 1, 0.1]
     const stageStartTimes = [0, 10, 11, 11.1]
-    const runDuration = 3500
+    // Four equally paced chase phases and three equally paced zooms: 15 seconds total.
+    const runDuration = 2250
     const zoomDuration = 2000
-    const totalDuration = 4 * runDuration + 3 * zoomDuration
+    const totalDuration = gaps.length * runDuration + (gaps.length - 1) * zoomDuration
     const pixelsPerMetre = 4.2
     const screenMiddle = 300
 
@@ -245,7 +237,6 @@ import { series, stroke } from "~/data/palette"
       }
 
       gapLabel.textContent = showNumber(t - a)
-      timeLabel.textContent = showNumber(time)
       const zoomFactor = Math.round(scale / pixelsPerMetre)
       zoomLabel.textContent = "View ×" + zoomFactor.toLocaleString("en-GB")
 
