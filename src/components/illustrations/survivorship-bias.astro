@@ -1,6 +1,7 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Callout from "~/components/illustration-kit/Callout.astro"
 
 /**
  * Schematic of the classic returning-bomber selection effect.
@@ -69,14 +70,14 @@ const holes = [
 ]
 ---
 
-<IllustrationFigure lead="Where should the armour go?">
+<IllustrationFigure name="survivorship-bias" lead="Where should the armour go?">
   <SvgFigure
     name="survivor-bomber"
     viewBox="0 0 900 660"
     class="mx-auto w-full max-w-3xl"
     xmlns="http://www.w3.org/2000/svg"
-    title="Bullet holes on a bomber that returned, with areas needing reinforcement"
-    desc="A top-down four-engine bomber. Red dots mark bullet holes on the wings, fuselage, and tail of planes that made it home. Dashed blue outlines highlight engines, cockpit, and the central tail area, where there are fewer observed holes. Those critical hits could have stopped other planes returning, so the gaps are where reinforcement matters."
+    title="Bullet holes recorded on returning bombers"
+    desc="Top-down view of a four-engine bomber. Red dots show holes recorded on planes that returned. The holes cluster on the wings, body and tail, with few visible near the engines and cockpit. An optional reveal identifies areas to reinforce."
   >
     <!-- One continuous, recognisable silhouette: wings, fuselage, tail. -->
     <path
@@ -98,7 +99,7 @@ const holes = [
          L871 310 Q871 276 825 271
          L499 232 490 132
          C483 78 469 31 450 30 Z"
-      fill="#f5f0e8"
+      fill="var(--color-paper)"
       stroke="var(--color-stroke)"
       stroke-width="3.5"
       stroke-linejoin="round"
@@ -124,7 +125,7 @@ const holes = [
           width="48"
           height="112"
           rx="22"
-          fill="#f5f0e8"
+          fill="var(--color-paper)"
           stroke="var(--color-stroke)"
           stroke-width="2.5"
         />
@@ -149,7 +150,7 @@ const holes = [
     <!-- Cockpit and forward fuselage. -->
     <path
       d="M425 111 Q450 61 475 111 L477 170 Q450 178 423 170 Z"
-      fill="#dae5e3"
+      fill="var(--color-paper)"
       stroke="var(--color-stroke)"
       stroke-width="2.5"
     />
@@ -173,13 +174,16 @@ const holes = [
         cy={y}
         r="7"
         fill="var(--color-series-red)"
-        stroke="#772b21"
+        stroke="var(--color-stroke)"
         stroke-width="1.2"
       />
     ))}
 
-    <!-- Mark weak spots with sparse observed damage, not hole clusters. -->
+    <!-- The answer stays hidden until the reader chooses to reveal it. -->
     <g
+      data-survivorship-targets
+      visibility="hidden"
+      aria-hidden="true"
       fill="none"
       stroke="var(--color-series-blue)"
       stroke-width="4"
@@ -193,42 +197,56 @@ const holes = [
     </g>
   </SvgFigure>
 
-  <ul class="flex flex-wrap gap-x-6 gap-y-2 text-base">
-    <li class="flex items-center gap-2">
-      <svg aria-hidden="true" viewBox="0 0 20 20" class="h-5 w-5 shrink-0">
-        <circle
-          cx="10"
-          cy="10"
-          r="7"
-          fill="var(--color-series-red)"
-          stroke="#772b21"
-          stroke-width="1.2"
-        />
-      </svg>
+  <div class="flex flex-wrap items-center gap-3 text-base">
+    <span class="flex items-center gap-2">
+      <span class="h-4 w-4 rounded-full bg-series-red" aria-hidden="true"></span>
       Holes on returning planes
-    </li>
-    <li class="flex items-center gap-2">
-      <svg aria-hidden="true" viewBox="0 0 28 20" class="h-5 w-7 shrink-0">
-        <rect
-          x="2"
-          y="3"
-          width="24"
-          height="14"
-          rx="3"
-          fill="none"
-          stroke="var(--color-series-blue)"
-          stroke-width="2.5"
-          stroke-dasharray="6 4"
-        />
-      </svg>
+    </span>
+    <span data-survivorship-key class="hidden items-center gap-2">
+      <span class="h-4 w-6 border-2 border-dashed border-series-blue" aria-hidden="true"></span>
       Areas to reinforce
-    </li>
-  </ul>
+    </span>
+  </div>
+  <button
+    data-survivorship-reveal
+    class="btn-toggle self-start"
+    type="button"
+    aria-pressed="false"
+    aria-controls="survivorship-reason"
+  >
+    Show where to reinforce
+  </button>
+  <Callout id="survivorship-reason" class="hidden" data-survivorship-reason>
+    The blue outlines mark parts with relatively few holes on returning planes, especially the
+    engines and cockpit. Hits there could have stopped other planes from returning. The
+    important evidence is what's <strong>missing</strong> from this sample.
+  </Callout>
 
   <Fragment slot="caption">
-    The holes are on planes that <strong>came back</strong>. Few holes near the engines and
-    cockpit could mean hits there stopped other planes from returning. Reinforcing the most
-    visibly damaged parts would miss the danger. This is a schematic illustration, not
+    These are holes recorded on planes that <strong>came back</strong>. Choose where to add
+    armour, then reveal the suggested locations. This is a schematic illustration, not
     historical bullet-hole data.
   </Fragment>
 </IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("survivorship-bias")
+  if (root) {
+    const button = find<HTMLButtonElement>(root, "[data-survivorship-reveal]")
+    const targets = find<SVGGElement>(root, "[data-survivorship-targets]")
+    const key = find<HTMLElement>(root, "[data-survivorship-key]")
+    const reason = find<HTMLElement>(root, "[data-survivorship-reason]")
+    button.addEventListener("click", () => {
+      const revealed = button.getAttribute("aria-pressed") !== "true"
+      button.setAttribute("aria-pressed", String(revealed))
+      button.textContent = revealed ? "Hide reinforcement areas" : "Show where to reinforce"
+      targets.setAttribute("visibility", revealed ? "visible" : "hidden")
+      targets.setAttribute("aria-hidden", String(!revealed))
+      key.classList.toggle("hidden", !revealed)
+      key.classList.toggle("flex", revealed)
+      reason.classList.toggle("hidden", !revealed)
+    })
+  }
+</script>
