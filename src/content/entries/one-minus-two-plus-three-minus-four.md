@@ -8,7 +8,7 @@ uniqueness: variant
 anchor: sum-of-all-whole-numbers
 simplification: heavy
 noMaths: false
-order: 214
+order: 180
 written: true
 sourcesVerified: true
 problem: "How can 1 − 2 + 3 − 4 + … be said to equal one quarter, when its running totals swing wider and wider?"

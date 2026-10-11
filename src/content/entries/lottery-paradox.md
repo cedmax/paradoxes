@@ -4,7 +4,7 @@ titleAccent: "paradox"
 chapter: belief
 status: disputed
 simplification: light
-order: 2
+order: 40
 written: true
 problem: "If you believe every ticket will lose, do you believe that no ticket will win?"
 claimA: "It is reasonable to believe each ticket will lose, since each almost certainly will."
