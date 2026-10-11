@@ -125,8 +125,8 @@ import { series, stroke } from "~/data/palette"
     // Achilles is at 10t and the tortoise is at 100+t.
     const gaps = [100, 10, 1, 0.1]
     const stageStartTimes = [0, 10, 11, 11.1]
-    const runDuration = 1600
-    const zoomDuration = 1100
+    const runDuration = 3500
+    const zoomDuration = 2000
     const totalDuration = 4 * runDuration + 3 * zoomDuration
     const pixelsPerMetre = 4.2
     const screenMiddle = 300
@@ -149,7 +149,7 @@ import { series, stroke } from "~/data/palette"
     let announcedStage = ""
 
     const smooth = (value: number) => value * value * (3 - 2 * value)
-    const showNumber = (value: number) => String(Number(value.toFixed(5)))
+    const showNumber = (value: number) => String(Number(value.toFixed(2)))
     const stageMiddle = (stage: number) => {
       const time = stageStartTimes[stage]
       return (10 * time + 100 + time) / 2
