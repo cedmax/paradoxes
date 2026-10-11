@@ -12,12 +12,22 @@ permissions:
 
 jobs:
   checks:
-    name: ${{ matrix.script }}
+    name: ${{ matrix.name }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        script: [lint, check, knip, build]
+        include:
+          - name: lint
+            run: pnpm lint
+          - name: check
+            run: pnpm check
+          - name: format
+            run: pnpm exec prettier --check .
+          - name: knip
+            run: pnpm knip
+          - name: build
+            run: pnpm build
     steps:
       - uses: actions/checkout@v5
 
@@ -30,4 +40,4 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm ${{ matrix.script }}
+      - run: ${{ matrix.run }}
