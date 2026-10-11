@@ -1,55 +1,93 @@
 ---
-const rows = [
-  { seats: 10, a: 4, b: 4, c: 2 },
-  { seats: 11, a: 5, b: 5, c: 1 },
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Callout from "~/components/illustration-kit/Callout.astro"
+import { series } from "~/data/palette"
+
+const states = ["A", "B", "C"]
+const colours = [series.blue, series.gold, series.red]
+const examples = [
+  {
+    seats: 10,
+    left: 1,
+    fractions: [2 / 7, 2 / 7, 3 / 7],
+    winners: [false, false, true],
+    result: "A gets 4, B gets 4, C gets 2.",
+    explanation: "C has the biggest leftover fraction, so C gets the one remaining seat.",
+    desc: "For 10 seats, A and B each have about 0.29 left over, while C has about 0.43. C wins the one extra seat, resulting in A 4, B 4, C 2.",
+  },
+  {
+    seats: 11,
+    left: 2,
+    fractions: [5 / 7, 5 / 7, 4 / 7],
+    winners: [true, true, false],
+    result: "A gets 5, B gets 5, C gets 1.",
+    explanation: "A and B now have the biggest leftover fractions, so they take the two remaining seats.",
+    desc: "For 11 seats, A and B each have about 0.71 left over, while C has about 0.57. A and B win the two extra seats, resulting in A 5, B 5, C 1.",
+  },
 ]
 ---
 
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">A parliament gets one more seat. State C loses one.</p>
-  <div class="overflow-x-auto border-2 border-ink">
-    <table class="w-full text-base">
-      <thead>
-        <tr class="border-b-2 border-ink">
-          <th class="px-2 py-3 text-left sm:px-3">Total seats</th>
-          <th class="px-2 py-3 sm:px-3">State A</th>
-          <th class="px-2 py-3 sm:px-3">State B</th>
-          <th class="px-2 py-3 sm:px-3">State C</th>
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map(({ seats, a, b, c }) => (
-          <tr class="border-b border-ink last:border-0">
-            <th class="px-2 py-3 text-left sm:px-3">{seats}</th>
-            <td class="px-2 py-3 text-center sm:px-3">{a}</td>
-            <td class="px-2 py-3 text-center sm:px-3">{b}</td>
-            <td class="px-2 py-3 text-center font-bold sm:px-3">{c}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+<IllustrationFigure
+  name="apportionment-paradox"
+  lead="Adding one seat changes who wins the leftover seats."
+>
+  <p class="text-base leading-normal">
+    States A, B and C have populations in the fixed ratio 6 : 6 : 2.
+    In both examples, first give them their whole shares: 4 seats for A,
+    4 for B and 1 for C. Then award the remaining seats to the largest
+    leftover fractions.
+  </p>
+
+  <div class="flex flex-col gap-4">
+    {examples.map(({ seats, left, fractions, winners, result, explanation, desc }) => (
+      <Panel title={`${seats} seats in total`} class="flex flex-col gap-2">
+        <p class="text-base leading-normal">
+          After the first 9 seats are assigned, <strong>{left} {left === 1 ? "seat is" : "seats are"} left.</strong>
+        </p>
+        <SvgFigure
+          name={`apportionment-remainders-${seats}`}
+          class="w-full max-w-md"
+          viewBox="0 0 360 157"
+          title={`Leftover fractions when sharing ${seats} seats`}
+          desc={desc}
+        >
+          <text x="10" y="17" font-size="15" font-weight="700" fill="currentColor">
+            Leftover fraction for each state
+          </text>
+          {states.map((state, i) => (
+            <g>
+              <text x="10" y={45 + i * 36} font-size="16" font-weight="700"
+                fill="currentColor">{state}</text>
+              <rect x="37" y={29 + i * 36} width={fractions[i] * 208}
+                height="20" fill={colours[i]} />
+              <text x="200" y={45 + i * 36} font-size="14" font-weight="700"
+                fill="currentColor">
+                {fractions[i].toFixed(2)}
+              </text>
+              {winners[i] && (
+                <text x="269" y={45 + i * 36} font-size="14" font-weight="700"
+                  fill="currentColor">+1 seat</text>
+              )}
+            </g>
+          ))}
+        </SvgFigure>
+        <p class="text-base leading-normal">{explanation}</p>
+        <p class="font-bold">{result}</p>
+      </Panel>
+    ))}
   </div>
-  <div class="flex flex-col gap-2 text-base">
-    <div class="grid grid-cols-[4rem_1fr] items-center gap-2">
-      <span>10 seats</span>
-      <div class="flex h-9">
-        <div class="bg-[#387a91] flex-[4]"></div>
-        <div class="bg-[#d7a13d] flex-[4]"></div>
-        <div class="bg-[#bd4b37] flex-[2]"></div>
-      </div>
-    </div>
-    <div class="grid grid-cols-[4rem_1fr] items-center gap-2">
-      <span>11 seats</span>
-      <div class="flex h-9">
-        <div class="bg-[#387a91] flex-[5]"></div>
-        <div class="bg-[#d7a13d] flex-[5]"></div>
-        <div class="bg-[#bd4b37] flex-1"></div>
-      </div>
-    </div>
-  </div>
-  <figcaption class="text-base leading-normal">
-    Populations are in the fixed ratio 6 : 6 : 2. With the largest-remainder method, 10 seats
-    divide 4, 4 and 2, while 11 divide 5, 5 and 1. The overall pie grows, but State C’s share
-    falls by a whole seat.
-  </figcaption>
-</figure>
+
+  <Callout>
+    <strong>State C goes from 2 seats to 1</strong>, even though the
+    parliament grows from 10 seats to 11. Its population has not changed:
+    the ranking of the leftover fractions has.
+  </Callout>
+
+  <Fragment slot="caption">
+    The bars show the fractions left after assigning whole seats, not
+    the states' population sizes. The largest-remainder rule produces
+    this result without any change in population.
+  </Fragment>
+</IllustrationFigure>
