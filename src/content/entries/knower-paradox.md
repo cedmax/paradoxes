@@ -1,12 +1,12 @@
 ---
 title: "Knower paradox"
-chapter: "self-reference"
+chapter: self-reference
 status: "disputed"
 uniqueness: "related"
 anchor: "liar-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 150
 written: true
 sourcesVerified: true
 reviewed: false

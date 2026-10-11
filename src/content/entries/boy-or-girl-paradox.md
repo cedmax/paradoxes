@@ -8,7 +8,7 @@ uniqueness: related
 anchor: monty-hall-problem
 simplification: light
 noMaths: true
-order: 7
+order: 40
 written: true
 sourcesVerified: true
 problem: "A parent has two children and at least one is a boy. What are the odds that both are?"
