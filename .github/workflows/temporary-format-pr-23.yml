@@ -1,0 +1,33 @@
+name: Temporary format PR 23
+on:
+  push:
+    branches:
+      - illustration/monty-hall-problem-20261010
+    paths:
+      - .github/workflows/temporary-format-pr-23.yml
+permissions:
+  contents: write
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Format Monty Hall illustration
+        run: pnpm exec prettier --write src/components/illustrations/monty-hall-problem.astro
+      - name: Commit and push formatting
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/components/illustrations/monty-hall-problem.astro
+          if ! git diff --cached --quiet; then
+            git commit -m "Format 100-door Monty Hall illustration with Prettier"
+            git push origin HEAD:illustration/monty-hall-problem-20261010
+          fi
