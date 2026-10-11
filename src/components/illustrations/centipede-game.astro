@@ -4,10 +4,10 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
 
 const turns = [
-  { player: "Alice", large: 4, small: 1, y: 35 },
-  { player: "Bob", large: 8, small: 2, y: 95 },
-  { player: "Alice", large: 16, small: 4, y: 155 },
-  { player: "Bob", large: 32, small: 8, y: 215 },
+  { player: "Alice", large: 4, small: 1, y: 32 },
+  { player: "Bob", large: 8, small: 2, y: 90 },
+  { player: "Alice", large: 16, small: 4, y: 148 },
+  { player: "Bob", large: 32, small: 8, y: 206 },
 ]
 ---
 
@@ -24,7 +24,7 @@ const turns = [
   <SvgFigure
     name="centipede-four-turns"
     class="mx-auto w-full max-w-md"
-    viewBox="0 0 360 291"
+    viewBox="0 0 360 238"
     title="Four-turn game showing Alice and Bob choosing between taking coins and passing"
     desc="Turn 1: Alice sees piles of 4 and 1 coins. Turn 2, if Alice passes: Bob sees 8 and 2. Turn 3, if Bob passes: Alice sees 16 and 4. Turn 4, if Alice passes: Bob sees 32 and 8. At each turn, taking means keeping the bigger pile and giving the smaller one to the other player. Passing doubles the piles and moves to the next turn. If Bob passes on the final turn, the game ends with Alice receiving 64 and Bob 16. Bob therefore prefers taking 32."
   >
@@ -32,9 +32,9 @@ const turns = [
       <g>
         <rect
           x="8"
-          y={y - 21}
+          y={y - 18}
           width="344"
-          height="46"
+          height="40"
           fill={i === 3 ? series.gold : series.blue}
           fill-opacity={i === 3 ? ".22" : ".09"}
           stroke={stroke}
@@ -55,12 +55,12 @@ const turns = [
         {i < 3 && (
           <g>
             <path
-              d={`M180 ${y + 26} V${y + 39} m-4 -5 4 5 4 -5`}
+              d={`M180 ${y + 23} V${y + 35} m-4 -5 4 5 4 -5`}
               fill="none"
               stroke={series.blue}
               stroke-width="1.5"
             />
-            <text x="190" y={y + 37} font-size="12" fill="currentColor">
+            <text x="190" y={y + 34} font-size="12" fill="currentColor">
               Pass: double
             </text>
           </g>
