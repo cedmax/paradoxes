@@ -183,27 +183,30 @@ const doors = [
         y="49"
         width="60"
         height="84"
-        fill="none"
-        stroke={stroke}
-        stroke-width="2"
-        stroke-dasharray="4 3"
-      />
-      <path
-        d="M158 49 L127 66 L127 117 L158 133 Z"
+        fill={series.red}
+        fill-opacity=".08"
         stroke={stroke}
         stroke-width="2.5"
+      />
+      <path
+        d="M158 49 H130 V133 H158 Z"
         fill={series.red}
         fill-opacity=".18"
+        stroke={stroke}
+        stroke-width="2.5"
       />
-      <line
-        x1="137"
-        y1="69"
-        x2="137"
-        y2="113"
+      <rect
+        x="136"
+        y="57"
+        width="16"
+        height="68"
+        fill="none"
         stroke={stroke}
         stroke-width="1"
-        stroke-opacity=".5"
+        stroke-opacity=".35"
       />
+      <circle cx="143" cy="96" r="2" fill={stroke} />
+      <line x1="158" y1="49" x2="158" y2="133" stroke={stroke} stroke-width="3" />
       <g text-anchor="middle" fill="currentColor" font-weight="700">
         <text x="188" y="94" font-size="13">
           GOAT
