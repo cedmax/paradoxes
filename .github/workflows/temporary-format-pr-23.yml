@@ -23,6 +23,7 @@ jobs:
       - name: Format changed files
         run: |
           pnpm exec prettier --write \
+          '.prettierrc' \
           'CLAUDE.md' \
           'src/components/illustrations/100-prisoners-problem.astro' \
           'src/components/illustrations/allais-paradox.astro' \
@@ -38,7 +39,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add 'CLAUDE.md' 'src/components/illustrations/100-prisoners-problem.astro' 'src/components/illustrations/allais-paradox.astro' 'src/components/illustrations/bertrands-chord-paradox.astro' 'src/components/illustrations/coin-rotation-paradox.astro' 'src/components/illustrations/ladder-paradox.astro' 'src/components/illustrations/monty-hall-problem.astro' 'src/components/illustrations/staircase-paradox.astro' 'src/components/illustrations/survivorship-bias.astro' 'src/pages/entries/[slug].astro' 'src/pages/index.astro'
+          git add '.prettierrc' 'CLAUDE.md' 'src/components/illustrations/100-prisoners-problem.astro' 'src/components/illustrations/allais-paradox.astro' 'src/components/illustrations/bertrands-chord-paradox.astro' 'src/components/illustrations/coin-rotation-paradox.astro' 'src/components/illustrations/ladder-paradox.astro' 'src/components/illustrations/monty-hall-problem.astro' 'src/components/illustrations/staircase-paradox.astro' 'src/components/illustrations/survivorship-bias.astro' 'src/pages/entries/[slug].astro' 'src/pages/index.astro'
           if ! git diff --cached --quiet; then
             git commit -m "Format stable Astro 7 inline spaces"
             git push origin HEAD:illustration/monty-hall-problem-20261010
