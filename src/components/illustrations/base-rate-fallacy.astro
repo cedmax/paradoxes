@@ -41,8 +41,12 @@ const trueShare = (truePositive / positive) * 100
       />
     ))}
     <g fill="currentColor" font-size="14" font-weight="700">
-      <text x="26" y="183">1 blue square: 100 have it</text>
-      <text x="294" y="195" text-anchor="end">99 pale squares: 9,900 do not</text>
+      <text x="26" y="183">
+        1 blue square: 100 have it
+      </text>
+      <text x="294" y="195" text-anchor="end">
+        99 pale squares: 9,900 do not
+      </text>
     </g>
   </SvgFigure>
 
@@ -66,22 +70,48 @@ const trueShare = (truePositive / positive) * 100
     desc="Ninety real positives come from the 100 people with the condition, and 891 false alarms come from the 9,900 without it. The two arrows feed one bar of 981 positive results. The blue portion is only 9.2 percent of the bar, with most of the bar in red."
   >
     <g font-size="14" fill="currentColor">
-      <text x="13" y="17" font-weight="700">90 real</text>
-      <text x="347" y="17" text-anchor="end" font-weight="700">891 false alarms</text>
+      <text x="13" y="17" font-weight="700">
+        90 real
+      </text>
+      <text x="347" y="17" text-anchor="end" font-weight="700">
+        891 false alarms
+      </text>
     </g>
-    <path d="M51 25 V43 L39 60" stroke={series.blue}
-      stroke-width="3" fill="none" stroke-linejoin="round" />
-    <path d="M307 25 V43 L275 60" stroke={series.red}
-      stroke-width="3" fill="none" stroke-linejoin="round" />
+    <path
+      d="M51 25 V43 L39 60"
+      stroke={series.blue}
+      stroke-width="3"
+      fill="none"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M307 25 V43 L275 60"
+      stroke={series.red}
+      stroke-width="3"
+      fill="none"
+      stroke-linejoin="round"
+    />
     <g fill="currentColor">
       <text x="10" y="82" font-size="16" font-weight="700">
         One pool: 981 positive tests
       </text>
       <rect x="10" y="91" width="340" height="30" fill={series.red} />
-      <rect x="10" y="91" width={(340 * truePositive) / positive}
-        height="30" fill={series.blue} />
-      <rect x="10" y="91" width="340" height="30" stroke={stroke}
-        fill="none" stroke-width="1.5" />
+      <rect
+        x="10"
+        y="91"
+        width={(340 * truePositive) / positive}
+        height="30"
+        fill={series.blue}
+      />
+      <rect
+        x="10"
+        y="91"
+        width="340"
+        height="30"
+        stroke={stroke}
+        fill="none"
+        stroke-width="1.5"
+      />
       <text x="10" y="146" font-size="15" font-weight="700">
         Just {trueShare.toFixed(1)}% are genuine
       </text>
@@ -94,16 +124,15 @@ const trueShare = (truePositive / positive) * 100
   <Callout class="flex flex-col gap-2">
     <p class="font-bold">90 real positives. 891 false alarms.</p>
     <p class="text-base leading-normal">
-      Even a 9% mistake rate creates lots of false alarms when applied to
-      a huge group of healthy people. Of the people who test positive,
-      only about <strong>9 in 100</strong> have the condition.
+      Even a 9% mistake rate creates lots of false alarms when applied to a huge group of
+      healthy people. Of the people who test positive, only about <strong>9 in 100</strong> have
+      the condition.
     </p>
   </Callout>
 
   <Fragment slot="caption">
-    Blue always means a real case; red means a false positive. The original
-    10,000-person group and the 981-positive-test pool are different totals,
-    so their bars are not on the same numerical scale. These numbers are
-    invented for the paradox, not a real medical test.
+    Blue always means a real case; red means a false positive. The original 10,000-person group
+    and the 981-positive-test pool are different totals, so their bars are not on the same
+    numerical scale. These numbers are invented for the paradox, not a real medical test.
   </Fragment>
 </IllustrationFigure>
