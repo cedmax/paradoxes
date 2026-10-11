@@ -1,0 +1,39 @@
+name: Temporary sync main for PR 26
+on:
+  push:
+    branches:
+      - illustration/bells-spaceship-paradox-20261010
+    paths:
+      - .github/workflows/temporary-sync-pr-26.yml
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - name: Merge latest main into PR branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-ff -m "Merge main into PR 26 illustration branch" origin/main
+      - run: pnpm install --frozen-lockfile
+      - name: Format updated illustration
+        run: pnpm exec prettier --write src/components/illustrations/bells-spaceship-paradox.astro
+      - name: Commit formatting if needed
+        run: |
+          git add src/components/illustrations/bells-spaceship-paradox.astro
+          if ! git diff --cached --quiet; then
+            git commit -m "Format bells-spaceship-paradox illustration against Astro 7"
+          fi
+      - name: Push branch including main
+        run: git push origin HEAD:illustration/bells-spaceship-paradox-20261010
