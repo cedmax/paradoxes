@@ -1,0 +1,332 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SideBySide from "~/components/illustration-kit/SideBySide.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import Callout from "~/components/illustration-kit/Callout.astro"
+import Disclosure from "~/components/illustration-kit/Disclosure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure name="twin-paradox" lead="One round trip, two clocks">
+  <p class="text-base leading-normal">
+    Stella flies to a star four light-years away at 80% of light speed, then returns.
+    Terence stays on Earth. Move through the journey and watch how much time each clock records.
+  </p>
+
+  <SideBySide>
+    <Panel class="flex flex-col gap-2">
+      <div class="flex items-center gap-2">
+        <span class="h-3 w-3 shrink-0 rounded-full bg-series-blue" aria-hidden="true"></span>
+        <p class="font-bold">Terence · Earth</p>
+      </div>
+      <p class="flex items-baseline gap-1 whitespace-nowrap font-mono text-2xl font-bold tabular-nums sm:text-3xl">
+        <span id="twin-earth-clock">0.0</span> <span class="text-xs font-normal sm:text-base">years</span>
+      </p>
+      <div class="h-3 border border-ink" aria-hidden="true">
+        <div id="twin-earth-bar" class="h-full bg-series-blue" style="width: 0%;"></div>
+      </div>
+      <p class="text-sm">Stays on Earth for the whole journey.</p>
+    </Panel>
+    <Panel class="flex flex-col gap-2">
+      <div class="flex items-center gap-2">
+        <span class="h-3 w-3 shrink-0 rounded-full bg-series-red" aria-hidden="true"></span>
+        <p class="font-bold">Stella · spaceship</p>
+      </div>
+      <p class="flex items-baseline gap-1 whitespace-nowrap font-mono text-2xl font-bold tabular-nums sm:text-3xl">
+        <span id="twin-ship-clock">0.0</span> <span class="text-xs font-normal sm:text-base">years</span>
+      </p>
+      <div class="h-3 border border-ink" aria-hidden="true">
+        <div id="twin-ship-bar" class="h-full bg-series-red" style="width: 0%;"></div>
+      </div>
+      <p class="text-sm">Travels out, turns, and returns.</p>
+    </Panel>
+  </SideBySide>
+  <p class="text-sm">Both bars use the same scale: 0 to 10 years.</p>
+
+  <SvgFigure
+    name="twin-route"
+    class="mx-auto w-full max-w-2xl"
+    viewBox="0 0 560 190"
+    title="Stella's round trip between Earth and a star"
+    desc="In Earth's frame the star is four light-years away. Stella's red spaceship travels from Earth to the star and back. Terence stays on Earth. The two clocks update as the journey slider moves."
+  >
+    <text x="280" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="currentColor">
+      4 light-years · measured from Earth
+    </text>
+    <line x1="65" y1="88" x2="495" y2="88" stroke={stroke} stroke-width="2"
+      stroke-dasharray="6 8" opacity=".45" />
+    <line id="twin-distance-travelled" x1="65" y1="88" x2="65" y2="88"
+      stroke={series.red} stroke-width="3.5" opacity=".5" />
+    <circle cx="65" cy="88" r="12" fill={series.blue} />
+    <circle cx="65" cy="88" r="5" fill="var(--color-paper)" />
+    <path d="M495 72 L499 83 L511 83 L501 91 L505 103 L495 96 L485 103 L489 91 L479 83 L491 83 Z"
+      fill={series.gold} stroke={stroke} stroke-width="1.2" stroke-linejoin="round" />
+    <g id="twin-ship" transform="translate(65 88)">
+      <circle r="21" fill="var(--color-paper)" opacity=".95" />
+      <path d="M-14 -12 L14 0 L-14 12 L-7 0 Z"
+        fill={series.red} stroke={stroke} stroke-width="1.3" stroke-linejoin="round" />
+    </g>
+    <g font-size="17" fill="currentColor">
+      <text x="65" y="139" text-anchor="middle" font-weight="700">Earth</text>
+      <text x="65" y="160" text-anchor="middle" font-size="14">Terence</text>
+      <text x="495" y="139" text-anchor="middle" font-weight="700">Star</text>
+      <text x="495" y="160" text-anchor="middle" font-size="14">Turn here</text>
+      <text id="twin-ship-caption" x="280" y="184" text-anchor="middle" font-size="14">
+        Stella starts at Earth
+      </text>
+    </g>
+  </SvgFigure>
+
+  <Slider
+    id="twin-time-slider"
+    label="Journey time in Earth's frame"
+    min={0}
+    max={10}
+    step={0.1}
+    value={0}
+    startLabel="Departure"
+    endLabel="Reunion"
+    describedby="twin-slider-readout"
+    valuetext="Departure, 0 Earth years and 0 ship years"
+  >
+    <p id="twin-slider-readout" class="text-base">
+      Time passed on Earth: <span id="twin-slider-value" class="font-mono tabular-nums">0.0</span> years
+    </p>
+  </Slider>
+  <div class="flex flex-wrap gap-2">
+    <button id="twin-play" class="btn-ghost" type="button">Play journey</button>
+    <button type="button" class="btn-ghost" data-twin-jump="0">Departure</button>
+    <button type="button" class="btn-ghost" data-twin-jump="5">Turnaround</button>
+    <button type="button" class="btn-ghost" data-twin-jump="10">Reunion</button>
+  </div>
+
+  <Callout>
+    <p id="twin-journey-status" class="font-bold" aria-live="polite">
+      Departure · both clocks read zero.
+    </p>
+    <p id="twin-journey-note" class="leading-normal">
+      Terence stays still relative to Earth. Stella is about to travel out and back.
+    </p>
+  </Callout>
+
+  <Fragment slot="caption">
+    This is the journey as measured in Earth's frame. Each leg takes five Earth years,
+    but Stella's moving clock records only three. At the reunion, Terence has aged
+    10 years and Stella 6. Stella changes direction at the star, so the twins' journeys
+    are not mirror images. The turn does not itself make her clock lose time:
+    the age difference comes from their different paths through space and time.
+    The example treats the turn as instantaneous.
+  </Fragment>
+
+  <div slot="after" id="twin-symmetry">
+    <Disclosure summary="Why isn't it symmetric? What changes when Stella turns?">
+      <div class="mt-3 flex flex-col gap-4">
+        <p class="text-base leading-normal">
+          At the star, Stella's own clock reads 3 years. As she switches from travelling
+          away to travelling home, she changes which moment on distant Earth she calls <strong>“now”</strong>.
+        </p>
+        <SideBySide>
+          <Panel accent="blue" class="flex flex-col gap-2">
+            <p class="font-bold">Before turning</p>
+            <p class="text-sm">Stella's outward viewpoint</p>
+            <p class="font-mono text-3xl font-bold tabular-nums">
+              1.8 <span class="text-base font-normal">years</span>
+            </p>
+            <p class="text-base">The moment she counts as "now" on Earth.</p>
+          </Panel>
+          <Panel accent="red" class="flex flex-col gap-2">
+            <p class="font-bold">After turning</p>
+            <p class="text-sm">Stella's homeward viewpoint</p>
+            <p class="font-mono text-3xl font-bold tabular-nums">
+              8.2 <span class="text-base font-normal">years</span>
+            </p>
+            <p class="text-base">The new moment she counts as "now" on Earth.</p>
+          </Panel>
+        </SideBySide>
+
+        <SvgFigure
+          name="twin-simultaneity"
+          class="w-full max-w-xl"
+          viewBox="0 0 500 104"
+          title="Two different moments Stella calls now on distant Earth"
+          desc="Stella's outward viewpoint assigns Earth time 1.8 years to her turnaround, and her homeward viewpoint assigns 8.2 years. Earth's clock itself continues normally."
+        >
+          <text x="250" y="16" text-anchor="middle" fill="currentColor" font-size="14">
+            Earth's timeline · 0 to 10 years
+          </text>
+          <path d="M 32 58 H 468" stroke={stroke} stroke-width="2" opacity=".4" />
+          {[0, 2, 4, 6, 8, 10].map((n) => (
+            <g>
+              <path d={`M ${32 + n * 43.6} 53 v 10`}
+                stroke={stroke} stroke-width="1.2" opacity=".5" />
+              <text x={32 + n * 43.6} y="87" text-anchor="middle" fill="currentColor" font-size="13">
+                {n}
+              </text>
+            </g>
+          ))}
+          <circle cx={32 + 1.8 * 43.6} cy="58" r="7" fill={series.blue} />
+          <circle cx={32 + 8.2 * 43.6} cy="58" r="7" fill={series.red} />
+          <text x={32 + 1.8 * 43.6} y="43" text-anchor="middle"
+            fill={series.blue} font-size="14" font-weight="700">1.8</text>
+          <text x={32 + 8.2 * 43.6} y="43" text-anchor="middle"
+            fill={series.red} font-size="14" font-weight="700">8.2</text>
+        </SvgFigure>
+
+        <p class="text-base leading-normal">
+          <strong>Nothing on Earth jumps forward.</strong> The live Earth clock above shows
+          5 years at Stella's turnaround because it uses Earth's viewpoint.
+          The 1.8 and 8.2 are not clock readings she receives from Earth; they are
+          different answers to which distant Earth moment is happening "now".
+          This is why Stella cannot treat the whole trip as one steady motion.
+        </p>
+      </div>
+    </Disclosure>
+  </div>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const twinDemo = illustrationRoot("twin-paradox")
+  if (twinDemo) {
+    const slider = find<HTMLInputElement>(twinDemo, "#twin-time-slider")
+    const sliderReadout = find<HTMLElement>(twinDemo, "#twin-slider-value")
+    const earthClock = find<HTMLElement>(twinDemo, "#twin-earth-clock")
+    const shipClock = find<HTMLElement>(twinDemo, "#twin-ship-clock")
+    const earthBar = find<HTMLElement>(twinDemo, "#twin-earth-bar")
+    const shipBar = find<HTMLElement>(twinDemo, "#twin-ship-bar")
+    const ship = find<SVGGElement>(twinDemo, "#twin-ship")
+    const travelled = find<SVGLineElement>(twinDemo, "#twin-distance-travelled")
+    const shipCaption = find<SVGTextElement>(twinDemo, "#twin-ship-caption")
+    const status = find<HTMLElement>(twinDemo, "#twin-journey-status")
+    const note = find<HTMLElement>(twinDemo, "#twin-journey-note")
+    const playButton = find<HTMLButtonElement>(twinDemo, "#twin-play")
+    const symmetryPanel = find<HTMLDetailsElement>(twinDemo, "#twin-symmetry details")
+    const jumps = Array.from(twinDemo.querySelectorAll<HTMLButtonElement>("[data-twin-jump]"))
+
+    // In Earth's frame Stella travels at 0.8c.
+    // The time-dilation factor sqrt(1 - 0.8^2) is 0.6.
+    const shipClockRate = 0.6
+    const totalEarthYears = 10
+    const turnEarthYears = 5
+    const earthX = 65
+    const starX = 495
+    const animationDuration = 14000
+    let time = 0
+    let frame: number | null = null
+    let animationStart: number | null = null
+    let startingTime = 0
+    let lastStage = ""
+    let hasReachedTurn = false
+
+    const stageFor = (t: number) =>
+      t === 0 ? "Departure" : t < 5 ? "Outbound" : t === 5 ? "Turnaround" : t < 10 ? "Returning" : "Reunion"
+
+    const render = (earthYears: number) => {
+      const previousTime = time
+      time = Math.max(0, Math.min(totalEarthYears, earthYears))
+      // Reveal the explanation once the slider, a jump, or playback passes the star.
+      // Keep it available thereafter, but do not reopen it if the reader closes it.
+      if (!hasReachedTurn && previousTime < turnEarthYears && time >= turnEarthYears) {
+        symmetryPanel.open = true
+        hasReachedTurn = true
+      }
+      const shipYears = shipClockRate * time
+      const stage = stageFor(time)
+      const progress = time <= turnEarthYears
+        ? time / turnEarthYears
+        : (totalEarthYears - time) / turnEarthYears
+      const x = earthX + (starX - earthX) * progress
+      const direction = time > turnEarthYears ? 180 : 0
+
+      ship.setAttribute("transform", `translate(${x} 88) rotate(${direction})`)
+      travelled.setAttribute("x2", String(x))
+      earthClock.textContent = time.toFixed(1)
+      shipClock.textContent = shipYears.toFixed(1)
+      earthBar.style.width = `${(time / totalEarthYears) * 100}%`
+      shipBar.style.width = `${(shipYears / totalEarthYears) * 100}%`
+      slider.value = String(time)
+      sliderReadout.textContent = time.toFixed(1)
+
+      shipCaption.textContent =
+        stage === "Departure" ? "Stella starts at Earth"
+        : stage === "Turnaround" ? "Stella reaches the star and turns"
+        : stage === "Reunion" ? "Stella returns to Earth"
+        : stage === "Outbound" ? "Stella is flying away from Earth"
+        : "Stella is flying back to Earth"
+
+      // Only announce the stage transition during playback, not every animation frame.
+      if (stage !== lastStage) {
+        lastStage = stage
+        status.textContent =
+          stage === "Departure" ? "Departure · both clocks read zero."
+          : stage === "Outbound" ? "Outward journey · Stella's clock gains less time."
+          : stage === "Turnaround" ? "At the star · 5 Earth years, 3 ship years."
+          : stage === "Returning" ? "Return journey · Stella's clock keeps ticking normally for her."
+          : "Reunion · Terence aged 10 years; Stella aged 6."
+        note.textContent =
+          stage === "Departure" ? "Terence stays still relative to Earth. Stella is about to travel out and back."
+          : stage === "Outbound" ? "As measured from Earth, one year passes on Stella's clock for every 1⅔ years on Terence's."
+          : stage === "Turnaround" ? "Stella changes direction. Neither clock jumps or resets at the turn."
+          : stage === "Returning" ? "Stella is travelling at the same speed in the opposite direction. Her clock still records three years over this leg."
+          : "They meet again, but their clocks disagree by four years. Their routes through spacetime were different."
+      }
+    }
+
+    const stop = () => {
+      if (frame !== null) cancelAnimationFrame(frame)
+      frame = null
+      animationStart = null
+      playButton.textContent = time >= totalEarthYears ? "Replay journey" : "Play journey"
+    }
+
+    const animate = (timestamp: number) => {
+      if (animationStart === null) animationStart = timestamp
+      const elapsed = ((timestamp - animationStart) / animationDuration) * totalEarthYears
+      slider.value = String(Math.min(totalEarthYears, startingTime + elapsed))
+      updateSlider()
+      if (time >= totalEarthYears) {
+        stop()
+      } else {
+        frame = requestAnimationFrame(animate)
+      }
+    }
+
+    slider.addEventListener("input", stop)
+    const updateSlider = bindSlider(slider, (value) => {
+      render(value)
+      const shipYears = shipClockRate * time
+      return `${stageFor(time)}: ${time.toFixed(1)} Earth years, ${shipYears.toFixed(1)} ship years`
+    })
+
+    for (const button of jumps) {
+      button.addEventListener("click", () => {
+        stop()
+        slider.value = button.dataset.twinJump ?? "0"
+        updateSlider()
+      })
+    }
+
+    playButton.addEventListener("click", () => {
+      if (frame !== null) {
+        stop()
+        return
+      }
+      if (time >= totalEarthYears) {
+        slider.value = "0"
+        updateSlider()
+      }
+      startingTime = time
+      animationStart = null
+      playButton.textContent = "Pause"
+      frame = requestAnimationFrame(animate)
+    })
+
+    // Avoid running an animation while the page is hidden.
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && frame !== null) stop()
+    })
+  }
+</script>
