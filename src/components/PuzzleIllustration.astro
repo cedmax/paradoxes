@@ -1,6 +1,7 @@
 ---
 import OlderPuzzleIllustration from "./OlderPuzzleIllustration.astro"
 import NewPuzzleIllustration from "./NewPuzzleIllustration.astro"
+import VanishingWheel from "./VanishingWheel.astro"
 
 interface Props {
   slug: string
@@ -297,45 +298,7 @@ const gambles = [
   </figure>
 )}
 
-{slug === "vanishing-puzzle" && (
-  <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-    {[0, 1].map((layout) => (
-      <div class="flex flex-col gap-2">
-        <p class="font-bold">
-          {layout === 0
-            ? "Six bars, each five units tall"
-            : "The same pieces: five bars, each six units tall"}
-        </p>
-        <svg viewBox="-0.3 -0.3 9.1 6.6" role="img" aria-labelledby={`vanish-title-${layout}`}>
-          <title id={`vanish-title-${layout}`}>
-            {layout === 0 ? "Six bars split into lower pieces of heights zero to five and upper pieces of heights five to zero" : "The lower pieces pair with the next taller upper pieces to make five bars of height six"}
-          </title>
-          <g transform="translate(0 6) scale(1 -1)" stroke="#272622" stroke-width="0.04">
-            {Array.from({ length: layout === 0 ? 6 : 5 }, (_, i) => {
-              const bottom = i + layout
-              const top = 5 - i
-              return (
-                <>
-                  {bottom > 0 && (
-                    <rect x={i * 1.5} y="0" width="1" height={bottom} fill={colours[3]} />
-                  )}
-                  {top > 0 && (
-                    <rect x={i * 1.5} y={bottom} width="1" height={top} fill={colours[2]} />
-                  )}
-                </>
-              )
-            })}
-          </g>
-        </svg>
-      </div>
-    ))}
-    <figcaption class="text-base leading-normal">
-      A simple model of the trick, rather than Loyd’s original picture. Re-pairing the upper and
-      lower pieces makes fewer, taller bars. Both arrangements contain 30 units of drawing. In a
-      picture of people, small gains across the remaining figures conceal the missing one.
-    </figcaption>
-  </figure>
-)}
+{slug === "vanishing-puzzle" && <VanishingWheel />}
 
 {slug === "allais-paradox" && (
   <div class="flex flex-col gap-4">
