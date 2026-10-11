@@ -607,6 +607,14 @@ const methods = [
         hit.setPointerCapture(event.pointerId)
         onMove(event)
       })
+      // touch-action on an SVG shape is ignored by some browsers, so stop the page scroll here.
+      hit.addEventListener(
+        "touchstart",
+        (event) => {
+          if (mode === associatedMode) event.preventDefault()
+        },
+        { passive: false },
+      )
       hit.addEventListener("pointermove", (event) => {
         if (mode === associatedMode && hit.hasPointerCapture(event.pointerId)) onMove(event)
       })
