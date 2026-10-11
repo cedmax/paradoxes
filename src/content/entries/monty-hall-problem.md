@@ -5,7 +5,7 @@ aka: ["three doors", "game show"]
 chapter: probability
 status: explained
 simplification: light
-order: 1
+order: 10
 written: true
 sourcesVerified: true
 reviewed: true

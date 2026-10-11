@@ -1,11 +1,11 @@
 ---
 title: "Ladder paradox"
 titleAccent: "paradox"
-chapter: time-physics
+chapter: time-causation
 status: explained
 simplification: light
 noMaths: true
-order: 4
+order: 40
 written: true
 sourcesVerified: true
 problem: "Can a ladder too long for a barn fit inside it, if it runs through fast enough?"

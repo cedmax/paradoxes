@@ -1,10 +1,10 @@
 ---
 title: "Lighthouse paradox"
-chapter: "time-physics"
+chapter: what-counts
 status: "explained"
 simplification: light
 noMaths: true
-order: 300
+order: 130
 written: true
 sourcesVerified: true
 reviewed: false

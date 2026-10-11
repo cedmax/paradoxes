@@ -1,10 +1,10 @@
 ---
 title: Ellsberg paradox
 titleAccent: paradox
-chapter: choice-identity
+chapter: individual
 status: disputed
 simplification: light
-order: 7
+order: 60
 written: true
 sourcesVerified: true
 problem: Why do people prefer a bet with known odds over one with unknown odds, when no single set of odds fits all their choices?
