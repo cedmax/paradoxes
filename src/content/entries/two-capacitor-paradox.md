@@ -1,10 +1,10 @@
 ---
 title: "Two capacitor paradox"
-chapter: "time-physics"
+chapter: models
 status: "explained"
 simplification: light
 noMaths: false
-order: 300
+order: 190
 written: true
 sourcesVerified: true
 reviewed: false

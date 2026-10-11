@@ -1,11 +1,11 @@
 ---
 title: "Twin paradox"
 titleAccent: "paradox"
-chapter: time-physics
+chapter: time-causation
 status: explained
 simplification: light
 noMaths: true
-order: 3
+order: 30
 written: true
 sourcesVerified: true
 problem: "If one twin flies off at high speed and comes back, why is that twin younger than the one who stayed home?"

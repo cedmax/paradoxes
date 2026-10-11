@@ -7,7 +7,7 @@ uniqueness: variant
 anchor: monty-hall-problem
 simplification: none
 noMaths: true
-order: 8
+order: 50
 written: true
 sourcesVerified: true
 problem: "You draw a gold coin from a box. What are the odds that the other coin in the box is gold too?"

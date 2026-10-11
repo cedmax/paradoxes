@@ -1,10 +1,10 @@
 ---
 title: "French paradox"
-chapter: "biology"
+chapter: numbers-mislead
 status: "disputed"
 simplification: light
 noMaths: true
-order: 300
+order: 170
 written: true
 sourcesVerified: true
 reviewed: false

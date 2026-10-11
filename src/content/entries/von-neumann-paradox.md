@@ -15,7 +15,7 @@ uniqueness: variant
 anchor: banach-tarski-paradox
 simplification: heavy
 noMaths: false
-order: 215
+order: 190
 written: true
 sourcesVerified: true
 problem: "Can scattered points from one square be rearranged into two equal squares using moves that preserve ordinary area?"

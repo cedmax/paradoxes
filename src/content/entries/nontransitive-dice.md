@@ -7,7 +7,7 @@ uniqueness: related
 anchor: condorcet-paradox
 simplification: light
 noMaths: true
-order: 13
+order: 60
 written: true
 aka: ["Efron's dice", "intransitive dice", "Penney's game"]
 problem: "Can dice A beat B, B beat C, C beat D, and D beat A, each most of the time?"

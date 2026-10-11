@@ -9,7 +9,8 @@ aka:
     "heart failure and obesity",
     "collider bias",
   ]
-chapter: probability
+chapter: numbers-mislead
+order: 90
 status: disputed
 uniqueness: related
 anchor: berksons-paradox

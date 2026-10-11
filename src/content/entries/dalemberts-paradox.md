@@ -9,7 +9,8 @@ aka:
     "no resistance in a perfect fluid",
     "boundary layer",
   ]
-chapter: time-physics
+chapter: models
+order: 60
 status: explained
 simplification: heavy
 noMaths: true

@@ -1,11 +1,11 @@
 ---
 title: "Grandfather paradox"
 titleAccent: "paradox"
-chapter: time-physics
+chapter: time-causation
 status: disputed
 simplification: light
 noMaths: true
-order: 1
+order: 10
 written: true
 sourcesVerified: true
 problem: "If you travelled back in time and stopped your grandfather having children, how could you ever have been born?"

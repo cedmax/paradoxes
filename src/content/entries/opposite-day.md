@@ -1,12 +1,12 @@
 ---
 title: "Opposite Day"
-chapter: "self-reference"
+chapter: self-reference
 status: "explained"
 uniqueness: "related"
 anchor: "liar-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 160
 written: true
 sourcesVerified: true
 reviewed: false
