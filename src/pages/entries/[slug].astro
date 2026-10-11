@@ -213,46 +213,48 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
       )}
     </article>
 
-    <aside class="flex max-w-85 grow basis-65 flex-col gap-6" aria-label="About this entry">
-      <div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
-        <div class="mono-label text-accent">What breaks</div>
-        <div>
-          <Linked text={d.whatBreaks} />
+    <aside class="flex grow basis-65 flex-col gap-6 lg:max-w-85" aria-label="About this entry">
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] items-start gap-6">
+        <div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
+          <div class="mono-label text-accent">What breaks</div>
+          <div>
+            <Linked text={d.whatBreaks} />
+          </div>
+          <div class="mono-label text-accent">Status</div>
+          <div>
+            {s.label}: <Linked text={d.statusNote} />
+          </div>
         </div>
-        <div class="mono-label text-accent">Status</div>
-        <div>
-          {s.label}: <Linked text={d.statusNote} />
-        </div>
+        {echoes.length > 0 && (
+          <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
+            <div class="mono-label mb-1.5 text-accent">Variants and related</div>
+            {echoes.map((e) => (
+              <a
+                class="flex min-h-11 items-center justify-between gap-x-3 font-bold no-underline hover:text-accent"
+                href={`/entries/${e.id}/`}
+              >
+                <span>{e.data.title}&nbsp;→</span>
+                <span class="mono-label shrink-0 font-medium opacity-65">
+                  {uniqueness[e.data.uniqueness].label}
+                </span>
+              </a>
+            ))}
+          </div>
+        )}
+        {siblings.length > 0 && (
+          <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
+            <div class="mono-label mb-1.5 text-accent">Same chapter</div>
+            {siblings.map((e) => (
+              <a
+                class="inline-flex min-h-11 items-center font-bold no-underline hover:text-accent"
+                href={`/entries/${e.id}/`}
+              >
+                {e.data.title} →
+              </a>
+            ))}
+          </div>
+        )}
       </div>
-      {echoes.length > 0 && (
-        <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
-          <div class="mono-label mb-1.5 text-accent">Variants and related</div>
-          {echoes.map((e) => (
-            <a
-              class="flex min-h-11 items-center justify-between gap-x-3 font-bold no-underline hover:text-accent"
-              href={`/entries/${e.id}/`}
-            >
-              <span>{e.data.title}&nbsp;→</span>
-              <span class="mono-label shrink-0 font-medium opacity-65">
-                {uniqueness[e.data.uniqueness].label}
-              </span>
-            </a>
-          ))}
-        </div>
-      )}
-      {siblings.length > 0 && (
-        <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
-          <div class="mono-label mb-1.5 text-accent">Same chapter</div>
-          {siblings.map((e) => (
-            <a
-              class="inline-flex min-h-11 items-center font-bold no-underline hover:text-accent"
-              href={`/entries/${e.id}/`}
-            >
-              {e.data.title} →
-            </a>
-          ))}
-        </div>
-      )}
       <a
         class="inline-flex min-h-12 items-center font-bold no-underline hover:text-accent"
         href="/"

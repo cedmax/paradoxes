@@ -8,11 +8,11 @@ aka:
     "belt around the world",
     "rope round the world",
   ]
-chapter: geometry-arithmetic
+chapter: shapes-sums
 status: explained
 simplification: light
 noMaths: false
-order: 204
+order: 50
 written: true
 sourcesVerified: true
 problem: "Add one metre to a string that fits tightly round the equator. How far off the ground does it lift?"

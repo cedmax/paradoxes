@@ -4,7 +4,7 @@ titleAccent: "paradox"
 chapter: belief
 status: disputed
 simplification: light
-order: 1
+order: 30
 written: true
 problem: "Can a green apple be evidence that all ravens are black?"
 claimA: "Observing a green apple gives no evidence that all ravens are black."

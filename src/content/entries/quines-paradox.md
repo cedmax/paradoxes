@@ -14,7 +14,7 @@ uniqueness: variant
 anchor: liar-paradox
 simplification: light
 noMaths: true
-order: 104
+order: 110
 written: true
 sourcesVerified: true
 problem: "Is a sentence that calls itself false, without ever saying “this sentence”, true or false?"

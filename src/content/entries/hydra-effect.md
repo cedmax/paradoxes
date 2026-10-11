@@ -1,10 +1,10 @@
 ---
 title: "Hydra effect"
-chapter: "biology"
+chapter: models
 status: "explained"
 simplification: light
 noMaths: true
-order: 300
+order: 220
 written: true
 sourcesVerified: true
 reviewed: false
