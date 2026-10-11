@@ -45,7 +45,7 @@ import { series, stroke } from "~/data/palette"
     />
     <g id="achilles-marker" transform="translate(120 0)">
       <path d="M0 113 V125" stroke={series.blue} stroke-width="2" />
-      <circle cx="0" cy="92" r="20" fill={series.blue} />
+      <circle cx="0" cy="92" r="18" fill={series.blue} />
       <text
         x="0"
         y="98"
@@ -59,7 +59,7 @@ import { series, stroke } from "~/data/palette"
     </g>
     <g id="achilles-tortoise-marker" transform="translate(480 0)">
       <path d="M0 113 V125" stroke={series.green} stroke-width="2" />
-      <circle cx="0" cy="92" r="20" fill={series.green} />
+      <circle cx="0" cy="92" r="18" fill={series.green} />
       <text
         x="0"
         y="98"
@@ -128,7 +128,7 @@ import { series, stroke } from "~/data/palette"
     const runDuration = 1600
     const zoomDuration = 1100
     const totalDuration = 4 * runDuration + 3 * zoomDuration
-    const pixelsPerMetre = 3.6
+    const pixelsPerMetre = 4.2
     const screenMiddle = 300
 
     const svgNS = "http://www.w3.org/2000/svg"
@@ -288,7 +288,13 @@ import { series, stroke } from "~/data/palette"
         stop()
         return
       }
-      if (elapsed === totalDuration) elapsed = 0
+      if (elapsed === totalDuration) {
+        elapsed = 0
+        if (reducedMotion.matches) {
+          draw()
+          return
+        }
+      }
       if (reducedMotion.matches) {
         const boundaries = [0]
         for (let i = 0; i < gaps.length; i++) {
