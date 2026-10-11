@@ -87,7 +87,12 @@ const fullCoast = line(levels[4])
     describedby="coastline-paradox-readout"
     valuetext={`Bigger steps, ${start.length - 1} segments, about ${Math.round(total(start))} units`}
   >
-    <p id="coastline-paradox-readout" class="text-base sm:text-right" aria-live="polite" aria-atomic="true">
+    <p
+      id="coastline-paradox-readout"
+      class="text-base sm:text-right"
+      aria-live="polite"
+      aria-atomic="true"
+    >
       <strong id="coastline-paradox-count">{start.length - 1} segments</strong> add up to about
       <strong id="coastline-paradox-distance">{Math.round(total(start))} units</strong>.
     </p>
