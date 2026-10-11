@@ -93,10 +93,30 @@ const antX = (stage: (typeof stages)[number]) => 20 + stage.length * 68 * stage.
     >
       End
     </text>
-    <text x="20" y="135" fill="currentColor" font-size="13">Ant walks (up to ½ unit)</text>
-    <line x1="238" y1="131" x2="272" y2="131" stroke="var(--color-series-red)" stroke-width="5" stroke-linecap="round" />
-    <text x="20" y="160" fill="currentColor" font-size="13">Rope grows (+1 unit)</text>
-    <line x1="204" y1="156" x2="272" y2="156" stroke="var(--color-series-blue)" stroke-width="5" stroke-linecap="round" />
+    <text x="20" y="135" fill="currentColor" font-size="13">
+      Ant walks (up to ½ unit)
+    </text>
+    <line
+      x1="238"
+      y1="131"
+      x2="272"
+      y2="131"
+      stroke="var(--color-series-red)"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+    <text x="20" y="160" fill="currentColor" font-size="13">
+      Rope grows (+1 unit)
+    </text>
+    <line
+      x1="204"
+      y1="156"
+      x2="272"
+      y2="156"
+      stroke="var(--color-series-blue)"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
   </SvgFigure>
   <Slider
     id="ant-rope-slider"
@@ -115,11 +135,13 @@ const antX = (stage: (typeof stages)[number]) => 20 + stage.length * 68 * stage.
     </p>
   </Slider>
   <Fragment slot="caption">
-    <strong>Walk:</strong> The ant moves up to half a unit along the rope, increasing the fraction crossed.
-    <strong>Stretch:</strong> The rope grows one whole unit—twice the ant’s walking distance. The ant is carried forward, but its fraction stays
-    the same. Repeat, and the small walking gains add up. This is a slowed-down example with
-    alternating steps, not the continuous-motion calculation; uniform stretching is what makes
-    the same principle work in the original paradox.
+    <strong>Walk:</strong> The ant moves up to half a unit along the rope, increasing the
+    fraction crossed.
+    <strong>Stretch:</strong> The rope grows one whole unit—twice the ant’s walking distance.
+    The ant is carried forward, but its fraction stays the same. Repeat, and the small walking
+    gains add up. This is a slowed-down example with alternating steps, not the
+    continuous-motion calculation; uniform stretching is what makes the same principle work in
+    the original paradox.
   </Fragment>
 </IllustrationFigure>
 
