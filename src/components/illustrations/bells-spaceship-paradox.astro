@@ -4,127 +4,145 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Panel from "~/components/illustration-kit/Panel.astro"
 import { series, stroke } from "~/data/palette"
 
-const ships = [28, 278]
-const stages = [
-  { heading: "Before: at rest", top: 42, rope: series.gold, stretched: false },
-  { heading: "Later: moving faster", top: 150, rope: series.red, stretched: true },
+const views = [
+  {
+    name: "bell-launch-site",
+    heading: "1. From the launch site",
+    accent: "blue" as const,
+    intro: "The ships move to the right together. Their distance apart stays the same.",
+    takeaway: "Same gap, even after speeding up.",
+    desc: "Two rows show the rockets before and after accelerating. In the later row both rockets have moved right by the same distance, so the gap between them is unchanged. The connecting string is gold at first and red later to show that it becomes strained.",
+    later: { rear: 77, front: 277 },
+    measurement: "Same gap",
+    arrow: true,
+  },
+  {
+    name: "bell-moving-with-ships",
+    heading: "2. Moving alongside the ships",
+    accent: "red" as const,
+    intro: "Now compare their separation in frames momentarily moving at the ships' speed.",
+    takeaway: "The gap grows. The string has to stretch to reach.",
+    desc: "The first row shows the starting separation between the ships. The second shows a larger separation when measured in a frame momentarily moving with the now faster ships. The string spanning the larger gap is red, showing strain. The sketch exaggerates the increase and is not to scale.",
+    later: { rear: 17, front: 277 },
+    measurement: "Wider gap",
+    arrow: false,
+  },
+]
+
+const start = { rear: 37, front: 237 }
+const rows = [
+  { label: "At the start", y: 34 },
+  { label: "Later", y: 112 },
 ]
 ---
 
 <IllustrationFigure
   name="bells-spaceship-paradox"
-  lead="The rockets keep the same gap. Why does their string stretch?"
+  lead="The rockets speed up together. Does their connecting string stay safe?"
 >
   <p class="text-base leading-normal">
-    The ships accelerate together as measured from where they launched. They keep the same
-    distance apart in that view.
+    Two spaceships are joined by a taut string. They speed up in exactly the same way,
+    as measured from their launch site.
   </p>
 
-  <SvgFigure
-    name="bell-string-stretch"
-    class="mx-auto w-full max-w-md"
-    viewBox="0 0 360 268"
-    title="Unchanged rocket separation but a stretched connecting string"
-    desc="Two spaceships have the same separation before and after accelerating, viewed from where they launched. At the start a gold string connects them without strain. Later a red string spans the same gap, but a separate dashed gold reference below it shows how much shorter an unstretched moving string would be at the later speed. The red string is stretched to reach both rockets, and may break if acceleration continues. The amount of shortening is schematic."
-  >
-    {stages.map(({ heading, top, rope, stretched }) => (
-      <g>
-        <text x="10" y={top - 19} fill="currentColor" font-size="16" font-weight="700">
-          {heading}
-        </text>
-        {ships.map((x, i) => (
-          <g>
-            <rect
-              x={x}
-              y={top}
-              width="46"
-              height="30"
-              rx="3"
-              fill={series.blue}
-              fill-opacity=".25"
-              stroke={stroke}
-              stroke-width="2"
-            />
-            <circle cx={x + 31} cy={top + 15} r="5" fill={series.blue} />
-            <text
-              x={x + 23}
-              y={top + 46}
-              font-size="13"
-              fill="currentColor"
-              text-anchor="middle"
-            >
-              {i === 0 ? "Rear" : "Front"}
-            </text>
-          </g>
-        ))}
-        {stretched ? (
-          <path
-            d="M74 165 H170 L175 160 L180 170 L185 160 L190 165 H278"
-            stroke={rope}
-            stroke-width="4"
-            fill="none"
-            stroke-linejoin="round"
-          />
-        ) : (
-          <line x1="74" x2="278" y1={top + 15} y2={top + 15} stroke={rope} stroke-width="4" />
-        )}
-        <path
-          d={stretched ? "M340 159 L348 165 L340 171" : "M340 51 L348 57 L340 63"}
-          fill="none"
-          stroke={stroke}
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </g>
-    ))}
-    <g>
-      <line
-        x1="74"
-        x2="214"
-        y1="222"
-        y2="222"
-        stroke={series.gold}
-        stroke-width="4"
-        stroke-dasharray="7 5"
-      />
-      <path
-        d="M214 215 V229 M278 215 V229 M218 222 H274"
-        stroke={series.red}
-        stroke-width="2"
-        fill="none"
-      />
-      <text x="130" y="245" font-size="13" text-anchor="middle" fill="currentColor">
-        Unstretched at this speed
-      </text>
-      <text
-        x="246"
-        y="260"
-        text-anchor="middle"
-        font-size="13"
-        font-weight="700"
-        fill="currentColor"
+  {views.map(({ name, heading, accent, intro, takeaway, desc, later, measurement, arrow }) => (
+    <Panel title={heading} accent={accent} class="flex flex-col gap-2">
+      <p class="text-base leading-normal">{intro}</p>
+      <SvgFigure
+        name={name}
+        class="mx-auto w-full max-w-md"
+        viewBox="0 0 360 178"
+        title={heading}
+        desc={desc}
       >
-        Extra stretch
-      </text>
-    </g>
-  </SvgFigure>
+        {rows.map(({ label, y }, index) => {
+          const positions = index === 0 ? start : later
+          const cableY = y + 13
+          const endRear = positions.rear + 45
+          const cableColour = index === 0 ? series.gold : series.red
+          return (
+            <g>
+              <text x="8" y={y - 15} fill="currentColor" font-size="15" font-weight="700">
+                {label}
+              </text>
+              <line
+                x1={endRear}
+                y1={cableY}
+                x2={positions.front}
+                y2={cableY}
+                stroke={cableColour}
+                stroke-width="4.5"
+                stroke-linecap="round"
+              />
+              {[positions.rear, positions.front].map((x) => (
+                <g>
+                  <rect
+                    x={x}
+                    y={y}
+                    width="34"
+                    height="26"
+                    rx="3"
+                    fill={series.blue}
+                    fill-opacity=".22"
+                    stroke={stroke}
+                    stroke-width="2"
+                  />
+                  <path
+                    d={`M${x + 34} ${y + 3} L${x + 45} ${y + 13} L${x + 34} ${y + 23} Z`}
+                    fill={series.blue}
+                    fill-opacity=".55"
+                    stroke={stroke}
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <circle cx={x + 16} cy={y + 13} r="4" fill={series.blue} />
+                </g>
+              ))}
+              <path
+                d={`M${endRear} ${y + 32} V${y + 37} H${positions.front} V${y + 32}`}
+                stroke={stroke}
+                stroke-width="1.3"
+                stroke-opacity=".7"
+                fill="none"
+              />
+              {index === 1 && arrow && (
+                <path
+                  d={`M330 ${cableY} H349 M342 ${cableY - 6} L349 ${cableY} L342 ${cableY + 6}`}
+                  fill="none"
+                  stroke={stroke}
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              )}
+            </g>
+          )
+        })}
+        <text
+          x="180"
+          y="174"
+          font-size="15"
+          text-anchor="middle"
+          font-weight="700"
+          fill="currentColor"
+        >
+          {measurement}
+        </text>
+      </SvgFigure>
+      <p class="text-base font-bold">{takeaway}</p>
+    </Panel>
+  ))}
 
-  <Panel title="The hidden difference" accent="red" class="flex flex-col gap-2">
-    <p class="text-base leading-normal">
-      From the launch point, the ships are still just as far apart. But an{" "}
-      <strong>unstretched</strong> string moving at their new speed would be measured{" "}
-      <strong>shorter</strong> in that view.
-    </p>
-    <p class="text-base leading-normal">
-      The actual string must stretch to reach both ships. As their speed rises, the strain
-      increases; if they keep accelerating, the string eventually breaks.
-    </p>
-  </Panel>
+  <p class="text-base leading-normal">
+    The string's natural length has not increased, but the distance it must span
+    in the ships' moving view has. It becomes strained and, if the ships keep
+    accelerating, eventually breaks.
+  </p>
 
   <Fragment slot="caption">
-    Schematic lengths, not to scale. The string's own unstretched length has not changed; the
-    shorter dashed reference is how an unstretched moving string would be measured in the launch
-    frame. In the ships' moving frame, their separation grows instead.
+    The views use different ways of deciding which distant moments happen
+    together. The second picture compares successive frames moving at the ships'
+    changing speed, not one fixed viewpoint. Positions and stretching are
+    schematic, not to scale; a small speed increase need not snap the string.
   </Fragment>
 </IllustrationFigure>
