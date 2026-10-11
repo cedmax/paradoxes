@@ -82,11 +82,11 @@ const existingPeople = [48, 116, 184, 252]
       <rect x="10" y="29" width="320" height="24" fill="var(--color-paper)"
         stroke={stroke} stroke-width="1.5" />
       <rect id="birthday-chance-fill" x="10" y="29"
-        width={(firstChance * 320) / 100} height="24" fill={series.blue} />
-      <line x1="170" x2="170" y1="27" y2="60" stroke={stroke}
-        stroke-width="1.5" stroke-dasharray="3 3" />
+        width={(firstChance * 320) / 100} height="24" fill={series.green} />
+      <line x1="170" x2="170" y1="25" y2="60" stroke={series.red}
+        stroke-width="2.5" stroke-dasharray="4 3" />
       <text x="10" y="74" font-size="13">0%</text>
-      <text x="170" y="74" text-anchor="middle" font-size="13">50%</text>
+      <text x="170" y="74" text-anchor="middle" font-size="13" font-weight="700">50% threshold</text>
       <text x="330" y="74" text-anchor="end" font-size="13">100%</text>
       <text id="birthday-chance-label" x="10" y="98" font-weight="700">
         23 people: 50.7% chance
@@ -94,9 +94,14 @@ const existingPeople = [48, 116, 184, 252]
     </g>
   </SvgFigure>
 
-  <Callout>
-    At just 23 people, there are 253 ways to choose a pair.
-    That is why a shared birthday is already more likely than not.
+  <Callout class="flex flex-col gap-2">
+    <p id="birthday-threshold-heading" class="font-bold" aria-live="polite">
+      23 people: the first group above 50%
+    </p>
+    <p id="birthday-threshold-explanation" class="text-base leading-normal">
+      With 22 people the chance is 47.6%. Add one person and 22 new pairs:
+      at 23 people it is 50.7%, so a shared birthday becomes more likely than not.
+    </p>
   </Callout>
 
   <Fragment slot="caption">
@@ -116,6 +121,8 @@ const existingPeople = [48, 116, 184, 252]
     const fill = find<SVGRectElement>(root, "#birthday-chance-fill")
     const chanceLabel = find<SVGTextElement>(root, "#birthday-chance-label")
     const chanceDesc = find<SVGDescElement>(root, "#birthday-chance-desc")
+    const thresholdHeading = find<HTMLElement>(root, "#birthday-threshold-heading")
+    const thresholdExplanation = find<HTMLElement>(root, "#birthday-threshold-explanation")
 
     const matchChance = (n: number) => {
       let noMatch = 1
@@ -130,9 +137,25 @@ const existingPeople = [48, 116, 184, 252]
       readout.textContent = `${n} people make ${pairs.toLocaleString("en-GB")} possible pairs.`
       newPairs.textContent = `Person ${n} adds ${n - 1} new possible pairs.`
       fill.setAttribute("width", String((probability * 320) / 100))
+      fill.setAttribute("fill", n >= 23 ? "var(--color-series-green)" : "var(--color-series-blue)")
       chanceLabel.textContent = `${n} people: ${formattedChance}% chance`
-      chanceDesc.textContent = `With ${n} people there are ${pairs} possible pairs and a ${formattedChance} percent chance of at least one shared birthday.`
-      return `${n} people; ${pairs} possible pairs; ${formattedChance} percent chance of a match`
+      const threshold = n >= 23 ? "above" : "below"
+      chanceDesc.textContent = `With ${n} people there are ${pairs} possible pairs and a ${formattedChance} percent chance of at least one shared birthday, ${threshold} the marked 50 percent threshold.`
+
+      if (n === 23) {
+        thresholdHeading.textContent = "23 people: the first group above 50%"
+        thresholdExplanation.textContent = "With 22 people the chance is 47.6%. Add one person and 22 new pairs: at 23 people it is 50.7%, so a shared birthday becomes more likely than not."
+      } else if (n === 22) {
+        thresholdHeading.textContent = "22 people: just below 50%"
+        thresholdExplanation.textContent = "The chance is 47.6%. One more person adds 22 new pairs, crossing 50% for the first time at 23 people (50.7%)."
+      } else if (n < 23) {
+        thresholdHeading.textContent = `${n} people: still below 50%`
+        thresholdExplanation.textContent = `There are ${pairs.toLocaleString("en-GB")} possible pairs, but a match is only ${formattedChance}% likely. At 23 people the chance first passes 50%.`
+      } else {
+        thresholdHeading.textContent = `${n} people: above 50%`
+        thresholdExplanation.textContent = `With ${pairs.toLocaleString("en-GB")} possible pairs, the chance of a match is ${formattedChance}%. The 50% threshold was first crossed at 23 people.`
+      }
+      return `${n} people; ${pairs} possible pairs; ${formattedChance} percent chance of a match, ${threshold} 50 percent`
     })
   }
 </script>
