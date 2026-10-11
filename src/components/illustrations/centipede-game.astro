@@ -17,8 +17,9 @@ const turns = [
   lead="Take the bigger pile now, or pass and double both piles."
 >
   <p class="text-base leading-normal">
-    Alice and Bob take turns. Taking ends the game: you get the bigger pile, and the other player
-    gets the smaller one. Passing doubles both piles and gives the other player a turn.
+    Alice starts with two piles: 4 coins and 1 coin. She can take the larger pile and end the
+    game, leaving Bob the smaller one. Or she can pass: both piles double to 8 and 2, and Bob
+    chooses next. They take turns with the same choice.
   </p>
 
   <SvgFigure
@@ -68,21 +69,23 @@ const turns = [
       </g>
     ))}
     <text x="10" y="274" font-size="12" fill="currentColor">
-      Last turn: Bob can take 32, or pass and receive 16.
+      Final turn: Bob takes 32, or passes and gets 16.
     </text>
   </SvgFigure>
 
-  <Panel title="Now reason backward">
+  <Panel title="Why does the game end immediately?">
     <p class="text-base leading-normal">
-      Bob takes 32 on the last turn rather than pass and receive 16. Alice knows this, so on
-      turn 3 she takes 16 rather than end up with 8. The same reasoning reaches turn 1: Alice
-      takes immediately, even though passing could make both richer.
+      This example has a fixed ending after four turns. If Bob passes on turn 4, the piles double
+      one last time, then Alice gets 64 and Bob gets 16. Bob would rather take 32 instead.
+    </p>
+    <p class="text-base leading-normal">
+      Alice knows that, so on turn 3 she takes 16 rather than pass and get 8. The same argument
+      works backward to turn 1: Alice takes immediately, even though passing could make both richer.
     </p>
   </Panel>
 
   <Fragment slot="caption">
-    A four-turn example. If Bob passes on the final turn, the game ends after doubling once more:
-    Alice gets 64 and Bob gets 16. The backward prediction relies on strong assumptions about
-    what each player knows.
+    The fixed ending gives the backward reasoning somewhere to start. Its prediction depends on
+    strong assumptions about what each player knows.
   </Fragment>
 </IllustrationFigure>
