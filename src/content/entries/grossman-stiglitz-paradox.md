@@ -1,10 +1,10 @@
 ---
 title: "Grossman–Stiglitz paradox"
-chapter: "choice-identity"
+chapter: collective
 status: "defused"
 simplification: light
 noMaths: true
-order: 300
+order: 160
 written: true
 sourcesVerified: true
 reviewed: false

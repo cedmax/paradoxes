@@ -2,11 +2,11 @@
 title: "Coin rotation paradox"
 titleAccent: "paradox"
 aka: ["rolling coin", "two coins", "SAT coin question", "coin paradox", "rolling circles"]
-chapter: geometry-arithmetic
+chapter: shapes-sums
 status: explained
 simplification: light
 noMaths: false
-order: 201
+order: 20
 written: true
 sourcesVerified: true
 problem: "A coin rolls once around the rim of an identical coin. How many times does it turn?"

@@ -3,6 +3,7 @@ title: "The sum of all whole numbers"
 titleAccent: "whole numbers"
 aka: ["1+2+3", "minus one twelfth", "-1/12", "Ramanujan summation", "zeta regularisation"]
 chapter: infinity
+order: 110
 status: explained
 simplification: heavy
 noMaths: false
