@@ -5,7 +5,9 @@
   "overrides": [
     {
       "files": "**/*.astro",
-      "options": { "parser": "astro" }
+      "options": {
+        "parser": "astro"
+      }
     },
     {
       "files": ".*rc",
@@ -13,5 +15,6 @@
         "trailingComma": "none"
       }
     }
-  ]
+  ],
+  "astroCompressHTML": "jsx"
 }
