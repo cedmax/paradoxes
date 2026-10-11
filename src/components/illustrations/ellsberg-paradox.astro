@@ -1,0 +1,35 @@
+---
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+
+const bets = [
+  {
+    pair: "First choice",
+    rows: [
+      ["A: red", "£100", "£0", "£0"],
+      ["B: black", "£0", "£100", "£0"],
+    ],
+  },
+  {
+    pair: "Second choice",
+    rows: [
+      ["C: red or yellow", "£100", "£0", "£100"],
+      ["D: black or yellow", "£0", "£100", "£100"],
+    ],
+  },
+]
+---
+
+<IllustrationFigure frame={false}>
+  {bets.map(({ pair, rows }) => (
+    <ComparisonTable
+      caption={`${pair}: payout for the colour drawn`}
+      columns={["Bet", "Red", "Black", "Yellow"]}
+      rows={rows}
+    />
+  ))}
+  <Fragment slot="caption">
+    There are 30 red balls. The other 60 are black or yellow in an unknown mix. Many people
+    choose A, then D: the two bets with known chances of winning.
+  </Fragment>
+</IllustrationFigure>
