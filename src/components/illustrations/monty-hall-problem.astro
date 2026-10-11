@@ -10,12 +10,12 @@ const doors = [1, 2, 3]
   lead="Pick a door. Then watch which goat the host chooses to reveal."
 >
   <p class="text-base leading-normal">
-    The host <strong>knows</strong> where the car is. He must open another door with
-    a goat behind it, never your pick and never the car.
+    The host <strong>knows</strong> where the car is. He must open another door with a goat
+    behind it, never your pick and never the car.
   </p>
   <p class="text-base leading-normal">
-    Try all three equally likely places for the car. Keep your first choice
-    the same to discover why switching wins twice.
+    Try all three equally likely places for the car. Keep your first choice the same to discover
+    why switching wins twice.
   </p>
 
   <p id="monty-round" class="font-bold" aria-live="polite">
@@ -35,10 +35,12 @@ const doors = [1, 2, 3]
         aria-label={`Door ${door}, ${door === 1 ? "your current pick" : "choose this door"}`}
       >
         <span class="font-bold">Door {door}</span>
-        <span data-monty-content={door} class="text-lg font-bold">?</span>
-        <span data-monty-role={door} class="text-xs leading-normal">{
-          door === 1 ? "Your pick" : "Closed"
-        }</span>
+        <span data-monty-content={door} class="text-lg font-bold">
+          ?
+        </span>
+        <span data-monty-role={door} class="text-xs leading-normal">
+          {door === 1 ? "Your pick" : "Closed"}
+        </span>
       </button>
     ))}
   </div>
@@ -47,10 +49,18 @@ const doors = [1, 2, 3]
     <button type="button" class="btn-ghost" id="monty-reveal-goat">
       Ask the host to open a door
     </button>
-    <div id="monty-decision" class="hidden flex-wrap gap-2" role="group"
-      aria-label="Stay with your door or switch to the other closed door">
-      <button type="button" class="btn-ghost" id="monty-stay">Stay</button>
-      <button type="button" class="btn-ghost" id="monty-switch">Switch</button>
+    <div
+      id="monty-decision"
+      class="hidden flex-wrap gap-2"
+      role="group"
+      aria-label="Stay with your door or switch to the other closed door"
+    >
+      <button type="button" class="btn-ghost" id="monty-stay">
+        Stay
+      </button>
+      <button type="button" class="btn-ghost" id="monty-switch">
+        Switch
+      </button>
     </div>
     <button type="button" class="btn-ghost hidden" id="monty-next">
       Try the next car location
@@ -62,21 +72,26 @@ const doors = [1, 2, 3]
       Door 1 is your first pick. The host has not revealed a goat yet.
     </p>
     <p id="monty-why" class="text-base leading-normal">
-      Your original door has a 1-in-3 chance. The other two doors together
-      have a 2-in-3 chance, and the host cannot reveal the car.
+      Your original door has a 1-in-3 chance. The other two doors together have a 2-in-3 chance,
+      and the host cannot reveal the car.
     </p>
   </Callout>
 
   <div class="flex flex-col gap-2">
     <p class="font-bold">The three possible car locations</p>
-    <div class="grid grid-cols-3 gap-1" role="img"
-      aria-label="Staying wins in one of three possible car locations, switching wins in two">
+    <div
+      class="grid grid-cols-3 gap-1"
+      role="img"
+      aria-label="Staying wins in one of three possible car locations, switching wins in two"
+    >
       <span class="h-5 bg-series-blue"></span>
       <span class="h-5 bg-series-green"></span>
       <span class="h-5 bg-series-green"></span>
     </div>
     <div class="grid grid-cols-3 gap-1 text-center text-sm">
-      <span>Stay</span><span>Switch</span><span>Switch</span>
+      <span>Stay</span>
+      <span>Switch</span>
+      <span>Switch</span>
     </div>
     <p class="text-base leading-normal">
       <strong>Stay: 1 win in 3.</strong> <strong>Switch: 2 wins in 3.</strong>
@@ -85,10 +100,9 @@ const doors = [1, 2, 3]
   </div>
 
   <Fragment slot="caption">
-    This visits all three car locations in order, rather than pretending to be
-    a random game. When the first pick already hides the car, the host can open
-    either goat door; this demonstration chooses the lowest numbered one.
-    The host always offers a switch.
+    This visits all three car locations in order, rather than pretending to be a random game.
+    When the first pick already hides the car, the host can open either goat door; this
+    demonstration chooses the lowest numbered one. The host always offers a switch.
   </Fragment>
 </IllustrationFigure>
 
@@ -125,12 +139,27 @@ const doors = [1, 2, 3]
         const isChosen = door === firstPick
         button.disabled = phase !== "choose"
         button.setAttribute("aria-pressed", String(isChosen))
-        button.setAttribute("aria-label", `Door ${door}: ${hostOpens ? "host opened, goat" : phase === "result" ? (door === car ? "car" : "goat") : "closed"}${isChosen ? ", original pick" : ""}`)
+        button.setAttribute(
+          "aria-label",
+          `Door ${door}: ${hostOpens ? "host opened, goat" : phase === "result" ? (door === car ? "car" : "goat") : "closed"}${isChosen ? ", original pick" : ""}`,
+        )
         button.classList.toggle("bg-series-blue/20", isChosen)
         button.classList.toggle("bg-series-gold/20", hostOpens)
         button.classList.toggle("bg-series-green/20", phase === "result" && door === car)
-        contents[index].textContent = hostOpens ? "Goat" : phase === "result" ? (door === car ? "Car" : "Goat") : "?"
-        roles[index].textContent = hostOpens ? "Host opens" : isChosen ? "Your pick" : phase === "host" && door === switchTo ? "Switch to" : "Closed"
+        contents[index].textContent = hostOpens
+          ? "Goat"
+          : phase === "result"
+            ? door === car
+              ? "Car"
+              : "Goat"
+            : "?"
+        roles[index].textContent = hostOpens
+          ? "Host opens"
+          : isChosen
+            ? "Your pick"
+            : phase === "host" && door === switchTo
+              ? "Switch to"
+              : "Closed"
       })
 
       reveal.classList.toggle("hidden", phase !== "choose")
@@ -139,12 +168,14 @@ const doors = [1, 2, 3]
       next.classList.toggle("hidden", phase !== "result")
     }
 
-    buttons.forEach((button, i) => button.addEventListener("click", () => {
-      if (phase !== "choose") return
-      firstPick = doors[i]
-      message.textContent = `Door ${firstPick} is your first pick. The host has not revealed a goat yet.`
-      render()
-    }))
+    buttons.forEach((button, i) =>
+      button.addEventListener("click", () => {
+        if (phase !== "choose") return
+        firstPick = doors[i]
+        message.textContent = `Door ${firstPick} is your first pick. The host has not revealed a goat yet.`
+        render()
+      }),
+    )
 
     reveal.addEventListener("click", () => {
       const car = doors[round]
@@ -152,20 +183,24 @@ const doors = [1, 2, 3]
       const switchTo = doors.find((door) => door !== firstPick && door !== openedDoor)!
       phase = "host"
       message.textContent = `The host opens door ${openedDoor}: a goat. Door ${firstPick} was your original pick; door ${switchTo} is the only other closed door. Stay or switch?`
-      why.textContent = "The host did not choose a door at random: he knew where the car was and deliberately avoided it."
+      why.textContent =
+        "The host did not choose a door at random: he knew where the car was and deliberately avoided it."
       render()
     })
 
     const finish = (switching: boolean) => {
       if (phase !== "host") return
       const car = doors[round]
-      const finalDoor = switching ? doors.find((door) => door !== firstPick && door !== openedDoor)! : firstPick
+      const finalDoor = switching
+        ? doors.find((door) => door !== firstPick && door !== openedDoor)!
+        : firstPick
       const won = finalDoor === car
       phase = "result"
       message.textContent = `You ${switching ? "switched to" : "stayed with"} door ${finalDoor} and ${won ? "won the car!" : "found a goat."} The car was behind door ${car}.`
-      why.textContent = firstPick === car
-        ? "Your first pick was right (1 of the 3 possibilities). Here, staying wins."
-        : "Your first pick was wrong (2 of the 3 possibilities). The host removed the other goat, so switching wins."
+      why.textContent =
+        firstPick === car
+          ? "Your first pick was right (1 of the 3 possibilities). Here, staying wins."
+          : "Your first pick was wrong (2 of the 3 possibilities). The host removed the other goat, so switching wins."
       render()
     }
     stay.addEventListener("click", () => finish(false))
@@ -174,7 +209,8 @@ const doors = [1, 2, 3]
       round = (round + 1) % doors.length
       phase = "choose"
       message.textContent = `Keep door ${firstPick} as your first pick to compare all three car locations.`
-      why.textContent = "The next car location is hidden again. The host must still open a goat door that you did not choose."
+      why.textContent =
+        "The next car location is hidden again. The host must still open a goat door that you did not choose."
       render()
     })
     render()
