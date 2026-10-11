@@ -1,0 +1,218 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+// Uniform stretching: L(t) = 1 + t. The ant walks at speed 0.5 relative
+// to the rope, so its fraction crossed is ln(1 + t) / 2.
+// Arrival is at t = e² − 1, even though the far end moves at speed 1.
+const marks = [0.2, 0.4, 0.6, 0.8]
+---
+
+<IllustrationFigure
+  name="ant-on-a-rubber-rope"
+  lead="The far end moves twice as fast as the ant walks. So how can the ant catch it?"
+>
+  <SvgFigure
+    name="ant-on-a-rubber-rope"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 320 154"
+    title="An ant walking along a continuously stretching rope"
+    desc="The rope grows smoothly, its marked material points separating as it stretches. The red ant moves along the rope and walks past its material marks. The far end moves outward at twice the ant's walking speed relative to the rope, yet the ant's fraction crossed increases until it reaches the end. The animation is a time-compressed model with uniform stretching."
+  >
+    <text x="14" y="20" fill="currentColor" font-size="13">
+      Ant walking: ½ unit / time
+    </text>
+    <text x="14" y="40" fill="currentColor" font-size="13">
+      End moving: 1 unit / time
+    </text>
+    <line
+      id="ant-rope-line"
+      x1="18"
+      y1="88"
+      x2="75"
+      y2="88"
+      stroke="currentColor"
+      stroke-opacity=".35"
+      stroke-width="9"
+      stroke-linecap="round"
+    />
+    <line
+      id="ant-rope-crossed"
+      x1="18"
+      y1="88"
+      x2="18"
+      y2="88"
+      stroke="var(--color-series-blue)"
+      stroke-width="9"
+      stroke-linecap="round"
+    />
+    {marks.map((fraction) => (
+      <line
+        data-rope-mark={fraction}
+        x1={18 + 57 * fraction}
+        x2={18 + 57 * fraction}
+        y1="82"
+        y2="94"
+        stroke="currentColor"
+        stroke-width="2"
+      />
+    ))}
+    <line
+      id="ant-rope-end"
+      x1="75"
+      x2="75"
+      y1="74"
+      y2="102"
+      stroke="currentColor"
+      stroke-width="2"
+    />
+    <circle
+      id="ant-rope-ant"
+      cx="18"
+      cy="88"
+      r="7"
+      fill="var(--color-series-red)"
+      stroke="currentColor"
+      stroke-width="1"
+    />
+    <text x="18" y="126" fill="currentColor" font-size="13">
+      Start
+    </text>
+    <text
+      id="ant-rope-end-label"
+      x="75"
+      y="126"
+      fill="currentColor"
+      font-size="13"
+      text-anchor="end"
+    >
+      End
+    </text>
+    <text x="160" y="149" text-anchor="middle" fill="currentColor" font-size="12">
+      Short marks are points on the rope
+    </text>
+  </SvgFigure>
+  <div class="flex flex-wrap items-center gap-3">
+    <button
+      id="ant-rope-play"
+      type="button"
+      class="min-h-11 border-2 border-ink px-4 py-2 font-bold"
+      aria-pressed="false"
+    >
+      Start
+    </button>
+    <button
+      id="ant-rope-replay"
+      type="button"
+      class="min-h-11 border border-ink px-4 py-2 font-bold"
+    >
+      Restart
+    </button>
+    <p id="ant-rope-readout" class="text-base" aria-live="off">
+      <strong id="ant-rope-percent">0% crossed</strong>
+    </p>
+  </div>
+  <Fragment slot="caption">
+    <strong>Watch the short marks.</strong> Stretching carries both the marks and the ant away
+    from the start. Walking lets the ant pass those marks, gaining a little more of the rope.
+    Although its gains become smaller, they keep adding up until the ant reaches the end. The
+    animation compresses a much longer process into a few seconds.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("ant-on-a-rubber-rope")
+  if (root) {
+    const full = find<SVGLineElement>(root, "#ant-rope-line")
+    const crossed = find<SVGLineElement>(root, "#ant-rope-crossed")
+    const ant = find<SVGCircleElement>(root, "#ant-rope-ant")
+    const end = find<SVGLineElement>(root, "#ant-rope-end")
+    const endLabel = find<SVGTextElement>(root, "#ant-rope-end-label")
+    const marks = Array.from(root.querySelectorAll<SVGLineElement>("[data-rope-mark]"))
+    const percent = find<HTMLElement>(root, "#ant-rope-percent")
+    const play = find<HTMLButtonElement>(root, "#ant-rope-play")
+    const replay = find<HTMLButtonElement>(root, "#ant-rope-replay")
+    const duration = 18000
+    const finishTime = Math.exp(2) - 1
+    let progress = 0
+    let running = false
+    let started = false
+    let lastFrame: number | null = null
+    let frame = 0
+
+    const render = () => {
+      const time = finishTime * progress
+      const length = 1 + time
+      const fraction = Math.min(1, Math.log(length) / 2)
+      const width = 57 + (230 * time) / finishTime
+      const tip = 18 + width
+      const position = 18 + width * fraction
+      full.setAttribute("x2", String(tip))
+      crossed.setAttribute("x2", String(position))
+      ant.setAttribute("cx", String(position))
+      end.setAttribute("x1", String(tip))
+      end.setAttribute("x2", String(tip))
+      endLabel.setAttribute("x", String(tip))
+      for (const mark of marks) {
+        const markX = 18 + width * Number(mark.dataset.ropeMark)
+        mark.setAttribute("x1", String(markX))
+        mark.setAttribute("x2", String(markX))
+      }
+      percent.textContent =
+        progress >= 1
+          ? "100% crossed — the ant arrives!"
+          : `${Math.round(fraction * 100)}% crossed`
+    }
+
+    const setRunning = (next: boolean) => {
+      running = next && progress < 1
+      if (running) started = true
+      play.textContent = running
+        ? "Pause"
+        : progress >= 1
+          ? "Replay"
+          : started
+            ? "Resume"
+            : "Start"
+      play.setAttribute("aria-pressed", String(running))
+      lastFrame = null
+      if (running) frame = requestAnimationFrame(tick)
+      else cancelAnimationFrame(frame)
+    }
+
+    const tick = (now: number) => {
+      if (!running) return
+      if (lastFrame !== null) progress = Math.min(1, progress + (now - lastFrame) / duration)
+      lastFrame = now
+      render()
+      if (progress >= 1) {
+        setRunning(false)
+        play.textContent = "Replay"
+      } else {
+        frame = requestAnimationFrame(tick)
+      }
+    }
+
+    play.addEventListener("click", () => {
+      if (progress >= 1) {
+        progress = 0
+        started = false
+        render()
+      }
+      setRunning(!running)
+    })
+    replay.addEventListener("click", () => {
+      setRunning(false)
+      progress = 0
+      render()
+      setRunning(true)
+    })
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && running) setRunning(false)
+    })
+    render()
+    setRunning(false)
+  }
+</script>
