@@ -2,17 +2,18 @@
 import OlderPuzzleIllustration from "./OlderPuzzleIllustration.astro"
 import NewPuzzleIllustration from "./NewPuzzleIllustration.astro"
 import VanishingWheel from "./VanishingWheel.astro"
+import type { AstroComponentFactory } from "astro/runtime/server/index.js"
 
 interface Props {
   slug: string
 }
 
 const { slug } = Astro.props
-const illustrationModules = import.meta.glob<{ default: typeof OlderPuzzleIllustration }>(
+const illustrationLoaders = import.meta.glob<{ default: AstroComponentFactory }>(
   "./illustrations/*.astro",
-  { eager: true },
 )
-const ExtraIllustration = illustrationModules[`./illustrations/${slug}.astro`]?.default
+const loadIllustration = illustrationLoaders[`./illustrations/${slug}.astro`]
+const ExtraIllustration = loadIllustration && (await loadIllustration()).default
 const colours = ["#bd4b37", "#387a91", "#d7a13d", "#5d8560"]
 const missingLayouts = [
   [
@@ -381,8 +382,8 @@ const gambles = [
         ))}
       </div>
       <p class="text-base">
-        Guest 1 moves to room 2, guest 2 to room 3, and so on. Room 1 is now free.
-        Every original guest still has a room.
+        Guest 1 moves to room 2, guest 2 to room 3, and so on. Room 1 is now free. Every
+        original guest still has a room.
       </p>
     </div>
     <details class="group border-t-2 border-ink pt-3">
@@ -393,9 +394,9 @@ const gambles = [
         What if infinitely many new guests arrive?
       </summary>
       <p class="mt-3 text-base leading-normal">
-        Move each original guest to twice their old room number: 1 goes to 2, 2 goes to 4,
-        3 goes to 6, and so on. Every even room holds an original guest.
-        All the odd rooms are free for the newcomers.
+        Move each original guest to twice their old room number: 1 goes to 2, 2 goes to 4, 3
+        goes to 6, and so on. Every even room holds an original guest. All the odd rooms are
+        free for the newcomers.
       </p>
       <div class="mt-3 grid grid-cols-5 gap-1.5 sm:gap-3">
         {[1, 2, 3, 4, 5].map((n) => (
@@ -416,8 +417,8 @@ const gambles = [
       </p>
     </details>
     <figcaption class="text-base leading-normal">
-      A full infinite hotel can take one more guest, or infinitely many more.
-      The trick works because its numbered rooms have no end.
+      A full infinite hotel can take one more guest, or infinitely many more. The trick works
+      because its numbered rooms have no end.
     </figcaption>
   </figure>
 )}
