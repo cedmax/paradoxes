@@ -15,8 +15,8 @@ const doors = [
   lead="The host opens a goat door. What happens to the odds?"
 >
   <p class="text-base leading-normal">
-    You choose door 1. The host knows where the car is, and must open
-    a different door hiding a goat.
+    You choose door 1. The host knows where the car is, and must open a different door hiding a
+    goat.
   </p>
 
   <div class="flex flex-col gap-2">
@@ -28,31 +28,74 @@ const doors = [
       title="Before: your single door has a one-in-three chance; the other two together have two in three"
       desc="Three closed doors. Your first choice, door 1, is enclosed by a blue outline labelled 1 in 3. Doors 2 and 3 are enclosed together by one gold outline labelled 2 in 3, showing that switching away from your first choice covers two possible car locations."
     >
-      <rect x="8" y="34" width="100" height="116" rx="3"
-        fill="none" stroke={series.blue} stroke-width="3" />
-      <rect x="119" y="34" width="233" height="116" rx="3"
-        fill="none" stroke={series.gold} stroke-width="3" />
+      <rect
+        x="8"
+        y="34"
+        width="100"
+        height="116"
+        rx="3"
+        fill="none"
+        stroke={series.blue}
+        stroke-width="3"
+      />
+      <rect
+        x="119"
+        y="34"
+        width="233"
+        height="116"
+        rx="3"
+        fill="none"
+        stroke={series.gold}
+        stroke-width="3"
+      />
 
       <g font-size="15" fill="currentColor" font-weight="700">
-        <text x="58" y="22" text-anchor="middle">1 in 3</text>
-        <text x="235" y="22" text-anchor="middle">2 in 3 together</text>
+        <text x="58" y="22" text-anchor="middle">
+          1 in 3
+        </text>
+        <text x="235" y="22" text-anchor="middle">
+          2 in 3 together
+        </text>
       </g>
 
       {doors.map(({ number, x }) => (
         <g>
-          <rect x={x} y="49" width="60" height="84" fill="var(--color-paper)"
-            stroke={stroke} stroke-width="2.5" />
-          <rect x={x + 8} y="57" width="43" height="65" fill="none"
-            stroke={stroke} stroke-width="1" stroke-opacity=".35" />
+          <rect
+            x={x}
+            y="49"
+            width="60"
+            height="84"
+            fill="var(--color-paper)"
+            stroke={stroke}
+            stroke-width="2.5"
+          />
+          <rect
+            x={x + 8}
+            y="57"
+            width="43"
+            height="65"
+            fill="none"
+            stroke={stroke}
+            stroke-width="1"
+            stroke-opacity=".35"
+          />
           <circle cx={x + 49} cy="96" r="3" fill={stroke} />
-          <text x={x + 30} y="166" font-size="14" font-weight="700"
-            fill="currentColor" text-anchor="middle">Door {number}</text>
+          <text
+            x={x + 30}
+            y="166"
+            font-size="14"
+            font-weight="700"
+            fill="currentColor"
+            text-anchor="middle"
+          >
+            Door {number}
+          </text>
         </g>
       ))}
     </SvgFigure>
     <p class="text-base leading-normal">
-      Your door is one chance in three. The two doors you did not pick
-      hold the other two chances <strong>together</strong>.
+      Your door is one chance in three. The two doors you did not pick hold the other two
+      chances <strong>together</strong>.
     </p>
   </div>
 
@@ -70,50 +113,116 @@ const doors = [
       title="After: door 1 still has a one-in-three chance; the one remaining alternative has two in three"
       desc="Door 1 stays closed inside the same blue 1-in-3 outline. Door 2 is now visibly open, revealing a goat. Door 3 stays closed inside a gold 2-in-3 outline. The host's informed reveal eliminated a goat from the original two-door group, without splitting its two-in-three chance."
     >
-      <rect x="8" y="34" width="100" height="116" rx="3"
-        fill="none" stroke={series.blue} stroke-width="3" />
-      <rect x="253" y="34" width="99" height="116" rx="3"
-        fill="none" stroke={series.gold} stroke-width="3" />
+      <rect
+        x="8"
+        y="34"
+        width="100"
+        height="116"
+        rx="3"
+        fill="none"
+        stroke={series.blue}
+        stroke-width="3"
+      />
+      <rect
+        x="253"
+        y="34"
+        width="99"
+        height="116"
+        rx="3"
+        fill="none"
+        stroke={series.gold}
+        stroke-width="3"
+      />
 
       <g font-size="15" fill="currentColor" font-weight="700">
-        <text x="58" y="22" text-anchor="middle">1 in 3</text>
-        <text x="302" y="22" text-anchor="middle">2 in 3</text>
+        <text x="58" y="22" text-anchor="middle">
+          1 in 3
+        </text>
+        <text x="302" y="22" text-anchor="middle">
+          2 in 3
+        </text>
       </g>
 
       {[doors[0], doors[2]].map(({ number, x }) => (
         <g>
-          <rect x={x} y="49" width="60" height="84" fill="var(--color-paper)"
-            stroke={stroke} stroke-width="2.5" />
-          <rect x={x + 8} y="57" width="43" height="65" fill="none"
-            stroke={stroke} stroke-width="1" stroke-opacity=".35" />
+          <rect
+            x={x}
+            y="49"
+            width="60"
+            height="84"
+            fill="var(--color-paper)"
+            stroke={stroke}
+            stroke-width="2.5"
+          />
+          <rect
+            x={x + 8}
+            y="57"
+            width="43"
+            height="65"
+            fill="none"
+            stroke={stroke}
+            stroke-width="1"
+            stroke-opacity=".35"
+          />
           <circle cx={x + 49} cy="96" r="3" fill={stroke} />
-          <text x={x + 30} y="166" font-size="14" font-weight="700"
-            fill="currentColor" text-anchor="middle">Door {number}</text>
+          <text
+            x={x + 30}
+            y="166"
+            font-size="14"
+            font-weight="700"
+            fill="currentColor"
+            text-anchor="middle"
+          >
+            Door {number}
+          </text>
         </g>
       ))}
 
-      <rect x="158" y="49" width="60" height="84" fill="none"
-        stroke={stroke} stroke-width="2" stroke-dasharray="4 3" />
-      <path d="M158 49 L127 66 L127 117 L158 133 Z"
-        stroke={stroke} stroke-width="2.5" fill={series.red} fill-opacity=".18" />
-      <line x1="137" y1="69" x2="137" y2="113"
-        stroke={stroke} stroke-width="1" stroke-opacity=".5" />
+      <rect
+        x="158"
+        y="49"
+        width="60"
+        height="84"
+        fill="none"
+        stroke={stroke}
+        stroke-width="2"
+        stroke-dasharray="4 3"
+      />
+      <path
+        d="M158 49 L127 66 L127 117 L158 133 Z"
+        stroke={stroke}
+        stroke-width="2.5"
+        fill={series.red}
+        fill-opacity=".18"
+      />
+      <line
+        x1="137"
+        y1="69"
+        x2="137"
+        y2="113"
+        stroke={stroke}
+        stroke-width="1"
+        stroke-opacity=".5"
+      />
       <g text-anchor="middle" fill="currentColor" font-weight="700">
-        <text x="188" y="94" font-size="13">GOAT</text>
-        <text x="188" y="166" font-size="14">Door 2</text>
+        <text x="188" y="94" font-size="13">
+          GOAT
+        </text>
+        <text x="188" y="166" font-size="14">
+          Door 2
+        </text>
       </g>
     </SvgFigure>
     <p class="text-base leading-normal">
-      The host deliberately revealed a goat, not a random door.
-      Your first pick stays at <strong>1 in 3</strong>.
-      The one other closed door now carries the original group's <strong>2 in 3</strong>.
+      The host deliberately revealed a goat, not a random door. Your first pick stays at{" "}
+      <strong>1 in 3</strong>. The one other closed door now carries the original group's{" "}
+      <strong>2 in 3</strong>.
     </p>
   </div>
 
   <Fragment slot="caption">
-    This shows one possible reveal. It assumes the host knows where the car is,
-    always opens a goat door, always offers a switch, and chooses randomly if
-    either goat door could be opened. Staying wins 1 time in 3;
-    switching wins 2 times in 3.
+    This shows one possible reveal. It assumes the host knows where the car is, always opens a
+    goat door, always offers a switch, and chooses randomly if either goat door could be opened.
+    Staying wins 1 time in 3; switching wins 2 times in 3.
   </Fragment>
 </IllustrationFigure>
