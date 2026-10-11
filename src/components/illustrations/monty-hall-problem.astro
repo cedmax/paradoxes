@@ -12,20 +12,24 @@ const doors = [1, 2, 3]
   lead="You are the presenter. Which door can you open?"
 >
   <p class="text-base leading-normal">
-    The player has already picked <strong>door 1</strong>. You know where the car is;
-    the player does not. You must reveal a goat, but you cannot open the player's door
-    or the door with the car.
+    The player has already picked <strong>door 1</strong>. You know where the car is; the player
+    does not. You must reveal a goat, but you cannot open the player's door or the door with the
+    car.
   </p>
 
   <p id="monty-round" class="font-bold" aria-live="polite">
     Case 1 of 3 — the car is behind door 1.
   </p>
   <p class="text-base leading-normal">
-    <strong>Presenter's view:</strong> the prizes are shown to you. Tap an allowed
-    goat door to reveal it to the player.
+    <strong>Presenter's view:</strong> the prizes are shown to you. Tap an allowed goat door to
+    reveal it to the player.
   </p>
 
-  <div class="grid grid-cols-3 gap-2" role="group" aria-label="Choose which goat door to open as presenter">
+  <div
+    class="grid grid-cols-3 gap-2"
+    role="group"
+    aria-label="Choose which goat door to open as presenter"
+  >
     {doors.map((door) => (
       <button
         type="button"
@@ -35,9 +39,11 @@ const doors = [1, 2, 3]
         ]}
         data-monty-open={door}
         disabled={door === 1}
-        aria-label={door === 1
-          ? "Door 1: car, player's original pick; cannot open"
-          : `Door ${door}: goat, allowed to open`}
+        aria-label={
+          door === 1
+            ? "Door 1: car, player's original pick; cannot open"
+            : `Door ${door}: goat, allowed to open`
+        }
       >
         <strong class="text-base">Door {door}</strong>
         <span data-monty-prize={door} class="text-lg font-bold">
@@ -65,13 +71,19 @@ const doors = [1, 2, 3]
     </p>
     <SideBySide>
       <Panel title="Player stays" accent="blue" class="flex min-w-0 flex-col gap-1">
-        <p id="monty-stay-result" class="text-base leading-normal">—</p>
+        <p id="monty-stay-result" class="text-base leading-normal">
+          —
+        </p>
       </Panel>
       <Panel title="Player switches" accent="green" class="flex min-w-0 flex-col gap-1">
-        <p id="monty-switch-result" class="text-base leading-normal">—</p>
+        <p id="monty-switch-result" class="text-base leading-normal">
+          —
+        </p>
       </Panel>
     </SideBySide>
-    <p id="monty-reason" class="text-base leading-normal">—</p>
+    <p id="monty-reason" class="text-base leading-normal">
+      —
+    </p>
   </div>
 
   <div class="flex flex-wrap gap-2">
@@ -85,11 +97,16 @@ const doors = [1, 2, 3]
 
   <div class="flex flex-col gap-2">
     <p class="font-bold">What happens across all three car locations?</p>
-    <div class="grid grid-cols-3 gap-2 text-center text-xs" aria-label="Results as you try each case">
+    <div
+      class="grid grid-cols-3 gap-2 text-center text-xs"
+      aria-label="Results as you try each case"
+    >
       {doors.map((door) => (
         <div class="flex flex-col gap-1">
           <span class="font-bold">Car: door {door}</span>
-          <span data-monty-case={door} class="border border-ink p-2">Try it</span>
+          <span data-monty-case={door} class="border border-ink p-2">
+            Try it
+          </span>
         </div>
       ))}
     </div>
@@ -99,9 +116,9 @@ const doors = [1, 2, 3]
   </div>
 
   <Fragment slot="caption">
-    The player always starts at door 1. The three car locations are equally likely;
-    we visit them in order to show every possibility, not as a random game.
-    The presenter always reveals a goat and always offers a switch.
+    The player always starts at door 1. The three car locations are equally likely; we visit
+    them in order to show every possibility, not as a random game. The presenter always reveals
+    a goat and always offers a switch.
   </Fragment>
 </IllustrationFigure>
 
@@ -192,18 +209,21 @@ const doors = [1, 2, 3]
         cell.classList.toggle("bg-series-green/20", completed[i] && i !== 0)
       })
       const finished = completed.filter(Boolean).length
-      summary.textContent = finished === 3
-        ? "Across the three equally likely car locations, staying wins only once; switching wins twice. The host's informed reveal is what makes the remaining doors unequal."
-        : `${finished} of 3 car locations tried. Switching wins whenever the player's original pick was wrong.`
+      summary.textContent =
+        finished === 3
+          ? "Across the three equally likely car locations, staying wins only once; switching wins twice. The host's informed reveal is what makes the remaining doors unequal."
+          : `${finished} of 3 car locations tried. Switching wins whenever the player's original pick was wrong.`
     }
 
-    buttons.forEach((button, i) => button.addEventListener("click", () => {
-      const car = doors[round]
-      const door = doors[i]
-      if (openedDoor !== null || door === firstPick || door === car) return
-      openedDoor = door
-      render()
-    }))
+    buttons.forEach((button, i) =>
+      button.addEventListener("click", () => {
+        const car = doors[round]
+        const door = doors[i]
+        if (openedDoor !== null || door === firstPick || door === car) return
+        openedDoor = door
+        render()
+      }),
+    )
 
     again.addEventListener("click", () => {
       openedDoor = null
