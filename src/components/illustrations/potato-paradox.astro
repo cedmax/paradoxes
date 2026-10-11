@@ -1,0 +1,74 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+const cell = 12
+const step = 14
+
+const stages = [
+  {
+    label: "1% dry + 99% water",
+    note: "the original potato",
+    name: "potato-before",
+    dry: 1,
+    water: 99,
+    desc: "100 squares: one red dry-matter square, then 99 blue water squares.",
+  },
+  {
+    label: "2% dry + 98% water",
+    note: "on a different potato",
+    name: "potato-hypothetical",
+    dry: 2,
+    water: 98,
+    desc: "100 squares: two red dry-matter squares, then 98 blue water squares. This would require the dry matter to double.",
+  },
+  {
+    label: "2% dry + 98% water",
+    note: "original potato’s dry weight is fixed",
+    name: "potato-after",
+    dry: 1,
+    water: 49,
+    desc: "50 squares: one red dry-matter square, then 49 blue water squares. The unchanged dry matter now accounts for two percent of the total.",
+  },
+]
+---
+
+<IllustrationFigure name="potato-paradox">
+  <div class="grid gap-6 md:grid-cols-3">
+    {stages.map(({ label, note, name, dry, water, desc }) => (
+      <div class="flex flex-col gap-2">
+        <div class="md:min-h-16">
+          <p class="font-bold">{label}</p>
+          {note && <p class="text-sm">{note}</p>}
+        </div>
+        <SvgFigure
+          name={name}
+          class="w-full max-w-48"
+          viewBox="0 0 140 140"
+          title={label}
+          desc={desc}
+        >
+          {Array.from({ length: dry + water }, (_, i) => (
+            <rect
+              x={(i % 10) * step}
+              y={Math.floor(i / 10) * step}
+              width={cell}
+              height={cell}
+              fill={i < dry ? series.red : series.blue}
+              stroke={stroke}
+              stroke-width=".5"
+            />
+          ))}
+        </SvgFigure>
+        <p class="text-sm">
+          {dry} kg dry + {water} kg water
+        </p>
+      </div>
+    ))}
+  </div>
+  <Fragment slot="caption">
+    At 100 kg, 98% water would require 2 kg of dry matter. But the dry matter stays at 1 kg.
+    That makes it 2% of a smaller total: <strong>50 kg</strong>.
+  </Fragment>
+</IllustrationFigure>

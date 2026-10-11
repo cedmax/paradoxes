@@ -16,6 +16,8 @@ interface Props {
   /** Id of the readout element, which goes in the default slot. */
   describedby?: string
   accent?: "ink" | "accent"
+  /** Place the readout beside the label on wide screens, below it on mobile. */
+  inlineReadout?: boolean
 }
 
 const {
@@ -31,14 +33,24 @@ const {
   valuetext,
   describedby,
   accent = "ink",
+  inlineReadout = false,
 } = Astro.props
 const accents = { ink: "accent-ink", accent: "accent-accent" }
 ---
 
 <div class="flex flex-col gap-2">
-  <label id={labelId} for={id} class="font-bold">
-    {label}
-  </label>
+  {inlineReadout ? (
+    <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+      <label id={labelId} for={id} class="font-bold">
+        {label}
+      </label>
+      <slot />
+    </div>
+  ) : (
+    <label id={labelId} for={id} class="font-bold">
+      {label}
+    </label>
+  )}
   <input
     id={id}
     class:list={["h-11 w-full", accents[accent]]}
@@ -56,5 +68,5 @@ const accents = { ink: "accent-ink", accent: "accent-accent" }
       <span>{endLabel}</span>
     </div>
   )}
-  <slot />
+  {!inlineReadout && <slot />}
 </div>

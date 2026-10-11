@@ -1,0 +1,82 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Cancel superseded runs on the same ref (e.g. rapid pushes to a PR).
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # astro build → dist/
+      - run: pnpm build
+
+      # Fork PRs can't read the Netlify secrets, so the deploy would fail red;
+      # skip it there (the build above still runs).
+      # Netlify only hosts the output: the build already happened, so --no-build.
+      # prod on push/dispatch; on pull_request an aliased draft with a stable
+      # preview URL. Headers come from netlify.toml.
+      - name: Deploy to Netlify
+        id: deploy
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          EVENT_NAME: ${{ github.event_name }}
+          PR_NUMBER: ${{ github.event.number }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            target=(--alias "deploy-preview-${PR_NUMBER}")
+          else
+            target=(--prod)
+          fi
+          pnpm exec netlify deploy --no-build --dir dist --json \
+            --message "${EVENT_NAME} ${SHA}" "${target[@]}" > deploy.json
+          cat deploy.json
+          echo "url=$(jq -r '.deploy_url // empty' deploy.json)" >> "$GITHUB_OUTPUT"
+
+  # Separate job so a transient failure here doesn't force a full build+deploy rerun.
+  comment:
+    needs: deploy
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && needs.deploy.outputs.url != ''
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      # The aliased URL is stable across pushes, so comment once and skip if present.
+      - name: Comment preview URL on PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.number }}
+          URL: ${{ needs.deploy.outputs.url }}
+        run: |
+          existing=$(gh api "repos/${{ github.repository }}/issues/${PR_NUMBER}/comments" \
+            --jq "[.[] | select(.body | contains(\"${URL}\"))] | length")
+          if [ "$existing" = "0" ]; then
+            gh api "repos/${{ github.repository }}/issues/${PR_NUMBER}/comments" \
+              -f body="🚀 Deploy preview: ${URL}"
+          fi

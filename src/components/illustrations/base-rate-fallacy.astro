@@ -1,0 +1,136 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SideBySide from "~/components/illustration-kit/SideBySide.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Callout from "~/components/illustration-kit/Callout.astro"
+import { series, stroke } from "~/data/palette"
+
+const tiles = Array.from({ length: 100 }, (_, i) => i)
+const truePositive = 90
+const falsePositive = 891
+const positive = truePositive + falsePositive
+const trueShare = (truePositive / positive) * 100
+---
+
+<IllustrationFigure
+  name="base-rate-fallacy"
+  lead="The test detects 90% of cases. Why are most positive results false alarms?"
+>
+  <p class="text-base leading-normal">
+    Start with 10,000 people. The condition is rare: only <strong>1 in 100</strong> has it. Each
+    square below stands for 100 people.
+  </p>
+
+  <SvgFigure
+    name="base-rate-population"
+    class="mx-auto w-full max-w-sm"
+    viewBox="0 0 320 170"
+    title="Only one group of one hundred people has the condition"
+    desc="A ten-by-ten grid shows 100 groups of 100 people, totalling 10,000. One blue square represents the 100 people who have the condition; the other 99 pale squares represent 9,900 people without it."
+  >
+    {tiles.map((i) => (
+      <rect
+        x={26 + (i % 10) * 27}
+        y={6 + Math.floor(i / 10) * 16}
+        width="24"
+        height="13"
+        fill={i === 0 ? series.blue : "var(--color-paper)"}
+        stroke={stroke}
+        stroke-width="0.8"
+      />
+    ))}
+  </SvgFigure>
+  <div class="mx-auto flex w-full max-w-sm flex-col gap-1 text-sm leading-normal">
+    <p>
+      <strong>1 blue square:</strong> 100 have it
+    </p>
+    <p>
+      <strong>99 pale squares:</strong> 9,900 do not
+    </p>
+  </div>
+
+  <p class="text-base font-bold">Now test both groups.</p>
+  <SideBySide>
+    <Panel title="100 have it" accent="blue" class="flex min-w-0 flex-col gap-2">
+      <p class="text-base leading-normal">The test catches 90% of them.</p>
+      <p class="font-bold">90 real positives</p>
+    </Panel>
+    <Panel title="9,900 do not" accent="red" class="flex min-w-0 flex-col gap-2">
+      <p class="text-base leading-normal">It wrongly flags 9% of them.</p>
+      <p class="font-bold">891 false alarms</p>
+    </Panel>
+  </SideBySide>
+
+  <SvgFigure
+    name="base-rate-positive-pool"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 360 130"
+    title="Real and false positive tests flow into one pool of 981 results"
+    desc="Ninety real positives come from the 100 people with the condition, and 891 false alarms come from the 9,900 without it. The two arrows feed one bar of 981 positive results. The blue portion is only 9.2 percent of the bar, with most of the bar in red."
+  >
+    <g font-size="14" fill="currentColor">
+      <text x="13" y="17" font-weight="700">
+        90 real
+      </text>
+      <text x="347" y="17" text-anchor="end" font-weight="700">
+        891 false alarms
+      </text>
+    </g>
+    <path
+      d="M51 25 V43 L39 60"
+      stroke={series.blue}
+      stroke-width="3"
+      fill="none"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M307 25 V43 L275 60"
+      stroke={series.red}
+      stroke-width="3"
+      fill="none"
+      stroke-linejoin="round"
+    />
+    <g fill="currentColor">
+      <text x="10" y="82" font-size="16" font-weight="700">
+        One pool: 981 positive tests
+      </text>
+      <rect x="10" y="91" width="340" height="30" fill={series.red} />
+      <rect
+        x="10"
+        y="91"
+        width={(340 * truePositive) / positive}
+        height="30"
+        fill={series.blue}
+      />
+      <rect
+        x="10"
+        y="91"
+        width="340"
+        height="30"
+        stroke={stroke}
+        fill="none"
+        stroke-width="1.5"
+      />
+    </g>
+  </SvgFigure>
+  <div class="mx-auto flex w-full max-w-md flex-wrap justify-between gap-x-4 gap-y-1 text-sm leading-normal">
+    <p class="font-bold">Just {trueShare.toFixed(1)}% are genuine</p>
+    <p>The rest are false alarms</p>
+  </div>
+
+  <Callout class="flex flex-col gap-2">
+    <p class="font-bold">90 real positives. 891 false alarms.</p>
+    <p class="text-base leading-normal">
+      Even a 9% mistake rate creates lots of false alarms when applied to a huge group of
+      healthy people. Of the people who test positive, only about <strong>9 in 100</strong> have
+      the condition.
+    </p>
+  </Callout>
+
+  <Fragment slot="caption">
+    Blue always means a real case; red means a false positive. The original 10,000-person group
+    and the 981-positive-test pool are different totals, so their bars are not on the same
+    numerical scale. These numbers are invented for the paradox, not a real medical test.
+  </Fragment>
+</IllustrationFigure>
