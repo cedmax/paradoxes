@@ -92,7 +92,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
           class="relative h-7 w-12 shrink-0 border-2 border-ink bg-paper transition-colors after:absolute after:top-0.5 after:left-0.5 after:size-5 after:bg-ink after:transition-transform peer-checked:bg-ink peer-checked:after:translate-x-5 peer-checked:after:bg-paper peer-focus-visible:outline-4 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink peer-disabled:opacity-50 motion-reduce:transition-none motion-reduce:after:transition-none"
         ></span>
         <span class="peer-disabled:opacity-50">
-          Hide variants <span class="font-mono text-xs font-medium">{variantCount}</span>
+          Hide variants{"\u0020"}<span class="font-mono text-xs font-medium">{variantCount}</span>
         </span>
       </label>
       <label
@@ -105,7 +105,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
           class="relative h-7 w-12 shrink-0 border-2 border-ink bg-paper transition-colors after:absolute after:top-0.5 after:left-0.5 after:size-5 after:bg-ink after:transition-transform peer-checked:bg-ink peer-checked:after:translate-x-5 peer-checked:after:bg-paper peer-focus-visible:outline-4 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink motion-reduce:transition-none motion-reduce:after:transition-none"
         ></span>
         <span>
-          Only reviewed <span class="font-mono text-xs font-medium">{reviewedCount}</span>
+          Only reviewed{"\u0020"}<span class="font-mono text-xs font-medium">{reviewedCount}</span>
         </span>
       </label>
     </div>
