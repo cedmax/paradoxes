@@ -20,8 +20,8 @@ import { series, stroke } from "~/data/palette"
         name="ladder-barn-view"
         class="w-full max-w-md"
         viewBox="0 0 360 205"
-        title="Barn's view: the short ladder fits and both doors close together"
-        desc="A 10 metre blue ladder fits completely inside a 12 metre gold barn. Beneath it, the near-door and far-door closing events line up at the same point in time."
+        title="Barn's view: the short ladder fits and the closed-door periods overlap"
+        desc="A 10 metre blue ladder fits completely inside a 12 metre gold barn. On two timelines, red bars show the near and far doors closed during the same brief period: they shut and reopen together in the barn's frame."
       >
         <g fill="currentColor" font-size="15">
           <text x="10" y="18" font-weight="700">Barn: 12 m</text>
@@ -31,24 +31,24 @@ import { series, stroke } from "~/data/palette"
           <line x1="10" x2="10" y1="27" y2="67" stroke={series.red} stroke-width="5" />
           <line x1="350" x2="350" y1="27" y2="67" stroke={series.red} stroke-width="5" />
           <text x="10" y="87">Ladder: 10 m — wholly inside</text>
-          <text x="10" y="115" font-weight="700">When the doors shut</text>
+          <text x="10" y="115" font-weight="700">Red = door closed</text>
           <text x="10" y="145">Near</text>
           <text x="10" y="175">Far</text>
           <path d="M88 140 H344 M88 170 H344" stroke={stroke} stroke-width="1"
             stroke-opacity="0.35" fill="none" />
-          <line x1="224" x2="224" y1="136" y2="174" stroke={series.red}
-            stroke-width="2" stroke-dasharray="3 3" />
-          <circle cx="224" cy="140" r="6" fill={series.red} />
-          <circle cx="224" cy="170" r="6" fill={series.red} />
-          <text x="224" y="131" text-anchor="middle" font-size="13" font-weight="700">
-            Same moment
-          </text>
+          <rect x="214" y="132" width="46" height="16" fill={series.red} />
+          <rect x="214" y="162" width="46" height="16" fill={series.red} />
+          <line x1="214" x2="214" y1="130" y2="181" stroke={stroke}
+            stroke-width="1" stroke-dasharray="3 3" />
+          <line x1="260" x2="260" y1="130" y2="181" stroke={stroke}
+            stroke-width="1" stroke-dasharray="3 3" />
           <text x="88" y="197" font-size="13">Earlier</text>
           <text x="344" y="197" text-anchor="end" font-size="13">Later →</text>
         </g>
       </SvgFigure>
       <p class="text-base leading-normal">
-        Both doors close together while the shortened ladder is entirely inside.
+        Both doors close together, and reopen together. The red periods overlap while
+        the shortened ladder is entirely inside.
       </p>
     </Panel>
 
@@ -57,8 +57,8 @@ import { series, stroke } from "~/data/palette"
         name="ladder-ladder-view"
         class="w-full max-w-md"
         viewBox="0 0 360 205"
-        title="Ladder's view: the barn is short but the far door closes first"
-        desc="A 20 metre ladder is longer than the 6 metre barn in this frame. The separate door-closing timeline shows the far door closing earlier than the near door, so the two are never closed together at one moment."
+        title="Ladder's view: the far door reopens before the near door closes"
+        desc="The 20 metre ladder is longer than the 6 metre barn. Red bars show when each door is closed: the far-door bar finishes well before the near-door bar starts. There is never a moment when both doors are shut in the ladder's frame."
       >
         <g fill="currentColor" font-size="15">
           <text x="10" y="18" font-weight="700">Ladder: 20 m</text>
@@ -66,13 +66,13 @@ import { series, stroke } from "~/data/palette"
           <text x="10" y="65" font-weight="700">Barn: 6 m</text>
           <rect x="10" y="74" width="102" height="18" fill={series.gold}
             fill-opacity="0.25" stroke={stroke} stroke-width="1.5" />
-          <text x="10" y="115" font-weight="700">When the doors shut</text>
+          <text x="10" y="115" font-weight="700">Red = door closed</text>
           <text x="10" y="145">Near</text>
           <text x="10" y="175">Far</text>
           <path d="M88 140 H344 M88 170 H344" stroke={stroke} stroke-width="1"
             stroke-opacity="0.35" fill="none" />
-          <circle cx="304" cy="140" r="6" fill={series.red} />
-          <circle cx="136" cy="170" r="6" fill={series.red} />
+          <rect x="274" y="132" width="50" height="16" fill={series.red} />
+          <rect x="118" y="162" width="50" height="16" fill={series.red} />
           <text x="88" y="197" font-size="13">Earlier</text>
           <text x="344" y="197" text-anchor="end" font-size="13">Later →</text>
         </g>
@@ -87,8 +87,8 @@ import { series, stroke } from "~/data/palette"
 
   <Fragment slot="caption">
     The coloured bars compare lengths <strong>within</strong> each observer's frame;
-    the dots below show the order of the same two door-closing events.
-    The paradox disappears when we stop assuming everyone agrees what happens
-    at the same time.
+    the red intervals below show when each door is closed. They overlap in the
+    barn's frame, but not in the ladder's frame. These timing diagrams are schematic,
+    not to scale. The paradox disappears because simultaneity is not shared.
   </Fragment>
 </IllustrationFigure>
