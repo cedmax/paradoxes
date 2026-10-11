@@ -2,231 +2,121 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Panel from "~/components/illustration-kit/Panel.astro"
-import Callout from "~/components/illustration-kit/Callout.astro"
 import { series, stroke } from "~/data/palette"
 
 const states = [
-  { name: "A", colour: series.blue, tile: "bg-series-blue", initial: 4 },
-  { name: "B", colour: series.gold, tile: "bg-series-gold", initial: 4 },
-  { name: "C", colour: series.red, tile: "bg-series-red", initial: 2 },
+  { name: "A", colour: series.blue },
+  { name: "B", colour: series.gold },
+  { name: "C", colour: series.red },
 ]
-const initialRemainders = [2 / 7, 2 / 7, 3 / 7]
+
+const scenarios = [
+  { size: 10, y: 4, seats: [4, 4, 2] },
+  { size: 11, y: 131, seats: [5, 5, 1] },
+]
+
+const seatWidth = 23
+const seatGap = 4
+const groupGap = 9
+
+const groupsFor = (counts: number[]) => {
+  let used = 0
+  return counts.map((count, index) => {
+    const x = 12 + used * (seatWidth + seatGap) + index * groupGap
+    used += count
+    return {
+      ...states[index],
+      count,
+      x,
+      centre: x + (count * seatWidth + (count - 1) * seatGap) / 2,
+    }
+  })
+}
 ---
 
 <IllustrationFigure
   name="apportionment-paradox"
-  lead="A parliament gains a seat. How does State C lose one?"
+  lead="The parliament gets bigger. State C loses a seat."
 >
   <p class="text-base leading-normal">
-    The populations stay at a ratio of 6 : 6 : 2. The largest-remainder method first gives A
-    four seats, B four, and C one. The remaining seats go to the biggest leftover fractions.
+    Three states have populations in the ratio 6 : 6 : 2. Their populations stay
+    the same; only the total number of seats increases.
   </p>
 
-  <div class="flex flex-wrap gap-2" role="group" aria-label="Choose parliament size">
-    <button type="button" class="btn-toggle" data-apportionment-total="10" aria-pressed="true">
-      10 seats
-    </button>
-    <button type="button" class="btn-toggle" data-apportionment-total="11" aria-pressed="false">
-      11 seats
-    </button>
-  </div>
-
-  <Panel title="Seats actually awarded" class="flex flex-col gap-3">
-    {states.map(({ name, tile, initial }) => (
-      <div class="grid grid-cols-[4rem_minmax(0,1fr)_4.5rem] items-center gap-2">
-        <strong>State {name}</strong>
-        <div
-          class="grid grid-cols-5 gap-1"
-          data-apportionment-row={name}
-          role="img"
-          aria-label={`State ${name} has ${initial} seats`}
-        >
-          {Array.from({ length: 5 }, (_, i) => (
-            <span
-              data-apportionment-seat={name}
-              class:list={[
-                "h-7 min-w-0 border border-ink transition-colors duration-200",
-                i < initial ? tile : "bg-paper",
-              ]}
-              aria-hidden="true"
-            ></span>
-          ))}
-        </div>
-        <strong data-apportionment-count={name} class="text-right tabular-nums">
-          {initial} {initial === 1 ? "seat" : "seats"}
-        </strong>
-      </div>
+  <SvgFigure
+    name="apportionment-before-after"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 360 229"
+    title="A parliament grows from ten to eleven seats, but State C loses one"
+    desc="With ten seats, State A has four blue seats, B has four gold seats, and C has two red seats. An arrow says parliament gains one seat. With eleven seats, A now has five blue seats, B five gold seats, and C just one red seat. Every square represents a real allocated seat; there are no empty slots."
+  >
+    {scenarios.map(({ size, y, seats }) => (
+      <g>
+        <text x="12" y={y + 15} font-size="17" font-weight="700" fill="currentColor">
+          {size} seats
+        </text>
+        {groupsFor(seats).map(({ name, colour, count, x, centre }) => (
+          <g>
+            <text
+              x={centre}
+              y={y + 39}
+              font-size="14"
+              font-weight="700"
+              fill="currentColor"
+              text-anchor="middle"
+            >
+              {name}: {count}
+            </text>
+            {Array.from({ length: count }, (_, i) => (
+              <rect
+                x={x + i * (seatWidth + seatGap)}
+                y={y + 48}
+                width={seatWidth}
+                height="27"
+                rx="1"
+                fill={colour}
+                stroke={stroke}
+                stroke-width="1.5"
+              />
+            ))}
+          </g>
+        ))}
+      </g>
     ))}
-    <p id="apportionment-change" class="text-base leading-normal" aria-live="polite">
-      With 10 seats, C gets two seats. Try giving the parliament one more.
-    </p>
-  </Panel>
-
-  <Panel title="Why the seats change" class="flex flex-col gap-2">
-    <p id="apportionment-leftover" class="text-base leading-normal" aria-live="polite">
-      The whole shares use 9 seats. <strong>One seat remains.</strong>
-    </p>
-    <SvgFigure
-      name="apportionment-remainder-race"
-      class="w-full max-w-md"
-      viewBox="0 0 360 160"
-      title="Race for the seats left after the whole shares"
-      desc="With 10 seats, the fractions left over are 0.29 for A, 0.29 for B, and 0.43 for C. C has the largest fraction and wins the one remaining seat."
+    <text
+      x="180"
+      y="112"
+      text-anchor="middle"
+      font-size="15"
+      font-weight="700"
+      fill="currentColor"
     >
-      <text x="9" y="17" fill="currentColor" font-size="15" font-weight="700">
-        Leftover fraction — longer wins
-      </text>
-      {states.map(({ name, colour }, i) => (
-        <g>
-          <text x="9" y={52 + i * 42} font-size="16" font-weight="700" fill="currentColor">
-            {name}
-          </text>
-          <rect
-            x="39"
-            y={33 + i * 42}
-            width="190"
-            height="26"
-            fill="none"
-            stroke={stroke}
-            stroke-width="0.8"
-            stroke-opacity="0.3"
-          />
-          <rect
-            data-apportionment-bar={name}
-            x="39"
-            y={33 + i * 42}
-            width={190 * initialRemainders[i]}
-            height="26"
-            fill={colour}
-          />
-          <text
-            data-apportionment-fraction={name}
-            x="238"
-            y={52 + i * 42}
-            font-size="14"
-            font-weight="700"
-            fill="currentColor"
-          >
-            {initialRemainders[i].toFixed(2)}
-          </text>
-          <text
-            data-apportionment-winner={name}
-            x="348"
-            y={52 + i * 42}
-            font-size="14"
-            text-anchor="end"
-            font-weight="700"
-            fill="currentColor"
-          >
-            {name === "C" ? "+1 seat" : ""}
-          </text>
-        </g>
-      ))}
-    </SvgFigure>
-    <p id="apportionment-reason" class="text-base leading-normal">
-      C has the largest remainder (0.43), so C wins the one leftover seat.
+      ↓ Parliament gains one seat
+    </text>
+  </SvgFigure>
+
+  <p class="text-base font-bold">
+    A gains one. B gains one. C loses one.
+  </p>
+
+  <Panel title="Why C loses out" class="flex flex-col gap-2">
+    <p class="text-base leading-normal">
+      The rule first gives out the same nine whole seats both times:
+      A gets 4, B gets 4, and C gets 1.
+    </p>
+    <div class="flex flex-col gap-2 text-base leading-normal">
+      <p><strong>With 10 seats:</strong> one seat is left over. C wins it.</p>
+      <p><strong>With 11 seats:</strong> two seats are left over. A and B win them.</p>
+    </div>
+    <p class="text-base leading-normal">
+      As the total changes, so do the leftover fractions. The extra seat
+      changes who wins the leftovers, even though nobody's population changes.
     </p>
   </Panel>
-
-  <Callout class="flex flex-col gap-2">
-    <p id="apportionment-verdict" class="font-bold" aria-live="polite">
-      10 seats: A gets 4, B gets 4, C gets 2.
-    </p>
-    <p class="text-base leading-normal">
-      The population never changes. Only the total number of seats changes the fractions
-      competing for the leftover seats.
-    </p>
-  </Callout>
 
   <Fragment slot="caption">
-    Each filled square is one seat; empty outlined squares are unused slots. The bars compare
-    the leftover fractions, not population sizes. Switch between 10 and 11 seats to see C lose
-    one despite the extra seat.
+    The largest-remainder rule gives each state its whole-number share, then awards
+    seats still left over to the states with the largest fractional leftovers.
+    Every coloured square above is an allocated seat.
   </Fragment>
 </IllustrationFigure>
-
-<script>
-  import { find, illustrationRoot } from "~/scripts/illustration"
-
-  const root = illustrationRoot("apportionment-paradox")
-  if (root) {
-    const buttons = Array.from(
-      root.querySelectorAll<HTMLButtonElement>("[data-apportionment-total]"),
-    )
-    const names = ["A", "B", "C"]
-    const tileClasses = ["bg-series-blue", "bg-series-gold", "bg-series-red"]
-    const initial = [4, 4, 2]
-    const expanded = [5, 5, 1]
-    const fractions = {
-      10: [2 / 7, 2 / 7, 3 / 7],
-      11: [5 / 7, 5 / 7, 4 / 7],
-    }
-    const rows = names.map((name) =>
-      find<HTMLElement>(root, `[data-apportionment-row="${name}"]`),
-    )
-    const seats = names.map((name) =>
-      Array.from(root.querySelectorAll<HTMLElement>(`[data-apportionment-seat="${name}"]`)),
-    )
-    const counts = names.map((name) =>
-      find<HTMLElement>(root, `[data-apportionment-count="${name}"]`),
-    )
-    const bars = names.map((name) =>
-      find<SVGRectElement>(root, `[data-apportionment-bar="${name}"]`),
-    )
-    const remainders = names.map((name) =>
-      find<SVGTextElement>(root, `[data-apportionment-fraction="${name}"]`),
-    )
-    const winners = names.map((name) =>
-      find<SVGTextElement>(root, `[data-apportionment-winner="${name}"]`),
-    )
-    const change = find<HTMLElement>(root, "#apportionment-change")
-    const leftover = find<HTMLElement>(root, "#apportionment-leftover")
-    const reason = find<HTMLElement>(root, "#apportionment-reason")
-    const verdict = find<HTMLElement>(root, "#apportionment-verdict")
-    const desc = find<SVGDescElement>(root, "#apportionment-remainder-race-desc")
-
-    const render = (total: 10 | 11) => {
-      const bigger = total === 11
-      const countsNow = bigger ? expanded : initial
-      const frac = fractions[total]
-      names.forEach((name, i) => {
-        counts[i].textContent = `${countsNow[i]} ${countsNow[i] === 1 ? "seat" : "seats"}`
-        rows[i].setAttribute("aria-label", `State ${name} has ${countsNow[i]} seats`)
-        seats[i].forEach((seat, j) => {
-          seat.classList.remove("bg-paper", ...tileClasses)
-          seat.classList.add(j < countsNow[i] ? tileClasses[i] : "bg-paper")
-        })
-        bars[i].setAttribute("width", String(frac[i] * 190))
-        remainders[i].textContent = frac[i].toFixed(2)
-        winners[i].textContent = bigger ? (i < 2 ? "+1 seat" : "") : i === 2 ? "+1 seat" : ""
-      })
-      change.textContent = bigger
-        ? "A gains 1 seat. B gains 1 seat. C loses 1 seat — even though parliament has grown by just 1."
-        : "With 10 seats, C gets two seats. Try giving the parliament one more."
-      leftover.textContent = bigger
-        ? "The same whole shares use 9 seats. Two seats remain."
-        : "The whole shares use 9 seats. One seat remains."
-      reason.textContent = bigger
-        ? "A and B now have the biggest remainders (0.71 each), so C's 0.57 wins nothing."
-        : "C has the largest remainder (0.43), so C wins the one leftover seat."
-      verdict.textContent = bigger
-        ? "11 seats: A gets 5, B gets 5, C gets 1."
-        : "10 seats: A gets 4, B gets 4, C gets 2."
-      desc.textContent = bigger
-        ? "With 11 seats, A and B have remainders of 0.71 each, while C has 0.57. A and B each win a remaining seat and C loses its previous extra seat."
-        : "With 10 seats, A and B have remainders of 0.29, and C has 0.43. C has the largest fraction and wins the one remaining seat."
-      buttons.forEach((button) =>
-        button.setAttribute(
-          "aria-pressed",
-          String(Number(button.dataset.apportionmentTotal) === total),
-        ),
-      )
-    }
-    buttons.forEach((button) =>
-      button.addEventListener("click", () =>
-        render(Number(button.dataset.apportionmentTotal) as 10 | 11),
-      ),
-    )
-    render(10)
-  }
-</script>
