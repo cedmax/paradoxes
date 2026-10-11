@@ -3,13 +3,13 @@ title: "Accuracy paradox"
 titleAccent: "paradox"
 aka:
   ["class imbalance", "99 percent accurate", "accuracy is misleading", "precision and recall"]
-chapter: probability
+chapter: numbers-mislead
 status: explained
 uniqueness: related
 anchor: base-rate-fallacy
 simplification: light
 noMaths: false
-order: 209
+order: 120
 written: true
 sourcesVerified: true
 problem: "Can a predictor that is right 99% of the time be useless?"

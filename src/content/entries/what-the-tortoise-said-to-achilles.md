@@ -1,10 +1,10 @@
 ---
 title: "What the Tortoise Said to Achilles"
-chapter: "belief"
+chapter: belief
 status: "explained"
 simplification: light
 noMaths: true
-order: 300
+order: 190
 written: true
 sourcesVerified: true
 reviewed: false

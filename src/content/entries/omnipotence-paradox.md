@@ -1,12 +1,12 @@
 ---
 title: "Omnipotence paradox"
 titleAccent: paradox
-chapter: self-reference
+chapter: what-counts
 status: defused
 uniqueness: related
 anchor: russells-paradox
 simplification: light
-order: 5
+order: 10
 written: true
 sourcesVerified: true
 reviewed: true
