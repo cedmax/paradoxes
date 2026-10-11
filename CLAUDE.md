@@ -20,7 +20,7 @@ content cache: `rm -rf .astro node_modules/.astro`.
 
 ## Architecture
 
-Logic Benders (logicbenders.com) is a static **Astro 7** site of paradoxes explained in plain words, deployed to Netlify (`netlify.toml`). Package manager is **pnpm** (version pinned in `package.json`); Node version in `.nvmrc`.
+Logic Benders (logicbenders.com) is a static **Astro 7** site of paradoxes explained in plain words, built in GitHub Actions and deployed to Netlify with the CLI (`.github/workflows/deploy.yml`; needs the `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` secrets). Netlify does not build; `netlify.toml` only holds headers. Package manager is **pnpm** (version pinned in `package.json`); Node version in `.nvmrc`.
 Tailwind CSS 4 via the Vite plugin. Fonts are self-hosted with `@fontsource-variable/*`, imported
 in `src/styles/global.css`. `~` maps to `/src`.
 
