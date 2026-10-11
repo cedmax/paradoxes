@@ -1,7 +1,3 @@
----
-const boxes = [1, 2, 3, 4, 5, 6, 7, 8]
----
-
 <figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6" data-prisoner-cycles>
   <p class="font-bold">The hidden pattern: loops of numbers</p>
   <p class="text-base leading-normal">
@@ -116,8 +112,9 @@ const boxes = [1, 2, 3, 4, 5, 6, 7, 8]
       return cycles
     }
 
-    const svgElement = <T extends SVGElement>(tag: string): T =>
-      document.createElementNS(ns, tag) as T
+    function svgElement<T extends SVGElement>(tag: string): T {
+      return document.createElementNS(ns, tag) as T
+    }
 
     const textElement = (tag: string, text: string, className: string) => {
       const element = document.createElement(tag)
@@ -126,7 +123,7 @@ const boxes = [1, 2, 3, 4, 5, 6, 7, 8]
       return element
     }
 
-    const chooseBox = (box: number) => {
+    const chooseBox = (box: number, returnFocus = false) => {
       if (selected === null) {
         selected = box
         swapMessage.textContent = `Box ${box} selected. Select another box to swap its contents.`
@@ -142,9 +139,12 @@ const boxes = [1, 2, 3, 4, 5, 6, 7, 8]
         swapMessage.textContent = `Swapped the contents of boxes ${first} and ${box}.`
       }
       render()
+      if (returnFocus) {
+        cycleRegion.querySelector<SVGGElement>(`[data-cycle-box="${box}"]`)?.focus()
+      }
     }
 
-    const cycleDiagram = (cycle: number[], index: number, allSucceed: boolean) => {
+    const cycleDiagram = (cycle: number[], index: number) => {
       const card = document.createElement("section")
       card.className = "flex flex-col gap-2 border-2 border-ink p-3"
       const succeeds = cycle.length <= 4
@@ -227,6 +227,7 @@ const boxes = [1, 2, 3, 4, 5, 6, 7, 8]
       for (const point of points) {
         const node = svgElement<SVGGElement>("g")
         node.setAttribute("class", "cycle-node")
+        node.setAttribute("data-cycle-box", String(point.number))
         node.setAttribute("role", "button")
         node.setAttribute("tabindex", "0")
         node.setAttribute(
@@ -258,7 +259,7 @@ const boxes = [1, 2, 3, 4, 5, 6, 7, 8]
         node.addEventListener("keydown", (event) => {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault()
-            chooseBox(point.number)
+            chooseBox(point.number, true)
           }
         })
         svg.appendChild(node)
@@ -300,7 +301,7 @@ const boxes = [1, 2, 3, 4, 5, 6, 7, 8]
         )
       })
       cycleRegion.replaceChildren(
-        ...cycles.map((cycle, i) => cycleDiagram(cycle, i, allSucceed)),
+        ...cycles.map((cycle, i) => cycleDiagram(cycle, i)),
       )
     }
 
