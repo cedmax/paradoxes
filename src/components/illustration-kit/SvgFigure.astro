@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"svg"> {
+  /** Unique on the page. Builds the title and description ids: "<name>-title", "<name>-desc". */
+  name: string
+  /** Short name of the picture. */
+  title: string
+  /** What the picture shows, in full, for people who cannot see it. Always give one for new pictures. */
+  desc?: string
+  viewBox: string
+}
+
+const { name, title, desc, viewBox, class: className, ...rest } = Astro.props
+---
+
+<svg
+  viewBox={viewBox}
+  role="img"
+  aria-labelledby={desc ? `${name}-title ${name}-desc` : `${name}-title`}
+  class={className}
+  {...rest}
+>
+  <title id={`${name}-title`}>{title}</title>
+  {desc && <desc id={`${name}-desc`}>{desc}</desc>}
+  <slot />
+</svg>

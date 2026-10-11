@@ -1,0 +1,47 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+---
+
+<IllustrationFigure>
+  <SvgFigure
+    name="rp-fig"
+    class="w-full"
+    viewBox="0 0 420 290"
+    title="Different lines of simultaneity"
+    desc="Two observers meet at the origin. The stationary observer's simultaneous events lie on a horizontal line. A relatively moving observer's simultaneous events lie on a tilted line through the same meeting point. A distant event can be future to one observer but simultaneous for the other."
+  >
+    <g fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M30 255 H400 M90 270 V20" />
+      <path d="M90 150 H390" stroke="var(--color-series-blue)" stroke-width="4" />
+      <path d="M90 150 L390 95" stroke="var(--color-series-red)" stroke-width="4" />
+      <path d="M90 150 L165 55" stroke-dasharray="8 6" />
+    </g>
+    <circle cx="330" cy="106" r="7" fill="var(--color-series-red)" />
+    <circle cx="90" cy="150" r="7" fill="currentColor" />
+    <g fill="currentColor" font-size="18" font-family="sans-serif">
+      <text x="100" y="26">
+        Time
+      </text>
+      <text x="400" y="280" text-anchor="end">
+        Space
+      </text>
+      <text x="390" y="178" text-anchor="end">
+        Observer A: now
+      </text>
+      <text x="390" y="76" text-anchor="end">
+        Observer B: now
+      </text>
+      <text x="330" y="136" text-anchor="middle">
+        Event
+      </text>
+      <text x="100" y="176">
+        Meet
+      </text>
+    </g>
+  </SvgFigure>
+  <Fragment slot="caption">
+    Schematic spacetime diagram, not to scale. The lines show different answers to which distant
+    events happen now. Whether that makes the future already real is a separate claim.
+  </Fragment>
+</IllustrationFigure>

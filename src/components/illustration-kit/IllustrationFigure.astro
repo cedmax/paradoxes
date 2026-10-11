@@ -1,0 +1,30 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"figure"> {
+  /** Bold lead-in line above the picture. Use the `lead` slot when it needs markup. */
+  lead?: string
+  /** Renders data-illustration="<name>", the root that a page script looks up. */
+  name?: string
+  /** Draw the bordered box. Turn off when the figure only holds bordered tables. */
+  frame?: boolean
+}
+
+const { lead, name, frame = true, class: className, ...rest } = Astro.props
+---
+
+<figure
+  class:list={["flex flex-col gap-4", frame && "border-2 border-ink p-4 sm:p-6", className]}
+  data-illustration={name}
+  {...rest}
+>
+  {lead && <p class="font-bold">{lead}</p>}
+  <slot name="lead" />
+  <slot />
+  {Astro.slots.has("caption") && (
+    <figcaption class="text-base leading-normal">
+      <slot name="caption" />
+    </figcaption>
+  )}
+  <slot name="after" />
+</figure>
