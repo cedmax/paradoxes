@@ -1,83 +1,70 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">A shorter measuring ruler follows more of the bends.</p>
-  <svg
-    viewBox="0 0 300 240"
-    class="w-full max-w-sm"
-    role="img"
-    aria-labelledby="coast-title coast-desc"
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+const coast =
+  "M12 78 L35 52 L52 68 L70 30 L87 54 L109 45 L132 82 L153 60 L170 88 L188 40 L205 61 L224 48 L242 80 L262 57 L280 71 L308 45"
+const coarse = "M12 78 L70 30 L132 82 L188 40 L242 80 L308 45"
+const coarseCorners = [
+  [12, 78],
+  [70, 30],
+  [132, 82],
+  [188, 40],
+  [242, 80],
+  [308, 45],
+]
+const fineCorners = [
+  [12, 78],
+  [35, 52],
+  [52, 68],
+  [70, 30],
+  [87, 54],
+  [109, 45],
+  [132, 82],
+  [153, 60],
+  [170, 88],
+  [188, 40],
+  [205, 61],
+  [224, 48],
+  [242, 80],
+  [262, 57],
+  [280, 71],
+  [308, 45],
+]
+---
+
+<IllustrationFigure
+  name="coastline-paradox"
+  lead="The same shore, measured in bigger and smaller steps"
+>
+  <SvgFigure
+    name="coastline-paradox"
+    class="mx-auto w-full max-w-sm"
+    viewBox="0 0 320 239"
+    title="Two ways to measure the same jagged shoreline"
+    desc="The first drawing joins six points along a jagged coastline using five long straight steps, cutting across many small bends. The second joins sixteen points on the same coastline using fifteen shorter steps that follow every illustrated bend. Its route is longer although the start and finish stay the same. This is a schematic, not a map or a measurement of Britain."
   >
-    <title id="coast-title">Coarse and fine approximations of one coastline</title>
-    <desc id="coast-desc">
-      A coarse ruler replaces the bends with a few straight segments, while a smaller ruler
-      traces more of the details, producing a longer total measurement.
-    </desc>
-    <g
-      transform="translate(6 64) scale(.64 .85)"
-      fill="none"
-      stroke-linejoin="round"
-      vector-effect="non-scaling-stroke"
-    >
-      <path
-        d="M20 145 L80 60 L140 125 L215 48 L280 125 L355 70 L450 145"
-        stroke="#d7a13d"
-        stroke-width="10"
-        opacity=".45"
-        vector-effect="non-scaling-stroke"
-      />
-      <path
-        d="M20 145 L80 60 L140 125 L215 48 L280 125 L355 70 L450 145"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-dasharray="6 5"
-        vector-effect="non-scaling-stroke"
-      />
-      <path
-        d="M20 145 L40 115 L51 130 L80 60 L90 86 L105 79 L117 110 L140 125 L160 90 L178 105 L197 70 L215 48 L229 84 L244 65 L257 106 L280 125 L297 92 L319 110 L335 80 L355 70 L377 106 L398 91 L421 131 L450 145"
-        stroke="#bd4b37"
-        stroke-width="3"
-        vector-effect="non-scaling-stroke"
-      />
+    <g fill="currentColor" font-size="15" font-weight="bold">
+      <text x="12" y="16">Bigger steps: cut across bends</text>
+      <text x="12" y="134">Smaller steps: follow more bends</text>
     </g>
-    <path d="M8 20 H34" stroke="currentColor" stroke-width="2" stroke-dasharray="6 5" />
-    <path d="M8 42 H34" stroke="#bd4b37" stroke-width="3" />
-    <g fill="currentColor" font-size="16">
-      <text x="42" y="25">
-        Dashed: big steps
-      </text>
-      <text x="42" y="47">
-        Red: smaller steps
-      </text>
-      <text x="8" y="208">
-        Same endpoints.
-      </text>
-      <text x="8" y="230">
-        Different total lengths.
-      </text>
+    <g fill="none" stroke-linejoin="round" stroke-linecap="round">
+      <path d={coast} stroke="currentColor" stroke-width="2" opacity=".25" />
+      <path d={coarse} stroke="var(--color-series-blue)" stroke-width="3" />
+      <g fill="var(--color-series-blue)" stroke="none">
+        {coarseCorners.map(([x, y]) => <circle cx={x} cy={y} r="3.5" />)}
+      </g>
+      <g transform="translate(0 118)">
+        <path d={coast} stroke="currentColor" stroke-width="2" opacity=".25" />
+        <path d={coast} stroke="var(--color-series-red)" stroke-width="3" />
+        <g fill="var(--color-series-red)" stroke="none">
+          {fineCorners.map(([x, y]) => <circle cx={x} cy={y} r="2.5" />)}
+        </g>
+      </g>
     </g>
-  </svg>
-  <div class="overflow-x-auto">
-    <table class="w-full text-base">
-      <thead>
-        <tr class="border-b border-ink">
-          <th class="p-2 text-left">Example ruler length</th>
-          <th class="p-2 text-right">Quoted measured coast</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="border-b border-ink">
-          <td class="p-2">100 km</td>
-          <td class="p-2 text-right">about 2,800 km</td>
-        </tr>
-        <tr>
-          <td class="p-2">50 km</td>
-          <td class="p-2 text-right">about 3,400 km</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <figcaption class="text-base leading-normal">
-    The red zigzag is a schematic, not a map of Britain. Smaller rulers pick up bends missed by
-    bigger ones. A mathematical coast with detail at every scale may never approach a finite
-    length; real shores require a chosen measuring scale.
-  </figcaption>
-</figure>
+  </SvgFigure>
+  <Fragment slot="caption">
+    Both routes start and finish at the same points. Smaller steps include bends that larger
+    steps skip, so the measured distance grows.
+  </Fragment>
+</IllustrationFigure>
