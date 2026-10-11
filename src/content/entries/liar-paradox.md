@@ -4,7 +4,7 @@ titleAccent: paradox
 chapter: self-reference
 status: unreconciled
 simplification: light
-order: 1
+order: 10
 written: true
 sourcesVerified: true
 reviewed: false

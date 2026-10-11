@@ -6,7 +6,7 @@ status: unreconciled
 uniqueness: variant
 anchor: russells-paradox
 simplification: light
-order: 4
+order: 40
 written: true
 sourcesVerified: true
 reviewed: false
