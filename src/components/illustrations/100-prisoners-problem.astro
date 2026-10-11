@@ -1,23 +1,28 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6" data-prisoner-loops>
-  <p class="font-bold">The part that matters: how long the loops are</p>
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+---
+
+<IllustrationFigure name="prisoner-loops" lead="The part that matters: how long the loops are">
   <p class="text-base leading-normal">
     The top of each card is the <strong>box you open</strong>. The bottom is the
-    <strong>number found inside</strong>, which tells you which box to open next.
-    Blue cards are boxes you can open. A red card marks a box that would come next,
-    but is beyond the four-opening limit.
+    <strong>number found inside</strong>, which tells you which box to open next. Blue cards are
+    boxes you can open. A red card marks a box that would come next, but is beyond the
+    four-opening limit.
   </p>
 
   <div class="flex flex-wrap gap-2" role="group" aria-label="Compare loop lengths">
-    <button type="button" class="btn-ghost" data-example="short" aria-pressed="true">
+    <button type="button" class="btn-toggle" data-example="short" aria-pressed="true">
       Everyone survives: 4 + 4
     </button>
-    <button type="button" class="btn-ghost" data-example="long" aria-pressed="false">
+    <button type="button" class="btn-toggle" data-example="long" aria-pressed="false">
       Group loses: 5 + 3
     </button>
   </div>
 
   <div class="border-l-4 border-ink pl-4" aria-live="polite" aria-atomic="true">
-    <p id="prisoners-result" class="font-bold">All eight prisoners succeed.</p>
+    <p id="prisoners-result" class="font-bold">
+      All eight prisoners succeed.
+    </p>
     <p id="prisoners-reason" class="text-base leading-normal">
       Both loops have four boxes. Every prisoner can complete their loop in four openings.
     </p>
@@ -27,24 +32,19 @@
     <p class="text-base">Loading the two loops…</p>
   </div>
 
-  <figcaption class="text-base leading-normal">
-    Each prisoner starts at their own numbered box and follows the numbers found inside.
-    All prisoners in one loop share the same fate. In the full puzzle there are 100 boxes
-    and 50 openings per prisoner: everybody succeeds when every loop has 50 boxes or fewer.
-    Random arrangements meet that condition about 31% of the time.
-  </figcaption>
-</figure>
-
-<style>
-  [data-prisoner-loops] button[aria-pressed="true"] {
-    background: var(--color-ink);
-    color: var(--color-paper);
-    border-color: var(--color-ink);
-  }
-</style>
+  <Fragment slot="caption">
+    Each prisoner starts at their own numbered box and follows the numbers found inside. All
+    prisoners in one loop share the same fate. In the full puzzle there are 100 boxes and 50
+    openings per prisoner: everybody succeeds when every loop has 50 boxes or fewer. Random
+    arrangements meet that condition about 31% of the time.
+  </Fragment>
+</IllustrationFigure>
 
 <script>
-  const root = document.querySelector<HTMLElement>("[data-prisoner-loops]")
+  import { illustrationRoot } from "~/scripts/illustration"
+  import { series } from "~/data/palette"
+
+  const root = illustrationRoot("prisoner-loops")
   if (root) {
     const examples = {
       short: [5, 8, 7, 6, 3, 2, 1, 4],
@@ -78,7 +78,15 @@
       return cycles
     }
 
-    const addText = (parent: SVGElement, value: string, x: number, y: number, colour: string, size: number, weight: string) => {
+    const addText = (
+      parent: SVGElement,
+      value: string,
+      x: number,
+      y: number,
+      colour: string,
+      size: number,
+      weight: string,
+    ) => {
       const text = svgNode<SVGTextElement>("text")
       text.setAttribute("x", String(x))
       text.setAttribute("y", String(y))
@@ -92,8 +100,8 @@
 
     const drawLoop = (cycle: number[], contents: readonly number[], i: number) => {
       const succeeds = cycle.length <= 4
-      const colour = "#387a91"
-      const missedColour = "#bd4b37"
+      const colour = series.blue
+      const missedColour = series.red
       const availableOpenings = 4
       const card = document.createElement("section")
       card.className = "flex flex-col gap-2 border-2 border-ink p-3"
@@ -108,7 +116,7 @@
       svg.setAttribute("role", "img")
       const svgTitle = svgNode<SVGTitleElement>("title")
       svgTitle.setAttribute("id", `prisoner-loop-title-${i}`)
-      svgTitle.textContent = `${cycle.length}-box loop: ${cycle.map((n, step) => !succeeds && step >= availableOpenings ? `box ${n} not reached in time` : `box ${n} contains ${contents[n - 1]}`).join(", ")}. ${succeeds ? "All in this loop succeed." : "All in this loop fail."}`
+      svgTitle.textContent = `${cycle.length}-box loop: ${cycle.map((n, step) => (!succeeds && step >= availableOpenings ? `box ${n} not reached in time` : `box ${n} contains ${contents[n - 1]}`)).join(", ")}. ${succeeds ? "All in this loop succeed." : "All in this loop fail."}`
       svg.appendChild(svgTitle)
       svg.setAttribute("aria-labelledby", `prisoner-loop-title-${i}`)
 
@@ -204,7 +212,10 @@
       path.className = "text-base"
       path.textContent = succeeds
         ? `Follow: ${[...cycle, cycle[0]].map((n) => `box ${n}`).join(" → ")}`
-        : `Prisoner ${cycle[0]}: ${cycle.slice(0, availableOpenings).map((n) => `box ${n}`).join(" → ")} → [box ${cycle[availableOpenings]} not reached in time]`
+        : `Prisoner ${cycle[0]}: ${cycle
+            .slice(0, availableOpenings)
+            .map((n) => `box ${n}`)
+            .join(" → ")} → [box ${cycle[availableOpenings]} not reached in time]`
       card.appendChild(path)
       const explanation = document.createElement("p")
       explanation.className = "text-base leading-normal"
@@ -218,7 +229,9 @@
     const selectExample = (name: Example) => {
       const contents = examples[name]
       const cycles = cyclesIn(contents)
-      const survivors = cycles.filter((cycle) => cycle.length <= 4).reduce((n, cycle) => n + cycle.length, 0)
+      const survivors = cycles
+        .filter((cycle) => cycle.length <= 4)
+        .reduce((n, cycle) => n + cycle.length, 0)
       const allSucceed = survivors === 8
       buttons.forEach((button) => {
         button.setAttribute("aria-pressed", String(button.dataset.example === name))

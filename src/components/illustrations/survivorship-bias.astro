@@ -1,4 +1,7 @@
 ---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
 /**
  * Schematic of the classic returning-bomber selection effect.
  * Deliberately illustrative: dots are not historical bullet-hole measurements.
@@ -66,24 +69,15 @@ const holes = [
 ]
 ---
 
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">Where should the armour go?</p>
-
-  <svg
+<IllustrationFigure lead="Where should the armour go?">
+  <SvgFigure
+    name="survivor-bomber"
     viewBox="0 0 900 650"
     class="mx-auto w-full max-w-3xl"
-    role="img"
-    aria-labelledby="survivor-bomber-title survivor-bomber-description"
     xmlns="http://www.w3.org/2000/svg"
+    title="Bullet holes on a bomber that returned, with areas needing reinforcement"
+    desc="A top-down four-engine bomber. Red dots mark bullet holes on the wings, fuselage, and tail of planes that made it home. Dashed blue outlines highlight engines, cockpit, and the central tail area, where there are fewer observed holes. Those critical hits could have stopped other planes returning, so the gaps are where reinforcement matters."
   >
-    <title id="survivor-bomber-title">Bullet holes on a bomber that returned, with areas needing reinforcement</title>
-    <desc id="survivor-bomber-description">
-      A top-down four-engine bomber. Red dots mark bullet holes on the wings, fuselage, and tail
-      of planes that made it home. Dashed blue outlines highlight engines, cockpit, and the
-      central tail area, where there are fewer observed holes. Those critical hits could have
-      stopped other planes returning, so the gaps are where reinforcement matters.
-    </desc>
-
     <!-- One continuous, recognisable silhouette: wings, fuselage, tail. -->
     <path
       d="M450 30
@@ -105,13 +99,13 @@ const holes = [
          L499 232 490 132
          C483 78 469 31 450 30 Z"
       fill="#f5f0e8"
-      stroke="#272622"
+      stroke="var(--color-stroke)"
       stroke-width="3.5"
       stroke-linejoin="round"
     />
 
     <!-- Panel seams make the silhouette readable without decorative shading. -->
-    <g fill="none" stroke="#272622" stroke-width="1.3" opacity="0.45">
+    <g fill="none" stroke="var(--color-stroke)" stroke-width="1.3" opacity="0.45">
       <path d="M55 303 L397 277 M55 331 L402 382" />
       <path d="M845 303 L503 277 M845 331 L498 382" />
       <path d="M145 282 L141 359 M238 270 L238 368 M330 252 L332 395" />
@@ -131,24 +125,24 @@ const holes = [
           height="112"
           rx="22"
           fill="#f5f0e8"
-          stroke="#272622"
+          stroke="var(--color-stroke)"
           stroke-width="2.5"
         />
         <path
           d={`M${x - 22} 193 H${x + 22} M${x - 20} 263 H${x + 20}`}
           fill="none"
-          stroke="#272622"
+          stroke="var(--color-stroke)"
           stroke-width="1.3"
           opacity="0.55"
         />
         <path
           d={`M${x - 40} 181 H${x + 40}`}
           fill="none"
-          stroke="#272622"
+          stroke="var(--color-stroke)"
           stroke-width="5"
           stroke-linecap="round"
         />
-        <circle cx={x} cy="181" r="5" fill="#272622" />
+        <circle cx={x} cy="181" r="5" fill="var(--color-stroke)" />
       </g>
     ))}
 
@@ -156,31 +150,38 @@ const holes = [
     <path
       d="M425 111 Q450 61 475 111 L477 170 Q450 178 423 170 Z"
       fill="#dae5e3"
-      stroke="#272622"
+      stroke="var(--color-stroke)"
       stroke-width="2.5"
     />
     <path
       d="M450 76 V172 M428 109 H472 M424 132 H476 M425 152 H475"
       fill="none"
-      stroke="#272622"
+      stroke="var(--color-stroke)"
       stroke-width="1.8"
     />
     <path
       d="M434 39 Q450 22 466 39 M440 56 H460"
       fill="none"
-      stroke="#272622"
+      stroke="var(--color-stroke)"
       stroke-width="2"
     />
 
     <!-- The only sample is the returning aircraft. -->
     {holes.map(([x, y]) => (
-      <circle cx={x} cy={y} r="7" fill="#bd4b37" stroke="#772b21" stroke-width="1.2" />
+      <circle
+        cx={x}
+        cy={y}
+        r="7"
+        fill="var(--color-series-red)"
+        stroke="#772b21"
+        stroke-width="1.2"
+      />
     ))}
 
     <!-- Mark weak spots with sparse observed damage, not hole clusters. -->
     <g
       fill="none"
-      stroke="#387a91"
+      stroke="var(--color-series-blue)"
       stroke-width="4"
       stroke-dasharray="9 7"
       stroke-linejoin="round"
@@ -190,12 +191,19 @@ const holes = [
       <rect x="512" y="160" width="149" height="136" rx="7" />
       <rect x="410" y="521" width="80" height="110" rx="7" />
     </g>
-  </svg>
+  </SvgFigure>
 
   <ul class="flex flex-wrap gap-x-6 gap-y-2 text-base">
     <li class="flex items-center gap-2">
       <svg aria-hidden="true" viewBox="0 0 20 20" class="h-5 w-5 shrink-0">
-        <circle cx="10" cy="10" r="7" fill="#bd4b37" stroke="#772b21" stroke-width="1.2" />
+        <circle
+          cx="10"
+          cy="10"
+          r="7"
+          fill="var(--color-series-red)"
+          stroke="#772b21"
+          stroke-width="1.2"
+        />
       </svg>
       Holes on returning planes
     </li>
@@ -208,7 +216,7 @@ const holes = [
           height="14"
           rx="3"
           fill="none"
-          stroke="#387a91"
+          stroke="var(--color-series-blue)"
           stroke-width="2.5"
           stroke-dasharray="6 4"
         />
@@ -217,10 +225,10 @@ const holes = [
     </li>
   </ul>
 
-  <figcaption class="text-base leading-normal">
+  <Fragment slot="caption">
     The holes are on planes that <strong>came back</strong>. Few holes near the engines and
     cockpit could mean hits there stopped other planes from returning. Reinforcing the most
     visibly damaged parts would miss the danger. This is a schematic illustration, not
     historical bullet-hole data.
-  </figcaption>
-</figure>
+  </Fragment>
+</IllustrationFigure>
