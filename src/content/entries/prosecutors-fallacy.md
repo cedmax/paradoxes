@@ -1,13 +1,13 @@
 ---
 title: Prosecutor's fallacy
 titleAccent: fallacy
-chapter: probability
+chapter: numbers-mislead
 status: explained
 uniqueness: variant
 anchor: base-rate-fallacy
 simplification: light
 noMaths: true
-order: 10
+order: 30
 written: true
 aka: ["defence attorney's fallacy", "Sally Clark", "forensic evidence"]
 problem: "If the chance of an innocent person matching the evidence is tiny, is the person who matches almost certainly guilty?"

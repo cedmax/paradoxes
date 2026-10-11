@@ -9,7 +9,8 @@ aka:
     "backward induction",
     "coin piles game",
   ]
-chapter: choice-identity
+chapter: collective
+order: 80
 status: disputed
 uniqueness: related
 anchor: unexpected-hanging-paradox

@@ -9,7 +9,8 @@ aka:
     "Bostrom mugging",
     "Yudkowsky mugging",
   ]
-chapter: choice-identity
+chapter: individual
+order: 110
 status: unreconciled
 uniqueness: related
 anchor: pascals-wager
