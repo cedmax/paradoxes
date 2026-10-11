@@ -32,9 +32,9 @@ import { series, stroke } from "~/data/palette"
     <g id="achilles-ticks" aria-hidden="true"></g>
     <line
       id="achilles-gap-line"
-      x1="120"
+      x1="90"
       y1="46"
-      x2="480"
+      x2="510"
       y2="46"
       stroke={series.gold}
       stroke-width="2.5"
@@ -46,11 +46,12 @@ import { series, stroke } from "~/data/palette"
       text-anchor="middle"
       font-size="14"
       font-weight="700"
+      class="font-mono tabular-nums"
       fill="currentColor"
     >
       100 m
     </text>
-    <g id="achilles-marker" transform="translate(120 0)">
+    <g id="achilles-marker" transform="translate(90 0)">
       <path d="M0 113 V125" stroke={series.blue} stroke-width="2" />
       <circle cx="0" cy="92" r="18" fill={series.blue} />
       <text
@@ -64,7 +65,7 @@ import { series, stroke } from "~/data/palette"
         A
       </text>
     </g>
-    <g id="achilles-tortoise-marker" transform="translate(480 0)">
+    <g id="achilles-tortoise-marker" transform="translate(510 0)">
       <path d="M0 113 V125" stroke={series.green} stroke-width="2" />
       <circle cx="0" cy="92" r="18" fill={series.green} />
       <text
@@ -141,14 +142,11 @@ import { series, stroke } from "~/data/palette"
     let frame: number | null = null
     let previousTimestamp: number | null = null
     let announcedStage = ""
+    let lastGapLabelUpdate = -Infinity
+    let lastGapLabelPhase = ""
 
     const smooth = (value: number) => value * value * (3 - 2 * value)
     const showNumber = (value: number) => String(Number(value.toFixed(2)))
-    const stageMiddle = (stage: number) => {
-      const time = stageStartTimes[stage]
-      return (10 * time + 100 + time) / 2
-    }
-
     const viewAt = (milliseconds: number) => {
       let remaining = Math.min(milliseconds, totalDuration)
       for (let stage = 0; stage < gaps.length; stage++) {
@@ -196,21 +194,11 @@ import { series, stroke } from "~/data/palette"
       const a = 10 * time
       const t = 100 + time
 
-      // Zoom and pan the same world. The two positions never move back
-      // in ground coordinates; only their projected screen positions change.
+      // Follow the midpoint of the two runners in the same world coordinates.
+      // The gap stays centred while the camera magnifies it; neither runner resets.
       const scale =
         pixelsPerMetre * 10 ** (stage + (view.mode === "zoom" ? smooth(view.progress) : 0))
-      let middle = stageMiddle(stage)
-      if (view.mode === "zoom") {
-        const progress = smooth(view.progress)
-        const nextMiddle = stageMiddle(stage + 1)
-        const previousScale = pixelsPerMetre * 10 ** stage
-        const previousMidpointOnScreen = screenMiddle + (nextMiddle - middle) * previousScale
-        const focusOnScreen =
-          previousMidpointOnScreen + (screenMiddle - previousMidpointOnScreen) * progress
-        middle = nextMiddle - (focusOnScreen - screenMiddle) / scale
-      }
-
+      const middle = (a + t) / 2
       const screenX = (worldX: number) => screenMiddle + (worldX - middle) * scale
       const ax = screenX(a)
       const tx = screenX(t)
@@ -231,8 +219,20 @@ import { series, stroke } from "~/data/palette"
         ticks[i].setAttribute("opacity", x < 45 || x > 555 ? "0" : ".4")
       }
 
-      gapLabel.textContent = showNumber(t - a) + " m"
-      gapLabel.setAttribute("x", String((ax + tx) / 2))
+      // Keep the distance text stationary over the centred line.
+      // Update at most eight times per second so changing digits don't shimmer.
+      const labelPhase = view.mode + "-" + stage
+      if (
+        elapsed === 0 ||
+        elapsed === totalDuration ||
+        labelPhase !== lastGapLabelPhase ||
+        elapsed - lastGapLabelUpdate >= 125
+      ) {
+        const nextGapLabel = showNumber(t - a) + " m"
+        if (gapLabel.textContent !== nextGapLabel) gapLabel.textContent = nextGapLabel
+        lastGapLabelPhase = labelPhase
+        lastGapLabelUpdate = elapsed
+      }
       const zoomFactor = Math.round(scale / pixelsPerMetre)
       zoomLabel.textContent = "View ×" + zoomFactor.toLocaleString("en-GB")
 
