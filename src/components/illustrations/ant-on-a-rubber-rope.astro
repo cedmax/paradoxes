@@ -169,7 +169,13 @@ const marks = [0.2, 0.4, 0.6, 0.8]
     const setRunning = (next: boolean) => {
       running = next && progress < 1
       if (running) started = true
-      play.textContent = running ? "Pause" : progress >= 1 ? "Replay" : started ? "Resume" : "Start"
+      play.textContent = running
+        ? "Pause"
+        : progress >= 1
+          ? "Replay"
+          : started
+            ? "Resume"
+            : "Start"
       play.setAttribute("aria-pressed", String(running))
       lastFrame = null
       if (running) frame = requestAnimationFrame(tick)
