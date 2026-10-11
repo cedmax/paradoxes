@@ -1,241 +1,119 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
-import Callout from "~/components/illustration-kit/Callout.astro"
-import Panel from "~/components/illustration-kit/Panel.astro"
-import SideBySide from "~/components/illustration-kit/SideBySide.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
 
-const doors = [1, 2, 3]
+const doors = [
+  { number: 1, x: 29 },
+  { number: 2, x: 158 },
+  { number: 3, x: 274 },
+]
 ---
 
 <IllustrationFigure
   name="monty-hall-problem"
-  lead="You are the presenter. Which door can you open?"
+  lead="The host opens a goat door. What happens to the odds?"
 >
   <p class="text-base leading-normal">
-    The player has already picked <strong>door 1</strong>. You know where the car is; the player
-    does not. You must reveal a goat, but you cannot open the player's door or the door with the
-    car.
+    You choose door 1. The host knows where the car is, and must open
+    a different door hiding a goat.
   </p>
 
-  <p id="monty-round" class="font-bold" aria-live="polite">
-    Case 1 of 3 — the car is behind door 1.
-  </p>
-  <p class="text-base leading-normal">
-    <strong>Presenter's view:</strong> the prizes are shown to you. Tap an allowed goat door to
-    reveal it to the player.
-  </p>
+  <div class="flex flex-col gap-2">
+    <p class="font-bold">Before the host opens a door</p>
+    <SvgFigure
+      name="monty-before"
+      class="mx-auto w-full max-w-md"
+      viewBox="0 0 360 174"
+      title="Before: your single door has a one-in-three chance; the other two together have two in three"
+      desc="Three closed doors. Your first choice, door 1, is enclosed by a blue outline labelled 1 in 3. Doors 2 and 3 are enclosed together by one gold outline labelled 2 in 3, showing that switching away from your first choice covers two possible car locations."
+    >
+      <rect x="8" y="34" width="100" height="116" rx="3"
+        fill="none" stroke={series.blue} stroke-width="3" />
+      <rect x="119" y="34" width="233" height="116" rx="3"
+        fill="none" stroke={series.gold} stroke-width="3" />
 
-  <div
-    class="grid grid-cols-3 gap-2"
-    role="group"
-    aria-label="Choose which goat door to open as presenter"
-  >
-    {doors.map((door) => (
-      <button
-        type="button"
-        class:list={[
-          "btn-ghost flex min-w-0 flex-col items-center gap-2 px-2 py-3 text-center",
-          door === 1 && "opacity-50",
-        ]}
-        data-monty-open={door}
-        disabled={door === 1}
-        aria-label={
-          door === 1
-            ? "Door 1: car, player's original pick; cannot open"
-            : `Door ${door}: goat, allowed to open`
-        }
-      >
-        <strong class="text-base">Door {door}</strong>
-        <span data-monty-prize={door} class="text-lg font-bold">
-          {door === 1 ? "Car" : "Goat"}
-        </span>
-        <span data-monty-role={door} class="text-xs leading-normal">
-          {door === 1 ? "Player's pick" : "Open goat"}
-        </span>
-      </button>
-    ))}
-  </div>
+      <g font-size="15" fill="currentColor" font-weight="700">
+        <text x="58" y="22" text-anchor="middle">1 in 3</text>
+        <text x="235" y="22" text-anchor="middle">2 in 3 together</text>
+      </g>
 
-  <Callout class="flex flex-col gap-2">
-    <p id="monty-hint" class="text-base leading-normal" aria-live="polite">
-      Here you can open either door 2 or door 3: both hide goats.
-    </p>
+      {doors.map(({ number, x }) => (
+        <g>
+          <rect x={x} y="49" width="60" height="84" fill="var(--color-paper)"
+            stroke={stroke} stroke-width="2.5" />
+          <rect x={x + 8} y="57" width="43" height="65" fill="none"
+            stroke={stroke} stroke-width="1" stroke-opacity=".35" />
+          <circle cx={x + 49} cy="96" r="3" fill={stroke} />
+          <text x={x + 30} y="166" font-size="14" font-weight="700"
+            fill="currentColor" text-anchor="middle">Door {number}</text>
+        </g>
+      ))}
+    </SvgFigure>
     <p class="text-base leading-normal">
-      The host knows the prizes. Opening the car or the player's door is never allowed.
-    </p>
-  </Callout>
-
-  <div id="monty-result" class="hidden flex-col gap-3">
-    <p id="monty-reveal" class="font-bold" aria-live="polite">
-      The host reveals a goat.
-    </p>
-    <SideBySide>
-      <Panel title="Player stays" accent="blue" class="flex min-w-0 flex-col gap-1">
-        <p id="monty-stay-result" class="text-base leading-normal">
-          —
-        </p>
-      </Panel>
-      <Panel title="Player switches" accent="green" class="flex min-w-0 flex-col gap-1">
-        <p id="monty-switch-result" class="text-base leading-normal">
-          —
-        </p>
-      </Panel>
-    </SideBySide>
-    <p id="monty-reason" class="text-base leading-normal">
-      —
+      Your door is one chance in three. The two doors you did not pick
+      hold the other two chances <strong>together</strong>.
     </p>
   </div>
 
-  <div class="flex flex-wrap gap-2">
-    <button id="monty-again" type="button" class="btn-ghost hidden">
-      Try this car location again
-    </button>
-    <button id="monty-next" type="button" class="btn-ghost hidden">
-      Next car location
-    </button>
+  <div class="flex items-center justify-center gap-2 text-base font-bold">
+    <span aria-hidden="true">↓</span>
+    <span>The host opens door 2 and reveals a goat</span>
   </div>
 
   <div class="flex flex-col gap-2">
-    <p class="font-bold">What happens across all three car locations?</p>
-    <div
-      class="grid grid-cols-3 gap-2 text-center text-xs"
-      aria-label="Results as you try each case"
+    <p class="font-bold">After the reveal</p>
+    <SvgFigure
+      name="monty-after"
+      class="mx-auto w-full max-w-md"
+      viewBox="0 0 360 174"
+      title="After: door 1 still has a one-in-three chance; the one remaining alternative has two in three"
+      desc="Door 1 stays closed inside the same blue 1-in-3 outline. Door 2 is now visibly open, revealing a goat. Door 3 stays closed inside a gold 2-in-3 outline. The host's informed reveal eliminated a goat from the original two-door group, without splitting its two-in-three chance."
     >
-      {doors.map((door) => (
-        <div class="flex flex-col gap-1">
-          <span class="font-bold">Car: door {door}</span>
-          <span data-monty-case={door} class="border border-ink p-2">
-            Try it
-          </span>
-        </div>
+      <rect x="8" y="34" width="100" height="116" rx="3"
+        fill="none" stroke={series.blue} stroke-width="3" />
+      <rect x="253" y="34" width="99" height="116" rx="3"
+        fill="none" stroke={series.gold} stroke-width="3" />
+
+      <g font-size="15" fill="currentColor" font-weight="700">
+        <text x="58" y="22" text-anchor="middle">1 in 3</text>
+        <text x="302" y="22" text-anchor="middle">2 in 3</text>
+      </g>
+
+      {[doors[0], doors[2]].map(({ number, x }) => (
+        <g>
+          <rect x={x} y="49" width="60" height="84" fill="var(--color-paper)"
+            stroke={stroke} stroke-width="2.5" />
+          <rect x={x + 8} y="57" width="43" height="65" fill="none"
+            stroke={stroke} stroke-width="1" stroke-opacity=".35" />
+          <circle cx={x + 49} cy="96" r="3" fill={stroke} />
+          <text x={x + 30} y="166" font-size="14" font-weight="700"
+            fill="currentColor" text-anchor="middle">Door {number}</text>
+        </g>
       ))}
-    </div>
-    <p id="monty-summary" class="text-base leading-normal" aria-live="polite">
-      Try each car location once. We will compare staying and switching after every reveal.
+
+      <rect x="158" y="49" width="60" height="84" fill="none"
+        stroke={stroke} stroke-width="2" stroke-dasharray="4 3" />
+      <path d="M158 49 L127 66 L127 117 L158 133 Z"
+        stroke={stroke} stroke-width="2.5" fill={series.red} fill-opacity=".18" />
+      <line x1="137" y1="69" x2="137" y2="113"
+        stroke={stroke} stroke-width="1" stroke-opacity=".5" />
+      <g text-anchor="middle" fill="currentColor" font-weight="700">
+        <text x="188" y="94" font-size="13">GOAT</text>
+        <text x="188" y="166" font-size="14">Door 2</text>
+      </g>
+    </SvgFigure>
+    <p class="text-base leading-normal">
+      The host deliberately revealed a goat, not a random door.
+      Your first pick stays at <strong>1 in 3</strong>.
+      The one other closed door now carries the original group's <strong>2 in 3</strong>.
     </p>
   </div>
 
   <Fragment slot="caption">
-    The player always starts at door 1. The three car locations are equally likely; we visit
-    them in order to show every possibility, not as a random game. The presenter always reveals
-    a goat and always offers a switch.
+    This shows one possible reveal. It assumes the host knows where the car is,
+    always opens a goat door, always offers a switch, and chooses randomly if
+    either goat door could be opened. Staying wins 1 time in 3;
+    switching wins 2 times in 3.
   </Fragment>
 </IllustrationFigure>
-
-<script>
-  import { find, illustrationRoot } from "~/scripts/illustration"
-
-  const root = illustrationRoot("monty-hall-problem")
-  if (root) {
-    const doors = [1, 2, 3]
-    const firstPick = 1
-    const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-monty-open]"))
-    const prizes = Array.from(root.querySelectorAll<HTMLElement>("[data-monty-prize]"))
-    const roles = Array.from(root.querySelectorAll<HTMLElement>("[data-monty-role]"))
-    const caseResults = Array.from(root.querySelectorAll<HTMLElement>("[data-monty-case]"))
-    const roundLabel = find<HTMLElement>(root, "#monty-round")
-    const hint = find<HTMLElement>(root, "#monty-hint")
-    const result = find<HTMLElement>(root, "#monty-result")
-    const reveal = find<HTMLElement>(root, "#monty-reveal")
-    const stayResult = find<HTMLElement>(root, "#monty-stay-result")
-    const switchResult = find<HTMLElement>(root, "#monty-switch-result")
-    const reason = find<HTMLElement>(root, "#monty-reason")
-    const again = find<HTMLButtonElement>(root, "#monty-again")
-    const next = find<HTMLButtonElement>(root, "#monty-next")
-    const summary = find<HTMLElement>(root, "#monty-summary")
-
-    let round = 0
-    let openedDoor: number | null = null
-    const completed = [false, false, false]
-
-    const render = () => {
-      const car = doors[round]
-      const legalDoors = doors.filter((door) => door !== firstPick && door !== car)
-      const revealed = openedDoor !== null
-
-      roundLabel.textContent = `Case ${round + 1} of 3 — the car is behind door ${car}.`
-      buttons.forEach((button, i) => {
-        const door = doors[i]
-        const chosen = door === firstPick
-        const carDoor = door === car
-        const legal = legalDoors.includes(door)
-        const isOpened = revealed && door === openedDoor
-        button.disabled = revealed || !legal
-        button.classList.toggle("opacity-50", !legal || revealed)
-        button.classList.toggle("bg-series-gold/20", isOpened)
-        prizes[i].textContent = carDoor ? "Car" : "Goat"
-        roles[i].textContent = isOpened
-          ? "You opened"
-          : chosen
-            ? "Player's pick"
-            : carDoor
-              ? "Cannot open"
-              : "Open goat"
-        button.setAttribute(
-          "aria-label",
-          `Door ${door}: ${carDoor ? "car" : "goat"}, ${isOpened ? "opened by you" : chosen ? "player's pick; cannot open" : carDoor ? "cannot open the car" : revealed ? "not opened" : "allowed to open"}`,
-        )
-      })
-
-      hint.textContent = revealed
-        ? car === firstPick
-          ? "You had two goat doors to choose from. Neither reveal could move the car from the player's original door."
-          : `You were forced to open door ${openedDoor}. You could not open the player's pick or the car.`
-        : legalDoors.length === 2
-          ? "You can open either door 2 or door 3: both hide goats."
-          : `Only door ${legalDoors[0]} can be opened. The other doors are the player's pick and the car.`
-
-      result.classList.toggle("hidden", !revealed)
-      result.classList.toggle("flex", revealed)
-      again.classList.toggle("hidden", !revealed)
-      next.classList.toggle("hidden", !revealed)
-      next.textContent = round === 2 ? "Return to the first car location" : "Next car location"
-
-      if (revealed) {
-        const alternative = doors.find((door) => door !== firstPick && door !== openedDoor)!
-        const stayWins = firstPick === car
-        reveal.textContent = `You opened door ${openedDoor}, revealing a goat. Door ${alternative} stays closed.`
-        stayResult.textContent = `Door 1: ${stayWins ? "car — wins" : "goat — loses"}`
-        switchResult.textContent = `Door ${alternative}: ${stayWins ? "goat — loses" : "car — wins"}`
-        reason.textContent = stayWins
-          ? "The player's first pick was right. You had two goat doors to choose from; switching would lose."
-          : "The player's first pick was wrong. You had just one goat door you could open, leaving the car behind the only other closed door."
-        completed[round] = true
-      }
-
-      caseResults.forEach((cell, i) => {
-        cell.textContent = completed[i] ? (i === 0 ? "Stay wins" : "Switch wins") : "Try it"
-        cell.classList.toggle("bg-series-blue/20", completed[i] && i === 0)
-        cell.classList.toggle("bg-series-green/20", completed[i] && i !== 0)
-      })
-      const finished = completed.filter(Boolean).length
-      summary.textContent =
-        finished === 3
-          ? "Across the three equally likely car locations, staying wins only once; switching wins twice. The host's informed reveal is what makes the remaining doors unequal."
-          : `${finished} of 3 car locations tried. Switching wins whenever the player's original pick was wrong.`
-    }
-
-    buttons.forEach((button, i) =>
-      button.addEventListener("click", () => {
-        const car = doors[round]
-        const door = doors[i]
-        if (openedDoor !== null || door === firstPick || door === car) return
-        openedDoor = door
-        render()
-      }),
-    )
-
-    again.addEventListener("click", () => {
-      openedDoor = null
-      render()
-    })
-
-    next.addEventListener("click", () => {
-      round = (round + 1) % doors.length
-      openedDoor = null
-      render()
-    })
-
-    render()
-  }
-</script>
