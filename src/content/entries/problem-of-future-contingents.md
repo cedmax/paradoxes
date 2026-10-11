@@ -1,10 +1,10 @@
 ---
 title: "Problem of future contingents"
-chapter: "belief"
+chapter: belief
 status: "disputed"
 simplification: light
 noMaths: true
-order: 300
+order: 180
 written: true
 sourcesVerified: true
 reviewed: false

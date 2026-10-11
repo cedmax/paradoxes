@@ -1,11 +1,11 @@
 ---
 title: Paradox of tolerance
 titleAccent: paradox
-chapter: choice-identity
+chapter: collective
 status: disputed
 simplification: light
 noMaths: true
-order: 11
+order: 50
 written: true
 sourcesVerified: true
 problem: Should a tolerant society tolerate people who want to end tolerance?

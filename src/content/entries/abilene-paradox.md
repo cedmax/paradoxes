@@ -1,11 +1,11 @@
 ---
 title: Abilene paradox
 titleAccent: paradox
-chapter: choice-identity
+chapter: collective
 status: explained
 simplification: light
 noMaths: true
-order: 10
+order: 40
 written: true
 sourcesVerified: true
 problem: How can a whole group agree to do something that not one of them wants?

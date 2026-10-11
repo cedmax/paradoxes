@@ -9,13 +9,13 @@ aka:
     "first chicken",
     "ovocleidin",
   ]
-chapter: vague-words
+chapter: what-counts
 status: defused
 uniqueness: related
 anchor: sorites-paradox
 simplification: light
 noMaths: true
-order: 20
+order: 50
 written: true
 sourcesVerified: true
 problem: "Which came first, the chicken or the egg?"
