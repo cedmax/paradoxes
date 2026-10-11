@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"div"> {
+  /** Colour of the bar down the left edge. */
+  tone?: "ink" | "accent"
+}
+
+const tones = { ink: "border-ink", accent: "border-accent" }
+const { tone = "ink", class: className, ...rest } = Astro.props
+---
+
+<div class:list={["border-l-4 pl-4 text-base", tones[tone], className]} {...rest}>
+  <slot />
+</div>
