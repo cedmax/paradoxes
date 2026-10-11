@@ -205,7 +205,12 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
                 ) : (
                   src.title
                 )}
-                {src.note && <span class="text-sm"> {src.note}</span>}
+                {src.note && (
+                  <>
+                    {" "}
+                    <span class="text-sm">{src.note}</span>
+                  </>
+                )}
               </li>
             ))}
           </ul>
