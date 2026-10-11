@@ -34,7 +34,7 @@ const initialRemainders = [2 / 7, 2 / 7, 3 / 7]
 
   <Panel title="Seats actually awarded" class="flex flex-col gap-3">
     {states.map(({ name, tile, initial }) => (
-      <div class="grid grid-cols-[3rem_minmax(0,1fr)_4rem] items-center gap-2">
+      <div class="grid grid-cols-[4rem_minmax(0,1fr)_4.5rem] items-center gap-2">
         <strong>State {name}</strong>
         <div class="grid grid-cols-5 gap-1" data-apportionment-row={name}
           role="img" aria-label={`State ${name} has ${initial} seats`}>
