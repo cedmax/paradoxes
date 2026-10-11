@@ -1,0 +1,631 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+const methods = [
+  {
+    rule: "Two points on the circle's edge",
+    explanation: "Choose two edge points independently and uniformly, then join them.",
+    probability: "1/3",
+  },
+  {
+    rule: "Distance from the centre",
+    explanation: "Choose a direction and a distance uniformly from zero to the radius.",
+    probability: "1/2",
+  },
+  {
+    rule: "Midpoint by area",
+    explanation: "Choose the chord's midpoint uniformly from the area of the circle.",
+    probability: "1/4",
+  },
+]
+---
+
+<IllustrationFigure
+  name="bertrand-chord"
+  lead="Which chords are longer than a side of the triangle fitted inside the circle?"
+>
+  <div
+    class="flex flex-wrap gap-2"
+    role="group"
+    aria-label="Explore the three ways of choosing a chord"
+  >
+    <button id="bertrand-distance-mode" type="button" class="btn-toggle" aria-pressed="true">
+      Move a chord (1/2)
+    </button>
+    <button id="bertrand-edge-mode" type="button" class="btn-toggle" aria-pressed="false">
+      Two edge points (1/3)
+    </button>
+    <button id="bertrand-area-mode" type="button" class="btn-toggle" aria-pressed="false">
+      Midpoint by area (1/4)
+    </button>
+  </div>
+
+  <SvgFigure
+    name="bertrand"
+    id="bertrand-diagram"
+    class="mx-auto w-full max-w-xl"
+    viewBox="0 0 380 245"
+    title="Interactive Bertrand chord comparison"
+    desc="A fitted equilateral triangle has one highlighted red side. The triangle turns continuously, keeping that side parallel to the moving chord in the edge-points view, rather than suddenly flipping when the chord crosses the centre. The three modes let you move a chord by distance, move an endpoint along the circumference, or position its midpoint within the disc. The smaller shaded disc, shown only in the third mode, occupies one quarter of the area."
+  >
+    <circle cx="130" cy="112" r="86" fill="none" stroke="currentColor" stroke-width="2" />
+    <polygon
+      id="bertrand-triangle"
+      points="130,26 55.52,155 204.48,155"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      opacity=".6"
+      pointer-events="none"
+    />
+    <line
+      id="bertrand-reference-side"
+      x1="55.52"
+      y1="155"
+      x2="204.48"
+      y2="155"
+      stroke="var(--color-series-red)"
+      stroke-width="4"
+      stroke-linecap="round"
+      pointer-events="none"
+    />
+    <circle
+      id="bertrand-inner-circle"
+      cx="130"
+      cy="112"
+      r="43"
+      fill="var(--color-series-gold)"
+      fill-opacity="0"
+      stroke="var(--color-series-gold)"
+      stroke-width="2"
+      stroke-dasharray="5 5"
+      pointer-events="none"
+    />
+
+    <g id="bertrand-distance-art">
+      <line
+        id="bertrand-distance-chord"
+        x1="49.44"
+        y1="142.1"
+        x2="210.56"
+        y2="142.1"
+        stroke="var(--color-series-blue)"
+        stroke-width="4"
+        stroke-linecap="round"
+        pointer-events="none"
+      />
+      <circle
+        id="bertrand-distance-point"
+        cx="130"
+        cy="142.1"
+        r="5"
+        fill="var(--color-series-blue)"
+        pointer-events="none"
+      />
+      <circle
+        id="bertrand-distance-hit"
+        cx="130"
+        cy="112"
+        r="86"
+        fill="transparent"
+        style="touch-action: none; cursor: ns-resize;"
+        aria-hidden="true"
+      />
+    </g>
+
+    <g id="bertrand-edge-art" visibility="hidden">
+      <path
+        d="M204.48 155 A86 86 0 0 1 55.52 155"
+        fill="none"
+        stroke="var(--color-series-blue)"
+        stroke-width="9"
+        stroke-linecap="round"
+        opacity=".6"
+        pointer-events="none"
+      />
+      <line
+        id="bertrand-edge-chord"
+        x1="130"
+        y1="26"
+        x2="130"
+        y2="198"
+        stroke="var(--color-series-blue)"
+        stroke-width="4"
+        stroke-linecap="round"
+        pointer-events="none"
+      />
+      <circle cx="130" cy="26" r="5" fill="var(--color-series-blue)" pointer-events="none" />
+      <circle
+        id="bertrand-edge-point"
+        cx="130"
+        cy="198"
+        r="5"
+        fill="var(--color-series-blue)"
+        pointer-events="none"
+      />
+      <circle
+        id="bertrand-edge-hit"
+        cx="130"
+        cy="112"
+        r="86"
+        fill="transparent"
+        style="touch-action: none; cursor: grab;"
+        aria-hidden="true"
+      />
+    </g>
+
+    <g id="bertrand-area-art" visibility="hidden">
+      <line
+        id="bertrand-area-chord"
+        x1="45.91"
+        y1="130"
+        x2="214.09"
+        y2="130"
+        stroke="var(--color-series-blue)"
+        stroke-width="4"
+        stroke-linecap="round"
+        pointer-events="none"
+      />
+      <circle
+        id="bertrand-area-point"
+        cx="130"
+        cy="130"
+        r="6"
+        fill="var(--color-series-blue)"
+        stroke="currentColor"
+        stroke-width="1.5"
+        pointer-events="none"
+      />
+      <circle
+        id="bertrand-area-hit"
+        cx="130"
+        cy="112"
+        r="86"
+        fill="transparent"
+        style="touch-action: none; cursor: crosshair;"
+        aria-hidden="true"
+      />
+    </g>
+    <circle cx="130" cy="112" r="2.5" fill="currentColor" pointer-events="none" />
+
+    <g font-size="15" fill="currentColor" pointer-events="none">
+      <line
+        x1="236"
+        y1="43"
+        x2="254"
+        y2="43"
+        stroke="var(--color-series-red)"
+        stroke-width="4"
+      />
+      <text x="262" y="48">
+        Triangle side
+      </text>
+      <line
+        x1="236"
+        y1="79"
+        x2="254"
+        y2="79"
+        stroke="var(--color-series-blue)"
+        stroke-width="4"
+      />
+      <text x="262" y="84">
+        Moving chord
+      </text>
+      <g id="bertrand-distance-legend">
+        <text x="236" y="128">
+          Dotted circle:
+        </text>
+        <text x="236" y="148">
+          half the radius
+        </text>
+        <text x="236" y="178">
+          Inside means
+        </text>
+        <text x="236" y="198">
+          a longer chord
+        </text>
+      </g>
+      <g id="bertrand-edge-legend" visibility="hidden">
+        <text x="236" y="128">
+          Top point fixed
+        </text>
+        <text x="236" y="158">
+          Lower blue arc:
+        </text>
+        <text x="236" y="178">
+          1/3 of the edge
+        </text>
+      </g>
+      <g id="bertrand-area-legend" visibility="hidden">
+        <text x="236" y="128">
+          Shaded disc:
+        </text>
+        <text x="236" y="148">
+          25% of the area
+        </text>
+        <text x="236" y="178">
+          Inside = long
+        </text>
+        <text x="236" y="198">
+          Outside = short
+        </text>
+      </g>
+    </g>
+  </SvgFigure>
+
+  <div id="bertrand-single-controls" class="flex flex-col">
+    <Slider
+      id="bertrand-slider"
+      labelId="bertrand-slider-label"
+      label="Move the chord away from the centre"
+      value={35}
+      describedby="bertrand-single-readout"
+    >
+      <p id="bertrand-single-readout" class="text-base" aria-live="polite">
+        <span id="bertrand-single-value">35%</span>
+        <span id="bertrand-single-unit">of the radius from the centre.</span>
+        <strong id="bertrand-single-status">Longer than the triangle side.</strong>
+      </p>
+    </Slider>
+  </div>
+
+  <div id="bertrand-area-controls" class="flex flex-col gap-3" style="display: none;">
+    <p class="text-base">
+      Drag the blue midpoint anywhere in the circle, or use these two sliders.
+    </p>
+    <div class="flex flex-col gap-2">
+      <Slider
+        id="bertrand-x-slider"
+        label="Midpoint: left / right"
+        min={-100}
+        describedby="bertrand-area-readout"
+      />
+      <Slider
+        id="bertrand-y-slider"
+        label="Midpoint: up / down"
+        min={-100}
+        value={21}
+        describedby="bertrand-area-readout"
+      />
+    </div>
+    <p id="bertrand-area-readout" class="text-base" aria-live="polite">
+      <strong id="bertrand-area-status">Longer than the triangle side.</strong>
+    </p>
+    <p class="border-l-4 border-ink pl-3 text-base leading-normal">
+      <strong>Why 1/4?</strong> The shaded region has half the big circle's radius, so it has
+      one quarter of its area. Only midpoints inside it give longer chords.
+    </p>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-base">
+      <caption class="pb-2 text-left font-bold">
+        Three ways to pick a random chord, three different answers
+      </caption>
+      <thead>
+        <tr class="border-b border-ink">
+          <th class="p-2 text-left" scope="col">
+            What is chosen uniformly?
+          </th>
+          <th class="p-2 text-right" scope="col">
+            Chance of a long chord
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {methods.map((method) => (
+          <tr class="border-b border-ink last:border-0">
+            <td class="p-2">
+              <strong>{method.rule}</strong>
+              <p class="mt-1">{method.explanation}</p>
+            </td>
+            <td class="p-2 text-right font-bold">{method.probability}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <Fragment slot="caption">
+    The methods choose different things uniformly: distance (1/2), edge points (1/3), or
+    midpoint area (1/4). Dragging and sliders help you explore their geometry; they do not
+    themselves select random chords.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("bertrand-chord")
+  if (root) {
+    const get = <T extends Element>(selector: string) => root.querySelector<T>(selector)
+    const buttonDistance = get<HTMLButtonElement>("#bertrand-distance-mode")!
+    const buttonEdge = get<HTMLButtonElement>("#bertrand-edge-mode")!
+    const buttonArea = get<HTMLButtonElement>("#bertrand-area-mode")!
+    const svg = get<SVGSVGElement>("#bertrand-diagram")!
+    const triangle = get<SVGPolygonElement>("#bertrand-triangle")!
+    const redSide = get<SVGLineElement>("#bertrand-reference-side")!
+    const innerCircle = get<SVGCircleElement>("#bertrand-inner-circle")!
+    const artDistance = get<SVGGElement>("#bertrand-distance-art")!
+    const artEdge = get<SVGGElement>("#bertrand-edge-art")!
+    const artArea = get<SVGGElement>("#bertrand-area-art")!
+    const legendDistance = get<SVGGElement>("#bertrand-distance-legend")!
+    const legendEdge = get<SVGGElement>("#bertrand-edge-legend")!
+    const legendArea = get<SVGGElement>("#bertrand-area-legend")!
+    const distanceChord = get<SVGLineElement>("#bertrand-distance-chord")!
+    const distancePoint = get<SVGCircleElement>("#bertrand-distance-point")!
+    const edgeChord = get<SVGLineElement>("#bertrand-edge-chord")!
+    const edgePoint = get<SVGCircleElement>("#bertrand-edge-point")!
+    const areaChord = get<SVGLineElement>("#bertrand-area-chord")!
+    const areaPoint = get<SVGCircleElement>("#bertrand-area-point")!
+    const distanceHit = get<SVGCircleElement>("#bertrand-distance-hit")!
+    const edgeHit = get<SVGCircleElement>("#bertrand-edge-hit")!
+    const areaHit = get<SVGCircleElement>("#bertrand-area-hit")!
+    const oneControls = get<HTMLElement>("#bertrand-single-controls")!
+    const areaControls = get<HTMLElement>("#bertrand-area-controls")!
+    const slider = get<HTMLInputElement>("#bertrand-slider")!
+    const sliderLabel = get<HTMLElement>("#bertrand-slider-label")!
+    const singleValue = get<HTMLElement>("#bertrand-single-value")!
+    const singleUnit = get<HTMLElement>("#bertrand-single-unit")!
+    const singleStatus = get<HTMLElement>("#bertrand-single-status")!
+    const xSlider = get<HTMLInputElement>("#bertrand-x-slider")!
+    const ySlider = get<HTMLInputElement>("#bertrand-y-slider")!
+    const areaStatus = get<HTMLElement>("#bertrand-area-status")!
+
+    const cx = 130
+    const cy = 112
+    const radius = 86
+    const halfSide = (radius * Math.sqrt(3)) / 2
+    type Mode = "distance" | "edge" | "area"
+    let mode: Mode = "distance"
+    let distanceValue = 35
+    let edgeValue = 180
+    // Preserve continuous rotation when a dragged endpoint crosses the 0°/360° seam.
+    let edgeAngleUnwrapped = 180
+    let midpointX = cx
+    let midpointY = cy + 18
+
+    const setLine = (line: SVGLineElement, x1: number, y1: number, x2: number, y2: number) => {
+      line.setAttribute("x1", String(x1))
+      line.setAttribute("y1", String(y1))
+      line.setAttribute("x2", String(x2))
+      line.setAttribute("y2", String(y2))
+    }
+
+    const showComparison = (distance: number) => {
+      const fraction = distance / radius
+      return Math.abs(fraction - 0.5) < 0.00001
+        ? "Exactly as long as the triangle side."
+        : fraction < 0.5
+          ? "Longer than the triangle side."
+          : "Shorter than the triangle side."
+    }
+
+    // Rotate the whole inscribed equilateral triangle. Its red side remains
+    // parallel to the blue chord, on the nearest side of the centre.
+    const rotateTriangle = (normalX: number, normalY: number) => {
+      const length = Math.hypot(normalX, normalY)
+      const nx = length > 0.00001 ? normalX / length : 0
+      const ny = length > 0.00001 ? normalY / length : 1
+      const tangentX = ny
+      const tangentY = -nx
+      const sideX = cx + (radius / 2) * nx
+      const sideY = cy + (radius / 2) * ny
+      const x1 = sideX - halfSide * tangentX
+      const y1 = sideY - halfSide * tangentY
+      const x2 = sideX + halfSide * tangentX
+      const y2 = sideY + halfSide * tangentY
+      triangle.setAttribute(
+        "points",
+        `${cx - radius * nx},${cy - radius * ny} ${x1},${y1} ${x2},${y2}`,
+      )
+      setLine(redSide, x1, y1, x2, y2)
+    }
+
+    const updateDistance = () => {
+      const fraction = distanceValue / 100
+      const y = cy + radius * fraction
+      const halfLength = Math.sqrt(Math.max(0, radius * radius - (y - cy) ** 2))
+      setLine(distanceChord, cx - halfLength, y, cx + halfLength, y)
+      distancePoint.setAttribute("cy", String(y))
+      rotateTriangle(0, 1)
+      singleValue.textContent = `${distanceValue}%`
+      singleStatus.textContent = showComparison(radius * fraction)
+      slider.setAttribute(
+        "aria-valuetext",
+        `${distanceValue}% of radius; ${singleStatus.textContent}`,
+      )
+    }
+
+    const updateEdge = () => {
+      const angle = ((edgeValue - 90) * Math.PI) / 180
+      const x = cx + radius * Math.cos(angle)
+      const y = cy + radius * Math.sin(angle)
+      setLine(edgeChord, cx, cy - radius, x, y)
+      edgePoint.setAttribute("cx", String(x))
+      edgePoint.setAttribute("cy", String(y))
+      // The chord's midpoint changes sides at the diameter. Using its direction
+      // made the entire triangle flip by 180 degrees. Instead, follow the
+      // continuously turning perpendicular to the chord (half the endpoint angle).
+      // Past the diameter, the red side can be opposite the midpoint; keeping the
+      // triangle's motion continuous is more useful than instantly swapping sides.
+      const referenceAngle = ((edgeAngleUnwrapped / 2 - 90) * Math.PI) / 180
+      rotateTriangle(Math.cos(referenceAngle), Math.sin(referenceAngle))
+      const length = Math.hypot(x - cx, y - (cy - radius))
+      const sideLength = radius * Math.sqrt(3)
+      const result =
+        edgeValue === 0 || edgeValue === 360
+          ? "The two points coincide."
+          : Math.abs(length - sideLength) < 0.00001
+            ? "Exactly as long as the triangle side."
+            : length > sideLength
+              ? "Longer than the triangle side."
+              : "Shorter than the triangle side."
+      singleValue.textContent = `${edgeValue}°`
+      singleStatus.textContent = result
+      slider.setAttribute("aria-valuetext", `${edgeValue} degrees around the circle; ${result}`)
+    }
+
+    // Clamp a midpoint to the circle, then draw the unique chord through it
+    // perpendicular to the radius through the midpoint.
+    const updateArea = (requestedX: number, requestedY: number) => {
+      let dx = requestedX - cx
+      let dy = requestedY - cy
+      const requestedDistance = Math.hypot(dx, dy)
+      if (requestedDistance > radius) {
+        dx = (dx * radius) / requestedDistance
+        dy = (dy * radius) / requestedDistance
+      }
+      midpointX = cx + dx
+      midpointY = cy + dy
+      const distance = Math.hypot(dx, dy)
+      const halfLength = Math.sqrt(Math.max(0, radius * radius - distance * distance))
+      const tx = distance < 0.00001 ? 1 : -dy / distance
+      const ty = distance < 0.00001 ? 0 : dx / distance
+      setLine(
+        areaChord,
+        midpointX - tx * halfLength,
+        midpointY - ty * halfLength,
+        midpointX + tx * halfLength,
+        midpointY + ty * halfLength,
+      )
+      areaPoint.setAttribute("cx", String(midpointX))
+      areaPoint.setAttribute("cy", String(midpointY))
+      rotateTriangle(dx, dy)
+      xSlider.value = String(Math.round((dx / radius) * 100))
+      ySlider.value = String(Math.round((dy / radius) * 100))
+      areaStatus.textContent = showComparison(distance)
+    }
+
+    const refreshMode = (next: Mode) => {
+      mode = next
+      const isDistance = mode === "distance"
+      const isEdge = mode === "edge"
+      const isArea = mode === "area"
+      buttonDistance.setAttribute("aria-pressed", String(isDistance))
+      buttonEdge.setAttribute("aria-pressed", String(isEdge))
+      buttonArea.setAttribute("aria-pressed", String(isArea))
+      for (const [art, visible] of [
+        [artDistance, isDistance],
+        [artEdge, isEdge],
+        [artArea, isArea],
+        [legendDistance, isDistance],
+        [legendEdge, isEdge],
+        [legendArea, isArea],
+      ] as [SVGGElement, boolean][]) {
+        art.setAttribute("visibility", visible ? "visible" : "hidden")
+      }
+      innerCircle.setAttribute("visibility", isEdge ? "hidden" : "visible")
+      innerCircle.setAttribute("fill-opacity", isArea ? ".35" : "0")
+      oneControls.style.display = isArea ? "none" : "flex"
+      areaControls.style.display = isArea ? "flex" : "none"
+      if (isDistance) {
+        slider.min = "0"
+        slider.max = "100"
+        slider.value = String(distanceValue)
+        sliderLabel.textContent = "Move the chord away from the centre"
+        singleUnit.textContent = "of the radius from the centre."
+        updateDistance()
+      } else if (isEdge) {
+        slider.min = "0"
+        slider.max = "360"
+        slider.value = String(edgeValue)
+        sliderLabel.textContent = "Move the second endpoint around the edge"
+        singleUnit.textContent = "around the circle from the top."
+        updateEdge()
+      } else {
+        updateArea(midpointX, midpointY)
+      }
+    }
+
+    const setEdgePosition = (degrees: number) => {
+      // Keep the nearest equivalent angle, including when the pointer loops
+      // past 360/0. Both the slider and direct dragging use this same rule.
+      const previous = ((edgeAngleUnwrapped % 360) + 360) % 360
+      let delta = degrees - previous
+      if (delta > 180) delta -= 360
+      if (delta < -180) delta += 360
+      edgeAngleUnwrapped += delta
+      edgeValue = degrees
+      slider.value = String(edgeValue)
+      updateEdge()
+    }
+
+    slider.addEventListener("input", () => {
+      if (mode === "distance") {
+        distanceValue = Number(slider.value)
+        updateDistance()
+      } else if (mode === "edge") {
+        setEdgePosition(Number(slider.value))
+      }
+    })
+    xSlider.addEventListener("input", () => {
+      if (mode === "area") updateArea(cx + (radius * Number(xSlider.value)) / 100, midpointY)
+    })
+    ySlider.addEventListener("input", () => {
+      if (mode === "area") updateArea(midpointX, cy + (radius * Number(ySlider.value)) / 100)
+    })
+
+    const localPoint = (event: PointerEvent) => {
+      const transform = svg.getScreenCTM()
+      if (!transform) return null
+      const point = svg.createSVGPoint()
+      point.x = event.clientX
+      point.y = event.clientY
+      return point.matrixTransform(transform.inverse())
+    }
+
+    const dragDistance = (event: PointerEvent) => {
+      const p = localPoint(event)
+      if (!p) return
+      distanceValue = Math.round((Math.max(0, Math.min(radius, p.y - cy)) / radius) * 100)
+      slider.value = String(distanceValue)
+      updateDistance()
+    }
+    const dragEdge = (event: PointerEvent) => {
+      const p = localPoint(event)
+      if (!p) return
+      const angle = ((Math.atan2(p.y - cy, p.x - cx) * 180) / Math.PI + 90 + 360) % 360
+      setEdgePosition(Math.round(angle) % 360)
+    }
+    const dragArea = (event: PointerEvent) => {
+      const p = localPoint(event)
+      if (p) updateArea(p.x, p.y)
+    }
+
+    // Dragging the circle and moving the corresponding slider are equivalent.
+    const activateDrag = (
+      hit: SVGCircleElement,
+      associatedMode: Mode,
+      onMove: (event: PointerEvent) => void,
+    ) => {
+      hit.addEventListener("pointerdown", (event) => {
+        if (mode !== associatedMode) return
+        event.preventDefault()
+        hit.setPointerCapture(event.pointerId)
+        onMove(event)
+      })
+      // touch-action on an SVG shape is ignored by some browsers, so stop the page scroll here.
+      hit.addEventListener(
+        "touchstart",
+        (event) => {
+          if (mode === associatedMode) event.preventDefault()
+        },
+        { passive: false },
+      )
+      hit.addEventListener("pointermove", (event) => {
+        if (mode === associatedMode && hit.hasPointerCapture(event.pointerId)) onMove(event)
+      })
+    }
+    activateDrag(distanceHit, "distance", dragDistance)
+    activateDrag(edgeHit, "edge", dragEdge)
+    activateDrag(areaHit, "area", dragArea)
+
+    buttonDistance.addEventListener("click", () => refreshMode("distance"))
+    buttonEdge.addEventListener("click", () => refreshMode("edge"))
+    buttonArea.addEventListener("click", () => refreshMode("area"))
+    refreshMode("distance")
+  }
+</script>
