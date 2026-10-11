@@ -1,11 +1,11 @@
 ---
 title: Braess's paradox
 titleAccent: paradox
-chapter: choice-identity
+chapter: collective
 status: explained
 simplification: light
 noMaths: true
-order: 9
+order: 30
 written: true
 sourcesVerified: true
 problem: Can building a new road make everyone's journey slower?

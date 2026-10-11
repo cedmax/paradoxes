@@ -1,10 +1,10 @@
 ---
 title: "Kant's antinomies"
-chapter: "belief"
+chapter: belief
 status: "disputed"
 simplification: light
 noMaths: true
-order: 300
+order: 150
 written: true
 sourcesVerified: true
 reviewed: false

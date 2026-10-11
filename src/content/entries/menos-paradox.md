@@ -3,6 +3,7 @@ title: "Meno's paradox"
 titleAccent: "paradox"
 aka: ["learner’s paradox", "paradox of inquiry", "Meno", "recollection", "slave boy"]
 chapter: belief
+order: 90
 status: explained
 simplification: light
 noMaths: true

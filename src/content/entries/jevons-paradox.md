@@ -2,7 +2,8 @@
 title: "Jevons paradox"
 titleAccent: "paradox"
 aka: ["rebound effect", "efficiency paradox", "The Coal Question", "Khazzoom-Brookes"]
-chapter: choice-identity
+chapter: collective
+order: 100
 status: explained
 simplification: light
 noMaths: true

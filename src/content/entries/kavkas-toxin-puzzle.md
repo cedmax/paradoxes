@@ -9,7 +9,8 @@ aka:
     "billionaire and the toxin",
     "rational intention",
   ]
-chapter: choice-identity
+chapter: individual
+order: 90
 status: disputed
 simplification: light
 noMaths: true

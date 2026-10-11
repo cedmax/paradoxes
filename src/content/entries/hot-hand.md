@@ -2,7 +2,8 @@
 title: "Hot hand"
 titleAccent: "hand"
 aka: ["hot hand fallacy", "streak shooting", "Gilovich Vallone Tversky", "Miller Sanjurjo"]
-chapter: probability
+chapter: numbers-mislead
+order: 80
 status: explained
 simplification: light
 noMaths: true

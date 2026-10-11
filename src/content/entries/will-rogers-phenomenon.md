@@ -2,7 +2,8 @@
 title: "Will Rogers phenomenon"
 titleAccent: "phenomenon"
 aka: ["stage migration", "Okies joke", "moving a member between groups"]
-chapter: probability
+chapter: numbers-mislead
+order: 110
 status: explained
 uniqueness: related
 anchor: simpsons-paradox

@@ -1,13 +1,13 @@
 ---
 title: "Bootstrap paradox"
 titleAccent: "paradox"
-chapter: time-physics
+chapter: time-causation
 status: disputed
 uniqueness: related
 anchor: grandfather-paradox
 simplification: light
 noMaths: true
-order: 2
+order: 20
 written: true
 sourcesVerified: true
 problem: "If a time traveller hands you a watch that you later carry back to give to your younger self, where did the watch come from?"

@@ -9,7 +9,8 @@ aka:
     "phytoplankton diversity",
     "plankton paradox",
   ]
-chapter: biology
+chapter: models
+order: 200
 status: defused
 simplification: light
 noMaths: true
