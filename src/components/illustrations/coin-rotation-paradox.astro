@@ -1,15 +1,9 @@
 ---
-const snapshots = [
-  { x: 222, y: 130, a: 0 },
-  { x: 150, y: 58, a: 180 },
-  { x: 78, y: 130, a: 360 },
-  { x: 150, y: 202, a: 540 },
-]
 ---
 
-<figure class="flex flex-col gap-3 border-2 border-ink p-4 sm:p-6">
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
   <p class="font-bold">
-    Watch the centre of the rolling coin, not just the edge of the fixed one.
+    Move the coin around the fixed one. Watch it turn as its centre travels along the dotted path.
   </p>
   <svg
     class="mx-auto w-full max-w-sm"
@@ -19,8 +13,8 @@ const snapshots = [
   >
     <title id="coin-rotation-title">A coin rolling around an equal coin</title>
     <desc id="coin-rotation-desc">
-      The centre of the moving coin follows a circle of twice the radius of either coin. One
-      full orbit rotates the moving coin twice.
+      One moving coin follows a circle of twice the radius of the fixed coin. Moving the slider
+      through a full orbit makes the coin rotate twice around its own centre.
     </desc>
     <circle
       cx="150"
@@ -44,33 +38,46 @@ const snapshots = [
     <text x="150" y="136" text-anchor="middle" font-size="16" fill="currentColor">
       Fixed
     </text>
-    {snapshots.map(({ x, y, a }, i) => (
-      <g>
-        <circle
-          cx={x}
-          cy={y}
-          r="36"
-          fill="#387a91"
-          fill-opacity=".16"
-          stroke="#387a91"
-          stroke-width="2"
-          stroke-dasharray={i === 0 ? undefined : "5 5"}
-        />
-        <g transform={`translate(${x} ${y}) rotate(${a})`}>
-          <path d="M0 0 V-28" stroke="#bd4b37" stroke-width="4" stroke-linecap="round" />
-          <circle r="4" fill="#bd4b37" />
-        </g>
+    <g id="rolling-coin" transform="translate(222 130)">
+      <circle
+        r="36"
+        fill="#387a91"
+        fill-opacity=".16"
+        stroke="#387a91"
+        stroke-width="2"
+      />
+      <g id="rolling-coin-marker">
+        <path d="M0 0 V-28" stroke="#bd4b37" stroke-width="4" stroke-linecap="round" />
+        <circle r="4" fill="#bd4b37" />
       </g>
-    ))}
+    </g>
     <g fill="currentColor" font-size="16">
-      <text x="8" y="22">
-        Each coin: r
-      </text>
-      <text x="8" y="44">
-        Orbit: 2r
-      </text>
+      <text x="8" y="22">Each coin: r</text>
+      <text x="8" y="44">Orbit: 2r</text>
     </g>
   </svg>
+  <div class="flex flex-col gap-2">
+    <label for="coin-rotation-slider" class="font-bold">Move the coin</label>
+    <input
+      id="coin-rotation-slider"
+      class="h-11 w-full accent-ink"
+      type="range"
+      min="0"
+      max="100"
+      step="1"
+      value="0"
+      aria-describedby="coin-rotation-readout"
+      aria-valuetext="0 percent of orbit, 0 turns"
+    />
+    <div class="flex justify-between gap-3 text-base">
+      <span>Start</span>
+      <span>One complete orbit</span>
+    </div>
+    <p id="coin-rotation-readout" class="text-base" aria-live="off">
+      <span id="coin-orbit-progress">0%</span> of the orbit ·
+      <strong><span id="coin-turns">0.00</span> turns</strong>
+    </p>
+  </div>
   <div class="grid grid-cols-2 gap-3 text-base">
     <div class="border border-ink p-3">
       <strong>Moving coin circumference</strong>
@@ -82,8 +89,42 @@ const snapshots = [
     </div>
   </div>
   <figcaption class="text-base leading-normal">
-    The rolling coin travels two of its own circumferences on the path taken by its centre: 4πr
-    ÷ 2πr = <strong>2 turns</strong>. The four outlines are snapshots, not four different moving
-    coins.
+    The moving coin's centre travels a circle of radius 2r, so the path is 4πr long.
+    Its own circumference is 2πr. One trip around the fixed coin therefore produces
+    <strong>two full turns</strong>.
   </figcaption>
 </figure>
+
+<script>
+  const slider = document.querySelector<HTMLInputElement>("#coin-rotation-slider")
+  const rollingCoin = document.querySelector<SVGGElement>("#rolling-coin")
+  const marker = document.querySelector<SVGGElement>("#rolling-coin-marker")
+  const orbitProgress = document.querySelector<HTMLElement>("#coin-orbit-progress")
+  const turnsOutput = document.querySelector<HTMLElement>("#coin-turns")
+
+  if (slider && rollingCoin && marker && orbitProgress && turnsOutput) {
+    const cx = 150
+    const cy = 130
+    const orbitRadius = 72
+
+    const update = () => {
+      const progress = Number(slider.value) / 100
+      const angle = 2 * Math.PI * progress
+      const x = cx + orbitRadius * Math.cos(angle)
+      const y = cy + orbitRadius * Math.sin(angle)
+      // An equal coin rolling without slipping makes two turns for one orbit.
+      const spin = 720 * progress
+
+      rollingCoin.setAttribute("transform", `translate(${x} ${y})`)
+      marker.setAttribute("transform", `rotate(${spin})`)
+      const percent = Math.round(progress * 100)
+      const turns = (spin / 360).toFixed(2)
+      orbitProgress.textContent = `${percent}%`
+      turnsOutput.textContent = turns
+      slider.setAttribute("aria-valuetext", `${percent} percent of orbit, ${turns} turns`)
+    }
+
+    slider.addEventListener("input", update)
+    update()
+  }
+</script>
