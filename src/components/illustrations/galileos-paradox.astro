@@ -19,8 +19,12 @@ const numbers = [1, 2, 3, 4, 5]
     desc="The top row shows the positive whole numbers 1 through 5. Five arrows connect them to their squares, 1, 4, 9, 16 and 25. Each number has exactly one partner, and none of these squares is left unmatched. The pattern continues for every positive whole number."
   >
     <g fill="currentColor" font-size="14" font-weight="bold">
-      <text x="8" y="16">Whole numbers</text>
-      <text x="8" y="144">Squares</text>
+      <text x="8" y="16">
+        Whole numbers
+      </text>
+      <text x="8" y="144">
+        Squares
+      </text>
     </g>
     {numbers.map((number, index) => (
       <g>
@@ -52,10 +56,22 @@ const numbers = [1, 2, 3, 4, 5]
           stroke="var(--color-series-blue)"
           stroke-width="1.5"
         />
-        <text x={34 + index * 63} y="49" text-anchor="middle" fill="currentColor" font-size="18">
+        <text
+          x={34 + index * 63}
+          y="49"
+          text-anchor="middle"
+          fill="currentColor"
+          font-size="18"
+        >
           {number}
         </text>
-        <text x={34 + index * 63} y="110" text-anchor="middle" fill="currentColor" font-size="18">
+        <text
+          x={34 + index * 63}
+          y="110"
+          text-anchor="middle"
+          fill="currentColor"
+          font-size="18"
+        >
           {number * number}
         </text>
       </g>
@@ -67,11 +83,15 @@ const numbers = [1, 2, 3, 4, 5]
   <SideBySide>
     <Panel title="Up to 100">
       <p>100 positive whole numbers</p>
-      <p><strong>10 squares</strong></p>
+      <p>
+        <strong>10 squares</strong>
+      </p>
     </Panel>
     <Panel title="Up to 10,000">
       <p>10,000 positive whole numbers</p>
-      <p><strong>100 squares</strong></p>
+      <p>
+        <strong>100 squares</strong>
+      </p>
     </Panel>
   </SideBySide>
   <Fragment slot="caption">
