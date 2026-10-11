@@ -1,65 +1,150 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">The horn gets narrower for ever. Its surface never ends.</p>
-  <svg
-    viewBox="0 0 300 146"
-    class="mx-auto w-full max-w-sm"
-    role="img"
-    aria-labelledby="horn-title horn-desc"
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import { series, stroke } from "~/data/palette"
+
+const stretches = [
+  { from: 1, to: 2, label: "1–2", volume: 1, wall: 1, colour: series.blue },
+  { from: 2, to: 4, label: "2–4", volume: 0.5, wall: 0.92, colour: series.gold },
+  { from: 4, to: 8, label: "4–8", volume: 0.25, wall: 0.91, colour: series.green },
+  { from: 8, to: 16, label: "8–16", volume: 0.125, wall: 0.91, colour: series.red },
+]
+
+const xAt = (x: number) => 23 + (x - 1) * 20.5
+const yAt = (x: number, side: number) => 79 + (side * 48) / x
+
+const sectionPath = (a: number, b: number) => {
+  const steps = 20
+  const points = Array.from({ length: steps + 1 }, (_, i) => a + ((b - a) * i) / steps)
+  const top = points.map((x) => `${xAt(x).toFixed(2)},${yAt(x, -1).toFixed(2)}`)
+  const bottom = [...points]
+    .reverse()
+    .map((x) => `${xAt(x).toFixed(2)},${yAt(x, 1).toFixed(2)}`)
+  return `M${top.join(" L")} L${bottom.join(" L")} Z`
+}
+
+const barStarts = [94, 161, 228, 295]
+---
+
+<IllustrationFigure
+  name="gabriels-horn"
+  lead="An endlessly long horn can hold a finite amount, but have endless wall."
+>
+  <p class="text-base leading-normal">
+    The horn keeps narrowing. Divide it into longer and longer stretches, each
+    twice as long as the last. What happens to the space inside and the wall?
+  </p>
+
+  <SvgFigure
+    name="gabriels-horn-sections"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 360 159"
+    title="Four successive stretches of a narrowing horn get twice as long each time"
+    desc="A wide horn at the left tapers towards a narrow tip at the right. Its first four stretches cover distances one to two, two to four, four to eight and eight to sixteen along the axis, with each stretch shaded a different colour. The stretches double in length as the horn gets narrower; the horn continues beyond the illustration."
   >
-    <title id="horn-title">An endless tapering horn</title>
-    <desc id="horn-desc">
-      The wide left opening tapers toward the right, continuing without end. In the ideal
-      mathematical model, its enclosed volume is finite and its surface area infinite.
-    </desc>
-    <path
-      d="M24 14 C80 40 100 56 170 62 S255 67 288 68 L288 74 C255 75 205 79 170 81 C100 86 80 100 24 126 Z"
-      fill="#387a91"
-      fill-opacity=".25"
-      stroke="currentColor"
-      stroke-width="2.5"
-    />
+    {stretches.map(({ from, to, colour }) => (
+      <path
+        d={sectionPath(from, to)}
+        fill={colour}
+        fill-opacity=".32"
+        stroke={stroke}
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
+    ))}
     <ellipse
-      cx="24"
-      cy="70"
-      rx="9"
-      ry="56"
-      stroke="currentColor"
+      cx={xAt(1)}
+      cy="79"
+      rx="6"
+      ry="48"
+      fill={series.blue}
+      fill-opacity=".2"
+      stroke={stroke}
       stroke-width="2"
-      fill="#d7a13d"
-      fill-opacity=".3"
     />
     <path
-      d="M40 70 H286"
+      d="M23 79 H340"
       fill="none"
-      stroke="currentColor"
-      stroke-dasharray="7 7"
-      opacity=".5"
+      stroke={stroke}
+      stroke-width="1"
+      stroke-dasharray="5 5"
+      stroke-opacity=".45"
     />
-    <g fill="currentColor" font-size="16">
-      <text x="150" y="38">
-        Finite volume
-      </text>
-      <text x="150" y="112">
-        Infinite surface
-      </text>
-      <text x="190" y="136">
-        Continues →
-      </text>
+    <g fill="currentColor" font-size="13">
+      <text x="8" y="146">Wide opening</text>
+      <text x="234" y="146">Keeps narrowing →</text>
     </g>
-  </svg>
-  <div class="grid grid-cols-2 gap-3 text-base">
-    <div class="border border-ink p-3">
-      <strong>Filling</strong>
-      <p>A finite amount of ideal liquid.</p>
-    </div>
-    <div class="border border-ink p-3">
-      <strong>Same-thickness coat</strong>
-      <p>Would need infinite paint.</p>
-    </div>
-  </div>
-  <figcaption class="text-base leading-normal">
-    This is a schematic of the mathematical shape. A layer allowed to get thinner without limit
-    can touch the entire wall using finite volume. A coating of fixed positive thickness cannot.
-    Real paint cannot reach arbitrarily far inside.
-  </figcaption>
-</figure>
+  </SvgFigure>
+
+  <Panel title="The space shrinks faster than the wall" class="flex flex-col gap-2">
+    <p class="text-base leading-normal">
+      Each new stretch is <strong>twice as long</strong> as the previous one.
+      Watch what happens to its share of the horn's total volume, compared
+      with the amount of wall in that stretch.
+    </p>
+    <SvgFigure
+      name="gabriels-horn-volume-area"
+      class="mx-auto w-full max-w-md"
+      viewBox="0 0 360 172"
+      title="Volume halves in successive stretches, while wall area remains almost unchanged"
+      desc="Four columns for successive doubling stretches, 1 to 2, 2 to 4, 4 to 8 and 8 to 16. Upper bars show the volume inside each stretch, halving each time: the stretches contain one half, one quarter, one eighth and one sixteenth of the total horn volume. Lower bars show the inner wall area in each stretch, staying roughly the same. Further stretches repeat this indefinitely, so the total volume converges but the wall area does not."
+    >
+      <g font-size="12" fill="currentColor" font-weight="700" text-anchor="middle">
+        {stretches.map(({ label }, i) => (
+          <text x={barStarts[i] + 22} y="22">
+            {label}
+          </text>
+        ))}
+      </g>
+      <g font-size="13" font-weight="700" fill="currentColor">
+        <text x="5" y="64">Volume</text>
+        <text x="5" y="123">Wall</text>
+      </g>
+      {stretches.map(({ volume, wall, colour }, i) => (
+        <g>
+          <rect
+            x={barStarts[i]}
+            y="45"
+            width={44 * volume}
+            height="26"
+            fill={colour}
+            stroke={stroke}
+            stroke-width="1"
+          />
+          <rect
+            x={barStarts[i]}
+            y="102"
+            width={44 * wall}
+            height="26"
+            fill={colour}
+            stroke={stroke}
+            stroke-width="1"
+          />
+        </g>
+      ))}
+      <g font-size="12" fill="currentColor" text-anchor="middle">
+        <text x="116" y="87">½</text>
+        <text x="183" y="87">¼</text>
+        <text x="250" y="87">⅛</text>
+        <text x="317" y="87">¹⁄₁₆</text>
+      </g>
+      <text x="179" y="160" fill="currentColor" font-size="13" text-anchor="middle">
+        More stretches continue without end →
+      </text>
+    </SvgFigure>
+    <p class="text-base leading-normal">
+      The inside volume keeps halving and adds up to a finite amount.
+      But each longer stretch adds <strong>roughly the same amount of wall</strong>.
+      Infinitely many such stretches give an infinite surface.
+    </p>
+  </Panel>
+
+  <Fragment slot="caption">
+    The horn is the mathematical shape made by rotating y = 1/x (starting at x = 1).
+    The volume fractions are exact; the similar wall-area bars are approximate.
+    Ideal liquid can touch the whole inside wall with finite volume, but a coat of
+    fixed positive thickness would require infinitely much paint.
+    A real material cannot reach infinitely far down an ever-narrowing tube.
+  </Fragment>
+</IllustrationFigure>
