@@ -1,19 +1,139 @@
 ---
-const sizes = [5, 10, 15, 20, 23, 30, 40, 50]
-const chance = (n: number) => {
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import Callout from "~/components/illustration-kit/Callout.astro"
+import { series, stroke } from "~/data/palette"
+
+const startingPeople = 23
+const pairCount = (n: number) => (n * (n - 1)) / 2
+const matchChance = (n: number) => {
   let noMatch = 1
   for (let i = 0; i < n; i++) noMatch *= (365 - i) / 365
   return (1 - noMatch) * 100
 }
+const firstChance = matchChance(startingPeople)
+const existingPeople = [48, 116, 184, 252]
 ---
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">Chance that at least two people share a birthday</p>
-<div class="flex flex-col gap-2 text-base">
-{sizes.map(n=><div class="grid grid-cols-[3rem_1fr_4rem] items-center gap-2" aria-label={`${n} people: ${chance(n).toFixed(1)} percent`}>
-<span class={n===23?"font-bold":"font-normal"}>{n}</span>
-<div class="h-5 border border-ink"><div class="h-full bg-accent" style={`width: ${chance(n)}%`}></div></div>
-<strong>{chance(n).toFixed(1)}%</strong>
-</div>)}
-</div>
-<figcaption class="text-base leading-normal">Just 23 people make <strong>253 different pairs</strong> that might share a birthday. The chance of any match is already about 50.7%. The calculation assumes 365 equally likely birthdays, without leap days.</figcaption>
-</figure>
+
+<IllustrationFigure
+  name="birthday-paradox"
+  lead="You are not looking for someone who shares your birthday. Any two people can match."
+>
+  <p class="text-base leading-normal">
+    Each new person can match everyone already in the room. That makes the number
+    of possible pairs grow much faster than the number of people.
+  </p>
+
+  <SvgFigure
+    name="birthday-pairs-example"
+    class="mx-auto w-full max-w-xs"
+    viewBox="0 0 300 160"
+    title="The fifth person creates four new possible pairs"
+    desc="Four existing people are shown across the top. Four lines connect them to a fifth person below. Each new person can pair with everyone already in the room."
+  >
+    <g stroke={series.gold} stroke-width="2.5">
+      {existingPeople.map((x) => <line x1={x} y1="40" x2="150" y2="110" />)}
+    </g>
+    {existingPeople.map((x, i) => (
+      <g>
+        <circle cx={x} cy="40" r="17" fill="var(--color-paper)"
+          stroke={stroke} stroke-width="1.5" />
+        <text x={x} y="46" font-size="16" font-weight="700"
+          fill="currentColor" text-anchor="middle">{i + 1}</text>
+      </g>
+    ))}
+    <circle cx="150" cy="110" r="19" fill={series.blue} />
+    <text x="150" y="116" font-size="16" font-weight="700"
+      fill="var(--color-paper)" text-anchor="middle">5</text>
+    <text x="150" y="154" font-size="14" font-weight="700"
+      fill="currentColor" text-anchor="middle">The fifth person adds 4 new pairs</text>
+  </SvgFigure>
+
+  <Slider
+    id="birthday-people"
+    label="People in the room"
+    min={2}
+    max={70}
+    step={1}
+    value={startingPeople}
+    startLabel="2 people"
+    endLabel="70 people"
+    valuetext="23 people"
+    describedby="birthday-readout"
+  >
+    <p id="birthday-readout" class="text-base font-bold" aria-live="polite">
+      23 people make 253 possible pairs.
+    </p>
+  </Slider>
+
+  <p id="birthday-new-pairs" class="text-base leading-normal">
+    The 23rd person alone adds 22 new possible pairs.
+  </p>
+
+  <SvgFigure
+    name="birthday-chance"
+    class="w-full max-w-md"
+    viewBox="0 0 340 104"
+    title="Chance that at least two people share a birthday"
+    desc="With 23 people there are 253 different pairs, and the chance of at least one shared birthday is 50.7 percent. Use the slider to change the group size and probability."
+  >
+    <g fill="currentColor" font-size="15">
+      <text x="10" y="18" font-weight="700">Chance of a shared birthday</text>
+      <rect x="10" y="29" width="320" height="24" fill="var(--color-paper)"
+        stroke={stroke} stroke-width="1.5" />
+      <rect id="birthday-chance-fill" x="10" y="29"
+        width={(firstChance * 320) / 100} height="24" fill={series.blue} />
+      <line x1="170" x2="170" y1="27" y2="60" stroke={stroke}
+        stroke-width="1.5" stroke-dasharray="3 3" />
+      <text x="10" y="74" font-size="13">0%</text>
+      <text x="170" y="74" text-anchor="middle" font-size="13">50%</text>
+      <text x="330" y="74" text-anchor="end" font-size="13">100%</text>
+      <text id="birthday-chance-label" x="10" y="98" font-weight="700">
+        23 people: 50.7% chance
+      </text>
+    </g>
+  </SvgFigure>
+
+  <Callout>
+    At just 23 people, there are 253 ways to choose a pair.
+    That is why a shared birthday is already more likely than not.
+  </Callout>
+
+  <Fragment slot="caption">
+    Try moving the slider. The count includes every possible pair, not just pairs
+    involving you. The probabilities assume 365 equally likely birthdays, with no leap day.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("birthday-paradox")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#birthday-people")
+    const readout = find<HTMLElement>(root, "#birthday-readout")
+    const newPairs = find<HTMLElement>(root, "#birthday-new-pairs")
+    const fill = find<SVGRectElement>(root, "#birthday-chance-fill")
+    const chanceLabel = find<SVGTextElement>(root, "#birthday-chance-label")
+    const chanceDesc = find<SVGDescElement>(root, "#birthday-chance-desc")
+
+    const matchChance = (n: number) => {
+      let noMatch = 1
+      for (let i = 0; i < n; i++) noMatch *= (365 - i) / 365
+      return (1 - noMatch) * 100
+    }
+
+    bindSlider(slider, (n) => {
+      const pairs = (n * (n - 1)) / 2
+      const probability = matchChance(n)
+      const formattedChance = probability.toFixed(1)
+      readout.textContent = `${n} people make ${pairs.toLocaleString("en-GB")} possible pairs.`
+      newPairs.textContent = `Person ${n} adds ${n - 1} new possible pairs.`
+      fill.setAttribute("width", String((probability * 320) / 100))
+      chanceLabel.textContent = `${n} people: ${formattedChance}% chance`
+      chanceDesc.textContent = `With ${n} people there are ${pairs} possible pairs and a ${formattedChance} percent chance of at least one shared birthday.`
+      return `${n} people; ${pairs} possible pairs; ${formattedChance} percent chance of a match`
+    })
+  }
+</script>
