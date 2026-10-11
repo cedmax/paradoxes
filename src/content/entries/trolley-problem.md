@@ -10,7 +10,8 @@ aka:
     "Thomson",
     "doctrine of double effect",
   ]
-chapter: choice-identity
+chapter: individual
+order: 130
 status: disputed
 simplification: light
 noMaths: true

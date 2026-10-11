@@ -10,11 +10,11 @@ aka:
     "teacup",
     "river meanders",
   ]
-chapter: time-physics
+chapter: models
 status: explained
 simplification: light
 noMaths: true
-order: 103
+order: 140
 written: true
 sourcesVerified: true
 problem: "Stir a cup of tea. Why do the leaves gather in the middle of the bottom, not at the edge?"

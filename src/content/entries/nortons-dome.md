@@ -1,10 +1,10 @@
 ---
 title: "Norton's dome"
-chapter: "time-physics"
+chapter: models
 status: "disputed"
 simplification: light
 noMaths: false
-order: 300
+order: 180
 written: true
 sourcesVerified: true
 reviewed: false
