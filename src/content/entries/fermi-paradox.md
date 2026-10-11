@@ -1,11 +1,11 @@
 ---
 title: "Fermi paradox"
 titleAccent: "paradox"
-chapter: time-physics
+chapter: models
 status: disputed
 simplification: light
 noMaths: true
-order: 6
+order: 20
 written: true
 sourcesVerified: true
 reviewed: true

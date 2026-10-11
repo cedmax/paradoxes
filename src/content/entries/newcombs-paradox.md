@@ -1,10 +1,10 @@
 ---
 title: Newcomb's paradox
 titleAccent: paradox
-chapter: choice-identity
+chapter: individual
 status: disputed
 simplification: light
-order: 2
+order: 30
 written: true
 sourcesVerified: true
 problem: "Box A holds $1,000, and a near-perfect predictor has already decided whether Box B holds $1,000,000. Do you take Box B alone, or both?"

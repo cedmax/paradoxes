@@ -1,11 +1,11 @@
 ---
 title: Condorcet paradox
 titleAccent: paradox
-chapter: choice-identity
+chapter: collective
 status: explained
 simplification: light
 noMaths: true
-order: 8
+order: 20
 written: true
 sourcesVerified: true
 problem: Can three sensible voters, choosing by majority, end up preferring A to B, B to C and C to A?

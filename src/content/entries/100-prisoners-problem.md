@@ -1,10 +1,10 @@
 ---
 title: "100 prisoners problem"
-chapter: "probability"
+chapter: probability
 status: "explained"
 simplification: light
 noMaths: false
-order: 300
+order: 110
 written: true
 sourcesVerified: true
 reviewed: false

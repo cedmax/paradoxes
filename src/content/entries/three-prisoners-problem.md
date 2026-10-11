@@ -8,7 +8,7 @@ uniqueness: variant
 anchor: monty-hall-problem
 simplification: light
 noMaths: false
-order: 208
+order: 100
 written: true
 sourcesVerified: true
 problem: "A prisoner asks the warden to name one of the other two who will be executed, tossing a coin if both will be. Told “B”, has his own chance of a pardon gone up?"

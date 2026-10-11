@@ -1,10 +1,10 @@
 ---
 title: "Bertrand paradox (economics)"
-chapter: "choice-identity"
+chapter: collective
 status: "explained"
 simplification: light
 noMaths: false
-order: 300
+order: 140
 written: true
 sourcesVerified: true
 reviewed: false
