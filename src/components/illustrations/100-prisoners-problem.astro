@@ -1,326 +1,226 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6" data-prisoner-cycles>
-  <p class="font-bold">The hidden pattern: loops of numbers</p>
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6" data-prisoner-loops>
+  <p class="font-bold">The part that matters: how long the loops are</p>
   <p class="text-base leading-normal">
-    Each circle is a numbered box. An arrow shows which box its contents point to.
-    Everyone in the same loop succeeds or fails together.
+    The top of each card is the <strong>box you open</strong>. The bottom is the
+    <strong>number found inside</strong>, which tells you which box to open next.
+    Follow the arrows until you return to where you started.
   </p>
 
-  <div class="flex flex-wrap gap-2" role="group" aria-label="Choose an arrangement">
-    <button type="button" class="btn-ghost" data-preset="short" aria-pressed="true">
-      Two short loops
+  <div class="flex flex-wrap gap-2" role="group" aria-label="Compare loop lengths">
+    <button type="button" class="btn-ghost" data-example="short" aria-pressed="true">
+      Everyone survives: 4 + 4
     </button>
-    <button type="button" class="btn-ghost" data-preset="long" aria-pressed="false">
-      One long loop
-    </button>
-    <button type="button" class="btn-ghost" id="prisoners-reset">
-      Reset
+    <button type="button" class="btn-ghost" data-example="long" aria-pressed="false">
+      Group loses: 5 + 3
     </button>
   </div>
 
   <div class="border-l-4 border-ink pl-4" aria-live="polite" aria-atomic="true">
-    <p class="text-sm font-bold" id="prisoners-arrangement">Two short loops</p>
-    <p id="prisoners-group-result" class="font-bold">All 8 prisoners succeed.</p>
-    <p class="text-base" id="prisoners-why">
-      Longest loop: 4 boxes. Each prisoner may open four, so nobody runs out of tries.
+    <p id="prisoners-result" class="font-bold">All eight prisoners succeed.</p>
+    <p id="prisoners-reason" class="text-base leading-normal">
+      Both loops have four boxes. Every prisoner can complete their loop in four openings.
     </p>
   </div>
 
-  <p class="text-base leading-normal">
-    <strong>Try changing the loops:</strong> select any two numbered circles to swap
-    the numbers inside those boxes. The arrows and results update immediately.
-    Try swapping boxes 1 and 2 in the short-loop example.
-  </p>
-  <p id="prisoners-swap-message" class="text-base" aria-live="polite">
-    Select a box to start a swap.
-  </p>
-
-  <div id="prisoners-cycle-diagrams" class="grid gap-3 sm:grid-cols-2">
-    <div class="border-2 border-ink p-3">
-      <p class="font-bold">Loop of 4 · all four succeed</p>
-      <p class="text-base">1 → 5 → 3 → 7 → 1</p>
-    </div>
-    <div class="border-2 border-ink p-3">
-      <p class="font-bold">Loop of 4 · all four succeed</p>
-      <p class="text-base">2 → 8 → 4 → 6 → 2</p>
-    </div>
+  <div id="prisoners-loop-panels" class="grid gap-4 sm:grid-cols-2">
+    <p class="text-base">Loading the two loops…</p>
   </div>
 
   <figcaption class="text-base leading-normal">
-    Here, eight prisoners can each open four boxes. Every prisoner follows the arrows
-    starting from their own box, and must complete their loop to find their number.
-    The group survives only if no loop is longer than four. In the real problem,
-    100 prisoners may open 50 boxes each. A random arrangement has no loop longer
-    than 50 about 31% of the time.
+    Each prisoner starts at their own numbered box and follows the numbers found inside.
+    All prisoners in one loop share the same fate. In the full puzzle there are 100 boxes
+    and 50 openings per prisoner: everybody succeeds when every loop has 50 boxes or fewer.
+    Random arrangements meet that condition about 31% of the time.
   </figcaption>
 </figure>
 
 <style>
-  [data-prisoner-cycles] button[aria-pressed="true"] {
+  [data-prisoner-loops] button[aria-pressed="true"] {
     background: var(--color-ink);
     color: var(--color-paper);
-  }
-
-  [data-prisoner-cycles] .cycle-node {
-    cursor: pointer;
-    outline: none;
-  }
-
-  [data-prisoner-cycles] .cycle-node:focus-visible circle {
-    stroke: var(--color-ink);
-    stroke-width: 5;
+    border-color: var(--color-ink);
   }
 </style>
 
 <script>
-  const root = document.querySelector<HTMLElement>("[data-prisoner-cycles]")
+  const root = document.querySelector<HTMLElement>("[data-prisoner-loops]")
   if (root) {
-    const presets = {
+    const examples = {
       short: [5, 8, 7, 6, 3, 2, 1, 4],
       long: [5, 8, 7, 1, 3, 2, 4, 6],
-    }
-    type Preset = keyof typeof presets
+    } as const
+
+    type Example = keyof typeof examples
+    const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-example]"))
+    const panels = root.querySelector<HTMLElement>("#prisoners-loop-panels")!
+    const result = root.querySelector<HTMLElement>("#prisoners-result")!
+    const reason = root.querySelector<HTMLElement>("#prisoners-reason")!
     const ns = "http://www.w3.org/2000/svg"
-    const cycleRegion = root.querySelector<HTMLElement>("#prisoners-cycle-diagrams")!
-    const presetButtons = Array.from(
-      root.querySelectorAll<HTMLButtonElement>("[data-preset]"),
-    )
-    const resetButton = root.querySelector<HTMLButtonElement>("#prisoners-reset")!
-    const arrangementLabel = root.querySelector<HTMLElement>("#prisoners-arrangement")!
-    const resultLabel = root.querySelector<HTMLElement>("#prisoners-group-result")!
-    const whyLabel = root.querySelector<HTMLElement>("#prisoners-why")!
-    const swapMessage = root.querySelector<HTMLElement>("#prisoners-swap-message")!
 
-    let basePreset: Preset = "short"
-    let customised = false
-    let values = [...presets.short]
-    let selected: number | null = null
+    const svgNode = <T extends SVGElement>(name: string): T =>
+      document.createElementNS(ns, name) as T
 
-    const cyclesFrom = (numbers: number[]): number[][] => {
+    const cyclesIn = (contents: readonly number[]) => {
       const visited = new Set<number>()
       const cycles: number[][] = []
-      for (let start = 1; start <= 8; start++) {
-        if (visited.has(start)) continue
+      for (let n = 1; n <= contents.length; n++) {
+        if (visited.has(n)) continue
         const cycle: number[] = []
-        let position = start
-        while (!visited.has(position)) {
-          visited.add(position)
-          cycle.push(position)
-          position = numbers[position - 1]
+        let box = n
+        while (!visited.has(box)) {
+          visited.add(box)
+          cycle.push(box)
+          box = contents[box - 1]
         }
         cycles.push(cycle)
       }
       return cycles
     }
 
-    function svgElement<T extends SVGElement>(tag: string): T {
-      return document.createElementNS(ns, tag) as T
+    const addText = (parent: SVGElement, value: string, x: number, y: number, colour: string, size: number, weight: string) => {
+      const text = svgNode<SVGTextElement>("text")
+      text.setAttribute("x", String(x))
+      text.setAttribute("y", String(y))
+      text.setAttribute("text-anchor", "middle")
+      text.setAttribute("font-size", String(size))
+      text.setAttribute("font-weight", weight)
+      text.setAttribute("fill", colour)
+      text.textContent = value
+      parent.appendChild(text)
     }
 
-    const textElement = (tag: string, text: string, className: string) => {
-      const element = document.createElement(tag)
-      element.textContent = text
-      element.className = className
-      return element
-    }
-
-    const chooseBox = (box: number, returnFocus = false) => {
-      if (selected === null) {
-        selected = box
-        swapMessage.textContent = `Box ${box} selected. Select another box to swap its contents.`
-      } else if (selected === box) {
-        selected = null
-        swapMessage.textContent = "Selection cancelled. Select a box to start a swap."
-      } else {
-        const first = selected
-        // Swapping two destinations preserves a permutation: each number occurs once.
-        ;[values[first - 1], values[box - 1]] = [values[box - 1], values[first - 1]]
-        customised = true
-        selected = null
-        swapMessage.textContent = `Swapped the contents of boxes ${first} and ${box}.`
-      }
-      render()
-      if (returnFocus) {
-        cycleRegion.querySelector<SVGGElement>(`[data-cycle-box="${box}"]`)?.focus()
-      }
-    }
-
-    const cycleDiagram = (cycle: number[], index: number) => {
-      const card = document.createElement("section")
-      card.className = "flex flex-col gap-2 border-2 border-ink p-3"
+    const drawLoop = (cycle: number[], contents: readonly number[], i: number) => {
       const succeeds = cycle.length <= 4
       const colour = succeeds ? "#387a91" : "#bd4b37"
-      const verdict = succeeds
-        ? `All ${cycle.length} ${cycle.length === 1 ? "prisoner succeeds" : "prisoners succeed"}`
-        : `All ${cycle.length} prisoners fail`
-      card.append(
-        textElement("h3", `Loop of ${cycle.length} · ${verdict}`, "font-bold"),
-      )
+      const card = document.createElement("section")
+      card.className = "flex flex-col gap-2 border-2 border-ink p-3"
+      const heading = document.createElement("h3")
+      heading.className = "font-bold"
+      heading.textContent = `${cycle.length}-box loop — ${succeeds ? "all succeed" : "all fail"}`
+      card.appendChild(heading)
 
-      const svg = svgElement<SVGSVGElement>("svg")
-      svg.setAttribute("viewBox", "0 0 300 240")
-      svg.setAttribute("class", "mx-auto w-full max-w-xs")
-      svg.setAttribute("role", "group")
-      svg.setAttribute(
-        "aria-label",
-        `Loop: ${[...cycle, cycle[0]].join(" to ")}. ${verdict}. Select numbered circles to swap their box contents.`,
-      )
-      const defs = svgElement<SVGDefsElement>("defs")
-      const marker = svgElement<SVGMarkerElement>("marker")
-      const markerId = `prisoners-arrow-${index}`
+      const svg = svgNode<SVGSVGElement>("svg")
+      svg.setAttribute("viewBox", "0 0 350 280")
+      svg.setAttribute("class", "mx-auto w-full max-w-sm")
+      svg.setAttribute("role", "img")
+      const svgTitle = svgNode<SVGTitleElement>("title")
+      svgTitle.setAttribute("id", `prisoner-loop-title-${i}`)
+      svgTitle.textContent = `${cycle.length}-box loop: ${cycle.map((n) => `box ${n} contains ${contents[n - 1]}`).join(", ")}. ${succeeds ? "All in this loop succeed." : "All in this loop fail."}`
+      svg.appendChild(svgTitle)
+      svg.setAttribute("aria-labelledby", `prisoner-loop-title-${i}`)
+
+      const defs = svgNode<SVGDefsElement>("defs")
+      const marker = svgNode<SVGMarkerElement>("marker")
+      const markerId = `prisoner-loop-arrow-${i}`
       marker.setAttribute("id", markerId)
       marker.setAttribute("viewBox", "0 0 10 10")
-      marker.setAttribute("refX", "8")
+      marker.setAttribute("refX", "9")
       marker.setAttribute("refY", "5")
       marker.setAttribute("markerWidth", "6")
       marker.setAttribute("markerHeight", "6")
       marker.setAttribute("orient", "auto")
-      const arrow = svgElement<SVGPathElement>("path")
-      arrow.setAttribute("d", "M 0 0 L 10 5 L 0 10 z")
-      arrow.setAttribute("fill", colour)
-      marker.appendChild(arrow)
+      const arrowHead = svgNode<SVGPathElement>("path")
+      arrowHead.setAttribute("d", "M0 0 L10 5 L0 10 Z")
+      arrowHead.setAttribute("fill", colour)
+      marker.appendChild(arrowHead)
       defs.appendChild(marker)
       svg.appendChild(defs)
 
-      const radius = cycle.length <= 2 ? 68 : 83
-      const points = cycle.map((number, position) => {
-        const angle = -Math.PI / 2 + (position * 2 * Math.PI) / cycle.length
-        return {
-          number,
-          x: 150 + (cycle.length === 1 ? 0 : radius * Math.cos(angle)),
-          y: 120 + (cycle.length === 1 ? 0 : radius * Math.sin(angle)),
-        }
+      const count = cycle.length
+      const radius = 102
+      const nodes = cycle.map((box, index) => {
+        const theta = -Math.PI / 2 + (index * 2 * Math.PI) / count
+        return { box, x: 175 + radius * Math.cos(theta), y: 140 + radius * Math.sin(theta) }
       })
 
-      for (let j = 0; j < points.length; j++) {
-        const from = points[j]
-        const to = points[(j + 1) % points.length]
-        const edge = svgElement<SVGPathElement>("path")
-        let d: string
-        if (points.length === 1) {
-          d = "M 169 107 C 223 45, 95 45, 131 107"
-        } else {
-          const dx = to.x - from.x
-          const dy = to.y - from.y
-          const distance = Math.hypot(dx, dy)
-          const ux = dx / distance
-          const uy = dy / distance
-          const startX = from.x + ux * 25
-          const startY = from.y + uy * 25
-          const endX = to.x - ux * 27
-          const endY = to.y - uy * 27
-          if (points.length === 2) {
-            const bend = j === 0 ? -50 : 50
-            d = `M ${startX} ${startY} Q ${(startX + endX) / 2 + bend} ${(startY + endY) / 2} ${endX} ${endY}`
-          } else {
-            d = `M ${startX} ${startY} L ${endX} ${endY}`
-          }
-        }
-        edge.setAttribute("d", d)
-        edge.setAttribute("fill", "none")
+      // Draw connectors first, behind the clearly labelled box cards.
+      for (let j = 0; j < count; j++) {
+        const from = nodes[j]
+        const to = nodes[(j + 1) % count]
+        const dx = to.x - from.x
+        const dy = to.y - from.y
+        const length = Math.hypot(dx, dy)
+        const ux = dx / length
+        const uy = dy / length
+        // Intersect the line between centres with the rectangular card boundaries.
+        const edgeDistance = Math.min(
+          Math.abs(ux) < 0.0001 ? Infinity : 39 / Math.abs(ux),
+          Math.abs(uy) < 0.0001 ? Infinity : 29 / Math.abs(uy),
+        )
+        const startX = from.x + ux * (edgeDistance + 3)
+        const startY = from.y + uy * (edgeDistance + 3)
+        const endX = to.x - ux * (edgeDistance + 10)
+        const endY = to.y - uy * (edgeDistance + 10)
+        const edge = svgNode<SVGPathElement>("path")
+        edge.setAttribute("d", `M ${startX} ${startY} L ${endX} ${endY}`)
         edge.setAttribute("stroke", colour)
         edge.setAttribute("stroke-width", "3")
-        edge.setAttribute("stroke-linecap", "round")
+        edge.setAttribute("fill", "none")
         edge.setAttribute("marker-end", `url(#${markerId})`)
         svg.appendChild(edge)
       }
 
-      for (const point of points) {
-        const node = svgElement<SVGGElement>("g")
-        node.setAttribute("class", "cycle-node")
-        node.setAttribute("data-cycle-box", String(point.number))
-        node.setAttribute("role", "button")
-        node.setAttribute("tabindex", "0")
-        node.setAttribute(
-          "aria-label",
-          `Box ${point.number} contains ${values[point.number - 1]}. Select to swap contents.`,
-        )
-        node.setAttribute("aria-pressed", String(selected === point.number))
-        const circle = svgElement<SVGCircleElement>("circle")
-        circle.setAttribute("cx", String(point.x))
-        circle.setAttribute("cy", String(point.y))
-        circle.setAttribute("r", "22")
-        circle.setAttribute("stroke", selected === point.number ? "#d7a13d" : colour)
-        circle.setAttribute("stroke-width", selected === point.number ? "5" : "3")
-        circle.setAttribute("fill", selected === point.number ? "#d7a13d" : "var(--color-paper)")
-        node.appendChild(circle)
+      for (const node of nodes) {
+        const box = svgNode<SVGRectElement>("rect")
+        box.setAttribute("x", String(node.x - 39))
+        box.setAttribute("y", String(node.y - 29))
+        box.setAttribute("width", "78")
+        box.setAttribute("height", "58")
+        box.setAttribute("fill", "var(--color-paper)")
+        box.setAttribute("stroke", colour)
+        box.setAttribute("stroke-width", "2.5")
+        svg.appendChild(box)
 
-        const label = svgElement<SVGTextElement>("text")
-        label.setAttribute("x", String(point.x))
-        label.setAttribute("y", String(point.y + 6))
-        label.setAttribute("text-anchor", "middle")
-        label.setAttribute("font-size", "19")
-        label.setAttribute("font-weight", "700")
-        label.setAttribute("fill", "var(--color-ink)")
-        label.setAttribute("pointer-events", "none")
-        label.textContent = String(point.number)
-        node.appendChild(label)
+        const separator = svgNode<SVGLineElement>("line")
+        separator.setAttribute("x1", String(node.x - 35))
+        separator.setAttribute("x2", String(node.x + 35))
+        separator.setAttribute("y1", String(node.y))
+        separator.setAttribute("y2", String(node.y))
+        separator.setAttribute("stroke", "var(--color-ink)")
+        separator.setAttribute("opacity", ".25")
+        svg.appendChild(separator)
 
-        node.addEventListener("click", () => chooseBox(point.number))
-        node.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault()
-            chooseBox(point.number, true)
-          }
-        })
-        svg.appendChild(node)
+        addText(svg, `BOX ${node.box}`, node.x, node.y - 8, "var(--color-ink)", 15, "700")
+        addText(svg, `FOUND ${contents[node.box - 1]}`, node.x, node.y + 20, colour, 14, "700")
       }
-      card.append(
-        svg,
-        textElement(
-          "p",
-          `Follow the arrows: ${[...cycle, cycle[0]].join(" → ")}`,
-          "text-base",
-        ),
-      )
+
+      card.appendChild(svg)
+      const path = document.createElement("p")
+      path.className = "text-base"
+      path.textContent = `Follow: ${[...cycle, cycle[0]].map((n) => `box ${n}`).join(" → ")}`
+      card.appendChild(path)
+      const explanation = document.createElement("p")
+      explanation.className = "text-base leading-normal"
+      explanation.textContent = succeeds
+        ? `All ${count} prisoners in this loop find their number within four openings.`
+        : `All ${count} prisoners in this loop need ${count} openings. Four are not enough.`
+      card.appendChild(explanation)
       return card
     }
 
-    const render = () => {
-      const cycles = cyclesFrom(values)
-      const longest = Math.max(...cycles.map((cycle) => cycle.length))
-      const successfulPrisoners = cycles
-        .filter((cycle) => cycle.length <= 4)
-        .reduce((count, cycle) => count + cycle.length, 0)
-      const allSucceed = successfulPrisoners === 8
-
-      arrangementLabel.textContent = customised
-        ? "Your arrangement"
-        : basePreset === "short"
-          ? "Two short loops"
-          : "One long loop"
-      resultLabel.textContent = allSucceed
-        ? "All 8 prisoners succeed. The group survives."
-        : `Only ${successfulPrisoners} of 8 prisoners succeed. The group loses.`
-      whyLabel.textContent = allSucceed
-        ? `Longest loop: ${longest} ${longest === 1 ? "box" : "boxes"}. Every loop fits within four openings.`
-        : `Longest loop: ${longest} boxes. Everyone in a loop longer than four fails, even if the other prisoners succeed.`
-      presetButtons.forEach((button) => {
-        button.setAttribute(
-          "aria-pressed",
-          String(!customised && button.dataset.preset === basePreset),
-        )
+    const selectExample = (name: Example) => {
+      const contents = examples[name]
+      const cycles = cyclesIn(contents)
+      const survivors = cycles.filter((cycle) => cycle.length <= 4).reduce((n, cycle) => n + cycle.length, 0)
+      const allSucceed = survivors === 8
+      buttons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.example === name))
       })
-      cycleRegion.replaceChildren(
-        ...cycles.map((cycle, i) => cycleDiagram(cycle, i)),
-      )
+      result.textContent = allSucceed
+        ? "All eight prisoners succeed. The group survives."
+        : `Only ${survivors} of eight prisoners succeed. The group loses.`
+      reason.textContent = allSucceed
+        ? "Both loops have four boxes. Every prisoner can complete their loop in four openings."
+        : "One loop contains five boxes. Its five prisoners all fail, even though the other three succeed."
+      panels.replaceChildren(...cycles.map((cycle, i) => drawLoop(cycle, contents, i)))
     }
 
-    const selectPreset = (name: Preset) => {
-      basePreset = name
-      customised = false
-      values = [...presets[name]]
-      selected = null
-      swapMessage.textContent = "Select any two boxes to swap their contents."
-      render()
-    }
-
-    presetButtons.forEach((button) => {
+    for (const button of buttons) {
       button.addEventListener("click", () => {
-        const name = button.dataset.preset
-        if (name === "short" || name === "long") selectPreset(name)
+        const example = button.dataset.example
+        if (example === "short" || example === "long") selectExample(example)
       })
-    })
-    resetButton.addEventListener("click", () => selectPreset(basePreset))
-    render()
+    }
+    selectExample("short")
   }
 </script>
