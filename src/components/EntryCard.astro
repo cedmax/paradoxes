@@ -38,8 +38,8 @@ const haystack = lower(shown, ...hits.map((h) => h.text))
   data-shown={shown}
   hidden={d.uniqueness === "variant"}
 >
-  <div class="flex flex-wrap items-start justify-between gap-3">
-    <div class="flex min-w-min flex-1 flex-col gap-2.5">
+  <div class="flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
+    <div class="flex-1">
       <div class="display text-[clamp(24px,2vw,30px)]">
         <a
           class="no-underline after:absolute after:inset-0 focus-visible:outline-none"
@@ -49,15 +49,8 @@ const haystack = lower(shown, ...hits.map((h) => h.text))
           {d.title}
         </a>
       </div>
-      {anchor && (
-        <div class="mono-label">
-          {u.relation}{" "}
-          <a class="relative z-10 underline" href={`/entries/${anchor.id}/`}>
-            {anchor.data.title}
-          </a>
-        </div>
-      )}
     </div>
+
     <div
       class:list={[
         "inline-flex shrink-0 items-center border-2 border-ink px-3 py-1 text-sm font-bold text-ink",
@@ -66,6 +59,14 @@ const haystack = lower(shown, ...hits.map((h) => h.text))
     >
       {s.label}
     </div>
+    {anchor && (
+      <div class="mono-label">
+        {u.relation}{" "}
+        <a class="relative z-10 underline" href={`/entries/${anchor.id}/`}>
+          {anchor.data.title}
+        </a>
+      </div>
+    )}
   </div>
   <div class="flex flex-col gap-2">
     <div class="mono-label opacity-65">The problem</div>
