@@ -1,44 +1,104 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">
-    An extra metre of string raises the loop by about 16 centimetres everywhere.
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import { series, stroke } from "~/data/palette"
+
+const circles = [
+  { name: "Earth", x: 101, radius: 68 },
+  { name: "Small ball", x: 280, radius: 27 },
+]
+
+const drawnGap = 15
+---
+
+<IllustrationFigure
+  name="string-girdling-earth"
+  lead="One extra metre of string. The same surprising gap around any circle."
+>
+  <p class="text-base leading-normal">
+    A string fits tightly round the Earth. Add just one metre, then hold the
+    longer loop at the same height above the ground all the way round.
   </p>
-  <svg
-    viewBox="0 0 300 290"
-    class="w-full max-w-sm"
-    role="img"
-    aria-labelledby="girdle-title girdle-desc"
+
+  <SvgFigure
+    name="girdling-same-gap"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 360 224"
+    title="A large Earth and a much smaller ball, both with the same clearance from an extra metre of string"
+    desc="Two differently sized circles, an Earth on the left and a small ball on the right. Each has an inner blue circle and an outer gold string loop. The space between the blue circle and the gold loop is drawn the same width in both diagrams. Adding one metre of string raises either loop approximately sixteen centimetres all the way around, independent of the circle's size. The circles and gaps are not to scale."
   >
-    <title id="girdle-title">A circular Earth with its string raised by a uniform gap</title>
-    <desc id="girdle-desc">
-      An orange outer circle surrounds the Earth. The diagram exaggerates the tiny 16 centimetre
-      gap. The increase in circumference is one metre.
-    </desc>
-    <circle
-      cx="150"
-      cy="118"
-      r="78"
-      fill="#387a91"
-      fill-opacity=".25"
-      stroke="currentColor"
-      stroke-width="2"
-    />
-    <circle cx="150" cy="118" r="96" fill="none" stroke="#bd4b37" stroke-width="3" />
-    <path d="M150 22 V40" stroke="currentColor" stroke-width="2" />
-    <path d="M18 252 H42" stroke="#bd4b37" stroke-width="3" />
-    <path d="M30 266 V282" stroke="currentColor" stroke-width="2" />
-    <g fill="currentColor" font-size="16">
-      <text x="50" y="257">
-        Extra metre of string
-      </text>
-      <text x="50" y="278">
-        Gap at every point: 0.159 m
-      </text>
-    </g>
-  </svg>
-  <div class="text-base font-bold">Extra radius = 1 m ÷ (2π) ≈ 0.159 m</div>
-  <figcaption class="text-base leading-normal">
-    Circumference is 2π times radius. Add 1 m to any circle’s circumference and its radius grows
-    by 1/(2π) m, no matter how large the circle was. The gap here is hugely exaggerated so it
-    can be seen.
-  </figcaption>
-</figure>
+    {circles.map(({ name, x, radius }) => (
+      <g>
+        <text
+          x={x}
+          y="19"
+          text-anchor="middle"
+          font-size="16"
+          font-weight="700"
+          fill="currentColor"
+        >
+          {name}
+        </text>
+        <circle
+          cx={x}
+          cy="118"
+          r={radius}
+          fill={series.blue}
+          fill-opacity=".2"
+          stroke={stroke}
+          stroke-width="2"
+        />
+        <circle
+          cx={x}
+          cy="118"
+          r={radius + drawnGap}
+          fill="none"
+          stroke={series.gold}
+          stroke-width="3.5"
+        />
+        <path
+          d={`M${x} ${118 - radius - drawnGap} V${118 - radius}`}
+          stroke={series.red}
+          stroke-width="3"
+        />
+        <path
+          d={`M${x - 5} ${118 - radius - drawnGap} H${x + 5} M${x - 5} ${118 - radius} H${x + 5}`}
+          fill="none"
+          stroke={series.red}
+          stroke-width="1.5"
+        />
+        <text
+          x={x}
+          y="220"
+          text-anchor="middle"
+          font-size="16"
+          font-weight="700"
+          fill="currentColor"
+        >
+          Same gap: 16 cm
+        </text>
+      </g>
+    ))}
+  </SvgFigure>
+
+  <Panel title="Why the size doesn't matter" class="flex flex-col gap-2">
+    <p class="text-base leading-normal">
+      Every circle needs about <strong>6.28 extra metres</strong> of string
+      to raise its loop by one metre. That number comes from 2 × π.
+    </p>
+    <p class="text-base font-bold">
+      1 extra metre ÷ 6.28 ≈ 0.16 metres = 16 cm
+    </p>
+    <p class="text-base leading-normal">
+      The Earth's enormous circumference drops out of the calculation.
+      It's the extra metre that sets the gap, not the size of the circle.
+    </p>
+  </Panel>
+
+  <Fragment slot="caption">
+    The string is held evenly away from a perfectly round surface, not pulled up at
+    one point. Sizes and gaps in the drawing are exaggerated and not to scale.
+    The same 16 cm result holds for circles of any size.
+  </Fragment>
+</IllustrationFigure>
