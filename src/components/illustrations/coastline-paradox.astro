@@ -5,9 +5,22 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
 // A schematic coast: each slider stop uses a nested set of points from this same line.
 const points = [
-  [12, 78], [35, 52], [52, 68], [70, 30], [87, 54], [109, 45],
-  [132, 82], [153, 60], [170, 88], [188, 40], [205, 61], [224, 48],
-  [242, 80], [262, 57], [280, 71], [308, 45],
+  [12, 78],
+  [35, 52],
+  [52, 68],
+  [70, 30],
+  [87, 54],
+  [109, 45],
+  [132, 82],
+  [153, 60],
+  [170, 88],
+  [188, 40],
+  [205, 61],
+  [224, 48],
+  [242, 80],
+  [262, 57],
+  [280, 71],
+  [308, 45],
 ]
 const levels = [
   [0, 5, 10, 15],
@@ -16,8 +29,7 @@ const levels = [
   [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14, 15],
   points.map((_, i) => i),
 ]
-const line = (indexes: number[]) =>
-  indexes.map((i) => points[i].join(",")).join(" ")
+const line = (indexes: number[]) => indexes.map((i) => points[i].join(",")).join(" ")
 const total = (indexes: number[]) =>
   indexes.slice(1).reduce((sum, index, i) => {
     const a = points[indexes[i]]
@@ -59,9 +71,7 @@ const fullCoast = line(levels[4])
       stroke-linecap="round"
     />
     <g id="coastline-paradox-markers" fill="var(--color-series-blue)">
-      {start.map((index) => (
-        <circle cx={points[index][0]} cy={points[index][1]} r="3.5" />
-      ))}
+      {start.map((index) => <circle cx={points[index][0]} cy={points[index][1]} r="3.5" />)}
     </g>
   </SvgFigure>
   <Slider
@@ -125,7 +135,12 @@ const fullCoast = line(levels[4])
       const count = indexes.length - 1
       const rounded = Math.round(distance)
       readout.textContent = `${count} segments add up to about ${rounded} units.`
-      const size = value === 0 ? "Bigger steps" : value === 4 ? "Smaller steps" : "Step " + (value + 1) + " of 5"
+      const size =
+        value === 0
+          ? "Bigger steps"
+          : value === 4
+            ? "Smaller steps"
+            : "Step " + (value + 1) + " of 5"
       return `${size}, ${count} segments, about ${rounded} units`
     })
   }
