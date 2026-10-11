@@ -1,7 +1,6 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
-import Panel from "~/components/illustration-kit/Panel.astro"
 import { series, stroke } from "~/data/palette"
 
 const turns = [
@@ -17,9 +16,9 @@ const turns = [
   lead="Take the bigger pile now, or pass and double both piles."
 >
   <p class="text-base leading-normal">
-    Alice starts with two piles: 4 coins and 1 coin. She can take the larger pile and end the
-    game, leaving Bob the smaller one. Or she can pass: both piles double to 8 and 2, and Bob
-    chooses next. They take turns with the same choice.
+    Alice starts with two piles: 4 coins and 1 coin. The game has 4 turns. She can take the
+    larger pile and end the game, leaving Bob the smaller one. Or she can pass: both piles
+    double to 8 and 2, and Bob chooses next. They take turns with the same choice.
   </p>
 
   <SvgFigure
@@ -68,24 +67,19 @@ const turns = [
         )}
       </g>
     ))}
-    <text x="10" y="274" font-size="12" fill="currentColor">
-      Final turn: Bob takes 32, or passes and gets 16.
-    </text>
   </SvgFigure>
 
-  <Panel title="Why does the game end immediately?">
-    <p class="text-base leading-normal">
-      This example has a fixed ending after four turns. If Bob passes on turn 4, the piles double
-      one last time, then Alice gets 64 and Bob gets 16. Bob would rather take 32 instead.
-    </p>
-    <p class="text-base leading-normal">
-      Alice knows that, so on turn 3 she takes 16 rather than pass and get 8. The same argument
-      works backward to turn 1: Alice takes immediately, even though passing could make both richer.
-    </p>
-  </Panel>
+  <p class="text-base leading-normal">
+    On the last turn, if Bob passes, the piles double one last time and Alice would get 64 and
+    Bob 16. Bob would rather take 32 instead.
+  </p>
+  <p class="text-base leading-normal">
+    Alice knows that, so on turn 3 she takes 16 rather than pass and get 8. The same argument
+    works backward to the first turn: Alice takes immediately, even though passing could make
+    both richer.
+  </p>
 
   <Fragment slot="caption">
-    The fixed ending gives the backward reasoning somewhere to start. Its prediction depends on
-    strong assumptions about what each player knows.
+    The prediction depends on strong assumptions about what each player knows.
   </Fragment>
 </IllustrationFigure>
