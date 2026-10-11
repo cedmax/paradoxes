@@ -8,13 +8,13 @@ aka:
     "time traveller assassin",
     "kill Hitler as a baby",
   ]
-chapter: time-physics
+chapter: time-causation
 status: disputed
 uniqueness: variant
 anchor: grandfather-paradox
 simplification: light
 noMaths: true
-order: 8
+order: 50
 written: true
 sourcesVerified: true
 problem: "If a time traveller killed Hitler as a baby, what would later send the traveller back to do it?"

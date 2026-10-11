@@ -1,9 +1,9 @@
 ---
 title: Ship of Theseus
-chapter: choice-identity
+chapter: what-counts
 status: disputed
 simplification: light
-order: 1
+order: 70
 written: true
 sourcesVerified: true
 reviewed: false

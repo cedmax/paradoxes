@@ -11,7 +11,8 @@ aka:
     "birth rank",
     "end of humanity",
   ]
-chapter: probability
+chapter: belief
+order: 20
 status: disputed
 uniqueness: related
 anchor: sleeping-beauty-problem

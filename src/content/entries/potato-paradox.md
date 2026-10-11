@@ -2,11 +2,11 @@
 title: "Potato paradox"
 titleAccent: "paradox"
 aka: ["potatoes", "99 percent water", "dried potatoes", "porch potatoes"]
-chapter: geometry-arithmetic
+chapter: shapes-sums
 status: explained
 simplification: light
 noMaths: false
-order: 200
+order: 10
 written: true
 sourcesVerified: true
 problem: "Potatoes that are 99% water dry out until they are 98% water. Do they lose much weight?"

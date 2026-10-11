@@ -1,12 +1,12 @@
 ---
 title: "Rietdijk–Putnam argument"
-chapter: "time-physics"
+chapter: time-causation
 status: "disputed"
 uniqueness: "related"
 anchor: "ladder-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 80
 written: true
 sourcesVerified: true
 reviewed: false

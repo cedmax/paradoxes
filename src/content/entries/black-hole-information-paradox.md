@@ -2,7 +2,8 @@
 title: "Black hole information paradox"
 titleAccent: "paradox"
 aka: ["Hawking radiation", "information loss", "firewall paradox", "Page curve", "unitarity"]
-chapter: time-physics
+chapter: models
+order: 40
 status: disputed
 simplification: heavy
 noMaths: true

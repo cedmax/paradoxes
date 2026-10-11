@@ -15,7 +15,7 @@ uniqueness: related
 anchor: russells-paradox
 simplification: heavy
 noMaths: false
-order: 206
+order: 130
 written: true
 sourcesVerified: true
 problem: "Is there a biggest infinity, or a set that holds every possible size of a set?"

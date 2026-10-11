@@ -1,12 +1,12 @@
 ---
 title: "Irresistible force paradox"
-chapter: "belief"
+chapter: what-counts
 status: "defused"
 uniqueness: "related"
 anchor: "omnipotence-paradox"
 simplification: light
 noMaths: true
-order: 300
+order: 120
 written: true
 sourcesVerified: true
 reviewed: false
