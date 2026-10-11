@@ -39,8 +39,8 @@ const groupsFor = (counts: number[]) => {
   lead="The parliament gets bigger. State C loses a seat."
 >
   <p class="text-base leading-normal">
-    Three states have populations in the ratio 6 : 6 : 2. Their populations stay
-    the same; only the total number of seats increases.
+    Three states have populations in the ratio 6 : 6 : 2. Their populations stay the same; only
+    the total number of seats increases.
   </p>
 
   <SvgFigure
@@ -95,28 +95,30 @@ const groupsFor = (counts: number[]) => {
     </text>
   </SvgFigure>
 
-  <p class="text-base font-bold">
-    A gains one. B gains one. C loses one.
-  </p>
+  <p class="text-base font-bold">A gains one. B gains one. C loses one.</p>
 
   <Panel title="Why C loses out" class="flex flex-col gap-2">
     <p class="text-base leading-normal">
-      The rule first gives out the same nine whole seats both times:
-      A gets 4, B gets 4, and C gets 1.
+      The rule first gives out the same nine whole seats both times: A gets 4, B gets 4, and C
+      gets 1.
     </p>
     <div class="flex flex-col gap-2 text-base leading-normal">
-      <p><strong>With 10 seats:</strong> one seat is left over. C wins it.</p>
-      <p><strong>With 11 seats:</strong> two seats are left over. A and B win them.</p>
+      <p>
+        <strong>With 10 seats:</strong> one seat is left over. C wins it.
+      </p>
+      <p>
+        <strong>With 11 seats:</strong> two seats are left over. A and B win them.
+      </p>
     </div>
     <p class="text-base leading-normal">
-      As the total changes, so do the leftover fractions. The extra seat
-      changes who wins the leftovers, even though nobody's population changes.
+      As the total changes, so do the leftover fractions. The extra seat changes who wins the
+      leftovers, even though nobody's population changes.
     </p>
   </Panel>
 
   <Fragment slot="caption">
-    The largest-remainder rule gives each state its whole-number share, then awards
-    seats still left over to the states with the largest fractional leftovers.
-    Every coloured square above is an allocated seat.
+    The largest-remainder rule gives each state its whole-number share, then awards seats still
+    left over to the states with the largest fractional leftovers. Every coloured square above
+    is an allocated seat.
   </Fragment>
 </IllustrationFigure>
