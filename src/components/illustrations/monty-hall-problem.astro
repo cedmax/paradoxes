@@ -1,19 +1,64 @@
 ---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import Callout from "~/components/illustration-kit/Callout.astro"
+
 const cases = [
-  { car: "Your door", stay: "Win", switch: "Lose" },
-  { car: "Other door A", stay: "Lose", switch: "Win" },
-  { car: "Other door B", stay: "Lose", switch: "Win" },
+  { car: 1, opened: 3, switchTo: 2, stayWins: true },
+  { car: 2, opened: 3, switchTo: 2, stayWins: false },
+  { car: 3, opened: 2, switchTo: 3, stayWins: false },
 ]
+const doors = [1, 2, 3]
 ---
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">Fix your first choice. Put the car behind each door in turn.</p>
-<div class="overflow-x-auto border-2 border-ink"><table class="w-full text-base">
-<thead><tr class="border-b-2 border-ink"><th class="p-3 text-left">Car starts behind</th><th class="p-3 text-left">Stay</th><th class="p-3 text-left">Switch</th></tr></thead>
-<tbody>{cases.map(row=><tr class="border-b border-ink last:border-0"><th class="p-3 text-left font-normal">{row.car}</th><td class="p-3">{row.stay}</td><td class="p-3 font-bold">{row.switch}</td></tr>)}</tbody>
-</table></div>
-<div class="grid grid-cols-2 gap-3 text-base">
-<div class="border-2 border-ink p-3"><p class="font-bold">Stay</p><p>1 win in 3</p></div>
-<div class="border-2 border-ink p-3"><p class="font-bold">Switch</p><p>2 wins in 3</p></div>
-</div>
-<figcaption class="text-base leading-normal">The host knows where the car is and always reveals a goat. Switching wins whenever your first choice was wrong, which happens two times out of three. Each row describes one equally likely car position.</figcaption>
-</figure>
+
+<IllustrationFigure
+  name="monty-hall-problem"
+  lead="You pick door 1. Now try hiding the car behind each door."
+>
+  <p class="text-base leading-normal">
+    The host knows where the car is and always opens another door with a goat.
+    You can either stay with door 1 or switch to the only other closed door.
+  </p>
+
+  <div class="flex flex-col gap-4">
+    {cases.map(({ car, opened, switchTo, stayWins }, i) => (
+      <Panel title={`Case ${i + 1}: the car is behind door ${car}`} class="flex flex-col gap-3">
+        <div class="grid grid-cols-3 gap-2">
+          {doors.map((door) => (
+            <div
+              class:list={[
+                "flex min-w-0 flex-col items-center gap-1 border border-ink p-2 text-center",
+                door === 1 && "bg-series-blue/20",
+                door === opened && "bg-series-gold/20",
+              ]}
+            >
+              <strong class="text-base">Door {door}</strong>
+              <span class="text-base font-bold">{door === car ? "Car" : "Goat"}</span>
+              <span class="text-xs leading-normal">
+                {door === 1 ? "Your pick" : door === opened ? "Host opens" : "Switch to"}
+              </span>
+            </div>
+          ))}
+        </div>
+        <p class="text-base leading-normal">
+          Host opens door {opened} (goat). Switching takes you to door {switchTo}.
+          <strong> {stayWins ? "Staying wins; switching loses." : "Switching wins; staying loses."}</strong>
+        </p>
+      </Panel>
+    ))}
+  </div>
+
+  <Callout class="flex flex-col gap-2">
+    <p class="font-bold">Stay wins 1 out of 3. Switch wins 2 out of 3.</p>
+    <p class="text-base leading-normal">
+      Switching wins every time your first choice was wrong. That happens in
+      two of the three equally likely cases.
+    </p>
+  </Callout>
+
+  <Fragment slot="caption">
+    In the first case the host could open either goat door; door 3 is one example.
+    The result assumes the host knows where the car is, always reveals a goat,
+    and always offers a switch.
+  </Fragment>
+</IllustrationFigure>
