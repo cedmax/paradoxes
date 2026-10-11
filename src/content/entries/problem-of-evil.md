@@ -1,10 +1,10 @@
 ---
 title: "Problem of evil"
-chapter: "belief"
+chapter: belief
 status: "disputed"
 simplification: light
 noMaths: true
-order: 300
+order: 170
 written: true
 sourcesVerified: true
 reviewed: false

@@ -2,7 +2,8 @@
 title: "Repugnant conclusion"
 titleAccent: "conclusion"
 aka: ["Parfit", "mere addition paradox", "population ethics", "Reasons and Persons"]
-chapter: choice-identity
+chapter: individual
+order: 120
 status: unreconciled
 simplification: light
 noMaths: true

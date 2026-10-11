@@ -11,7 +11,8 @@ aka:
     "decisive vote",
     "pivotal vote",
   ]
-chapter: choice-identity
+chapter: individual
+order: 115
 status: disputed
 uniqueness: related
 anchor: prisoners-dilemma

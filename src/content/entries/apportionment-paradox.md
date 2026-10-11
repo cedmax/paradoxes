@@ -1,10 +1,10 @@
 ---
 title: "Apportionment paradox"
-chapter: "choice-identity"
+chapter: collective
 status: "explained"
 simplification: light
 noMaths: true
-order: 300
+order: 130
 written: true
 sourcesVerified: true
 reviewed: false
