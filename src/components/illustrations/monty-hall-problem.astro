@@ -1,0 +1,386 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import { series, stroke } from "~/data/palette"
+
+const doors = [
+  { number: 1, x: 29 },
+  { number: 2, x: 158 },
+  { number: 3, x: 274 },
+]
+---
+
+<IllustrationFigure
+  name="monty-hall-problem"
+  lead="The host opens a goat door. What happens to the odds?"
+>
+  <p class="text-base leading-normal">
+    You choose door 1. The host knows where the car is, and must open a different door hiding a
+    goat.
+  </p>
+
+  <div class="flex flex-col gap-2">
+    <p class="font-bold">Before the host opens a door</p>
+    <SvgFigure
+      name="monty-before"
+      class="mx-auto w-full max-w-md"
+      viewBox="0 0 360 174"
+      title="Before: your single door has a one-in-three chance; the other two together have two in three"
+      desc="Three closed doors. Your first choice, door 1, is enclosed by a blue outline labelled 1 in 3. Doors 2 and 3 are enclosed together by one gold outline labelled 2 in 3, showing that switching away from your first choice covers two possible car locations."
+    >
+      <rect
+        x="8"
+        y="34"
+        width="100"
+        height="116"
+        rx="3"
+        fill="none"
+        stroke={series.blue}
+        stroke-width="3"
+      />
+      <rect
+        x="119"
+        y="34"
+        width="233"
+        height="116"
+        rx="3"
+        fill="none"
+        stroke={series.gold}
+        stroke-width="3"
+      />
+
+      <g font-size="15" fill="currentColor" font-weight="700">
+        <text x="58" y="22" text-anchor="middle">
+          1 in 3
+        </text>
+        <text x="235" y="22" text-anchor="middle">
+          2 in 3 together
+        </text>
+      </g>
+
+      {doors.map(({ number, x }) => (
+        <g>
+          <rect
+            x={x}
+            y="49"
+            width="60"
+            height="84"
+            fill="var(--color-paper)"
+            stroke={stroke}
+            stroke-width="2.5"
+          />
+          <rect
+            x={x + 8}
+            y="57"
+            width="43"
+            height="65"
+            fill="none"
+            stroke={stroke}
+            stroke-width="1"
+            stroke-opacity=".35"
+          />
+          <circle cx={x + 49} cy="96" r="3" fill={stroke} />
+          <text
+            x={x + 30}
+            y="166"
+            font-size="14"
+            font-weight="700"
+            fill="currentColor"
+            text-anchor="middle"
+          >
+            Door {number}
+          </text>
+        </g>
+      ))}
+    </SvgFigure>
+    <p class="text-base leading-normal">
+      Your door is one chance in three. The two doors you did not pick hold the other two
+      chances <strong>together</strong>.
+    </p>
+  </div>
+
+  <div class="flex items-center justify-center gap-2 text-base font-bold">
+    <span aria-hidden="true">↓</span>
+    <span>The host opens door 2 and reveals a goat</span>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <p class="font-bold">After the reveal</p>
+    <SvgFigure
+      name="monty-after"
+      class="mx-auto w-full max-w-md"
+      viewBox="0 0 360 174"
+      title="After: door 1 still has a one-in-three chance; the one remaining alternative has two in three"
+      desc="Door 1 stays closed inside the same blue 1-in-3 outline. Door 2 is now visibly open, revealing a goat. Door 3 stays closed inside a gold 2-in-3 outline. The host's informed reveal eliminated a goat from the original two-door group, without splitting its two-in-three chance."
+    >
+      <rect
+        x="8"
+        y="34"
+        width="100"
+        height="116"
+        rx="3"
+        fill="none"
+        stroke={series.blue}
+        stroke-width="3"
+      />
+      <rect
+        x="253"
+        y="34"
+        width="99"
+        height="116"
+        rx="3"
+        fill="none"
+        stroke={series.gold}
+        stroke-width="3"
+      />
+
+      <g font-size="15" fill="currentColor" font-weight="700">
+        <text x="58" y="22" text-anchor="middle">
+          1 in 3
+        </text>
+        <text x="302" y="22" text-anchor="middle">
+          2 in 3
+        </text>
+      </g>
+
+      {[doors[0], doors[2]].map(({ number, x }) => (
+        <g>
+          <rect
+            x={x}
+            y="49"
+            width="60"
+            height="84"
+            fill="var(--color-paper)"
+            stroke={stroke}
+            stroke-width="2.5"
+          />
+          <rect
+            x={x + 8}
+            y="57"
+            width="43"
+            height="65"
+            fill="none"
+            stroke={stroke}
+            stroke-width="1"
+            stroke-opacity=".35"
+          />
+          <circle cx={x + 49} cy="96" r="3" fill={stroke} />
+          <text
+            x={x + 30}
+            y="166"
+            font-size="14"
+            font-weight="700"
+            fill="currentColor"
+            text-anchor="middle"
+          >
+            Door {number}
+          </text>
+        </g>
+      ))}
+
+      <rect
+        x="158"
+        y="49"
+        width="60"
+        height="84"
+        fill={series.red}
+        fill-opacity=".08"
+        stroke={stroke}
+        stroke-width="2.5"
+      />
+      <path
+        d="M158 49 H130 V133 H158 Z"
+        fill={series.red}
+        fill-opacity=".18"
+        stroke={stroke}
+        stroke-width="2.5"
+      />
+      <rect
+        x="136"
+        y="57"
+        width="16"
+        height="68"
+        fill="none"
+        stroke={stroke}
+        stroke-width="1"
+        stroke-opacity=".35"
+      />
+      <circle cx="143" cy="96" r="2" fill={stroke} />
+      <line x1="158" y1="49" x2="158" y2="133" stroke={stroke} stroke-width="3" />
+      <g text-anchor="middle" fill="currentColor" font-weight="700">
+        <text x="188" y="94" font-size="13">
+          GOAT
+        </text>
+        <text x="188" y="166" font-size="14">
+          Door 2
+        </text>
+      </g>
+    </SvgFigure>
+    <p class="text-base leading-normal">
+      The host deliberately revealed a goat, not a random door. Your first pick stays at{" "}
+      <strong>1 in 3</strong>. The one other closed door now carries the original group's{" "}
+      <strong>2 in 3</strong>.
+    </p>
+  </div>
+
+  <Panel title="Same idea, but with 100 doors" class="flex flex-col gap-3">
+    <p class="text-base leading-normal">
+      Imagine picking just one door out of 100. The host knows where the car is and opens 98 of
+      the other doors, all showing goats.
+    </p>
+    <SvgFigure
+      name="monty-hundred-doors"
+      class="mx-auto w-full max-w-md"
+      viewBox="0 0 360 246"
+      title="With 100 doors, the original one-in-a-hundred choice stays unchanged when the host reveals 98 goats"
+      desc="Before: your one chosen door is inside a blue outline marked 1 in 100. All 99 other doors are grouped in gold, marked 99 in 100 together. The host opens 98 goat doors. After: your door still carries 1 in 100; the 98 revealed goats are crossed out, and the single remaining closed alternative sits in the gold 99-in-100 outline."
+    >
+      <text x="10" y="15" font-size="14" fill="currentColor" font-weight="700">
+        Before
+      </text>
+      <rect
+        x="9"
+        y="23"
+        width="83"
+        height="82"
+        rx="2"
+        stroke={series.blue}
+        stroke-width="2.5"
+        fill="none"
+      />
+      <rect
+        x="103"
+        y="23"
+        width="247"
+        height="82"
+        rx="2"
+        stroke={series.gold}
+        stroke-width="2.5"
+        fill="none"
+      />
+      <g font-size="14" fill="currentColor" text-anchor="middle" font-weight="700">
+        <text x="50" y="42">
+          1 in 100
+        </text>
+        <text x="226" y="42">
+          99 in 100 together
+        </text>
+      </g>
+      <g fill="currentColor" font-size="13" text-anchor="middle">
+        <text x="50" y="98">
+          Your door
+        </text>
+        <text x="226" y="98">
+          Other 99 doors
+        </text>
+      </g>
+      <g stroke={stroke} fill="var(--color-paper)" stroke-width="1.8">
+        <rect x="39" y="51" width="23" height="35" />
+        <rect x="139" y="51" width="23" height="35" />
+      </g>
+      <g stroke={stroke} stroke-width="0.7" stroke-opacity=".35" fill="none">
+        <rect x="43" y="55" width="15" height="27" />
+        <rect x="143" y="55" width="15" height="27" />
+      </g>
+      <g fill={stroke}>
+        <circle cx="57" cy="69" r="1.5" />
+        <circle cx="157" cy="69" r="1.5" />
+      </g>
+      <text x="181" y="75" fill="currentColor" font-size="15" font-weight="700">
+        × 99
+      </text>
+
+      <text
+        x="180"
+        y="133"
+        text-anchor="middle"
+        fill="currentColor"
+        font-size="14"
+        font-weight="700"
+      >
+        ↓ The host reveals 98 goats
+      </text>
+
+      <text x="10" y="153" font-size="14" fill="currentColor" font-weight="700">
+        After
+      </text>
+      <rect
+        x="9"
+        y="160"
+        width="83"
+        height="79"
+        rx="2"
+        stroke={series.blue}
+        stroke-width="2.5"
+        fill="none"
+      />
+      <rect
+        x="103"
+        y="160"
+        width="138"
+        height="79"
+        rx="2"
+        stroke={stroke}
+        stroke-opacity=".35"
+        stroke-width="1.5"
+        stroke-dasharray="4 3"
+        fill="none"
+      />
+      <rect
+        x="253"
+        y="160"
+        width="97"
+        height="79"
+        rx="2"
+        stroke={series.gold}
+        stroke-width="2.5"
+        fill="none"
+      />
+      <g font-size="14" fill="currentColor" text-anchor="middle" font-weight="700">
+        <text x="50" y="179">
+          1 in 100
+        </text>
+        <text x="172" y="179">
+          98 opened
+        </text>
+        <text x="301" y="179">
+          99 in 100
+        </text>
+      </g>
+      <g stroke={stroke} fill="var(--color-paper)" stroke-width="1.8">
+        <rect x="39" y="186" width="23" height="34" />
+        <rect x="161" y="186" width="23" height="34" />
+        <rect x="290" y="186" width="23" height="34" />
+      </g>
+      <path
+        d="M157 183 L188 223 M188 183 L157 223"
+        stroke={series.red}
+        stroke-width="2.5"
+        fill="none"
+      />
+      <g fill="currentColor" font-size="12" text-anchor="middle">
+        <text x="50" y="233">
+          Your door
+        </text>
+        <text x="172" y="233">
+          Goat doors
+        </text>
+        <text x="301" y="233">
+          Switch to
+        </text>
+      </g>
+    </SvgFigure>
+    <p class="text-base leading-normal">
+      Your original pick is still <strong>1 in 100</strong>. Because the host deliberately
+      reveals goats, the only other closed door carries the <strong>99 in 100</strong> chance
+      the other 99 doors had together.
+    </p>
+  </Panel>
+
+  <Fragment slot="caption">
+    This shows one possible reveal. It assumes the host knows where the car is, always opens a
+    goat door, always offers a switch, and chooses randomly if either goat door could be opened.
+    Staying wins 1 time in 3; switching wins 2 times in 3.
+  </Fragment>
+</IllustrationFigure>
