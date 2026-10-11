@@ -23,6 +23,7 @@ const stages = [
   },
   {
     label: "Actually: 50 kg",
+    note: "without doubling the dry matter",
     name: "potato-after",
     dry: 1,
     water: 49,
@@ -33,9 +34,12 @@ const stages = [
 
 <IllustrationFigure name="potato-paradox">
   <div class="grid gap-6 md:grid-cols-3">
-    {stages.map(({ label, name, dry, water, desc }) => (
+    {stages.map(({ label, note, name, dry, water, desc }) => (
       <div class="flex flex-col gap-2">
-        <p class="font-bold">{label}</p>
+        <div class="md:min-h-16">
+          <p class="font-bold">{label}</p>
+          {note && <p class="text-sm">{note}</p>}
+        </div>
         <SvgFigure
           name={name}
           class="w-full max-w-48"
