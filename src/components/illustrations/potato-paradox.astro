@@ -7,46 +7,58 @@ const cell = 12
 const step = 14
 
 const stages = [
-  { label: "Before: 100 kg", dry: 1, total: 100, water: 99, y: 36 },
-  { label: "If 100 kg were 98% water", dry: 2, total: 100, water: 98, y: 229 },
-  { label: "Actual result: 50 kg", dry: 1, total: 50, water: 49, y: 422 },
+  {
+    label: "Before: 100 kg",
+    name: "potato-before",
+    dry: 1,
+    water: 99,
+    desc: "100 squares: one red dry-matter square, then 99 blue water squares.",
+  },
+  {
+    label: "At 100 kg with 98% water?",
+    name: "potato-hypothetical",
+    dry: 2,
+    water: 98,
+    desc: "100 squares: two red dry-matter squares, then 98 blue water squares. This would require the dry matter to double.",
+  },
+  {
+    label: "Actually: 50 kg",
+    name: "potato-after",
+    dry: 1,
+    water: 49,
+    desc: "50 squares: one red dry-matter square, then 49 blue water squares. The unchanged dry matter now accounts for two percent of the total.",
+  },
 ]
 ---
 
-<IllustrationFigure name="potato-paradox" lead="The dry matter cannot double. The total must halve.">
-  <SvgFigure
-    name="potato-squares"
-    class="mx-auto w-full max-w-sm"
-    viewBox="0 0 310 526"
-    title="Three square grids show why the potatoes' weight halves"
-    desc="First, one red dry-matter square followed by 99 blue water squares makes 100 kilograms. Second, a hypothetical 100-kilogram batch at 98 percent water has two red dry squares and 98 water squares, but dry matter cannot double during drying. Finally, the real 98-percent-water batch has one red dry square and 49 blue water squares: 50 kilograms altogether. Dry matter appears first in each grid."
-  >
-    {stages.map(({ label, dry, total, water, y }, stage) => (
-      <g>
-        <text x="10" y={y - 14} fill="currentColor" font-size="16" font-weight="700">
-          {label}
-        </text>
-        {Array.from({ length: total }, (_, i) => (
-          <rect
-            x={10 + (i % 10) * step}
-            y={y + Math.floor(i / 10) * step}
-            width={cell}
-            height={cell}
-            fill={i < dry ? series.red : series.blue}
-            stroke={stroke}
-            stroke-width=".5"
-          />
-        ))}
-        <text x="10" y={y + (stage === 2 ? 88 : 158)} fill="currentColor" font-size="14">
-          {dry} kg dry + {water} kg water
-        </text>
-      </g>
+<IllustrationFigure name="potato-paradox">
+  <div class="grid gap-6 md:grid-cols-3">
+    {stages.map(({ label, name, dry, water, desc }) => (
+      <div class="flex flex-col gap-2">
+        <p class="font-bold">{label}</p>
+        <SvgFigure
+          name={name}
+          class="w-full max-w-48"
+          viewBox="0 0 140 140"
+          title={label}
+          desc={desc}
+        >
+          {Array.from({ length: dry + water }, (_, i) => (
+            <rect
+              x={(i % 10) * step}
+              y={Math.floor(i / 10) * step}
+              width={cell}
+              height={cell}
+              fill={i < dry ? series.red : series.blue}
+              stroke={stroke}
+              stroke-width=".5"
+            />
+          ))}
+        </SvgFigure>
+        <p class="text-sm">{dry} kg dry + {water} kg water</p>
+      </div>
     ))}
-    <text x="166" y="71" fill="currentColor" font-size="13">
-      Dry matter first
-    </text>
-    <path d="M160 68 H23 L16 45" fill="none" stroke={series.red} stroke-width="1.5" />
-  </SvgFigure>
+  </div>
   <Fragment slot="caption">
     At 100 kg, 98% water would require 2 kg of dry matter. But the dry matter stays at 1 kg.
     That makes it 2% of a smaller total: <strong>50 kg</strong>.
