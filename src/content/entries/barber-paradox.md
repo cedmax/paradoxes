@@ -6,7 +6,7 @@ status: defused
 uniqueness: variant
 anchor: russells-paradox
 simplification: light
-order: 2
+order: 20
 written: true
 sourcesVerified: true
 reviewed: true

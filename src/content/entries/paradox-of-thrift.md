@@ -1,10 +1,10 @@
 ---
 title: "Paradox of thrift"
-chapter: "choice-identity"
+chapter: collective
 status: "disputed"
 simplification: light
 noMaths: true
-order: 300
+order: 180
 written: true
 sourcesVerified: true
 reviewed: false
