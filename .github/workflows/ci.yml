@@ -23,7 +23,7 @@ jobs:
           - name: check
             run: pnpm check
           - name: format
-            run: pnpm exec prettier --check .
+            run: pnpm exec prettier src/components/illustrations/galileos-paradox.astro && pnpm exec prettier --check .
           - name: knip
             run: pnpm knip
     steps:
