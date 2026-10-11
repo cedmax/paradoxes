@@ -32,8 +32,8 @@ const barStarts = [94, 161, 228, 295]
   lead="An endlessly long horn can hold a finite amount, but have endless wall."
 >
   <p class="text-base leading-normal">
-    The horn keeps narrowing. Divide it into longer and longer stretches, each
-    twice as long as the last. What happens to the space inside and the wall?
+    The horn keeps narrowing. Divide it into longer and longer stretches, each twice as long as
+    the last. What happens to the space inside and the wall?
   </p>
 
   <SvgFigure
@@ -72,16 +72,19 @@ const barStarts = [94, 161, 228, 295]
       stroke-opacity=".45"
     />
     <g fill="currentColor" font-size="13">
-      <text x="8" y="146">Wide opening</text>
-      <text x="234" y="146">Keeps narrowing →</text>
+      <text x="8" y="146">
+        Wide opening
+      </text>
+      <text x="234" y="146">
+        Keeps narrowing →
+      </text>
     </g>
   </SvgFigure>
 
   <Panel title="The space shrinks faster than the wall" class="flex flex-col gap-2">
     <p class="text-base leading-normal">
-      Each new stretch is <strong>twice as long</strong> as the previous one.
-      Watch what happens to its share of the horn's total volume, compared
-      with the amount of wall in that stretch.
+      Each new stretch is <strong>twice as long</strong> as the previous one. Watch what happens
+      to its share of the horn's total volume, compared with the amount of wall in that stretch.
     </p>
     <SvgFigure
       name="gabriels-horn-volume-area"
@@ -98,8 +101,12 @@ const barStarts = [94, 161, 228, 295]
         ))}
       </g>
       <g font-size="13" font-weight="700" fill="currentColor">
-        <text x="5" y="64">Volume</text>
-        <text x="5" y="123">Wall</text>
+        <text x="5" y="64">
+          Volume
+        </text>
+        <text x="5" y="123">
+          Wall
+        </text>
       </g>
       {stretches.map(({ volume, wall, colour }, i) => (
         <g>
@@ -124,27 +131,35 @@ const barStarts = [94, 161, 228, 295]
         </g>
       ))}
       <g font-size="12" fill="currentColor" text-anchor="middle">
-        <text x="116" y="87">½</text>
-        <text x="183" y="87">¼</text>
-        <text x="250" y="87">⅛</text>
-        <text x="317" y="87">¹⁄₁₆</text>
+        <text x="116" y="87">
+          ½
+        </text>
+        <text x="183" y="87">
+          ¼
+        </text>
+        <text x="250" y="87">
+          ⅛
+        </text>
+        <text x="317" y="87">
+          ¹⁄₁₆
+        </text>
       </g>
       <text x="179" y="160" fill="currentColor" font-size="13" text-anchor="middle">
         More stretches continue without end →
       </text>
     </SvgFigure>
     <p class="text-base leading-normal">
-      The inside volume keeps halving and adds up to a finite amount.
-      But each longer stretch adds <strong>roughly the same amount of wall</strong>.
-      Infinitely many such stretches give an infinite surface.
+      The inside volume keeps halving and adds up to a finite amount. But each longer stretch
+      adds <strong>roughly the same amount of wall</strong>. Infinitely many such stretches give
+      an infinite surface.
     </p>
   </Panel>
 
   <Fragment slot="caption">
-    The horn is the mathematical shape made by rotating y = 1/x (starting at x = 1).
-    The volume fractions are exact; the similar wall-area bars are approximate.
-    Ideal liquid can touch the whole inside wall with finite volume, but a coat of
-    fixed positive thickness would require infinitely much paint.
-    A real material cannot reach infinitely far down an ever-narrowing tube.
+    The horn is the mathematical shape made by rotating y = 1/x (starting at x = 1). The volume
+    fractions are exact; the similar wall-area bars are approximate. Ideal liquid can touch the
+    whole inside wall with finite volume, but a coat of fixed positive thickness would require
+    infinitely much paint. A real material cannot reach infinitely far down an ever-narrowing
+    tube.
   </Fragment>
 </IllustrationFigure>
