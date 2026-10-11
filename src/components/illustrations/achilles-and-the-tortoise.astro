@@ -1,0 +1,315 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure name="achilles-and-the-tortoise">
+  <div class="flex flex-wrap items-center justify-between gap-3 text-sm">
+    <div class="flex flex-wrap gap-4">
+      <span class="flex items-center gap-2">
+        <span class="h-3 w-3 rounded-full bg-series-blue" aria-hidden="true"></span>
+        Achilles
+      </span>
+      <span class="flex items-center gap-2">
+        <span class="h-3 w-3 rounded-full bg-series-green" aria-hidden="true"></span>
+        Tortoise
+      </span>
+    </div>
+    <span id="achilles-zoom-label" class="font-mono tabular-nums">
+      View ×1
+    </span>
+  </div>
+
+  <SvgFigure
+    name="achilles-camera"
+    class="w-full"
+    viewBox="0 0 600 174"
+    title="Achilles approaches the tortoise through an ever-magnifying view"
+    desc="A single horizontal track with blue Achilles and green tortoise markers. Achilles advances to each place the tortoise previously occupied. The tortoise is still ahead each time. The camera magnifies their smaller gap tenfold, without either runner moving backwards in the world. The animation shows four stages and never depicts an overtaking."
+  >
+    <path d="M45 125 H555" fill="none" stroke={stroke} stroke-width="1.5" opacity=".55" />
+    <g id="achilles-ticks" aria-hidden="true"></g>
+    <line
+      id="achilles-gap-line"
+      x1="90"
+      y1="46"
+      x2="510"
+      y2="46"
+      stroke={series.gold}
+      stroke-width="2.5"
+    />
+    <text
+      id="achilles-gap-label"
+      x="300"
+      y="34"
+      text-anchor="middle"
+      font-size="14"
+      font-weight="700"
+      class="font-mono tabular-nums"
+      fill="currentColor"
+    >
+      100 m
+    </text>
+    <g id="achilles-marker" transform="translate(90 0)">
+      <path d="M0 113 V125" stroke={series.blue} stroke-width="2" />
+      <circle cx="0" cy="92" r="18" fill={series.blue} />
+      <text
+        x="0"
+        y="98"
+        text-anchor="middle"
+        font-size="18"
+        font-weight="700"
+        fill="var(--color-paper)"
+      >
+        A
+      </text>
+    </g>
+    <g id="achilles-tortoise-marker" transform="translate(510 0)">
+      <path d="M0 113 V125" stroke={series.green} stroke-width="2" />
+      <circle cx="0" cy="92" r="18" fill={series.green} />
+      <text
+        x="0"
+        y="98"
+        text-anchor="middle"
+        font-size="18"
+        font-weight="700"
+        fill="var(--color-paper)"
+      >
+        T
+      </text>
+    </g>
+    <text x="300" y="164" text-anchor="middle" font-size="13" fill="currentColor">
+      The track is magnified, not restarted.
+    </text>
+  </SvgFigure>
+
+  <div class="flex flex-wrap items-center gap-3">
+    <button type="button" id="achilles-play" class="btn-ghost">
+      Play chase
+    </button>
+    <p id="achilles-status" class="text-sm" aria-live="polite">
+      Achilles heads for the tortoise's starting position.
+    </p>
+  </div>
+
+  <Fragment slot="caption">
+    Each time Achilles reaches the tortoise's previous position, another smaller gap remains.
+    The view keeps zooming in. The times shrink too: 10 + 1 + 0.1 + 0.01 + … ={" "}
+    <strong>11.111… seconds</strong>.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("achilles-and-the-tortoise")
+  if (root) {
+    const achillesMarker = find<SVGGElement>(root, "#achilles-marker")
+    const tortoiseMarker = find<SVGGElement>(root, "#achilles-tortoise-marker")
+    const gapLine = find<SVGLineElement>(root, "#achilles-gap-line")
+    const ticksGroup = find<SVGGElement>(root, "#achilles-ticks")
+    const gapLabel = find<SVGTextElement>(root, "#achilles-gap-label")
+    const zoomLabel = find<HTMLElement>(root, "#achilles-zoom-label")
+    const status = find<HTMLElement>(root, "#achilles-status")
+    const playButton = find<HTMLButtonElement>(root, "#achilles-play")
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+
+    // Positions in metres, in one fixed ground reference frame.
+    // Achilles is at 10t and the tortoise is at 100+t.
+    const gaps = [100, 10, 1, 0.1]
+    const stageStartTimes = [0, 10, 11, 11.1]
+    // Each chase takes 10 seconds; the camera zoom takes 1 second.
+    const runDuration = 3000
+    const zoomDuration = 1000
+    const totalDuration = gaps.length * runDuration + (gaps.length - 1) * zoomDuration
+    const pixelsPerMetre = 4.2
+    const screenMiddle = 300
+
+    const svgNS = "http://www.w3.org/2000/svg"
+    const ticks = Array.from({ length: 26 }, () => {
+      const line = document.createElementNS(svgNS, "line")
+      line.setAttribute("y1", "126")
+      line.setAttribute("y2", "138")
+      line.setAttribute("stroke", "var(--color-stroke)")
+      line.setAttribute("stroke-width", "1")
+      line.setAttribute("opacity", ".4")
+      ticksGroup.append(line)
+      return line
+    })
+
+    let elapsed = 0
+    let frame: number | null = null
+    let previousTimestamp: number | null = null
+    let announcedStage = ""
+    let lastGapLabelUpdate = -Infinity
+    let lastGapLabelPhase = ""
+
+    const smooth = (value: number) => value * value * (3 - 2 * value)
+    const showNumber = (value: number) => String(Number(value.toFixed(2)))
+    const formatGap = (metres: number) => {
+      // Use units appropriate to the shrinking gap; preserve the 10 mm endpoint.
+      const gap = Math.max(0.01, metres)
+      if (gap >= 1) return showNumber(gap) + " m"
+      if (gap >= 0.1) return showNumber(gap * 100) + " cm"
+      return showNumber(gap * 1000) + " mm"
+    }
+    const viewAt = (milliseconds: number) => {
+      let remaining = Math.min(milliseconds, totalDuration)
+      for (let stage = 0; stage < gaps.length; stage++) {
+        if (remaining <= runDuration || stage === gaps.length - 1) {
+          return {
+            stage,
+            mode: "run" as const,
+            progress: Math.min(1, remaining / runDuration),
+          }
+        }
+        remaining -= runDuration
+        if (remaining < zoomDuration) {
+          return {
+            stage,
+            mode: "zoom" as const,
+            progress: remaining / zoomDuration,
+          }
+        }
+        remaining -= zoomDuration
+      }
+      return { stage: 3, mode: "run" as const, progress: 1 }
+    }
+
+    const updateButton = () => {
+      playButton.textContent = reducedMotion.matches
+        ? elapsed === totalDuration
+          ? "Start again"
+          : "Next stage"
+        : frame !== null
+          ? "Pause"
+          : elapsed === totalDuration
+            ? "Replay"
+            : elapsed === 0
+              ? "Play chase"
+              : "Continue"
+    }
+
+    const draw = () => {
+      const view = viewAt(elapsed)
+      const stage = view.stage
+      const startingTime = stageStartTimes[stage]
+      const runTime = gaps[stage] / 10
+      const time =
+        view.mode === "run" ? startingTime + runTime * view.progress : startingTime + runTime
+      const a = 10 * time
+      const t = 100 + time
+
+      // Follow the midpoint of the two runners in the same world coordinates.
+      // The gap stays centred while the camera magnifies it; neither runner resets.
+      const scale =
+        pixelsPerMetre * 10 ** (stage + (view.mode === "zoom" ? smooth(view.progress) : 0))
+      const middle = (a + t) / 2
+      const screenX = (worldX: number) => screenMiddle + (worldX - middle) * scale
+      const ax = screenX(a)
+      const tx = screenX(t)
+      achillesMarker.setAttribute("transform", "translate(" + ax + " 0)")
+      tortoiseMarker.setAttribute("transform", "translate(" + tx + " 0)")
+      gapLine.setAttribute("x1", String(ax))
+      gapLine.setAttribute("x2", String(tx))
+
+      // Ruler marks use world-space positions through the same camera.
+      const visibleWorldWidth = 510 / scale
+      const interval = 10 ** Math.floor(Math.log10(visibleWorldWidth / 10))
+      const leftWorld = middle - 255 / scale
+      const firstTick = Math.ceil(leftWorld / interval) * interval
+      for (let i = 0; i < ticks.length; i++) {
+        const x = screenX(firstTick + i * interval)
+        ticks[i].setAttribute("x1", String(x))
+        ticks[i].setAttribute("x2", String(x))
+        ticks[i].setAttribute("opacity", x < 45 || x > 555 ? "0" : ".4")
+      }
+
+      // Keep the distance text stationary over the centred line.
+      // Update at most eight times per second so changing digits don't shimmer.
+      const labelPhase = view.mode + "-" + stage
+      if (
+        elapsed === 0 ||
+        elapsed === totalDuration ||
+        labelPhase !== lastGapLabelPhase ||
+        elapsed - lastGapLabelUpdate >= 125
+      ) {
+        const nextGapLabel = formatGap(t - a)
+        if (gapLabel.textContent !== nextGapLabel) gapLabel.textContent = nextGapLabel
+        lastGapLabelPhase = labelPhase
+        lastGapLabelUpdate = elapsed
+      }
+      const zoomFactor = Math.round(scale / pixelsPerMetre)
+      zoomLabel.textContent = "View ×" + zoomFactor.toLocaleString("en-GB")
+
+      const announcement = view.mode + "-" + stage
+      if (announcement !== announcedStage) {
+        announcedStage = announcement
+        status.textContent =
+          view.mode === "zoom"
+            ? "There is another gap. Zooming in tenfold."
+            : stage === 0
+              ? "Achilles heads for the tortoise's starting position."
+              : "The tortoise is still ahead. Achilles heads for its old position."
+      }
+      if (elapsed === totalDuration) {
+        status.textContent = "A 10 mm gap still remains. The pattern continues."
+      }
+      updateButton()
+    }
+
+    const stop = () => {
+      if (frame !== null) cancelAnimationFrame(frame)
+      frame = null
+      previousTimestamp = null
+      updateButton()
+    }
+
+    const animate = (timestamp: number) => {
+      if (previousTimestamp !== null) {
+        elapsed = Math.min(totalDuration, elapsed + timestamp - previousTimestamp)
+      }
+      previousTimestamp = timestamp
+      if (elapsed === totalDuration) frame = null
+      draw()
+      if (elapsed < totalDuration) frame = requestAnimationFrame(animate)
+      else previousTimestamp = null
+    }
+
+    playButton.addEventListener("click", () => {
+      if (frame !== null) {
+        stop()
+        return
+      }
+      if (elapsed === totalDuration) {
+        elapsed = 0
+        if (reducedMotion.matches) {
+          draw()
+          return
+        }
+      }
+      if (reducedMotion.matches) {
+        const boundaries = [0]
+        for (let i = 0; i < gaps.length; i++) {
+          boundaries.push(boundaries[boundaries.length - 1] + runDuration)
+          if (i < gaps.length - 1) {
+            boundaries.push(boundaries[boundaries.length - 1] + zoomDuration)
+          }
+        }
+        elapsed = boundaries.find((point) => point > elapsed) ?? totalDuration
+        draw()
+        return
+      }
+      previousTimestamp = null
+      frame = requestAnimationFrame(animate)
+      draw()
+    })
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop()
+    })
+    reducedMotion.addEventListener("change", stop)
+    draw()
+  }
+</script>
