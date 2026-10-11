@@ -54,7 +54,7 @@ jobs:
           else
             target=(--prod)
           fi
-          npx netlify-cli deploy --no-build --dir dist --json \
+          pnpm exec netlify deploy --no-build --dir dist --json \
             --message "${EVENT_NAME} ${SHA}" "${target[@]}" > deploy.json
           cat deploy.json
           echo "url=$(jq -r '.deploy_url // empty' deploy.json)" >> "$GITHUB_OUTPUT"
