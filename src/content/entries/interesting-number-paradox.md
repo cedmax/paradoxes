@@ -10,7 +10,8 @@ aka:
     "taxicab number",
     "Hardy and Ramanujan",
   ]
-chapter: self-reference
+chapter: what-counts
+order: 20
 status: defused
 uniqueness: related
 anchor: berry-paradox

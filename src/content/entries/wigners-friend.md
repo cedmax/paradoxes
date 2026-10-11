@@ -10,7 +10,8 @@ aka:
     "measurement problem",
     "consciousness causes collapse",
   ]
-chapter: time-physics
+chapter: models
+order: 110
 status: unreconciled
 uniqueness: related
 anchor: schrodingers-cat
