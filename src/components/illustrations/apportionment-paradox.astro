@@ -1,0 +1,136 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import { series, stroke } from "~/data/palette"
+
+const states = [
+  { name: "A", colour: series.blue },
+  { name: "B", colour: series.gold },
+  { name: "C", colour: series.red },
+]
+
+const scenarios = [
+  { size: 10, y: 4, seats: [4, 4, 2] },
+  { size: 11, y: 131, seats: [5, 5, 1] },
+]
+
+const seatWidth = 23
+const seatGap = 4
+const groupGap = 9
+
+const groupsFor = (counts: number[]) => {
+  let used = 0
+  return counts.map((count, index) => {
+    const x = 12 + used * (seatWidth + seatGap) + index * groupGap
+    used += count
+    return {
+      ...states[index],
+      count,
+      x,
+      centre: x + (count * seatWidth + (count - 1) * seatGap) / 2,
+    }
+  })
+}
+---
+
+<IllustrationFigure
+  name="apportionment-paradox"
+  lead="The parliament gets bigger. State C loses a seat."
+>
+  <p class="text-base leading-normal">
+    Three states have populations in the ratio 6 : 6 : 2. Their populations stay the same; only
+    the total number of seats increases.
+  </p>
+
+  <SvgFigure
+    name="apportionment-before-after"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 360 229"
+    title="A parliament grows from ten to eleven seats, but State C loses one"
+    desc="With ten seats, State A has four blue seats, B has four gold seats, and C has two red seats. An arrow says parliament gains one seat. With eleven seats, A now has five blue seats, B five gold seats, and C just one red seat. Every square represents a real allocated seat; there are no empty slots."
+  >
+    {scenarios.map(({ size, y, seats }) => (
+      <g>
+        <text x="12" y={y + 15} font-size="17" font-weight="700" fill="currentColor">
+          {size} seats
+        </text>
+        {groupsFor(seats).map(({ name, colour, count, x, centre }) => (
+          <g>
+            <text
+              x={centre}
+              y={y + 39}
+              font-size="14"
+              font-weight="700"
+              fill="currentColor"
+              text-anchor="middle"
+            >
+              {name}: {count}
+            </text>
+            {Array.from({ length: count }, (_, i) => (
+              <rect
+                x={x + i * (seatWidth + seatGap)}
+                y={y + 48}
+                width={seatWidth}
+                height="27"
+                rx="1"
+                fill={colour}
+                stroke={stroke}
+                stroke-width="1.5"
+              />
+            ))}
+          </g>
+        ))}
+      </g>
+    ))}
+    <text
+      x="180"
+      y="112"
+      text-anchor="middle"
+      font-size="15"
+      font-weight="700"
+      fill="currentColor"
+    >
+      ↓ Parliament gains one seat
+    </text>
+  </SvgFigure>
+
+  <p class="text-base font-bold">A gains one. B gains one. C loses one.</p>
+
+  <Panel title="How the rounding works" class="flex flex-col gap-3">
+    <p class="text-base leading-normal">
+      First, round every state's share <strong>down</strong> to a whole seat. Both times, that
+      gives A four, B four and C one: nine seats in all.
+    </p>
+    <ComparisonTable
+      caption="Share before rounding → final seats"
+      columns={["State", "10 seats", "11 seats"]}
+      rows={[
+        ["A", "4.29 → 4", "4.71 → 5"],
+        ["B", "4.29 → 4", "4.71 → 5"],
+        ["C", "1.43 → 2", "1.57 → 1"],
+      ]}
+      align="center"
+    />
+    <p class="text-base leading-normal">
+      <strong>10 seats:</strong> one seat remains. C has the biggest fraction left over (0.43,
+      versus 0.29 for A and B), so C gets it.
+    </p>
+    <p class="text-base leading-normal">
+      <strong>11 seats:</strong> two seats remain. A and B have the biggest fractions (0.71
+      each, versus C's 0.57), so they get the two seats instead.
+    </p>
+    <p class="text-base leading-normal">
+      This is not ordinary rounding to the nearest whole number: the leftover seats go to the
+      largest fractions. That's how C's share rises from 1.43 to 1.57 while its awarded seats
+      fall from two to one.
+    </p>
+  </Panel>
+
+  <Fragment slot="caption">
+    The largest-remainder rule gives each state its whole-number share, then awards seats still
+    left over to the states with the largest fractional leftovers. Every coloured square above
+    is an allocated seat.
+  </Fragment>
+</IllustrationFigure>
