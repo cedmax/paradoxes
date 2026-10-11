@@ -1,9 +1,82 @@
 ---
-const pairs = [1, 2, 3, 4, 5, 6, 7, 8]
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SideBySide from "~/components/illustration-kit/SideBySide.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+const numbers = [1, 2, 3, 4, 5]
 ---
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">Every positive whole number has one square, and every square has one root.</p>
-<div class="grid grid-cols-4 gap-2 sm:grid-cols-8 text-center text-base">{pairs.map(n=><div class="flex flex-col gap-1"><div class="border border-ink p-2">{n}</div><span>↓</span><div class="border-2 border-ink bg-disputed p-2">{n*n}</div></div>)}</div>
-<div class="grid grid-cols-2 gap-3 text-base"><div class="border border-ink p-3"><strong>Up to 100</strong><p>100 whole numbers</p><p>10 squares</p></div><div class="border border-ink p-3"><strong>Up to 10,000</strong><p>10,000 whole numbers</p><p>100 squares</p></div></div>
-<figcaption class="text-base leading-normal">Squares get sparser among the whole numbers. Yet the endless pairing n ↔ n² misses no positive whole number and no perfect square. Density and the ability to pair two infinite collections are different ways of counting.</figcaption>
-</figure>
+
+<IllustrationFigure
+  name="galileos-paradox"
+  lead="Every number has one square. Every square has one number."
+>
+  <SvgFigure
+    name="galileos-paradox"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 320 178"
+    title="Five whole numbers matched one to one with five squares"
+    desc="The top row shows the positive whole numbers 1 through 5. Five arrows connect them to their squares, 1, 4, 9, 16 and 25. Each number has exactly one partner, and none of these squares is left unmatched. The pattern continues for every positive whole number."
+  >
+    <g fill="currentColor" font-size="14" font-weight="bold">
+      <text x="8" y="16">Whole numbers</text>
+      <text x="8" y="120">Squares</text>
+    </g>
+    {numbers.map((number, index) => (
+      <g>
+        <rect
+          x={10 + index * 63}
+          y="25"
+          width="48"
+          height="36"
+          rx="0"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        />
+        <path
+          d={`M${34 + index * 63} 63 V77 M${30 + index * 63} 73 L${34 + index * 63} 79 L${38 + index * 63} 73`}
+          fill="none"
+          stroke="var(--color-series-blue)"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <rect
+          x={10 + index * 63}
+          y="86"
+          width="48"
+          height="36"
+          fill="var(--color-series-blue)"
+          fill-opacity=".14"
+          stroke="var(--color-series-blue)"
+          stroke-width="1.5"
+        />
+        <text x={34 + index * 63} y="49" text-anchor="middle" fill="currentColor" font-size="18">
+          {number}
+        </text>
+        <text x={34 + index * 63} y="110" text-anchor="middle" fill="currentColor" font-size="18">
+          {number * number}
+        </text>
+      </g>
+    ))}
+    <text x="160" y="154" text-anchor="middle" fill="currentColor" font-size="15">
+      And the pairing continues forever…
+    </text>
+  </SvgFigure>
+  <SideBySide>
+    <Panel title="Up to 100">
+      <p>100 positive whole numbers</p>
+      <p><strong>10 squares</strong></p>
+    </Panel>
+    <Panel title="Up to 10,000">
+      <p>10,000 positive whole numbers</p>
+      <p><strong>100 squares</strong></p>
+    </Panel>
+  </SideBySide>
+  <Fragment slot="caption">
+    Squares get rarer among bigger numbers. Yet each positive whole number still has exactly one
+    square to pair with. Being rarer and having fewer members are not the same for infinite
+    collections.
+  </Fragment>
+</IllustrationFigure>
