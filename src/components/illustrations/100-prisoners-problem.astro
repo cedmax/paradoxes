@@ -1,15 +1,266 @@
 ---
-const boxes = [
-  { n: 1, value: 5 }, { n: 2, value: 8 }, { n: 3, value: 7 }, { n: 4, value: 6 },
-  { n: 5, value: 3 }, { n: 6, value: 2 }, { n: 7, value: 1 }, { n: 8, value: 4 },
-]
+const boxNumbers = [1, 2, 3, 4, 5, 6, 7, 8]
 ---
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">A miniature example: eight boxes, four permitted openings</p>
-<div class="grid grid-cols-4 gap-2">{boxes.map(({n,value})=><div class="border-2 border-ink p-2 text-center"><p class="font-bold">Box {n}</p><p class="text-sm">contains {value}</p></div>)}</div>
-<div class="grid gap-2 sm:grid-cols-2">
-<div class="border-l-4 border-accent pl-4"><p class="font-bold">Prisoner 1</p><p>1 → 5 → 3 → 7 → 1</p><p class="text-base">Finds their number in four boxes.</p></div>
-<div class="border-l-4 border-ink pl-4"><p class="font-bold">Prisoner 2</p><p>2 → 8 → 4 → 6 → 2</p><p class="text-base">Follows the other four-box loop.</p></div>
-</div>
-<figcaption class="text-base leading-normal">Open the box with your own number first; then open the box whose number you just found. These boxes form two closed loops of length four. In the real puzzle, 100 prisoners may each open 50 boxes: everyone succeeds exactly when there is no loop longer than 50.</figcaption>
+
+<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6" data-prisoners-demo>
+  <p class="font-bold">Eight prisoners, eight boxes, four openings allowed per prisoner</p>
+  <p class="text-base leading-normal">
+    Start with the box bearing your prisoner's number. Each number you find tells you which
+    box to open next. Can you find your own number within four openings?
+  </p>
+
+  <div class="flex flex-wrap gap-2" role="group" aria-label="Choose a box arrangement">
+    <button
+      type="button"
+      class="btn-ghost"
+      data-arrangement="success"
+      aria-pressed="true"
+    >
+      Two short loops
+    </button>
+    <button
+      type="button"
+      class="btn-ghost"
+      data-arrangement="failure"
+      aria-pressed="false"
+    >
+      One loop too long
+    </button>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-3">
+    <label for="prisoner-choice" class="font-bold">Choose a prisoner</label>
+    <select id="prisoner-choice" class="min-h-11 border-2 border-ink bg-paper px-3 py-2">
+      {boxNumbers.map((n) => <option value={n}>Prisoner {n}</option>)}
+    </select>
+    <button id="prisoner-reset" type="button" class="btn-ghost">Start again</button>
+  </div>
+
+  <p id="prisoner-next-hint" class="text-base font-bold" aria-live="polite">
+    Prisoner 1 starts at box 1. Open the highlighted box.
+  </p>
+  <div class="grid grid-cols-4 gap-2" role="group" aria-label="Eight numbered boxes">
+    {boxNumbers.map((n) => (
+      <button
+        type="button"
+        data-box={n}
+        data-next={n === 1 ? "true" : "false"}
+        data-opened="false"
+        class="prisoner-box flex min-h-24 flex-col items-center justify-center gap-1 border-2 border-ink p-2 text-center"
+        aria-label={n === 1 ? "Box 1, closed. Open next." : `Box ${n}, closed.`}
+        disabled={n !== 1}
+      >
+        <strong class="text-base">Box {n}</strong>
+        <span data-box-content class="text-sm">Closed</span>
+        <span data-next-label class="text-xs font-bold">{n === 1 ? "OPEN NEXT" : ""}</span>
+      </button>
+    ))}
+  </div>
+
+  <div class="flex flex-wrap items-center gap-3">
+    <button id="prisoner-open-next" class="btn-ghost" type="button">
+      Open highlighted box
+    </button>
+    <span id="prisoner-progress" class="text-base">0 of 4 openings used</span>
+  </div>
+  <div class="flex flex-col gap-2 border-l-4 border-ink pl-4">
+    <p class="font-bold">Follow the numbers</p>
+    <p id="prisoner-path" class="text-base" aria-live="polite">No boxes opened yet.</p>
+    <p id="prisoner-outcome" class="text-base leading-normal" aria-live="polite">
+      The next box is highlighted. Its contents stay hidden until you open it.
+    </p>
+  </div>
+
+  <details id="prisoner-loops" class="group border-t-2 border-ink pt-3">
+    <summary class="flex min-h-11 cursor-pointer items-center gap-2 font-bold">
+      <span aria-hidden="true" class="text-sm transition-transform group-open:rotate-90">▶</span>
+      Why does the whole group win or lose?
+    </summary>
+    <div class="mt-3 flex flex-col gap-2 text-base leading-normal">
+      <p id="prisoner-loop-one">Loop 1: 1 → 5 → 3 → 7 → 1 (4 boxes)</p>
+      <p id="prisoner-loop-two">Loop 2: 2 → 8 → 4 → 6 → 2 (4 boxes)</p>
+      <p id="prisoner-group-result" class="font-bold">
+        Both loops fit within four openings, so every prisoner succeeds.
+      </p>
+    </div>
+  </details>
+
+  <figcaption class="text-base leading-normal">
+    These are two deliberately chosen examples, not a simulation of the odds.
+    In the real puzzle there are 100 prisoners, 100 boxes and 50 openings each.
+    Everyone succeeds exactly when no loop has more than 50 boxes. In a random arrangement,
+    that happens about 31% of the time.
+  </figcaption>
 </figure>
+
+<style>
+  [data-prisoners-demo] button[aria-pressed="true"] {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  [data-prisoners-demo] .prisoner-box[data-next="true"] {
+    border-color: var(--color-accent);
+    box-shadow: inset 0 0 0 2px var(--color-accent);
+  }
+
+  [data-prisoners-demo] .prisoner-box[data-opened="true"] {
+    background: color-mix(in srgb, var(--color-ink) 7%, var(--color-paper));
+  }
+</style>
+
+<script>
+  const demo = document.querySelector<HTMLElement>("[data-prisoners-demo]")
+  if (demo) {
+    const find = <T extends Element>(selector: string) => demo.querySelector<T>(selector)
+    const arrangements = {
+      success: [5, 8, 7, 6, 3, 2, 1, 4],
+      failure: [5, 8, 7, 1, 3, 2, 4, 6],
+    } as const
+    type Arrangement = keyof typeof arrangements
+
+    const arrangementButtons = Array.from(
+      demo.querySelectorAll<HTMLButtonElement>("[data-arrangement]"),
+    )
+    const boxes = Array.from(demo.querySelectorAll<HTMLButtonElement>("[data-box]"))
+    const prisonerChoice = find<HTMLSelectElement>("#prisoner-choice")!
+    const resetButton = find<HTMLButtonElement>("#prisoner-reset")!
+    const nextButton = find<HTMLButtonElement>("#prisoner-open-next")!
+    const nextHint = find<HTMLElement>("#prisoner-next-hint")!
+    const progress = find<HTMLElement>("#prisoner-progress")!
+    const path = find<HTMLElement>("#prisoner-path")!
+    const outcome = find<HTMLElement>("#prisoner-outcome")!
+    const loopsDetails = find<HTMLDetailsElement>("#prisoner-loops")!
+    const loopOne = find<HTMLElement>("#prisoner-loop-one")!
+    const loopTwo = find<HTMLElement>("#prisoner-loop-two")!
+    const groupResult = find<HTMLElement>("#prisoner-group-result")!
+
+    let arrangement: Arrangement = "success"
+    let prisoner = 1
+    let nextBox = prisoner
+    let opened: number[] = []
+    let finished = false
+    let found = false
+
+    const cyclesIn = (values: readonly number[]) => {
+      const visited = new Set<number>()
+      const cycles: number[][] = []
+      for (let n = 1; n <= 8; n++) {
+        if (visited.has(n)) continue
+        const cycle: number[] = []
+        let current = n
+        while (!visited.has(current)) {
+          visited.add(current)
+          cycle.push(current)
+          current = values[current - 1]
+        }
+        cycles.push(cycle)
+      }
+      return cycles
+    }
+
+    const render = () => {
+      const values = arrangements[arrangement]
+      const next = finished ? null : nextBox
+      for (const box of boxes) {
+        const n = Number(box.dataset.box)
+        const wasOpened = opened.includes(n)
+        const isNext = n === next
+        const content = box.querySelector<HTMLElement>("[data-box-content]")!
+        const prompt = box.querySelector<HTMLElement>("[data-next-label]")!
+
+        box.disabled = !isNext
+        box.dataset.next = String(isNext)
+        box.dataset.opened = String(wasOpened)
+        content.textContent = wasOpened ? `Contains ${values[n - 1]}` : "Closed"
+        prompt.textContent = isNext ? "OPEN NEXT" : ""
+        box.setAttribute(
+          "aria-label",
+          `Box ${n}, ${wasOpened ? `contains ${values[n - 1]}` : "closed"}${isNext ? ", open next" : ""}`,
+        )
+      }
+
+      nextButton.disabled = finished
+      progress.textContent = `${opened.length} of 4 openings used`
+      const seen = opened.map((n) => values[n - 1])
+      path.textContent = opened.length ? [opened[0], ...seen].join(" → ") : "No boxes opened yet."
+
+      if (finished) {
+        nextHint.textContent = found
+          ? `Prisoner ${prisoner} found their own number!`
+          : `Prisoner ${prisoner} used all four openings.`
+        outcome.textContent = found
+          ? `Success: prisoner ${prisoner} found ${prisoner} in ${opened.length} openings.`
+          : `Failure: the next box would be ${nextBox}, but only four openings are allowed.`
+      } else if (opened.length) {
+        const last = opened[opened.length - 1]
+        nextHint.textContent = `Box ${last} contained ${values[last - 1]}. Open box ${nextBox} next.`
+        outcome.textContent = "Follow the number you just found; do not guess another box."
+      } else {
+        nextHint.textContent = `Prisoner ${prisoner} starts at box ${prisoner}. Open the highlighted box.`
+        outcome.textContent = "The next box is highlighted. Its contents stay hidden until you open it."
+      }
+
+      for (const button of arrangementButtons) {
+        button.setAttribute("aria-pressed", String(button.dataset.arrangement === arrangement))
+      }
+      const cycles = cyclesIn(values)
+      for (const [index, element] of [loopOne, loopTwo].entries()) {
+        const cycle = cycles[index]
+        element.textContent = cycle
+          ? `Loop ${index + 1}: ${[...cycle, cycle[0]].join(" → ")} (${cycle.length} boxes)`
+          : ""
+      }
+      const longest = Math.max(...cycles.map((cycle) => cycle.length))
+      groupResult.textContent =
+        longest <= 4
+          ? "No loop is longer than four boxes. Every prisoner finds their number in time."
+          : `One loop has ${longest} boxes. Its ${longest} prisoners need too many openings, so the whole group loses.`
+    }
+
+    const startAgain = () => {
+      nextBox = prisoner
+      opened = []
+      finished = false
+      found = false
+      loopsDetails.open = false
+      render()
+    }
+
+    const openNext = () => {
+      if (finished || opened.length >= 4) return
+      const values = arrangements[arrangement]
+      const openedBox = nextBox
+      opened.push(openedBox)
+      const revealedNumber = values[openedBox - 1]
+      found = revealedNumber === prisoner
+      nextBox = revealedNumber
+      finished = found || opened.length === 4
+      if (finished) loopsDetails.open = true
+      render()
+    }
+
+    arrangementButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const next = button.dataset.arrangement
+        if (next !== "success" && next !== "failure") return
+        arrangement = next
+        prisoner = 1
+        prisonerChoice.value = "1"
+        startAgain()
+      })
+    })
+    prisonerChoice.addEventListener("change", () => {
+      prisoner = Number(prisonerChoice.value)
+      startAgain()
+    })
+    resetButton.addEventListener("click", startAgain)
+    nextButton.addEventListener("click", openNext)
+    boxes.forEach((box) => {
+      box.addEventListener("click", () => {
+        if (Number(box.dataset.box) === nextBox) openNext()
+      })
+    })
+    startAgain()
+  }
+</script>
