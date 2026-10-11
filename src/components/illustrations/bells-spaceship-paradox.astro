@@ -1,53 +1,131 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">Same gap in the launch frame does not mean an unstretched string.</p>
-  <svg
-    viewBox="0 0 300 228"
-    class="w-full max-w-sm"
-    role="img"
-    aria-labelledby="bell-fig-title bell-fig-desc"
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import { series, stroke } from "~/data/palette"
+
+const ships = [28, 278]
+const stages = [
+  { heading: "Before: at rest", top: 42, rope: series.gold, stretched: false },
+  { heading: "Later: moving faster", top: 150, rope: series.red, stretched: true },
+]
+---
+
+<IllustrationFigure
+  name="bells-spaceship-paradox"
+  lead="The rockets keep the same gap. Why does their string stretch?"
+>
+  <p class="text-base leading-normal">
+    The ships accelerate together as measured from where they launched. They keep the same
+    distance apart in that view.
+  </p>
+
+  <SvgFigure
+    name="bell-string-stretch"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 360 268"
+    title="Unchanged rocket separation but a stretched connecting string"
+    desc="Two spaceships have the same separation before and after accelerating, viewed from where they launched. At the start a gold string connects them without strain. Later a red string spans the same gap, but a separate dashed gold reference below it shows how much shorter an unstretched moving string would be at the later speed. The red string is stretched to reach both rockets, and may break if acceleration continues. The amount of shortening is schematic."
   >
-    <title id="bell-fig-title">Two equally accelerating ships with a string stretched between them</title>
-    <desc id="bell-fig-desc">
-      Before and after accelerating in the launch frame, the ships have the same separation. The
-      gap exceeds the length that a freely moving, unstretched string would occupy at their new
-      speed.
-    </desc>
-    <g fill="currentColor" font-size="17" font-weight="bold">
-      <text x="14" y="22">
-        Before acceleration
+    {stages.map(({ heading, top, rope, stretched }) => (
+      <g>
+        <text x="10" y={top - 19} fill="currentColor" font-size="16" font-weight="700">
+          {heading}
+        </text>
+        {ships.map((x, i) => (
+          <g>
+            <rect
+              x={x}
+              y={top}
+              width="46"
+              height="30"
+              rx="3"
+              fill={series.blue}
+              fill-opacity=".25"
+              stroke={stroke}
+              stroke-width="2"
+            />
+            <circle cx={x + 31} cy={top + 15} r="5" fill={series.blue} />
+            <text
+              x={x + 23}
+              y={top + 46}
+              font-size="13"
+              fill="currentColor"
+              text-anchor="middle"
+            >
+              {i === 0 ? "Rear" : "Front"}
+            </text>
+          </g>
+        ))}
+        {stretched ? (
+          <path
+            d="M74 165 H170 L175 160 L180 170 L185 160 L190 165 H278"
+            stroke={rope}
+            stroke-width="4"
+            fill="none"
+            stroke-linejoin="round"
+          />
+        ) : (
+          <line x1="74" x2="278" y1={top + 15} y2={top + 15} stroke={rope} stroke-width="4" />
+        )}
+        <path
+          d={stretched ? "M340 159 L348 165 L340 171" : "M340 51 L348 57 L340 63"}
+          fill="none"
+          stroke={stroke}
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+    ))}
+    <g>
+      <line
+        x1="74"
+        x2="214"
+        y1="222"
+        y2="222"
+        stroke={series.gold}
+        stroke-width="4"
+        stroke-dasharray="7 5"
+      />
+      <path
+        d="M214 215 V229 M278 215 V229 M218 222 H274"
+        stroke={series.red}
+        stroke-width="2"
+        fill="none"
+      />
+      <text x="130" y="245" font-size="13" text-anchor="middle" fill="currentColor">
+        Unstretched at this speed
       </text>
-      <text x="14" y="146">
-        After acceleration
+      <text
+        x="246"
+        y="260"
+        text-anchor="middle"
+        font-size="13"
+        font-weight="700"
+        fill="currentColor"
+      >
+        Extra stretch
       </text>
     </g>
-    <g stroke="currentColor" stroke-width="2">
-      <rect x="14" y="64" width="36" height="22" fill="#387a91" />
-      <rect x="214" y="64" width="36" height="22" fill="#387a91" />
-      <path d="M50 75 H214" stroke="#d7a13d" stroke-width="5" />
-      <rect x="14" y="170" width="36" height="22" fill="#387a91" />
-      <rect x="214" y="170" width="36" height="22" fill="#387a91" />
-      <path d="M50 181 H214" stroke="#bd4b37" stroke-width="5" />
-    </g>
-    <g fill="currentColor" font-size="16" text-anchor="middle">
-      <text x="132" y="110">
-        fixed distance in launch frame
-      </text>
-      <text x="132" y="216">
-        moving string is stretched
-      </text>
-    </g>
-    <g fill="currentColor" font-size="20">
-      <text x="256" y="82">
-        →
-      </text>
-      <text x="256" y="188">
-        →→
-      </text>
-    </g>
-  </svg>
-  <figcaption class="text-base leading-normal">
-    Both ships gain speed in exactly the same way, so their separation stays fixed as measured
-    at launch. Yet an unstretched string moving at their new speed would occupy a shorter length
-    in that frame. It is stretched and may break. The arrows and positions are schematic.
-  </figcaption>
-</figure>
+  </SvgFigure>
+
+  <Panel title="The hidden difference" accent="red" class="flex flex-col gap-2">
+    <p class="text-base leading-normal">
+      From the launch point, the ships are still just as far apart. But an
+      <strong>unstretched</strong> string moving at their new speed would be measured
+      <strong>shorter</strong> in that view.
+    </p>
+    <p class="text-base leading-normal">
+      The actual string must stretch to reach both ships. As their speed rises, the
+      strain increases; if they keep accelerating, the string eventually breaks.
+    </p>
+  </Panel>
+
+  <Fragment slot="caption">
+    Schematic lengths, not to scale. The string's own unstretched length has not
+    changed; the shorter dashed reference is how an unstretched moving string
+    would be measured in the launch frame. In the ships' moving frame, their
+    separation grows instead.
+  </Fragment>
+</IllustrationFigure>
