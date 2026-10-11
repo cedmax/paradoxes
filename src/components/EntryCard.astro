@@ -38,8 +38,8 @@ const haystack = lower(shown, ...hits.map((h) => h.text))
   data-shown={shown}
   hidden={d.uniqueness === "variant"}
 >
-  <div class="flex flex-wrap items-start justify-between gap-3">
-    <div class="flex min-w-min flex-1 flex-col gap-2.5">
+  <div class="flex flex-col items-start gap-3">
+    <div class="flex flex-col gap-2.5">
       <div class="display text-[clamp(24px,2vw,30px)]">
         <a
           class="no-underline after:absolute after:inset-0 focus-visible:outline-none"
