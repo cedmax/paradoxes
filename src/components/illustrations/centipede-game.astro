@@ -3,108 +3,84 @@ import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Panel from "~/components/illustration-kit/Panel.astro"
 import { series, stroke } from "~/data/palette"
-
-const turns = [
-  { player: "Alice", take: "Alice 4 · Bob 1", y: 41 },
-  { player: "Bob", take: "Alice 2 · Bob 8", y: 101 },
-  { player: "Alice", take: "Alice 16 · Bob 4", y: 161 },
-  { player: "Bob", take: "Alice 8 · Bob 32", y: 221 },
-]
 ---
 
 <IllustrationFigure
   name="centipede-game"
-  lead="Passing grows the coins. Why does reasoning backward say to take immediately?"
+  lead="Passing grows the money. Reasoning backward says to take it now."
 >
   <SvgFigure
-    name="centipede-backward-tree"
+    name="centipede-two-paths"
     class="mx-auto w-full max-w-md"
-    viewBox="0 0 360 292"
-    title="Four-turn centipede game: passing moves down the tree, but the decision argument runs backward"
-    desc="Alice can take 4 coins and leave Bob 1, or pass. If she passes, Bob can take 8 and leave Alice 2, or pass. Next Alice can take 16 and leave Bob 4, or pass. Finally Bob can take 32 and leave Alice 8, or pass and get 16 while Alice gets 64. At the last move Bob prefers 32 to 16. Working backward, Alice would prefer 16 to 8, Bob would prefer 8 to 4, and Alice would prefer 4 to 2. Under the game's strong shared-rationality assumptions, Alice takes immediately."
+    viewBox="0 0 360 211"
+    title="Two contrasting paths through the centipede game"
+    desc="The upper path, labelled What looks tempting, shows three passes leading to much bigger piles of coins for both players. The lower path, labelled What backward reasoning predicts, shows Alice taking immediately at the first turn. The diagram contrasts the attraction of cooperation with the outcome predicted by backward reasoning, not two equally rational outcomes under the same assumptions."
   >
+    <text x="8" y="20" fill="currentColor" font-size="16" font-weight="700">
+      What looks tempting
+    </text>
+    <g stroke={stroke} stroke-width="1.5" fill="none" stroke-linecap="round">
+      <path d="M33 73 H325" />
+      <path d="M317 67 L325 73 L317 79" />
+    </g>
+    {[45, 122, 199].map((x) => (
+      <g>
+        <circle cx={x} cy="73" r="22" fill={series.blue} fill-opacity=".2" stroke={stroke} />
+        <text x={x} y="77" text-anchor="middle" font-size="13" fill="currentColor">
+          Pass
+        </text>
+      </g>
+    ))}
+    <circle cx="304" cy="73" r="30" fill={series.green} fill-opacity=".25" stroke={stroke} />
+    <text
+      x="304"
+      y="68"
+      text-anchor="middle"
+      font-size="13"
+      font-weight="700"
+      fill="currentColor"
+    >
+      Bigger
+    </text>
+    <text x="304" y="83" text-anchor="middle" font-size="13" fill="currentColor">
+      piles
+    </text>
+
+    <path d="M8 113 H352" stroke={stroke} stroke-opacity=".35" stroke-width="1" />
+
+    <text x="8" y="139" fill="currentColor" font-size="16" font-weight="700">
+      What backward reasoning predicts
+    </text>
+    <circle cx="45" cy="179" r="22" fill={series.gold} fill-opacity=".3" stroke={stroke} />
+    <text
+      x="45"
+      y="183"
+      text-anchor="middle"
+      font-size="13"
+      font-weight="700"
+      fill="currentColor"
+    >
+      Take
+    </text>
+    <path d="M72 179 H193" stroke={series.red} stroke-width="2.5" />
     <path
-      d="M33 242 V32 M27 40 L33 32 L39 40"
+      d="M185 173 L193 179 L185 185"
       fill="none"
       stroke={series.red}
       stroke-width="2.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
     />
-    <text
-      x="19"
-      y="138"
-      fill="currentColor"
-      font-size="12"
-      text-anchor="middle"
-      transform="rotate(-90 19 138)"
-    >
-      Reason backward
-    </text>
-    {turns.map(({ player, take, y }, i) => (
-      <g>
-        <circle
-          cx="91"
-          cy={y}
-          r="21"
-          fill={i % 2 === 0 ? series.blue : series.gold}
-          fill-opacity=".25"
-          stroke={stroke}
-          stroke-width="1.5"
-        />
-        <text
-          x="91"
-          y={y + 4}
-          fill="currentColor"
-          font-size="12"
-          font-weight="700"
-          text-anchor="middle"
-        >
-          {i + 1}
-        </text>
-        <text x="119" y={y - 7} fill="currentColor" font-size="13" font-weight="700">
-          {player}
-        </text>
-        <text x="119" y={y + 10} fill="currentColor" font-size="13">
-          Take →
-        </text>
-        <text x="185" y={y + 10} fill="currentColor" font-size="13">
-          {take}
-        </text>
-        {i < 3 && (
-          <g>
-            <path
-              d={`M91 ${y + 22} V${y + 39} m-4 -5 4 5 4 -5`}
-              fill="none"
-              stroke={stroke}
-              stroke-width="1.5"
-            />
-            <text x="104" y={y + 36} fill="currentColor" font-size="12">
-              Pass
-            </text>
-          </g>
-        )}
-      </g>
-    ))}
-    <path d="M91 243 V257" fill="none" stroke={stroke} stroke-width="1.5" />
-    <text x="105" y="255" fill="currentColor" font-size="12">
-      Pass →
-    </text>
-    <text x="105" y="273" fill="currentColor" font-size="13">
-      Alice 64 · Bob 16
+    <text x="204" y="183" fill="currentColor" font-size="15" font-weight="700">
+      Game ends
     </text>
   </SvgFigure>
-
-  <Panel title="Start at the last move" class="flex flex-col gap-2">
+  <Panel title="Why take immediately?">
     <p class="text-base leading-normal">
-      Bob takes 32 rather than pass and get 16. So Alice takes 16 rather than pass and get 8.
-      Working backward, Bob takes 8 rather than get 4, and Alice takes 4 rather than get 2.
+      At the last turn, taking pays better than passing. That makes taking better on the turn
+      before it, too. Repeat the argument backward to the first move.
     </p>
   </Panel>
-
   <Fragment slot="caption">
-    A four-turn example with two coin piles that double after each pass. The backward calculation
-    is agreed; whether its strong assumptions about what each player knows are justified remains
-    disputed.
+    Passing could make both players richer. The immediate-taking prediction depends on strong
+    assumptions about what each player knows.
   </Fragment>
 </IllustrationFigure>
