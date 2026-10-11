@@ -32,7 +32,14 @@ const antX = (stage: (typeof stages)[number]) => 20 + stage.length * 68 * stage.
     desc="A slider switches between walking and stretching a uniform rope. On walking steps the ant increases its fraction crossed. On stretching steps the whole rope lengthens, and the ant moves with it while its fraction crossed remains unchanged. In the final stage the ant reaches the far end."
     data-stages={JSON.stringify(stages)}
   >
-    <text id="ant-rope-action" x="20" y="23" fill="currentColor" font-size="16" font-weight="bold">
+    <text
+      id="ant-rope-action"
+      x="20"
+      y="23"
+      fill="currentColor"
+      font-size="16"
+      font-weight="bold"
+    >
       Start
     </text>
     <line
@@ -73,8 +80,17 @@ const antX = (stage: (typeof stages)[number]) => 20 + stage.length * 68 * stage.
       fill="var(--color-series-red)"
       stroke="currentColor"
     />
-    <text x="20" y="101" fill="currentColor" font-size="13">Start</text>
-    <text id="ant-rope-end-label" x={endX(initial)} y="101" fill="currentColor" font-size="13" text-anchor="end">
+    <text x="20" y="101" fill="currentColor" font-size="13">
+      Start
+    </text>
+    <text
+      id="ant-rope-end-label"
+      x={endX(initial)}
+      y="101"
+      fill="currentColor"
+      font-size="13"
+      text-anchor="end"
+    >
       End
     </text>
   </SvgFigure>
