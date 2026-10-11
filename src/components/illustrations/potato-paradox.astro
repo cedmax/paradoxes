@@ -1,40 +1,43 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">The one kilogram of dry matter never changes.</p>
-  <svg
-    viewBox="0 0 300 198"
-    class="w-full max-w-sm"
-    role="img"
-    aria-labelledby="potato-title potato-desc"
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+const scale = 2.8
+const waterStart = 99 * scale
+const waterEnd = 49 * scale
+const dry = 1 * scale
+---
+
+<IllustrationFigure name="potato-paradox" lead="The 1 kg of dry matter never changes.">
+  <SvgFigure
+    name="potato-before-after"
+    class="mx-auto w-full max-w-sm"
+    viewBox="0 0 320 204"
+    title="One hundred kilograms of potatoes dry to fifty kilograms"
+    desc="Before drying, the bar shows 99 kilograms of water and one kilogram of dry matter, for 100 kilograms total. After drying, the shorter bar shows 49 kilograms of water and the same one kilogram of dry matter, for 50 kilograms total. Both red dry-matter portions have exactly the same width. A pointer identifies each thin red portion."
   >
-    <title id="potato-title">One hundred kilograms of potatoes drying to fifty kilograms</title>
-    <desc id="potato-desc">
-      Before drying: 99 kilograms water and 1 kilogram dry matter. After drying: 49 kilograms
-      water and the same 1 kilogram dry matter. The total halves to 50 kilograms.
-    </desc>
-    <g fill="currentColor" font-size="17" font-weight="bold">
-      <text x="10" y="22">
-        Before: 100 kg
-      </text>
-      <text x="10" y="122">
-        After: 50 kg
-      </text>
+    <g fill="currentColor" font-size="17" font-weight="700">
+      <text x="10" y="22">Before: 100 kg</text>
+      <text x="10" y="121">After: 50 kg</text>
     </g>
-    <rect x="10" y="32" width="277.2" height="30" fill="#387a91" />
-    <rect x="287.2" y="32" width="2.8" height="30" fill="#bd4b37" />
-    <rect x="10" y="132" width="137.2" height="30" fill="#387a91" />
-    <rect x="147.2" y="132" width="2.8" height="30" fill="#bd4b37" />
-    <g fill="currentColor" font-size="16">
-      <text x="10" y="84">
-        99 kg water + 1 kg dry
-      </text>
-      <text x="10" y="184">
-        49 kg water + 1 kg dry
-      </text>
+    <rect x="10" y="34" width={waterStart} height="30" fill={series.blue} />
+    <rect x={10 + waterStart} y="34" width={dry} height="30" fill={series.red} />
+    <rect x="10" y="133" width={waterEnd} height="30" fill={series.blue} />
+    <rect x={10 + waterEnd} y="133" width={dry} height="30" fill={series.red} />
+    <g fill="none" stroke={stroke} stroke-width="1.5">
+      <path d={`M${10 + waterStart + dry / 2} 64 L265 77 H214`} />
+      <path d={`M${10 + waterEnd + dry / 2} 163 L182 175 H214`} />
     </g>
-  </svg>
-  <figcaption class="text-base leading-normal">
-    The dry portion is fixed at 1 kg. Initially that is 1% of 100 kg. Once it is 2% of the
-    total, the total must be 1 ÷ 0.02 = <strong>50 kg</strong>. The thin red end cap is the same
-    1 kg in both bars, drawn to scale.
-  </figcaption>
-</figure>
+    <g fill="currentColor" font-size="14">
+      <text x="10" y="84">99 kg water</text>
+      <text x="218" y="94">1 kg dry</text>
+      <text x="10" y="182">49 kg water</text>
+      <text x="218" y="182">1 kg dry</text>
+    </g>
+  </SvgFigure>
+  <Fragment slot="caption">
+    The dry matter stays at 1 kg. Its share doubles from 1% to 2%, so the total weight halves.
+    Both bars are drawn to scale.
+  </Fragment>
+</IllustrationFigure>
