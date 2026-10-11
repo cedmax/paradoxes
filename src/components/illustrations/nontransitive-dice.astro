@@ -8,10 +8,10 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
 
 const dice = [
-  { name: "A", faces: [4, 4, 4, 4, 0, 0] },
-  { name: "B", faces: [3, 3, 3, 3, 3, 3] },
-  { name: "C", faces: [6, 6, 2, 2, 2, 2] },
-  { name: "D", faces: [5, 5, 5, 1, 1, 1] },
+  { name: "A", faces: [4, 4, 4, 4, 0, 0], colour: series.blue },
+  { name: "B", faces: [3, 3, 3, 3, 3, 3], colour: series.red },
+  { name: "C", faces: [6, 6, 2, 2, 2, 2], colour: series.gold },
+  { name: "D", faces: [5, 5, 5, 1, 1, 1], colour: series.green },
 ]
 const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) => first > second))
 ---
@@ -32,23 +32,23 @@ const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) 
   </div>
 
   <SideBySide>
-    <Panel title="Die A" id="nontransitive-first-card" class="min-w-0 flex flex-col gap-2">
+    <Panel title="Die A" accent="blue" id="nontransitive-first-card" class="min-w-0 flex flex-col gap-2">
       <div id="nontransitive-first-faces" class="grid grid-cols-3 gap-1"
         role="img" aria-label="Die A has the faces 4, 4, 4, 4, 0, 0">
         {dice[0].faces.map((face, i) => (
           <span data-nontransitive-first-face={i}
-            class="flex aspect-square min-w-0 items-center justify-center border border-ink font-mono text-lg font-bold tabular-nums">
+            class="flex aspect-square min-w-0 items-center justify-center border border-ink bg-series-blue/25 font-mono text-lg font-bold tabular-nums">
             {face}
           </span>
         ))}
       </div>
     </Panel>
-    <Panel title="Die B" id="nontransitive-second-card" class="min-w-0 flex flex-col gap-2">
+    <Panel title="Die B" accent="red" id="nontransitive-second-card" class="min-w-0 flex flex-col gap-2">
       <div id="nontransitive-second-faces" class="grid grid-cols-3 gap-1"
         role="img" aria-label="Die B has the faces 3, 3, 3, 3, 3, 3">
         {dice[1].faces.map((face, i) => (
           <span data-nontransitive-second-face={i}
-            class="flex aspect-square min-w-0 items-center justify-center border border-ink font-mono text-lg font-bold tabular-nums">
+            class="flex aspect-square min-w-0 items-center justify-center border border-ink bg-series-red/25 font-mono text-lg font-bold tabular-nums">
             {face}
           </span>
         ))}
@@ -60,10 +60,11 @@ const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) 
     <p id="nontransitive-outcome" class="font-bold" aria-live="polite">
       Die A beats die B in 2 out of 3 rolls.
     </p>
-    <div class="grid grid-cols-3 gap-1" role="img" aria-label="The first die wins two thirds of the time">
-      <div class="h-4 bg-series-green"></div>
-      <div class="h-4 bg-series-green"></div>
-      <div class="h-4 border border-ink"></div>
+    <div id="nontransitive-win-share" class="grid grid-cols-3 gap-1" role="img"
+      aria-label="Die A wins two thirds of the time, and die B wins one third">
+      <div data-nontransitive-share="0" class="h-4 bg-series-blue"></div>
+      <div data-nontransitive-share="1" class="h-4 bg-series-blue"></div>
+      <div data-nontransitive-share="2" class="h-4 bg-series-red"></div>
     </div>
     <p id="nontransitive-reason" class="text-base leading-normal">
       A rolls a 4 on four of its six faces, and 4 always beats B's 3. That makes
@@ -79,14 +80,14 @@ const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) 
   <Disclosure slot="after" summary="Check all 36 possible pairs of rolls">
     <p class="mt-3 text-base leading-normal">
       Each row is a face of the first die; each column is a face of the second.
-      A green square means the first die wins that pair. Every square is equally likely.
+      Each square has the colour and letter of the winning die. Every square is equally likely.
     </p>
     <SvgFigure
       name="nontransitive-outcomes-grid"
       class="mx-auto mt-3 w-full max-w-md"
       viewBox="0 0 370 360"
       title="All possible outcomes for the selected dice"
-      desc="Six faces of the first die form the rows and six faces of the second die form the columns. Green squares show the 24 winning combinations out of 36. Choose another pair of dice to change the grid."
+      desc="Six faces of die A form the rows and six faces of die B form the columns. Each cell has the colour and letter of the winning die. Die A wins 24 of 36 outcomes. Choose another pair to update this comparison."
     >
       <text id="nontransitive-top-label" x="223" y="61" text-anchor="middle"
         font-size="17" font-weight="700" fill="currentColor">Columns: Die B</text>
@@ -104,11 +105,11 @@ const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) 
         <g>
           <rect data-nontransitive-cell={index} x={103 + (index % 6) * 40}
             y={109 + Math.floor(index / 6) * 40} width="39" height="39"
-            fill={win ? series.green : "var(--color-paper)"} fill-opacity={win ? "0.4" : "1"}
+            fill={win ? dice[0].colour : dice[1].colour} fill-opacity="0.45"
             stroke={stroke} stroke-width="1" />
           <text data-nontransitive-result={index} x={103 + (index % 6) * 40 + 19.5}
             y={109 + Math.floor(index / 6) * 40 + 25} text-anchor="middle"
-            font-size="17" font-weight="700" fill="currentColor">{win ? "✓" : "–"}</text>
+            font-size="17" font-weight="700" fill="currentColor">{win ? "A" : "B"}</text>
         </g>
       ))}
     </SvgFigure>
@@ -131,6 +132,21 @@ const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) 
     ]
     const pairs = [[0, 1], [1, 2], [2, 3], [3, 0]]
     const names = ["A", "B", "C", "D"]
+    const fills = [
+      "var(--color-series-blue)",
+      "var(--color-series-red)",
+      "var(--color-series-gold)",
+      "var(--color-series-green)",
+    ]
+    const tileColours = [
+      "bg-series-blue/25", "bg-series-red/25", "bg-series-gold/25", "bg-series-green/25",
+    ]
+    const borderColours = [
+      "border-series-blue", "border-series-red", "border-series-gold", "border-series-green",
+    ]
+    const shareColours = [
+      "bg-series-blue", "bg-series-red", "bg-series-gold", "bg-series-green",
+    ]
     const reasons = [
       "A rolls a 4 on four of its six faces, and 4 always beats B's 3. That makes 4 of 6 winning rolls.",
       "B always rolls 3. C rolls 2 on four of its six faces, so B wins 4 of 6 rolls.",
@@ -145,6 +161,8 @@ const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) 
     const firstGrid = find<HTMLElement>(root, "#nontransitive-first-faces")
     const secondGrid = find<HTMLElement>(root, "#nontransitive-second-faces")
     const outcome = find<HTMLElement>(root, "#nontransitive-outcome")
+    const share = find<HTMLElement>(root, "#nontransitive-win-share")
+    const shareSegments = Array.from(root.querySelectorAll<HTMLElement>("[data-nontransitive-share]"))
     const reason = find<HTMLElement>(root, "#nontransitive-reason")
     const cols = Array.from(root.querySelectorAll<SVGTextElement>("[data-nontransitive-column]"))
     const rows = Array.from(root.querySelectorAll<SVGTextElement>("[data-nontransitive-row]"))
@@ -161,8 +179,28 @@ const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) 
       const b = values[second]
       firstCard.querySelector("strong")!.textContent = `Die ${names[first]}`
       secondCard.querySelector("strong")!.textContent = `Die ${names[second]}`
-      firstFaces.forEach((face, i) => { face.textContent = String(a[i]) })
-      secondFaces.forEach((face, i) => { face.textContent = String(b[i]) })
+      firstCard.classList.remove(...borderColours)
+      firstCard.classList.add(borderColours[first])
+      secondCard.classList.remove(...borderColours)
+      secondCard.classList.add(borderColours[second])
+      firstFaces.forEach((face, i) => {
+        face.textContent = String(a[i])
+        face.classList.remove(...tileColours)
+        face.classList.add(tileColours[first])
+      })
+      secondFaces.forEach((face, i) => {
+        face.textContent = String(b[i])
+        face.classList.remove(...tileColours)
+        face.classList.add(tileColours[second])
+      })
+      shareSegments.forEach((segment, i) => {
+        segment.classList.remove(...shareColours)
+        segment.classList.add(shareColours[i < 2 ? first : second])
+      })
+      share.setAttribute(
+        "aria-label",
+        `Die ${names[first]} wins two thirds of the time, and die ${names[second]} wins one third`,
+      )
       firstGrid.setAttribute("aria-label", `Die ${names[first]} has the faces ${a.join(", ")}`)
       secondGrid.setAttribute("aria-label", `Die ${names[second]} has the faces ${b.join(", ")}`)
       outcome.textContent = `Die ${names[first]} beats die ${names[second]} in 2 out of 3 rolls.`
@@ -173,13 +211,12 @@ const initialWins = dice[0].faces.flatMap((first) => dice[1].faces.map((second) 
       cells.forEach((cell, i) => {
         const win = a[Math.floor(i / 6)] > b[i % 6]
         if (win) wins++
-        cell.setAttribute("fill", win ? "var(--color-series-green)" : "var(--color-paper)")
-        cell.setAttribute("fill-opacity", win ? "0.4" : "1")
-        results[i].textContent = win ? "✓" : "–"
+        cell.setAttribute("fill", fills[win ? first : second])
+        results[i].textContent = names[win ? first : second]
       })
       title.textContent = `Columns: Die ${names[second]}`
       left.textContent = `Rows: Die ${names[first]}`
-      desc.textContent = `Die ${names[first]} down the rows and die ${names[second]} across the columns. ${wins} of 36 combinations favour die ${names[first]}.`
+      desc.textContent = `Die ${names[first]} down the rows and die ${names[second]} across the columns. Each cell displays the winning die's letter and colour. ${wins} of 36 combinations favour die ${names[first]}.`
       count.textContent = `${names[first]} wins ${wins} of the 36 combinations against ${names[second]}.`
       buttons.forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)))
     }
