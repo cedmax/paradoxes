@@ -1,108 +1,107 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Callout from "~/components/illustration-kit/Callout.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SideBySide from "~/components/illustration-kit/SideBySide.astro"
 
 const doors = [1, 2, 3]
 ---
 
 <IllustrationFigure
   name="monty-hall-problem"
-  lead="Pick a door. Then watch which goat the host chooses to reveal."
+  lead="You are the presenter. Which door can you open?"
 >
   <p class="text-base leading-normal">
-    The host <strong>knows</strong> where the car is. He must open another door with a goat
-    behind it, never your pick and never the car.
-  </p>
-  <p class="text-base leading-normal">
-    Try all three equally likely places for the car. Keep your first choice the same to discover
-    why switching wins twice.
+    The player has already picked <strong>door 1</strong>. You know where the car is;
+    the player does not. You must reveal a goat, but you cannot open the player's door
+    or the door with the car.
   </p>
 
   <p id="monty-round" class="font-bold" aria-live="polite">
-    Round 1 of 3 — car hidden until you decide.
+    Case 1 of 3 — the car is behind door 1.
+  </p>
+  <p class="text-base leading-normal">
+    <strong>Presenter's view:</strong> the prizes are shown to you. Tap an allowed
+    goat door to reveal it to the player.
   </p>
 
-  <div class="grid grid-cols-3 gap-2" role="group" aria-label="Choose your first door">
+  <div class="grid grid-cols-3 gap-2" role="group" aria-label="Choose which goat door to open as presenter">
     {doors.map((door) => (
       <button
         type="button"
         class:list={[
-          "btn-toggle flex min-w-0 flex-col items-center gap-2 py-4",
-          door === 1 && "bg-series-blue/20",
+          "btn-ghost flex min-w-0 flex-col items-center gap-2 px-2 py-3 text-center",
+          door === 1 && "opacity-50",
         ]}
-        data-monty-door={door}
-        aria-pressed={door === 1 ? "true" : "false"}
-        aria-label={`Door ${door}, ${door === 1 ? "your current pick" : "choose this door"}`}
+        data-monty-open={door}
+        disabled={door === 1}
+        aria-label={door === 1
+          ? "Door 1: car, player's original pick; cannot open"
+          : `Door ${door}: goat, allowed to open`}
       >
-        <span class="font-bold">Door {door}</span>
-        <span data-monty-content={door} class="text-lg font-bold">
-          ?
+        <strong class="text-base">Door {door}</strong>
+        <span data-monty-prize={door} class="text-lg font-bold">
+          {door === 1 ? "Car" : "Goat"}
         </span>
         <span data-monty-role={door} class="text-xs leading-normal">
-          {door === 1 ? "Your pick" : "Closed"}
+          {door === 1 ? "Player's pick" : "Open goat"}
         </span>
       </button>
     ))}
   </div>
 
-  <div class="flex flex-wrap gap-2">
-    <button type="button" class="btn-ghost" id="monty-reveal-goat">
-      Ask the host to open a door
-    </button>
-    <div
-      id="monty-decision"
-      class="hidden flex-wrap gap-2"
-      role="group"
-      aria-label="Stay with your door or switch to the other closed door"
-    >
-      <button type="button" class="btn-ghost" id="monty-stay">
-        Stay
-      </button>
-      <button type="button" class="btn-ghost" id="monty-switch">
-        Switch
-      </button>
-    </div>
-    <button type="button" class="btn-ghost hidden" id="monty-next">
-      Try the next car location
-    </button>
-  </div>
-
   <Callout class="flex flex-col gap-2">
-    <p id="monty-message" class="text-base leading-normal" aria-live="polite">
-      Door 1 is your first pick. The host has not revealed a goat yet.
+    <p id="monty-hint" class="text-base leading-normal" aria-live="polite">
+      Here you can open either door 2 or door 3: both hide goats.
     </p>
-    <p id="monty-why" class="text-base leading-normal">
-      Your original door has a 1-in-3 chance. The other two doors together have a 2-in-3 chance,
-      and the host cannot reveal the car.
+    <p class="text-base leading-normal">
+      The host knows the prizes. Opening the car or the player's door is never allowed.
     </p>
   </Callout>
 
+  <div id="monty-result" class="hidden flex-col gap-3">
+    <p id="monty-reveal" class="font-bold" aria-live="polite">
+      The host reveals a goat.
+    </p>
+    <SideBySide>
+      <Panel title="Player stays" accent="blue" class="flex min-w-0 flex-col gap-1">
+        <p id="monty-stay-result" class="text-base leading-normal">—</p>
+      </Panel>
+      <Panel title="Player switches" accent="green" class="flex min-w-0 flex-col gap-1">
+        <p id="monty-switch-result" class="text-base leading-normal">—</p>
+      </Panel>
+    </SideBySide>
+    <p id="monty-reason" class="text-base leading-normal">—</p>
+  </div>
+
+  <div class="flex flex-wrap gap-2">
+    <button id="monty-again" type="button" class="btn-ghost hidden">
+      Try this car location again
+    </button>
+    <button id="monty-next" type="button" class="btn-ghost hidden">
+      Next car location
+    </button>
+  </div>
+
   <div class="flex flex-col gap-2">
-    <p class="font-bold">The three possible car locations</p>
-    <div
-      class="grid grid-cols-3 gap-1"
-      role="img"
-      aria-label="Staying wins in one of three possible car locations, switching wins in two"
-    >
-      <span class="h-5 bg-series-blue"></span>
-      <span class="h-5 bg-series-green"></span>
-      <span class="h-5 bg-series-green"></span>
+    <p class="font-bold">What happens across all three car locations?</p>
+    <div class="grid grid-cols-3 gap-2 text-center text-xs" aria-label="Results as you try each case">
+      {doors.map((door) => (
+        <div class="flex flex-col gap-1">
+          <span class="font-bold">Car: door {door}</span>
+          <span data-monty-case={door} class="border border-ink p-2">Try it</span>
+        </div>
+      ))}
     </div>
-    <div class="grid grid-cols-3 gap-1 text-center text-sm">
-      <span>Stay</span>
-      <span>Switch</span>
-      <span>Switch</span>
-    </div>
-    <p class="text-base leading-normal">
-      <strong>Stay: 1 win in 3.</strong> <strong>Switch: 2 wins in 3.</strong>
-      Switching wins whenever your first pick was wrong.
+    <p id="monty-summary" class="text-base leading-normal" aria-live="polite">
+      Try each car location once. We will compare staying and switching after every reveal.
     </p>
   </div>
 
   <Fragment slot="caption">
-    This visits all three car locations in order, rather than pretending to be a random game.
-    When the first pick already hides the car, the host can open either goat door; this
-    demonstration chooses the lowest numbered one. The host always offers a switch.
+    The player always starts at door 1. The three car locations are equally likely;
+    we visit them in order to show every possibility, not as a random game.
+    The presenter always reveals a goat and always offers a switch.
   </Fragment>
 </IllustrationFigure>
 
@@ -112,107 +111,111 @@ const doors = [1, 2, 3]
   const root = illustrationRoot("monty-hall-problem")
   if (root) {
     const doors = [1, 2, 3]
-    const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-monty-door]"))
-    const contents = Array.from(root.querySelectorAll<HTMLElement>("[data-monty-content]"))
+    const firstPick = 1
+    const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-monty-open]"))
+    const prizes = Array.from(root.querySelectorAll<HTMLElement>("[data-monty-prize]"))
     const roles = Array.from(root.querySelectorAll<HTMLElement>("[data-monty-role]"))
+    const caseResults = Array.from(root.querySelectorAll<HTMLElement>("[data-monty-case]"))
     const roundLabel = find<HTMLElement>(root, "#monty-round")
-    const reveal = find<HTMLButtonElement>(root, "#monty-reveal-goat")
-    const decision = find<HTMLElement>(root, "#monty-decision")
-    const stay = find<HTMLButtonElement>(root, "#monty-stay")
-    const switchButton = find<HTMLButtonElement>(root, "#monty-switch")
+    const hint = find<HTMLElement>(root, "#monty-hint")
+    const result = find<HTMLElement>(root, "#monty-result")
+    const reveal = find<HTMLElement>(root, "#monty-reveal")
+    const stayResult = find<HTMLElement>(root, "#monty-stay-result")
+    const switchResult = find<HTMLElement>(root, "#monty-switch-result")
+    const reason = find<HTMLElement>(root, "#monty-reason")
+    const again = find<HTMLButtonElement>(root, "#monty-again")
     const next = find<HTMLButtonElement>(root, "#monty-next")
-    const message = find<HTMLElement>(root, "#monty-message")
-    const why = find<HTMLElement>(root, "#monty-why")
+    const summary = find<HTMLElement>(root, "#monty-summary")
 
-    let firstPick = 1
     let round = 0
-    let phase: "choose" | "host" | "result" = "choose"
-    let openedDoor = 2
+    let openedDoor: number | null = null
+    const completed = [false, false, false]
 
     const render = () => {
       const car = doors[round]
-      const switchTo = doors.find((door) => door !== firstPick && door !== openedDoor)!
-      roundLabel.textContent = `Round ${round + 1} of 3 — ${phase === "result" ? `car behind door ${car}` : "car hidden until you decide"}.`
-      buttons.forEach((button, index) => {
-        const door = doors[index]
-        const hostOpens = phase !== "choose" && door === openedDoor
-        const isChosen = door === firstPick
-        button.disabled = phase !== "choose"
-        button.setAttribute("aria-pressed", String(isChosen))
+      const legalDoors = doors.filter((door) => door !== firstPick && door !== car)
+      const revealed = openedDoor !== null
+
+      roundLabel.textContent = `Case ${round + 1} of 3 — the car is behind door ${car}.`
+      buttons.forEach((button, i) => {
+        const door = doors[i]
+        const chosen = door === firstPick
+        const carDoor = door === car
+        const legal = legalDoors.includes(door)
+        const isOpened = revealed && door === openedDoor
+        button.disabled = revealed || !legal
+        button.classList.toggle("opacity-50", !legal || revealed)
+        button.classList.toggle("bg-series-gold/20", isOpened)
+        prizes[i].textContent = carDoor ? "Car" : "Goat"
+        roles[i].textContent = isOpened
+          ? "You opened"
+          : chosen
+            ? "Player's pick"
+            : carDoor
+              ? "Cannot open"
+              : "Open goat"
         button.setAttribute(
           "aria-label",
-          `Door ${door}: ${hostOpens ? "host opened, goat" : phase === "result" ? (door === car ? "car" : "goat") : "closed"}${isChosen ? ", original pick" : ""}`,
+          `Door ${door}: ${carDoor ? "car" : "goat"}, ${isOpened ? "opened by you" : chosen ? "player's pick; cannot open" : carDoor ? "cannot open the car" : revealed ? "not opened" : "allowed to open"}`,
         )
-        button.classList.toggle("bg-series-blue/20", isChosen)
-        button.classList.toggle("bg-series-gold/20", hostOpens)
-        button.classList.toggle("bg-series-green/20", phase === "result" && door === car)
-        contents[index].textContent = hostOpens
-          ? "Goat"
-          : phase === "result"
-            ? door === car
-              ? "Car"
-              : "Goat"
-            : "?"
-        roles[index].textContent = hostOpens
-          ? "Host opens"
-          : isChosen
-            ? "Your pick"
-            : phase === "host" && door === switchTo
-              ? "Switch to"
-              : "Closed"
       })
 
-      reveal.classList.toggle("hidden", phase !== "choose")
-      decision.classList.toggle("hidden", phase !== "host")
-      decision.classList.toggle("flex", phase === "host")
-      next.classList.toggle("hidden", phase !== "result")
+      hint.textContent = revealed
+        ? car === firstPick
+          ? "You had two goat doors to choose from. Neither reveal could move the car from the player's original door."
+          : `You were forced to open door ${openedDoor}. You could not open the player's pick or the car.`
+        : legalDoors.length === 2
+          ? "You can open either door 2 or door 3: both hide goats."
+          : `Only door ${legalDoors[0]} can be opened. The other doors are the player's pick and the car.`
+
+      result.classList.toggle("hidden", !revealed)
+      result.classList.toggle("flex", revealed)
+      again.classList.toggle("hidden", !revealed)
+      next.classList.toggle("hidden", !revealed)
+      next.textContent = round === 2 ? "Return to the first car location" : "Next car location"
+
+      if (revealed) {
+        const alternative = doors.find((door) => door !== firstPick && door !== openedDoor)!
+        const stayWins = firstPick === car
+        reveal.textContent = `You opened door ${openedDoor}, revealing a goat. Door ${alternative} stays closed.`
+        stayResult.textContent = `Door 1: ${stayWins ? "car — wins" : "goat — loses"}`
+        switchResult.textContent = `Door ${alternative}: ${stayWins ? "goat — loses" : "car — wins"}`
+        reason.textContent = stayWins
+          ? "The player's first pick was right. You had two goat doors to choose from; switching would lose."
+          : "The player's first pick was wrong. You had just one goat door you could open, leaving the car behind the only other closed door."
+        completed[round] = true
+      }
+
+      caseResults.forEach((cell, i) => {
+        cell.textContent = completed[i] ? (i === 0 ? "Stay wins" : "Switch wins") : "Try it"
+        cell.classList.toggle("bg-series-blue/20", completed[i] && i === 0)
+        cell.classList.toggle("bg-series-green/20", completed[i] && i !== 0)
+      })
+      const finished = completed.filter(Boolean).length
+      summary.textContent = finished === 3
+        ? "Across the three equally likely car locations, staying wins only once; switching wins twice. The host's informed reveal is what makes the remaining doors unequal."
+        : `${finished} of 3 car locations tried. Switching wins whenever the player's original pick was wrong.`
     }
 
-    buttons.forEach((button, i) =>
-      button.addEventListener("click", () => {
-        if (phase !== "choose") return
-        firstPick = doors[i]
-        message.textContent = `Door ${firstPick} is your first pick. The host has not revealed a goat yet.`
-        render()
-      }),
-    )
-
-    reveal.addEventListener("click", () => {
+    buttons.forEach((button, i) => button.addEventListener("click", () => {
       const car = doors[round]
-      openedDoor = doors.find((door) => door !== firstPick && door !== car)!
-      const switchTo = doors.find((door) => door !== firstPick && door !== openedDoor)!
-      phase = "host"
-      message.textContent = `The host opens door ${openedDoor}: a goat. Door ${firstPick} was your original pick; door ${switchTo} is the only other closed door. Stay or switch?`
-      why.textContent =
-        "The host did not choose a door at random: he knew where the car was and deliberately avoided it."
+      const door = doors[i]
+      if (openedDoor !== null || door === firstPick || door === car) return
+      openedDoor = door
+      render()
+    }))
+
+    again.addEventListener("click", () => {
+      openedDoor = null
       render()
     })
 
-    const finish = (switching: boolean) => {
-      if (phase !== "host") return
-      const car = doors[round]
-      const finalDoor = switching
-        ? doors.find((door) => door !== firstPick && door !== openedDoor)!
-        : firstPick
-      const won = finalDoor === car
-      phase = "result"
-      message.textContent = `You ${switching ? "switched to" : "stayed with"} door ${finalDoor} and ${won ? "won the car!" : "found a goat."} The car was behind door ${car}.`
-      why.textContent =
-        firstPick === car
-          ? "Your first pick was right (1 of the 3 possibilities). Here, staying wins."
-          : "Your first pick was wrong (2 of the 3 possibilities). The host removed the other goat, so switching wins."
-      render()
-    }
-    stay.addEventListener("click", () => finish(false))
-    switchButton.addEventListener("click", () => finish(true))
     next.addEventListener("click", () => {
       round = (round + 1) % doors.length
-      phase = "choose"
-      message.textContent = `Keep door ${firstPick} as your first pick to compare all three car locations.`
-      why.textContent =
-        "The next car location is hidden again. The host must still open a goat door that you did not choose."
+      openedDoor = null
       render()
     })
+
     render()
   }
 </script>
