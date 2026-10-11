@@ -20,8 +20,8 @@ noMaths: false
 written: true
 sourcesVerified: true
 problem: "If the bombers that come back have bullet holes in some places and hardly any in others, where should the armour go?"
-claimA: "The damage on the planes that come back shows where planes most need protecting."
-claimB: "Planes hit in their weakest spots tend not to come back, so the damage on returning planes can hide where protection is most needed."
+claimA: "The damage on planes that came back showed where they needed protection."
+claimB: "Planes that didn’t come back were probably hit where the returning ones weren’t, and that’s where the protection should go."
 verdict: "Only the planes that survived were counted. Few holes in one part can mean that planes hit there were lost."
 whatBreaks: "The assumption that the planes that came back are a fair sample of all the planes that were hit."
 statusNote: "the first claim is wrong. It treats the survivors as a fair sample, when the missing planes are missing because of the very damage being studied. The reasoning is not in dispute, though the popular story told about it is partly legend."
