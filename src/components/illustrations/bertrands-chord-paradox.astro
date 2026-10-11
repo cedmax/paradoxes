@@ -39,6 +39,14 @@ const methods = [
     >
       Two edge points (1/3)
     </button>
+    <button
+      id="bertrand-area-mode"
+      type="button"
+      class="btn-ghost aria-pressed:bg-ink aria-pressed:text-paper"
+      aria-pressed="false"
+    >
+      Random midpoint (1/4)
+    </button>
   </div>
   <svg
     class="mx-auto w-full max-w-xl"
@@ -53,6 +61,8 @@ const methods = [
       has half the outer radius; longer chords have midpoints inside it. In the edge-points view,
       the top endpoint is fixed and the other moves around the rim. The highlighted lower arc
       is one third of the circumference and produces chords longer than the triangle side.
+      In the midpoint-by-area view, sample points uniformly from the whole disc. Points within
+      the dotted half-radius circle make longer chords; that region covers one quarter of the area.
     </desc>
 
     <circle cx="130" cy="112" r="86" fill="none" stroke="currentColor" stroke-width="2" />
@@ -118,6 +128,28 @@ const methods = [
       <circle cx="130" cy="26" r="5" fill="#387a91" />
       <circle id="bertrand-edge-point" cx="130" cy="198" r="5" fill="#387a91" />
     </g>
+    <g id="bertrand-area-art" visibility="hidden">
+      <g id="bertrand-area-dots"></g>
+      <line
+        id="bertrand-area-chord"
+        x1="130"
+        y1="26"
+        x2="130"
+        y2="198"
+        stroke="#387a91"
+        stroke-width="4"
+        stroke-linecap="round"
+        visibility="hidden"
+      />
+      <circle
+        id="bertrand-area-point"
+        cx="130"
+        cy="112"
+        r="5"
+        fill="#387a91"
+        visibility="hidden"
+      />
+    </g>
     <circle cx="130" cy="112" r="2.5" fill="currentColor" />
 
     <g font-size="15" fill="currentColor">
@@ -138,10 +170,17 @@ const methods = [
         <text x="236" y="178">1/3 of the edge</text>
         <text x="236" y="208">A long chord</text>
       </g>
+      <g id="bertrand-area-legend" visibility="hidden">
+        <text x="236" y="128">Midpoints chosen</text>
+        <text x="236" y="148">across the circle</text>
+        <text x="236" y="178">Inner disc:</text>
+        <text x="236" y="198">1/4 of the area</text>
+        <text x="236" y="218">Green = long</text>
+      </g>
     </g>
   </svg>
 
-  <div class="flex flex-col gap-2">
+  <div id="bertrand-slider-controls" class="flex flex-col gap-2">
     <label id="bertrand-slider-label" for="bertrand-chord-slider" class="font-bold">
       Move the chord away from the centre
     </label>
@@ -164,6 +203,22 @@ const methods = [
     <p id="bertrand-mode-explanation" class="border-l-4 border-ink pl-3 text-base leading-normal">
       The dotted inner circle shows the halfway mark. Move the chord's midpoint inside it to
       make a longer chord.
+    </p>
+  </div>
+  <div id="bertrand-area-controls" class="flex flex-col gap-3" hidden>
+    <p class="text-base leading-normal">
+      Each click chooses a midpoint equally likely to fall anywhere in the circle.
+      Only the shaded inner quarter of its area makes a chord longer than the triangle side.
+    </p>
+    <div class="flex flex-wrap gap-2">
+      <button id="bertrand-pick-one" class="btn-ghost" type="button">Pick one midpoint</button>
+      <button id="bertrand-pick-hundred" class="btn-ghost" type="button">Pick 100 midpoints</button>
+      <button id="bertrand-clear-samples" class="btn-ghost" type="button">Clear</button>
+    </div>
+    <p id="bertrand-area-readout" class="text-base" aria-live="polite">
+      Long chords: <strong id="bertrand-area-long">0</strong> of
+      <strong id="bertrand-area-total">0</strong> samples
+      <span id="bertrand-area-rate"></span>
     </p>
   </div>
 
@@ -193,15 +248,29 @@ const methods = [
   </div>
 
   <figcaption class="text-base leading-normal">
-    These controls illustrate the rules, rather than choosing random chords. Half the possible
-    distances produce a long chord, and the midpoint region covers a quarter of the circle's area.
-    When one endpoint is fixed, the other must lie on one third of the rim to make a long chord.
+    Half the possible distances produce long chords (1/2). With a fixed endpoint, a third of
+    the circumference gives long chords (1/3). With midpoints chosen uniformly by area, the
+    favourable inner disc is a quarter of the circle's area (1/4).
   </figcaption>
 </figure>
 
 <script>
   const distanceButton = document.querySelector<HTMLButtonElement>("#bertrand-distance-mode")
   const edgeButton = document.querySelector<HTMLButtonElement>("#bertrand-edge-mode")
+  const areaButton = document.querySelector<HTMLButtonElement>("#bertrand-area-mode")
+  const sliderControls = document.querySelector<HTMLElement>("#bertrand-slider-controls")
+  const areaControls = document.querySelector<HTMLElement>("#bertrand-area-controls")
+  const pickOne = document.querySelector<HTMLButtonElement>("#bertrand-pick-one")
+  const pickHundred = document.querySelector<HTMLButtonElement>("#bertrand-pick-hundred")
+  const clearSamples = document.querySelector<HTMLButtonElement>("#bertrand-clear-samples")
+  const areaDots = document.querySelector<SVGGElement>("#bertrand-area-dots")
+  const areaArt = document.querySelector<SVGGElement>("#bertrand-area-art")
+  const areaChord = document.querySelector<SVGLineElement>("#bertrand-area-chord")
+  const areaPoint = document.querySelector<SVGCircleElement>("#bertrand-area-point")
+  const areaLegend = document.querySelector<SVGGElement>("#bertrand-area-legend")
+  const areaLongLabel = document.querySelector<HTMLElement>("#bertrand-area-long")
+  const areaTotalLabel = document.querySelector<HTMLElement>("#bertrand-area-total")
+  const areaRate = document.querySelector<HTMLElement>("#bertrand-area-rate")
   const slider = document.querySelector<HTMLInputElement>("#bertrand-chord-slider")
   const sliderLabel = document.querySelector<HTMLElement>("#bertrand-slider-label")
   const positionDescription = document.querySelector<HTMLElement>("#bertrand-position-description")
@@ -221,6 +290,20 @@ const methods = [
   if (
     distanceButton &&
     edgeButton &&
+    areaButton &&
+    sliderControls &&
+    areaControls &&
+    pickOne &&
+    pickHundred &&
+    clearSamples &&
+    areaDots &&
+    areaArt &&
+    areaChord &&
+    areaPoint &&
+    areaLegend &&
+    areaLongLabel &&
+    areaTotalLabel &&
+    areaRate &&
     slider &&
     sliderLabel &&
     positionDescription &&
@@ -240,9 +323,54 @@ const methods = [
     const centreX = 130
     const centreY = 112
     const radius = 86
-    let mode: "distance" | "edge" = "distance"
+    let mode: "distance" | "edge" | "area" = "distance"
     let distanceValue = 35
     let edgeValue = 180
+    let totalSamples = 0
+    let longSamples = 0
+
+    const sampleMidpoints = (count: number) => {
+      // sqrt(U) produces a point uniformly by AREA, not uniformly by radius.
+      for (let i = 0; i < count; i++) {
+        const distance = radius * Math.sqrt(Math.random())
+        const angle = 2 * Math.PI * Math.random()
+        const dx = distance * Math.cos(angle)
+        const dy = distance * Math.sin(angle)
+        const x = centreX + dx
+        const y = centreY + dy
+        const longChord = distance < radius / 2
+        totalSamples++
+        if (longChord) longSamples++
+
+        const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+        dot.setAttribute("cx", String(x))
+        dot.setAttribute("cy", String(y))
+        dot.setAttribute("r", "2.5")
+        dot.setAttribute("fill", longChord ? "#5d8560" : "#387a91")
+        dot.setAttribute("opacity", ".75")
+        areaDots.appendChild(dot)
+        // Keep the plotted points readable after many batches.
+        if (areaDots.childElementCount > 200) areaDots.firstElementChild?.remove()
+
+        const chordHalfLength = Math.sqrt(radius * radius - distance * distance)
+        const ux = distance === 0 ? 0 : -dy / distance
+        const uy = distance === 0 ? 1 : dx / distance
+        areaChord.setAttribute("x1", String(x - ux * chordHalfLength))
+        areaChord.setAttribute("y1", String(y - uy * chordHalfLength))
+        areaChord.setAttribute("x2", String(x + ux * chordHalfLength))
+        areaChord.setAttribute("y2", String(y + uy * chordHalfLength))
+        areaPoint.setAttribute("cx", String(x))
+        areaPoint.setAttribute("cy", String(y))
+        areaPoint.setAttribute("fill", longChord ? "#5d8560" : "#387a91")
+      }
+      areaChord.setAttribute("visibility", "visible")
+      areaPoint.setAttribute("visibility", "visible")
+      areaLongLabel.textContent = String(longSamples)
+      areaTotalLabel.textContent = String(totalSamples)
+      areaRate.textContent = totalSamples
+        ? `(${Math.round((100 * longSamples) / totalSamples)}% so far; expected about 25%)`
+        : ""
+    }
 
     const update = () => {
       if (mode === "distance") {
@@ -269,7 +397,7 @@ const methods = [
           "aria-valuetext",
           `${slider.value} percent of the radius, ${result.toLowerCase()}`,
         )
-      } else {
+      } else if (mode === "edge") {
         // The first endpoint is fixed at the triangle's top vertex.
         // The other point traverses the whole circumference in 360 degrees.
         const degrees = Number(slider.value)
@@ -299,30 +427,43 @@ const methods = [
       }
     }
 
-    const setMode = (next: "distance" | "edge") => {
+    const setMode = (next: "distance" | "edge" | "area") => {
       mode = next
       const isDistance = mode === "distance"
-      slider.min = "0"
-      slider.max = isDistance ? "100" : "360"
-      slider.value = String(isDistance ? distanceValue : edgeValue)
-      sliderLabel.textContent = isDistance
-        ? "Move the chord away from the centre"
-        : "Move the second endpoint around the edge"
-      positionDescription.textContent = isDistance
-        ? "of the radius from the centre."
-        : "around the circle from the top."
-      explanation.textContent = isDistance
-        ? "The dotted inner circle shows the halfway mark. Move the chord's midpoint inside it to make a longer chord."
-        : "The top endpoint stays fixed. Move the other point onto the thick blue arc at the bottom. That arc is one third of the circle's edge, so one third of equally likely endpoints produce a longer chord."
+      const isEdge = mode === "edge"
+      const isArea = mode === "area"
+      sliderControls.hidden = isArea
+      areaControls.hidden = !isArea
       distanceButton.setAttribute("aria-pressed", String(isDistance))
-      edgeButton.setAttribute("aria-pressed", String(!isDistance))
-      for (const element of [distanceArt, distanceLegend, innerCircle]) {
+      edgeButton.setAttribute("aria-pressed", String(isEdge))
+      areaButton.setAttribute("aria-pressed", String(isArea))
+      for (const element of [distanceArt, distanceLegend]) {
         element.setAttribute("visibility", isDistance ? "visible" : "hidden")
       }
       for (const element of [edgeArt, edgeLegend]) {
-        element.setAttribute("visibility", isDistance ? "hidden" : "visible")
+        element.setAttribute("visibility", isEdge ? "visible" : "hidden")
       }
-      update()
+      for (const element of [areaArt, areaLegend]) {
+        element.setAttribute("visibility", isArea ? "visible" : "hidden")
+      }
+      innerCircle.setAttribute("visibility", isEdge ? "hidden" : "visible")
+      innerCircle.setAttribute("fill-opacity", isArea ? ".35" : ".12")
+
+      if (!isArea) {
+        slider.min = "0"
+        slider.max = isDistance ? "100" : "360"
+        slider.value = String(isDistance ? distanceValue : edgeValue)
+        sliderLabel.textContent = isDistance
+          ? "Move the chord away from the centre"
+          : "Move the second endpoint around the edge"
+        positionDescription.textContent = isDistance
+          ? "of the radius from the centre."
+          : "around the circle from the top."
+        explanation.textContent = isDistance
+          ? "The dotted inner circle shows the halfway mark. Move the chord's midpoint inside it to make a longer chord."
+          : "The top endpoint stays fixed. Move the other point onto the thick blue arc at the bottom. That arc is one third of the circle's edge, so one third of equally likely endpoints produce a longer chord."
+        update()
+      }
     }
 
     slider.addEventListener("input", () => {
@@ -332,6 +473,19 @@ const methods = [
     })
     distanceButton.addEventListener("click", () => setMode("distance"))
     edgeButton.addEventListener("click", () => setMode("edge"))
+    areaButton.addEventListener("click", () => setMode("area"))
+    pickOne.addEventListener("click", () => sampleMidpoints(1))
+    pickHundred.addEventListener("click", () => sampleMidpoints(100))
+    clearSamples.addEventListener("click", () => {
+      totalSamples = 0
+      longSamples = 0
+      areaDots.replaceChildren()
+      areaChord.setAttribute("visibility", "hidden")
+      areaPoint.setAttribute("visibility", "hidden")
+      areaLongLabel.textContent = "0"
+      areaTotalLabel.textContent = "0"
+      areaRate.textContent = ""
+    })
     setMode("distance")
   }
 </script>
