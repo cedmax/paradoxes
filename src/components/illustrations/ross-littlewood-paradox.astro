@@ -266,9 +266,14 @@ const initialBalls = Array.from({ length: 27 }, (_, index) => ({
     const render = (position: number) => {
       const round = stages[position]
       const label =
-        round === null ? "At noon" : round === 0 ? "Before round 1" : "After round " + format(round)
+        round === null
+          ? "At noon"
+          : round === 0
+            ? "Before round 1"
+            : "After round " + format(round)
       stageLabel.textContent = label
-      countLabel.textContent = round === null ? (rule === "first" ? "0" : "Infinitely many") : format(round * 9)
+      countLabel.textContent =
+        round === null ? (rule === "first" ? "0" : "Infinitely many") : format(round * 9)
       if (round === null) {
         roundNote.textContent =
           rule === "first"
