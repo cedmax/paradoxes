@@ -207,8 +207,8 @@ const animateData = results.map((run) => ({
     const stage = find<HTMLElement>(root, "#parrondos-examples")
     const runs = JSON.parse(stage.dataset.runs || "[]") as Run[]
     const count = runs[0]?.readouts.length ?? 0
-    let timer = 0
-    let playing = -1
+    const timers = [0, 0, 0]
+    const positions = [0, 0, 0]
 
     const panels = runs.map((run) => ({
       button: find<HTMLButtonElement>(root, '[data-parrondos-play="' + run.id + '"]'),
@@ -237,44 +237,39 @@ const animateData = results.map((run) => ({
       panel.readout.textContent = step === 0 ? "Start at £30." : runs[index].readouts[step - 1]
       panel.ending.hidden = step !== count
       panel.ending.textContent = runs[index].ending
-      panel.button.textContent = "Play this example"
     }
 
-    const stop = () => {
-      if (timer) window.clearInterval(timer)
-      timer = 0
-      if (playing !== -1) {
-        panels[playing].button.textContent = "Play this example"
-        playing = -1
-      }
+    const stop = (index: number) => {
+      if (timers[index]) window.clearInterval(timers[index])
+      timers[index] = 0
+      panels[index].button.textContent = "Play this example"
     }
 
     panels.forEach((panel, index) => {
       show(index, 0)
       panel.button.addEventListener("click", () => {
-        if (playing === index) {
-          stop()
+        if (timers[index]) {
+          stop(index)
           return
         }
 
-        stop()
-        show(index, 0)
+        // A paused example resumes. A completed example starts over.
+        if (positions[index] === count) {
+          positions[index] = 0
+          show(index, 0)
+        }
+
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          positions[index] = count
           show(index, count)
           return
         }
 
-        playing = index
         panel.button.textContent = "Pause this example"
-        let step = 0
-        timer = window.setInterval(() => {
-          step++
-          show(index, step)
-          if (step >= count) {
-            stop()
-          } else {
-            panel.button.textContent = "Pause this example"
-          }
+        timers[index] = window.setInterval(() => {
+          positions[index]++
+          show(index, positions[index])
+          if (positions[index] === count) stop(index)
         }, 650)
       })
     })
