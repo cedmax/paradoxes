@@ -1,0 +1,76 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+
+const stages = [
+  {
+    title: "Before",
+    after: false,
+    groups: [
+      { name: "R", numbers: [1, 2, 3, 4], average: "2.5" },
+      { name: "S", numbers: [5, 6, 7, 8, 9], average: "7" },
+    ],
+  },
+  {
+    title: "After",
+    after: true,
+    groups: [
+      { name: "R", numbers: [1, 2, 3, 4, 5], average: "3" },
+      { name: "S", numbers: [6, 7, 8, 9], average: "7.5" },
+    ],
+  },
+]
+---
+
+<IllustrationFigure lead="Move one number. Both group averages rise.">
+  {stages.map((stage, index) => (
+    <>
+      {index === 1 && (
+        <p class="flex items-center justify-center gap-2 text-base font-bold">
+          <span aria-hidden="true">↓</span>
+          Move the 5 from S to R
+        </p>
+      )}
+      <Panel title={stage.title}>
+        <div class="mt-3 flex flex-col gap-3">
+          {stage.groups.map((group) => (
+            <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <strong class="mr-1 w-4">{group.name}</strong>
+                {group.numbers.map((number) => (
+                  <span
+                    class:list={[
+                      "inline-flex size-8 items-center justify-center text-base",
+                      number === 5
+                        ? "border-2 border-series-gold bg-series-gold/20 font-bold"
+                        : "border border-ink",
+                    ]}
+                  >
+                    {number}
+                  </span>
+                ))}
+              </div>
+              <span class="whitespace-nowrap text-base">
+                Average:{" "}
+                <strong>
+                  {group.average}
+                  {stage.after ? " ↑" : ""}
+                </strong>
+              </span>
+            </div>
+          ))}
+        </div>
+      </Panel>
+    </>
+  ))}
+
+  <p class="text-base">
+    <strong>All nine numbers together: average 5 → 5.</strong> None of the numbers changed.
+  </p>
+
+  <Fragment slot="caption">
+    Five is above R's old average of 2.5, so adding it raises R's average to 3. Five is below
+    S's old average of 7, so removing it raises S's average to 7.5. Both group averages rise,
+    but the average of all nine stays the same because the nine numbers have not changed.
+  </Fragment>
+</IllustrationFigure>
