@@ -37,7 +37,17 @@ import { series, stroke } from "~/data/palette"
       stroke-width="1.5"
       opacity=".55"
     />
-    <g id="achilles-ticks" aria-hidden="true"></g>
+    <defs>
+      <clipPath id="achilles-ticks-reveal-clip">
+        <rect id="achilles-ticks-reveal" x="555" y="125" width="0" height="14" />
+      </clipPath>
+    </defs>
+    <g id="achilles-previous-ticks" aria-hidden="true"></g>
+    <g
+      id="achilles-ticks"
+      clip-path="url(#achilles-ticks-reveal-clip)"
+      aria-hidden="true"
+    ></g>
     <line
       id="achilles-gap-line"
       x1="90"
@@ -123,6 +133,8 @@ import { series, stroke } from "~/data/palette"
     const tortoiseMarker = find<SVGGElement>(root, "#achilles-tortoise-marker")
     const gapLine = find<SVGLineElement>(root, "#achilles-gap-line")
     const ticksGroup = find<SVGGElement>(root, "#achilles-ticks")
+    const previousTicksGroup = find<SVGGElement>(root, "#achilles-previous-ticks")
+    const ticksReveal = find<SVGRectElement>(root, "#achilles-ticks-reveal")
     const gapLabel = find<SVGTextElement>(root, "#achilles-gap-label")
     const zoomLabel = find<HTMLElement>(root, "#achilles-zoom-label")
     const status = find<HTMLElement>(root, "#achilles-status")
@@ -146,16 +158,19 @@ import { series, stroke } from "~/data/palette"
         : { width: 600, left: 45, right: 555, tortoiseX: 510, pixelsPerMetre: 4.2 }
 
     const svgNS = "http://www.w3.org/2000/svg"
-    const ticks = Array.from({ length: 26 }, () => {
-      const line = document.createElementNS(svgNS, "line")
-      line.setAttribute("y1", "126")
-      line.setAttribute("y2", "138")
-      line.setAttribute("stroke", "var(--color-stroke)")
-      line.setAttribute("stroke-width", "1")
-      line.setAttribute("opacity", ".4")
-      ticksGroup.append(line)
-      return line
-    })
+    const createTicks = (group: SVGGElement) =>
+      Array.from({ length: 26 }, () => {
+        const line = document.createElementNS(svgNS, "line")
+        line.setAttribute("y1", "126")
+        line.setAttribute("y2", "138")
+        line.setAttribute("stroke", "var(--color-stroke)")
+        line.setAttribute("stroke-width", "1")
+        line.setAttribute("opacity", ".4")
+        group.append(line)
+        return line
+      })
+    const ticks = createTicks(ticksGroup)
+    const previousTicks = createTicks(previousTicksGroup)
 
     let elapsed = 0
     let frame: number | null = null
@@ -234,16 +249,42 @@ import { series, stroke } from "~/data/palette"
       gapLine.setAttribute("x1", String(ax))
       gapLine.setAttribute("x2", String(tx))
 
-      // Ruler marks use world-space positions through the same camera.
-      const visibleWorldWidth = (viewport.right - viewport.left) / scale
-      const interval = 10 ** Math.floor(Math.log10(visibleWorldWidth / 10))
-      const leftWorld = t - (viewport.tortoiseX - viewport.left) / scale
-      const firstTick = Math.ceil(leftWorld / interval) * interval
-      for (let i = 0; i < ticks.length; i++) {
-        const x = screenX(firstTick + i * interval)
-        ticks[i].setAttribute("x1", String(x))
-        ticks[i].setAttribute("x2", String(x))
-        ticks[i].setAttribute("opacity", x < viewport.left || x > viewport.right ? "0" : ".4")
+      // Ground marks stay attached to fixed world positions. At each zoom,
+      // old marks recede while finer divisions reveal from RIGHT to LEFT.
+      const tickInterval = (atScale: number) => {
+        const worldWidth = (viewport.right - viewport.left) / atScale
+        return 10 ** Math.floor(Math.log10(worldWidth / 10))
+      }
+      const placeTicks = (lines: SVGLineElement[], interval: number) => {
+        const rightWorld = t + (viewport.right - viewport.tortoiseX) / scale
+        const rightmostTick = Math.floor(rightWorld / interval) * interval
+        for (let i = 0; i < lines.length; i++) {
+          const x = screenX(rightmostTick - i * interval)
+          lines[i].setAttribute("x1", String(x))
+          lines[i].setAttribute("x2", String(x))
+          lines[i].setAttribute(
+            "opacity",
+            x < viewport.left || x > viewport.right ? "0" : ".4"
+          )
+        }
+      }
+      const marksAtScale =
+        view.mode === "zoom" ? viewport.pixelsPerMetre * 10 ** (stage + 1) : scale
+      placeTicks(ticks, tickInterval(marksAtScale))
+      const reveal =
+        view.mode === "zoom"
+          ? smooth(view.progress)
+          : stage === 0
+            ? Math.min(1, view.progress * 5)
+            : 1
+      const trackWidth = viewport.right - viewport.left
+      ticksReveal.setAttribute("x", String(viewport.right - trackWidth * reveal))
+      ticksReveal.setAttribute("width", String(trackWidth * reveal))
+      if (view.mode === "zoom") {
+        placeTicks(previousTicks, tickInterval(viewport.pixelsPerMetre * 10 ** stage))
+        previousTicksGroup.setAttribute("opacity", String(1 - reveal))
+      } else {
+        previousTicksGroup.setAttribute("opacity", "0")
       }
 
       // Keep the distance text stationary above the tortoise end of the gap line.
