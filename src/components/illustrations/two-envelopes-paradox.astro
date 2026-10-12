@@ -175,15 +175,12 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
   <div id="two-envelopes-conclusion" class="flex flex-col gap-4" hidden>
     <p class="text-base leading-normal">
-      If you assume both outcomes have a 50% chance, half of the £20 gain gives +£10 on average,
-      and half of the £10 loss gives −£5.
+      Here is where the apparent advantage comes from, <strong>if both chances are 50%</strong>:
     </p>
-    <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-ink pt-3">
-      <span class="mono-label">+£10 − £5 =</span>
-      <strong class="display text-3xl">+£5</strong>
-      <span class="text-base">
-        Apparent average gain from swapping, but only with those assumed odds.
-      </span>
+    <div class="flex flex-col gap-2 border-t border-ink pt-3 text-base leading-normal">
+      <p>50% chance of gaining £20 = <strong>+£10 on average.</strong></p>
+      <p>50% chance of losing £10 = <strong>−£5 on average.</strong></p>
+      <p class="font-bold">Add them together: +£5.</p>
     </div>
     <Callout tone="accent">
       <strong>The paradox:</strong> before opening there was no reason to swap. Now the same
@@ -195,18 +192,68 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
     </p>
   </div>
 
+  <div id="two-envelopes-why-not-half" class="flex flex-col gap-4" hidden>
+    <Callout tone="ink">
+      <strong>Is it actually 50/50?</strong> It can be, but that is not guaranteed. Your £20
+      could come from a pair holding £10 and £20, or one holding £20 and £40. Only one of these
+      pairs is prepared for each game.
+    </Callout>
+
+    <p class="text-base leading-normal">
+      Imagine the organiser chooses a pair first, then you pick one of its two envelopes at
+      random. Because each pair contains one £20 envelope, seeing £20 does not tell you how
+      often either pair was prepared.
+    </p>
+
+    <div class="flex flex-col gap-2">
+      <p class="font-bold">If both pairs are prepared equally often:</p>
+      <div class="flex h-5 overflow-hidden border border-ink" aria-hidden="true">
+        <div class="w-1/2 bg-series-red"></div>
+        <div class="w-1/2 bg-series-green"></div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 text-sm">
+        <p>Other envelope £10: 50%</p>
+        <p>Other envelope £40: 50%</p>
+      </div>
+      <p class="text-base">The assumed +£5 average does apply after seeing £20.</p>
+    </div>
+
+    <div class="flex flex-col gap-2 border-t border-ink pt-3">
+      <p class="font-bold">
+        But what if £10/£20 pairs are prepared three times as often as £20/£40 pairs?
+      </p>
+      <div class="flex h-5 overflow-hidden border border-ink" aria-hidden="true">
+        <div class="w-3/4 bg-series-red"></div>
+        <div class="w-1/4 bg-series-green"></div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 text-sm">
+        <p>Other envelope £10: 75%</p>
+        <p>Other envelope £40: 25%</p>
+      </div>
+      <p class="text-base leading-normal">
+        Now swapping loses £10 three times in four and gains £20 once in four.
+        The average is <strong>−£2.50</strong>, not +£5.
+      </p>
+    </div>
+
+    <p class="text-base leading-normal">
+      The money in your envelope is still £20 in both examples. What changed was how the
+      envelopes were filled, not what you saw.
+    </p>
+  </div>
+
   <button
     id="two-envelopes-next"
     type="button"
     class="btn-ghost self-start"
-    aria-controls="two-envelopes-possibilities two-envelopes-conclusion"
+    aria-controls="two-envelopes-possibilities two-envelopes-conclusion two-envelopes-why-not-half"
   >
     Open your envelope
   </button>
 
   <Fragment slot="caption">
-    The key change is the assumed odds, not the act of opening an envelope. A 50/50 chance of
-    double or half cannot hold for every amount.
+    At £20, double and half might each have a 50% chance, but only under some ways of filling
+    the envelopes. No proper way of choosing amounts makes those odds 50/50 for every amount.
   </Fragment>
 </IllustrationFigure>
 
@@ -222,6 +269,7 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
     const note = find<SVGGElement>(root, "#two-envelopes-note")
     const possibilities = find<HTMLElement>(root, "#two-envelopes-possibilities")
     const conclusion = find<HTMLElement>(root, "#two-envelopes-conclusion")
+    const whyNotHalf = find<HTMLElement>(root, "#two-envelopes-why-not-half")
     const lossBar = find<HTMLElement>(root, "#two-envelopes-loss-bar")
     const gainBar = find<HTMLElement>(root, "#two-envelopes-gain-bar")
     const lossOdds = find<HTMLElement>(root, "#two-envelopes-loss-odds")
@@ -241,10 +289,11 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
       note.classList.toggle("opacity-100", opened)
 
       possibilities.hidden = !opened
-      conclusion.hidden = step !== 2
-      lossOdds.hidden = step !== 2
-      gainOdds.hidden = step !== 2
-      noOdds.hidden = step === 2
+      conclusion.hidden = step < 2
+      whyNotHalf.hidden = step !== 3
+      lossOdds.hidden = step < 2
+      gainOdds.hidden = step < 2
+      noOdds.hidden = step >= 2
 
       if (opened) {
         requestAnimationFrame(() => {
@@ -268,13 +317,17 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
         instruction.textContent =
           "Your envelope contains £20. The other is still sealed. Compare the two possible gains and losses."
         button.textContent = "Assume both outcomes are 50/50"
-      } else {
+      } else if (step === 2) {
         instruction.textContent =
           "Now assume each possible amount in the other envelope has a 50% chance. The answer seems to change."
+        button.textContent = "Are those odds really 50/50?"
+      } else {
+        instruction.textContent =
+          "The two possibilities need not have equal chances. Compare how the envelopes might have been filled."
         button.textContent = "Start again"
       }
     }
 
-    button.addEventListener("click", () => show((step + 1) % 3))
+    button.addEventListener("click", () => show((step + 1) % 4))
   }
 </script>
