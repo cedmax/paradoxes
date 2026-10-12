@@ -1,88 +1,60 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
-import Panel from "~/components/illustration-kit/Panel.astro"
+
+const groupsOfTen = Array.from({ length: 5 })
+const extraTailsWakings = Array.from({ length: 5 })
 ---
 
 <IllustrationFigure
   name="sleeping-beauty"
-  lead="The coin is fair. But the two outcomes do not produce the same number of wakings."
+  lead="The same coin tosses, counted two different ways."
 >
-  <button
-    id="sleeping-beauty-view-toggle"
-    type="button"
-    class="btn-toggle self-start"
-    aria-pressed="false"
-    aria-controls="sleeping-beauty-outside sleeping-beauty-inside"
-  >
-    See what Beauty knows
-  </button>
+  <p class="text-base">
+    Imagine 100 fair coin tosses happen to give 50 heads and 50 tails. Heads produces one
+    waking; tails produces two.
+  </p>
 
-  <div id="sleeping-beauty-outside" class="flex flex-col gap-4">
-    <p class="text-base font-bold">From outside, both outcomes are clear.</p>
-    <div class="grid gap-4 sm:grid-cols-2">
-      <Panel accent="blue" title="Heads · 1 in 2 tosses">
-        <p class="text-base">One waking</p>
-        <div class="mt-3 bg-series-blue/10 p-3 text-center">
-          <strong>Monday</strong>
-          <p class="text-base">I'm awake.</p>
-        </div>
-      </Panel>
-      <Panel accent="red" title="Tails · 1 in 2 tosses">
-        <p class="text-base">Two wakings</p>
-        <div class="mt-3 flex flex-col gap-2">
-          <div class="bg-series-red/10 p-3 text-center">
-            <strong>Monday</strong>
-            <p class="text-base">I'm awake.</p>
-          </div>
-          <div class="bg-series-red/10 p-3 text-center">
-            <strong>Tuesday</strong>
-            <p class="text-base">I'm awake.</p>
-          </div>
-        </div>
-      </Panel>
+  <div class="flex flex-wrap gap-x-5 gap-y-2 text-base">
+    <span class="inline-flex items-center gap-2">
+      <span class="size-4 bg-series-blue" aria-hidden="true"></span>
+      Heads
+    </span>
+    <span class="inline-flex items-center gap-2">
+      <span class="size-4 bg-series-red" aria-hidden="true"></span>
+      Tails
+    </span>
+  </div>
+
+  <div class="flex flex-col gap-3">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 text-base">
+      <strong>100 coin tosses</strong>
+      <span>50 heads + 50 tails</span>
     </div>
-    <p class="text-base">
-      Heads and tails are equally likely, but tails creates an extra waking.
-    </p>
+    <div class="grid grid-cols-15 gap-1" aria-hidden="true">
+      {groupsOfTen.map(() => <span class="h-9 bg-series-blue"></span>)}
+      {groupsOfTen.map(() => <span class="h-9 bg-series-red"></span>)}
+    </div>
   </div>
 
-  <div id="sleeping-beauty-inside" class="flex flex-col gap-4" hidden>
-    <p class="text-base font-bold">Now you are Sleeping Beauty, just waking up.</p>
-    <Panel class="mx-auto w-full max-w-sm">
-      <p class="py-5 text-center text-2xl font-bold">I'm awake.</p>
-      <p class="text-center text-base">I don't know which day it is, or how the coin landed.</p>
-    </Panel>
-    <p class="text-base">
-      All three wakings would feel exactly like this. You know the rules, including that tails
-      would create an extra waking. But you cannot tell which waking this is.
-    </p>
-    <p class="text-base font-bold">
-      Should you still give heads one chance in two, or now one chance in three?
-    </p>
+  <div class="flex flex-col gap-3">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 text-base">
+      <strong>150 wakings</strong>
+      <span>50 after heads + 100 after tails</span>
+    </div>
+    <div class="grid grid-cols-15 gap-1" aria-hidden="true">
+      {groupsOfTen.map(() => <span class="h-9 bg-series-blue"></span>)}
+      {groupsOfTen.map(() => <span class="h-9 bg-series-red"></span>)}
+      {extraTailsWakings.map(() => <span class="h-9 bg-series-red"></span>)}
+    </div>
   </div>
+
+  <p class="text-base font-bold">
+    Heads: 1 in 2 tosses, but 1 in 3 wakings.
+  </p>
 
   <Fragment slot="caption">
-    Halfers say waking reveals nothing new about the coin, so the answer stays at one half.
-    Thirders say the indistinguishable wakings support one third. Both know the same rules. They
-    disagree about what those rules mean for Beauty's belief when she wakes.
+    Each square stands for ten tosses or ten wakings. Both counts are correct. The dispute
+    is whether the share of wakings should determine Sleeping Beauty's belief when she
+    wakes. Halfers say one half; thirders say one third.
   </Fragment>
 </IllustrationFigure>
-
-<script>
-  import { find, illustrationRoot } from "~/scripts/illustration"
-
-  const root = illustrationRoot("sleeping-beauty")
-  if (root) {
-    const button = find<HTMLButtonElement>(root, "#sleeping-beauty-view-toggle")
-    const outside = find<HTMLElement>(root, "#sleeping-beauty-outside")
-    const inside = find<HTMLElement>(root, "#sleeping-beauty-inside")
-
-    button.addEventListener("click", () => {
-      const beautyView = button.getAttribute("aria-pressed") !== "true"
-      button.setAttribute("aria-pressed", String(beautyView))
-      button.textContent = beautyView ? "Show outside view" : "See what Beauty knows"
-      outside.hidden = beautyView
-      inside.hidden = !beautyView
-    })
-  }
-</script>
