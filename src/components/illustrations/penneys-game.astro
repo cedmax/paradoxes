@@ -1,12 +1,52 @@
 ---
-const examples=[
-{first:"HHH",second:"THH",chance:"7 in 8"},
-{first:"HHT",second:"THH",chance:"3 in 4"},
-{first:"HTH",second:"HHT",chance:"2 in 3"},
-]
+import Callout from "~/components/illustration-kit/Callout.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+
+const tosses = ["T", "H", "H", "H"]
 ---
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">A run can be more likely to appear first, even though every three-toss run has probability 1 in 8.</p>
-<table class="w-full text-base"><thead><tr class="border-b-2 border-ink"><th class="p-2 text-left">First picks</th><th class="p-2 text-left">Second counters</th><th class="p-2 text-right">Second wins</th></tr></thead><tbody>{examples.map(x=><tr class="border-b border-ink last:border-0"><td class="p-2 font-bold">{x.first}</td><td class="p-2 font-bold">{x.second}</td><td class="p-2 text-right">{x.chance}</td></tr>)}</tbody></table>
-<div class="border-l-4 border-accent pl-4 text-base"><p class="font-bold">Make the counter:</p><p>Flip the first player’s middle toss, then add their first two tosses.</p><p>Example: HHT → THH.</p></div>
-<figcaption class="text-base leading-normal">H is heads and T is tails. The game keeps tossing until one chosen run of three appears. Earlier tosses overlap later ones, so the first run to appear is not a race between independent blocks of three tosses.</figcaption></figure>
+
+<IllustrationFigure
+  lead="Why can THH beat HHH when both patterns are equally likely in three tosses?"
+>
+  <p class="text-base leading-normal">
+    The first player picks <strong>HHH</strong>. The second picks <strong>THH</strong>.
+    H means heads and T means tails. Consider these four consecutive tosses.
+  </p>
+
+  <div class="flex flex-col gap-3">
+    <div class="grid grid-cols-4 gap-2 text-center sm:gap-3">
+      {tosses.map((toss, index) => (
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-sm">Toss {index + 1}</span>
+          <span class="flex h-11 w-11 items-center justify-center rounded-full border-2 border-ink text-lg font-bold">
+            {toss}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <div class="grid grid-cols-4 gap-2 sm:gap-3">
+      <div class="col-span-3 border-t-4 border-series-blue pt-2 text-base font-bold">
+        THH: wins at toss 3
+      </div>
+    </div>
+    <div class="grid grid-cols-4 gap-2 sm:gap-3">
+      <div class="col-span-3 col-start-2 border-t-4 border-series-red pt-2 text-base font-bold">
+        HHH: too late at toss 4
+      </div>
+    </div>
+  </div>
+
+  <Callout tone="accent">
+    <p class="leading-normal">
+      <strong>Why THH wins 7 times in 8:</strong> HHH can win only if the first three tosses
+      are HHH, a 1 in 8 chance. Otherwise, the first eventual HHH must follow a tail,
+      making THH appear one toss earlier.
+    </p>
+  </Callout>
+
+  <Fragment slot="caption">
+    The patterns overlap. Each has a 1 in 8 chance in any fixed group of three tosses,
+    but that does not give them equal chances of appearing first.
+  </Fragment>
+</IllustrationFigure>
