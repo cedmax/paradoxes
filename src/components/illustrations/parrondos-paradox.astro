@@ -1,0 +1,276 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+type Play = { game: "A" | "B"; change: 1 | -1 }
+type Example = {
+  id: string
+  name: string
+  accent: "blue" | "gold" | "ink"
+  average: string
+  games: Play[]
+}
+const examples: Example[] = [
+  {
+    id: "a",
+    name: "Game A alone",
+    accent: "blue",
+    average: "Loses 1.00p per play on average",
+    games: [-1, 1, -1, -1, 1, -1, -1, 1, -1, 1, -1, -1].map((change) => ({
+      game: "A" as const,
+      change: change as 1 | -1,
+    })),
+  },
+  {
+    id: "b",
+    name: "Game B alone",
+    accent: "gold",
+    average: "Loses about 0.87p per play on average",
+    games: [-1, 1, -1, -1, -1, -1, 1, -1, 1, -1, 1, -1].map((change) => ({
+      game: "B" as const,
+      change: change as 1 | -1,
+    })),
+  },
+  {
+    id: "aabb",
+    name: "AABB repeated",
+    accent: "ink",
+    average: "Wins about 1.47p per play on average",
+    games: [-1, -1, 1, 1, 1, -1, -1, 1, 1, 1, 1, -1].map((change, index) => ({
+      game: index % 4 < 2 ? ("A" as const) : ("B" as const),
+      change: change as 1 | -1,
+    })),
+  },
+]
+
+const startingMoney = 30
+const results = examples.map((example) => {
+  const balances = [startingMoney]
+  const plays = example.games.map((play, index) => {
+    const before = balances[index]
+    const coin = play.game === "A" ? "A" : before % 3 === 0 ? "bad" : "good"
+    const after = before + play.change
+    balances.push(after)
+    return {
+      ...play,
+      coin,
+      before,
+      after,
+      label: play.game === "A" ? "A" : coin === "bad" ? "B: bad" : "B: good",
+      sentence:
+        (play.game === "A"
+          ? "Game A (49.5% chance to win)"
+          : coin === "bad"
+            ? "Game B uses the bad coin (9.5% chance to win)"
+            : "Game B uses the good coin (74.5% chance to win)") +
+        (play.change > 0 ? ". Win £1: " : ". Lose £1: ") +
+        "£" +
+        before +
+        " → £" +
+        after +
+        ".",
+    }
+  })
+  return { ...example, balances, plays }
+})
+const width = 292
+const height = 156
+const x = (step: number) => 26 + step * 21
+const y = (balance: number) => 78 - (balance - startingMoney) * 16
+const animateData = results.map((run) => ({
+  id: run.id,
+  readouts: run.plays.map((play) => play.sentence),
+  ending: "Example ends on £" + run.balances.at(-1) + ".",
+}))
+---
+
+<IllustrationFigure name="parrondos-paradox" lead="Two losing games. One winning combination.">
+  <p class="text-base">
+    All three examples start with £30. Each play wins or loses £1. Game A uses the same coin
+    every time. Game B uses a bad coin when the money is a multiple of three, and a good coin
+    otherwise.
+  </p>
+
+  <p class="text-base">
+    Blue lines show Game A and yellow lines show Game B. Green boxes show wins, red boxes show
+    losses.
+  </p>
+
+  <div
+    id="parrondos-examples"
+    data-runs={JSON.stringify(animateData)}
+    class="flex flex-col gap-4"
+  >
+    <div class="grid gap-4 lg:grid-cols-3">
+      {results.map((run) => (
+        <Panel title={run.name} accent={run.accent} class="flex min-w-0 flex-col gap-3">
+          <button type="button" data-parrondos-play={run.id} class="btn-ghost w-full">
+            Play
+          </button>
+          <SvgFigure
+            name={"parrondos-chart-" + run.id}
+            class="w-full"
+            viewBox={"0 0 " + width + " " + height}
+            title={run.name + ": balance over twelve plays"}
+            desc={
+              "A graph showing the change in money from £30 across twelve example plays of " +
+              run.name +
+              ". The line is revealed one play at a time."
+            }
+          >
+            <line x1="26" y1="14" x2="26" y2="148" stroke={stroke} stroke-opacity="0.3" />
+            <line
+              x1="26"
+              y1={y(startingMoney)}
+              x2="278"
+              y2={y(startingMoney)}
+              stroke={stroke}
+              stroke-opacity="0.6"
+            />
+            <text x="1" y={y(34) + 5} font-size="12" fill={stroke}>
+              +£4
+            </text>
+            <text x="1" y={y(30) + 4} font-size="12" fill={stroke}>
+              £0
+            </text>
+            <text x="1" y={y(26) + 4} font-size="12" fill={stroke}>
+              −£4
+            </text>
+            {run.plays.map((play, index) => (
+              <g>
+                <line
+                  data-parrondos-line={run.id}
+                  x1={x(index)}
+                  y1={y(run.balances[index])}
+                  x2={x(index + 1)}
+                  y2={y(play.after)}
+                  stroke={play.game === "A" ? series.blue : series.gold}
+                  stroke-width="3.5"
+                  stroke-linecap="round"
+                  opacity="0"
+                />
+                <circle
+                  data-parrondos-point={run.id}
+                  cx={x(index + 1)}
+                  cy={y(play.after)}
+                  r="4"
+                  fill={play.game === "A" ? series.blue : series.gold}
+                  opacity="0"
+                />
+              </g>
+            ))}
+            <circle cx={x(0)} cy={y(startingMoney)} r="4" fill={stroke} />
+          </SvgFigure>
+
+          <div class="flex flex-wrap gap-1.5" aria-label="Twelve plays">
+            {run.plays.map((play, index) => (
+              <span
+                data-parrondos-chip={run.id}
+                class:list={[
+                  "border px-1.5 py-1 text-xs font-bold",
+                  play.change > 0
+                    ? "border-series-green bg-series-green/10"
+                    : "border-series-red bg-series-red/10",
+                ]}
+                style="opacity: 0.3"
+              >
+                {index + 1}. {play.label} {play.change > 0 ? "+£1" : "−£1"}
+              </span>
+            ))}
+          </div>
+
+          <p id={"parrondos-readout-" + run.id} class="text-base" aria-live="polite">
+            Start at £30.
+          </p>
+          <p id={"parrondos-end-" + run.id} class="text-base" hidden></p>
+          <p class="font-bold">{run.average}.</p>
+        </Panel>
+      ))}
+    </div>
+  </div>
+
+  <Fragment slot="caption">
+    These are fixed example runs, not proof that every twelve plays will end this way. The
+    averages below each graph are calculated over many plays. Blue and yellow lines identify the
+    game, while green and red boxes show wins and losses. Game A can change the amount of money
+    before Game B, making B more likely to use its good coin when the games are mixed.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  type Run = { id: string; readouts: string[]; ending: string }
+  const root = illustrationRoot("parrondos-paradox")
+  if (root) {
+    const stage = find<HTMLElement>(root, "#parrondos-examples")
+    const runs = JSON.parse(stage.dataset.runs || "[]") as Run[]
+    const count = runs[0]?.readouts.length ?? 0
+    const timers = [0, 0, 0]
+    const positions = [0, 0, 0]
+
+    const panels = runs.map((run) => ({
+      button: find<HTMLButtonElement>(root, '[data-parrondos-play="' + run.id + '"]'),
+      readout: find<HTMLElement>(root, "#parrondos-readout-" + run.id),
+      ending: find<HTMLElement>(root, "#parrondos-end-" + run.id),
+      lines: Array.from(
+        root.querySelectorAll<SVGLineElement>('[data-parrondos-line="' + run.id + '"]'),
+      ),
+      points: Array.from(
+        root.querySelectorAll<SVGCircleElement>('[data-parrondos-point="' + run.id + '"]'),
+      ),
+      chips: Array.from(
+        root.querySelectorAll<HTMLElement>('[data-parrondos-chip="' + run.id + '"]'),
+      ),
+    }))
+
+    const show = (index: number, step: number) => {
+      const panel = panels[index]
+      panel.lines.forEach((line, j) => line.setAttribute("opacity", j < step ? "1" : "0"))
+      panel.points.forEach((point, j) => point.setAttribute("opacity", j < step ? "1" : "0"))
+      panel.chips.forEach((chip, j) => {
+        chip.style.opacity = j === step - 1 ? "1" : j < step ? "0.65" : "0.3"
+      })
+      panel.readout.textContent = step === 0 ? "Start at £30." : runs[index].readouts[step - 1]
+      panel.ending.hidden = step !== count
+      panel.ending.textContent = runs[index].ending
+    }
+
+    const stop = (index: number) => {
+      if (timers[index]) window.clearInterval(timers[index])
+      timers[index] = 0
+      panels[index].button.textContent = "Play"
+    }
+
+    panels.forEach((panel, index) => {
+      show(index, 0)
+      panel.button.addEventListener("click", () => {
+        if (timers[index]) {
+          stop(index)
+          return
+        }
+
+        // A paused example resumes. A completed example starts over.
+        if (positions[index] === count) {
+          positions[index] = 0
+          show(index, 0)
+        }
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          positions[index] = count
+          show(index, count)
+          return
+        }
+
+        panel.button.textContent = "Pause"
+        timers[index] = window.setInterval(() => {
+          positions[index]++
+          show(index, positions[index])
+          if (positions[index] === count) stop(index)
+        }, 650)
+      })
+    })
+  }
+</script>
