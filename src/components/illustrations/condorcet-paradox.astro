@@ -20,6 +20,8 @@ const comparisons = [
   name="condorcet-paradox"
   lead="Every voter has a consistent ranking. But what happens when they vote in pairs?"
 >
+  <p>A, B and C are three restaurants. Voters 1, 2 and 3 rank them.</p>
+
   <div role="group" aria-label="Choose which pair to compare" class="grid grid-cols-3 gap-2">
     {comparisons.map(({ left, right }, i) => (
       <button
@@ -38,7 +40,7 @@ const comparisons = [
     name="condorcet-majorities"
     class="mx-auto w-full max-w-sm"
     viewBox="0 0 300 168"
-    title="The majority comparisons can form a cycle"
+    title="The majority choices between three restaurants can form a cycle"
     desc="A beats B, B beats C, and C beats A, each by two votes to one. Select each comparison to see its majority, then the complete cycle."
   >
     <defs>
@@ -80,7 +82,7 @@ const comparisons = [
   </p>
 
   <ComparisonTable
-    caption="How each voter ranks the options"
+    caption="How voters 1, 2 and 3 rank the restaurants"
     columns={["Voter", "First", "Second", "Third"]}
     rows={rankings}
     align="center"
