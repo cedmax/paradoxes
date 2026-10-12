@@ -1,0 +1,61 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+---
+
+<IllustrationFigure
+  name="newcombs-paradox"
+  lead="The money is already in place. Which boxes should you take?"
+>
+  <SvgFigure
+    name="newcomb-boxes"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 360 186"
+    title="An open box and a closed box"
+    desc="Box A is open and always contains $1,000. Box B is closed and already contains either $1,000,000 or nothing, based on an earlier prediction of your choice."
+  >
+    <g fill="currentColor" text-anchor="middle" font-size="16" font-weight="bold">
+      <text x="94" y="24">Box A · open</text>
+      <text x="266" y="24">Box B · closed</text>
+    </g>
+    <g fill="none" stroke="var(--color-stroke)" stroke-width="2.5" stroke-linejoin="round">
+      <path d="M30 66 V144 H158 V66" />
+      <path d="M30 66 L13 51 M158 66 L175 51" />
+      <rect x="202" y="51" width="128" height="93" />
+      <path d="M202 68 H330" />
+    </g>
+    <g fill="currentColor" text-anchor="middle" font-weight="bold">
+      <text x="94" y="114" font-size="23">$1,000</text>
+      <text x="266" y="116" font-size="29">?</text>
+    </g>
+    <g fill="currentColor" text-anchor="middle" font-size="14">
+      <text x="94" y="171">Always there</text>
+      <text x="266" y="171">$0 or $1 million</text>
+    </g>
+  </SvgFigure>
+
+  <p>
+    A near-perfect predictor put $1 million in B if it expected you to take B alone,
+    and nothing if it expected you to take both. It made its prediction before you chose.
+  </p>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <Panel accent="blue" title="Take both boxes">
+      <p>
+        Whatever is in B, taking A too gets you an extra $1,000.
+      </p>
+    </Panel>
+    <Panel accent="green" title="Take only Box B">
+      <p>
+        The predictor is almost always right. People who take only B almost always
+        find $1 million inside.
+      </p>
+    </Panel>
+  </div>
+
+  <Fragment slot="caption">
+    Taking both is better for either fixed content. Taking only B is usually linked
+    to getting the million. Which argument should you follow?
+  </Fragment>
+</IllustrationFigure>
