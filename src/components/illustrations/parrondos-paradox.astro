@@ -103,11 +103,7 @@ const animateData = results.map((run) => ({
     <div class="grid gap-4 lg:grid-cols-3">
       {results.map((run) => (
         <Panel title={run.name} accent={run.accent} class="flex min-w-0 flex-col gap-3">
-          <button
-            type="button"
-            data-parrondos-play={run.id}
-            class="btn-ghost w-full"
-          >
+          <button type="button" data-parrondos-play={run.id} class="btn-ghost w-full">
             Play this example
           </button>
           <SvgFigure
