@@ -73,7 +73,7 @@ const decisions = [{ x: 110 }, { x: 150 }, { x: 190 }, { x: 230 }]
     <text x="20" y="218" font-size="16" font-weight="600" fill="currentColor">
       Memory
     </text>
-    {decisions.map(({ x }, index) => (
+    {decisions.map(({ x }) => (
       <g>
         <rect
           data-maxwell-memory-slot
@@ -94,7 +94,7 @@ const decisions = [{ x: 110 }, { x: 150 }, { x: 190 }, { x: 230 }]
           font-weight="600"
           fill="currentColor"
         >
-          {index === 0 ? "–" : "–"}
+          –
         </text>
       </g>
     ))}
@@ -259,6 +259,7 @@ const decisions = [{ x: 110 }, { x: 150 }, { x: 190 }, { x: 230 }]
       await moveTo(particle.circle, particle.endX, particle.endY, speed)
       shutter.setAttribute("opacity", "1")
       record(index)
+      decisionLabel.textContent = `${leftToRight ? "Fast" : "Slow"} molecule crossed ${direction}. Gate closed.`
       explanation.textContent = `The molecule crossed. Memory now holds its decision: ${leftToRight ? "fast → right" : "slow → left"}.`
     }
 
