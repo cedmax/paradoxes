@@ -39,12 +39,11 @@ const draws = [
     ))}
 
     <p class="text-sm font-bold leading-tight sm:text-base">Other coin</p>
-    {draws.map(({ box, other }) => (
+    {draws.map(({ other }) => (
       <div class="flex justify-center">
         <span
           data-bertrand-other
           data-metal={other}
-          data-box={box}
           class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-dashed border-ink bg-paper text-lg font-bold sm:h-12 sm:w-12"
           role="img"
           aria-label="Other coin not yet revealed"
@@ -66,10 +65,12 @@ const draws = [
   </button>
 
   <div id="bertrand-result" class="space-y-2 border-t-2 border-ink pt-3" hidden>
-    <p class="text-2xl font-bold">The other coin is gold in 2 of the 3 cases.</p>
+    <div class="flex items-center gap-4">
+      <p class="text-4xl font-bold">2/3</p>
+      <p class="text-base font-bold leading-tight">Chance the other coin is gold</p>
+    </div>
     <p class="text-base leading-normal">
-      Both gold coins from Box 1 leave another gold coin behind. The gold coin from Box 2
-      leaves silver. So the chance of another gold coin is <strong>2/3</strong>.
+      Two of the three possible gold draws leave another gold coin. The third leaves silver.
     </p>
   </div>
 </IllustrationFigure>
@@ -90,7 +91,11 @@ const draws = [
         coin.textContent = revealed ? (gold ? "G" : "S") : "?"
         coin.setAttribute(
           "aria-label",
-          revealed ? (gold ? "Other coin is gold" : "Other coin is silver") : "Other coin not yet revealed",
+          revealed
+            ? gold
+              ? "Other coin is gold"
+              : "Other coin is silver"
+            : "Other coin not yet revealed",
         )
         coin.classList.toggle("bg-series-gold", revealed && gold)
         coin.classList.toggle("border-dashed", !revealed)
