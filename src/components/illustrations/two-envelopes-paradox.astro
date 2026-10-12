@@ -174,13 +174,16 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   </div>
 
   <div id="two-envelopes-conclusion" class="flex flex-col gap-4" hidden>
-    <p class="text-base">
-      Give each outcome a 50% chance: half of a £20 gain is £10, while half of a £10 loss is £5.
+    <p class="text-base leading-normal">
+      If you assume both outcomes have a 50% chance, half of the £20 gain gives +£10 on
+      average, and half of the £10 loss gives −£5.
     </p>
     <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-ink pt-3">
-      <span class="mono-label">After assuming 50/50</span>
+      <span class="mono-label">+£10 − £5 =</span>
       <strong class="display text-3xl">+£5</strong>
-      <span class="text-base">Apparent average gain from swapping</span>
+      <span class="text-base">
+        Apparent average gain from swapping, but only with those assumed odds.
+      </span>
     </div>
     <Callout tone="accent">
       <strong>The paradox:</strong> before opening there was no reason to swap. Now the same
