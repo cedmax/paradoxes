@@ -8,17 +8,19 @@ const boxes = [
   { name: "Box 3", coins: ["S", "S"], label: "Silver + silver" },
 ]
 
-const coinClass = (coin: string) =>
-  [
-    "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-ink font-bold text-xs sm:h-9 sm:w-9 sm:text-base",
-    coin === "G" ? "bg-series-gold" : "bg-paper",
-  ]
+const coinClass = (coin: string) => [
+  "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-ink font-bold text-xs sm:h-9 sm:w-9 sm:text-base",
+  coin === "G" ? "bg-series-gold" : "bg-paper",
+]
 ---
 
-<IllustrationFigure name="bertrands-box" lead="You drew a gold coin. What are the odds the other coin is gold?">
+<IllustrationFigure
+  name="bertrands-box"
+  lead="You drew a gold coin. What are the odds the other coin is gold?"
+>
   <p class="text-base leading-normal">
-    First choose one of three boxes at random. Then draw one of its two coins at random.
-    G means gold; S means silver.
+    First choose one of three boxes at random. Then draw one of its two coins at random. G means
+    gold; S means silver.
   </p>
   <div class="grid grid-cols-3 gap-2 sm:gap-3">
     {boxes.map((box) => (
@@ -29,7 +31,10 @@ const coinClass = (coin: string) =>
         </div>
         <div class="flex items-center justify-center gap-1 sm:gap-2" aria-label={box.label}>
           {box.coins.map((coin) => (
-            <span class:list={coinClass(coin)} aria-label={coin === "G" ? "Gold coin" : "Silver coin"}>
+            <span
+              class:list={coinClass(coin)}
+              aria-label={coin === "G" ? "Gold coin" : "Silver coin"}
+            >
               {coin}
             </span>
           ))}
@@ -55,7 +60,9 @@ const coinClass = (coin: string) =>
                   >
                     {drawn}
                   </span>
-                  <span class="text-sm" aria-hidden="true">→</span>
+                  <span class="text-sm" aria-hidden="true">
+                    →
+                  </span>
                   <span
                     class:list={coinClass(other)}
                     aria-label={other === "G" ? "Gold left" : "Silver left"}
@@ -82,13 +89,13 @@ const coinClass = (coin: string) =>
     <div class="border-l-4 border-series-green pl-4">
       <p class="text-3xl font-bold">2 out of 3</p>
       <p class="text-base leading-normal">
-        Two remaining draws came from the gold-gold box. In both, the other coin is gold.
-        The third came from the mixed box, leaving a silver coin.
+        Two remaining draws came from the gold-gold box. In both, the other coin is gold. The
+        third came from the mixed box, leaving a silver coin.
       </p>
     </div>
     <p class="text-base leading-normal">
-      Both boxes are possible, but not equally likely. The gold-gold box was twice as likely
-      to have produced the gold coin you saw.
+      Both boxes are possible, but not equally likely. The gold-gold box was twice as likely to
+      have produced the gold coin you saw.
     </p>
   </div>
   <Fragment slot="caption">
@@ -126,7 +133,11 @@ const coinClass = (coin: string) =>
         "Here are all six equally likely draws (each has a chance of 1 in 6). The first coin shown is the one drawn; the second is the one left.",
         "You saw gold, so the three silver draws fade away. Three possibilities remain: two leave gold behind, and one leaves silver.",
       ][step]
-      next.textContent = ["Show all six possible draws", "Keep only the gold draws", "Start again"][step]
+      next.textContent = [
+        "Show all six possible draws",
+        "Keep only the gold draws",
+        "Start again",
+      ][step]
     }
     next.addEventListener("click", () => {
       step = (step + 1) % 3
