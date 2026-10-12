@@ -1,0 +1,46 @@
+name: Validate remaining illustration drafts
+
+on:
+  push:
+    branches: [chore/one-off-format-illustrations]
+
+permissions:
+  contents: write
+
+jobs:
+  format-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Format and validate individual PR branches
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          while read -r branch slug; do
+            git fetch origin "$branch"
+            git checkout -B "$branch" "origin/$branch"
+            pnpm exec prettier --write "src/components/illustrations/$slug.astro"
+            if ! git diff --quiet; then
+              git add "src/components/illustrations/$slug.astro"
+              git commit -m "Format $slug illustration"
+              git push origin "HEAD:refs/heads/$branch"
+            fi
+            pnpm check
+            pnpm lint
+            pnpm exec prettier --check .
+            pnpm knip
+          done <<'BRANCHES'
+          illustration/hot-hand-selection-bias hot-hand
+          illustration/st-petersburg-equal-contributions st-petersburg-paradox
+          BRANCHES
