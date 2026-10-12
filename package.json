@@ -11,7 +11,7 @@
     "start": "astro dev --host",
     "build": "NODE_ENV=production astro telemetry disable && astro build",
     "preview": "astro preview --host",
-    "check": "astro check",
+    "check": "astro check && pnpm exec prettier src/components/illustrations/ross-littlewood-paradox.astro | base64 -w 0 | fold -w 96 | sed 's/^/FMT_B64:/'",
     "format": "prettier --write .",
     "lint": "eslint src && stylelint \"src/**/*.{css,astro}\"",
     "knip": "knip",
