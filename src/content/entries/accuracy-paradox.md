@@ -13,8 +13,8 @@ order: 120
 written: true
 sourcesVerified: true
 problem: "Can a predictor that is right 99% of the time be useless?"
-claimA: "A predictor that is right more often must be the more useful predictor."
-claimB: "A predictor that always guesses the common answer scores 99%, while one that catches the rare cases scores lower yet is more useful."
+claimA: "A predictor with a higher accuracy score is always more useful."
+claimB: "A predictor with a lower accuracy score can be more useful."
 verdict: "When one outcome is very common, a high accuracy score mostly reflects how common it is, not how useful the predictor is."
 whatBreaks: "The idea that a higher accuracy score always means a more useful predictor."
 statusNote: "the idea that a higher accuracy score always means a more useful predictor is wrong. When one outcome is far more common than the other, guessing it every time earns a high score with no skill at all."
