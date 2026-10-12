@@ -27,7 +27,7 @@ import { series, stroke } from "~/data/palette"
     class="w-full"
     viewBox="0 0 600 174"
     title="Achilles approaches the tortoise through an ever-magnifying view"
-    desc="A single horizontal track with blue Achilles and green tortoise markers. Achilles advances to each place the tortoise previously occupied. The tortoise is still ahead each time. The camera magnifies their smaller gap tenfold, without either runner moving backwards in the world. The animation shows four stages and never depicts an overtaking."
+    desc="A horizontal track with Achilles on the left and the tortoise staying at the right of the view. Achilles reaches each previous tortoise position, but the tortoise remains ahead. The camera follows the tortoise and magnifies each smaller gap tenfold. Four stages are shown; no overtaking is depicted."
   >
     <path
       id="achilles-track"
@@ -136,7 +136,7 @@ import { series, stroke } from "~/data/palette"
     const totalDuration = gaps.length * runDuration + (gaps.length - 1) * zoomDuration
     // Use a closer view on phones, rather than shrinking the desktop drawing.
     // The tortoise stays at the right end; the camera follows its world position.
-    const view = () =>
+    const viewportFor = () =>
       narrowView.matches
         ? { width: 320, left: 20, right: 300, tortoiseX: 285, pixelsPerMetre: 2.5 }
         : { width: 600, left: 45, right: 555, tortoiseX: 510, pixelsPerMetre: 4.2 }
@@ -218,7 +218,7 @@ import { series, stroke } from "~/data/palette"
 
       // Track the tortoise on the right as the camera magnifies the remaining gap.
       // Both runners continue moving forward in world coordinates.
-      const viewport = view()
+      const viewport = viewportFor()
       const scale =
         viewport.pixelsPerMetre * 10 ** (stage + (view.mode === "zoom" ? smooth(view.progress) : 0))
       const screenX = (worldX: number) => viewport.tortoiseX + (worldX - t) * scale
@@ -329,7 +329,7 @@ import { series, stroke } from "~/data/palette"
     })
     reducedMotion.addEventListener("change", stop)
     const configureViewport = () => {
-      const viewport = view()
+      const viewport = viewportFor()
       scene.setAttribute("viewBox", `0 0 ${viewport.width} 174`)
       track.setAttribute("d", `M${viewport.left} 125 H${viewport.right}`)
       gapLabel.setAttribute("x", String(viewport.tortoiseX))
