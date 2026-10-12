@@ -14,9 +14,9 @@ import Panel from "~/components/illustration-kit/Panel.astro"
     caption="What each judge thinks"
     columns={["Judge", "Valid?", "Broken?", "Liable?"]}
     rows={[
-      ["A", { text: "Yes", bold: true }, "No", { text: "No", bold: true }],
-      ["B", "No", { text: "Yes", bold: true }, { text: "No", bold: true }],
-      ["C", { text: "Yes", bold: true }, { text: "Yes", bold: true }, "Yes"],
+      ["A", "<strong>Yes</strong>", "No", "<strong>No</strong>"],
+      ["B", "No", "<strong>Yes</strong>", "<strong>No</strong>"],
+      ["C", "<strong>Yes</strong>", "<strong>Yes</strong>", "Yes"],
     ]}
     align="center"
     dense
