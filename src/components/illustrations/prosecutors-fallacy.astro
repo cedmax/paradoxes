@@ -1,7 +1,65 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">A match that is rare among innocent people is not the same as guilt being certain.</p>
-<div class="grid grid-cols-3 gap-2 text-center text-base"><div class="border-2 border-ink p-3"><strong>100,000</strong><p>Possible suspects</p></div><div class="border-2 border-ink p-3"><strong>≈ 100</strong><p>Evidence matches</p></div><div class="border-2 border-ink p-3"><strong>1</strong><p>Actual culprit</p></div></div>
-<svg class="w-full" viewBox="0 0 480 105" role="img" aria-labelledby="dna-title dna-desc"><title id="dna-title">One culprit among about a hundred matching people</title><desc id="dna-desc">A hundred cells show approximately ninety-nine innocent matching people and a single culprit.</desc>
-{Array.from({length:100},(_,i)=><rect x={9+(i%25)*18.4} y={10+Math.floor(i/25)*18.4} width="13.4" height="13.4" fill={i===0?"#387a91":"#bd4b37"} fill-opacity={i===0?1:0.45}/>)}
-</svg>
-<figcaption class="text-base leading-normal">Suppose the trace matches 1 in 1,000 people, with 100,000 equally plausible possible suspects. Around 100 people would match; only one is the culprit. With those simplified assumptions, a matching suspect has about a 1% chance of guilt, not 99.9%. The match is useful evidence, but it is not the same as the probability of guilt.</figcaption></figure>
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="prosecutors-fallacy"
+  lead="A rare match does not mean guilt is nearly certain."
+>
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+    <Panel class="text-center">
+      <p class="text-2xl font-bold tabular-nums">100,000</p>
+      <p class="text-base">Possible suspects</p>
+    </Panel>
+    <Panel class="text-center">
+      <p class="text-2xl font-bold tabular-nums">About 100</p>
+      <p class="text-base">People who match</p>
+    </Panel>
+    <Panel class="text-center">
+      <p class="text-2xl font-bold tabular-nums">1</p>
+      <p class="text-base">Actual culprit</p>
+    </Panel>
+  </div>
+
+  <p class="text-base font-bold">Here are the roughly 100 people who match the evidence:</p>
+  <SvgFigure
+    name="prosecutors-fallacy-matches"
+    class="mx-auto w-full max-w-xs"
+    viewBox="0 0 220 220"
+    title="One culprit among about a hundred matching people"
+    desc="A grid of one hundred squares represents roughly one hundred people who match the trace. One outlined blue square marks the culprit. The other ninety-nine gold squares represent innocent people who also match."
+  >
+    {Array.from({ length: 100 }, (_, i) => (
+      <rect
+        x={6 + (i % 10) * 21}
+        y={6 + Math.floor(i / 10) * 21}
+        width="16"
+        height="16"
+        fill={i === 0 ? series.blue : series.gold}
+        stroke={i === 0 ? stroke : "none"}
+        stroke-width={i === 0 ? 2 : 0}
+      />
+    ))}
+  </SvgFigure>
+
+  <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-base">
+    <li class="flex items-center gap-2">
+      <span class="h-4 w-4 shrink-0 border-2 border-ink bg-series-blue" aria-hidden="true"></span>
+      1 culprit
+    </li>
+    <li class="flex items-center gap-2">
+      <span class="h-4 w-4 shrink-0 bg-series-gold" aria-hidden="true"></span>
+      About 99 innocent matches
+    </li>
+  </ul>
+
+  <Fragment slot="caption">
+    Suppose the trace matches 1 in 1,000 innocent people. If 100,000 people are equally likely
+    suspects and there are no other clues, about 100 would match, including the culprit. If a
+    person is chosen from those matches, the chance that person is guilty is roughly 1%, not
+    99.9%. The match is useful evidence, but it does not settle guilt on its own.
+  </Fragment>
+</IllustrationFigure>
