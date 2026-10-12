@@ -21,7 +21,11 @@ import SideBySide from "~/components/illustration-kit/SideBySide.astro"
     </Panel>
   </SideBySide>
 
-  <div class="flex flex-wrap gap-2" role="group" aria-label="Possible contents of the other envelope">
+  <div
+    class="flex flex-wrap gap-2"
+    role="group"
+    aria-label="Possible contents of the other envelope"
+  >
     <button
       type="button"
       class="btn-toggle"
@@ -95,7 +99,10 @@ import SideBySide from "~/components/illustration-kit/SideBySide.astro"
         if (!selected) return
 
         buttons.forEach((option) => {
-          option.setAttribute("aria-pressed", String(option.dataset.twoEnvelopesPossibility === choice))
+          option.setAttribute(
+            "aria-pressed",
+            String(option.dataset.twoEnvelopesPossibility === choice),
+          )
         })
         amount.textContent = selected.amount
         explanation.textContent = selected.explanation
