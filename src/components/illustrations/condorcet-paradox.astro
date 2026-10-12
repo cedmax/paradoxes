@@ -1,0 +1,195 @@
+---
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+const rankings = [
+  [1, "A", "B", "C"],
+  [2, "B", "C", "A"],
+  [3, "C", "A", "B"],
+]
+
+const comparisons = [
+  { left: "A", right: "B" },
+  { left: "B", right: "C" },
+  { left: "C", right: "A" },
+]
+---
+
+<IllustrationFigure
+  name="condorcet-paradox"
+  lead="Every voter has a consistent ranking. But what happens when they vote in pairs?"
+>
+  <p>A, B and C are three restaurants. Voters 1, 2 and 3 rank them.</p>
+
+  <div role="group" aria-label="Choose which pair to compare" class="grid grid-cols-3 gap-2">
+    {comparisons.map(({ left, right }, i) => (
+      <button
+        type="button"
+        class="btn-toggle min-w-0 px-2 text-sm sm:text-base"
+        data-condorcet-step={i}
+        aria-pressed={i === 0 ? "true" : "false"}
+        aria-controls="condorcet-result"
+      >
+        {left} vs {right}
+      </button>
+    ))}
+  </div>
+
+  <SvgFigure
+    name="condorcet-majorities"
+    class="mx-auto w-full max-w-sm"
+    viewBox="0 0 300 168"
+    title="The majority choices between three restaurants can form a cycle"
+    desc="A beats B, B beats C, and C beats A, each by two votes to one. Select each comparison to see its majority, then the complete cycle."
+  >
+    <defs>
+      <marker
+        id="condorcet-arrowhead"
+        markerWidth="7"
+        markerHeight="7"
+        refX="6"
+        refY="3"
+        orient="auto"
+      >
+        <path d="M0 0 L6 3 L0 6" fill="none" stroke="var(--color-stroke)" />
+      </marker>
+    </defs>
+    <g
+      fill="none"
+      stroke="var(--color-stroke)"
+      stroke-width="2.5"
+      marker-end="url(#condorcet-arrowhead)"
+    >
+      <path data-condorcet-edge="0" d="M62 36 H236" />
+      <path data-condorcet-edge="1" d="M252 54 L168 122" opacity="0" />
+      <path data-condorcet-edge="2" d="M132 122 L48 54" opacity="0" />
+    </g>
+    <g fill="currentColor" font-size="22" text-anchor="middle" font-weight="bold">
+      <text x="40" y="44">
+        A
+      </text>
+      <text x="260" y="44">
+        B
+      </text>
+      <text x="150" y="152">
+        C
+      </text>
+    </g>
+    <g fill="currentColor" font-size="16" text-anchor="middle">
+      <text data-condorcet-score="0" x="150" y="26">
+        2–1
+      </text>
+      <text data-condorcet-score="1" x="236" y="94" opacity="0">
+        2–1
+      </text>
+      <text data-condorcet-score="2" x="64" y="94" opacity="0">
+        2–1
+      </text>
+    </g>
+  </SvgFigure>
+
+  <p id="condorcet-result" class="font-bold" aria-live="polite" aria-atomic="true">
+    A wins, 2–1. Voters 1 and 3 choose A; voter 2 chooses B.
+  </p>
+
+  <ComparisonTable
+    caption="How voters 1, 2 and 3 rank the restaurants"
+    columns={["Voter", "First", "Second", "Third"]}
+    rows={rankings}
+    align="center"
+    dense
+  />
+  <p class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+    <span class="inline-flex items-center gap-2">
+      <span class="h-3 w-3 border border-ink bg-explained" aria-hidden="true"></span>
+      Green: vote for the winner
+    </span>
+    <span class="inline-flex items-center gap-2">
+      <span class="h-3 w-3 border border-ink bg-unreconciled" aria-hidden="true"></span>
+      Red: vote for the loser
+    </span>
+  </p>
+  <p id="condorcet-cycle" class="font-bold" hidden>
+    The cycle is complete: A beats B, B beats C, and C beats A. There is no single majority
+    favourite.
+  </p>
+
+  <Fragment slot="caption">
+    Different pairs of voters form each 2–1 majority. Each person has a consistent ranking, but
+    the group's choices can go round in a circle.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("condorcet-paradox")
+  if (root) {
+    const buttons = root.querySelectorAll<HTMLButtonElement>("[data-condorcet-step]")
+    const rows = root.querySelectorAll<HTMLTableRowElement>("tbody tr")
+    const edges = root.querySelectorAll<SVGPathElement>("[data-condorcet-edge]")
+    const scores = root.querySelectorAll<SVGTextElement>("[data-condorcet-score]")
+    const result = find<HTMLElement>(root, "#condorcet-result")
+    const cycle = find<HTMLElement>(root, "#condorcet-cycle")
+    const comparisons = [
+      {
+        winner: "A",
+        loser: "B",
+        result: "A wins, 2–1. Voters 1 and 3 choose A; voter 2 chooses B.",
+      },
+      {
+        winner: "B",
+        loser: "C",
+        result: "B wins, 2–1. Voters 1 and 2 choose B; voter 3 chooses C.",
+      },
+      {
+        winner: "C",
+        loser: "A",
+        result: "C wins, 2–1. Voters 2 and 3 choose C; voter 1 chooses A.",
+      },
+    ]
+
+    const show = (selected: number) => {
+      const comparison = comparisons[selected]
+      for (const [i, button] of buttons.entries()) {
+        button.setAttribute("aria-pressed", String(i === selected))
+      }
+      // A vote is the higher-ranked restaurant in the selected pair.
+      // Highlight exactly one cell per voter: two green and one red.
+      for (const row of rows) {
+        const cells = Array.from(row.querySelectorAll<HTMLTableCellElement>("td"))
+        const vote = cells.find((cell) => {
+          const candidate = cell.textContent?.trim()
+          return candidate === comparison.winner || candidate === comparison.loser
+        })
+        for (const cell of cells) {
+          const isVote = cell === vote
+          cell.classList.toggle(
+            "bg-explained",
+            isVote && cell.textContent?.trim() === comparison.winner,
+          )
+          cell.classList.toggle(
+            "bg-unreconciled",
+            isVote && cell.textContent?.trim() === comparison.loser,
+          )
+          cell.classList.toggle("font-bold", isVote)
+        }
+      }
+      for (const [i, edge] of edges.entries()) {
+        edge.setAttribute("opacity", i > selected ? "0" : i === selected ? "1" : ".55")
+        edge.setAttribute("stroke-width", i === selected ? "3.5" : "2.5")
+      }
+      for (const [i, score] of scores.entries()) {
+        score.setAttribute("opacity", i > selected ? "0" : i === selected ? "1" : ".55")
+      }
+      result.textContent = comparison.result
+      cycle.hidden = selected !== 2
+    }
+
+    for (const [i, button] of buttons.entries()) {
+      button.addEventListener("click", () => show(i))
+    }
+    show(0)
+  }
+</script>
