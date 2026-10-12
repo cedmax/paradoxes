@@ -1,22 +1,9 @@
 ---
-import { readFileSync } from "node:fs"
-import * as prettier from "prettier"
 import Callout from "~/components/illustration-kit/Callout.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
-const prettierPath = "src/components/illustrations/maxwells-demon.astro"
-const prettierOptions = (await prettier.resolveConfig(prettierPath)) ?? {}
-console.log("MAXWELL_DECISION_PRETTIER_START")
-console.log(await prettier.format(readFileSync(prettierPath, "utf8"), { ...prettierOptions, filepath: prettierPath }))
-console.log("MAXWELL_DECISION_PRETTIER_END")
-
-const decisions = [
-  { x: 110 },
-  { x: 150 },
-  { x: 190 },
-  { x: 230 },
-]
+const decisions = [{ x: 110 }, { x: 150 }, { x: 190 }, { x: 230 }]
 ---
 
 <IllustrationFigure
@@ -24,8 +11,8 @@ const decisions = [
   lead="The shutter looks free. What does the demon need to remember?"
 >
   <p class="text-base leading-normal">
-    Red molecules move fast. Blue molecules move slowly. Both kinds start on both sides.
-    The demon wants fast ones on the right and slow ones on the left.
+    Red molecules move fast. Blue molecules move slowly. Both kinds start on both sides. The
+    demon wants fast ones on the right and slow ones on the left.
   </p>
 
   <SvgFigure
@@ -36,8 +23,12 @@ const decisions = [
     desc="A gas box begins with red fast and blue slow molecules mixed on both sides. Each step shows one molecule crossing a selectively opened shutter. Four decisions fill the demon's memory. Erasing the record produces heat outside the box in the standard explanation."
   >
     <g fill="currentColor" font-size="16" font-weight="600" text-anchor="middle">
-      <text id="maxwell-left-label" x="110" y="27">Mixed</text>
-      <text id="maxwell-right-label" x="310" y="27">Mixed</text>
+      <text id="maxwell-left-label" x="110" y="27">
+        Mixed
+      </text>
+      <text id="maxwell-right-label" x="310" y="27">
+        Mixed
+      </text>
     </g>
     <rect
       x="20"
@@ -79,7 +70,9 @@ const decisions = [
       stroke-width="3"
       opacity="0"
     />
-    <text x="20" y="218" font-size="16" font-weight="600" fill="currentColor">Memory</text>
+    <text x="20" y="218" font-size="16" font-weight="600" fill="currentColor">
+      Memory
+    </text>
     {decisions.map(({ x }, index) => (
       <g>
         <rect
@@ -117,7 +110,9 @@ const decisions = [
       <text x="320" y="216" font-size="16" font-weight="600" fill="var(--color-series-red)">
         Heat
       </text>
-      <text x="278" y="245" font-size="13" fill="currentColor">To surroundings</text>
+      <text x="278" y="245" font-size="13" fill="currentColor">
+        To surroundings
+      </text>
     </g>
   </SvgFigure>
 
@@ -136,12 +131,20 @@ const decisions = [
     </span>
   </div>
 
-  <div class="flex flex-col gap-2 border-t border-ink pt-3" aria-live="polite" aria-atomic="true">
-    <p id="maxwell-step" class="mono-label">1 of 5 · Mixed gas</p>
-    <p id="maxwell-decision" class="font-bold">The shutter is closed.</p>
+  <div
+    class="flex flex-col gap-2 border-t border-ink pt-3"
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    <p id="maxwell-step" class="mono-label">
+      1 of 5 · Mixed gas
+    </p>
+    <p id="maxwell-decision" class="font-bold">
+      The shutter is closed.
+    </p>
     <p id="maxwell-explanation" class="text-base leading-normal">
-      The demon watches molecules approach. It opens the gate only when a molecule is
-      moving towards the side it wants.
+      The demon watches molecules approach. It opens the gate only when a molecule is moving
+      towards the side it wants.
     </p>
   </div>
 
@@ -178,8 +181,12 @@ const decisions = [
     const explanation = find<HTMLElement>(root, "#maxwell-explanation")
     const paradox = find<HTMLElement>(root, "#maxwell-paradox")
     const heat = find<SVGGElement>(root, "#maxwell-heat-output")
-    const slots = Array.from(root.querySelectorAll<SVGRectElement>("[data-maxwell-memory-slot]"))
-    const slotTexts = Array.from(root.querySelectorAll<SVGTextElement>("[data-maxwell-memory-text]"))
+    const slots = Array.from(
+      root.querySelectorAll<SVGRectElement>("[data-maxwell-memory-slot]"),
+    )
+    const slotTexts = Array.from(
+      root.querySelectorAll<SVGTextElement>("[data-maxwell-memory-text]"),
+    )
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
     const particles = [
@@ -193,7 +200,10 @@ const decisions = [
 
     const record = (index: number) => {
       const fast = particles[index].fast
-      slots[index].setAttribute("fill", fast ? "var(--color-series-red)" : "var(--color-series-blue)")
+      slots[index].setAttribute(
+        "fill",
+        fast ? "var(--color-series-red)" : "var(--color-series-blue)",
+      )
       slots[index].setAttribute("fill-opacity", ".3")
       slotTexts[index].textContent = fast ? "F→" : "←S"
     }
@@ -249,8 +259,7 @@ const decisions = [
       await moveTo(particle.circle, particle.endX, particle.endY, speed)
       shutter.setAttribute("opacity", "1")
       record(index)
-      explanation.textContent =
-        `The molecule crossed. Memory now holds its decision: ${leftToRight ? "fast → right" : "slow → left"}.`
+      explanation.textContent = `The molecule crossed. Memory now holds its decision: ${leftToRight ? "fast → right" : "slow → left"}.`
     }
 
     const render = () => {
