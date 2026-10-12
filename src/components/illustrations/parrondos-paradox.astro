@@ -8,7 +8,7 @@ type Play = { game: "A" | "B"; change: 1 | -1 }
 type Example = {
   id: string
   name: string
-  accent?: "blue" | "gold"
+  accent: "blue" | "gold" | "ink"
   average: string
   games: Play[]
 }
@@ -36,6 +36,7 @@ const examples: Example[] = [
   {
     id: "aabb",
     name: "AABB repeated",
+    accent: "ink",
     average: "Wins about 1.47p per play on average",
     games: [-1, -1, 1, 1, 1, -1, -1, 1, 1, 1, 1, -1].map((change, index) => ({
       game: index % 4 < 2 ? ("A" as const) : ("B" as const),
