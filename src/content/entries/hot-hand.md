@@ -10,8 +10,8 @@ noMaths: true
 written: true
 sourcesVerified: true
 problem: "Why did a famous study find no streaks in basketball shooting, when shooters and fans are sure they exist?"
-claimA: "If a shooter were ever hot, shots after a streak of hits would go in more often than average. The 1985 study found that they did not, so the hot hand is a myth."
-claimB: "Counted the way the 1985 study counted, a fair coin actually shows fewer heads than average after a streak of heads. So that finding cannot show that streaks are an illusion."
+claimA: "The 1985 study showed that shooting streaks are an illusion."
+claimB: "Correcting its counting method reveals some evidence of streak shooting."
 verdict: "The study’s way of counting is biased against finding streaks. Corrected, the same data show some evidence of streak shooting."
 whatBreaks: "The assumption that a streak-free shooter would show no change after a streak when counted this way. Counted this way, a streak-free shooter shows fewer hits after a streak. A later analysis found the 1985 method was biased against finding streaks. Corrected, the same data show some evidence of a hot hand."
 statusNote: "the first claim is wrong, because the counting method is biased in a way that hides streaks. How large the effect is, and in how many players, is still debated."

@@ -12,8 +12,8 @@ order: 180
 written: true
 sourcesVerified: true
 problem: "How can 1 − 2 + 3 − 4 + … be said to equal one quarter, when its running totals swing wider and wider?"
-claimA: "The running totals of 1 − 2 + 3 − 4 + … swing ever wider between positive and negative whole numbers, so the series cannot add up to 1/4."
-claimB: "The sum 1 − 2 + 3 − 4 + … is 1/4, the value Leonhard Euler gave it and summation methods still give it."
+claimA: "The running totals swing ever wider, so 1 − 2 + 3 − 4 + … cannot add up to 1/4."
+claimB: "1 − 2 + 3 − 4 + … equals 1/4, as Euler found and summation methods still give."
 verdict: "The series has no ordinary sum, because its running totals never settle. The 1/4 is the value that special summation methods assign, and the equals sign is shorthand for that."
 whatBreaks: "The assumption that the equals sign means the ordinary sum. Here it stands for a value given by a summation method, because the ordinary sum does not exist."
 statusNote: "the series has no ordinary sum, so 1/4 is wrong if heard as one. It is the value that summation methods such as Abel summation assign, which answers a different, precisely defined question."

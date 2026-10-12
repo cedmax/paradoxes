@@ -10,8 +10,8 @@ order: 20
 written: true
 sourcesVerified: true
 problem: "A coin rolls once around the rim of an identical coin. How many times does it turn?"
-claimA: "The rolling coin turns once for each length of its own rim it rolls over, and the other coin’s rim is exactly that long, so it turns once."
-claimB: "The rolling coin is upright again halfway round, and turns twice by the time it is back where it started."
+claimA: "Rolling once around an identical coin should make a coin turn once."
+claimB: "The rolling coin turns twice."
 verdict: "It turns twice. Rolling along the other coin’s rim gives one turn, and travelling all the way round that coin gives another."
 whatBreaks: "The assumption that the number of turns equals the length of rim rolled over, divided by the coin’s own rim."
 statusNote: "the idea that the turns equal the length of rim rolled over is wrong. That count leaves out the extra turn the coin makes by going once all the way round the fixed coin."

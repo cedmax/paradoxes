@@ -20,8 +20,8 @@ noMaths: true
 written: true
 sourcesVerified: true
 problem: "Two spaceships joined by a string speed up in exactly the same way at the same moment. Does the string break?"
-claimA: "The gap between the ships stays the same length, so a string that spanned it at the start is never stretched."
-claimB: "An unstretched moving string is measured shorter in the launch frame, so spanning an unchanged gap stretches it and can break it."
+claimA: "Keeping the ships the same distance apart means the string cannot stretch."
+claimB: "The ships stay the same distance apart as seen from launch, yet the string stretches."
 verdict: "Keeping the ships’ gap fixed in the launch frame stretches the string: an unstretched moving string would be measured shorter in that frame. If the ships keep speeding up, it breaks."
 whatBreaks: "The assumption that if the gap between the ships does not change, a string across it is not stretched."
 statusNote: "keeping the gap fixed in the launch frame does not prevent stress. The standard result is that the string breaks if the ships keep speeding up, though the best description of the cause has been debated."

@@ -13,8 +13,8 @@ noMaths: false
 written: true
 sourcesVerified: true
 problem: "A man takes a year to write up each day of his life. If he lived for ever, would any day go unwritten?"
-claimA: "He falls further behind every year, so some part of his life will never be written about."
-claimB: "The events of day 1 are written in year 1, day 2 in year 2, and so on, so every day of his life gets written about."
+claimA: "Even with endless time, a growing backlog leaves some days unwritten."
+claimB: "With endless time, every day gets written about."
 verdict: "Falling further behind does not mean leaving anything out. Each day has its own year of writing, so if he never stops, every day is written up, though the book is never finished at any moment."
 whatBreaks: "The idea that a backlog which grows for ever must leave some days unwritten for ever."
 statusNote: "the first claim is wrong. The backlog grows without end, but any day you pick, say the nth, is written up in the nth year. That is the point Bertrand Russell made in 1903."

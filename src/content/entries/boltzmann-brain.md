@@ -19,8 +19,8 @@ noMaths: true
 written: true
 sourcesVerified: true
 problem: "If a universe produces far more brief brains with false memories than people with real pasts, should an observer expect to be one of those brains?"
-claimA: "In a universe that lasts for ever with a fixed amount of dark energy, random fluctuations produce far more lone brains with false memories than evolved observers, so any observer should expect to be one of those brains."
-claimB: "Observers who find themselves in an orderly universe can trust that their memories, and their view of a long cosmic history, are real."
+claimA: "In some cosmological models, brief brains with false memories far outnumber evolved observers, so any observer should expect to be one."
+claimB: "Observers in an orderly universe can trust their memories and their view of cosmic history."
 verdict: "Some cosmological models, taken at face value, predict that most observers are chance fluctuations with false memories. Many cosmologists regard such a model as problematic. They disagree over which assumption or part of the model has to change, and each main proposed fix faces a serious objection and none is widely accepted."
 whatBreaks: "Whether to change the universe’s long-term behaviour, the production or counting of observers, or the assumption that an observer should be typical."
 statusNote: "models dominated by these observers undermine trust in the evidence used to support them. The main proposed fixes remain contested."
