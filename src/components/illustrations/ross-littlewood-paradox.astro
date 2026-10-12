@@ -1,10 +1,333 @@
 ---
-const rounds=[{round:"1",added:"1–10",removed:"1",remaining:"9"},{round:"2",added:"11–20",removed:"2",remaining:"18"},{round:"3",added:"21–30",removed:"3",remaining:"27"},{round:"n",added:"10n−9 to 10n",removed:"n",remaining:"9n"}]
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SideBySide from "~/components/illustration-kit/SideBySide.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+const initialBalls = Array.from({ length: 27 }, (_, index) => ({
+  number: index + 4,
+  x: 86 + (index % 8) * 27,
+  y: 202 - Math.floor(index / 8) * 27,
+}))
 ---
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">Every round adds ten balls and removes one.</p>
-<div class="overflow-x-auto"><table class="w-full text-base"><thead><tr class="border-b-2 border-ink"><th class="p-2 text-left">Round</th><th class="p-2 text-left">Balls added</th><th class="p-2">Taken out</th><th class="p-2 text-right">Inside</th></tr></thead><tbody>{rounds.map(x=><tr class="border-b border-ink last:border-0"><td class="p-2">{x.round}</td><td class="p-2">{x.added}</td><td class="p-2 text-center">{x.removed}</td><td class="p-2 text-right">{x.remaining}</td></tr>)}</tbody></table></div>
-<div class="grid grid-cols-2 gap-3 text-base">
-<div class="border-2 border-ink p-3"><strong>Before noon</strong><p>9, 18, 27, … balls</p><p>The count keeps rising.</p></div>
-<div class="border-2 border-ink p-3"><strong>At noon</strong><p>Zero balls.</p><p>Every numbered ball has been taken out.</p></div></div>
-<figcaption class="text-base leading-normal">Ball 1 leaves in round 1. Ball 500 is put in during round 50 and removed in round 500. Every individual ball has a removal time. That is why the count growing without bound before noon does not settle how many remain at noon. The result depends on the removal rule.</figcaption></figure>
+
+<IllustrationFigure
+  name="ross-littlewood"
+  lead="Ten balls go in and one comes out, over and over. Why could the vase be empty at noon?"
+>
+  <p class="text-base leading-normal">
+    The same number of balls remain after each round, whichever removal rule is chosen. Change
+    the rule and look at what happens at noon.
+  </p>
+
+  <div class="flex flex-col gap-2">
+    <p class="font-bold">Which ball comes out each round?</p>
+    <div class="flex flex-wrap gap-2" role="group" aria-label="Choose the removal rule">
+      <button type="button" class="btn-toggle" data-rule="first" aria-pressed="true">
+        Ball 1, then 2, then 3…
+      </button>
+      <button type="button" class="btn-toggle" data-rule="tenth" aria-pressed="false">
+        Ball 10, then 20, then 30…
+      </button>
+    </div>
+  </div>
+
+  <SvgFigure
+    name="ross-littlewood-vase"
+    class="mx-auto w-full max-w-sm"
+    viewBox="0 0 360 244"
+    title="Numbered balls in a vase"
+    desc="The vase holds balls after the selected round. The gold ball, when present, is the one being followed. For large rounds, only a sample is drawn. The exact count and the fate of the selected ball are written below."
+  >
+    <path
+      d="M62 57 H298 L278 216 Q180 234 82 216 Z"
+      fill="var(--color-series-blue)"
+      fill-opacity=".08"
+      stroke="var(--color-stroke)"
+      stroke-width="2.5"
+      stroke-linejoin="round"
+    />
+    <g id="ross-littlewood-balls" aria-hidden="true">
+      {initialBalls.map(({ number, x, y }) => (
+        <circle
+          cx={x}
+          cy={y}
+          r={number === 11 ? 11 : 9}
+          fill={number === 11 ? "var(--color-series-gold)" : "var(--color-series-blue)"}
+          stroke="var(--color-stroke)"
+          stroke-width={number === 11 ? 2.5 : 1.5}
+        />
+      ))}
+    </g>
+    <ellipse
+      cx="180"
+      cy="57"
+      rx="118"
+      ry="13"
+      fill="none"
+      stroke="var(--color-stroke)"
+      stroke-width="2.5"
+    />
+  </SvgFigure>
+
+  <Slider
+    id="ross-littlewood-stage"
+    label="Move through the rounds"
+    min={0}
+    max={8}
+    step={1}
+    value={3}
+    startLabel="Before any rounds"
+    endLabel="Noon"
+    describedby="ross-littlewood-stage-label"
+    valuetext="After round 3"
+  >
+    <p id="ross-littlewood-stage-label" class="font-bold" aria-live="off">
+      After round 3
+    </p>
+  </Slider>
+  <div class="flex flex-wrap gap-2">
+    <button type="button" class="btn-ghost" id="ross-littlewood-previous">
+      Previous point
+    </button>
+    <button type="button" class="btn-ghost" id="ross-littlewood-next">
+      Next point
+    </button>
+    <button type="button" class="btn-ghost" id="ross-littlewood-noon">
+      Go to noon
+    </button>
+  </div>
+
+  <SideBySide>
+    <Panel title="Balls in the vase">
+      <p id="ross-littlewood-count" class="font-bold" aria-live="polite">27</p>
+    </Panel>
+    <Panel title="Ball being followed">
+      <p id="ross-littlewood-fate" class="font-bold" aria-live="polite">
+        Ball 11: inside
+      </p>
+    </Panel>
+  </SideBySide>
+  <p id="ross-littlewood-round-note" class="text-base leading-normal">
+    Balls 21 to 30 went in. Ball 3 came out.
+  </p>
+  <p id="ross-littlewood-sample-note" class="text-base">
+    All 27 balls are shown. The gold circle is ball 11.
+  </p>
+
+  <div class="flex flex-col gap-2">
+    <p class="font-bold">Follow one numbered ball</p>
+    <div class="flex flex-wrap gap-2" role="group" aria-label="Choose a ball to follow">
+      <button type="button" class="btn-toggle" data-ball="1" aria-pressed="false">
+        Ball 1
+      </button>
+      <button type="button" class="btn-toggle" data-ball="11" aria-pressed="true">
+        Ball 11
+      </button>
+      <button type="button" class="btn-toggle" data-ball="500" aria-pressed="false">
+        Ball 500
+      </button>
+    </div>
+    <p id="ross-littlewood-ball-note" class="text-base leading-normal" aria-live="polite">
+      Ball 11 entered in round 2 and is still inside. It leaves in round 11.
+    </p>
+  </div>
+
+  <Fragment slot="caption">
+    The count grows by nine every round, whichever ball comes out. But there is no last
+    round. Under the first rule, every numbered ball is eventually removed, leaving none at
+    noon. Under the second, every ball that is not a multiple of ten stays, leaving infinitely
+    many. Following individual balls, not just the total, reveals the difference.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("ross-littlewood")
+  if (root) {
+    type Rule = "first" | "tenth"
+    const stages: (number | null)[] = [0, 1, 2, 3, 10, 11, 50, 500, null]
+    const slider = find<HTMLInputElement>(root, "#ross-littlewood-stage")
+    const balls = find<SVGGElement>(root, "#ross-littlewood-balls")
+    const stageLabel = find<HTMLElement>(root, "#ross-littlewood-stage-label")
+    const countLabel = find<HTMLElement>(root, "#ross-littlewood-count")
+    const fateLabel = find<HTMLElement>(root, "#ross-littlewood-fate")
+    const roundNote = find<HTMLElement>(root, "#ross-littlewood-round-note")
+    const sampleNote = find<HTMLElement>(root, "#ross-littlewood-sample-note")
+    const ballNote = find<HTMLElement>(root, "#ross-littlewood-ball-note")
+    const previous = find<HTMLButtonElement>(root, "#ross-littlewood-previous")
+    const next = find<HTMLButtonElement>(root, "#ross-littlewood-next")
+    const noon = find<HTMLButtonElement>(root, "#ross-littlewood-noon")
+    const ruleButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-rule]"))
+    const ballButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-ball]"))
+    const ns = "http://www.w3.org/2000/svg"
+    const format = (n: number) => n.toLocaleString("en-GB")
+
+    let rule: Rule = "first"
+    let selectedBall = 11
+
+    const removalRound = (ball: number): number | null =>
+      rule === "first" ? ball : ball % 10 === 0 ? ball / 10 : null
+
+    const inside = (ball: number, round: number | null) => {
+      if (round === null) return removalRound(ball) === null
+      const arrives = Math.ceil(ball / 10)
+      const leaves = removalRound(ball)
+      return round >= arrives && (leaves === null || round < leaves)
+    }
+
+    const sampledBalls = (round: number | null) => {
+      // Only the drawing is sampled. Every displayed count is exact.
+      const limit = round === null ? 100 : round * 10
+      const present: number[] = []
+      for (let ball = 1; ball <= limit; ball++) {
+        if (inside(ball, round)) present.push(ball)
+      }
+      if (present.length <= 36) return present
+      const sample = Array.from({ length: 36 }, (_, i) =>
+        present[Math.floor((i * (present.length - 1)) / 35)],
+      )
+      if (inside(selectedBall, round) && !sample.includes(selectedBall)) {
+        sample[18] = selectedBall
+        sample.sort((a, b) => a - b)
+      }
+      return sample
+    }
+
+    const drawBalls = (round: number | null) => {
+      const sample = sampledBalls(round)
+      const nodes = sample.map((ball, index) => {
+        const circle = document.createElementNS(ns, "circle")
+        circle.setAttribute("cx", String(86 + (index % 8) * 27))
+        circle.setAttribute("cy", String(202 - Math.floor(index / 8) * 27))
+        circle.setAttribute("r", ball === selectedBall ? "11" : "9")
+        circle.setAttribute(
+          "fill",
+          ball === selectedBall ? "var(--color-series-gold)" : "var(--color-series-blue)",
+        )
+        circle.setAttribute("stroke", "var(--color-stroke)")
+        circle.setAttribute("stroke-width", ball === selectedBall ? "2.5" : "1.5")
+        return circle
+      })
+      balls.replaceChildren(...nodes)
+      if (round === null) {
+        sampleNote.textContent =
+          rule === "first"
+            ? "The vase is empty under this rule."
+            : "Only a sample is drawn. Infinitely many balls cannot all be shown."
+      } else if (round * 9 <= 36) {
+        sampleNote.textContent =
+          "All " +
+          format(round * 9) +
+          " balls are shown. Gold marks ball " +
+          selectedBall +
+          " when it is inside."
+      } else {
+        sampleNote.textContent =
+          "Only 36 balls are drawn. The count is exact. Gold marks ball " +
+          selectedBall +
+          " when it is inside."
+      }
+    }
+
+    const describeBall = (round: number | null) => {
+      const arrives = Math.ceil(selectedBall / 10)
+      const leaves = removalRound(selectedBall)
+      if (round !== null && round < arrives) {
+        fateLabel.textContent = "Not added yet"
+        ballNote.textContent =
+          "Ball " + format(selectedBall) + " enters in round " + format(arrives) + "."
+      } else if (leaves !== null && (round === null || round >= leaves)) {
+        fateLabel.textContent = "Removed"
+        ballNote.textContent =
+          "Ball " +
+          format(selectedBall) +
+          " entered in round " +
+          format(arrives) +
+          " and was removed in round " +
+          format(leaves) +
+          ". It is not in the vase at noon."
+      } else {
+        fateLabel.textContent = round === null ? "Still inside at noon" : "Inside"
+        ballNote.textContent =
+          "Ball " +
+          format(selectedBall) +
+          " entered in round " +
+          format(arrives) +
+          ". " +
+          (leaves === null
+            ? "This rule never removes it, so it stays in the vase at noon."
+            : "It will be removed in round " + format(leaves) + ".")
+      }
+    }
+
+    const render = (position: number) => {
+      const round = stages[position]
+      const label =
+        round === null ? "At noon" : round === 0 ? "Before round 1" : "After round " + format(round)
+      stageLabel.textContent = label
+      countLabel.textContent = round === null ? (rule === "first" ? "0" : "Infinitely many") : format(round * 9)
+      if (round === null) {
+        roundNote.textContent =
+          rule === "first"
+            ? "There is no last round. Every numbered ball was removed at some round before noon."
+            : "There is no last round. Balls 10, 20, 30 and so on were removed, but all the other numbered balls remain."
+      } else if (round === 0) {
+        roundNote.textContent = "The vase starts empty. No balls have been added yet."
+      } else {
+        const first = (round - 1) * 10 + 1
+        const last = round * 10
+        const taken = rule === "first" ? round : last
+        roundNote.textContent =
+          "In round " +
+          format(round) +
+          ", balls " +
+          format(first) +
+          " to " +
+          format(last) +
+          " went in and ball " +
+          format(taken) +
+          " came out."
+      }
+      drawBalls(round)
+      describeBall(round)
+      previous.disabled = position === 0
+      next.disabled = position === stages.length - 1
+      return label
+    }
+
+    const update = bindSlider(slider, render)
+
+    const jump = (position: number) => {
+      slider.value = String(Math.max(0, Math.min(stages.length - 1, position)))
+      update()
+    }
+
+    previous.addEventListener("click", () => jump(Number(slider.value) - 1))
+    next.addEventListener("click", () => jump(Number(slider.value) + 1))
+    noon.addEventListener("click", () => jump(stages.length - 1))
+
+    for (const button of ruleButtons) {
+      button.addEventListener("click", () => {
+        if (button.dataset.rule !== "first" && button.dataset.rule !== "tenth") return
+        rule = button.dataset.rule
+        ruleButtons.forEach((item) => {
+          item.setAttribute("aria-pressed", String(item.dataset.rule === rule))
+        })
+        update()
+      })
+    }
+
+    for (const button of ballButtons) {
+      button.addEventListener("click", () => {
+        selectedBall = Number(button.dataset.ball)
+        ballButtons.forEach((item) => {
+          item.setAttribute("aria-pressed", String(Number(item.dataset.ball) === selectedBall))
+        })
+        update()
+      })
+    }
+  }
+</script>
