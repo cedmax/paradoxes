@@ -25,7 +25,7 @@ const matchY = 192
     class="mx-auto w-full max-w-2xl"
     viewBox="0 0 640 400"
     title="Zoomable pool of one hundred thousand possible suspects"
-    desc="A grid of one thousand blocks, each standing for one hundred people. Nine hundred and ninety-nine grey blocks represent people who do not match. One highlighted block represents about one hundred matching people. Zooming into that same block reveals ninety-nine innocent matches in gold and one culprit in blue."
+    desc="A grid of one thousand blocks, each standing for one hundred people. Nine hundred and ninety-nine grey blocks represent people who do not match. One solid yellow block represents about one hundred people who match. As the camera zooms into this block, it divides into one hundred smaller squares, revealing about ninety-nine innocent matches in yellow and one culprit in blue."
   >
     <defs>
       <pattern
@@ -39,17 +39,28 @@ const matchY = 192
     </defs>
     <rect width="640" height="400" fill="url(#prosecutors-fallacy-pattern)" />
 
-    <!-- The only matching block: its hundred individual cells are already inside the overview. -->
+    <!-- One solid yellow block becomes a hundred individual matches as the camera zooms. -->
     <rect x={matchX} y={matchY} width="14" height="14" fill={series.gold} />
-    {Array.from({ length: 100 }, (_, i) => (
-      <rect
-        x={matchX + 0.55 + (i % 10) * 1.3}
-        y={matchY + 0.55 + Math.floor(i / 10) * 1.3}
-        width="1.05"
-        height="1.05"
-        fill={i === 0 ? series.blue : series.gold}
-      />
-    ))}
+    <rect
+      id="prosecutors-fallacy-culprit"
+      x={matchX}
+      y={matchY}
+      width="1.4"
+      height="1.4"
+      fill={series.blue}
+      opacity="0"
+    />
+    <g id="prosecutors-fallacy-cells" stroke="var(--color-paper)" stroke-width="0">
+      {Array.from({ length: 100 }, (_, i) => (
+        <rect
+          x={matchX + (i % 10) * 1.4}
+          y={matchY + Math.floor(i / 10) * 1.4}
+          width="1.4"
+          height="1.4"
+          fill="none"
+        />
+      ))}
+    </g>
     <rect
       x={matchX - 2}
       y={matchY - 2}
@@ -108,6 +119,8 @@ const matchY = 192
     const zoomButton = find<HTMLButtonElement>(root, "#prosecutors-fallacy-zoom")
     const readout = find<HTMLElement>(root, "#prosecutors-fallacy-readout")
     const key = find<HTMLElement>(root, "#prosecutors-fallacy-key")
+    const cells = find<SVGGElement>(root, "#prosecutors-fallacy-cells")
+    const culprit = find<SVGRectElement>(root, "#prosecutors-fallacy-culprit")
 
     const overview = [0, 0, 640, 400]
     const closeup = [424, 189.625, 30, 18.75]
@@ -118,6 +131,13 @@ const matchY = 192
     const setView = (view: number[]) => {
       current = view
       svg.setAttribute("viewBox", view.join(" "))
+
+      // Let the yellow block visibly separate into 100 cells as it grows on screen.
+      // Deriving this from the camera width keeps zooming in and out perfectly in sync.
+      const progress = Math.max(0, Math.min(1, (300 - view[2]) / 265))
+      const reveal = progress * progress * (3 - 2 * progress)
+      cells.setAttribute("stroke-width", String(reveal * 0.24))
+      culprit.setAttribute("opacity", String(reveal))
     }
 
     zoomButton.addEventListener("click", () => {
