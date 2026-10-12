@@ -1,0 +1,48 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SideBySide from "~/components/illustration-kit/SideBySide.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure lead="The same five classes, two different averages">
+  <SvgFigure
+    name="class-size"
+    viewBox="0 0 450 195"
+    class="mx-auto w-full max-w-lg"
+    title="Four classes with ten students each, one with a hundred"
+    desc="The four small classes total forty students. The single large class contains one hundred, so most students attend the largest class despite it being only one of five classes."
+  >
+    {[
+      { x: 18, n: 10 },
+      { x: 100, n: 10 },
+      { x: 182, n: 10 },
+      { x: 264, n: 10 },
+      { x: 346, n: 100 },
+    ].map(({ x, n }, i) => (
+      <g>
+        <rect x={x} y={145 - n} width="64" height={n} fill={n === 100 ? series.gold : series.blue} stroke={stroke} stroke-width="1.5" />
+        <text x={x + 32} y={133 - n} text-anchor="middle" font-size="17" font-weight="bold" fill="currentColor">{n}</text>
+        <text x={x + 32} y="170" text-anchor="middle" font-size="14" fill="currentColor">{i === 4 ? "Large" : "Small"}</text>
+      </g>
+    ))}
+    <path d="M8 146 H442" stroke={stroke} stroke-width="2" />
+  </SvgFigure>
+  <SideBySide>
+    <Panel title="Ask the college">
+      <p class="text-sm">One vote per class</p>
+      <p class="text-3xl font-bold">28</p>
+      <p class="text-base">140 students ÷ 5 classes.</p>
+    </Panel>
+    <Panel title="Ask the students">
+      <p class="text-sm">One vote per student</p>
+      <p class="text-3xl font-bold">≈74</p>
+      <p class="text-base">100 of 140 students sit in the large class.</p>
+    </Panel>
+  </SideBySide>
+  <Fragment slot="caption">
+    Bigger classes appear more often in a survey of students because they contain more people to answer it.
+    Both averages are correct; they count different things.
+  </Fragment>
+</IllustrationFigure>
