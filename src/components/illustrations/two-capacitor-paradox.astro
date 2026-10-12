@@ -1,4 +1,5 @@
 ---
+import Disclosure from "~/components/illustration-kit/Disclosure.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Panel from "~/components/illustration-kit/Panel.astro"
 
@@ -55,22 +56,29 @@ const stages = [
     </div>
   ))}
 
-  <Panel accent="gold" title="Where the other half goes">
-    <div class="mt-3 grid grid-cols-4 gap-1.5" aria-hidden="true">
-      {quarters.map((quarter) => (
-        <span class:list={["h-6", quarter < 2 ? "bg-series-gold" : "border border-ink"]}></span>
-      ))}
-    </div>
-    <p class="mt-2 text-base">
-      <strong>50% of the initial energy</strong> transfers elsewhere, for example as heat or
-      electromagnetic radiation.
-    </p>
-  </Panel>
-
   <Fragment slot="caption">
     Each square represents a quarter of the initial stored energy, not charge. The total charge
-    stays Q, split equally between A and B. Together the capacitors store only half their
-    starting energy; the rest leaves their electric fields while current flows. A perfectly
-    lossless circuit cannot simply be assumed to settle into this final state.
+    stays Q, split equally between A and B. But only half the starting energy remains stored
+    in the capacitors.
+  </Fragment>
+
+  <Fragment slot="after">
+    <Disclosure summary="Where did the other half go?">
+      <Panel accent="gold" title="Energy transferred elsewhere">
+        <div class="mt-3 grid grid-cols-4 gap-1.5" aria-hidden="true">
+          {quarters.map((quarter) => (
+            <span class:list={["h-6", quarter < 2 ? "bg-series-gold" : "border border-ink"]}></span>
+          ))}
+        </div>
+        <p class="mt-2 text-base">
+          <strong>50% of the initial energy</strong> leaves the capacitors' electric fields
+          during the current flow, for example as heat or electromagnetic radiation.
+        </p>
+        <p class="mt-2 text-base">
+          A perfectly lossless circuit cannot simply be assumed to settle into this final
+          state without accounting for its changing currents and fields.
+        </p>
+      </Panel>
+    </Disclosure>
   </Fragment>
 </IllustrationFigure>
