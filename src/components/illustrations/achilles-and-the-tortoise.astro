@@ -23,12 +23,20 @@ import { series, stroke } from "~/data/palette"
 
   <SvgFigure
     name="achilles-camera"
+    id="achilles-scene"
     class="w-full"
     viewBox="0 0 600 174"
     title="Achilles approaches the tortoise through an ever-magnifying view"
     desc="A single horizontal track with blue Achilles and green tortoise markers. Achilles advances to each place the tortoise previously occupied. The tortoise is still ahead each time. The camera magnifies their smaller gap tenfold, without either runner moving backwards in the world. The animation shows four stages and never depicts an overtaking."
   >
-    <path d="M45 125 H555" fill="none" stroke={stroke} stroke-width="1.5" opacity=".55" />
+    <path
+      id="achilles-track"
+      d="M45 125 H555"
+      fill="none"
+      stroke={stroke}
+      stroke-width="1.5"
+      opacity=".55"
+    />
     <g id="achilles-ticks" aria-hidden="true"></g>
     <line
       id="achilles-gap-line"
@@ -41,9 +49,9 @@ import { series, stroke } from "~/data/palette"
     />
     <text
       id="achilles-gap-label"
-      x="300"
+      x="510"
       y="34"
-      text-anchor="middle"
+      text-anchor="end"
       font-size="14"
       font-weight="700"
       class="font-mono tabular-nums"
@@ -80,7 +88,7 @@ import { series, stroke } from "~/data/palette"
       </text>
     </g>
     <text x="300" y="164" text-anchor="middle" font-size="13" fill="currentColor">
-      The track is magnified, not restarted.
+      The camera follows the tortoise and magnifies each smaller gap.
     </text>
   </SvgFigure>
 
@@ -105,6 +113,8 @@ import { series, stroke } from "~/data/palette"
 
   const root = illustrationRoot("achilles-and-the-tortoise")
   if (root) {
+    const scene = find<SVGSVGElement>(root, "#achilles-scene")
+    const track = find<SVGPathElement>(root, "#achilles-track")
     const achillesMarker = find<SVGGElement>(root, "#achilles-marker")
     const tortoiseMarker = find<SVGGElement>(root, "#achilles-tortoise-marker")
     const gapLine = find<SVGLineElement>(root, "#achilles-gap-line")
@@ -114,6 +124,7 @@ import { series, stroke } from "~/data/palette"
     const status = find<HTMLElement>(root, "#achilles-status")
     const playButton = find<HTMLButtonElement>(root, "#achilles-play")
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const narrowView = window.matchMedia("(max-width: 639px)")
 
     // Positions in metres, in one fixed ground reference frame.
     // Achilles is at 10t and the tortoise is at 100+t.
@@ -123,8 +134,12 @@ import { series, stroke } from "~/data/palette"
     const runDuration = 3000
     const zoomDuration = 1000
     const totalDuration = gaps.length * runDuration + (gaps.length - 1) * zoomDuration
-    const pixelsPerMetre = 4.2
-    const screenMiddle = 300
+    // Use a closer view on phones, rather than shrinking the desktop drawing.
+    // The tortoise stays at the right end; the camera follows its world position.
+    const view = () =>
+      narrowView.matches
+        ? { width: 320, left: 20, right: 300, tortoiseX: 285, pixelsPerMetre: 2.5 }
+        : { width: 600, left: 45, right: 555, tortoiseX: 510, pixelsPerMetre: 4.2 }
 
     const svgNS = "http://www.w3.org/2000/svg"
     const ticks = Array.from({ length: 26 }, () => {
@@ -201,12 +216,12 @@ import { series, stroke } from "~/data/palette"
       const a = 10 * time
       const t = 100 + time
 
-      // Follow the midpoint of the two runners in the same world coordinates.
-      // The gap stays centred while the camera magnifies it; neither runner resets.
+      // Track the tortoise on the right as the camera magnifies the remaining gap.
+      // Both runners continue moving forward in world coordinates.
+      const viewport = view()
       const scale =
-        pixelsPerMetre * 10 ** (stage + (view.mode === "zoom" ? smooth(view.progress) : 0))
-      const middle = (a + t) / 2
-      const screenX = (worldX: number) => screenMiddle + (worldX - middle) * scale
+        viewport.pixelsPerMetre * 10 ** (stage + (view.mode === "zoom" ? smooth(view.progress) : 0))
+      const screenX = (worldX: number) => viewport.tortoiseX + (worldX - t) * scale
       const ax = screenX(a)
       const tx = screenX(t)
       achillesMarker.setAttribute("transform", "translate(" + ax + " 0)")
@@ -215,15 +230,18 @@ import { series, stroke } from "~/data/palette"
       gapLine.setAttribute("x2", String(tx))
 
       // Ruler marks use world-space positions through the same camera.
-      const visibleWorldWidth = 510 / scale
+      const visibleWorldWidth = (viewport.right - viewport.left) / scale
       const interval = 10 ** Math.floor(Math.log10(visibleWorldWidth / 10))
-      const leftWorld = middle - 255 / scale
+      const leftWorld = t - (viewport.tortoiseX - viewport.left) / scale
       const firstTick = Math.ceil(leftWorld / interval) * interval
       for (let i = 0; i < ticks.length; i++) {
         const x = screenX(firstTick + i * interval)
         ticks[i].setAttribute("x1", String(x))
         ticks[i].setAttribute("x2", String(x))
-        ticks[i].setAttribute("opacity", x < 45 || x > 555 ? "0" : ".4")
+        ticks[i].setAttribute(
+          "opacity",
+          x < viewport.left || x > viewport.right ? "0" : ".4"
+        )
       }
 
       // Keep the distance text stationary over the centred line.
@@ -240,7 +258,7 @@ import { series, stroke } from "~/data/palette"
         lastGapLabelPhase = labelPhase
         lastGapLabelUpdate = elapsed
       }
-      const zoomFactor = Math.round(scale / pixelsPerMetre)
+      const zoomFactor = Math.round(scale / viewport.pixelsPerMetre)
       zoomLabel.textContent = "View ×" + zoomFactor.toLocaleString("en-GB")
 
       const announcement = view.mode + "-" + stage
@@ -310,6 +328,14 @@ import { series, stroke } from "~/data/palette"
       if (document.hidden) stop()
     })
     reducedMotion.addEventListener("change", stop)
-    draw()
+    const configureViewport = () => {
+      const viewport = view()
+      scene.setAttribute("viewBox", `0 0 ${viewport.width} 174`)
+      track.setAttribute("d", `M${viewport.left} 125 H${viewport.right}`)
+      gapLabel.setAttribute("x", String(viewport.tortoiseX))
+      draw()
+    }
+    narrowView.addEventListener("change", configureViewport)
+    configureViewport()
   }
 </script>
