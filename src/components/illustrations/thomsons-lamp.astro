@@ -1,0 +1,94 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+// Each bar covers half the remaining time. The first eight bars are only a
+// finite glimpse of a process that has no final switch before two minutes.
+const bars = Array.from({ length: 9 }, (_, index) => ({
+  x: 270 - 250 / 2 ** index,
+  width: 250 / 2 ** (index + 1),
+  fill: index % 2 === 0 ? series.blue : series.gold,
+}))
+---
+
+<IllustrationFigure name="thomsons-lamp" lead="The same switches. Two possible endings.">
+  <p class="text-base leading-normal">
+    Blue means on. Gold means off. Each bar lasts half as long as the one before it. The
+    switching continues with no last switch before two minutes.
+  </p>
+
+  <SvgFigure
+    name="thomsons-lamp-endings"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 340 225"
+    title="Identical switching histories with two different states at two minutes"
+    desc="Two timelines have exactly the same alternating on and off states before two minutes. Blue on intervals and gold off intervals get progressively shorter and crowd towards the dashed two-minute boundary, with infinitely more switches beyond those pictured. At exactly two minutes, ending A specifies on and ending B specifies off. Neither ending changes any earlier switch."
+  >
+    <g fill="currentColor" font-size="15" font-weight="700">
+      <text x="20" y="19">
+        Before two minutes
+      </text>
+      <text x="270" y="19" text-anchor="middle">
+        At two minutes
+      </text>
+      <text x="20" y="57">
+        Ending A
+      </text>
+      <text x="20" y="146">
+        Ending B
+      </text>
+    </g>
+
+    <path
+      d="M270 30 V199"
+      fill="none"
+      stroke={stroke}
+      stroke-width="2"
+      stroke-dasharray="4 5"
+    />
+
+    {[72, 161].map((y) => (
+      <g>
+        {bars.map(({ x, width, fill }) => (
+          <rect x={x} y={y} width={width} height="22" fill={fill} />
+        ))}
+      </g>
+    ))}
+
+    <g>
+      <circle cx="270" cy="83" r="10" fill="var(--color-paper)" />
+      <circle cx="270" cy="83" r="7" fill={series.blue} stroke={stroke} stroke-width="1.5" />
+      <circle cx="270" cy="172" r="10" fill="var(--color-paper)" />
+      <circle cx="270" cy="172" r="7" fill={series.gold} stroke={stroke} stroke-width="1.5" />
+    </g>
+
+    <g fill="currentColor" font-size="16" font-weight="700">
+      <text x="289" y="89">
+        On
+      </text>
+      <text x="289" y="178">
+        Off
+      </text>
+    </g>
+
+    <g fill="currentColor" font-size="14">
+      <text x="20" y="217" text-anchor="middle">
+        0
+      </text>
+      <text x="145" y="217" text-anchor="middle">
+        1 min
+      </text>
+      <text x="270" y="217" text-anchor="middle">
+        2 min
+      </text>
+    </g>
+  </SvgFigure>
+
+  <Fragment slot="caption">
+    The coloured bars show just the first few switches. They get shorter without ever reaching a
+    last switch. Both histories are identical before two minutes. Adding “on” or “off” at
+    exactly two minutes changes none of those switches. The original rules simply do not say
+    which ending happens.
+  </Fragment>
+</IllustrationFigure>
