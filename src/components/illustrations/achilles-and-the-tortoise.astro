@@ -224,7 +224,8 @@ import { series, stroke } from "~/data/palette"
       // Both runners continue moving forward in world coordinates.
       const viewport = viewportFor()
       const scale =
-        viewport.pixelsPerMetre * 10 ** (stage + (view.mode === "zoom" ? smooth(view.progress) : 0))
+        viewport.pixelsPerMetre *
+        10 ** (stage + (view.mode === "zoom" ? smooth(view.progress) : 0))
       const screenX = (worldX: number) => viewport.tortoiseX + (worldX - t) * scale
       const ax = screenX(a)
       const tx = screenX(t)
