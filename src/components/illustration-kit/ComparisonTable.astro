@@ -7,19 +7,25 @@ interface Props {
   rows: (string | number)[][]
   /** Indexes of columns shaded as the part that changes. */
   highlight?: number[]
+  /** Zero-based [row, column] pairs to emphasize in the table body. Column 0 is the row header. */
+  boldCells?: [number, number][]
   align?: "left" | "center"
   /** Tighter horizontal padding on small screens, for tables with 4 or more columns. */
   dense?: boolean
 }
 
-const { caption, columns, rows, highlight = [], align = "left", dense = false } = Astro.props
+const { caption, columns, rows, highlight = [], boldCells = [], align = "left", dense = false } = Astro.props
 const pad = dense ? "px-2 py-3 sm:px-3" : "p-3"
 const cell = (i: number) => [pad, highlight.includes(i) && "bg-disputed"]
 const head = (i: number) => [
   ...cell(i),
   i === 0 || align === "left" ? "text-left" : "text-center",
 ]
-const body = (i: number) => [...cell(i), align === "center" && "text-center"]
+const body = (row: number, column: number) => [
+  ...cell(column),
+  align === "center" && "text-center",
+  boldCells.some(([r, c]) => r === row && c === column) && "font-bold",
+]
 ---
 
 <div class="overflow-x-auto border-2 border-ink">
@@ -37,13 +43,13 @@ const body = (i: number) => [...cell(i), align === "center" && "text-center"]
       </tr>
     </thead>
     <tbody>
-      {rows.map(([first, ...rest]) => (
+      {rows.map(([first, ...rest], row) => (
         <tr class="border-t border-ink">
           <th class:list={head(0)} scope="row">
             {first}
           </th>
           {rest.map((value, i) => (
-            <td class:list={body(i + 1)}>{value}</td>
+            <td class:list={body(row, i + 1)}>{value}</td>
           ))}
         </tr>
       ))}
