@@ -18,9 +18,9 @@ const boxes = [
   <div class="mx-auto grid w-full max-w-xl grid-cols-1 justify-items-center gap-1 min-[540px]:grid-cols-3 min-[540px]:gap-3">
     {boxes.map((box, index) => (
       <SvgFigure
-        name={\`bertrands-box-\${index + 1}\`}
-        title={\`\${box.name}, with two possible coin draws\`}
-        desc={\`\${box.name} branches to \${box.coins[0] === "G" ? "gold" : "silver"} and \${box.coins[1] === "G" ? "gold" : "silver"}. Each branch represents a possible coin draw.\`}
+        name={`bertrands-box-${index + 1}`}
+        title={`${box.name}, with two possible coin draws`}
+        desc={`${box.name} branches to ${box.coins[0] === "G" ? "gold" : "silver"} and ${box.coins[1] === "G" ? "gold" : "silver"}. Each branch represents a possible coin draw.`}
         viewBox="0 0 180 173"
         class="w-full max-w-48"
       >
@@ -49,7 +49,7 @@ const boxes = [
           return (
             <g data-bertrand-branch data-metal={coin}>
               <path
-                d={\`M90 56 L\${x} 93\`}
+                d={`M90 56 L${x} 93`}
                 fill="none"
                 stroke={stroke}
                 stroke-width="2.5"
