@@ -1,73 +1,46 @@
 ---
+import Callout from "~/components/illustration-kit/Callout.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Panel from "~/components/illustration-kit/Panel.astro"
 import SideBySide from "~/components/illustration-kit/SideBySide.astro"
-
-const cases = Array.from({ length: 100 }, (_, index) => index)
 ---
 
-<IllustrationFigure lead="The predictor with the higher accuracy score misses the only rare case.">
+<IllustrationFigure lead="Which fraud detector gets the higher accuracy score?">
   <p class="text-base leading-normal">
-    Both predictors see the same 100 cases: <strong>99 ordinary</strong> and
-    <strong>1 rare</strong>. Each square represents one case.
+    Imagine 100 payments. <strong>Just one is fraudulent.</strong> Both detectors examine the
+    same payments.
   </p>
 
   <SideBySide>
-    <Panel title="A. Always says ordinary">
-      <p class="mt-3 text-3xl font-bold">
-        99% <span class="text-sm font-normal">accuracy</span>
-      </p>
-      <div
-        class="mt-3 grid grid-cols-10 gap-0.5"
-        role="img"
-        aria-label="100 cases: 99 ordinary cases classified correctly and the single rare case missed."
-      >
-        {cases.map((index) => (
-          <span
-            class:list={["aspect-square", index === 0 ? "bg-series-red" : "bg-ink/15"]}
-            aria-hidden="true"
-          ></span>
-        ))}
+    <Panel title="A. Says all are legitimate">
+      <p class="mt-3 text-sm">Accuracy</p>
+      <p class="text-3xl font-bold">99%</p>
+      <div class="mt-4 border-t-2 border-ink pt-3">
+        <p class="text-sm">Frauds found</p>
+        <p class="text-3xl font-bold text-series-red">0 of 1</p>
+        <p class="mt-1 text-sm leading-normal">Misses the fraud entirely.</p>
       </div>
-      <p class="mt-3 text-base leading-normal">
-        <strong>0 of 1</strong> rare cases found.
-      </p>
-      <p class="mt-1 text-sm leading-normal">Red: the rare case it missed.</p>
     </Panel>
-
-    <Panel title="B. Flags 3 cases">
-      <p class="mt-3 text-3xl font-bold">
-        98% <span class="text-sm font-normal">accuracy</span>
-      </p>
-      <div
-        class="mt-3 grid grid-cols-10 gap-0.5"
-        role="img"
-        aria-label="100 cases: the rare case found, 97 ordinary cases classified correctly and 2 ordinary cases wrongly flagged."
-      >
-        {cases.map((index) => (
-          <span
-            class:list={[
-              "aspect-square",
-              index === 0 ? "bg-series-green" : index < 3 ? "bg-series-gold" : "bg-ink/15",
-            ]}
-            aria-hidden="true"
-          ></span>
-        ))}
+    <Panel title="B. Flags 3 payments">
+      <p class="mt-3 text-sm">Accuracy</p>
+      <p class="text-3xl font-bold">98%</p>
+      <div class="mt-4 border-t-2 border-ink pt-3">
+        <p class="text-sm">Frauds found</p>
+        <p class="text-3xl font-bold text-series-green">1 of 1</p>
+        <p class="mt-1 text-sm leading-normal">Finds the fraud, with 2 false alarms.</p>
       </div>
-      <p class="mt-3 text-base leading-normal">
-        <strong>1 of 1</strong> rare cases found.
-      </p>
-      <p class="mt-1 text-sm leading-normal">Green: rare case found. Gold: 2 false alarms.</p>
     </Panel>
   </SideBySide>
 
-  <p class="text-sm leading-normal">
-    Pale squares are ordinary cases classified correctly in both diagrams.
-  </p>
+  <Callout tone="accent">
+    <p class="leading-normal">
+      <strong>A scores higher, yet finds no fraud.</strong> Its 99 correct answers are all
+      legitimate payments. B makes two mistakes but catches the only fraud.
+    </p>
+  </Callout>
 
   <Fragment slot="caption">
-    A has the better accuracy score but never finds a rare case. B scores lower because of two
-    false alarms, yet it finds the rare case. Which is more useful depends on what matters more:
-    missing rare cases or raising false alarms. Accuracy alone cannot tell you that.
+    If finding fraud matters, accuracy alone gives the wrong impression. Which detector is
+    more useful also depends on the cost of false alarms.
   </Fragment>
 </IllustrationFigure>
