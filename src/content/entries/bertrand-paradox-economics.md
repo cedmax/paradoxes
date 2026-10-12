@@ -1,7 +1,7 @@
 ---
-title: "Bertrand paradox"
+title: "Bertrand's economic paradox"
 titleAccent: "paradox"
-aka: ["Bertrand paradox (economics)", "Bertrand competition"]
+aka: ["Bertrand paradox", "Bertrand paradox (economics)", "Bertrand competition"]
 chapter: collective
 status: "explained"
 simplification: light

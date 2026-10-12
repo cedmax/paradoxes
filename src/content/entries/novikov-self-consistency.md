@@ -18,7 +18,7 @@ simplification: light
 noMaths: true
 order: 70
 written: true
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 problem: "If the past cannot be changed, what happens when a time traveller sets out to undo their own trip?"
 claimA: "A traveller who tries to undo their own trip must fail, because only histories that fit together can happen."
