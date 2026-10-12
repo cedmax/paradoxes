@@ -12,7 +12,7 @@ sourcesVerified: true
 problem: "If the laws of motion work the same forwards and backwards, why does time seem to run in only one direction?"
 claimA: "If the laws of motion work the same forwards and backwards, entropy should have no preferred direction."
 claimB: "Entropy almost always rises towards the future."
-verdict: "The time-symmetric laws alone do not explain why entropy rises toward the future. Proposed explanations appeal to probability, a very special beginning, or other assumptions."
+verdict: "The time-symmetric laws alone do not explain why entropy rises towards the future. Proposed explanations appeal to probability, a very special beginning, or other assumptions."
 whatBreaks: "The contested choice is between treating the second law as only very likely, and explaining the one-way direction through the special state the universe began in."
 statusNote: "experts agree this is a real puzzle and disagree on which claim to give up. Each of the main approaches settles a part of it, and none is accepted as covering the whole."
 setup: "Reverse every molecule’s motion in a gas. If the laws work equally well backwards, the gas can retrace a lawful history in which entropy falls. Entropy measures how many microscopic arrangements fit the large-scale state. Yet ordinary processes overwhelmingly run towards higher entropy."
