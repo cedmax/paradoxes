@@ -9,7 +9,7 @@ order: 30
 written: true
 sourcesVerified: true
 problem: "If quantum rules say an atom can be in two states at once, what does that mean for a cat whose life depends on it?"
-claimA: "If quantum theory applies to the whole box, the cat ends up in a mix of alive and dead."
+claimA: "Quantum theory can describe an atom as a mix of decayed and not decayed. In principle, the same rules apply to anything made of atoms."
 claimB: "A cat must be either alive or dead."
 verdict: "The cat tests how a quantum combination of alternatives becomes one observed result. The main interpretations make different changes, and there is no consensus on which is right."
 whatBreaks: "How to combine a complete quantum description of the box with one definite outcome. The interpretations change different assumptions."
