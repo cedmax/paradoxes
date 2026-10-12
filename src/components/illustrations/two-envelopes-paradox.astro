@@ -1,16 +1,8 @@
 ---
-import { readFileSync } from "node:fs"
-import * as prettier from "prettier"
 import Callout from "~/components/illustration-kit/Callout.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Panel from "~/components/illustration-kit/Panel.astro"
 import SideBySide from "~/components/illustration-kit/SideBySide.astro"
-
-const prettierPath = "src/components/illustrations/two-envelopes-paradox.astro"
-const prettierOptions = (await prettier.resolveConfig(prettierPath)) ?? {}
-console.log("TWO_ENVELOPES_PRETTIER_START")
-console.log(await prettier.format(readFileSync(prettierPath, "utf8"), { ...prettierOptions, filepath: prettierPath }))
-console.log("TWO_ENVELOPES_PRETTIER_END")
 ---
 
 <IllustrationFigure name="two-envelopes-paradox" lead="You open your envelope and find £20.">
@@ -24,8 +16,10 @@ console.log("TWO_ENVELOPES_PRETTIER_END")
       <p class="mt-2 text-sm">Opened</p>
     </Panel>
     <Panel title="Other envelope" class="min-w-0">
-      <p id="two-envelopes-other-amount" class="display mt-4 text-3xl sm:text-5xl">?</p>
-      <p class="mt-2 text-sm">Still sealed</p>
+      <p id="two-envelopes-other-amount" class="display mt-4 text-3xl sm:text-5xl">
+        ?
+      </p>
+      <p class="mt-2 text-sm">What it might hold</p>
     </Panel>
   </SideBySide>
 
