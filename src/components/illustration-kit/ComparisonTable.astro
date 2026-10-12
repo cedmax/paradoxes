@@ -14,7 +14,15 @@ interface Props {
   dense?: boolean
 }
 
-const { caption, columns, rows, highlight = [], boldCells = [], align = "left", dense = false } = Astro.props
+const {
+  caption,
+  columns,
+  rows,
+  highlight = [],
+  boldCells = [],
+  align = "left",
+  dense = false,
+} = Astro.props
 const pad = dense ? "px-2 py-3 sm:px-3" : "p-3"
 const cell = (i: number) => [pad, highlight.includes(i) && "bg-disputed"]
 const head = (i: number) => [
