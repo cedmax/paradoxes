@@ -1,6 +1,6 @@
 ---
-title: "Norton's dome paradox"
-titleAccent: "paradox"
+title: "Norton's dome"
+titleAccent: "dome"
 chapter: models
 status: "disputed"
 simplification: light
