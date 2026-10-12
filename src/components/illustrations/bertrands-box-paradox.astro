@@ -7,19 +7,19 @@ const boxes = [
   {
     name: "Box 1",
     coins: ["G", "G"],
-    revealLabel: "2 leave gold",
+    revealLabel: "2 gold coins",
     description: "Both possible coin draws are gold.",
   },
   {
     name: "Box 2",
     coins: ["G", "S"],
-    revealLabel: "1 leaves silver",
+    revealLabel: "1 gold coin",
     description: "One coin draw is gold; one is silver.",
   },
   {
     name: "Box 3",
     coins: ["S", "S"],
-    revealLabel: "0 gold draws",
+    revealLabel: "0 gold coins",
     description: "Both possible coin draws are silver.",
   },
 ]
@@ -125,11 +125,10 @@ const boxes = [
   </button>
 
   <div id="bertrand-result" class="space-y-2 border-t-2 border-ink pt-3" hidden>
-    <p class="text-base font-bold">Chance the other coin in your box is gold</p>
-    <p class="text-3xl font-bold">2 out of 3</p>
+    <p class="text-2xl font-bold">2 out of 3 gold coins are in Box 1.</p>
     <p class="text-base leading-normal">
-      There are three equally likely ways to draw a gold coin. In two of them, the other coin
-      is gold too. The third leaves silver.
+      So if you drew gold, there's a 2-in-3 chance you picked Box 1, where the other coin is
+      gold too.
     </p>
   </div>
 </IllustrationFigure>
