@@ -1,4 +1,6 @@
 ---
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import Disclosure from "~/components/illustration-kit/Disclosure.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Panel from "~/components/illustration-kit/Panel.astro"
 ---
@@ -71,6 +73,21 @@ import Panel from "~/components/illustration-kit/Panel.astro"
     Both sides agree on the sentences. Some argue that each prisoner should testify because it
     is better against either fixed choice. Others argue that two people who reason alike should
     stay silent. The disagreement is about what rational choice requires.
+  </Fragment>
+
+  <Fragment slot="after">
+    <Disclosure summary="See all four outcomes">
+      <ComparisonTable
+        caption="Years in prison (A first, B second)"
+        columns={["A's choice", "B stays silent", "B testifies"]}
+        rows={[
+          ["A stays silent", "1, 1", "3, 0"],
+          ["A testifies", "0, 3", "2, 2"],
+        ]}
+        align="center"
+        dense
+      />
+    </Disclosure>
   </Fragment>
 </IllustrationFigure>
 
