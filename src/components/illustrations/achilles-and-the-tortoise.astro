@@ -27,7 +27,7 @@ import { series, stroke } from "~/data/palette"
     class="w-full"
     viewBox="0 0 600 174"
     title="Achilles approaches the tortoise through an ever-magnifying view"
-    desc="A horizontal track with Achilles on the left and the tortoise staying at the right of the view. Achilles reaches each previous tortoise position, but the tortoise remains ahead. The camera follows the tortoise and magnifies each smaller gap tenfold. Four stages are shown; no overtaking is depicted."
+    desc="A horizontal track with Achilles on the left and the tortoise staying at the right of the view. Achilles reaches each previous tortoise position, but the tortoise remains ahead. The camera follows the tortoise and magnifies each smaller gap tenfold. Eight stages are shown, stopping at a gap of 1 micrometre; no overtaking is depicted."
   >
     <path
       id="achilles-track"
@@ -144,8 +144,9 @@ import { series, stroke } from "~/data/palette"
 
     // Positions in metres, in one fixed ground reference frame.
     // Achilles is at 10t and the tortoise is at 100+t.
-    const gaps = [100, 10, 1, 0.1]
-    const stageStartTimes = [0, 10, 11, 11.1]
+    // Eight shrinking chase stages, ending at a one-micrometre gap.
+    const gaps = [100, 10, 1, 0.1, 0.01, 0.001, 0.0001, 0.00001]
+    const stageStartTimes = [0, 10, 11, 11.1, 11.11, 11.111, 11.1111, 11.11111]
     // Each chase takes 10 seconds; the camera zoom takes 1 second.
     const runDuration = 3000
     const zoomDuration = 1000
@@ -182,11 +183,13 @@ import { series, stroke } from "~/data/palette"
     const smooth = (value: number) => value * value * (3 - 2 * value)
     const showNumber = (value: number) => String(Number(value.toFixed(2)))
     const formatGap = (metres: number) => {
-      // Use units appropriate to the shrinking gap; preserve the 10 mm endpoint.
-      const gap = Math.max(0.01, metres)
+      // Follow the shrinking scale from metres through centimetres and
+      // millimetres to micrometres, with a 1 µm final gap.
+      const gap = Math.max(0.000001, metres)
       if (gap >= 1) return showNumber(gap) + " m"
-      if (gap >= 0.1) return showNumber(gap * 100) + " cm"
-      return showNumber(gap * 1000) + " mm"
+      if (gap >= 0.01) return showNumber(gap * 100) + " cm"
+      if (gap >= 0.0001) return showNumber(gap * 1000) + " mm"
+      return showNumber(gap * 1000000) + " µm"
     }
     const viewAt = (milliseconds: number) => {
       let remaining = Math.min(milliseconds, totalDuration)
@@ -208,7 +211,7 @@ import { series, stroke } from "~/data/palette"
         }
         remaining -= zoomDuration
       }
-      return { stage: 3, mode: "run" as const, progress: 1 }
+      return { stage: gaps.length - 1, mode: "run" as const, progress: 1 }
     }
 
     const updateButton = () => {
@@ -234,6 +237,10 @@ import { series, stroke } from "~/data/palette"
         view.mode === "run" ? startingTime + runTime * view.progress : startingTime + runTime
       const a = 10 * time
       const t = 100 + time
+      // Calculate the gap from the geometric stages to avoid cancellation
+      // in subtracting two near-equal world positions at micrometre scales.
+      const remainingGap =
+        view.mode === "run" ? gaps[stage] * (1 - 0.9 * view.progress) : gaps[stage] / 10
 
       // Track the tortoise on the right as the camera magnifies the remaining gap.
       // Both runners continue moving forward in world coordinates.
@@ -296,7 +303,7 @@ import { series, stroke } from "~/data/palette"
         labelPhase !== lastGapLabelPhase ||
         elapsed - lastGapLabelUpdate >= 125
       ) {
-        const nextGapLabel = formatGap(t - a)
+        const nextGapLabel = formatGap(remainingGap)
         if (gapLabel.textContent !== nextGapLabel) gapLabel.textContent = nextGapLabel
         lastGapLabelPhase = labelPhase
         lastGapLabelUpdate = elapsed
@@ -315,7 +322,7 @@ import { series, stroke } from "~/data/palette"
               : "The tortoise is still ahead. Achilles heads for its old position."
       }
       if (elapsed === totalDuration) {
-        status.textContent = "A 10 mm gap still remains. The pattern continues."
+        status.textContent = "A 1 µm gap still remains. The pattern continues."
       }
       updateButton()
     }
