@@ -61,12 +61,13 @@ import { series, stroke } from "~/data/palette"
     </text>
     <g id="achilles-marker" transform="translate(90 0)">
       <path d="M0 113 V125" stroke={series.blue} stroke-width="2" />
-      <circle cx="0" cy="92" r="18" fill={series.blue} />
+      <circle data-achilles-dot cx="0" cy="92" r="18" fill={series.blue} />
       <text
         x="0"
         y="98"
         text-anchor="middle"
         font-size="18"
+        data-achilles-initial
         font-weight="700"
         fill="var(--color-paper)"
       >
@@ -75,12 +76,13 @@ import { series, stroke } from "~/data/palette"
     </g>
     <g id="achilles-tortoise-marker" transform="translate(510 0)">
       <path d="M0 113 V125" stroke={series.green} stroke-width="2" />
-      <circle cx="0" cy="92" r="18" fill={series.green} />
+      <circle data-achilles-dot cx="0" cy="92" r="18" fill={series.green} />
       <text
         x="0"
         y="98"
         text-anchor="middle"
         font-size="18"
+        data-achilles-initial
         font-weight="700"
         fill="var(--color-paper)"
       >
@@ -115,6 +117,8 @@ import { series, stroke } from "~/data/palette"
   if (root) {
     const scene = find<SVGSVGElement>(root, "#achilles-scene")
     const track = find<SVGPathElement>(root, "#achilles-track")
+    const dots = root.querySelectorAll<SVGCircleElement>("[data-achilles-dot]")
+    const initials = root.querySelectorAll<SVGTextElement>("[data-achilles-initial]")
     const achillesMarker = find<SVGGElement>(root, "#achilles-marker")
     const tortoiseMarker = find<SVGGElement>(root, "#achilles-tortoise-marker")
     const gapLine = find<SVGLineElement>(root, "#achilles-gap-line")
@@ -138,7 +142,7 @@ import { series, stroke } from "~/data/palette"
     // The tortoise stays at the right end; the camera follows its world position.
     const viewportFor = () =>
       narrowView.matches
-        ? { width: 320, left: 20, right: 300, tortoiseX: 285, pixelsPerMetre: 2.5 }
+        ? { width: 320, left: 12, right: 308, tortoiseX: 303, pixelsPerMetre: 2.8 }
         : { width: 600, left: 45, right: 555, tortoiseX: 510, pixelsPerMetre: 4.2 }
 
     const svgNS = "http://www.w3.org/2000/svg"
@@ -238,13 +242,10 @@ import { series, stroke } from "~/data/palette"
         const x = screenX(firstTick + i * interval)
         ticks[i].setAttribute("x1", String(x))
         ticks[i].setAttribute("x2", String(x))
-        ticks[i].setAttribute(
-          "opacity",
-          x < viewport.left || x > viewport.right ? "0" : ".4"
-        )
+        ticks[i].setAttribute("opacity", x < viewport.left || x > viewport.right ? "0" : ".4")
       }
 
-      // Keep the distance text stationary over the centred line.
+      // Keep the distance text stationary above the tortoise end of the gap line.
       // Update at most eight times per second so changing digits don't shimmer.
       const labelPhase = view.mode + "-" + stage
       if (
@@ -333,6 +334,11 @@ import { series, stroke } from "~/data/palette"
       scene.setAttribute("viewBox", `0 0 ${viewport.width} 174`)
       track.setAttribute("d", `M${viewport.left} 125 H${viewport.right}`)
       gapLabel.setAttribute("x", String(viewport.tortoiseX))
+      // Small markers stay visibly separate, even at the end of a chase.
+      for (const dot of dots) dot.setAttribute("r", narrowView.matches ? "12" : "18")
+      for (const initial of initials) {
+        initial.setAttribute("font-size", narrowView.matches ? "14" : "18")
+      }
       draw()
     }
     narrowView.addEventListener("change", configureViewport)
