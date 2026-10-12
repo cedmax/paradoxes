@@ -22,7 +22,7 @@ const boxes = [
         title={`${box.name}, with two possible coin draws`}
         desc={`${box.name}. ${box.description}`}
         viewBox="0 0 180 173"
-        class="w-full max-w-48"
+        class="w-full max-w-40 min-[540px]:max-w-48"
       >
         <rect
           x="18"
@@ -96,7 +96,7 @@ const boxes = [
   <button
     id="bertrand-reveal"
     type="button"
-    class="btn-ghost"
+    class="btn-ghost self-center"
     aria-expanded="false"
     aria-controls="bertrand-result"
   >
