@@ -4,18 +4,35 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
 
 const boxes = [
-  { name: "Box 1", coins: ["G", "G"], goldDraws: "2 gold draws", description: "Both possible coin draws are gold." },
-  { name: "Box 2", coins: ["G", "S"], goldDraws: "1 gold draw", description: "One coin draw is gold; one is silver." },
-  { name: "Box 3", coins: ["S", "S"], goldDraws: "0 gold draws", description: "Both possible coin draws are silver." },
+  {
+    name: "Box 1",
+    coins: ["G", "G"],
+    goldDraws: "2 gold draws",
+    description: "Both possible coin draws are gold.",
+  },
+  {
+    name: "Box 2",
+    coins: ["G", "S"],
+    goldDraws: "1 gold draw",
+    description: "One coin draw is gold; one is silver.",
+  },
+  {
+    name: "Box 3",
+    coins: ["S", "S"],
+    goldDraws: "0 gold draws",
+    description: "Both possible coin draws are silver.",
+  },
 ]
 ---
 
 <IllustrationFigure name="bertrands-box" lead="You drew gold. Which box did it come from?">
   <p class="text-base leading-normal">
-    Pick a box, then one of its two coins. Every path is equally likely. G means gold; S means silver.
+    Pick a box, then a coin. Every path is equally likely. G means gold; S means silver.
   </p>
 
-  <div class="mx-auto grid w-full max-w-xl grid-cols-1 justify-items-center gap-1 min-[540px]:grid-cols-3 min-[540px]:gap-3">
+  <div
+    class="mx-auto grid w-full max-w-xl grid-cols-1 justify-items-center gap-1 min-[540px]:grid-cols-3 min-[540px]:gap-3"
+  >
     {boxes.map((box, index) => (
       <SvgFigure
         name={`bertrands-box-${index + 1}`}
