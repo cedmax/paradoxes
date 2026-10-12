@@ -26,20 +26,14 @@ import Panel from "~/components/illustration-kit/Panel.astro"
       <div class="grid gap-3 sm:grid-cols-2">
         <Panel title="Vote on the reasons" class="flex flex-col gap-3">
           <div class="flex flex-col gap-2">
-            <p>Valid: <strong>2 say yes</strong></p>
-            <p>Broken: <strong>2 say yes</strong></p>
+            <p>Valid: <strong>2 of 3 judges say yes</strong></p>
+            <p>Broken: <strong>2 of 3 judges say yes</strong></p>
           </div>
-          <p class="mt-auto border-t border-ink pt-3 text-sm">
-            Both requirements get a majority.
-          </p>
-          <p class="text-2xl font-bold">Liable</p>
+          <p class="mt-auto border-t border-ink pt-3 text-2xl font-bold">Result: Liable</p>
         </Panel>
         <Panel title="Vote on the verdict" class="flex flex-col gap-3">
-          <p>Not liable: <strong>2 of 3 judges</strong></p>
-          <p class="mt-auto border-t border-ink pt-3 text-sm">
-            The majority rejects liability.
-          </p>
-          <p class="text-2xl font-bold">Not liable</p>
+          <p>Liable: <strong>2 of 3 judges say no</strong></p>
+          <p class="mt-auto border-t border-ink pt-3 text-2xl font-bold">Result: Not liable</p>
         </Panel>
       </div>
       <p class="text-base leading-normal">
