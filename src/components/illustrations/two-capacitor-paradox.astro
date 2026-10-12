@@ -1,52 +1,80 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">
-    Two identical capacitors share charge, but only half the initial energy remains stored.
-  </p>
-  <div class="grid grid-cols-2 gap-3 text-base">
-    <div class="border-2 border-ink p-3">
-      <strong>Before connecting</strong>
-      <p>Capacitor 1: voltage V</p>
-      <p>Capacitor 2: empty</p>
-      <p class="mt-2 font-bold">Stored energy = ½CV²</p>
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+
+const quarters = [0, 1, 2, 3]
+const stages = [
+  {
+    title: "Before connecting",
+    capacitors: [
+      { name: "A", charge: "Q", voltage: "V", filled: 4, energy: "100%" },
+      { name: "B", charge: "0", voltage: "0", filled: 0, energy: "0%" },
+    ],
+  },
+  {
+    title: "After settling",
+    capacitors: [
+      { name: "A", charge: "Q/2", voltage: "V/2", filled: 1, energy: "25%" },
+      { name: "B", charge: "Q/2", voltage: "V/2", filled: 1, energy: "25%" },
+    ],
+  },
+]
+---
+
+<IllustrationFigure
+  lead="The charge divides equally. The stored energy does not."
+>
+  {stages.map((stage, index) => (
+    <div class="flex flex-col gap-3">
+      {index === 1 && (
+        <p class="flex items-center justify-center gap-2 text-base font-bold">
+          <span aria-hidden="true">↓</span>
+          Connect the capacitors and let the charge settle
+        </p>
+      )}
+      <p class="font-bold">{stage.title}</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {stage.capacitors.map((capacitor) => (
+          <Panel title={`Capacitor ${capacitor.name}`}>
+            <p class="mt-2 text-base">
+              Charge: <strong>{capacitor.charge}</strong> · Voltage:{" "}
+              <strong>{capacitor.voltage}</strong>
+            </p>
+            <div class="mt-3 grid grid-cols-4 gap-1.5" aria-hidden="true">
+              {quarters.map((quarter) => (
+                <span
+                  class:list={[
+                    "h-6",
+                    quarter < capacitor.filled ? "bg-series-blue" : "border border-ink",
+                  ]}
+                ></span>
+              ))}
+            </div>
+            <p class="mt-2 text-base font-bold">{capacitor.energy} of initial energy</p>
+          </Panel>
+        ))}
+      </div>
     </div>
-    <div class="border-2 border-ink p-3">
-      <strong>After settling</strong>
-      <p>Each capacitor: voltage V/2</p>
-      <p>Each holds half the charge</p>
-      <p class="mt-2 font-bold">Total energy = ¼CV²</p>
+  ))}
+
+  <Panel accent="gold" title="Where the other half goes">
+    <div class="mt-3 grid grid-cols-4 gap-1.5" aria-hidden="true">
+      {quarters.map((quarter) => (
+        <span
+          class:list={["h-6", quarter < 2 ? "bg-series-gold" : "border border-ink"]}
+        ></span>
+      ))}
     </div>
-  </div>
-  <svg
-    viewBox="0 0 300 122"
-    class="w-full max-w-sm"
-    role="img"
-    aria-labelledby="capacitor-title capacitor-desc"
-  >
-    <title id="capacitor-title">Half the initial stored energy transfers outside the capacitors</title>
-    <desc id="capacitor-desc">
-      Of the initial energy, one half remains in the two capacitors and one half transfers via
-      the connecting circuit and fields.
-    </desc>
-    <rect x="10" y="32" width="280" height="30" fill="#d7a13d" />
-    <rect x="10" y="32" width="140" height="30" fill="#387a91" />
-    <rect x="10" y="74" width="14" height="14" fill="#387a91" />
-    <rect x="10" y="98" width="14" height="14" fill="#d7a13d" />
-    <g fill="currentColor" font-size="16">
-      <text x="10" y="22">
-        Initial energy
-      </text>
-      <text x="32" y="87">
-        ½ remains stored
-      </text>
-      <text x="32" y="111">
-        ½ leaves the capacitors
-      </text>
-    </g>
-  </svg>
-  <figcaption class="text-base leading-normal">
-    Each final capacitor stores ½C(V/2)², so together they store ¼CV²: half the original ½CV².
-    The other half is transferred to heating, electromagnetic fields or radiation during the
-    current flow. An ideal resistance-free circuit cannot simply be assumed to settle instantly
-    into that static state.
-  </figcaption>
-</figure>
+    <p class="mt-2 text-base">
+      <strong>50% of the initial energy</strong> transfers elsewhere, for example as heat or
+      electromagnetic radiation.
+    </p>
+  </Panel>
+
+  <Fragment slot="caption">
+    Each square represents a quarter of the initial stored energy, not charge. The total charge
+    stays Q, split equally between A and B. Together the capacitors store only half their
+    starting energy; the rest leaves their electric fields while current flows. A perfectly
+    lossless circuit cannot simply be assumed to settle into this final state.
+  </Fragment>
+</IllustrationFigure>
