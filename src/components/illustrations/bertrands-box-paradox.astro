@@ -39,7 +39,9 @@ const coinClass = (coin: string) => [
               >
                 {coin}
               </span>
-              <span data-bertrand-chance class="text-xs" hidden>1/6</span>
+              <span class="flex h-4 items-center justify-center">
+                <span data-bertrand-chance class="text-xs" hidden>1/6</span>
+              </span>
             </div>
           ))}
         </div>
@@ -68,10 +70,6 @@ const coinClass = (coin: string) => [
     </p>
   </div>
 
-  <Fragment slot="caption">
-    Seeing gold leaves two possible boxes, but not two equally likely boxes. The gold-gold box
-    has twice as many ways to produce the coin you saw.
-  </Fragment>
 </IllustrationFigure>
 
 <script>
