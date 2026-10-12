@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
+    # PR previews are opt-in: apply the "deploy-preview" label.
+    # Subsequent commits deploy again only while the label remains present.
+    types: [labeled, synchronize, reopened]
   workflow_dispatch:
 
 # Cancel superseded runs on the same ref (e.g. rapid pushes to a PR).
@@ -13,6 +16,15 @@ concurrency:
 
 jobs:
   deploy:
+    # Production: push to main or manual dispatch on main only.
+    # PR: same-repo PR with the deploy-preview label, not any other new label.
+    if: >-
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'pull_request' &&
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        contains(github.event.pull_request.labels.*.name, 'deploy-preview') &&
+        (github.event.action != 'labeled' || github.event.label.name == 'deploy-preview'))
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -30,17 +42,15 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # astro build → dist/
+      # Astro builds on the GitHub runner, not on Netlify.
       - run: pnpm build
 
-      # Fork PRs can't read the Netlify secrets, so the deploy would fail red;
-      # skip it there (the build above still runs).
+      # Fork PRs are excluded by the job-level condition above.
       # Netlify only hosts the output: the build already happened, so --no-build.
-      # prod on push/dispatch; on pull_request an aliased draft with a stable
-      # preview URL. Headers come from netlify.toml.
+      # Manual dispatch is only allowed from main, preventing an accidental
+      # production deployment from a feature branch.
       - name: Deploy to Netlify
         id: deploy
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -59,10 +69,10 @@ jobs:
           cat deploy.json
           echo "url=$(jq -r '.deploy_url // empty' deploy.json)" >> "$GITHUB_OUTPUT"
 
-  # Separate job so a transient failure here doesn't force a full build+deploy rerun.
+  # Separate job so a transient comment failure doesn't force redeployment.
   comment:
     needs: deploy
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && needs.deploy.outputs.url != ''
+    if: github.event_name == 'pull_request' && needs.deploy.outputs.url != ''
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write

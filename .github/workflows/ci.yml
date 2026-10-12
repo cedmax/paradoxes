@@ -12,20 +12,7 @@ permissions:
 
 jobs:
   checks:
-    name: ${{ matrix.name }}
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: lint
-            run: pnpm lint
-          - name: check
-            run: pnpm check
-          - name: format
-            run: pnpm exec prettier --check .
-          - name: knip
-            run: pnpm knip
     steps:
       - uses: actions/checkout@v5
 
@@ -38,4 +25,34 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: ${{ matrix.run }}
+      # Run all four checks even when one fails, with a single install and runner.
+      - name: Lint
+        id: lint
+        run: pnpm lint
+        continue-on-error: true
+
+      - name: Astro check
+        id: check
+        run: pnpm check
+        continue-on-error: true
+
+      - name: Formatting
+        id: format
+        run: pnpm exec prettier --check .
+        continue-on-error: true
+
+      - name: Unused code
+        id: knip
+        run: pnpm knip
+        continue-on-error: true
+
+      - name: Report failed checks
+        if: always()
+        run: |
+          if [[ "${{ steps.lint.outcome }}" != "success" ||
+                "${{ steps.check.outcome }}" != "success" ||
+                "${{ steps.format.outcome }}" != "success" ||
+                "${{ steps.knip.outcome }}" != "success" ]]; then
+            echo "One or more checks failed. Review the steps above." >&2
+            exit 1
+          fi
