@@ -17,7 +17,7 @@ import { series, stroke } from "~/data/palette"
       <path d="M45 120 L445 216" />
     </g>
     <g fill="none" stroke={stroke} stroke-width="3">
-      <path d="M205 60 V180" />
+      <path d="M205 60 V180" stroke-dasharray="5 5" />
       <path d="M445 15 V225" />
     </g>
     <g fill={series.red} stroke={stroke} stroke-width="1.5">
@@ -59,6 +59,6 @@ import { series, stroke } from "~/data/palette"
     If the wall is sufficiently distant, the bright spot can sweep across it faster than light.
     <strong> No object or signal travels sideways between spots:</strong> different photons
     travel outward to each part of the wall. The rays show two positions of the beam, not a
-    single photon changing course.
+    single photon changing course. The walls show alternative locations, not two barriers.
   </Fragment>
 </IllustrationFigure>
