@@ -5,24 +5,16 @@ interface Props {
   /** Visible table title. Always give the table one. */
   caption?: string
   columns: string[]
-  /** One array per row. The first cell of each row becomes the row header. */
+  /** The first cell is the row header. Use { text, bold: true } for emphasis. */
   rows: Cell[][]
   /** Indexes of columns shaded as the part that changes. */
   highlight?: number[]
-  /** Use { text, bold: true } to emphasise selected body cells. */
   align?: "left" | "center"
   /** Tighter horizontal padding on small screens, for tables with 4 or more columns. */
   dense?: boolean
 }
 
-const {
-  caption,
-  columns,
-  rows,
-  highlight = [],
-  align = "left",
-  dense = false,
-} = Astro.props
+const { caption, columns, rows, highlight = [], align = "left", dense = false } = Astro.props
 const pad = dense ? "px-2 py-3 sm:px-3" : "p-3"
 const cell = (i: number) => [pad, highlight.includes(i) && "bg-disputed"]
 const head = (i: number) => [
