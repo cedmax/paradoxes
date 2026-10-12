@@ -1,48 +1,79 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">A score of 99.901% accuracy can hide a flood of false alarms.</p>
-  <div class="grid grid-cols-2 gap-3 text-base">
-    <div class="border-2 border-ink p-3">
-      <strong>1,000,000 cases</strong>
-      <p>Only 10 are truly positive.</p>
-    </div>
-    <div class="border-2 border-ink p-3">
-      <strong>1,000 alarms</strong>
-      <p>10 real and 990 false.</p>
-    </div>
-  </div>
-  <svg
-    viewBox="0 0 300 142"
-    class="w-full max-w-sm"
-    role="img"
-    aria-labelledby="accuracy-title accuracy-desc"
-  >
-    <title id="accuracy-title">Nearly all predictions correct but only one percent of alarms correct</title>
-    <desc id="accuracy-desc">
-      One thousand flagged alarms include ten true cases and nine hundred ninety false alarms.
-    </desc>
-    <rect x="10" y="32" width="280" height="30" fill="#bd4b37" fill-opacity=".55" />
-    <rect x="10" y="32" width="2.8" height="30" fill="#387a91" />
-    <g fill="currentColor" font-size="16">
-      <text x="10" y="22">
-        Among the 1,000 alarms
-      </text>
-      <text x="10" y="84">
-        10 true
-      </text>
-      <text x="290" y="84" text-anchor="end">
-        990 false
-      </text>
-      <text x="10" y="112" font-weight="bold">
-        Precision = 1%, despite
-      </text>
-      <text x="10" y="134" font-weight="bold">
-        99.901% overall accuracy
-      </text>
-    </g>
-  </svg>
-  <figcaption class="text-base leading-normal">
-    The example catches all 10 rare cases (100% recall) and correctly labels 999,010 of
-    1,000,000 cases (99.901% accuracy). But only 10 of the 1,000 alarms are real. Counting all
-    easy negatives makes accuracy look spectacular while alarms remain unreliable.
-  </figcaption>
-</figure>
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SideBySide from "~/components/illustration-kit/SideBySide.astro"
+
+const cases = Array.from({ length: 100 }, (_, index) => index)
+---
+
+<IllustrationFigure lead="The predictor with the higher accuracy score misses the only rare case.">
+  <p class="text-base leading-normal">
+    Both predictors see the same 100 cases: <strong>99 ordinary</strong> and
+    <strong>1 rare</strong>. Each square represents one case.
+  </p>
+
+  <SideBySide>
+    <Panel title="A. Always says ordinary">
+      <p class="mt-3 text-3xl font-bold">99% <span class="text-sm font-normal">accuracy</span></p>
+      <div
+        class="mt-3 grid grid-cols-10 gap-0.5"
+        role="img"
+        aria-label="100 cases: 99 ordinary cases classified correctly and the single rare case missed."
+      >
+        {cases.map((index) => (
+          <span
+            class:list={[
+              "aspect-square",
+              index === 0 ? "bg-series-red" : "bg-ink/15",
+            ]}
+            aria-hidden="true"
+          ></span>
+        ))}
+      </div>
+      <p class="mt-3 text-base leading-normal">
+        <strong>0 of 1</strong> rare cases found.
+      </p>
+      <p class="mt-1 text-sm leading-normal">Red: the rare case it missed.</p>
+    </Panel>
+
+    <Panel title="B. Flags 3 cases">
+      <p class="mt-3 text-3xl font-bold">98% <span class="text-sm font-normal">accuracy</span></p>
+      <div
+        class="mt-3 grid grid-cols-10 gap-0.5"
+        role="img"
+        aria-label="100 cases: the rare case found, 97 ordinary cases classified correctly and 2 ordinary cases wrongly flagged."
+      >
+        {cases.map((index) => (
+          <span
+            class:list={[
+              "aspect-square",
+              index === 0
+                ? "bg-series-green"
+                : index < 3
+                  ? "bg-series-gold"
+                  : "bg-ink/15",
+            ]}
+            aria-hidden="true"
+          ></span>
+        ))}
+      </div>
+      <p class="mt-3 text-base leading-normal">
+        <strong>1 of 1</strong> rare cases found.
+      </p>
+      <p class="mt-1 text-sm leading-normal">
+        Green: rare case found. Gold: 2 false alarms.
+      </p>
+    </Panel>
+  </SideBySide>
+
+  <p class="text-sm leading-normal">
+    Pale squares are ordinary cases classified correctly in both diagrams.
+  </p>
+
+  <Fragment slot="caption">
+    A has the better accuracy score but never finds a rare case. B scores lower because of
+    two false alarms, yet it finds the rare case. Which is more useful depends on what
+    matters more: missing rare cases or raising false alarms. Accuracy alone cannot tell
+    you that.
+  </Fragment>
+</IllustrationFigure>
