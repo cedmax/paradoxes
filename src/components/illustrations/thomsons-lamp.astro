@@ -12,10 +12,7 @@ const bars = Array.from({ length: 9 }, (_, index) => ({
 }))
 ---
 
-<IllustrationFigure
-  name="thomsons-lamp"
-  lead="The same switches. Two possible endings."
->
+<IllustrationFigure name="thomsons-lamp" lead="The same switches. Two possible endings.">
   <p class="text-base leading-normal">
     Blue means on. Gold means off. Each bar lasts half as long as the one before it. The
     switching continues with no last switch before two minutes.
@@ -29,10 +26,18 @@ const bars = Array.from({ length: 9 }, (_, index) => ({
     desc="Two timelines have exactly the same alternating on and off states before two minutes. Blue on intervals and gold off intervals get progressively shorter and crowd towards the dashed two-minute boundary, with infinitely more switches beyond those pictured. At exactly two minutes, ending A specifies on and ending B specifies off. Neither ending changes any earlier switch."
   >
     <g fill="currentColor" font-size="15" font-weight="700">
-      <text x="20" y="19">Before two minutes</text>
-      <text x="270" y="19" text-anchor="middle">At two minutes</text>
-      <text x="20" y="57">Ending A</text>
-      <text x="20" y="146">Ending B</text>
+      <text x="20" y="19">
+        Before two minutes
+      </text>
+      <text x="270" y="19" text-anchor="middle">
+        At two minutes
+      </text>
+      <text x="20" y="57">
+        Ending A
+      </text>
+      <text x="20" y="146">
+        Ending B
+      </text>
     </g>
 
     <path
@@ -59,21 +64,31 @@ const bars = Array.from({ length: 9 }, (_, index) => ({
     </g>
 
     <g fill="currentColor" font-size="16" font-weight="700">
-      <text x="289" y="89">On</text>
-      <text x="289" y="178">Off</text>
+      <text x="289" y="89">
+        On
+      </text>
+      <text x="289" y="178">
+        Off
+      </text>
     </g>
 
     <g fill="currentColor" font-size="14">
-      <text x="20" y="217" text-anchor="middle">0</text>
-      <text x="145" y="217" text-anchor="middle">1 min</text>
-      <text x="270" y="217" text-anchor="middle">2 min</text>
+      <text x="20" y="217" text-anchor="middle">
+        0
+      </text>
+      <text x="145" y="217" text-anchor="middle">
+        1 min
+      </text>
+      <text x="270" y="217" text-anchor="middle">
+        2 min
+      </text>
     </g>
   </SvgFigure>
 
   <Fragment slot="caption">
-    The coloured bars show just the first few switches. They get shorter without ever
-    reaching a last switch. Both histories are identical before two minutes. Adding “on”
-    or “off” at exactly two minutes changes none of those switches. The original rules
-    simply do not say which ending happens.
+    The coloured bars show just the first few switches. They get shorter without ever reaching a
+    last switch. Both histories are identical before two minutes. Adding “on” or “off” at
+    exactly two minutes changes none of those switches. The original rules simply do not say
+    which ending happens.
   </Fragment>
 </IllustrationFigure>
