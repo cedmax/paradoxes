@@ -67,7 +67,6 @@ const boxes = [
             <g
               data-bertrand-branch
               data-metal={coin}
-              data-other-metal={box.coins[1 - coinIndex]}
             >
               <path
                 d={`M90 56 L${x} 93`}
@@ -150,9 +149,7 @@ const boxes = [
         const path = find<SVGPathElement>(branch, "path")
         const circle = find<SVGCircleElement>(branch, "circle")
         const strokeColor = revealed && isGold
-          ? branch.dataset.otherMetal === "G"
-            ? "var(--color-series-green)"
-            : "var(--color-series-red)"
+          ? "var(--color-series-green)"
           : "var(--color-stroke)"
         branch.setAttribute("opacity", revealed && !isGold ? ".15" : "1")
         path.setAttribute("stroke", strokeColor)
