@@ -64,7 +64,9 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   </SvgFigure>
 
   <Panel>
-    <p id="ross-littlewood-stage" class="font-bold">Before round 1</p>
+    <p id="ross-littlewood-stage" class="font-bold">
+      Before round 1
+    </p>
     <p id="ross-littlewood-count" class="text-xl font-bold" aria-live="polite">
       0 balls inside
     </p>
@@ -87,8 +89,8 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   </p>
 
   <Fragment slot="caption">
-    There is no final round to animate. What remains at noon depends on whether each
-    particular ball is ever taken out, not just on how the total changes along the way.
+    There is no final round to animate. What remains at noon depends on whether each particular
+    ball is ever taken out, not just on how the total changes along the way.
   </Fragment>
 </IllustrationFigure>
 
@@ -220,7 +222,8 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
       setBalls(roundBalls(round))
       stageLabel.textContent = "After round " + round
       countLabel.textContent = round * 9 + " balls inside"
-      message.textContent = "Ten entered. Ball " + round + " left. The vase gained nine balls this round."
+      message.textContent =
+        "Ten entered. Ball " + round + " left. The vase gained nine balls this round."
     }
 
     const showBallEleven = () => {
