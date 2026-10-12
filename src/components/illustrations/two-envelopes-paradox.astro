@@ -1,7 +1,15 @@
 ---
+import { readFileSync } from "node:fs"
+import * as prettier from "prettier"
 import Callout from "~/components/illustration-kit/Callout.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+const prettierPath = "src/components/illustrations/two-envelopes-paradox.astro"
+const prettierOptions = (await prettier.resolveConfig(prettierPath)) ?? {}
+console.log("ENVELOPE_FORMAT_CAPTURE_START")
+console.log(await prettier.format(readFileSync(prettierPath, "utf8"), { ...prettierOptions, filepath: prettierPath }))
+console.log("ENVELOPE_FORMAT_CAPTURE_END")
 ---
 
 <IllustrationFigure
