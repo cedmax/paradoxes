@@ -4,15 +4,15 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
 
 const boxes = [
-  { name: "Box 1", coins: ["G", "G"], goldDraws: "2 gold draws" },
-  { name: "Box 2", coins: ["G", "S"], goldDraws: "1 gold draw" },
-  { name: "Box 3", coins: ["S", "S"], goldDraws: "0 gold draws" },
+  { name: "Box 1", coins: ["G", "G"], goldDraws: "2 gold draws", description: "Both possible coin draws are gold." },
+  { name: "Box 2", coins: ["G", "S"], goldDraws: "1 gold draw", description: "One coin draw is gold; one is silver." },
+  { name: "Box 3", coins: ["S", "S"], goldDraws: "0 gold draws", description: "Both possible coin draws are silver." },
 ]
 ---
 
 <IllustrationFigure name="bertrands-box" lead="You drew gold. Which box did it come from?">
   <p class="text-base leading-normal">
-    Pick a box, then one of its two coins. All six paths are equally likely.
+    Pick a box, then one of its two coins. Every path is equally likely. G means gold; S means silver.
   </p>
 
   <div class="mx-auto grid w-full max-w-xl grid-cols-1 justify-items-center gap-1 min-[540px]:grid-cols-3 min-[540px]:gap-3">
@@ -20,7 +20,7 @@ const boxes = [
       <SvgFigure
         name={`bertrands-box-${index + 1}`}
         title={`${box.name}, with two possible coin draws`}
-        desc={`${box.name} branches to ${box.coins[0] === "G" ? "gold" : "silver"} and ${box.coins[1] === "G" ? "gold" : "silver"}. Each branch represents a possible coin draw.`}
+        desc={`${box.name}. ${box.description}`}
         viewBox="0 0 180 173"
         class="w-full max-w-48"
       >
@@ -106,8 +106,8 @@ const boxes = [
   <div id="bertrand-result" class="space-y-2 border-t-2 border-ink pt-3" hidden>
     <p class="text-2xl font-bold">2 out of 3</p>
     <p class="text-base leading-normal">
-      Only three paths can produce gold. Two lead to Box 1, where the other coin is also gold.
-      The third leads to Box 2, where the other coin is silver.
+      Only three paths can produce gold. Two come from Box 1, where the other coin is also gold.
+      The third comes from Box 2, where the other coin is silver.
     </p>
   </div>
 </IllustrationFigure>
@@ -128,7 +128,10 @@ const boxes = [
         const isGold = branch.dataset.metal === "G"
         const path = find<SVGPathElement>(branch, "path")
         branch.setAttribute("opacity", revealed && !isGold ? ".15" : "1")
-        path.setAttribute("stroke", revealed && isGold ? "var(--color-series-green)" : "var(--color-stroke)")
+        path.setAttribute(
+          "stroke",
+          revealed && isGold ? "var(--color-series-green)" : "var(--color-stroke)",
+        )
         path.setAttribute("stroke-width", revealed && isGold ? "4" : "2.5")
       })
       counts.forEach((count) => {
