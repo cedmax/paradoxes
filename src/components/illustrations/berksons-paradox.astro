@@ -49,8 +49,8 @@ const groups = [
   </div>
 
   <p id="berksons-outcome" class="font-bold" aria-live="polite" aria-atomic="true">
-    In the full collection, 10% of pretty stamps and 10% of plain stamps are rare.
-    There is no connection between prettiness and rarity.
+    In the full collection, 10% of pretty stamps and 10% of plain stamps are rare. There is no
+    connection between prettiness and rarity.
   </p>
 
   <p class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
@@ -73,18 +73,9 @@ const groups = [
             {index === 0 ? "30 of 300 rare (10%)" : "70 of 700 rare (10%)"}
           </span>
         </div>
-        <div
-          class="flex h-9 w-full overflow-hidden border border-ink/30"
-          aria-hidden="true"
-        >
-          <div
-            class="h-full bg-series-green"
-            style={`width: ${rareWidth}%`}
-          ></div>
-          <div
-            class="relative h-full"
-            style={`width: ${ordinaryWidth}%`}
-          >
+        <div class="flex h-9 w-full overflow-hidden border border-ink/30" aria-hidden="true">
+          <div class="h-full bg-series-green" style={`width: ${rareWidth}%`}></div>
+          <div class="relative h-full" style={`width: ${ordinaryWidth}%`}>
             <div
               class="h-full w-full bg-series-blue transition-opacity duration-500 motion-reduce:transition-none"
               data-berksons-removable={index === 1 ? "true" : undefined}
@@ -111,14 +102,14 @@ const groups = [
   </div>
 
   <p class="text-sm">
-    Both bars use the same scale: the full width represents 1,000 stamps.
-    Filtering does not move the stamps that remain.
+    Both bars use the same scale: the full width represents 1,000 stamps. Filtering does not
+    move the stamps that remain.
   </p>
 
   <Fragment slot="caption">
-    The collector removes only the 630 stamps that are neither pretty nor rare.
-    Among the stamps left on display, every plain stamp must be rare.
-    The apparent link comes from the selection, not from the stamps themselves.
+    The collector removes only the 630 stamps that are neither pretty nor rare. Among the stamps
+    left on display, every plain stamp must be rare. The apparent link comes from the selection,
+    not from the stamps themselves.
   </Fragment>
 </IllustrationFigure>
 
