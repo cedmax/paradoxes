@@ -10,7 +10,7 @@ noMaths: false
 written: true
 sourcesVerified: true
 problem: "How can 1 + 2 + 3 + 4 + … be said to equal −1/12, when adding positive numbers only makes the total bigger?"
-claimA: "Adding positive numbers can only make a total bigger, so the sum of 1 + 2 + 3 + … cannot be a negative fraction."
+claimA: "Adding positive numbers only makes totals bigger, so 1 + 2 + 3 + … cannot be a negative fraction."
 claimB: "The sum of 1 + 2 + 3 + … is −1/12, a value mathematicians and physicists use."
 verdict: "The ordinary sum grows without limit and has no finite value. The −1/12 is what a different method assigns to the series, and the equals sign is shorthand for that."
 whatBreaks: "The assumption that the equals sign means the ordinary sum. Here it stands for a value given by a special method, because the ordinary sum has no finite value."

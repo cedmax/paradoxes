@@ -11,7 +11,7 @@ sourcesVerified: true
 reviewed: false
 problem: "Can the bright spot from a turning lighthouse cross a distant wall faster than light?"
 claimA: "No bright spot produced by a lighthouse can appear to move across a wall faster than light."
-claimB: "A sweeping light spot can cross a sufficiently distant wall faster than light without any light or message travelling along the wall that fast."
+claimB: "A sweeping spot can cross a distant wall faster than light, with nothing travelling along the wall that fast."
 verdict: "The spot is a succession of different photons reaching different places, not one object travelling sideways."
 whatBreaks: "The assumption that a moving pattern must consist of one thing carrying information along its path."
 statusNote: "a sweeping spot can move faster than light as a pattern; the light itself travels at light speed."

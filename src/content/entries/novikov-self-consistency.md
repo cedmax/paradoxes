@@ -19,8 +19,8 @@ written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can a billiard ball knock its younger self away from a time machine and still have made the trip?"
-claimA: "A starting path that makes the ball collide with its younger self has no consistent outcome: the collision stops the trip that caused it."
-claimB: "That same starting path can have a consistent outcome: a glancing collision still sends the younger ball into the time machine."
+claimA: "The ball’s starting path cannot end consistently: hitting its younger self prevents the trip."
+claimB: "The same starting path can end consistently: a glancing collision still sends the younger ball into the time machine."
 verdict: "A glancing collision can complete the time loop instead of stopping it. The model may allow several consistent paths."
 whatBreaks: "The assumption that the apparently self-defeating starting path has no possible consistent continuation."
 statusNote: "the apparently impossible starting path has consistent solutions in the studied billiard-ball model, although the model does not prove time travel is possible."
