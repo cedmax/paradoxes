@@ -1,60 +1,255 @@
 ---
 import Callout from "~/components/illustration-kit/Callout.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
-import Panel from "~/components/illustration-kit/Panel.astro"
-import SideBySide from "~/components/illustration-kit/SideBySide.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 ---
 
 <IllustrationFigure
   name="two-envelopes-paradox"
-  lead="The same swap seems to have two different answers."
+  lead="Watch how opening one envelope seems to change the answer."
 >
-  <p class="text-base leading-normal">
-    You picked one of two envelopes at random. One contains twice as much money as the other.
-    You open yours and see £20.
+  <p id="two-envelopes-instruction" class="text-base leading-normal" aria-live="polite">
+    Two envelopes contain different amounts, one double the other. You pick one at random.
+    Should you swap before looking?
   </p>
 
-  <SideBySide>
-    <Panel title="Your envelope" class="min-w-0">
-      <p class="display mt-3 text-3xl sm:text-5xl">£20</p>
-      <p class="mt-2 text-sm">Opened</p>
-    </Panel>
-    <Panel title="Other envelope" class="min-w-0">
-      <p class="display mt-3 text-3xl sm:text-5xl">?</p>
-      <p class="mt-2 text-sm">Still sealed</p>
-    </Panel>
-  </SideBySide>
+  <SvgFigure
+    name="two-envelopes-scene"
+    class="mx-auto w-full max-w-xl"
+    viewBox="0 0 560 220"
+    title="Two envelopes, with one chosen at random"
+    desc="Your chosen envelope is on the left, and the other is on the right. Press Open your envelope to reveal twenty pounds in your choice. The other remains sealed."
+  >
+    <g fill="currentColor" font-size="18" font-weight="600" text-anchor="middle">
+      <text x="159" y="22">Your pick</text>
+      <text x="401" y="22">Other envelope</text>
+    </g>
+    <rect
+      x="67"
+      y="61"
+      width="184"
+      height="140"
+      rx="3"
+      fill="none"
+      stroke="var(--color-series-blue)"
+      stroke-width="3"
+    />
+    <path
+      id="two-envelopes-open-flap"
+      d="M78 101 L159 40 L240 101 Z"
+      fill="var(--color-paper)"
+      stroke="currentColor"
+      stroke-width="3"
+      stroke-linejoin="round"
+      class="opacity-0 transition-opacity duration-500 motion-reduce:transition-none"
+    />
+    <g
+      id="two-envelopes-note"
+      class="opacity-0 transition-opacity duration-700 motion-reduce:transition-none"
+    >
+      <rect
+        x="116"
+        y="67"
+        width="86"
+        height="82"
+        fill="var(--color-series-gold)"
+        fill-opacity=".24"
+        stroke="var(--color-series-gold)"
+        stroke-width="2"
+      />
+      <text x="159" y="104" font-size="25" font-weight="700" text-anchor="middle" fill="currentColor">
+        £20
+      </text>
+    </g>
+    <rect
+      x="78"
+      y="101"
+      width="162"
+      height="88"
+      fill="var(--color-paper)"
+      stroke="currentColor"
+      stroke-width="3"
+    />
+    <path d="M80 187 L158 137 L238 187" stroke="currentColor" stroke-width="2" fill="none" />
+    <path
+      id="two-envelopes-closed-flap"
+      d="M79 103 L159 158 L239 103"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="3"
+      class="opacity-100 transition-opacity duration-500 motion-reduce:transition-none"
+    />
+    <path
+      d="M262 141 H296 M287 132 L297 141 L287 150"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <text x="279" y="123" font-size="14" text-anchor="middle" fill="currentColor">
+      swap?
+    </text>
+    <rect
+      x="320"
+      y="101"
+      width="162"
+      height="88"
+      fill="var(--color-paper)"
+      stroke="currentColor"
+      stroke-width="3"
+    />
+    <path
+      d="M322 103 L401 158 L480 103 M322 187 L400 137 L480 187"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    />
+    <text x="401" y="166" font-size="24" font-weight="700" text-anchor="middle" fill="currentColor">
+      ?
+    </text>
+  </SvgFigure>
 
-  <p class="font-bold">Should you swap?</p>
+  <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-ink pt-3">
+    <span class="mono-label">Before opening</span>
+    <strong>No advantage to swapping</strong>
+    <span class="text-base">Neither envelope was favoured when you picked.</span>
+  </div>
 
-  <SideBySide>
-    <Panel title="Before looking" class="min-w-0">
-      <p class="display mt-3 text-3xl">£0</p>
-      <p class="mt-2 leading-normal">
-        Neither envelope was favoured. Swapping had no average advantage.
-      </p>
-    </Panel>
-    <Panel title="After looking" class="min-w-0">
-      <p class="display mt-3 text-3xl">+£5</p>
-      <p class="mt-2 leading-normal">
-        If £10 and £40 are equally likely, swapping looks profitable.
-      </p>
-    </Panel>
-  </SideBySide>
+  <div id="two-envelopes-possibilities" class="flex flex-col gap-4" hidden>
+    <p class="text-base leading-normal">
+      You found £20. The other envelope could contain either amount. Each bar shows how much
+      swapping would change your money.
+    </p>
+    <div class="grid grid-cols-2 gap-4" aria-label="Possible swap outcomes">
+      <div class="flex min-w-0 flex-col gap-2">
+        <p class="mono-label">Other: £10</p>
+        <div class="h-4" aria-hidden="true">
+          <div
+            id="two-envelopes-loss-bar"
+            class="h-4 w-0 bg-series-red transition-[width] duration-700 motion-reduce:transition-none"
+          ></div>
+        </div>
+        <strong>Lose £10</strong>
+        <p id="two-envelopes-loss-odds" class="text-sm" hidden>Assume 50% chance</p>
+      </div>
+      <div class="flex min-w-0 flex-col gap-2">
+        <p class="mono-label">Other: £40</p>
+        <div class="h-4" aria-hidden="true">
+          <div
+            id="two-envelopes-gain-bar"
+            class="h-4 w-0 bg-series-green transition-[width] duration-700 motion-reduce:transition-none"
+          ></div>
+        </div>
+        <strong>Gain £20</strong>
+        <p id="two-envelopes-gain-odds" class="text-sm" hidden>Assume 50% chance</p>
+      </div>
+    </div>
+    <p id="two-envelopes-no-odds" class="text-base">
+      The green gain is twice the red loss. But seeing £20 has not told you how likely
+      either outcome is.
+    </p>
+  </div>
 
-  <p class="text-base leading-normal">
-    The tempting calculation: swapping could gain £20 or lose £10. Give each a 50% chance and
-    the average gain is £5.
-  </p>
+  <div id="two-envelopes-conclusion" class="flex flex-col gap-4" hidden>
+    <p class="text-base">
+      Give each outcome a 50% chance: half of a £20 gain is £10, while half of a £10 loss is £5.
+    </p>
+    <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-ink pt-3">
+      <span class="mono-label">After assuming 50/50</span>
+      <strong class="display text-3xl">+£5</strong>
+      <span class="text-base">Apparent average gain from swapping</span>
+    </div>
+    <Callout tone="accent">
+      <strong>The paradox:</strong> before opening there was no reason to swap. Now the same
+      swap seems profitable, even though finding £20 did not establish the 50/50 odds.
+    </Callout>
+    <p class="text-base leading-normal">
+      The 50/50 chances were added, not discovered. The other envelope can hold double or half,
+      but those two possibilities need not be equally likely for an amount you have seen.
+    </p>
+  </div>
 
-  <Callout tone="accent">
-    <strong>Here is the paradox.</strong> If that argument works whatever amount you open, why
-    was there no advantage to swapping before you looked?
-  </Callout>
+  <button
+    id="two-envelopes-next"
+    type="button"
+    class="btn-ghost self-start"
+    aria-controls="two-envelopes-possibilities two-envelopes-conclusion"
+  >
+    Open your envelope
+  </button>
 
   <Fragment slot="caption">
-    The catch is the assumed 50/50 chance. The other envelope can hold double or half, but those
-    amounts need not be equally likely after you see £20. The claim that they are equally likely
-    for every possible amount is false.
+    The key change is the assumed odds, not the act of opening an envelope. A 50/50 chance of
+    double or half cannot hold for every amount.
   </Fragment>
 </IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("two-envelopes-paradox")
+  if (root) {
+    const button = find<HTMLButtonElement>(root, "#two-envelopes-next")
+    const instruction = find<HTMLElement>(root, "#two-envelopes-instruction")
+    const openFlap = find<SVGPathElement>(root, "#two-envelopes-open-flap")
+    const closedFlap = find<SVGPathElement>(root, "#two-envelopes-closed-flap")
+    const note = find<SVGGElement>(root, "#two-envelopes-note")
+    const possibilities = find<HTMLElement>(root, "#two-envelopes-possibilities")
+    const conclusion = find<HTMLElement>(root, "#two-envelopes-conclusion")
+    const lossBar = find<HTMLElement>(root, "#two-envelopes-loss-bar")
+    const gainBar = find<HTMLElement>(root, "#two-envelopes-gain-bar")
+    const lossOdds = find<HTMLElement>(root, "#two-envelopes-loss-odds")
+    const gainOdds = find<HTMLElement>(root, "#two-envelopes-gain-odds")
+    const noOdds = find<HTMLElement>(root, "#two-envelopes-no-odds")
+
+    let step = 0
+
+    const show = (nextStep: number) => {
+      step = nextStep
+      const opened = step > 0
+      openFlap.classList.toggle("opacity-0", !opened)
+      openFlap.classList.toggle("opacity-100", opened)
+      closedFlap.classList.toggle("opacity-0", opened)
+      closedFlap.classList.toggle("opacity-100", !opened)
+      note.classList.toggle("opacity-0", !opened)
+      note.classList.toggle("opacity-100", opened)
+
+      possibilities.hidden = !opened
+      conclusion.hidden = step !== 2
+      lossOdds.hidden = step !== 2
+      gainOdds.hidden = step !== 2
+      noOdds.hidden = step === 2
+
+      if (opened) {
+        requestAnimationFrame(() => {
+          lossBar.classList.remove("w-0")
+          lossBar.classList.add("w-1/2")
+          gainBar.classList.remove("w-0")
+          gainBar.classList.add("w-full")
+        })
+      } else {
+        lossBar.classList.remove("w-1/2")
+        lossBar.classList.add("w-0")
+        gainBar.classList.remove("w-full")
+        gainBar.classList.add("w-0")
+      }
+
+      if (step === 0) {
+        instruction.textContent =
+          "Two envelopes contain different amounts, one double the other. You pick one at random. Should you swap before looking?"
+        button.textContent = "Open your envelope"
+      } else if (step === 1) {
+        instruction.textContent =
+          "Your envelope contains £20. The other is still sealed. Compare the two possible gains and losses."
+        button.textContent = "Assume both outcomes are 50/50"
+      } else {
+        instruction.textContent =
+          "Now assume each possible amount in the other envelope has a 50% chance. The answer seems to change."
+        button.textContent = "Start again"
+      }
+    }
+
+    button.addEventListener("click", () => show((step + 1) % 3))
+  }
+</script>
