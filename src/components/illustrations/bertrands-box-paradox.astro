@@ -1,10 +1,12 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
 
-const draws = [
-  { box: "Box 1", other: "G" },
-  { box: "Box 1", other: "G" },
-  { box: "Box 2", other: "S" },
+const columns = ["", "Box 1", "Box 2", "Box 3"]
+const rows = [
+  ["In the box", "Gold + gold", "Gold + silver", "Silver + silver"],
+  ["You drew gold", "2 options", "1 option", "No options"],
+  ["Other coin", "2 gold", "1 silver", "No options"],
 ]
 ---
 
@@ -12,104 +14,21 @@ const draws = [
   name="bertrands-box"
   lead="You drew gold. What is the chance the other coin is gold too?"
 >
-  <p class="text-base leading-normal">
-    There are three gold coins you could have drawn. Two are in Box 1; one is in Box 2.
-    Each is equally likely to be the coin you picked.
-  </p>
+  <ComparisonTable
+    caption="Start with the three boxes. Then count which gold coin you could have drawn."
+    columns={columns}
+    rows={rows}
+    align="center"
+    dense
+  />
 
-  <div
-    class="mx-auto grid w-full max-w-lg grid-cols-[4.25rem_repeat(3,minmax(0,1fr))] items-center gap-x-1 gap-y-3 sm:grid-cols-[6rem_repeat(3,minmax(0,1fr))] sm:gap-x-3"
-    aria-label="Three equally likely gold draws, with their corresponding other coins"
-  >
-    <span aria-hidden="true"></span>
-    <div class="col-span-2 border-b-2 border-ink pb-1 text-center font-bold">Box 1</div>
-    <div class="border-b-2 border-ink pb-1 text-center font-bold">Box 2</div>
-
-    <p class="text-sm font-bold leading-tight sm:text-base">You drew</p>
-    {draws.map(() => (
-      <div class="flex justify-center">
-        <span
-          class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink bg-series-gold text-lg font-bold sm:h-12 sm:w-12"
-          role="img"
-          aria-label="Gold coin drawn"
-        >
-          G
-        </span>
-      </div>
-    ))}
-
-    <p class="text-sm font-bold leading-tight sm:text-base">Other coin</p>
-    {draws.map(({ other }) => (
-      <div class="flex justify-center">
-        <span
-          data-bertrand-other
-          data-metal={other}
-          class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-dashed border-ink bg-paper text-lg font-bold sm:h-12 sm:w-12"
-          role="img"
-          aria-label="Other coin not yet revealed"
-        >
-          ?
-        </span>
-      </div>
-    ))}
-  </div>
-
-  <button
-    id="bertrand-reveal"
-    type="button"
-    class="btn-ghost self-center"
-    aria-expanded="false"
-    aria-controls="bertrand-result"
-  >
-    Reveal the other coins
-  </button>
-
-  <div id="bertrand-result" class="space-y-2 border-t-2 border-ink pt-3" hidden>
-    <div class="flex items-center gap-4">
-      <p class="text-4xl font-bold">2/3</p>
-      <p class="text-base font-bold leading-tight">Chance the other coin is gold</p>
-    </div>
+  <div class="space-y-2 border-t-2 border-ink pt-3">
     <p class="text-base leading-normal">
-      Two of the three possible gold draws leave another gold coin. The third leaves silver.
+      There are three possible gold draws: two from Box 1 and one from Box 2.
+      In Box 1, the other coin is also gold.
+    </p>
+    <p class="text-xl font-bold">
+      Chance the other coin is gold: 2/3
     </p>
   </div>
 </IllustrationFigure>
-
-<script>
-  import { find, illustrationRoot } from "~/scripts/illustration"
-
-  const root = illustrationRoot("bertrands-box")
-  if (root) {
-    const button = find<HTMLButtonElement>(root, "#bertrand-reveal")
-    const result = find<HTMLElement>(root, "#bertrand-result")
-    const otherCoins = root.querySelectorAll<HTMLElement>("[data-bertrand-other]")
-    let revealed = false
-
-    const render = () => {
-      otherCoins.forEach((coin) => {
-        const gold = coin.dataset.metal === "G"
-        coin.textContent = revealed ? (gold ? "G" : "S") : "?"
-        coin.setAttribute(
-          "aria-label",
-          revealed
-            ? gold
-              ? "Other coin is gold"
-              : "Other coin is silver"
-            : "Other coin not yet revealed",
-        )
-        coin.classList.toggle("bg-series-gold", revealed && gold)
-        coin.classList.toggle("border-dashed", !revealed)
-        coin.classList.toggle("border-solid", revealed)
-      })
-      result.hidden = !revealed
-      button.setAttribute("aria-expanded", String(revealed))
-      button.textContent = revealed ? "Hide the other coins" : "Reveal the other coins"
-    }
-
-    button.addEventListener("click", () => {
-      revealed = !revealed
-      render()
-    })
-    render()
-  }
-</script>
