@@ -1,0 +1,54 @@
+---
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import Disclosure from "~/components/illustration-kit/Disclosure.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+---
+
+<IllustrationFigure
+  name="discursive-dilemma"
+  frame={false}
+  lead="Three judges, one disagreement"
+>
+  <ComparisonTable
+    caption="What each judge thinks"
+    columns={["Judge", "Valid?", "Broken?", "Liable?"]}
+    rows={[
+      ["A", "<strong>Yes</strong>", "No", "<strong>No</strong>"],
+      ["B", "No", "<strong>Yes</strong>", "<strong>No</strong>"],
+      ["C", "<strong>Yes</strong>", "<strong>Yes</strong>", "Yes"],
+    ]}
+    align="center"
+    dense
+  />
+  <Disclosure summary="Count the majorities">
+    <div class="flex flex-col gap-3 pt-3">
+      <div class="grid gap-3 sm:grid-cols-2">
+        <Panel title="Vote on the reasons" class="flex flex-col gap-3">
+          <div class="flex flex-col gap-2">
+            <p>
+              Valid: <strong>2 of 3 judges say yes</strong>
+            </p>
+            <p>
+              Broken: <strong>2 of 3 judges say yes</strong>
+            </p>
+          </div>
+          <p class="mt-auto border-t border-ink pt-3 text-2xl font-bold">Result: Liable</p>
+        </Panel>
+        <Panel title="Vote on the verdict" class="flex flex-col gap-3">
+          <p>
+            Liable: <strong>2 of 3 judges say no</strong>
+          </p>
+          <p class="mt-auto border-t border-ink pt-3 text-2xl font-bold">Result: Not liable</p>
+        </Panel>
+      </div>
+      <p class="text-base leading-normal">
+        Both methods use majority voting, but they reach opposite verdicts.
+      </p>
+    </div>
+  </Disclosure>
+  <Fragment slot="caption">
+    Each judge's verdict follows from their own answers. The disagreement arises when the court
+    must choose whether to vote on the reasons or on the final verdict.
+  </Fragment>
+</IllustrationFigure>

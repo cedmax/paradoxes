@@ -3,7 +3,7 @@ interface Props {
   /** Visible table title. Always give the table one. */
   caption?: string
   columns: string[]
-  /** One array per row. The first cell of each row becomes the row header. */
+  /** The first cell is the row header. Body cells support trusted inline HTML. */
   rows: (string | number)[][]
   /** Indexes of columns shaded as the part that changes. */
   highlight?: number[]
@@ -43,7 +43,7 @@ const body = (i: number) => [...cell(i), align === "center" && "text-center"]
             {first}
           </th>
           {rest.map((value, i) => (
-            <td class:list={body(i + 1)}>{value}</td>
+            <td class:list={body(i + 1)} set:html={String(value)} />
           ))}
         </tr>
       ))}
