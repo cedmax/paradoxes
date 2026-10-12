@@ -51,7 +51,11 @@ const stages = [
                 ))}
               </div>
               <span class="whitespace-nowrap text-base">
-                Average: <strong>{group.average}{stage.after ? " ↑" : ""}</strong>
+                Average:{" "}
+                <strong>
+                  {group.average}
+                  {stage.after ? " ↑" : ""}
+                </strong>
               </span>
             </div>
           ))}
