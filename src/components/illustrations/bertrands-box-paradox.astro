@@ -1,84 +1,97 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
-import { stroke } from "~/data/palette"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
 
 const boxes = [
-  { name: "Box 1", contents: "Gold + gold", coins: ["G", "G"] },
-  { name: "Box 2", contents: "Gold + silver", coins: ["G", "S"] },
-  { name: "Box 3", contents: "Silver + silver", coins: ["S", "S"] },
+  { name: "Box 1", coins: ["G", "G"], goldDraws: "2 gold draws" },
+  { name: "Box 2", coins: ["G", "S"], goldDraws: "1 gold draw" },
+  { name: "Box 3", coins: ["S", "S"], goldDraws: "0 gold draws" },
 ]
 ---
 
-<IllustrationFigure name="bertrands-box" lead="Which box did the gold coin come from?">
+<IllustrationFigure name="bertrands-box" lead="You drew gold. Which box did it come from?">
   <p class="text-base leading-normal">
-    First pick one box at random, then one coin from that box. Each of the six paths is equally
-    likely.
+    Pick a box, then one of its two coins. All six paths are equally likely.
   </p>
 
-  <div class="flex flex-col gap-2">
-    <div class="grid grid-cols-[minmax(0,1fr)_40px_minmax(0,1fr)] items-end gap-2 sm:grid-cols-[minmax(0,1fr)_76px_minmax(0,1fr)]">
-      <p class="text-center text-xs font-bold sm:text-sm">PICK A BOX</p>
-      <span aria-hidden="true"></span>
-      <p class="text-center text-xs font-bold sm:text-sm">DRAW A COIN</p>
-    </div>
-
-    {boxes.map((box) => (
-      <div class="grid grid-cols-[minmax(0,1fr)_40px_minmax(0,1fr)] items-center gap-2 sm:grid-cols-[minmax(0,1fr)_76px_minmax(0,1fr)]">
-        <div
-          data-bertrand-box
-          data-has-gold={box.coins.includes("G") ? "true" : "false"}
-          class="flex min-h-24 min-w-0 flex-col items-center justify-center border-2 border-ink px-1 py-2 text-center sm:min-h-28 sm:px-3"
+  <div class="mx-auto grid w-full max-w-xl grid-cols-1 justify-items-center gap-1 min-[540px]:grid-cols-3 min-[540px]:gap-3">
+    {boxes.map((box, index) => (
+      <SvgFigure
+        name={\`bertrands-box-\${index + 1}\`}
+        title={\`\${box.name}, with two possible coin draws\`}
+        desc={\`\${box.name} branches to \${box.coins[0] === "G" ? "gold" : "silver"} and \${box.coins[1] === "G" ? "gold" : "silver"}. Each branch represents a possible coin draw.\`}
+        viewBox="0 0 180 173"
+        class="w-full max-w-48"
+      >
+        <rect
+          x="18"
+          y="8"
+          width="144"
+          height="48"
+          fill="var(--color-paper)"
+          stroke={stroke}
+          stroke-width="2.5"
+        />
+        <text
+          x="90"
+          y="38"
+          fill="currentColor"
+          font-size="18"
+          font-weight="700"
+          text-anchor="middle"
         >
-          <p class="font-bold">{box.name}</p>
-          <p class="text-xs leading-snug sm:text-base">{box.contents}</p>
-        </div>
+          {box.name}
+        </text>
 
-        <svg
-          class="h-24 w-full overflow-visible sm:h-28"
-          viewBox="0 0 76 100"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          {box.coins.map((coin, index) => (
-            <path
-              data-bertrand-path
-              data-metal={coin}
-              d={index === 0 ? "M0 50 L18 50 L76 25" : "M0 50 L18 50 L76 75"}
-              fill="none"
-              stroke={stroke}
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          ))}
-        </svg>
-
-        <div class="flex min-w-0 flex-col gap-2">
-          {box.coins.map((coin) => (
-            <div
-              data-bertrand-coin
-              data-metal={coin}
-              class="flex min-h-10 min-w-0 items-center gap-2 sm:min-h-12"
-            >
-              <span
-                class:list={[
-                  "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-ink text-base font-bold sm:h-10 sm:w-10",
-                  coin === "G" ? "bg-series-gold" : "bg-paper",
-                ]}
+        {box.coins.map((coin, coinIndex) => {
+          const x = coinIndex === 0 ? 45 : 135
+          return (
+            <g data-bertrand-branch data-metal={coin}>
+              <path
+                d={\`M90 56 L\${x} 93\`}
+                fill="none"
+                stroke={stroke}
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+              <circle
+                cx={x}
+                cy="115"
+                r="22"
+                fill={coin === "G" ? series.gold : "var(--color-paper)"}
+                stroke={stroke}
+                stroke-width="2.5"
+              />
+              <text
+                x={x}
+                y="121"
+                fill="currentColor"
+                font-size="18"
+                font-weight="700"
+                text-anchor="middle"
               >
                 {coin}
-              </span>
-              <span class="text-sm sm:text-base">{coin === "G" ? "Gold" : "Silver"}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+              </text>
+            </g>
+          )
+        })}
+
+        <text
+          data-bertrand-count
+          x="90"
+          y="162"
+          fill="currentColor"
+          font-size="14"
+          font-weight="700"
+          text-anchor="middle"
+          visibility="hidden"
+        >
+          {box.goldDraws}
+        </text>
+      </SvgFigure>
     ))}
   </div>
-
-  <p id="bertrand-step-text" class="text-base leading-normal" aria-live="polite">
-    Three boxes, with two possible draws from each. Each path has a 1 in 6 chance.
-  </p>
 
   <button
     id="bertrand-reveal"
@@ -87,14 +100,14 @@ const boxes = [
     aria-expanded="false"
     aria-controls="bertrand-result"
   >
-    You drew gold — show the possible paths
+    Show the possible gold draws
   </button>
 
-  <div id="bertrand-result" class="space-y-2 border-t-2 border-ink pt-4" hidden>
-    <p class="text-3xl font-bold">2 out of 3</p>
+  <div id="bertrand-result" class="space-y-2 border-t-2 border-ink pt-3" hidden>
+    <p class="text-2xl font-bold">2 out of 3</p>
     <p class="text-base leading-normal">
-      Two of the three surviving paths come from the gold-gold box, where the other coin is also
-      gold. The mixed box has only one surviving path.
+      Only three paths can produce gold. Two lead to Box 1, where the other coin is also gold.
+      The third leads to Box 2, where the other coin is silver.
     </p>
   </div>
 </IllustrationFigure>
@@ -106,43 +119,28 @@ const boxes = [
   if (root) {
     const button = find<HTMLButtonElement>(root, "#bertrand-reveal")
     const result = find<HTMLElement>(root, "#bertrand-result")
-    const stepText = find<HTMLElement>(root, "#bertrand-step-text")
-    const paths = root.querySelectorAll<SVGPathElement>("[data-bertrand-path]")
-    const coins = root.querySelectorAll<HTMLElement>("[data-bertrand-coin]")
-    const boxes = root.querySelectorAll<HTMLElement>("[data-bertrand-box]")
-    let goldOnly = false
+    const branches = root.querySelectorAll<SVGGElement>("[data-bertrand-branch]")
+    const counts = root.querySelectorAll<SVGTextElement>("[data-bertrand-count]")
+    let revealed = false
 
     const render = () => {
-      paths.forEach((path) => {
-        const possible = path.dataset.metal === "G"
-        path.setAttribute("opacity", goldOnly && !possible ? ".15" : "1")
-        path.setAttribute(
-          "stroke",
-          goldOnly && possible ? "var(--color-series-green)" : "var(--color-stroke)",
-        )
-        path.setAttribute("stroke-width", goldOnly && possible ? "3.5" : "2.5")
+      branches.forEach((branch) => {
+        const isGold = branch.dataset.metal === "G"
+        const path = find<SVGPathElement>(branch, "path")
+        branch.setAttribute("opacity", revealed && !isGold ? ".15" : "1")
+        path.setAttribute("stroke", revealed && isGold ? "var(--color-series-green)" : "var(--color-stroke)")
+        path.setAttribute("stroke-width", revealed && isGold ? "4" : "2.5")
       })
-      coins.forEach((coin) => {
-        const possible = coin.dataset.metal === "G"
-        coin.classList.toggle("opacity-20", goldOnly && !possible)
-        coin.classList.toggle("font-bold", goldOnly && possible)
+      counts.forEach((count) => {
+        count.setAttribute("visibility", revealed ? "visible" : "hidden")
       })
-      boxes.forEach((box) => {
-        box.classList.toggle("opacity-20", goldOnly && box.dataset.hasGold !== "true")
-      })
-
-      result.hidden = !goldOnly
-      stepText.textContent = goldOnly
-        ? "You saw gold, so three paths fade away. Two surviving paths lead to Box 1; one leads to Box 2."
-        : "Three boxes, with two possible draws from each. Each path has a 1 in 6 chance."
-      button.textContent = goldOnly
-        ? "Show all six paths"
-        : "You drew gold — show the possible paths"
-      button.setAttribute("aria-expanded", String(goldOnly))
+      result.hidden = !revealed
+      button.setAttribute("aria-expanded", String(revealed))
+      button.textContent = revealed ? "Show all six draws" : "Show the possible gold draws"
     }
 
     button.addEventListener("click", () => {
-      goldOnly = !goldOnly
+      revealed = !revealed
       render()
     })
     render()
