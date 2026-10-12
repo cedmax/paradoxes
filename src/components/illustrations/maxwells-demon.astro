@@ -2,137 +2,155 @@
 import Callout from "~/components/illustration-kit/Callout.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+const decisions = [
+  { x: 110 },
+  { x: 150 },
+  { x: 190 },
+  { x: 230 },
+]
 ---
 
 <IllustrationFigure
   name="maxwells-demon"
-  lead="Watch a tiny gate sort gas molecules, then follow the missing cost."
+  lead="The shutter looks free. What does the demon need to remember?"
 >
   <p class="text-base leading-normal">
-    Red dots are fast molecules. Blue dots are slow ones. Both sides start mixed. The demon
-    controls a tiny shutter between them.
+    Red molecules move fast. Blue molecules move slowly. Both kinds start on both sides.
+    The demon wants fast ones on the right and slow ones on the left.
   </p>
 
   <SvgFigure
     name="maxwells-demon-gas"
     class="mx-auto w-full max-w-lg"
-    viewBox="0 0 420 196"
-    title="Maxwell's demon sorting a box of gas"
-    desc="Red dots represent fast molecules and blue dots slow ones. Both chambers begin mixed. In the sorting step, the demon lets fast molecules move to the right and slow ones to the left through a doorway. The diagram then shows the demon's recorded decisions and their erasure."
+    viewBox="0 0 420 268"
+    title="A shutter that sorts gas molecules and keeps a record"
+    desc="A gas box begins with red fast and blue slow molecules mixed on both sides. Each step shows one molecule crossing a selectively opened shutter. Four decisions fill the demon's memory. Erasing the record produces heat outside the box in the standard explanation."
   >
-    <g fill="currentColor" font-size="17" font-weight="600" text-anchor="middle">
-      <text id="maxwell-left-label" x="110" y="27">
-        Mixed gas
-      </text>
-      <text id="maxwell-right-label" x="310" y="27">
-        Mixed gas
-      </text>
+    <g fill="currentColor" font-size="16" font-weight="600" text-anchor="middle">
+      <text id="maxwell-left-label" x="110" y="27">Mixed</text>
+      <text id="maxwell-right-label" x="310" y="27">Mixed</text>
     </g>
     <rect
       x="20"
-      y="45"
+      y="43"
       width="380"
-      height="134"
+      height="136"
       fill="var(--color-paper)"
       stroke="currentColor"
       stroke-width="2"
     />
-    <path d="M210 45 V94 M210 132 V179" stroke="currentColor" stroke-width="4" />
+    <path d="M210 43 V93 M210 131 V179" stroke="currentColor" stroke-width="4" />
     <rect
       id="maxwell-shutter"
       x="205"
-      y="94"
+      y="93"
       width="10"
       height="38"
       fill="var(--color-series-gold)"
       stroke="currentColor"
-      stroke-width="1"
+      stroke-width="1.5"
     />
-    <g stroke="currentColor" stroke-width="1.5">
-      <circle cx="55" cy="78" r="8" fill="var(--color-series-blue)" />
-      <circle cx="135" cy="160" r="8" fill="var(--color-series-blue)" />
-      <circle cx="274" cy="75" r="8" fill="var(--color-series-red)" />
-      <circle cx="355" cy="152" r="8" fill="var(--color-series-red)" />
-      <circle id="maxwell-fast-one" cx="95" cy="85" r="8" fill="var(--color-series-red)" />
-      <circle id="maxwell-fast-two" cx="172" cy="158" r="8" fill="var(--color-series-red)" />
-      <circle id="maxwell-slow-one" cx="260" cy="160" r="8" fill="var(--color-series-blue)" />
-      <circle id="maxwell-slow-two" cx="360" cy="90" r="8" fill="var(--color-series-blue)" />
+    <g stroke="currentColor" stroke-width="1">
+      <circle cx="55" cy="75" r="7" fill="var(--color-series-blue)" />
+      <circle cx="131" cy="155" r="7" fill="var(--color-series-blue)" />
+      <circle cx="280" cy="79" r="7" fill="var(--color-series-red)" />
+      <circle cx="359" cy="152" r="7" fill="var(--color-series-red)" />
+      <circle id="maxwell-fast-one" cx="92" cy="85" r="8" fill="var(--color-series-red)" />
+      <circle id="maxwell-slow-one" cx="260" cy="155" r="8" fill="var(--color-series-blue)" />
+      <circle id="maxwell-fast-two" cx="173" cy="153" r="8" fill="var(--color-series-red)" />
+      <circle id="maxwell-slow-two" cx="352" cy="88" r="8" fill="var(--color-series-blue)" />
+    </g>
+    <circle
+      id="maxwell-focus"
+      cx="92"
+      cy="85"
+      r="14"
+      fill="none"
+      stroke="var(--color-series-gold)"
+      stroke-width="3"
+      opacity="0"
+    />
+    <text x="20" y="218" font-size="16" font-weight="600" fill="currentColor">Memory</text>
+    {decisions.map(({ x }, index) => (
+      <g>
+        <rect
+          data-maxwell-memory-slot
+          x={x}
+          y="195"
+          width="34"
+          height="32"
+          fill="var(--color-paper)"
+          stroke="currentColor"
+          stroke-width="1.5"
+        />
+        <text
+          data-maxwell-memory-text
+          x={x + 17}
+          y="216"
+          text-anchor="middle"
+          font-size="14"
+          font-weight="600"
+          fill="currentColor"
+        >
+          {index === 0 ? "–" : "–"}
+        </text>
+      </g>
+    ))}
+    <g id="maxwell-heat-output" opacity="0">
+      <path
+        d="M276 210 H314 M306 203 L314 210 L306 217"
+        stroke="var(--color-series-red)"
+        stroke-width="3"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+        fill="none"
+      />
+      <text x="320" y="216" font-size="16" font-weight="600" fill="var(--color-series-red)">
+        Heat
+      </text>
+      <text x="278" y="245" font-size="13" fill="currentColor">To surroundings</text>
     </g>
   </SvgFigure>
 
-  <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-    <p class="flex items-center gap-2">
+  <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+    <span class="flex items-center gap-2">
       <span class="inline-block size-3 rounded-full bg-series-red" aria-hidden="true"></span>
-      Fast molecules
-    </p>
-    <p class="flex items-center gap-2">
+      Fast
+    </span>
+    <span class="flex items-center gap-2">
       <span class="inline-block size-3 rounded-full bg-series-blue" aria-hidden="true"></span>
-      Slow molecules
-    </p>
-    <p class="flex items-center gap-2">
+      Slow
+    </span>
+    <span class="flex items-center gap-2">
       <span class="inline-block size-3 bg-series-gold" aria-hidden="true"></span>
-      Shutter
-    </p>
+      Gate
+    </span>
   </div>
 
-  <div class="flex flex-wrap items-center gap-3 border-t border-ink pt-3">
-    <span class="font-bold">Demon's memory</span>
-    <div class="flex gap-1" aria-label="Four memory slots" role="img">
-      <span
-        data-maxwell-memory
-        class="block size-6 border border-ink"
-        aria-hidden="true"
-      ></span>
-      <span
-        data-maxwell-memory
-        class="block size-6 border border-ink"
-        aria-hidden="true"
-      ></span>
-      <span
-        data-maxwell-memory
-        class="block size-6 border border-ink"
-        aria-hidden="true"
-      ></span>
-      <span
-        data-maxwell-memory
-        class="block size-6 border border-ink"
-        aria-hidden="true"
-      ></span>
-    </div>
-    <strong id="maxwell-heat" class="text-series-red" hidden>
-      Heat released on reset
-    </strong>
-  </div>
-
-  <div aria-live="polite" aria-atomic="true" class="flex flex-col gap-2">
-    <p class="mono-label" id="maxwell-step-count">
-      Step 1 of 4
-    </p>
-    <p id="maxwell-step-heading" class="font-bold">
-      Mixed gas
-    </p>
-    <p id="maxwell-step-copy" class="text-base leading-normal">
-      Both sides contain fast and slow molecules. Can the demon separate them just by opening
-      its shutter at the right moments?
+  <div class="flex flex-col gap-2 border-t border-ink pt-3" aria-live="polite" aria-atomic="true">
+    <p id="maxwell-step" class="mono-label">1 of 5 · Mixed gas</p>
+    <p id="maxwell-decision" class="font-bold">The shutter is closed.</p>
+    <p id="maxwell-explanation" class="text-base leading-normal">
+      The demon watches molecules approach. It opens the gate only when a molecule is
+      moving towards the side it wants.
     </p>
   </div>
 
   <Callout tone="accent">
-    <p id="maxwell-key-point" class="text-base leading-normal">
-      The challenge: sorting seems to make one side hotter and the other colder, without the
-      demon doing work on the gas.
+    <p id="maxwell-paradox" class="text-base leading-normal">
+      Can sorting produce a hot side and a cold side without spending energy?
     </p>
   </Callout>
 
   <button id="maxwell-next" type="button" class="btn-ghost self-start">
-    Sort the molecules
+    Let a fast molecule through
   </button>
 
   <Fragment slot="caption">
-    This is a simplified picture of the standard explanation. The shutter itself can use very
-    little energy, but the complete repeated process includes the demon and its memory. In that
-    account, resetting the memory releases heat. How general this explanation is remains
-    debated.
+    A simplified model of the standard account: each sorting decision is recorded in reusable
+    memory. The physical cost emerges when that memory is erased, not necessarily when a
+    molecule is measured. Whether this explanation covers every possible demon remains debated.
   </Fragment>
 </IllustrationFigure>
 
@@ -144,92 +162,52 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   if (root) {
     const button = find<HTMLButtonElement>(root, "#maxwell-next")
     const shutter = find<SVGRectElement>(root, "#maxwell-shutter")
+    const focus = find<SVGCircleElement>(root, "#maxwell-focus")
     const leftLabel = find<SVGTextElement>(root, "#maxwell-left-label")
     const rightLabel = find<SVGTextElement>(root, "#maxwell-right-label")
-    const counter = find<HTMLElement>(root, "#maxwell-step-count")
-    const heading = find<HTMLElement>(root, "#maxwell-step-heading")
-    const copy = find<HTMLElement>(root, "#maxwell-step-copy")
-    const keyPoint = find<HTMLElement>(root, "#maxwell-key-point")
-    const heat = find<HTMLElement>(root, "#maxwell-heat")
-    const memory = root.querySelectorAll<HTMLElement>("[data-maxwell-memory]")
+    const stepLabel = find<HTMLElement>(root, "#maxwell-step")
+    const decisionLabel = find<HTMLElement>(root, "#maxwell-decision")
+    const explanation = find<HTMLElement>(root, "#maxwell-explanation")
+    const paradox = find<HTMLElement>(root, "#maxwell-paradox")
+    const heat = find<SVGGElement>(root, "#maxwell-heat-output")
+    const slots = Array.from(root.querySelectorAll<SVGRectElement>("[data-maxwell-memory-slot]"))
+    const slotTexts = Array.from(root.querySelectorAll<SVGTextElement>("[data-maxwell-memory-text]"))
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
-    const moves = [
-      { id: "#maxwell-fast-one", x: 256, y: 110, startX: 95, startY: 85 },
-      { id: "#maxwell-slow-one", x: 92, y: 152, startX: 260, startY: 160 },
-      { id: "#maxwell-fast-two", x: 320, y: 150, startX: 172, startY: 158 },
-      { id: "#maxwell-slow-two", x: 154, y: 91, startX: 360, startY: 90 },
-    ] as const
+    const particles = [
+      { id: "#maxwell-fast-one", startX: 92, startY: 85, endX: 265, endY: 110, fast: true },
+      { id: "#maxwell-slow-one", startX: 260, startY: 155, endX: 100, endY: 145, fast: false },
+      { id: "#maxwell-fast-two", startX: 173, startY: 153, endX: 331, endY: 124, fast: true },
+      { id: "#maxwell-slow-two", startX: 352, startY: 88, endX: 158, endY: 83, fast: false },
+    ].map((spec) => ({ ...spec, circle: find<SVGCircleElement>(root, spec.id) }))
 
-    const particles = moves.map((move) => ({
-      ...move,
-      circle: find<SVGCircleElement>(root, move.id),
-    }))
+    let stage = 0
 
-    let step = 0
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const record = (index: number) => {
+      const fast = particles[index].fast
+      slots[index].setAttribute("fill", fast ? "var(--color-series-red)" : "var(--color-series-blue)")
+      slots[index].setAttribute("fill-opacity", ".3")
+      slotTexts[index].textContent = fast ? "F→" : "←S"
+    }
 
-    const setMemory = (filled: number) => {
-      memory.forEach((cell, index) => {
-        cell.classList.toggle("bg-series-gold", index < filled)
+    const clearMemory = () => {
+      slots.forEach((slot, index) => {
+        slot.setAttribute("fill", "var(--color-paper)")
+        slot.setAttribute("fill-opacity", "1")
+        slotTexts[index].textContent = "–"
       })
     }
 
-    const render = () => {
-      counter.textContent = `Step ${step + 1} of 4`
-      const sorted = step > 0
-      leftLabel.textContent = sorted ? "Cooler: slow" : "Mixed gas"
-      rightLabel.textContent = sorted ? "Hotter: fast" : "Mixed gas"
-      heat.hidden = step !== 3
-
-      if (step === 0) {
-        heading.textContent = "Mixed gas"
-        copy.textContent =
-          "Both sides contain fast and slow molecules. Can the demon separate them just by opening its shutter at the right moments?"
-        keyPoint.textContent =
-          "The challenge: sorting seems to make one side hotter and the other colder, without the demon doing work on the gas."
-        button.textContent = "Sort the molecules"
-      } else if (step === 1) {
-        heading.textContent = "Sorted gas"
-        copy.textContent =
-          "Fast molecules have moved right, slow ones left. A temperature difference has appeared, but the shutter seemed to do almost no work."
-        keyPoint.textContent =
-          "Watch the four memory slots: the demon recorded a decision for each molecule it let through."
-        button.textContent = "Examine the memory"
-      } else if (step === 2) {
-        heading.textContent = "The missing piece"
-        copy.textContent =
-          "The demon used its memory to control the shutter. To keep repeating this example with the same limited memory, the record must be cleared."
-        keyPoint.textContent =
-          "Looking at the sorted gas alone hides part of the process. The demon and its memory are physical too."
-        button.textContent = "Reset the memory"
-      } else {
-        heading.textContent = "The complete cycle"
-        copy.textContent =
-          "The stored decisions have been erased. In the standard account, resetting memory releases heat into the surroundings."
-        keyPoint.textContent =
-          "Count that heat along with the gas and the demon. The apparent free sorting no longer defeats the second law."
-        button.textContent = "Start again"
-      }
-    }
-
-    const moveThroughDoor = async (particle: (typeof particles)[number]) => {
-      const { circle, startX, startY, x, y } = particle
-      const leftToRight = startX < 210
-      const approach = leftToRight ? 199 : 221
-      const exit = leftToRight ? 221 : 199
-
-      if (!prefersReducedMotion.matches) {
-        const frame = (atX: number, atY: number) => ({
-          transform: `translate(${atX - startX}px, ${atY - startY}px)`,
-        })
+    const moveTo = async (circle: SVGCircleElement, x: number, y: number, duration: number) => {
+      const fromX = Number(circle.getAttribute("cx"))
+      const fromY = Number(circle.getAttribute("cy"))
+      if (!reducedMotion.matches) {
         const animation = circle.animate(
           [
-            { ...frame(startX, startY), offset: 0 },
-            { ...frame(approach, 113), offset: 0.4 },
-            { ...frame(exit, 113), offset: 0.6 },
-            { ...frame(x, y), offset: 1 },
+            { transform: "translate(0px, 0px)" },
+            { transform: `translate(${x - fromX}px, ${y - fromY}px)` },
           ],
-          { duration: 550, easing: "ease-in-out", fill: "forwards" },
+          { duration, easing: "ease-in-out", fill: "forwards" },
         )
         await animation.finished
         circle.setAttribute("cx", String(x))
@@ -241,35 +219,108 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
       }
     }
 
+    const letThrough = async (index: number) => {
+      const particle = particles[index]
+      const leftToRight = particle.fast
+      const approachX = leftToRight ? 190 : 230
+      const exitX = leftToRight ? 230 : 190
+      const direction = leftToRight ? "right" : "left"
+      const speed = leftToRight ? 230 : 560
+
+      focus.setAttribute("cx", String(particle.startX))
+      focus.setAttribute("cy", String(particle.startY))
+      focus.setAttribute("opacity", "1")
+      decisionLabel.textContent = `${leftToRight ? "Fast" : "Slow"} molecule approaching. The gate is closed.`
+      explanation.textContent = `The demon identifies its speed. This molecule should go ${direction}.`
+
+      await moveTo(particle.circle, approachX, 112, speed)
+      focus.setAttribute("opacity", "0")
+      decisionLabel.textContent = `Decision: open the gate to let it go ${direction}.`
+      shutter.setAttribute("opacity", "0")
+      await moveTo(particle.circle, exitX, 112, speed / 2)
+      await moveTo(particle.circle, particle.endX, particle.endY, speed)
+      shutter.setAttribute("opacity", "1")
+      record(index)
+      explanation.textContent =
+        `The molecule crossed. Memory now holds its decision: ${leftToRight ? "fast → right" : "slow → left"}.`
+    }
+
+    const render = () => {
+      shutter.setAttribute("opacity", "1")
+      focus.setAttribute("opacity", "0")
+      const sorted = stage >= 3
+      leftLabel.textContent = sorted ? "Cooler: slow" : "Mixed"
+      rightLabel.textContent = sorted ? "Hotter: fast" : "Mixed"
+      heat.setAttribute("opacity", stage === 4 ? "1" : "0")
+
+      if (stage === 0) {
+        stepLabel.textContent = "1 of 5 · Mixed gas"
+        decisionLabel.textContent = "The shutter is closed."
+        explanation.textContent =
+          "The demon watches molecules approach. It opens the gate only when a molecule is moving towards the side it wants."
+        paradox.textContent =
+          "Can sorting produce a hot side and a cold side without spending energy?"
+        button.textContent = "Let a fast molecule through"
+      } else if (stage === 1) {
+        stepLabel.textContent = "2 of 5 · First decision recorded"
+        paradox.textContent = "A fast molecule is now on the right. One memory slot has filled."
+        button.textContent = "Let a slow molecule through"
+      } else if (stage === 2) {
+        stepLabel.textContent = "3 of 5 · Second decision recorded"
+        paradox.textContent =
+          "The slow molecule moved left more slowly. Each gate decision needs a record."
+        button.textContent = "Finish sorting"
+      } else if (stage === 3) {
+        stepLabel.textContent = "4 of 5 · Sorting complete"
+        decisionLabel.textContent = "Fast molecules right. Slow molecules left."
+        explanation.textContent =
+          "The chambers now have different average speeds, and the demon's four memory slots are full."
+        paradox.textContent =
+          "This looks like a temperature difference made for free. But what happens before the demon can reuse its memory?"
+        button.textContent = "Erase the memory"
+      } else {
+        stepLabel.textContent = "5 of 5 · Complete the cycle"
+        decisionLabel.textContent = "Memory cleared. Heat released to the surroundings."
+        explanation.textContent =
+          "In the standard account, resetting the demon's memory has a physical cost. The gas alone was not the whole system."
+        paradox.textContent =
+          "The missing heat cost is why the complete repeated process does not defeat the second law."
+        button.textContent = "Start again"
+      }
+    }
+
     button.addEventListener("click", async () => {
       if (button.disabled) return
-
-      if (step === 0) {
-        button.disabled = true
-        shutter.setAttribute("opacity", "0")
-        for (const [index, particle] of particles.entries()) {
-          await moveThroughDoor(particle)
-          setMemory(index + 1)
+      button.disabled = true
+      try {
+        if (stage === 0) {
+          await letThrough(0)
+          stage = 1
+          render()
+        } else if (stage === 1) {
+          await letThrough(1)
+          stage = 2
+          render()
+        } else if (stage === 2) {
+          await letThrough(2)
+          await letThrough(3)
+          stage = 3
+          render()
+        } else if (stage === 3) {
+          clearMemory()
+          stage = 4
+          render()
+        } else {
+          particles.forEach(({ circle, startX, startY }) => {
+            circle.setAttribute("cx", String(startX))
+            circle.setAttribute("cy", String(startY))
+          })
+          clearMemory()
+          stage = 0
+          render()
         }
-        shutter.setAttribute("opacity", "1")
-        step = 1
-        render()
+      } finally {
         button.disabled = false
-      } else if (step === 1) {
-        step = 2
-        render()
-      } else if (step === 2) {
-        setMemory(0)
-        step = 3
-        render()
-      } else {
-        particles.forEach(({ circle, startX, startY }) => {
-          circle.setAttribute("cx", String(startX))
-          circle.setAttribute("cy", String(startY))
-        })
-        setMemory(0)
-        step = 0
-        render()
       }
     })
   }
