@@ -17,7 +17,7 @@ noMaths: true
 written: true
 sourcesVerified: true
 problem: "Why does the mathematics of flowing fluids say a moving body feels no drag, when every real body does?"
-claimA: "The standard equations for a smooth, frictionless flow describe the fluid around a body well, so a body moving steadily through it feels no drag."
+claimA: "A fluid with almost no friction can be treated as frictionless, so a body moving steadily through it feels no drag."
 claimB: "A body moving through real air or water feels drag, even when the fluid is thin and its friction is small."
 verdict: "Viscosity matters in thin layers next to the body, and through friction and flow separation it produces drag. The frictionless calculation fails to match real flows because it leaves these out."
 whatBreaks: "The assumption that a fluid with almost no friction can be treated as having none. A thin layer next to the surface decides the flow."

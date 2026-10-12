@@ -20,7 +20,7 @@ written: true
 sourcesVerified: true
 problem: "Every emerald seen so far is green. Why does that support “all emeralds are green” and not “all emeralds are grue”?"
 claimA: "The emeralds seen so far are good evidence that emeralds examined later will be green, and not that they will be blue."
-claimB: "The emeralds seen so far fit “all emeralds are grue” exactly as well, and nothing in the evidence or in logic favours green over grue."
+claimB: "The emeralds seen so far fit “all emeralds are grue” equally well, and neither evidence nor logic favours green."
 verdict: "The puzzle asks what justifies treating some patterns as fit for prediction and not others. Each main answer, from settled habits of language to natural kinds, faces serious objections, and none is agreed."
 whatBreaks: "The idea that a general claim is backed by its observed examples, whatever words it uses. Each main attempt to say which words are fit for prediction faces serious objections."
 statusNote: "each main answer faces a serious objection. Goodman’s own answer describes which words people habitually use rather than justifying the choice, the test of time-free words fails because green and grue are defined in terms of each other just as easily, and natural kinds have proved hard to define. The sources present the riddle as open."
