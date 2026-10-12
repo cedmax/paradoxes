@@ -1,0 +1,147 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+
+const groups = [
+  {
+    name: "Pretty",
+    rare: 30,
+    ordinary: 270,
+    rareWidth: 3,
+    ordinaryWidth: 27,
+    remainingWidth: 70,
+  },
+  {
+    name: "Plain (not pretty)",
+    rare: 70,
+    ordinary: 630,
+    rareWidth: 7,
+    ordinaryWidth: 63,
+    remainingWidth: 30,
+  },
+]
+---
+
+<IllustrationFigure
+  name="berksons-paradox"
+  lead="The collector displays every stamp that is pretty or rare."
+>
+  <p>Watch what happens when the plain, common stamps are left out.</p>
+
+  <div role="group" aria-label="Which stamps to show" class="grid grid-cols-2 gap-2">
+    <button
+      id="berksons-all"
+      type="button"
+      class="btn-toggle min-w-0 px-2 text-sm sm:text-base"
+      aria-pressed="true"
+      aria-controls="berksons-outcome"
+    >
+      All 1,000 stamps
+    </button>
+    <button
+      id="berksons-display"
+      type="button"
+      class="btn-toggle min-w-0 px-2 text-sm sm:text-base"
+      aria-pressed="false"
+      aria-controls="berksons-outcome"
+    >
+      370 on display
+    </button>
+  </div>
+
+  <p id="berksons-outcome" class="font-bold" aria-live="polite" aria-atomic="true">
+    In the full collection, 10% of pretty stamps and 10% of plain stamps are rare. There is no
+    connection between prettiness and rarity.
+  </p>
+
+  <p class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+    <span class="inline-flex items-center gap-2">
+      <span class="h-3 w-3 bg-series-green" aria-hidden="true"></span>
+      Rare
+    </span>
+    <span class="inline-flex items-center gap-2">
+      <span class="h-3 w-3 bg-series-blue" aria-hidden="true"></span>
+      Not rare
+    </span>
+  </p>
+
+  <div class="flex flex-col gap-4">
+    {groups.map(({ name, rare, ordinary, rareWidth, ordinaryWidth, remainingWidth }, index) => (
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+          <strong>{name}</strong>
+          <span class="text-sm tabular-nums" data-berksons-rate={index}>
+            {index === 0 ? "30 of 300 rare (10%)" : "70 of 700 rare (10%)"}
+          </span>
+        </div>
+        <div class="flex h-9 w-full overflow-hidden border border-ink/30" aria-hidden="true">
+          <div class="h-full bg-series-green" style={`width: ${rareWidth}%`}></div>
+          <div class="relative h-full" style={`width: ${ordinaryWidth}%`}>
+            <div
+              class="h-full w-full bg-series-blue transition-opacity duration-500 motion-reduce:transition-none"
+              data-berksons-removable={index === 1 ? "true" : undefined}
+            ></div>
+            {index === 1 && (
+              <span
+                id="berksons-excluded-label"
+                class="absolute inset-0 flex items-center justify-center text-xs font-bold sm:text-sm"
+                hidden
+              >
+                630 excluded
+              </span>
+            )}
+          </div>
+          <div class="h-full bg-ink/5" style={`width: ${remainingWidth}%`}></div>
+        </div>
+        <p class="text-sm tabular-nums" data-berksons-count={index}>
+          {index === 0
+            ? `${rare} rare + ${ordinary} not rare = 300 stamps`
+            : `${rare} rare + ${ordinary} not rare = 700 stamps`}
+        </p>
+      </div>
+    ))}
+  </div>
+
+  <p class="text-sm">
+    Both bars use the same scale: the full width represents 1,000 stamps. Filtering does not
+    move the stamps that remain.
+  </p>
+
+  <Fragment slot="caption">
+    The collector removes only the 630 stamps that are neither pretty nor rare. Among the stamps
+    left on display, every plain stamp must be rare. The apparent link comes from the selection,
+    not from the stamps themselves.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("berksons-paradox")
+  if (root) {
+    const allButton = find<HTMLButtonElement>(root, "#berksons-all")
+    const displayButton = find<HTMLButtonElement>(root, "#berksons-display")
+    const removable = find<HTMLElement>(root, '[data-berksons-removable="true"]')
+    const excludedLabel = find<HTMLElement>(root, "#berksons-excluded-label")
+    const rates = root.querySelectorAll<HTMLElement>("[data-berksons-rate]")
+    const counts = root.querySelectorAll<HTMLElement>("[data-berksons-count]")
+    const outcome = find<HTMLElement>(root, "#berksons-outcome")
+
+    const show = (display: boolean) => {
+      allButton.setAttribute("aria-pressed", String(!display))
+      displayButton.setAttribute("aria-pressed", String(display))
+      removable.classList.toggle("opacity-0", display)
+      excludedLabel.hidden = !display
+      rates[1].textContent = display ? "70 of 70 rare (100%)" : "70 of 700 rare (10%)"
+      counts[1].textContent = display
+        ? "70 rare on display; 630 plain, common stamps excluded"
+        : "70 rare + 630 not rare = 700 stamps"
+      outcome.textContent = display
+        ? "On display, 10% of pretty stamps are rare, but 100% of plain stamps are rare. The apparent link comes from filtering."
+        : "In the full collection, 10% of pretty stamps and 10% of plain stamps are rare. There is no connection between prettiness and rarity."
+    }
+
+    allButton.addEventListener("click", () => show(false))
+    displayButton.addEventListener("click", () => show(true))
+    show(false)
+  }
+</script>
