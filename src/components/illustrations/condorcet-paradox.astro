@@ -66,14 +66,26 @@ const comparisons = [
       <path data-condorcet-edge="2" d="M132 122 L48 54" opacity="0" />
     </g>
     <g fill="currentColor" font-size="22" text-anchor="middle" font-weight="bold">
-      <text x="40" y="44">A</text>
-      <text x="260" y="44">B</text>
-      <text x="150" y="152">C</text>
+      <text x="40" y="44">
+        A
+      </text>
+      <text x="260" y="44">
+        B
+      </text>
+      <text x="150" y="152">
+        C
+      </text>
     </g>
     <g fill="currentColor" font-size="16" text-anchor="middle">
-      <text data-condorcet-score="0" x="150" y="26">2–1</text>
-      <text data-condorcet-score="1" x="236" y="94" opacity="0">2–1</text>
-      <text data-condorcet-score="2" x="64" y="94" opacity="0">2–1</text>
+      <text data-condorcet-score="0" x="150" y="26">
+        2–1
+      </text>
+      <text data-condorcet-score="1" x="236" y="94" opacity="0">
+        2–1
+      </text>
+      <text data-condorcet-score="2" x="64" y="94" opacity="0">
+        2–1
+      </text>
     </g>
   </SvgFigure>
 
@@ -99,13 +111,13 @@ const comparisons = [
     </span>
   </p>
   <p id="condorcet-cycle" class="font-bold" hidden>
-    The cycle is complete: A beats B, B beats C, and C beats A. There is no single
-    majority favourite.
+    The cycle is complete: A beats B, B beats C, and C beats A. There is no single majority
+    favourite.
   </p>
 
   <Fragment slot="caption">
-    Different pairs of voters form each 2–1 majority. Each person has a consistent
-    ranking, but the group's choices can go round in a circle.
+    Different pairs of voters form each 2–1 majority. Each person has a consistent ranking, but
+    the group's choices can go round in a circle.
   </Fragment>
 </IllustrationFigure>
 
@@ -155,11 +167,11 @@ const comparisons = [
           const isVote = cell === vote
           cell.classList.toggle(
             "bg-explained",
-            isVote && cell.textContent?.trim() === comparison.winner
+            isVote && cell.textContent?.trim() === comparison.winner,
           )
           cell.classList.toggle(
             "bg-unreconciled",
-            isVote && cell.textContent?.trim() === comparison.loser
+            isVote && cell.textContent?.trim() === comparison.loser,
           )
           cell.classList.toggle("font-bold", isVote)
         }
