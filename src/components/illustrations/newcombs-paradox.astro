@@ -45,15 +45,26 @@ const payoffs = [
   <div id="newcomb-payoffs">
     <ComparisonTable
       caption="What you receive, depending on what is already in Box B"
-      columns={["Your choice", "B has $1m", "B is empty"]}
+      columns={["Your choice", "B has $1m (predicted B only)", "B empty (predicted both)"]}
       rows={payoffs}
       align="center"
       dense
     />
   </div>
 
-  <p id="newcomb-table-note" class="text-sm">
-    Compare each column: taking both always gives $1,000 more than taking B alone.
+  <p id="newcomb-fixed-comparison" class="flex flex-wrap gap-x-5 gap-y-2 text-sm tabular-nums">
+    <span>
+      <strong>B already has $1m:</strong> $1,000,000 → $1,001,000
+      <strong>(+$1,000)</strong>
+    </span>
+    <span>
+      <strong>B is empty:</strong> $0 → $1,000
+      <strong>(+$1,000)</strong>
+    </span>
+  </p>
+  <p id="newcomb-prediction-note" class="text-sm" hidden>
+    The highlighted cells are the outcomes usually linked to each choice.
+    The predictor is nearly always right, but not infallible.
   </p>
 
   <Fragment slot="caption">
@@ -72,12 +83,15 @@ const payoffs = [
     const fixedButton = find<HTMLButtonElement>(root, "#newcomb-fixed")
     const predictionButton = find<HTMLButtonElement>(root, "#newcomb-prediction")
     const argument = find<HTMLElement>(root, "#newcomb-argument")
-    const note = find<HTMLElement>(root, "#newcomb-table-note")
+    const fixedComparison = find<HTMLElement>(root, "#newcomb-fixed-comparison")
+    const predictionNote = find<HTMLElement>(root, "#newcomb-prediction-note")
     const rows = Array.from(root.querySelectorAll<HTMLTableRowElement>("#newcomb-payoffs tbody tr"))
 
     const show = (view: "fixed" | "prediction") => {
       fixedButton.setAttribute("aria-pressed", String(view === "fixed"))
       predictionButton.setAttribute("aria-pressed", String(view === "prediction"))
+      fixedComparison.hidden = view !== "fixed"
+      predictionNote.hidden = view !== "prediction"
 
       for (const [rowIndex, row] of rows.entries()) {
         const payoffs = row.querySelectorAll<HTMLTableCellElement>("td")
@@ -98,13 +112,9 @@ const payoffs = [
       if (view === "fixed") {
         argument.textContent =
           "Take both: whatever is already in B, Box A adds another $1,000."
-        note.textContent =
-          "Compare each column: taking both always gives $1,000 more than taking B alone."
       } else {
         argument.textContent =
           "Take B only: the near-perfect predictor usually puts the million in B for people who choose B alone."
-        note.textContent =
-          "The highlighted cells are the usual outcomes of each choice when the predictor is nearly always right, not the only possible outcomes."
       }
     }
 
