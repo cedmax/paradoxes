@@ -1,5 +1,6 @@
 ---
-title: "Thomson's lamp"
+title: "Thomson's lamp paradox"
+titleAccent: "paradox"
 aka: ["supertask"]
 chapter: infinity
 status: explained

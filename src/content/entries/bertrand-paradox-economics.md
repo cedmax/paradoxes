@@ -1,5 +1,6 @@
 ---
 title: "Bertrand paradox (economics)"
+titleAccent: "paradox (economics)"
 chapter: collective
 status: "explained"
 simplification: light

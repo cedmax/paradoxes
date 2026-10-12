@@ -1,5 +1,6 @@
 ---
 title: "Paradox of toil"
+titleAccent: "toil"
 chapter: collective
 status: "disputed"
 uniqueness: "related"

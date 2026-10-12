@@ -1,5 +1,6 @@
 ---
 title: "Problem of evil"
+titleAccent: "evil"
 chapter: belief
 status: "disputed"
 simplification: light

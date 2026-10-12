@@ -1,11 +1,11 @@
 ---
-title: "Polchinski’s paradox"
-titleAccent: "paradox"
+title: "Novikov self-consistency principle"
+titleAccent: "principle"
 aka:
   [
     "Novikov self-consistency",
-    "Novikov self-consistency principle",
     "Novikov principle",
+    "Polchinski’s paradox",
     "Polchinski billiard-ball paradox",
   ]
 chapter: time-causation

@@ -1,5 +1,6 @@
 ---
 title: "Problem of future contingents"
+titleAccent: "future contingents"
 chapter: belief
 status: "disputed"
 simplification: light

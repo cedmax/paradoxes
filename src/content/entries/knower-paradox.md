@@ -1,5 +1,6 @@
 ---
 title: "Knower paradox"
+titleAccent: "paradox"
 chapter: self-reference
 status: "disputed"
 uniqueness: "related"

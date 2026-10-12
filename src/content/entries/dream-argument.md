@@ -1,5 +1,6 @@
 ---
 title: "Dream argument"
+titleAccent: "argument"
 chapter: belief
 status: "disputed"
 simplification: light

@@ -1,5 +1,6 @@
 ---
 title: "Drinker paradox"
+titleAccent: "paradox"
 chapter: belief
 status: "explained"
 uniqueness: "related"

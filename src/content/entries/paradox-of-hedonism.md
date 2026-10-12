@@ -1,5 +1,6 @@
 ---
 title: "Paradox of hedonism"
+titleAccent: "hedonism"
 chapter: individual
 status: "explained"
 simplification: light

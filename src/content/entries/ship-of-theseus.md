@@ -1,5 +1,6 @@
 ---
-title: Ship of Theseus
+title: "Ship of Theseus paradox"
+titleAccent: "paradox"
 chapter: what-counts
 status: disputed
 simplification: light

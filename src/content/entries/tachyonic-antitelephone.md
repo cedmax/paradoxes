@@ -1,5 +1,6 @@
 ---
-title: "Tachyonic antitelephone"
+title: "Tachyonic antitelephone paradox"
+titleAccent: "paradox"
 chapter: time-causation
 status: "explained"
 uniqueness: "related"

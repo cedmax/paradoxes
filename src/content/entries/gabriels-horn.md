@@ -1,5 +1,6 @@
 ---
-title: "Gabriel's horn"
+title: "Gabriel's horn paradox"
+titleAccent: "paradox"
 aka: ["Torricelli's trumpet"]
 chapter: infinity
 status: explained

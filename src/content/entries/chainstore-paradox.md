@@ -1,5 +1,6 @@
 ---
 title: "Chainstore paradox"
+titleAccent: "paradox"
 chapter: collective
 status: "disputed"
 uniqueness: "related"

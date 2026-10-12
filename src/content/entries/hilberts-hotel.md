@@ -1,5 +1,6 @@
 ---
-title: "Hilbert's hotel"
+title: "Hilbert's hotel paradox"
+titleAccent: "paradox"
 aka: ["Grand Hotel", "infinite hotel"]
 chapter: infinity
 status: explained

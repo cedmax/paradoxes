@@ -1,5 +1,6 @@
 ---
-title: "Ant on a rubber rope"
+title: "Ant on a rubber rope puzzle"
+titleAccent: "puzzle"
 chapter: infinity
 status: "explained"
 simplification: light
