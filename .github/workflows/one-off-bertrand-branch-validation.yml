@@ -1,0 +1,42 @@
+name: Validate Bertrand branching diagram
+
+on:
+  push:
+    branches: [chore/one-off-format-illustrations]
+
+permissions:
+  contents: write
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Format and validate Bertrand branching illustration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          branch=illustration/bertrands-box-gold-draws
+          git fetch origin "$branch"
+          git checkout -B "$branch" "origin/$branch"
+          pnpm exec prettier --write src/components/illustrations/bertrands-box-paradox.astro
+          if ! git diff --quiet; then
+            git add src/components/illustrations/bertrands-box-paradox.astro
+            git commit -m "Format Bertrand branching diagram"
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+          pnpm lint
+          pnpm check
+          pnpm exec prettier --check .
+          pnpm knip
