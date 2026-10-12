@@ -1,109 +1,92 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
-import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
-import { series, stroke } from "~/data/palette"
+import Panel from "~/components/illustration-kit/Panel.astro"
 ---
 
-<IllustrationFigure lead="A fair coin, but not the same number of wakings.">
-  <SvgFigure
-    name="sleeping-beauty-counts"
-    class="mx-auto w-full max-w-md"
-    viewBox="0 0 360 216"
-    title="Each coin outcome is equally likely, but tails produces two wakings"
-    desc="Two equally likely coin outcomes. Heads leads to one Monday waking. Tails leads to a Monday waking and a Tuesday waking after Sleeping Beauty's memory is erased. Over many fair tosses, half the tosses come up heads, but just one third of the wakings occur after heads."
+<IllustrationFigure
+  name="sleeping-beauty"
+  lead="The coin is fair. But the two outcomes do not produce the same number of wakings."
+>
+  <button
+    id="sleeping-beauty-view-toggle"
+    type="button"
+    class="btn-toggle self-start"
+    aria-pressed="false"
+    aria-controls="sleeping-beauty-outside sleeping-beauty-inside"
   >
-    <g fill="currentColor" font-size="16" font-weight="700">
-      <text x="10" y="19">
-        Coin toss
-      </text>
-      <text x="163" y="19">
-        Wakings produced
-      </text>
-    </g>
+    See what Beauty knows
+  </button>
 
-    <rect
-      x="10"
-      y="34"
-      width="115"
-      height="62"
-      fill={series.blue}
-      fill-opacity=".13"
-      stroke={series.blue}
-      stroke-width="1.5"
-    />
-    <rect
-      x="10"
-      y="115"
-      width="115"
-      height="75"
-      fill={series.red}
-      fill-opacity=".13"
-      stroke={series.red}
-      stroke-width="1.5"
-    />
-    <g fill="currentColor" text-anchor="middle">
-      <text x="67.5" y="57" font-size="18" font-weight="700">
-        Heads
-      </text>
-      <text x="67.5" y="81" font-size="15">
-        1 in 2 tosses
-      </text>
-      <text x="67.5" y="144" font-size="18" font-weight="700">
-        Tails
-      </text>
-      <text x="67.5" y="169" font-size="15">
-        1 in 2 tosses
-      </text>
-    </g>
+  <div id="sleeping-beauty-outside" class="flex flex-col gap-4">
+    <p class="text-base font-bold">From outside, both outcomes are clear.</p>
+    <div class="grid gap-4 sm:grid-cols-2">
+      <Panel accent="blue" title="Heads · 1 in 2 tosses">
+        <p class="text-base">One waking</p>
+        <div class="mt-3 bg-series-blue/10 p-3 text-center">
+          <strong>Monday</strong>
+          <p class="text-base">I'm awake.</p>
+        </div>
+      </Panel>
+      <Panel accent="red" title="Tails · 1 in 2 tosses">
+        <p class="text-base">Two wakings</p>
+        <div class="mt-3 flex flex-col gap-2">
+          <div class="bg-series-red/10 p-3 text-center">
+            <strong>Monday</strong>
+            <p class="text-base">I'm awake.</p>
+          </div>
+          <div class="bg-series-red/10 p-3 text-center">
+            <strong>Tuesday</strong>
+            <p class="text-base">I'm awake.</p>
+          </div>
+        </div>
+      </Panel>
+    </div>
+    <p class="text-base">
+      Heads and tails are equally likely, but tails creates an extra waking.
+    </p>
+  </div>
 
-    <g
-      fill="none"
-      stroke={stroke}
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M130 65 H155 m-6 -5 6 5 -6 5" />
-      <path d="M130 153 H155 m-6 -5 6 5 -6 5" />
-    </g>
+  <div id="sleeping-beauty-inside" class="flex flex-col gap-4" hidden>
+    <p class="text-base font-bold">Now you are Sleeping Beauty, just waking up.</p>
+    <Panel class="mx-auto w-full max-w-sm">
+      <p class="py-5 text-center text-2xl font-bold">I'm awake.</p>
+      <p class="text-center text-base">
+        I don't know which day it is, or how the coin landed.
+      </p>
+    </Panel>
+    <p class="text-base">
+      All three wakings would feel exactly like this. You know the rules, including
+      that tails would create an extra waking. But you cannot tell which waking
+      this is.
+    </p>
+    <p class="text-base font-bold">
+      Should you still give heads one chance in two, or now one chance in three?
+    </p>
+  </div>
 
-    <rect x="164" y="34" width="184" height="62" fill={series.blue} fill-opacity=".18" />
-    <rect x="164" y="115" width="88" height="75" fill={series.red} fill-opacity=".18" />
-    <rect x="260" y="115" width="88" height="75" fill={series.red} fill-opacity=".18" />
-
-    <g fill="currentColor" text-anchor="middle">
-      <text x="256" y="59" font-size="18" font-weight="700">
-        Monday
-      </text>
-      <text x="256" y="81" font-size="15">
-        1 waking
-      </text>
-      <text x="208" y="146" font-size="16" font-weight="700">
-        Monday
-      </text>
-      <text x="304" y="146" font-size="16" font-weight="700">
-        Tuesday
-      </text>
-      <text x="208" y="169" font-size="15">
-        wakes
-      </text>
-      <text x="304" y="169" font-size="15">
-        wakes
-      </text>
-    </g>
-    <text x="180" y="209" text-anchor="middle" fill="currentColor" font-size="14">
-      Tuesday feels just like Monday.
-    </text>
-  </SvgFigure>
-
-  <p class="text-base leading-normal">
-    <strong>Count coin tosses:</strong> half are heads.{" "}
-    <strong>Count wakings over many tosses:</strong> one in three follows heads.
-  </p>
   <Fragment slot="caption">
-    Both counts are correct. Halfers say waking gives Sleeping Beauty no new information about
-    the coin, so her belief stays at one half. Thirders say the indistinguishable wakings
-    support one third. The diagram shows why the answers differ, but does not decide which
-    belief she should hold.
+    Halfers say waking reveals nothing new about the coin, so the answer stays at
+    one half. Thirders say the indistinguishable wakings support one third.
+    Both know the same rules. They disagree about what those rules mean for
+    Beauty's belief when she wakes.
   </Fragment>
 </IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("sleeping-beauty")
+  if (root) {
+    const button = find<HTMLButtonElement>(root, "#sleeping-beauty-view-toggle")
+    const outside = find<HTMLElement>(root, "#sleeping-beauty-outside")
+    const inside = find<HTMLElement>(root, "#sleeping-beauty-inside")
+
+    button.addEventListener("click", () => {
+      const beautyView = button.getAttribute("aria-pressed") !== "true"
+      button.setAttribute("aria-pressed", String(beautyView))
+      button.textContent = beautyView ? "Show outside view" : "See what Beauty knows"
+      outside.hidden = beautyView
+      inside.hidden = !beautyView
+    })
+  }
+</script>
