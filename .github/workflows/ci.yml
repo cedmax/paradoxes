@@ -2,6 +2,9 @@ name: CI
 
 on:
   pull_request:
+    # Draft PRs consume no CI runner minutes. Run checks when marked ready.
+    # A conversion back to draft cancels superseded runs via concurrency.
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -12,6 +15,7 @@ permissions:
 
 jobs:
   checks:
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
