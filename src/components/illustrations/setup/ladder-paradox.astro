@@ -1,0 +1,72 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure name="ladder-paradox" lead="Each observer measures a different length.">
+  <div class="flex flex-col gap-4">
+    <Panel title="From the barn" accent="gold" class="flex min-w-0 flex-col gap-2">
+      <SvgFigure
+        name="ladder-barn-lengths"
+        class="w-full max-w-md"
+        viewBox="0 0 360 98"
+        title="Barn's view: the short ladder fits inside the barn"
+        desc="A 10 metre blue ladder sits completely inside a 12 metre gold barn, between the two doors."
+      >
+        <g fill="currentColor" font-size="15">
+          <text x="10" y="18" font-weight="700">
+            Barn: 12 m
+          </text>
+          <rect
+            x="10"
+            y="30"
+            width="340"
+            height="34"
+            fill={series.gold}
+            fill-opacity="0.25"
+            stroke={stroke}
+            stroke-width="1.5"
+          />
+          <rect x="38" y="40" width="284" height="14" fill={series.blue} />
+          <line x1="10" x2="10" y1="27" y2="67" stroke={series.red} stroke-width="5" />
+          <line x1="350" x2="350" y1="27" y2="67" stroke={series.red} stroke-width="5" />
+          <text x="10" y="87">
+            Ladder: 10 m — wholly inside
+          </text>
+        </g>
+      </SvgFigure>
+    </Panel>
+    <Panel title="From the ladder" accent="blue" class="flex min-w-0 flex-col gap-2">
+      <SvgFigure
+        name="ladder-ladder-lengths"
+        class="w-full max-w-md"
+        viewBox="0 0 360 98"
+        title="Ladder's view: the ladder is much longer than the barn"
+        desc="The 20 metre blue ladder is far longer than the 6 metre gold barn."
+      >
+        <g fill="currentColor" font-size="15">
+          <text x="10" y="18" font-weight="700">
+            Ladder: 20 m
+          </text>
+          <rect x="10" y="27" width="340" height="14" fill={series.blue} />
+          <text x="10" y="65" font-weight="700">
+            Barn: 6 m
+          </text>
+          <rect
+            x="10"
+            y="74"
+            width="102"
+            height="18"
+            fill={series.gold}
+            fill-opacity="0.25"
+            stroke={stroke}
+            stroke-width="1.5"
+          />
+        </g>
+      </SvgFigure>
+    </Panel>
+  </div>
+  <Fragment slot="caption">Lengths measured within each observer's own frame.</Fragment>
+</IllustrationFigure>

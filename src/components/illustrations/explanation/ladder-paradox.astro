@@ -7,42 +7,18 @@ import { series, stroke } from "~/data/palette"
 
 <IllustrationFigure
   name="ladder-paradox"
-  lead="The lengths change between observers. So does the timing of the doors."
+  lead="The doors close together for the barn, but not for the ladder."
 >
-  <p class="text-base leading-normal">
-    The ladder moves through the barn close to the speed of light. Both observers agree that the
-    doors close, but not that they close at the same moment.
-  </p>
-
   <div class="flex flex-col gap-4">
     <Panel title="From the barn" accent="gold" class="flex min-w-0 flex-col gap-2">
       <SvgFigure
-        name="ladder-barn-view"
+        name="ladder-barn-doors"
         class="w-full max-w-md"
-        viewBox="0 0 360 205"
-        title="Barn's view: the short ladder fits and the closed-door periods overlap"
-        desc="A 10 metre blue ladder fits completely inside a 12 metre gold barn. On two timelines, red bars show the near and far doors closed during the same brief period: they shut and reopen together in the barn's frame."
+        viewBox="0 100 360 105"
+        title="Barn's view: both doors are closed during the same brief period"
+        desc="On two timelines, red bars show the near and far doors closed during the same brief period. They shut and reopen together in the barn's frame."
       >
         <g fill="currentColor" font-size="15">
-          <text x="10" y="18" font-weight="700">
-            Barn: 12 m
-          </text>
-          <rect
-            x="10"
-            y="30"
-            width="340"
-            height="34"
-            fill={series.gold}
-            fill-opacity="0.25"
-            stroke={stroke}
-            stroke-width="1.5"
-          />
-          <rect x="38" y="40" width="284" height="14" fill={series.blue} />
-          <line x1="10" x2="10" y1="27" y2="67" stroke={series.red} stroke-width="5" />
-          <line x1="350" x2="350" y1="27" y2="67" stroke={series.red} stroke-width="5" />
-          <text x="10" y="87">
-            Ladder: 10 m — wholly inside
-          </text>
           <text x="10" y="115" font-weight="700">
             Red = door closed
           </text>
@@ -87,38 +63,16 @@ import { series, stroke } from "~/data/palette"
           </text>
         </g>
       </SvgFigure>
-      <p class="text-base leading-normal">
-        Both doors close together, and reopen together. The red periods overlap while the
-        shortened ladder is entirely inside.
-      </p>
     </Panel>
-
     <Panel title="From the ladder" accent="blue" class="flex min-w-0 flex-col gap-2">
       <SvgFigure
-        name="ladder-ladder-view"
+        name="ladder-ladder-doors"
         class="w-full max-w-md"
-        viewBox="0 0 360 205"
+        viewBox="0 100 360 105"
         title="Ladder's view: the far door reopens before the near door closes"
-        desc="The 20 metre ladder is longer than the 6 metre barn. Red bars show when each door is closed: the far-door bar finishes well before the near-door bar starts. There is never a moment when both doors are shut in the ladder's frame."
+        desc="Red bars show when each door is closed. The far-door bar finishes well before the near-door bar starts, so both doors are never closed at once in the ladder's frame."
       >
         <g fill="currentColor" font-size="15">
-          <text x="10" y="18" font-weight="700">
-            Ladder: 20 m
-          </text>
-          <rect x="10" y="27" width="340" height="14" fill={series.blue} />
-          <text x="10" y="65" font-weight="700">
-            Barn: 6 m
-          </text>
-          <rect
-            x="10"
-            y="74"
-            width="102"
-            height="18"
-            fill={series.gold}
-            fill-opacity="0.25"
-            stroke={stroke}
-            stroke-width="1.5"
-          />
           <text x="10" y="115" font-weight="700">
             Red = door closed
           </text>
@@ -145,18 +99,7 @@ import { series, stroke } from "~/data/palette"
           </text>
         </g>
       </SvgFigure>
-      <p class="text-base leading-normal">
-        The far door shuts first, then opens before the front of the ladder reaches it. The near
-        door shuts later, after the back has passed. There is no moment when both doors are shut
-        around the ladder.
-      </p>
     </Panel>
   </div>
-
-  <Fragment slot="caption">
-    The coloured bars compare lengths <strong>within</strong> each observer's frame; the red
-    intervals below show when each door is closed. They overlap in the barn's frame, but not in
-    the ladder's frame. These timing diagrams are schematic, not to scale. The paradox
-    disappears because simultaneity is not shared.
-  </Fragment>
+  <Fragment slot="caption">Schematic, not to scale.</Fragment>
 </IllustrationFigure>
