@@ -31,7 +31,7 @@ const boxes = [
   </p>
 
   <div
-    class="mx-auto grid w-full max-w-xl grid-cols-1 justify-items-center gap-1 min-[540px]:grid-cols-3 min-[540px]:gap-3"
+    class="mx-auto grid w-full max-w-xl grid-cols-1 justify-items-center gap-1 sm:grid-cols-3 sm:gap-3"
   >
     {boxes.map((box, index) => (
       <SvgFigure
@@ -39,7 +39,7 @@ const boxes = [
         title={`${box.name}, with two possible coin draws`}
         desc={`${box.name}. ${box.description}`}
         viewBox="0 0 180 173"
-        class="w-full max-w-40 min-[540px]:max-w-48"
+        class="w-full max-w-40 sm:max-w-48"
       >
         <rect
           x="18"
