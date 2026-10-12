@@ -3,104 +3,74 @@ import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure
 import Panel from "~/components/illustration-kit/Panel.astro"
 
 const boxes = [
-  { name: "Box 1", coins: ["G", "G"], label: "Gold + gold" },
-  { name: "Box 2", coins: ["G", "S"], label: "Gold + silver" },
-  { name: "Box 3", coins: ["S", "S"], label: "Silver + silver" },
+  { name: "Box 1", coins: ["G", "G"], label: "Gold + gold", count: "2 gold draws" },
+  { name: "Box 2", coins: ["G", "S"], label: "Gold + silver", count: "1 gold draw" },
+  { name: "Box 3", coins: ["S", "S"], label: "Silver + silver", count: "0 gold draws" },
 ]
 
 const coinClass = (coin: string) => [
-  "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-ink font-bold text-xs sm:h-9 sm:w-9 sm:text-base",
+  "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-ink text-sm font-bold sm:h-10 sm:w-10 sm:text-lg",
   coin === "G" ? "bg-series-gold" : "bg-paper",
 ]
 ---
 
-<IllustrationFigure
-  name="bertrands-box"
-  lead="You drew a gold coin. What are the odds the other coin is gold?"
->
+<IllustrationFigure name="bertrands-box" lead="You drew gold. Which box did it come from?">
   <p class="text-base leading-normal">
-    First choose one of three boxes at random. Then draw one of its two coins at random. G means
-    gold; S means silver.
+    One of three boxes is chosen at random, then one of its two coins. G means gold; S means
+    silver.
   </p>
+
   <div class="grid grid-cols-3 gap-2 sm:gap-3">
     {boxes.map((box) => (
-      <Panel class="min-w-0 space-y-3 p-1! sm:p-3!">
+      <Panel class="min-w-0 space-y-3 p-2! sm:p-3!">
         <div class="space-y-1 text-center">
           <p class="font-bold">{box.name}</p>
           <p class="text-xs leading-tight sm:text-sm">{box.label}</p>
         </div>
-        <div class="flex items-center justify-center gap-1 sm:gap-2" aria-label={box.label}>
+        <div class="flex items-start justify-center gap-1 sm:gap-2" aria-label={box.label}>
           {box.coins.map((coin) => (
-            <span
-              class:list={coinClass(coin)}
-              aria-label={coin === "G" ? "Gold coin" : "Silver coin"}
-            >
-              {coin}
-            </span>
+            <div class="flex min-w-0 flex-col items-center gap-1">
+              <span
+                data-bertrand-coin
+                data-metal={coin}
+                class:list={coinClass(coin)}
+                role="img"
+                aria-label={coin === "G" ? "Gold coin" : "Silver coin"}
+              >
+                {coin}
+              </span>
+              <span data-bertrand-chance class="text-xs" hidden>1/6</span>
+            </div>
           ))}
         </div>
-        <div data-bertrand-draws class="space-y-2" hidden>
-          <p class="border-t border-ink pt-2 text-center text-xs font-bold leading-tight">
-            Either coin can be drawn
+        <div class="min-h-5 text-center">
+          <p data-bertrand-count class="text-xs font-bold leading-tight sm:text-sm" hidden>
+            {box.count}
           </p>
-          {box.coins.map((drawn, index) => {
-            const other = box.coins[1 - index]
-            return (
-              <div
-                data-bertrand-case
-                data-drawn={drawn}
-                data-other={other}
-                class="flex min-w-0 flex-col items-center gap-1 border border-ink px-1 py-2"
-              >
-                <p class="text-xs font-medium">Coin {index + 1}</p>
-                <div class="flex items-center justify-center gap-1">
-                  <span
-                    class:list={coinClass(drawn)}
-                    aria-label={drawn === "G" ? "Gold drawn" : "Silver drawn"}
-                  >
-                    {drawn}
-                  </span>
-                  <span class="text-sm" aria-hidden="true">
-                    →
-                  </span>
-                  <span
-                    class:list={coinClass(other)}
-                    aria-label={other === "G" ? "Gold left" : "Silver left"}
-                  >
-                    {other}
-                  </span>
-                </div>
-                <p class="text-center text-xs leading-tight">Drawn → left</p>
-              </div>
-            )
-          })}
         </div>
       </Panel>
     ))}
   </div>
+
   <p id="bertrand-step-text" class="text-base leading-normal" aria-live="polite">
-    Every box has the same chance of being picked. The two coins inside each box have the same
-    chance of being drawn.
+    The three boxes are equally likely. Either coin in each box could be drawn.
   </p>
+
   <button id="bertrand-next" type="button" class="btn-ghost">
-    Show all six possible draws
+    Count the six possible draws
   </button>
+
   <div id="bertrand-result" class="space-y-2" hidden>
-    <div class="border-l-4 border-series-green pl-4">
-      <p class="text-3xl font-bold">2 out of 3</p>
-      <p class="text-base leading-normal">
-        Two remaining draws came from the gold-gold box. In both, the other coin is gold. The
-        third came from the mixed box, leaving a silver coin.
-      </p>
-    </div>
+    <p class="text-3xl font-bold">2 out of 3</p>
     <p class="text-base leading-normal">
-      Both boxes are possible, but not equally likely. The gold-gold box was twice as likely to
-      have produced the gold coin you saw.
+      Of the three equally likely ways to draw gold, two come from the gold-gold box.
+      So the other coin is gold two times out of three.
     </p>
   </div>
+
   <Fragment slot="caption">
-    Each particular coin is equally likely to be the one drawn. The arrows distinguish the drawn
-    coin from the one left in the box.
+    Seeing gold leaves two possible boxes, but not two equally likely boxes. The gold-gold box
+    has twice as many ways to produce the coin you saw.
   </Fragment>
 </IllustrationFigure>
 
@@ -112,33 +82,37 @@ const coinClass = (coin: string) => [
     const next = find<HTMLButtonElement>(root, "#bertrand-next")
     const stepText = find<HTMLElement>(root, "#bertrand-step-text")
     const result = find<HTMLElement>(root, "#bertrand-result")
-    const drawGroups = root.querySelectorAll<HTMLElement>("[data-bertrand-draws]")
-    const cases = root.querySelectorAll<HTMLElement>("[data-bertrand-case]")
+    const coins = root.querySelectorAll<HTMLElement>("[data-bertrand-coin]")
+    const chances = root.querySelectorAll<HTMLElement>("[data-bertrand-chance]")
+    const counts = root.querySelectorAll<HTMLElement>("[data-bertrand-count]")
     let step = 0
+
     const render = () => {
-      drawGroups.forEach((group) => {
-        group.hidden = step === 0
+      chances.forEach((chance) => {
+        chance.hidden = step !== 1
       })
-      cases.forEach((item) => {
-        const selected = item.dataset.drawn === "G"
-        const winning = item.dataset.other === "G"
-        item.classList.toggle("opacity-25", step === 2 && !selected)
-        item.classList.toggle("border-series-green", step === 2 && selected && winning)
-        item.classList.toggle("border-series-red", step === 2 && selected && !winning)
-        item.classList.toggle("border-ink", step !== 2 || !selected)
+      counts.forEach((count) => {
+        count.hidden = step !== 2
+      })
+      coins.forEach((coin) => {
+        coin.classList.toggle("opacity-25", step === 2 && coin.dataset.metal === "S")
+        coin.classList.toggle("outline-2", step === 2 && coin.dataset.metal === "G")
+        coin.classList.toggle("outline-offset-2", step === 2 && coin.dataset.metal === "G")
+        coin.classList.toggle("outline-series-green", step === 2 && coin.dataset.metal === "G")
       })
       result.hidden = step !== 2
       stepText.textContent = [
-        "Every box has the same chance of being picked. The two coins inside each box have the same chance of being drawn.",
-        "Here are all six equally likely draws (each has a chance of 1 in 6). The first coin shown is the one drawn; the second is the one left.",
-        "You saw gold, so the three silver draws fade away. Three possibilities remain: two leave gold behind, and one leaves silver.",
+        "The three boxes are equally likely. Either coin in each box could be drawn.",
+        "There are six equally likely draws. Each individual coin has a 1 in 6 chance of being drawn.",
+        "You drew gold, so the three silver draws fade away. Three equally likely draws remain: two from Box 1, one from Box 2.",
       ][step]
       next.textContent = [
-        "Show all six possible draws",
+        "Count the six possible draws",
         "Keep only the gold draws",
         "Start again",
       ][step]
     }
+
     next.addEventListener("click", () => {
       step = (step + 1) % 3
       render()
