@@ -11,8 +11,7 @@ const chanceGoodB = 0.745
 function move(states: number[], game: string) {
   const next = [0, 0, 0]
   for (let state = 0; state < 3; state++) {
-    const win =
-      game === "A" ? chanceA : state === 0 ? chanceBadB : chanceGoodB
+    const win = game === "A" ? chanceA : state === 0 ? chanceBadB : chanceGoodB
     next[(state + 1) % 3] += states[state] * win
     next[(state + 2) % 3] += states[state] * (1 - win)
   }
@@ -32,10 +31,7 @@ function calculate(sequence: string) {
   let badShare = 0
   let bPlays = 0
   for (const game of sequence) {
-    const win =
-      game === "A"
-        ? chanceA
-        : states[0] * chanceBadB + (1 - states[0]) * chanceGoodB
+    const win = game === "A" ? chanceA : states[0] * chanceBadB + (1 - states[0]) * chanceGoodB
     const expectedPence = (2 * win - 1) * 100
     steps.push({ game, states, expectedPence })
     totalPence += expectedPence
@@ -72,21 +68,20 @@ const pence = (value: number) => (value >= 0 ? "+" : "−") + Math.abs(value).to
   lead="The order changes which coin Game B has to use."
 >
   <p class="text-base leading-normal">
-    Game A wins £1 with a 49.5% chance. Game B also wins or loses £1, but uses a 9.5% coin
-    when your money is a multiple of three and a 74.5% coin otherwise. Both games lose when
-    played alone.
+    Game A wins £1 with a 49.5% chance. Game B also wins or loses £1, but uses a 9.5% coin when
+    your money is a multiple of three and a 74.5% coin otherwise. Both games lose when played
+    alone.
   </p>
 
-  <div id="parrondos-controls" data-results={JSON.stringify(results)} class="flex flex-col gap-4">
+  <div
+    id="parrondos-controls"
+    data-results={JSON.stringify(results)}
+    class="flex flex-col gap-4"
+  >
     <div class="flex flex-col gap-2">
       <p class="font-bold">Repeat which pattern?</p>
       <div class="flex flex-wrap gap-2" role="group" aria-label="Repeating game pattern">
-        <button
-          id="parrondos-aabb"
-          type="button"
-          class="btn-toggle flex-1"
-          aria-pressed="true"
-        >
+        <button id="parrondos-aabb" type="button" class="btn-toggle flex-1" aria-pressed="true">
           AABB
         </button>
         <button
@@ -103,16 +98,17 @@ const pence = (value: number) => (value >= 0 ? "+" : "−") + Math.abs(value).to
     <div class="flex flex-col gap-2">
       <p class="font-bold">Choose a play in the repeating pattern</p>
       <div class="grid grid-cols-4 gap-2" role="group" aria-label="Play in the pattern">
-        {first && results.AABB.steps.map((step, index) => (
-          <button
-            type="button"
-            data-parrondos-step={index}
-            class="btn-toggle min-w-0 px-2 text-base"
-            aria-pressed={index === 0 ? "true" : "false"}
-          >
-            {index + 1}. {step.game}
-          </button>
-        ))}
+        {first &&
+          results.AABB.steps.map((step, index) => (
+            <button
+              type="button"
+              data-parrondos-step={index}
+              class="btn-toggle min-w-0 px-2 text-base"
+              aria-pressed={index === 0 ? "true" : "false"}
+            >
+              {index + 1}. {step.game}
+            </button>
+          ))}
       </div>
     </div>
 
@@ -122,8 +118,8 @@ const pence = (value: number) => (value >= 0 ? "+" : "−") + Math.abs(value).to
 
     <Panel title="Where could your money be before this play?">
       <p class="mb-3 text-base">
-        These are the long-run chances after repeating the selected pattern many times.
-        A win adds £1; a loss subtracts £1.
+        These are the long-run chances after repeating the selected pattern many times. A win
+        adds £1; a loss subtracts £1.
       </p>
       <div class="flex flex-col gap-4">
         {stateLabels.map((label, index) => (
@@ -183,9 +179,9 @@ const pence = (value: number) => (value >= 0 ? "+" : "−") + Math.abs(value).to
   </div>
 
   <Fragment slot="caption">
-    Neither game wins on its own. The order of play changes how often Game B encounters the
-    bad coin. AABB avoids it more often, enough to turn an average loss into an average gain.
-    The bars show calculated long-run chances, not the outcome of any one person's four plays.
+    Neither game wins on its own. The order of play changes how often Game B encounters the bad
+    coin. AABB avoids it more often, enough to turn an average loss into an average gain. The
+    bars show calculated long-run chances, not the outcome of any one person's four plays.
   </Fragment>
 </IllustrationFigure>
 
