@@ -82,7 +82,7 @@ const switches = Array.from({ length: 12 }, (_, index) => ({
         cy="59"
         r="3"
         fill={series.blue}
-        hidden={number > 1}
+        class:list={[number > 1 && "hidden"]}
       />
     ))}
     <circle
@@ -193,7 +193,7 @@ const switches = Array.from({ length: 12 }, (_, index) => ({
       progress.setAttribute("x2", String(x))
       current.setAttribute("cx", String(x))
       for (const mark of marks) {
-        mark.toggleAttribute("hidden", Number(mark.dataset.switch) > number)
+        mark.classList.toggle("hidden", Number(mark.dataset.switch) > number)
       }
 
       return (
