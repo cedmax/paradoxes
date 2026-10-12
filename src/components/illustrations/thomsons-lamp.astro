@@ -193,7 +193,7 @@ const switches = Array.from({ length: 12 }, (_, index) => ({
       progress.setAttribute("x2", String(x))
       current.setAttribute("cx", String(x))
       for (const mark of marks) {
-        mark.hidden = Number(mark.dataset.switch) > number
+        mark.toggleAttribute("hidden", Number(mark.dataset.switch) > number)
       }
 
       return (
