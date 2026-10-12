@@ -10,19 +10,19 @@ const boxes = [
 
 const coinClass = (coin: string) =>
   [
-    "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-ink font-bold text-sm sm:h-9 sm:w-9 sm:text-base",
+    "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-ink font-bold text-xs sm:h-9 sm:w-9 sm:text-base",
     coin === "G" ? "bg-series-gold" : "bg-paper",
   ]
 ---
 
-<IllustrationFigure name="bertrands-box" lead="A gold coin was drawn. Which box did it come from?">
+<IllustrationFigure name="bertrands-box" lead="You drew a gold coin. What are the odds the other coin is gold?">
   <p class="text-base leading-normal">
     First choose one of three boxes at random. Then draw one of its two coins at random.
     G means gold; S means silver.
   </p>
   <div class="grid grid-cols-3 gap-2 sm:gap-3">
     {boxes.map((box) => (
-      <Panel class="min-w-0 space-y-3 p-2 sm:p-3">
+      <Panel class="min-w-0 space-y-3 p-1! sm:p-3!">
         <div class="space-y-1 text-center">
           <p class="font-bold">{box.name}</p>
           <p class="text-xs leading-tight sm:text-sm">{box.label}</p>
@@ -92,8 +92,8 @@ const coinClass = (coin: string) =>
     </p>
   </div>
   <Fragment slot="caption">
-    Each row represents one equally likely way of drawing a particular coin after choosing
-    a box. The picture distinguishes the coin drawn from the coin left in the box.
+    Each particular coin is equally likely to be the one drawn. The arrows distinguish the drawn
+    coin from the one left in the box.
   </Fragment>
 </IllustrationFigure>
 
@@ -124,7 +124,7 @@ const coinClass = (coin: string) =>
       stepText.textContent = [
         "Every box has the same chance of being picked. The two coins inside each box have the same chance of being drawn.",
         "Here are all six equally likely draws (each has a chance of 1 in 6). The first coin shown is the one drawn; the second is the one left.",
-        "You saw gold, so the three silver draws are crossed out. Three possibilities remain: two leave gold behind, and one leaves silver.",
+        "You saw gold, so the three silver draws fade away. Three possibilities remain: two leave gold behind, and one leaves silver.",
       ][step]
       next.textContent = ["Show all six possible draws", "Keep only the gold draws", "Start again"][step]
     }
