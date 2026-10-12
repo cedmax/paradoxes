@@ -1,0 +1,85 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure name="bertrands-box" lead="Which box could the gold coin have come from?">
+  <p class="text-base leading-normal">
+    A box is chosen at random, then one of its two coins is drawn at random. The coin is gold.
+  </p>
+  <SvgFigure
+    name="bertrands-box-coins"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 450 195"
+    title="Three boxes: two gold coins, one of each, and two silver coins"
+    desc="There are six possible coin draws. The gold-gold box has two ways of producing gold, the mixed box has one, and the silver-silver box has none."
+  >
+    {[
+      { x: 8, name: "Box 1", coins: ["G", "G"], label: "Gold + gold" },
+      { x: 158, name: "Box 2", coins: ["G", "S"], label: "Gold + silver" },
+      { x: 308, name: "Box 3", coins: ["S", "S"], label: "Silver + silver" },
+    ].map((box, i) => (
+      <g id={i === 2 ? "bertrand-silver-box" : undefined}>
+        <text x={box.x + 65} y="20" fill="currentColor" text-anchor="middle" font-size="16" font-weight="bold">
+          {box.name}
+        </text>
+        <rect x={box.x} y="34" width="130" height="106" fill="none" stroke={stroke} stroke-width="2.5" />
+        {box.coins.map((coin, j) => (
+          <g class={coin === "S" ? "bertrand-silver-coin" : undefined}>
+            <circle cx={box.x + 38 + j * 54} cy="82" r="23" fill={coin === "G" ? series.gold : "var(--color-paper)"} stroke={stroke} stroke-width="2" />
+            <text x={box.x + 38 + j * 54} y="88" text-anchor="middle" font-size="17" font-weight="bold" fill="currentColor">
+              {coin}
+            </text>
+          </g>
+        ))}
+        <text x={box.x + 65} y="163" fill="currentColor" text-anchor="middle" font-size="14">{box.label}</text>
+      </g>
+    ))}
+    <g id="bertrand-numbers" visibility="hidden">
+      <g fill={series.green} stroke={stroke} stroke-width="1">
+        <circle cx="46" cy="45" r="12" />
+        <circle cx="100" cy="45" r="12" />
+        <circle cx="196" cy="45" r="12" />
+      </g>
+      <g fill="var(--color-paper)" text-anchor="middle" font-size="13" font-weight="bold">
+        <text x="46" y="50">1</text>
+        <text x="100" y="50">2</text>
+        <text x="196" y="50">3</text>
+      </g>
+    </g>
+  </SvgFigure>
+  <button id="bertrand-reveal" type="button" class="btn-ghost" aria-expanded="false" aria-controls="bertrand-explanation">
+    Count the possible gold draws
+  </button>
+  <div id="bertrand-explanation" class="flex flex-col gap-2 text-base leading-normal" hidden>
+    <p><strong>Three equally likely gold draws:</strong> two from the gold-gold box and one from the mixed box.</p>
+    <p class="text-2xl font-bold">2 out of 3</p>
+    <p>Two boxes remain possible, but they are not equally likely to have produced the gold coin.</p>
+  </div>
+  <Fragment slot="caption">
+    Each box was equally likely at the start. Seeing gold changes the odds because the first box offers two gold draws.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("bertrands-box")
+  if (root) {
+    const button = find<HTMLButtonElement>(root, "#bertrand-reveal")
+    const explanation = find<HTMLElement>(root, "#bertrand-explanation")
+    const numbers = find<SVGGElement>(root, "#bertrand-numbers")
+    const silverBox = find<SVGGElement>(root, "#bertrand-silver-box")
+    const silverCoins = root.querySelectorAll<SVGGElement>(".bertrand-silver-coin")
+    button.addEventListener("click", () => {
+      const show = explanation.hidden
+      explanation.hidden = !show
+      numbers.setAttribute("visibility", show ? "visible" : "hidden")
+      silverBox.setAttribute("opacity", show ? ".28" : "1")
+      silverCoins.forEach((coin) => coin.setAttribute("opacity", show ? ".28" : "1"))
+      button.setAttribute("aria-expanded", String(show))
+      button.textContent = show ? "Hide the answer" : "Count the possible gold draws"
+    })
+  }
+</script>
