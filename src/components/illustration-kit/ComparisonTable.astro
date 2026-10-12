@@ -1,14 +1,15 @@
 ---
+type Cell = string | number | { text: string | number; bold?: boolean }
+
 interface Props {
   /** Visible table title. Always give the table one. */
   caption?: string
   columns: string[]
   /** One array per row. The first cell of each row becomes the row header. */
-  rows: (string | number)[][]
+  rows: Cell[][]
   /** Indexes of columns shaded as the part that changes. */
   highlight?: number[]
-  /** Zero-based [row, column] pairs to emphasize in the table body. Column 0 is the row header. */
-  boldCells?: [number, number][]
+  /** Use { text, bold: true } to emphasise selected body cells. */
   align?: "left" | "center"
   /** Tighter horizontal padding on small screens, for tables with 4 or more columns. */
   dense?: boolean
@@ -19,7 +20,6 @@ const {
   columns,
   rows,
   highlight = [],
-  boldCells = [],
   align = "left",
   dense = false,
 } = Astro.props
@@ -29,11 +29,9 @@ const head = (i: number) => [
   ...cell(i),
   i === 0 || align === "left" ? "text-left" : "text-center",
 ]
-const body = (row: number, column: number) => [
-  ...cell(column),
-  align === "center" && "text-center",
-  boldCells.some(([r, c]) => r === row && c === column) && "font-bold",
-]
+const body = (i: number) => [...cell(i), align === "center" && "text-center"]
+const display = (value: Cell) => (typeof value === "object" ? value.text : value)
+const isBold = (value: Cell) => typeof value === "object" && value.bold === true
 ---
 
 <div class="overflow-x-auto border-2 border-ink">
@@ -51,13 +49,15 @@ const body = (row: number, column: number) => [
       </tr>
     </thead>
     <tbody>
-      {rows.map(([first, ...rest], row) => (
+      {rows.map(([first, ...rest]) => (
         <tr class="border-t border-ink">
           <th class:list={head(0)} scope="row">
-            {first}
+            {display(first)}
           </th>
           {rest.map((value, i) => (
-            <td class:list={body(row, i + 1)}>{value}</td>
+            <td class:list={body(i + 1)}>
+              {isBold(value) ? <strong>{display(value)}</strong> : display(value)}
+            </td>
           ))}
         </tr>
       ))}
