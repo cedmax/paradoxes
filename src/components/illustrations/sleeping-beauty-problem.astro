@@ -31,8 +31,12 @@ const extraTailsWakings = Array.from({ length: 5 })
       <span>50 heads + 50 tails</span>
     </div>
     <div class="grid grid-cols-15 gap-1" aria-hidden="true">
-      {groupsOfTen.map(() => <span class="h-9 bg-series-blue"></span>)}
-      {groupsOfTen.map(() => <span class="h-9 bg-series-red"></span>)}
+      {groupsOfTen.map(() => (
+        <span class="h-9 bg-series-blue"></span>
+      ))}
+      {groupsOfTen.map(() => (
+        <span class="h-9 bg-series-red"></span>
+      ))}
     </div>
   </div>
 
@@ -42,19 +46,23 @@ const extraTailsWakings = Array.from({ length: 5 })
       <span>50 after heads + 100 after tails</span>
     </div>
     <div class="grid grid-cols-15 gap-1" aria-hidden="true">
-      {groupsOfTen.map(() => <span class="h-9 bg-series-blue"></span>)}
-      {groupsOfTen.map(() => <span class="h-9 bg-series-red"></span>)}
-      {extraTailsWakings.map(() => <span class="h-9 bg-series-red"></span>)}
+      {groupsOfTen.map(() => (
+        <span class="h-9 bg-series-blue"></span>
+      ))}
+      {groupsOfTen.map(() => (
+        <span class="h-9 bg-series-red"></span>
+      ))}
+      {extraTailsWakings.map(() => (
+        <span class="h-9 bg-series-red"></span>
+      ))}
     </div>
   </div>
 
-  <p class="text-base font-bold">
-    Heads: 1 in 2 tosses, but 1 in 3 wakings.
-  </p>
+  <p class="text-base font-bold">Heads: 1 in 2 tosses, but 1 in 3 wakings.</p>
 
   <Fragment slot="caption">
-    Each square stands for ten tosses or ten wakings. Both counts are correct. The dispute
-    is whether the share of wakings should determine Sleeping Beauty's belief when she
-    wakes. Halfers say one half; thirders say one third.
+    Each square stands for ten tosses or ten wakings. Both counts are correct. The dispute is
+    whether the share of wakings should determine Sleeping Beauty's belief when she wakes.
+    Halfers say one half; thirders say one third.
   </Fragment>
 </IllustrationFigure>
