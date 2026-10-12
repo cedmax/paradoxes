@@ -7,19 +7,19 @@ const boxes = [
   {
     name: "Box 1",
     coins: ["G", "G"],
-    goldDraws: "2 gold draws",
+    revealLabel: "2 leave gold",
     description: "Both possible coin draws are gold.",
   },
   {
     name: "Box 2",
     coins: ["G", "S"],
-    goldDraws: "1 gold draw",
+    revealLabel: "1 leaves silver",
     description: "One coin draw is gold; one is silver.",
   },
   {
     name: "Box 3",
     coins: ["S", "S"],
-    goldDraws: "0 gold draws",
+    revealLabel: "0 gold draws",
     description: "Both possible coin draws are silver.",
   },
 ]
@@ -64,7 +64,11 @@ const boxes = [
         {box.coins.map((coin, coinIndex) => {
           const x = coinIndex === 0 ? 45 : 135
           return (
-            <g data-bertrand-branch data-metal={coin}>
+            <g
+              data-bertrand-branch
+              data-metal={coin}
+              data-other-metal={box.coins[1 - coinIndex]}
+            >
               <path
                 d={`M90 56 L${x} 93`}
                 fill="none"
@@ -104,7 +108,7 @@ const boxes = [
           text-anchor="middle"
           visibility="hidden"
         >
-          {box.goldDraws}
+          {box.revealLabel}
         </text>
       </SvgFigure>
     ))}
@@ -121,10 +125,11 @@ const boxes = [
   </button>
 
   <div id="bertrand-result" class="space-y-2 border-t-2 border-ink pt-3" hidden>
-    <p class="text-2xl font-bold">2 out of 3</p>
+    <p class="text-base font-bold">Chance the other coin in your box is gold</p>
+    <p class="text-3xl font-bold">2 out of 3</p>
     <p class="text-base leading-normal">
-      Only three paths can produce gold. Two come from Box 1, where the other coin is also gold.
-      The third comes from Box 2, where the other coin is silver.
+      There are three equally likely ways to draw a gold coin. In two of them, the other coin
+      is gold too. The third leaves silver.
     </p>
   </div>
 </IllustrationFigure>
@@ -144,12 +149,17 @@ const boxes = [
       branches.forEach((branch) => {
         const isGold = branch.dataset.metal === "G"
         const path = find<SVGPathElement>(branch, "path")
+        const circle = find<SVGCircleElement>(branch, "circle")
+        const strokeColor = revealed && isGold
+          ? branch.dataset.otherMetal === "G"
+            ? "var(--color-series-green)"
+            : "var(--color-series-red)"
+          : "var(--color-stroke)"
         branch.setAttribute("opacity", revealed && !isGold ? ".15" : "1")
-        path.setAttribute(
-          "stroke",
-          revealed && isGold ? "var(--color-series-green)" : "var(--color-stroke)",
-        )
+        path.setAttribute("stroke", strokeColor)
         path.setAttribute("stroke-width", revealed && isGold ? "4" : "2.5")
+        circle.setAttribute("stroke", strokeColor)
+        circle.setAttribute("stroke-width", revealed && isGold ? "3.5" : "2.5")
       })
       counts.forEach((count) => {
         count.setAttribute("visibility", revealed ? "visible" : "hidden")
