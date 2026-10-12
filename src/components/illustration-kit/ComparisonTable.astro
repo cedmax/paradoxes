@@ -1,12 +1,10 @@
 ---
-type Cell = string | number | { text: string | number; bold?: boolean }
-
 interface Props {
   /** Visible table title. Always give the table one. */
   caption?: string
   columns: string[]
-  /** The first cell is the row header. Use { text, bold: true } for emphasis. */
-  rows: Cell[][]
+  /** The first cell is the row header. Body cells support trusted inline HTML. */
+  rows: (string | number)[][]
   /** Indexes of columns shaded as the part that changes. */
   highlight?: number[]
   align?: "left" | "center"
@@ -22,8 +20,6 @@ const head = (i: number) => [
   i === 0 || align === "left" ? "text-left" : "text-center",
 ]
 const body = (i: number) => [...cell(i), align === "center" && "text-center"]
-const display = (value: Cell) => (typeof value === "object" ? value.text : value)
-const isBold = (value: Cell) => typeof value === "object" && value.bold === true
 ---
 
 <div class="overflow-x-auto border-2 border-ink">
@@ -44,12 +40,10 @@ const isBold = (value: Cell) => typeof value === "object" && value.bold === true
       {rows.map(([first, ...rest]) => (
         <tr class="border-t border-ink">
           <th class:list={head(0)} scope="row">
-            {display(first)}
+            {first}
           </th>
           {rest.map((value, i) => (
-            <td class:list={body(i + 1)}>
-              {isBold(value) ? <strong>{display(value)}</strong> : display(value)}
-            </td>
+            <td class:list={body(i + 1)} set:html={String(value)} />
           ))}
         </tr>
       ))}
