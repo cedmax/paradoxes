@@ -16,18 +16,14 @@ const boxes = [
   </p>
 
   <div class="flex flex-col gap-2">
-    <div
-      class="grid grid-cols-[minmax(0,1fr)_40px_minmax(0,1fr)] items-end gap-2 sm:grid-cols-[minmax(0,1fr)_76px_minmax(0,1fr)]"
-    >
+    <div class="grid grid-cols-[minmax(0,1fr)_40px_minmax(0,1fr)] items-end gap-2 sm:grid-cols-[minmax(0,1fr)_76px_minmax(0,1fr)]">
       <p class="text-center text-xs font-bold sm:text-sm">PICK A BOX</p>
       <span aria-hidden="true"></span>
       <p class="text-center text-xs font-bold sm:text-sm">DRAW A COIN</p>
     </div>
 
     {boxes.map((box) => (
-      <div
-        class="grid grid-cols-[minmax(0,1fr)_40px_minmax(0,1fr)] items-center gap-2 sm:grid-cols-[minmax(0,1fr)_76px_minmax(0,1fr)]"
-      >
+      <div class="grid grid-cols-[minmax(0,1fr)_40px_minmax(0,1fr)] items-center gap-2 sm:grid-cols-[minmax(0,1fr)_76px_minmax(0,1fr)]">
         <div
           data-bertrand-box
           data-has-gold={box.coins.includes("G") ? "true" : "false"}
@@ -97,8 +93,8 @@ const boxes = [
   <div id="bertrand-result" class="space-y-2 border-t-2 border-ink pt-4" hidden>
     <p class="text-3xl font-bold">2 out of 3</p>
     <p class="text-base leading-normal">
-      Two of the three surviving paths come from the gold-gold box, where the other coin is
-      also gold. The mixed box has only one surviving path.
+      Two of the three surviving paths come from the gold-gold box, where the other coin is also
+      gold. The mixed box has only one surviving path.
     </p>
   </div>
 </IllustrationFigure>
@@ -120,7 +116,10 @@ const boxes = [
       paths.forEach((path) => {
         const possible = path.dataset.metal === "G"
         path.setAttribute("opacity", goldOnly && !possible ? ".15" : "1")
-        path.setAttribute("stroke", goldOnly && possible ? "var(--color-series-green)" : "var(--color-stroke)")
+        path.setAttribute(
+          "stroke",
+          goldOnly && possible ? "var(--color-series-green)" : "var(--color-stroke)",
+        )
         path.setAttribute("stroke-width", goldOnly && possible ? "3.5" : "2.5")
       })
       coins.forEach((coin) => {
