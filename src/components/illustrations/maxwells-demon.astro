@@ -1,15 +1,7 @@
 ---
-import { readFileSync } from "node:fs"
-import * as prettier from "prettier"
 import Callout from "~/components/illustration-kit/Callout.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
-
-const prettierPath = "src/components/illustrations/maxwells-demon.astro"
-const prettierOptions = (await prettier.resolveConfig(prettierPath)) ?? {}
-console.log("MAXWELL_FORMAT_CAPTURE_START")
-console.log(await prettier.format(readFileSync(prettierPath, "utf8"), { ...prettierOptions, filepath: prettierPath }))
-console.log("MAXWELL_FORMAT_CAPTURE_END")
 ---
 
 <IllustrationFigure
@@ -17,8 +9,8 @@ console.log("MAXWELL_FORMAT_CAPTURE_END")
   lead="Watch a tiny gate sort gas molecules, then follow the missing cost."
 >
   <p class="text-base leading-normal">
-    Red dots are fast molecules. Blue dots are slow ones. Both sides start mixed.
-    The demon controls a tiny shutter between them.
+    Red dots are fast molecules. Blue dots are slow ones. Both sides start mixed. The demon
+    controls a tiny shutter between them.
   </p>
 
   <SvgFigure
@@ -29,8 +21,12 @@ console.log("MAXWELL_FORMAT_CAPTURE_END")
     desc="Red dots represent fast molecules and blue dots slow ones. Both chambers begin mixed. In the sorting step, the demon lets fast molecules move to the right and slow ones to the left through a doorway. The diagram then shows the demon's recorded decisions and their erasure."
   >
     <g fill="currentColor" font-size="17" font-weight="600" text-anchor="middle">
-      <text id="maxwell-left-label" x="110" y="27">Mixed gas</text>
-      <text id="maxwell-right-label" x="310" y="27">Mixed gas</text>
+      <text id="maxwell-left-label" x="110" y="27">
+        Mixed gas
+      </text>
+      <text id="maxwell-right-label" x="310" y="27">
+        Mixed gas
+      </text>
     </g>
     <rect
       x="20"
@@ -57,34 +53,10 @@ console.log("MAXWELL_FORMAT_CAPTURE_END")
       <circle cx="135" cy="160" r="8" fill="var(--color-series-blue)" />
       <circle cx="274" cy="75" r="8" fill="var(--color-series-red)" />
       <circle cx="355" cy="152" r="8" fill="var(--color-series-red)" />
-      <circle
-        id="maxwell-fast-one"
-        cx="95"
-        cy="85"
-        r="8"
-        fill="var(--color-series-red)"
-      />
-      <circle
-        id="maxwell-fast-two"
-        cx="172"
-        cy="158"
-        r="8"
-        fill="var(--color-series-red)"
-      />
-      <circle
-        id="maxwell-slow-one"
-        cx="260"
-        cy="160"
-        r="8"
-        fill="var(--color-series-blue)"
-      />
-      <circle
-        id="maxwell-slow-two"
-        cx="360"
-        cy="90"
-        r="8"
-        fill="var(--color-series-blue)"
-      />
+      <circle id="maxwell-fast-one" cx="95" cy="85" r="8" fill="var(--color-series-red)" />
+      <circle id="maxwell-fast-two" cx="172" cy="158" r="8" fill="var(--color-series-red)" />
+      <circle id="maxwell-slow-one" cx="260" cy="160" r="8" fill="var(--color-series-blue)" />
+      <circle id="maxwell-slow-two" cx="360" cy="90" r="8" fill="var(--color-series-blue)" />
     </g>
   </SvgFigure>
 
@@ -133,18 +105,22 @@ console.log("MAXWELL_FORMAT_CAPTURE_END")
   </div>
 
   <div aria-live="polite" aria-atomic="true" class="flex flex-col gap-2">
-    <p class="mono-label" id="maxwell-step-count">Step 1 of 4</p>
-    <p id="maxwell-step-heading" class="font-bold">Mixed gas</p>
+    <p class="mono-label" id="maxwell-step-count">
+      Step 1 of 4
+    </p>
+    <p id="maxwell-step-heading" class="font-bold">
+      Mixed gas
+    </p>
     <p id="maxwell-step-copy" class="text-base leading-normal">
-      Both sides contain fast and slow molecules. Can the demon separate them just by
-      opening its shutter at the right moments?
+      Both sides contain fast and slow molecules. Can the demon separate them just by opening
+      its shutter at the right moments?
     </p>
   </div>
 
   <Callout tone="accent">
     <p id="maxwell-key-point" class="text-base leading-normal">
-      The challenge: sorting seems to make one side hotter and the other colder,
-      without the demon doing work on the gas.
+      The challenge: sorting seems to make one side hotter and the other colder, without the
+      demon doing work on the gas.
     </p>
   </Callout>
 
@@ -153,10 +129,10 @@ console.log("MAXWELL_FORMAT_CAPTURE_END")
   </button>
 
   <Fragment slot="caption">
-    This is a simplified picture of the standard explanation. The shutter itself can use
-    very little energy, but the complete repeated process includes the demon and its
-    memory. In that account, resetting the memory releases heat. How general this
-    explanation is remains debated.
+    This is a simplified picture of the standard explanation. The shutter itself can use very
+    little energy, but the complete repeated process includes the demon and its memory. In that
+    account, resetting the memory releases heat. How general this explanation is remains
+    debated.
   </Fragment>
 </IllustrationFigure>
 
