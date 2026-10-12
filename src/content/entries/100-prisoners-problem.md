@@ -10,8 +10,8 @@ written: true
 sourcesVerified: true
 reviewed: false
 problem: "How can 100 prisoners find their numbers with about a 31 percent chance that every one succeeds?"
-claimA: "Any plan giving each prisoner only 50 chances must make the whole group’s success almost impossible."
-claimB: "Following the numbers found in the boxes makes the whole group succeed about 31 percent of the time."
+claimA: "No plan gives prisoners who open 50 boxes each more than a tiny chance of all succeeding."
+claimB: "Following the numbers in the boxes gives them about a 31 percent chance of all succeeding."
 verdict: "Following number chains links the prisoners’ fates, making success depend on the longest loop rather than 100 separate guesses."
 whatBreaks: "The assumption that every prisoner must search independently and succeed by luck."
 statusNote: "the shared strategy exploits the arrangement of the numbers; its chance is about 31 percent rather than the tiny chance from separate searches."

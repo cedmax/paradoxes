@@ -10,7 +10,7 @@ noMaths: true
 written: true
 sourcesVerified: true
 problem: "If the young Sun was much dimmer than today, why was early Earth not frozen?"
-claimA: "Early Earth warmed itself in much the same way as it does now, with a similar atmosphere and cloud cover, so a Sun about 30 percent dimmer would have left it frozen."
+claimA: "Early Earth warmed itself much as it does now, so a Sun about 30 percent dimmer would have left it frozen."
 claimB: "Early Earth had liquid water, even though the Sun gave off much less heat."
 verdict: "Early Earth needed extra warming from somewhere, and scientists disagree about where it came from."
 whatBreaks: "The contested choice is which kind of extra warming early Earth had: more of some greenhouse gas, fewer clouds, or something else. Each explanation has its own problem."

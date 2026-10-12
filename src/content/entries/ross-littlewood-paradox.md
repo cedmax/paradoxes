@@ -19,8 +19,8 @@ noMaths: false
 written: true
 sourcesVerified: true
 problem: "Ten balls go into a vase and one comes out, over and over, faster and faster until noon. How many balls are in the vase at noon?"
-claimA: "The vase must hold infinitely many balls at noon, because the number inside grows at every step."
-claimB: "If ball 1 is taken out at step 1, ball 2 at step 2, and so on, every ball is out before noon, so the vase is empty."
+claimA: "More balls enter than leave at every step, so the vase cannot be empty at noon."
+claimB: "Every ball is removed before noon, so the vase is empty."
 verdict: "How many balls are in the vase along the way does not settle how many are left at noon. What is left depends on which balls are taken out, and with this order, every ball is gone."
 whatBreaks: "The assumption that the number of balls at noon must follow the trend of the numbers before noon."
 statusNote: "the first claim is wrong. The count before noon grows without end, but what is left at noon depends on which balls are removed, not on how many are inside along the way. With ball n taken out at step n, no ball stays. Some philosophers go further and say the story fixes nothing at noon at all, or that the task cannot be done, but none of the named views defends the first claim."

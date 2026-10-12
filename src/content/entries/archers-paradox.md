@@ -17,8 +17,8 @@ order: 150
 written: true
 sourcesVerified: true
 problem: "On a traditional bow the arrow rests against the side of the bow and points a little off the target. Why does it still fly to the target?"
-claimA: "The arrow stays straight and rigid as it is shot, so it leaves along the line it pointed at full draw, which is off to one side of the target."
-claimB: "A well-matched arrow shot from a traditional bow flies to the target it was aimed at."
+claimA: "An arrow stays straight as it leaves the bow, so one pointing to the side of the target misses."
+claimB: "An arrow pointing to one side can still hit the target."
 verdict: "The arrow is not rigid. It bends as it is shot, snakes around the grip of the bow and straightens out as it flies, provided its stiffness suits the bow."
 whatBreaks: "The assumption that the arrow stays straight while it leaves the bow. It flexes around the grip and comes out on the line to the target."
 statusNote: "the first claim is wrong. The arrow bends as the string slips off the fingers, flexes around the grip of the bow and leaves on the line to the target, as high-speed film has shown."

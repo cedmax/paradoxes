@@ -9,8 +9,8 @@ written: true
 sourcesVerified: true
 reviewed: false
 problem: "How long is the coast of Britain?"
-claimA: "Every outline, including an ideal coastline with detail at every scale, has one finite length that finer measurements approach."
-claimB: "For an ideal coastline, the measured length keeps growing without a finite limit as the ruler gets shorter."
+claimA: "Even an ideal coastline must have a fixed, finite length."
+claimB: "Some ideal coastlines have no finite length."
 verdict: "Not every outline has a finite length that finer measurements approach. A quoted coastline length needs a scale and a method; unlimited growth is a mathematical idealisation."
 whatBreaks: "The assumption that every outline must have a finite length that finer measurements approach."
 statusNote: "an ideal rough outline need not have a finite limiting length. Real coastline measurements need a scale and method, without assuming physical detail continues for ever."

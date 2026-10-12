@@ -12,7 +12,7 @@ noMaths: true
 written: true
 sourcesVerified: true
 problem: "Can the sentence “If this sentence is true, then Germany borders China” prove that Germany borders China?"
-claimA: "A sentence is true exactly when what it says is the case, and the familiar rules for reasoning with “if … then” can be applied to this sentence."
+claimA: "A sentence is true exactly when what it says is so, and the usual rules for “if … then” apply to it."
 claimB: "Some claims, such as “Germany borders China”, are false and cannot be proved."
 verdict: "With a sentence that talks about its own truth and a few familiar rules of reasoning, any claim at all can be proved. There is no agreed fix, and each proposed fix gives up a principle that is widely relied on."
 whatBreaks: "Either unrestricted talk about a sentence’s own truth or a familiar rule for “if … then” must change. There is no agreed choice."
