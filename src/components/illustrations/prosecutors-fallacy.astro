@@ -25,7 +25,7 @@ const matchY = 192
     class="mx-auto w-full max-w-2xl"
     viewBox="0 0 640 400"
     title="Zoomable pool of one hundred thousand possible suspects"
-    desc="A grid of one thousand blocks, each standing for one hundred people. Nine hundred and ninety-nine grey blocks represent people who do not match. One solid yellow block represents about one hundred people who match. As the camera zooms into this block, it divides into one hundred smaller squares, revealing about ninety-nine innocent matches in yellow and one culprit in blue."
+    desc="A grid of one thousand blocks, each standing for one hundred people. Nine hundred and ninety-nine grey blocks represent people who do not match. One solid yellow block represents about one hundred people who match. As the camera zooms into this block, it divides into one hundred smaller squares, revealing about ninety-nine innocent matches in yellow and one culprit in red."
   >
     <defs>
       <pattern
@@ -47,7 +47,7 @@ const matchY = 192
       y={matchY}
       width="1.4"
       height="1.4"
-      fill={series.blue}
+      fill={series.red}
       opacity="0"
     />
     <g id="prosecutors-fallacy-cells" stroke="var(--color-paper)" stroke-width="0">
@@ -91,7 +91,7 @@ const matchY = 192
   <ul id="prosecutors-fallacy-key" class="flex flex-wrap gap-x-6 gap-y-2 text-base" hidden>
     <li class="flex items-center gap-2">
       <span
-        class="size-4 shrink-0 border-2 border-ink bg-series-blue"
+        class="size-4 shrink-0 border-2 border-ink bg-series-red"
         aria-hidden="true"
       ></span>
       1 actual culprit
