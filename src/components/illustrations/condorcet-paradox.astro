@@ -1,82 +1,145 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-  <p class="font-bold">Every voter is consistent. The majority goes round in a circle.</p>
-  <div class="overflow-x-auto border-2 border-ink">
-    <table class="w-full text-base">
-      <thead>
-        <tr class="border-b-2 border-ink">
-          <th class="p-2 text-left">Voter</th>
-          <th class="p-2">First</th>
-          <th class="p-2">Second</th>
-          <th class="p-2">Third</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="border-b border-ink">
-          <th class="p-2 text-left">1</th>
-          <td class="p-2 text-center">A</td>
-          <td class="p-2 text-center">B</td>
-          <td class="p-2 text-center">C</td>
-        </tr>
-        <tr class="border-b border-ink">
-          <th class="p-2 text-left">2</th>
-          <td class="p-2 text-center">B</td>
-          <td class="p-2 text-center">C</td>
-          <td class="p-2 text-center">A</td>
-        </tr>
-        <tr>
-          <th class="p-2 text-left">3</th>
-          <td class="p-2 text-center">C</td>
-          <td class="p-2 text-center">A</td>
-          <td class="p-2 text-center">B</td>
-        </tr>
-      </tbody>
-    </table>
+---
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+const rankings = [
+  [1, "A", "B", "C"],
+  [2, "B", "C", "A"],
+  [3, "C", "A", "B"],
+]
+
+const comparisons = [
+  { left: "A", right: "B" },
+  { left: "B", right: "C" },
+  { left: "C", right: "A" },
+]
+---
+
+<IllustrationFigure
+  name="condorcet-paradox"
+  lead="Every voter has a consistent ranking. But what happens when they vote in pairs?"
+>
+  <ComparisonTable
+    caption="Three voters, three rankings"
+    columns={["Voter", "First", "Second", "Third"]}
+    rows={rankings}
+    align="center"
+    dense
+  />
+
+  <div role="group" aria-label="Choose which pair to compare" class="grid grid-cols-3 gap-2">
+    {comparisons.map(({ left, right }, i) => (
+      <button
+        type="button"
+        class="btn-toggle min-w-0 px-2 text-sm sm:text-base"
+        data-condorcet-step={i}
+        aria-pressed={i === 0 ? "true" : "false"}
+        aria-controls="condorcet-result"
+      >
+        {left} vs {right}
+      </button>
+    ))}
   </div>
-  <svg
-    viewBox="0 0 300 168"
+
+  <p id="condorcet-result" class="font-bold" aria-live="polite" aria-atomic="true">
+    Voters 1 and 3 prefer A to B. A wins, 2–1.
+  </p>
+  <p id="condorcet-highlight-note" class="text-sm">
+    The highlighted rows are the two voters in this majority.
+  </p>
+
+  <SvgFigure
+    name="condorcet-majorities"
     class="mx-auto w-full max-w-sm"
-    role="img"
-    aria-labelledby="condorcet-title condorcet-desc"
+    viewBox="0 0 300 168"
+    title="The majority comparisons can form a cycle"
+    desc="A beats B, B beats C, and C beats A, each by two votes to one. Select each comparison to see its majority, then the complete cycle."
   >
-    <title id="condorcet-title">The majority cycle is A beats B, B beats C, C beats A</title>
-    <desc id="condorcet-desc">
-      Three arrows form a triangle, each showing a majority vote of two to one.
-    </desc>
     <defs>
-      <marker id="vote-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
-        <path d="M0 0 L6 3 L0 6" fill="none" stroke="currentColor" />
+      <marker
+        id="condorcet-arrowhead"
+        markerWidth="7"
+        markerHeight="7"
+        refX="6"
+        refY="3"
+        orient="auto"
+      >
+        <path d="M0 0 L6 3 L0 6" fill="none" stroke="var(--color-stroke)" />
       </marker>
     </defs>
-    <g fill="none" stroke="currentColor" stroke-width="2.5" marker-end="url(#vote-arrow)">
-      <path d="M62 36 H236" />
-      <path d="M252 54 L168 122" />
-      <path d="M132 122 L48 54" />
+    <g
+      fill="none"
+      stroke="var(--color-stroke)"
+      stroke-width="2.5"
+      marker-end="url(#condorcet-arrowhead)"
+    >
+      <path data-condorcet-edge="0" d="M62 36 H236" />
+      <path data-condorcet-edge="1" d="M252 54 L168 122" opacity="0" />
+      <path data-condorcet-edge="2" d="M132 122 L48 54" opacity="0" />
     </g>
     <g fill="currentColor" font-size="22" text-anchor="middle" font-weight="bold">
-      <text x="40" y="44">
-        A
-      </text>
-      <text x="260" y="44">
-        B
-      </text>
-      <text x="150" y="152">
-        C
-      </text>
+      <text x="40" y="44">A</text>
+      <text x="260" y="44">B</text>
+      <text x="150" y="152">C</text>
     </g>
     <g fill="currentColor" font-size="16" text-anchor="middle">
-      <text x="150" y="26">
-        2–1
-      </text>
-      <text x="236" y="94">
-        2–1
-      </text>
-      <text x="64" y="94">
-        2–1
-      </text>
+      <text data-condorcet-score="0" x="150" y="26">2–1</text>
+      <text data-condorcet-score="1" x="236" y="94" opacity="0">2–1</text>
+      <text data-condorcet-score="2" x="64" y="94" opacity="0">2–1</text>
     </g>
-  </svg>
-  <figcaption class="text-base leading-normal">
-    Two voters prefer A to B. Two prefer B to C. And two prefer C to A. The deciding pairs of
-    voters are different, so perfectly sensible rankings can create a cycle.
-  </figcaption>
-</figure>
+  </SvgFigure>
+
+  <p id="condorcet-cycle" class="font-bold" hidden>
+    The cycle is complete: A beats B, B beats C, and C beats A. There is no single
+    majority favourite.
+  </p>
+
+  <Fragment slot="caption">
+    Different pairs of voters form each 2–1 majority. Each person has a consistent
+    ranking, but the group's choices can go round in a circle.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("condorcet-paradox")
+  if (root) {
+    const buttons = root.querySelectorAll<HTMLButtonElement>("[data-condorcet-step]")
+    const rows = root.querySelectorAll<HTMLTableRowElement>("tbody tr")
+    const edges = root.querySelectorAll<SVGPathElement>("[data-condorcet-edge]")
+    const scores = root.querySelectorAll<SVGTextElement>("[data-condorcet-score]")
+    const result = find<HTMLElement>(root, "#condorcet-result")
+    const cycle = find<HTMLElement>(root, "#condorcet-cycle")
+    const comparisons = [
+      { supporters: [0, 2], result: "Voters 1 and 3 prefer A to B. A wins, 2–1." },
+      { supporters: [0, 1], result: "Voters 1 and 2 prefer B to C. B wins, 2–1." },
+      { supporters: [1, 2], result: "Voters 2 and 3 prefer C to A. C wins, 2–1." },
+    ]
+
+    const show = (selected: number) => {
+      const comparison = comparisons[selected]
+      for (const [i, button] of buttons.entries()) {
+        button.setAttribute("aria-pressed", String(i === selected))
+      }
+      for (const [i, row] of rows.entries()) {
+        row.classList.toggle("bg-disputed", comparison.supporters.includes(i))
+      }
+      for (const [i, edge] of edges.entries()) {
+        edge.setAttribute("opacity", i > selected ? "0" : i === selected ? "1" : ".55")
+        edge.setAttribute("stroke-width", i === selected ? "3.5" : "2.5")
+      }
+      for (const [i, score] of scores.entries()) {
+        score.setAttribute("opacity", i > selected ? "0" : i === selected ? "1" : ".55")
+      }
+      result.textContent = comparison.result
+      cycle.hidden = selected !== 2
+    }
+
+    for (const [i, button] of buttons.entries()) {
+      button.addEventListener("click", () => show(i))
+    }
+    show(0)
+  }
+</script>
