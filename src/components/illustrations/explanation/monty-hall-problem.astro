@@ -94,10 +94,6 @@ const doors = [
         </g>
       ))}
     </SvgFigure>
-    <p class="text-base leading-normal">
-      Your door is one chance in three. The two doors you did not pick hold the other two
-      chances <strong>together</strong>.
-    </p>
   </div>
 
   <div class="flex items-center justify-center gap-2 text-base font-bold">
@@ -217,11 +213,6 @@ const doors = [
         </text>
       </g>
     </SvgFigure>
-    <p class="text-base leading-normal">
-      The host deliberately revealed a goat, not a random door. Your first pick stays at{" "}
-      <strong>1 in 3</strong>. The one other closed door now carries the original group's{" "}
-      <strong>2 in 3</strong>.
-    </p>
   </div>
 
   <Panel title="Same idea, but with 100 doors" class="flex flex-col gap-3">
@@ -381,6 +372,5 @@ const doors = [
   <Fragment slot="caption">
     This shows one possible reveal. It assumes the host knows where the car is, always opens a
     goat door, always offers a switch, and chooses randomly if either goat door could be opened.
-    Staying wins 1 time in 3; switching wins 2 times in 3.
   </Fragment>
 </IllustrationFigure>

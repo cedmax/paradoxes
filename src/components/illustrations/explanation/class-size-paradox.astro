@@ -76,8 +76,14 @@ const totalStudents = smallStudents + largeStudents
         <span class="text-sm">The large class has 100 of 140 students (71%)</span>
       </div>
       <div class="flex h-8 w-full border border-ink" aria-hidden="true">
-        <div class="h-full bg-series-blue" style={`width: ${(smallStudents / totalStudents) * 100}%`}></div>
-        <div class="h-full bg-series-gold" style={`width: ${(largeStudents / totalStudents) * 100}%`}></div>
+        <div
+          class="h-full bg-series-blue"
+          style={`width: ${(smallStudents / totalStudents) * 100}%`}
+        ></div>
+        <div
+          class="h-full bg-series-gold"
+          style={`width: ${(largeStudents / totalStudents) * 100}%`}
+        ></div>
       </div>
       <p class="text-sm">40 students in small classes · 100 in the large class</p>
     </div>
@@ -96,8 +102,6 @@ const totalStudents = smallStudents + largeStudents
     </Panel>
   </SideBySide>
   <Fragment slot="caption">
-    The large class is only one fifth of the classes, but more than two thirds of the
-    students are in it. Both averages are correct: asking students gives bigger
-    classes more weight.
+    Asking students gives bigger classes more weight, so both averages are correct.
   </Fragment>
 </IllustrationFigure>

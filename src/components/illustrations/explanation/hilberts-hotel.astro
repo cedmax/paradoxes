@@ -22,7 +22,7 @@ const steps = [
   {
     title: "Ask every guest to move up one room",
     rooms: afterMove,
-    note: "Guest 1 moves to room 2, guest 2 to room 3, and so on. Room 1 is now free. Every original guest still has a room.",
+    note: "Room 1 is now free.",
   },
 ]
 const cell =
@@ -48,9 +48,7 @@ const cell =
   ))}
   <Disclosure summary="What if infinitely many new guests arrive?">
     <p class="mt-3 text-base leading-normal">
-      Move each original guest to twice their old room number: 1 goes to 2, 2 goes to 4, 3 goes
-      to 6, and so on. Every even room holds an original guest. All the odd rooms are free for
-      the newcomers.
+      Original guests take the even rooms. All the odd rooms are free.
     </p>
     <div class="mt-3 grid grid-cols-5 gap-1.5 sm:gap-3">
       {afterDoubling.map(({ n, guest, free }) => (
