@@ -1,18 +1,15 @@
 ---
-import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
-import Callout from "~/components/illustration-kit/Callout.astro"
+import Disclosure from "~/components/illustration-kit/Disclosure.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
 ---
 
 <IllustrationFigure
   name="discursive-dilemma"
   frame={false}
-  lead="Three judges, two questions, one verdict"
+  lead="Three judges, one disagreement"
 >
-  <p class="text-base leading-normal">
-    A defendant is liable only if a contract was <strong>valid</strong> and{" "}
-    <strong>broken</strong>. Each judge reasons consistently.
-  </p>
   <ComparisonTable
     caption="What each judge thinks"
     columns={["Judge", "Valid?", "Broken?", "Liable?"]}
@@ -24,50 +21,34 @@ import Callout from "~/components/illustration-kit/Callout.astro"
     align="center"
     dense
   />
-  <button
-    id="discursive-toggle"
-    type="button"
-    class="btn-ghost"
-    aria-expanded="false"
-    aria-controls="discursive-majorities"
-  >
-    Count the majorities
-  </button>
-  <div id="discursive-majorities" class="space-y-3" hidden>
-    <ComparisonTable
-      caption="Majority answers"
-      columns={["Question", "Valid?", "Broken?", "Liable?"]}
-      rows={[["Majority", "Yes (2)", "Yes (2)", "No (2)"]]}
-      align="center"
-      dense
-      highlight={[1, 2, 3]}
-    />
-    <Callout tone="accent">
-      <p>
-        <strong>Vote on the reasons:</strong> Yes to both, so liable.
+  <Disclosure summary="Count the majorities">
+    <div class="flex flex-col gap-3 pt-3">
+      <div class="grid gap-3 sm:grid-cols-2">
+        <Panel title="Vote on the reasons" class="flex flex-col gap-3">
+          <div class="flex flex-col gap-2">
+            <p>Valid: <strong>2 say yes</strong></p>
+            <p>Broken: <strong>2 say yes</strong></p>
+          </div>
+          <p class="mt-auto border-t border-ink pt-3 text-sm">
+            Both requirements get a majority.
+          </p>
+          <p class="text-2xl font-bold">Liable</p>
+        </Panel>
+        <Panel title="Vote on the verdict" class="flex flex-col gap-3">
+          <p>Not liable: <strong>2 of 3 judges</strong></p>
+          <p class="mt-auto border-t border-ink pt-3 text-sm">
+            The majority rejects liability.
+          </p>
+          <p class="text-2xl font-bold">Not liable</p>
+        </Panel>
+      </div>
+      <p class="text-base leading-normal">
+        Both methods use majority voting, but they reach opposite verdicts.
       </p>
-      <p>
-        <strong>Vote on the verdict:</strong> Two judges say not liable.
-      </p>
-    </Callout>
-  </div>
+    </div>
+  </Disclosure>
   <Fragment slot="caption">
-    The group cannot simultaneously follow the majorities on both reasons and on the final
-    verdict. The dilemma is which kind of majority the group should use.
+    Each judge's verdict follows from their own answers. The disagreement arises when the
+    court must choose whether to vote on the reasons or on the final verdict.
   </Fragment>
 </IllustrationFigure>
-
-<script>
-  import { find, illustrationRoot } from "~/scripts/illustration"
-
-  const root = illustrationRoot("discursive-dilemma")
-  if (root) {
-    const button = find<HTMLButtonElement>(root, "#discursive-toggle")
-    const section = find<HTMLElement>(root, "#discursive-majorities")
-    button.addEventListener("click", () => {
-      section.hidden = !section.hidden
-      button.setAttribute("aria-expanded", String(!section.hidden))
-      button.textContent = section.hidden ? "Count the majorities" : "Hide the majorities"
-    })
-  }
-</script>
