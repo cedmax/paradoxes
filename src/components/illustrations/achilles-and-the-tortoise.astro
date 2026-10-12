@@ -43,11 +43,7 @@ import { series, stroke } from "~/data/palette"
       </clipPath>
     </defs>
     <g id="achilles-previous-ticks" aria-hidden="true"></g>
-    <g
-      id="achilles-ticks"
-      clip-path="url(#achilles-ticks-reveal-clip)"
-      aria-hidden="true"
-    ></g>
+    <g id="achilles-ticks" clip-path="url(#achilles-ticks-reveal-clip)" aria-hidden="true"></g>
     <line
       id="achilles-gap-line"
       x1="90"
@@ -269,10 +265,7 @@ import { series, stroke } from "~/data/palette"
           const x = screenX(rightmostTick - i * interval)
           lines[i].setAttribute("x1", String(x))
           lines[i].setAttribute("x2", String(x))
-          lines[i].setAttribute(
-            "opacity",
-            x < viewport.left || x > viewport.right ? "0" : ".4"
-          )
+          lines[i].setAttribute("opacity", x < viewport.left || x > viewport.right ? "0" : ".4")
         }
       }
       const marksAtScale =
