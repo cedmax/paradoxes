@@ -1,125 +1,61 @@
 ---
-import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
-
-const payoffs = [
-  ["Take B only", "$1,000,000", "$0"],
-  ["Take A and B", "$1,001,000", "$1,000"],
-]
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 ---
 
 <IllustrationFigure
   name="newcombs-paradox"
-  lead="The predictor has already decided whether Box B contains $1,000,000 or nothing."
+  lead="The money is already in place. Which boxes should you take?"
 >
+  <SvgFigure
+    name="newcomb-boxes"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 360 186"
+    title="An open box and a closed box"
+    desc="Box A is open and always contains $1,000. Box B is closed and already contains either $1,000,000 or nothing, based on an earlier prediction of your choice."
+  >
+    <g fill="currentColor" text-anchor="middle" font-size="16" font-weight="bold">
+      <text x="94" y="24">Box A · open</text>
+      <text x="266" y="24">Box B · closed</text>
+    </g>
+    <g fill="none" stroke="var(--color-stroke)" stroke-width="2.5" stroke-linejoin="round">
+      <path d="M30 66 V144 H158 V66" />
+      <path d="M30 66 L13 51 M158 66 L175 51" />
+      <rect x="202" y="51" width="128" height="93" />
+      <path d="M202 68 H330" />
+    </g>
+    <g fill="currentColor" text-anchor="middle" font-weight="bold">
+      <text x="94" y="114" font-size="23">$1,000</text>
+      <text x="266" y="116" font-size="29">?</text>
+    </g>
+    <g fill="currentColor" text-anchor="middle" font-size="14">
+      <text x="94" y="171">Always there</text>
+      <text x="266" y="171">$0 or $1 million</text>
+    </g>
+  </SvgFigure>
+
   <p>
-    Box A always has $1,000. Taking both boxes cannot change what is already in B.
-    But the predictor is almost always right about which choice you will make.
+    A near-perfect predictor put $1 million in B if it expected you to take B alone,
+    and nothing if it expected you to take both. It made its prediction before you chose.
   </p>
 
-  <div role="group" aria-label="Two ways to reason about Newcomb's problem" class="grid grid-cols-2 gap-2">
-    <button
-      type="button"
-      id="newcomb-fixed"
-      class="btn-toggle min-w-0 px-2 text-sm sm:text-base"
-      aria-pressed="true"
-      aria-controls="newcomb-argument newcomb-payoffs"
-    >
-      Contents are fixed
-    </button>
-    <button
-      type="button"
-      id="newcomb-prediction"
-      class="btn-toggle min-w-0 px-2 text-sm sm:text-base"
-      aria-pressed="false"
-      aria-controls="newcomb-argument newcomb-payoffs"
-    >
-      Prediction is reliable
-    </button>
+  <div class="grid gap-4 sm:grid-cols-2">
+    <Panel accent="blue" title="Take both boxes">
+      <p>
+        Whatever is in B, taking A too gets you an extra $1,000.
+      </p>
+    </Panel>
+    <Panel accent="green" title="Take only Box B">
+      <p>
+        The predictor is almost always right. People who take only B almost always
+        find $1 million inside.
+      </p>
+    </Panel>
   </div>
-
-  <p id="newcomb-argument" class="font-bold" aria-live="polite" aria-atomic="true">
-    Take both: whatever is already in B, Box A adds another $1,000.
-  </p>
-
-  <div id="newcomb-payoffs">
-    <ComparisonTable
-      caption="What you receive, depending on what is already in Box B"
-      columns={["Your choice", "B has $1m (predicted B only)", "B empty (predicted both)"]}
-      rows={payoffs}
-      align="center"
-      dense
-    />
-  </div>
-
-  <p id="newcomb-fixed-comparison" class="flex flex-wrap gap-x-5 gap-y-2 text-sm tabular-nums">
-    <span>
-      <strong>B already has $1m:</strong> $1,000,000 → $1,001,000
-      <strong>(+$1,000)</strong>
-    </span>
-    <span>
-      <strong>B is empty:</strong> $0 → $1,000
-      <strong>(+$1,000)</strong>
-    </span>
-  </p>
-  <p id="newcomb-prediction-note" class="text-sm" hidden>
-    The highlighted cells are the outcomes usually linked to each choice.
-    The predictor is nearly always right, but not infallible.
-  </p>
 
   <Fragment slot="caption">
-    If the predictor expected you to take only B, it put $1,000,000 in B.
-    If it expected you to take both, it left B empty.
-    Taking both pays more for either fixed content, but taking B alone is strongly
-    associated with getting the million. Neither argument changes what is already in the box.
+    Taking both is better for either fixed content. Taking only B is usually linked
+    to getting the million. Which argument should you follow?
   </Fragment>
 </IllustrationFigure>
-
-<script>
-  import { find, illustrationRoot } from "~/scripts/illustration"
-
-  const root = illustrationRoot("newcombs-paradox")
-  if (root) {
-    const fixedButton = find<HTMLButtonElement>(root, "#newcomb-fixed")
-    const predictionButton = find<HTMLButtonElement>(root, "#newcomb-prediction")
-    const argument = find<HTMLElement>(root, "#newcomb-argument")
-    const fixedComparison = find<HTMLElement>(root, "#newcomb-fixed-comparison")
-    const predictionNote = find<HTMLElement>(root, "#newcomb-prediction-note")
-    const rows = Array.from(root.querySelectorAll<HTMLTableRowElement>("#newcomb-payoffs tbody tr"))
-
-    const show = (view: "fixed" | "prediction") => {
-      fixedButton.setAttribute("aria-pressed", String(view === "fixed"))
-      predictionButton.setAttribute("aria-pressed", String(view === "prediction"))
-      fixedComparison.hidden = view !== "fixed"
-      predictionNote.hidden = view !== "prediction"
-
-      for (const [rowIndex, row] of rows.entries()) {
-        const payoffs = row.querySelectorAll<HTMLTableCellElement>("td")
-        for (const [columnIndex, cell] of payoffs.entries()) {
-          // Two-boxing dominates in both fixed states; the predictor instead
-          // makes the diagonal outcomes the likely ones for each choice.
-          const focus =
-            view === "fixed"
-              ? rowIndex === 1
-              : (rowIndex === 0 && columnIndex === 0) ||
-                (rowIndex === 1 && columnIndex === 1)
-          cell.classList.toggle("bg-series-blue/20", focus && view === "fixed")
-          cell.classList.toggle("bg-series-green/20", focus && view === "prediction")
-          cell.classList.toggle("font-bold", focus)
-        }
-      }
-
-      if (view === "fixed") {
-        argument.textContent =
-          "Take both: whatever is already in B, Box A adds another $1,000."
-      } else {
-        argument.textContent =
-          "Take B only: the near-perfect predictor usually puts the million in B for people who choose B alone."
-      }
-    }
-
-    fixedButton.addEventListener("click", () => show("fixed"))
-    predictionButton.addEventListener("click", () => show("prediction"))
-    show("fixed")
-  }
-</script>
