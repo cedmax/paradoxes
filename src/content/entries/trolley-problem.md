@@ -18,8 +18,8 @@ noMaths: true
 written: true
 sourcesVerified: true
 problem: "Why do most people think it is acceptable to divert a runaway trolley to kill one person and save five, but not to push a stranger in its way to do the same?"
-claimA: "If diverting the trolley is right because it saves five lives at the cost of one, then pushing a person in front of it is right too, because the lives saved and lost are the same."
-claimB: "Diverting the trolley is right and pushing a person in front of it is wrong, even though the lives saved and lost are the same."
+claimA: "If diverting the trolley is right, pushing someone to stop it is right too."
+claimB: "Diverting it is right, but pushing someone is wrong."
 verdict: "Experts disagree about whether the two cases really differ, and if they do, what the difference is."
 whatBreaks: "The contested choice is between judging the two cases by their results alone, and finding a morally relevant difference that most people feel but cannot easily state."
 statusNote: "experts agree the puzzle is real and disagree on which claim to give up. In a 2009 survey of professional philosophers, 68 percent said they would switch, 8 percent would not, and 24 percent gave another answer or none."

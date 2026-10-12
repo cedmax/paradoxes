@@ -10,8 +10,8 @@ noMaths: true
 written: true
 sourcesVerified: true
 problem: "Can a solid ball be cut into a few pieces and put back together as two balls, each as big as the first?"
-claimA: "Every piece of a solid has a volume that sliding and turning cannot change, so the pieces of one ball cannot make two balls."
-claimB: "A solid ball can be cut into a few pieces that, by sliding and turning alone, fit together as two balls, each the same size as the original."
+claimA: "Sliding and turning pieces cannot increase their total volume."
+claimB: "Pieces of one ball can be rearranged into two balls, each as big as the first."
 verdict: "The pieces are not chunks of solid. They are scatterings of points, too ragged to have a volume, so the rule that volumes add up does not apply to them."
 whatBreaks: "The assumption that every piece of a ball has a volume. The pieces in the proof are too ragged to have one, so no volume goes missing or appears."
 statusNote: "the first claim is wrong. The proof relies on the axiom of choice, a rule of set theory that allows pieces with no volume at all, and nothing contradicts anything once such pieces are admitted. The cutting cannot be carried out in practice."

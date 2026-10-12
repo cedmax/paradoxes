@@ -7,8 +7,8 @@ simplification: light
 order: 30
 written: true
 problem: "Can a green apple be evidence that all ravens are black?"
-claimA: "Observing a green apple gives no evidence that all ravens are black."
-claimB: "A green apple supports the claim that all ravens are black: it matches the equivalent rule about non-black things, and matching instances support general rules."
+claimA: "A green apple gives no evidence that all ravens are black."
+claimB: "A green apple does count as evidence that all ravens are black."
 verdict: "Philosophers disagree about whether the apple counts as evidence and which evidential rule to revise. Bayesian accounts that let it count are among the most popular responses."
 whatBreaks: "Whether to accept the apple as evidence or revise a rule about matching instances and equivalent claims."
 statusNote: "the popular Bayesian answer gives up the first claim, but Bayesians offer many rival versions of it, and other approaches give up the second claim instead."
