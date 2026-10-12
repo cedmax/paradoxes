@@ -11,7 +11,7 @@ written: true
 sourcesVerified: true
 problem: "Can a huge population whose lives are barely worth living be better than a smaller population of very happy people?"
 claimA: "A smaller population of people with very good lives is better than a vast population whose lives are barely worth living."
-claimB: "A series of small steps, each of which seems acceptable, shows that for any population of very good lives there is a better, larger one whose lives are barely worth living."
+claimB: "Small steps, each acceptable, show that for any population of very good lives, a larger one with barely worthwhile lives is better."
 verdict: "Avoiding the conclusion has proved difficult: proposed theories often produce other counterintuitive results, and philosophers still disagree about which costs are acceptable."
 whatBreaks: "The assumption that there is a way of comparing populations that matches our judgments in every case. Theories that block the conclusion tend to give counterintuitive results in other cases."
 statusNote: "the main ways out each cost something big, and none is widely accepted. The Stanford Encyclopedia of Philosophy notes that it has been surprisingly hard to avoid the conclusion without other results that are just as counterintuitive, and that Parfit himself did not find the theory he was looking for."

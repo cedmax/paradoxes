@@ -18,8 +18,8 @@ order: 160
 written: true
 sourcesVerified: true
 problem: "Can every piece of a sphere’s surface be given an area, so that pieces of the same shape and size always have the same area?"
-claimA: "Every piece of a sphere’s surface, however ragged, has an area, the areas of separate pieces add up, and pieces that can be turned onto each other have equal areas."
-claimB: "Most of a sphere’s surface can be split into three pieces, each the same shape and size as the other two and as the other two put together."
+claimA: "Every piece of a sphere’s surface, however ragged, has an area that adds up and survives turning."
+claimB: "Most of a sphere’s surface splits into three identical pieces, and each is identical to the other two put together."
 verdict: "The pieces are scatterings of points too ragged to have an area, so not every piece of a sphere’s surface has one."
 whatBreaks: "The assumption that every piece of a sphere’s surface has an area, adding up correctly over separate pieces, that turning it cannot change."
 statusNote: "no area rule can cover every set of points on the sphere while adding up correctly and surviving rotations. The pieces expose that limit."

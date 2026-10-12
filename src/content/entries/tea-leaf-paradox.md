@@ -18,7 +18,7 @@ order: 140
 written: true
 sourcesVerified: true
 problem: "Stir a cup of tea. Why do the leaves gather in the middle of the bottom, not at the edge?"
-claimA: "Stirring should push the tea leaves to the edge of the cup."
+claimA: "The spin pushes water outwards at every depth, so the leaves should reach the edge."
 claimB: "The leaves gather in the middle of the bottom."
 verdict: "Friction slows the water at the bottom of the cup, so there the push towards the middle wins, and a slow circulation sweeps the leaves inwards along the bottom."
 whatBreaks: "The assumption that the outward push from the spin wins at every depth. In the thin layer slowed by friction at the bottom, the inward push from the water’s pressure is stronger."

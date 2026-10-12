@@ -11,7 +11,7 @@ written: true
 sourcesVerified: true
 problem: "How can you search for something if you do not already know what it is?"
 claimA: "Searching can teach us what we do not yet know."
-claimB: "Searching cannot teach us what we do not yet know."
+claimB: "Searching is pointless: you either know what you seek, or would not recognise it."
 verdict: "The argument uses “knowing what you are looking for” in two senses, and no single sense makes both of its steps true."
 whatBreaks: "The assumption that you either know what you are looking for or you do not. It matters whether that means knowing the question or knowing the answer."
 statusNote: "the second claim is wrong. The argument switches between two meanings of “knowing what you are looking for”, and no one meaning makes both steps true. A deeper question about how inquiry gets started remains open."

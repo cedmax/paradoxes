@@ -263,6 +263,20 @@ How to apply them:
 - Wrap every free-text YAML value in double quotes (plain strings containing `: ` break the
   parser); use curly quotes inside.
 
+### Claims
+
+- `claimA` and `claimB` are one short sentence each, ideally under 20 words. Cut the reasons
+  (mechanism, examples, figures, evidence) and move them to `setup` or `whyWrong`.
+- Never cut scope or strength words ("every", "any", "no plan", "must", "at every depth"), nor an
+  assumption both sides share ("endless time", "the same lives saved"). Without them the claims stop
+  clashing.
+- Write the pair in parallel: same subject, opposite predicate, so the clash shows in few words.
+- **explained** and **defused**: `claimA` states the wrong premise in the words `whatBreaks` and
+  `statusNote` use, and `claimB` states the fact that breaks it. **disputed** and **unreconciled**:
+  each claim is one camp's commitment; common ground goes in `setup`.
+- Before keeping a pair, check that there is no possible world where both claims are true, and that
+  the premise `whatBreaks` calls wrong appears in the claim.
+
 ### Sources and accuracy
 
 - Every fact, date, number, quote and attribution must be checked against a source that was
