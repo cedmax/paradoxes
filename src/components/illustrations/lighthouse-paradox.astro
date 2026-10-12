@@ -1,0 +1,51 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure lead="The same small turn sweeps a greater distance on a distant wall">
+  <SvgFigure
+    name="lighthouse-beam"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 470 250"
+    title="Light rays from a turning lighthouse hit two possible walls"
+    desc="Two rays leave a lighthouse at slightly different angles. Their points of contact are close together on a nearby wall and much farther apart on a distant wall. Each ray travels outward from the lighthouse."
+  >
+    <g fill="none" stroke={series.gold} stroke-width="3">
+      <path d="M45 120 L445 24" />
+      <path d="M45 120 L445 216" />
+    </g>
+    <g fill="none" stroke={stroke} stroke-width="3">
+      <path d="M205 60 V180" />
+      <path d="M445 15 V225" />
+    </g>
+    <g fill={series.red} stroke={stroke} stroke-width="1.5">
+      <circle cx="205" cy="81.6" r="6" />
+      <circle cx="205" cy="158.4" r="6" />
+      <circle cx="445" cy="24" r="6" />
+      <circle cx="445" cy="216" r="6" />
+    </g>
+    <g fill="none" stroke={series.blue} stroke-width="2.5">
+      <path d="M224 81.6 H238 M231 81.6 V158.4 M224 158.4 H238" />
+      <path d="M406 24 H420 M413 24 V216 M406 216 H420" />
+    </g>
+    <g fill={series.blue} font-size="14" font-weight="bold" text-anchor="middle">
+      <text x="231" y="202">Small sweep</text>
+      <text x="356" y="243">Much larger sweep</text>
+    </g>
+    <g fill="currentColor" font-size="16" font-weight="bold" text-anchor="middle">
+      <text x="205" y="18">Near wall</text>
+      <text x="405" y="18">Far wall</text>
+      <text x="45" y="165">Light</text>
+      <text x="45" y="183">source</text>
+    </g>
+    <path d="M33 116 L45 91 L57 116 Z" fill={series.gold} stroke={stroke} stroke-width="1.5" />
+    <circle cx="45" cy="120" r="6" fill={series.gold} stroke={stroke} stroke-width="1.5" />
+  </SvgFigure>
+  <Fragment slot="caption">
+    If the wall is sufficiently distant, the bright spot can sweep across it faster than light.
+    <strong> No object or signal travels sideways between spots:</strong> different photons travel outward to each part of the wall.
+    The rays show two positions of the beam, not a single photon changing course.
+  </Fragment>
+</IllustrationFigure>
