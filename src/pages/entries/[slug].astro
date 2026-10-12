@@ -5,7 +5,6 @@ import Linked from "~/components/Linked.astro"
 import PuzzleIllustration from "~/components/PuzzleIllustration.astro"
 import { chapterById } from "~/data/chapters"
 import { getPublishedEntries } from "~/data/entries"
-import { illustrationPlacement } from "~/data/illustration-placement"
 import { statuses, simplifications } from "~/data/status"
 import { anchorOf, uniqueness } from "~/data/uniqueness"
 
@@ -20,7 +19,6 @@ interface Props {
 
 const { entry } = Astro.props
 const d = entry.data
-const illustrationInExplanation = illustrationPlacement(entry.id) === "explanation"
 const chapter = chapterById(d.chapter)
 const s = statuses[d.status]
 const simp = simplifications[d.simplification]
@@ -144,7 +142,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
           <p>
             <Linked text={d.setup} />
           </p>
-          {!illustrationInExplanation && <PuzzleIllustration slug={entry.id} />}
+          <PuzzleIllustration slug={entry.id} placement="setup" />
         </section>
       )}
 
@@ -171,7 +169,7 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
               <Linked text={p} />
             </p>
           ))}
-          {illustrationInExplanation && <PuzzleIllustration slug={entry.id} />}
+          <PuzzleIllustration slug={entry.id} placement="explanation" />
           {d.positions.length > 0 && (
             <div class="grid mt-6 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3.5 -mb-6">
               {d.positions.map((p) => (

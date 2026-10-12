@@ -9,6 +9,7 @@ simplification: light
 noMaths: true
 written: true
 sourcesVerified: true
+reviewed: true
 problem: "If the young Sun was much dimmer than today, why was early Earth not frozen?"
 claimA: "Early Earth warmed itself much as it does now, so a Sun about 30 percent dimmer would have left it frozen."
 claimB: "Early Earth had liquid water, even though the Sun gave off much less heat."

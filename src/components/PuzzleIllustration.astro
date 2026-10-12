@@ -3,13 +3,14 @@ import type { AstroComponentFactory } from "astro/runtime/server/index.js"
 
 interface Props {
   slug: string
+  placement: "setup" | "explanation"
 }
 
-// An illustration is the file src/components/illustrations/<slug>.astro, where <slug> is the
-// entry id. Each page loads only its own file.
-const { slug } = Astro.props
-const loaders = import.meta.glob<{ default: AstroComponentFactory }>("./illustrations/*.astro")
-const load = loaders[`./illustrations/${slug}.astro`]
+// The folder determines which entry section displays the illustration.
+// Each page only loads its own illustration from that section, if one exists.
+const { slug, placement } = Astro.props
+const loaders = import.meta.glob<{ default: AstroComponentFactory }>("./illustrations/*/*.astro")
+const load = loaders[`./illustrations/${placement}/${slug}.astro`]
 const Illustration = load && (await load()).default
 ---
 

@@ -8,7 +8,7 @@ noMaths: true
 order: 220
 written: true
 sourcesVerified: true
-reviewed: false
+reviewed: true
 problem: "Can killing more members of a species actually leave a larger population?"
 claimA: "Raising a population’s death rate must make its long-term population smaller."
 claimB: "Under some patterns of crowding and competition, raising deaths can make the long-term population larger."

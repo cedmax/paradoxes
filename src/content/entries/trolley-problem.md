@@ -17,7 +17,7 @@ simplification: light
 noMaths: true
 written: true
 sourcesVerified: true
-problem: "Why do most people think it is acceptable to divert a runaway trolley to kill one person and save five, but not to push a stranger in its way to do the same?"
+problem: "Why is diverting a runaway trolley to kill one and save five acceptable to most people, but pushing a stranger in its way not?"
 claimA: "If diverting the trolley is right, pushing someone to stop it is right too."
 claimB: "Diverting it is right, but pushing someone is wrong."
 verdict: "Experts disagree about whether the two cases really differ, and if they do, what the difference is."

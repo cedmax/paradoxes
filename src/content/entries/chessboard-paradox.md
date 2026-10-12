@@ -18,6 +18,7 @@ noMaths: false
 order: 60
 written: true
 sourcesVerified: true
+reviewed: true
 problem: "An 8 by 8 square is cut into four pieces that make a 13 by 5 rectangle. Where did the extra square come from?"
 claimA: "The four pieces fit together exactly into the 13 by 5 rectangle, with no gap."
 claimB: "The pieces cover 64 squares, but a 13 by 5 rectangle covers 65."

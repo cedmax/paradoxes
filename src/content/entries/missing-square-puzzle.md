@@ -9,6 +9,7 @@ noMaths: false
 order: 30
 written: true
 sourcesVerified: true
+reviewed: true
 problem: "The same four pieces seem to make two identical triangles, but one has a square-shaped hole. Where did the square come from?"
 claimA: "Both shapes are the same 13 by 5 triangle with a straight long edge, so they cover the same area."
 claimB: "The same pieces leave a 1 by 1 hole in the second outline, so the outlines enclose different areas."

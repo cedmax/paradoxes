@@ -20,7 +20,7 @@ written: true
 sourcesVerified: true
 problem: "Can scattered points from one square be rearranged into two equal squares using moves that preserve ordinary area?"
 claimA: "Every set of points has an area that adds up correctly and survives moves that preserve the area of ordinary shapes."
-claimB: "The points of one square can be split and moved by stretches and shears that preserve ordinary area, to make two squares of the original size."
+claimB: "One square can be split and moved by area-preserving stretches and shears into two squares of the same size."
 verdict: "The pieces are sets of scattered points with no ordinary area. Moves that preserve the area of ordinary shapes cannot preserve an area for every possible set of points."
 whatBreaks: "The assumption that every possible set of points has an area preserved by these moves."
 statusNote: "the proof rules out an area for every set of points that both adds up correctly and survives all the allowed moves. Ordinary shapes still keep their area."

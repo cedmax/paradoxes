@@ -18,6 +18,7 @@ noMaths: true
 order: 40
 written: true
 sourcesVerified: true
+reviewed: true
 problem: "Turning part of a picture changes how many people it shows. Where does the missing one go?"
 claimA: "Every figure in the picture is a whole, full-sized figure in both positions, so the count cannot change."
 claimB: "One position shows 13 boys and the other shows 12."

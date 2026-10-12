@@ -25,7 +25,7 @@ claimB: "The court should decide the verdict itself by majority, whatever the ma
 verdict: "Majorities on the reasons and on the verdict can clash, and legal theorists and philosophers disagree on which one a group should follow."
 whatBreaks: "The contested choice: follow the majority on each reason and give up the majority on the verdict, or follow the majority on the verdict and give up the majorities on the reasons."
 statusNote: "the clash between majorities is established. Sources present different rules as trade-offs rather than one agreed solution."
-setup: "Three judges agree that a defendant is liable only if a contract was valid and was broken. Judge A says valid but not broken. Judge B says broken but not valid. Judge C says both. Each judge reasons consistently."
+setup: "The court’s rule is simple: a defendant is liable if the contract was both valid and broken, and not liable otherwise. Three judges agree on the rule, but disagree on the facts."
 whyWrong: "Two judges say the contract was valid. Two say it was broken. Voting on each reason therefore makes the defendant liable. But two judges say the defendant is not liable. Voting on the final verdict gives the opposite answer."
 resolution:
   - "The group cannot follow all these majorities at once. It must choose whether to vote on the reasons or on the conclusion, or change another part of its decision rule."

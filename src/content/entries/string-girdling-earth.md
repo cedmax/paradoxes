@@ -15,6 +15,7 @@ noMaths: false
 order: 50
 written: true
 sourcesVerified: true
+reviewed: true
 problem: "Add one metre to a string that fits tightly round the equator. How far off the ground does it lift?"
 claimA: "One metre is negligible next to the Earth’s circumference, so the string lifts by a fraction of a millimetre."
 claimB: "The string lifts about 16 cm all the way round, enough for a cat to walk under."
