@@ -106,7 +106,7 @@ const animateData = results.map((run) => ({
       {results.map((run) => (
         <Panel title={run.name} accent={run.accent} class="flex min-w-0 flex-col gap-3">
           <button type="button" data-parrondos-play={run.id} class="btn-ghost w-full">
-            Play this example
+            Play
           </button>
           <SvgFigure
             name={"parrondos-chart-" + run.id}
@@ -240,7 +240,7 @@ const animateData = results.map((run) => ({
     const stop = (index: number) => {
       if (timers[index]) window.clearInterval(timers[index])
       timers[index] = 0
-      panels[index].button.textContent = "Play this example"
+      panels[index].button.textContent = "Play"
     }
 
     panels.forEach((panel, index) => {
@@ -263,7 +263,7 @@ const animateData = results.map((run) => ({
           return
         }
 
-        panel.button.textContent = "Pause this example"
+        panel.button.textContent = "Pause"
         timers[index] = window.setInterval(() => {
           positions[index]++
           show(index, positions[index])
