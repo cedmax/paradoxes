@@ -101,7 +101,9 @@ const initialBalls = Array.from({ length: 27 }, (_, index) => ({
 
   <SideBySide>
     <Panel title="Balls in the vase">
-      <p id="ross-littlewood-count" class="font-bold" aria-live="polite">27</p>
+      <p id="ross-littlewood-count" class="font-bold" aria-live="polite">
+        27
+      </p>
     </Panel>
     <Panel title="Ball being followed">
       <p id="ross-littlewood-fate" class="font-bold" aria-live="polite">
@@ -135,10 +137,10 @@ const initialBalls = Array.from({ length: 27 }, (_, index) => ({
   </div>
 
   <Fragment slot="caption">
-    The count grows by nine every round, whichever ball comes out. But there is no last
-    round. Under the first rule, every numbered ball is eventually removed, leaving none at
-    noon. Under the second, every ball that is not a multiple of ten stays, leaving infinitely
-    many. Following individual balls, not just the total, reveals the difference.
+    The count grows by nine every round, whichever ball comes out. But there is no last round.
+    Under the first rule, every numbered ball is eventually removed, leaving none at noon. Under
+    the second, every ball that is not a multiple of ten stays, leaving infinitely many.
+    Following individual balls, not just the total, reveals the difference.
   </Fragment>
 </IllustrationFigure>
 
@@ -186,8 +188,9 @@ const initialBalls = Array.from({ length: 27 }, (_, index) => ({
         if (inside(ball, round)) present.push(ball)
       }
       if (present.length <= 36) return present
-      const sample = Array.from({ length: 36 }, (_, i) =>
-        present[Math.floor((i * (present.length - 1)) / 35)],
+      const sample = Array.from(
+        { length: 36 },
+        (_, i) => present[Math.floor((i * (present.length - 1)) / 35)],
       )
       if (inside(selectedBall, round) && !sample.includes(selectedBall)) {
         sample[18] = selectedBall
