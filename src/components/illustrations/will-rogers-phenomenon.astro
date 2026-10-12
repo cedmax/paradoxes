@@ -1,8 +1,72 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">Move the number 5 from the high group to the low group.</p>
-<div class="grid grid-cols-2 gap-3 text-base">
-<div class="border-2 border-ink p-3"><strong>Before</strong><p>R: 1, 2, 3, 4</p><p>Average 2.5</p><p class="mt-2">S: <strong>5</strong>, 6, 7, 8, 9</p><p>Average 7</p></div>
-<div class="border-2 border-ink p-3"><strong>After</strong><p>R: 1, 2, 3, 4, <strong>5</strong></p><p>Average <strong>3 ↑</strong></p><p class="mt-2">S: 6, 7, 8, 9</p><p>Average <strong>7.5 ↑</strong></p></div>
-</div>
-<div class="border-l-4 border-accent pl-4 text-base"><p><strong>Everyone together: average 5 both before and after.</strong></p><p>All nine numbers are unchanged.</p></div>
-<figcaption class="text-base leading-normal">Five is below S’s original average of 7, so removing it raises that average. It is above R’s average of 2.5, so adding it raises R’s average too. The overall average stays the same because the group sizes change.</figcaption></figure>
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+
+const stages = [
+  {
+    title: "Before",
+    after: false,
+    groups: [
+      { name: "R", numbers: [1, 2, 3, 4], average: "2.5" },
+      { name: "S", numbers: [5, 6, 7, 8, 9], average: "7" },
+    ],
+  },
+  {
+    title: "After",
+    after: true,
+    groups: [
+      { name: "R", numbers: [1, 2, 3, 4, 5], average: "3" },
+      { name: "S", numbers: [6, 7, 8, 9], average: "7.5" },
+    ],
+  },
+]
+---
+
+<IllustrationFigure lead="Move one number. Both group averages rise.">
+  {stages.map((stage, index) => (
+    <>
+      {index === 1 && (
+        <p class="flex items-center justify-center gap-2 text-base font-bold">
+          <span aria-hidden="true">↓</span>
+          Move the 5 from S to R
+        </p>
+      )}
+      <Panel title={stage.title}>
+        <div class="mt-3 flex flex-col gap-3">
+          {stage.groups.map((group) => (
+            <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <strong class="mr-1 w-4">{group.name}</strong>
+                {group.numbers.map((number) => (
+                  <span
+                    class:list={[
+                      "inline-flex size-8 items-center justify-center text-base",
+                      number === 5
+                        ? "border-2 border-series-gold bg-series-gold/20 font-bold"
+                        : "border border-ink",
+                    ]}
+                  >
+                    {number}
+                  </span>
+                ))}
+              </div>
+              <span class="whitespace-nowrap text-base">
+                Average: <strong>{group.average}{stage.after ? " ↑" : ""}</strong>
+              </span>
+            </div>
+          ))}
+        </div>
+      </Panel>
+    </>
+  ))}
+
+  <p class="text-base">
+    <strong>All nine numbers together: average 5 → 5.</strong> None of the numbers changed.
+  </p>
+
+  <Fragment slot="caption">
+    Five is above R's old average of 2.5, so adding it raises R's average to 3. Five is below
+    S's old average of 7, so removing it raises S's average to 7.5. Both group averages rise,
+    but the average of all nine stays the same because the nine numbers have not changed.
+  </Fragment>
+</IllustrationFigure>
