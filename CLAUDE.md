@@ -274,8 +274,9 @@ How to apply them:
 - **explained** and **defused**: `claimA` states the wrong premise in the words `whatBreaks` and
   `statusNote` use, and `claimB` states the fact that breaks it. **disputed** and **unreconciled**:
   each claim is one camp's commitment; common ground goes in `setup`.
-- Before keeping a pair, check that there is no possible world where both claims are true, and that
-  the premise `whatBreaks` calls wrong appears in the claim.
+- Before keeping a pair, check that the claims clash under the same assumptions (for a scientific
+  paradox, a prediction against an observation counts), and that the premise `whatBreaks` calls
+  wrong appears in the claim.
 
 ### Sources and accuracy
 

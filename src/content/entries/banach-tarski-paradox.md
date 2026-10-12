@@ -10,7 +10,7 @@ noMaths: true
 written: true
 sourcesVerified: true
 problem: "Can a solid ball be cut into a few pieces and put back together as two balls, each as big as the first?"
-claimA: "Every piece of a ball has a volume that moving it cannot change."
+claimA: "Every piece of a ball has a volume, so rearranging the pieces cannot double the total."
 claimB: "Pieces of one ball can be rearranged into two balls, each as big as the first."
 verdict: "The pieces are not chunks of solid. They are scatterings of points, too ragged to have a volume, so the rule that volumes add up does not apply to them."
 whatBreaks: "The assumption that every piece of a ball has a volume. The pieces in the proof are too ragged to have one, so no volume goes missing or appears."
