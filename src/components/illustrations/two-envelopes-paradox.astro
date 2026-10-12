@@ -1,15 +1,7 @@
 ---
-import { readFileSync } from "node:fs"
-import * as prettier from "prettier"
 import Callout from "~/components/illustration-kit/Callout.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
-
-const prettierPath = "src/components/illustrations/two-envelopes-paradox.astro"
-const prettierOptions = (await prettier.resolveConfig(prettierPath)) ?? {}
-console.log("TWO_ENV_FORMAT_START")
-console.log(await prettier.format(readFileSync(prettierPath, "utf8"), { ...prettierOptions, filepath: prettierPath }))
-console.log("TWO_ENV_FORMAT_END")
 ---
 
 <IllustrationFigure
@@ -29,8 +21,12 @@ console.log("TWO_ENV_FORMAT_END")
     desc="Your chosen envelope is on the left, and the other is on the right. Press Open your envelope to reveal twenty pounds in your choice. The other remains sealed."
   >
     <g fill="currentColor" font-size="18" font-weight="600" text-anchor="middle">
-      <text x="159" y="22">Your pick</text>
-      <text x="401" y="22">Other envelope</text>
+      <text x="159" y="22">
+        Your pick
+      </text>
+      <text x="401" y="22">
+        Other envelope
+      </text>
     </g>
     <rect
       x="67"
@@ -65,7 +61,14 @@ console.log("TWO_ENV_FORMAT_END")
         stroke="var(--color-series-gold)"
         stroke-width="2"
       />
-      <text x="159" y="91" font-size="25" font-weight="700" text-anchor="middle" fill="currentColor">
+      <text
+        x="159"
+        y="91"
+        font-size="25"
+        font-weight="700"
+        text-anchor="middle"
+        fill="currentColor"
+      >
         £20
       </text>
     </g>
@@ -113,7 +116,14 @@ console.log("TWO_ENV_FORMAT_END")
       stroke="currentColor"
       stroke-width="2"
     />
-    <text x="401" y="166" font-size="24" font-weight="700" text-anchor="middle" fill="currentColor">
+    <text
+      x="401"
+      y="166"
+      font-size="24"
+      font-weight="700"
+      text-anchor="middle"
+      fill="currentColor"
+    >
       ?
     </text>
   </SvgFigure>
@@ -139,7 +149,9 @@ console.log("TWO_ENV_FORMAT_END")
           ></div>
         </div>
         <strong>Lose £10</strong>
-        <p id="two-envelopes-loss-odds" class="text-sm" hidden>Assume 50% chance</p>
+        <p id="two-envelopes-loss-odds" class="text-sm" hidden>
+          Assume 50% chance
+        </p>
       </div>
       <div class="flex min-w-0 flex-col gap-2">
         <p class="mono-label">Other: £40</p>
@@ -150,12 +162,14 @@ console.log("TWO_ENV_FORMAT_END")
           ></div>
         </div>
         <strong>Gain £20</strong>
-        <p id="two-envelopes-gain-odds" class="text-sm" hidden>Assume 50% chance</p>
+        <p id="two-envelopes-gain-odds" class="text-sm" hidden>
+          Assume 50% chance
+        </p>
       </div>
     </div>
     <p id="two-envelopes-no-odds" class="text-base">
-      The green gain is twice the red loss. But seeing £20 has not told you how likely
-      either outcome is.
+      The green gain is twice the red loss. But seeing £20 has not told you how likely either
+      outcome is.
     </p>
   </div>
 
