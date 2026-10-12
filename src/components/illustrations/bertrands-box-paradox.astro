@@ -7,20 +7,23 @@ const boxes = [
   {
     name: "Box 1",
     coins: ["G", "G"],
-    revealLabel: "2 gold coins",
-    description: "Both possible coin draws are gold.",
+    goldDraws: "2 gold draws",
+    otherCoin: "Other coin: GOLD",
+    description: "Both possible coin draws are gold. Whichever gold coin was drawn, the other is also gold.",
   },
   {
     name: "Box 2",
     coins: ["G", "S"],
-    revealLabel: "1 gold coin",
-    description: "One coin draw is gold; one is silver.",
+    goldDraws: "1 gold draw",
+    otherCoin: "Other coin: SILVER",
+    description: "The gold draw leaves the silver coin in the box.",
   },
   {
     name: "Box 3",
     coins: ["S", "S"],
-    revealLabel: "0 gold coins",
-    description: "Both possible coin draws are silver.",
+    goldDraws: "0 gold draws",
+    otherCoin: "Not possible",
+    description: "Neither draw can produce a gold coin.",
   },
 ]
 ---
@@ -38,7 +41,7 @@ const boxes = [
         name={`bertrands-box-${index + 1}`}
         title={`${box.name}, with two possible coin draws`}
         desc={`${box.name}. ${box.description}`}
-        viewBox="0 0 180 173"
+        viewBox="0 0 180 201"
         class="w-full max-w-40 sm:max-w-48"
       >
         <rect
@@ -97,18 +100,14 @@ const boxes = [
           )
         })}
 
-        <text
-          data-bertrand-count
-          x="90"
-          y="162"
-          fill="currentColor"
-          font-size="14"
-          font-weight="700"
-          text-anchor="middle"
-          visibility="hidden"
-        >
-          {box.revealLabel}
-        </text>
+        <g data-bertrand-outcome visibility="hidden" text-anchor="middle" fill="currentColor">
+          <text x="90" y="161" font-size="14">
+            {box.goldDraws}
+          </text>
+          <text x="90" y="185" font-size="15" font-weight="700">
+            {box.otherCoin}
+          </text>
+        </g>
       </SvgFigure>
     ))}
   </div>
@@ -124,10 +123,10 @@ const boxes = [
   </button>
 
   <div id="bertrand-result" class="space-y-2 border-t-2 border-ink pt-3" hidden>
-    <p class="text-2xl font-bold">2 out of 3 gold coins are in Box 1.</p>
+    <p class="text-base font-bold">Chance the other coin is gold</p>
+    <p class="text-3xl font-bold">2/3</p>
     <p class="text-base leading-normal">
-      So if you drew gold, there's a 2-in-3 chance you picked Box 1, where the other coin is
-      gold too.
+      Two of the three gold coins are in Box 1. Whichever one you drew, the other is gold too.
     </p>
   </div>
 </IllustrationFigure>
@@ -140,7 +139,7 @@ const boxes = [
     const button = find<HTMLButtonElement>(root, "#bertrand-reveal")
     const result = find<HTMLElement>(root, "#bertrand-result")
     const branches = root.querySelectorAll<SVGGElement>("[data-bertrand-branch]")
-    const counts = root.querySelectorAll<SVGTextElement>("[data-bertrand-count]")
+    const outcomes = root.querySelectorAll<SVGGElement>("[data-bertrand-outcome]")
     let revealed = false
 
     const render = () => {
@@ -157,8 +156,8 @@ const boxes = [
         circle.setAttribute("stroke", strokeColor)
         circle.setAttribute("stroke-width", revealed && isGold ? "3.5" : "2.5")
       })
-      counts.forEach((count) => {
-        count.setAttribute("visibility", revealed ? "visible" : "hidden")
+      outcomes.forEach((outcome) => {
+        outcome.setAttribute("visibility", revealed ? "visible" : "hidden")
       })
       result.hidden = !revealed
       button.setAttribute("aria-expanded", String(revealed))
