@@ -230,9 +230,7 @@ const animateData = results.map((run) => ({
       panel.lines.forEach((line, j) => line.setAttribute("opacity", j < step ? "1" : "0"))
       panel.points.forEach((point, j) => point.setAttribute("opacity", j < step ? "1" : "0"))
       panel.chips.forEach((chip, j) => {
-        chip.style.opacity = j < step ? "1" : "0.3"
-        chip.style.outline = j === step - 1 ? "2px solid var(--color-ink)" : ""
-        chip.style.outlineOffset = j === step - 1 ? "1px" : ""
+        chip.style.opacity = j === step - 1 ? "1" : j < step ? "0.65" : "0.3"
       })
       panel.readout.textContent = step === 0 ? "Start at £30." : runs[index].readouts[step - 1]
       panel.ending.hidden = step !== count
