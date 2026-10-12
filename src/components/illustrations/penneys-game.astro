@@ -1,0 +1,87 @@
+---
+import Callout from "~/components/illustration-kit/Callout.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+
+const opening = ["H", "H", "H"]
+const later = ["H", "H", "T", "H", "H", "H"]
+---
+
+<IllustrationFigure lead="How can THH beat HHH, even though both have a 1 in 8 chance in three tosses?">
+  <p class="text-base leading-normal">
+    The first player chooses <strong>HHH</strong>. The second chooses <strong>THH</strong>. H
+    means heads; T means tails. There are two ways the race can unfold.
+  </p>
+
+  <Panel title="1. The exception: HHH wins immediately">
+    <div class="mt-3 grid grid-cols-6 gap-1 text-center sm:gap-2">
+      {opening.map((toss, index) => (
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-xs sm:text-sm">Toss {index + 1}</span>
+          <span class="flex h-9 w-9 items-center justify-center rounded-full border-2 border-series-red text-base font-bold sm:h-11 sm:w-11">
+            {toss}
+          </span>
+        </div>
+      ))}
+    </div>
+    <p class="mt-3 text-base leading-normal">
+      <strong>HHH wins on tosses 1–3.</strong> This is the only way HHH can win the race. It
+      happens 1 time in 8.
+    </p>
+  </Panel>
+
+  <Panel title="2. Otherwise: the game is already underway">
+    <p class="mt-2 text-base leading-normal">
+      In this example, the first two tosses are HH, but the third is T. Now watch what happens
+      when heads start appearing again.
+    </p>
+
+    <div class="mt-3 flex flex-col gap-2">
+      <div class="grid grid-cols-6 gap-1 text-center sm:gap-2">
+        {later.map((toss, index) => (
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-xs sm:text-sm">{index === 5 ? "6*" : index + 1}</span>
+            <span
+              class:list={[
+                "flex h-9 w-9 items-center justify-center rounded-full border-2 text-base font-bold sm:h-11 sm:w-11",
+                index === 5 ? "border-dashed border-ink" : "border-ink",
+              ]}
+            >
+              {toss}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div class="grid grid-cols-6 gap-1 sm:gap-2">
+        <span class="col-span-3 col-start-3 border-t-4 border-series-blue pt-1 text-center font-bold">
+          THH wins
+        </span>
+      </div>
+      <div class="grid grid-cols-6 gap-1 sm:gap-2">
+        <span class="col-span-3 col-start-4 border-t-4 border-series-red pt-1 text-center font-bold">
+          HHH too late
+        </span>
+      </div>
+    </div>
+
+    <p class="mt-3 text-base leading-normal">
+      <strong>THH appears in tosses 3–5.</strong> HHH would appear in tosses 4–6, one toss
+      later. The sixth toss (*) is hypothetical: the game ends at toss 5.
+    </p>
+  </Panel>
+
+  <Callout tone="accent">
+    <p class="leading-normal">
+      <strong>Why this always happens after the opening:</strong> If HHH appears later for the
+      first time, the toss just before it must be T. If it were H, HHH would have appeared one
+      toss earlier. That T followed by the first two heads makes THH win before HHH can finish.
+    </p>
+  </Callout>
+
+  <Fragment slot="caption">
+    HHH can win only on the first three tosses, with a 1 in 8 chance. In all other cases, THH
+    wins first, with a 7 in 8 chance. Equal odds for a fixed set of three tosses do not mean
+    equal odds of appearing first in a running game.
+  </Fragment>
+</IllustrationFigure>
