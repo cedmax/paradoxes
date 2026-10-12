@@ -1,5 +1,122 @@
-<figure class="flex flex-col gap-4 border-2 border-ink p-4 sm:p-6">
-<p class="font-bold">For a fixed pair of envelopes, the gain and loss cancel.</p>
-<table class="w-full text-base"><thead><tr class="border-b-2 border-ink"><th class="p-2 text-left">You first pick</th><th class="p-2">The other envelope</th><th class="p-2 text-right">Gain if you swap</th></tr></thead><tbody><tr class="border-b border-ink"><td class="p-2">£10</td><td class="p-2">£20</td><td class="p-2 text-right">+£10</td></tr><tr><td class="p-2">£20</td><td class="p-2">£10</td><td class="p-2 text-right">−£10</td></tr></tbody></table>
-<div class="grid grid-cols-2 gap-3 text-base"><div class="border border-ink p-3"><strong>Half the time</strong><p>You gain £10.</p></div><div class="border border-ink p-3"><strong>Half the time</strong><p>You lose £10.</p></div></div>
-<figcaption class="text-base leading-normal">Two equally likely choices give an average switching gain of £0. The tempting argument instead says that after seeing any amount, double and half are equally likely. That needs a probability rule for how the money was put into the envelopes, and cannot be true for every possible amount.</figcaption></figure>
+---
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+
+const outcomes = [
+  ["£10", "£20", "+£10"],
+  ["£20", "£10", "−£10"],
+  ["£20", "£40", "+£20"],
+  ["£40", "£20", "−£20"],
+]
+---
+
+<IllustrationFigure
+  name="two-envelopes-paradox"
+  frame={false}
+  lead="Seeing an amount changes which swaps are possible."
+>
+  <p class="text-base leading-normal">
+    Imagine two possible pairs of envelopes: £10 and £20, or £20 and £40. Each pair is equally
+    likely, and you pick one envelope at random.
+  </p>
+
+  <div class="flex flex-wrap gap-2" role="group" aria-label="Amount in your envelope">
+    <button
+      type="button"
+      class="btn-toggle"
+      data-two-envelopes-choice="all"
+      aria-pressed="true"
+    >
+      Before looking
+    </button>
+    <button type="button" class="btn-toggle" data-two-envelopes-choice="10" aria-pressed="false">
+      £10
+    </button>
+    <button type="button" class="btn-toggle" data-two-envelopes-choice="20" aria-pressed="false">
+      £20
+    </button>
+    <button type="button" class="btn-toggle" data-two-envelopes-choice="40" aria-pressed="false">
+      £40
+    </button>
+  </div>
+
+  <div id="two-envelopes-outcomes">
+    <ComparisonTable
+      caption="Four equally likely outcomes"
+      columns={["You picked", "Other envelope", "Gain if you swap"]}
+      rows={outcomes}
+    />
+  </div>
+
+  <Panel title="Average gain from swapping" accent="gold">
+    <div aria-live="polite" aria-atomic="true">
+      <p id="two-envelopes-average" class="display mt-2 text-3xl">£0</p>
+      <p id="two-envelopes-explanation" class="mt-2 text-base leading-normal">
+        Before looking, the four equally likely gains and losses cancel.
+      </p>
+    </div>
+  </Panel>
+
+  <Fragment slot="caption">
+    At £20, doubling or halving really is equally likely in this example, and swapping has an
+    average gain of £5. But the same odds do not hold at £10 or £40. The tempting argument wrongly
+    assumes they work for every amount.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("two-envelopes-paradox")
+
+  if (root) {
+    const buttons = root.querySelectorAll<HTMLButtonElement>("[data-two-envelopes-choice]")
+    const rows = root.querySelectorAll<HTMLTableRowElement>("#two-envelopes-outcomes tbody tr")
+    const average = find<HTMLElement>(root, "#two-envelopes-average")
+    const explanation = find<HTMLElement>(root, "#two-envelopes-explanation")
+
+    const views: Record<string, { average: string; explanation: string }> = {
+      all: {
+        average: "£0",
+        explanation: "Before looking, the four equally likely gains and losses cancel.",
+      },
+      "10": {
+        average: "+£10",
+        explanation: "Only one outcome is possible: the other envelope contains £20.",
+      },
+      "20": {
+        average: "+£5",
+        explanation:
+          "Two outcomes remain, equally likely: gain £20 or lose £10. Their average is a £5 gain.",
+      },
+      "40": {
+        average: "−£20",
+        explanation: "Only one outcome is possible: the other envelope contains £20.",
+      },
+    }
+
+    const show = (choice: string) => {
+      const view = views[choice]
+      if (!view) return
+
+      buttons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.twoEnvelopesChoice === choice))
+      })
+
+      rows.forEach((row) => {
+        const picked = row.querySelector("th")?.textContent?.trim()
+        const matching = choice !== "all" && picked === `£${choice}`
+        row.classList.toggle("bg-disputed", matching)
+        row.classList.toggle("font-bold", matching)
+      })
+
+      average.textContent = view.average
+      explanation.textContent = view.explanation
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => show(button.dataset.twoEnvelopesChoice ?? "all"))
+    })
+  }
+</script>
