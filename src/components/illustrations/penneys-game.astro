@@ -8,32 +8,58 @@ const tosses = ["T", "H", "H", "H"]
 <IllustrationFigure lead="Why can THH beat HHH when both patterns are equally likely in three tosses?">
   <p class="text-base leading-normal">
     The first player picks <strong>HHH</strong>. The second picks <strong>THH</strong>. H means
-    heads and T means tails. The fourth toss is shown only to reveal the overlap.
+    heads and T means tails. Follow the results from left to right.
   </p>
 
-  <div class="flex flex-col gap-3">
+  <div class="flex flex-col gap-4">
     <div class="grid grid-cols-4 gap-2 text-center sm:gap-3">
       {tosses.map((toss, index) => (
         <div class="flex flex-col items-center gap-1">
           <span class="text-sm">Toss {index + 1}</span>
-          <span class="flex h-11 w-11 items-center justify-center rounded-full border-2 border-ink text-lg font-bold">
+          <span
+            class:list={[
+              "flex h-11 w-11 items-center justify-center rounded-full border-2 border-ink text-lg font-bold",
+              index === 3 && "border-dashed",
+            ]}
+          >
             {toss}
           </span>
         </div>
       ))}
     </div>
 
-    <div class="grid grid-cols-4 gap-2 sm:gap-3">
-      <div class="col-span-3 border-t-4 border-series-blue pt-2 text-base font-bold">
-        THH: wins at toss 3
+    <div class="flex flex-col gap-2">
+      <p class="text-base leading-normal">
+        <strong>THH appears in tosses 1–3, so it wins first.</strong>
+      </p>
+      <div class="grid grid-cols-4 gap-2 text-center sm:gap-3" aria-hidden="true">
+        {tosses.slice(0, 3).map((toss) => (
+          <span class="border-t-4 border-series-blue bg-series-blue/10 py-2 font-bold">
+            {toss}
+          </span>
+        ))}
       </div>
     </div>
-    <div class="grid grid-cols-4 gap-2 sm:gap-3">
-      <div class="col-span-3 col-start-2 border-t-4 border-series-red pt-2 text-base font-bold">
-        HHH: would appear at toss 4
+
+    <div class="flex flex-col gap-2">
+      <p class="text-base leading-normal">
+        <strong>HHH would appear in tosses 2–4, but too late.</strong>
+      </p>
+      <div class="grid grid-cols-4 gap-2 text-center sm:gap-3" aria-hidden="true">
+        <span></span>
+        {tosses.slice(1).map((toss) => (
+          <span class="border-t-4 border-series-red bg-series-red/10 py-2 font-bold">
+            {toss}
+          </span>
+        ))}
       </div>
     </div>
   </div>
+
+  <p class="text-base leading-normal">
+    The dashed fourth toss is hypothetical: the game stops after toss 3, when THH wins.
+    It is shown to reveal the overlap.
+  </p>
 
   <Callout tone="accent">
     <p class="leading-normal">
