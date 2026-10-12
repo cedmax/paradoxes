@@ -5,10 +5,7 @@ import Panel from "~/components/illustration-kit/Panel.astro"
 import SideBySide from "~/components/illustration-kit/SideBySide.astro"
 ---
 
-<IllustrationFigure
-  name="two-envelopes-paradox"
-  lead="You open your envelope and find £20."
->
+<IllustrationFigure name="two-envelopes-paradox" lead="You open your envelope and find £20.">
   <p class="text-base leading-normal">
     One envelope holds twice as much as the other. What could be in the still-sealed envelope?
   </p>
@@ -71,9 +68,7 @@ import SideBySide from "~/components/illustration-kit/SideBySide.astro"
   const root = illustrationRoot("two-envelopes-paradox")
 
   if (root) {
-    const buttons = root.querySelectorAll<HTMLButtonElement>(
-      "[data-two-envelopes-possibility]",
-    )
+    const buttons = root.querySelectorAll<HTMLButtonElement>("[data-two-envelopes-possibility]")
     const amount = find<HTMLElement>(root, "#two-envelopes-other-amount")
     const explanation = find<HTMLElement>(root, "#two-envelopes-explanation")
 
@@ -100,10 +95,7 @@ import SideBySide from "~/components/illustration-kit/SideBySide.astro"
         if (!selected) return
 
         buttons.forEach((option) => {
-          option.setAttribute(
-            "aria-pressed",
-            String(option.dataset.twoEnvelopesPossibility === choice),
-          )
+          option.setAttribute("aria-pressed", String(option.dataset.twoEnvelopesPossibility === choice))
         })
         amount.textContent = selected.amount
         explanation.textContent = selected.explanation
