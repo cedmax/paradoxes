@@ -5,110 +5,56 @@ import Panel from "~/components/illustration-kit/Panel.astro"
 import SideBySide from "~/components/illustration-kit/SideBySide.astro"
 ---
 
-<IllustrationFigure name="two-envelopes-paradox" lead="You open your envelope and find £20.">
+<IllustrationFigure
+  name="two-envelopes-paradox"
+  lead="The same swap seems to have two different answers."
+>
   <p class="text-base leading-normal">
-    One envelope holds twice as much as the other. What could be in the still-sealed envelope?
+    You picked one of two envelopes at random. One contains twice as much money as the other.
+    You open yours and see £20.
   </p>
 
   <SideBySide>
     <Panel title="Your envelope" class="min-w-0">
-      <p class="display mt-4 text-3xl sm:text-5xl">£20</p>
+      <p class="display mt-3 text-3xl sm:text-5xl">£20</p>
       <p class="mt-2 text-sm">Opened</p>
     </Panel>
     <Panel title="Other envelope" class="min-w-0">
-      <p id="two-envelopes-other-amount" class="display mt-4 text-3xl sm:text-5xl">
-        ?
-      </p>
-      <p class="mt-2 text-sm">What it might hold</p>
+      <p class="display mt-3 text-3xl sm:text-5xl">?</p>
+      <p class="mt-2 text-sm">Still sealed</p>
     </Panel>
   </SideBySide>
 
-  <div
-    class="flex flex-wrap gap-2"
-    role="group"
-    aria-label="Possible contents of the other envelope"
-  >
-    <button
-      type="button"
-      class="btn-toggle"
-      data-two-envelopes-possibility="unknown"
-      aria-pressed="true"
-    >
-      Unknown
-    </button>
-    <button
-      type="button"
-      class="btn-toggle"
-      data-two-envelopes-possibility="smaller"
-      aria-pressed="false"
-    >
-      Could be £10
-    </button>
-    <button
-      type="button"
-      class="btn-toggle"
-      data-two-envelopes-possibility="larger"
-      aria-pressed="false"
-    >
-      Could be £40
-    </button>
-  </div>
+  <p class="font-bold">Should you swap?</p>
+
+  <SideBySide>
+    <Panel title="Before looking" class="min-w-0">
+      <p class="display mt-3 text-3xl">£0</p>
+      <p class="mt-2 leading-normal">
+        Neither envelope was favoured. Swapping had no average advantage.
+      </p>
+    </Panel>
+    <Panel title="After looking" class="min-w-0">
+      <p class="display mt-3 text-3xl">+£5</p>
+      <p class="mt-2 leading-normal">
+        If £10 and £40 are equally likely, swapping looks profitable.
+      </p>
+    </Panel>
+  </SideBySide>
+
+  <p class="text-base leading-normal">
+    The tempting calculation: swapping could gain £20 or lose £10. Give each a 50% chance and
+    the average gain is £5.
+  </p>
 
   <Callout tone="accent">
-    <p id="two-envelopes-explanation" aria-live="polite" aria-atomic="true">
-      The other envelope could contain £10 or £40. Knowing both are possible does not tell you
-      their chances.
-    </p>
+    <strong>Here is the paradox.</strong> If that argument works whatever amount you open, why
+    was there no advantage to swapping before you looked?
   </Callout>
 
   <Fragment slot="caption">
-    There are still only two envelopes. The £10 and £40 buttons show different possible ways the
-    pair might have been filled. Both are possible, but that does not make them equally likely.
-    The odds depend on how the amounts were chosen.
+    The catch is the assumed 50/50 chance. The other envelope can hold double or half, but
+    those amounts need not be equally likely after you see £20. The claim that they are equally
+    likely for every possible amount is false.
   </Fragment>
 </IllustrationFigure>
-
-<script>
-  import { find, illustrationRoot } from "~/scripts/illustration"
-
-  const root = illustrationRoot("two-envelopes-paradox")
-
-  if (root) {
-    const buttons = root.querySelectorAll<HTMLButtonElement>("[data-two-envelopes-possibility]")
-    const amount = find<HTMLElement>(root, "#two-envelopes-other-amount")
-    const explanation = find<HTMLElement>(root, "#two-envelopes-explanation")
-
-    const possibilities: Record<string, { amount: string; explanation: string }> = {
-      unknown: {
-        amount: "?",
-        explanation:
-          "The other envelope could contain £10 or £40. Knowing both are possible does not tell you their chances.",
-      },
-      smaller: {
-        amount: "£10",
-        explanation: "If the pair was £10 and £20, swapping would lose £10.",
-      },
-      larger: {
-        amount: "£40",
-        explanation: "If the pair was £20 and £40, swapping would gain £20.",
-      },
-    }
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const choice = button.dataset.twoEnvelopesPossibility ?? "unknown"
-        const selected = possibilities[choice]
-        if (!selected) return
-
-        buttons.forEach((option) => {
-          option.setAttribute(
-            "aria-pressed",
-            String(option.dataset.twoEnvelopesPossibility === choice),
-          )
-        })
-        amount.textContent = selected.amount
-        explanation.textContent = selected.explanation
-      })
-    })
-  }
-</script>
