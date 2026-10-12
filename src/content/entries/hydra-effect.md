@@ -1,5 +1,6 @@
 ---
 title: "Hydra effect"
+titleAccent: "effect"
 chapter: models
 status: "explained"
 simplification: light

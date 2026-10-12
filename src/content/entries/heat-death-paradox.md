@@ -1,5 +1,6 @@
 ---
 title: "Heat death paradox"
+titleAccent: "paradox"
 chapter: models
 status: "defused"
 uniqueness: "related"

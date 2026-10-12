@@ -1,5 +1,6 @@
 ---
 title: "Kant's antinomies"
+titleAccent: "antinomies"
 chapter: belief
 status: "disputed"
 simplification: light

@@ -1,5 +1,6 @@
 ---
 title: "Lindley's paradox"
+titleAccent: "paradox"
 chapter: numbers-mislead
 status: "explained"
 simplification: light

@@ -1,5 +1,6 @@
 ---
 title: "Paradox of thrift"
+titleAccent: "thrift"
 chapter: collective
 status: "disputed"
 simplification: light

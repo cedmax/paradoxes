@@ -1,5 +1,6 @@
 ---
 title: "Liberal paradox"
+titleAccent: "paradox"
 chapter: collective
 status: "disputed"
 uniqueness: "related"

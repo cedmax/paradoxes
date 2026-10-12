@@ -1,5 +1,6 @@
 ---
 title: "Lighthouse paradox"
+titleAccent: "paradox"
 chapter: what-counts
 status: "explained"
 simplification: light

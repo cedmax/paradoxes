@@ -1,5 +1,6 @@
 ---
 title: "Barbershop paradox"
+titleAccent: "paradox"
 chapter: belief
 status: "explained"
 uniqueness: "related"

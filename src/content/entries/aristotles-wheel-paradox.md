@@ -1,5 +1,6 @@
 ---
 title: "Aristotle's wheel paradox"
+titleAccent: "paradox"
 chapter: shapes-sums
 status: "explained"
 uniqueness: "related"

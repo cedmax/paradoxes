@@ -1,6 +1,6 @@
 ---
 title: Paradox of tolerance
-titleAccent: paradox
+titleAccent: tolerance
 chapter: collective
 status: disputed
 simplification: light

@@ -1,5 +1,6 @@
 ---
 title: "Apportionment paradox"
+titleAccent: "paradox"
 chapter: collective
 status: "explained"
 simplification: light

@@ -1,5 +1,6 @@
 ---
 title: "Epicurean paradox"
+titleAccent: "paradox"
 chapter: belief
 status: "disputed"
 uniqueness: "variant"

@@ -1,5 +1,6 @@
 ---
-title: "Achilles and the tortoise"
+title: "Achilles and the tortoise paradox"
+titleAccent: "paradox"
 aka: ["Zeno", "Zeno's paradox"]
 chapter: infinity
 status: explained

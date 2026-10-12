@@ -1,5 +1,6 @@
 ---
 title: "Rietdijk–Putnam argument"
+titleAccent: "argument"
 chapter: time-causation
 status: "disputed"
 uniqueness: "related"

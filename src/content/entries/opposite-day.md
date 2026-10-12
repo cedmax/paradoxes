@@ -1,5 +1,6 @@
 ---
 title: "Opposite Day"
+titleAccent: "Day"
 chapter: self-reference
 status: "explained"
 uniqueness: "related"

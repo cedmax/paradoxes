@@ -1,5 +1,6 @@
 ---
 title: "Low birth-weight paradox"
+titleAccent: "paradox"
 chapter: numbers-mislead
 status: "explained"
 uniqueness: "related"

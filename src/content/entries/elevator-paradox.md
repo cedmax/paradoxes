@@ -1,5 +1,6 @@
 ---
 title: "Elevator paradox"
+titleAccent: "paradox"
 chapter: numbers-mislead
 status: "explained"
 uniqueness: "related"

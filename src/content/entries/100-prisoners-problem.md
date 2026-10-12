@@ -1,5 +1,6 @@
 ---
 title: "100 prisoners problem"
+titleAccent: "problem"
 chapter: probability
 status: "explained"
 simplification: light

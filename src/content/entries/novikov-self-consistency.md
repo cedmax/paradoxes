@@ -1,11 +1,11 @@
 ---
-title: "Polchinski’s paradox"
-titleAccent: "paradox"
+title: "Novikov self-consistency principle"
+titleAccent: "principle"
 aka:
   [
     "Novikov self-consistency",
-    "Novikov self-consistency principle",
     "Novikov principle",
+    "Polchinski’s paradox",
     "Polchinski billiard-ball paradox",
   ]
 chapter: time-causation
@@ -24,7 +24,7 @@ claimB: "That same starting path can have a consistent outcome: a glancing colli
 verdict: "A glancing collision can complete the time loop instead of stopping it. The model may allow several consistent paths."
 whatBreaks: "The assumption that the apparently self-defeating starting path has no possible consistent continuation."
 statusNote: "the apparently impossible starting path has consistent solutions in the studied billiard-ball model, although the model does not prove time travel is possible."
-setup: "Joseph Polchinski imagined a ball entering a wormhole, a hypothetical passage that sends it into the past. Its older self comes out just in time to hit the younger ball, seemingly knocking it away from the entrance."
+setup: "The Novikov self-consistency principle, named after the physicist Igor Novikov, says that if travel into the past is possible, only histories that fit together can happen. Joseph Polchinski imagined a ball entering a wormhole, a hypothetical passage that sends it into the past. Its older self comes out just in time to hit the younger ball, seemingly knocking it away from the entrance."
 whyWrong: "On the path Polchinski described, the impact seems to stop the younger ball entering the wormhole. But if it never enters, the older ball cannot emerge and deliver the impact. The apparent contradiction resembles the [grandfather paradox](grandfather-paradox)."
 resolution:
   - "Fernando Echeverria, Gunnar Klinkhammer and Kip Thorne found that the apparently impossible starting paths in their model can develop into consistent collisions. An older ball gives its younger self a glancing blow, yet the younger ball still enters the wormhole and later delivers that same blow."

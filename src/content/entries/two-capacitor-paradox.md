@@ -1,5 +1,6 @@
 ---
 title: "Two capacitor paradox"
+titleAccent: "paradox"
 chapter: models
 status: "explained"
 simplification: light

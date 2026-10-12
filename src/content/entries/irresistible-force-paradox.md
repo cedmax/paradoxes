@@ -1,5 +1,6 @@
 ---
 title: "Irresistible force paradox"
+titleAccent: "paradox"
 chapter: what-counts
 status: "defused"
 uniqueness: "related"

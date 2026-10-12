@@ -1,5 +1,6 @@
 ---
 title: "Paradoxes of material implication"
+titleAccent: "material implication"
 chapter: belief
 status: "disputed"
 simplification: light

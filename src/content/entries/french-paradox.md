@@ -1,5 +1,6 @@
 ---
 title: "French paradox"
+titleAccent: "paradox"
 chapter: numbers-mislead
 status: "disputed"
 simplification: light

@@ -1,5 +1,6 @@
 ---
 title: "Ehrenfest paradox"
+titleAccent: "paradox"
 chapter: models
 status: "explained"
 uniqueness: "related"

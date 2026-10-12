@@ -1,5 +1,6 @@
 ---
 title: "Grossman–Stiglitz paradox"
+titleAccent: "paradox"
 chapter: collective
 status: "defused"
 simplification: light
