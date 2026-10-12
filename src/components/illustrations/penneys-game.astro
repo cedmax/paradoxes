@@ -5,12 +5,10 @@ import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure
 const tosses = ["T", "H", "H", "H"]
 ---
 
-<IllustrationFigure
-  lead="Why can THH beat HHH when both patterns are equally likely in three tosses?"
->
+<IllustrationFigure lead="Why can THH beat HHH when both patterns are equally likely in three tosses?">
   <p class="text-base leading-normal">
-    The first player picks <strong>HHH</strong>. The second picks <strong>THH</strong>.
-    H means heads and T means tails. The fourth toss is shown only to reveal the overlap.
+    The first player picks <strong>HHH</strong>. The second picks <strong>THH</strong>. H means
+    heads and T means tails. The fourth toss is shown only to reveal the overlap.
   </p>
 
   <div class="flex flex-col gap-3">
@@ -39,14 +37,14 @@ const tosses = ["T", "H", "H", "H"]
 
   <Callout tone="accent">
     <p class="leading-normal">
-      <strong>Why THH wins 7 times in 8:</strong> HHH can win only if the first three tosses
-      are HHH, a 1 in 8 chance. Otherwise, the first eventual HHH must follow a tail,
-      making THH appear one toss earlier.
+      <strong>Why THH wins 7 times in 8:</strong> HHH can win only if the first three tosses are
+      HHH, a 1 in 8 chance. Otherwise, the first eventual HHH must follow a tail, making THH
+      appear one toss earlier.
     </p>
   </Callout>
 
   <Fragment slot="caption">
-    The patterns overlap. Each has a 1 in 8 chance in any fixed group of three tosses,
-    but that does not give them equal chances of appearing first.
+    The patterns overlap. Each has a 1 in 8 chance in any fixed group of three tosses, but that
+    does not give them equal chances of appearing first.
   </Fragment>
 </IllustrationFigure>
