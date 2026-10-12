@@ -1,0 +1,73 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+
+const groupsOfTen = Array.from({ length: 5 })
+const extraTailsWakings = Array.from({ length: 5 })
+---
+
+<IllustrationFigure
+  name="sleeping-beauty"
+  lead="The same coin tosses, counted two different ways."
+>
+  <p class="text-base">
+    Imagine 100 fair coin tosses happen to give 50 heads and 50 tails. Heads produces one
+    waking; tails produces two.
+  </p>
+
+  <div class="flex flex-wrap gap-x-5 gap-y-2 text-base">
+    <span class="inline-flex items-center gap-2">
+      <span class="size-4 bg-series-blue" aria-hidden="true"></span>
+      Heads
+    </span>
+    <span class="inline-flex items-center gap-2">
+      <span class="size-4 bg-series-red" aria-hidden="true"></span>
+      Tails
+    </span>
+  </div>
+
+  <div class="flex flex-col gap-3">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 text-base">
+      <strong>100 coin tosses</strong>
+      <span>50 heads + 50 tails</span>
+    </div>
+    <div class="grid grid-cols-15 gap-1" aria-hidden="true">
+      {groupsOfTen.map(() => (
+        <span class="h-9 bg-series-blue"></span>
+      ))}
+      {groupsOfTen.map(() => (
+        <span class="h-9 bg-series-red"></span>
+      ))}
+    </div>
+    <p class="text-base">
+      <strong>Halfers say Beauty should believe heads is still 1 in 2.</strong> She knew the
+      coin was fair before sleeping, and waking tells her nothing new about how it landed.
+    </p>
+  </div>
+
+  <div class="flex flex-col gap-3">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 text-base">
+      <strong>150 wakings</strong>
+      <span>50 after heads + 100 after tails</span>
+    </div>
+    <div class="grid grid-cols-15 gap-1" aria-hidden="true">
+      {groupsOfTen.map(() => (
+        <span class="h-9 bg-series-blue"></span>
+      ))}
+      {groupsOfTen.map(() => (
+        <span class="h-9 bg-series-red"></span>
+      ))}
+      {extraTailsWakings.map(() => (
+        <span class="h-9 bg-series-red"></span>
+      ))}
+    </div>
+    <p class="text-base">
+      <strong>Thirders say Beauty should believe heads is 1 in 3.</strong> She cannot tell which
+      waking she is having, and only one in three wakings follows heads.
+    </p>
+  </div>
+
+  <Fragment slot="caption">
+    Each square represents ten tosses or ten wakings. Both sides agree with both counts. They
+    disagree about which count should guide Beauty's belief when she wakes.
+  </Fragment>
+</IllustrationFigure>
