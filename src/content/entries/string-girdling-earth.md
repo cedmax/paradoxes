@@ -16,7 +16,7 @@ order: 50
 written: true
 sourcesVerified: true
 problem: "Add one metre to a string that fits tightly round the equator. How far off the ground does it lift?"
-claimA: "One metre is almost nothing next to 40,000 km, so spread all the way round, the string lifts by a tiny fraction of a millimetre."
+claimA: "One metre is negligible next to the Earth’s circumference, so the string lifts by a fraction of a millimetre."
 claimB: "The string lifts about 16 cm all the way round, enough for a cat to walk under."
 verdict: "The string lifts about 16 cm. The lift depends only on the extra length, not on how big the Earth is."
 whatBreaks: "The assumption that the lift depends on the size of the Earth, so a tiny extra length spread over a huge circle has a tiny effect."
