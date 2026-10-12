@@ -70,7 +70,11 @@ const results = examples.map((example) => {
             ? "Game B uses the bad coin (9.5% chance to win)"
             : "Game B uses the good coin (74.5% chance to win)") +
         (play.change > 0 ? ". Win £1: " : ". Lose £1: ") +
-        "£" + before + " → £" + after + ".",
+        "£" +
+        before +
+        " → £" +
+        after +
+        ".",
     }
   })
   return { ...example, balances, plays }
@@ -88,11 +92,16 @@ const animateData = results.map((run) => ({
 
 <IllustrationFigure name="parrondos-paradox" lead="Two losing games. One winning combination.">
   <p class="text-base">
-    All three examples start with £30. Each play wins or loses £1. Game A uses the same coin every
-    time. Game B uses a bad coin when the money is a multiple of three, and a good coin otherwise.
+    All three examples start with £30. Each play wins or loses £1. Game A uses the same coin
+    every time. Game B uses a bad coin when the money is a multiple of three, and a good coin
+    otherwise.
   </p>
 
-  <div id="parrondos-examples" data-runs={JSON.stringify(animateData)} class="flex flex-col gap-4">
+  <div
+    id="parrondos-examples"
+    data-runs={JSON.stringify(animateData)}
+    class="flex flex-col gap-4"
+  >
     <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
       <p id="parrondos-progress" class="text-base" aria-live="polite">
         Play to watch all three examples.
@@ -110,13 +119,30 @@ const animateData = results.map((run) => ({
             class="w-full"
             viewBox={"0 0 " + width + " " + height}
             title={run.name + ": balance over twelve plays"}
-            desc={"A graph showing the change in money from £30 across twelve example plays of " + run.name + ". The line is revealed one play at a time."}
+            desc={
+              "A graph showing the change in money from £30 across twelve example plays of " +
+              run.name +
+              ". The line is revealed one play at a time."
+            }
           >
             <line x1="26" y1="14" x2="26" y2="148" stroke={stroke} stroke-opacity="0.3" />
-            <line x1="26" y1={y(startingMoney)} x2="278" y2={y(startingMoney)} stroke={stroke} stroke-opacity="0.6" />
-            <text x="1" y={y(34) + 5} font-size="12" fill={stroke}>+£4</text>
-            <text x="1" y={y(30) + 4} font-size="12" fill={stroke}>£0</text>
-            <text x="1" y={y(26) + 4} font-size="12" fill={stroke}>−£4</text>
+            <line
+              x1="26"
+              y1={y(startingMoney)}
+              x2="278"
+              y2={y(startingMoney)}
+              stroke={stroke}
+              stroke-opacity="0.6"
+            />
+            <text x="1" y={y(34) + 5} font-size="12" fill={stroke}>
+              +£4
+            </text>
+            <text x="1" y={y(30) + 4} font-size="12" fill={stroke}>
+              £0
+            </text>
+            <text x="1" y={y(26) + 4} font-size="12" fill={stroke}>
+              −£4
+            </text>
             {run.plays.map((play, index) => (
               <g>
                 <line
@@ -194,9 +220,15 @@ const animateData = results.map((run) => ({
     const panels = runs.map((run) => ({
       readout: find<HTMLElement>(root, "#parrondos-readout-" + run.id),
       ending: find<HTMLElement>(root, "#parrondos-end-" + run.id),
-      lines: Array.from(root.querySelectorAll<SVGLineElement>('[data-parrondos-line="' + run.id + '"]')),
-      points: Array.from(root.querySelectorAll<SVGCircleElement>('[data-parrondos-point="' + run.id + '"]')),
-      chips: Array.from(root.querySelectorAll<HTMLElement>('[data-parrondos-chip="' + run.id + '"]')),
+      lines: Array.from(
+        root.querySelectorAll<SVGLineElement>('[data-parrondos-line="' + run.id + '"]'),
+      ),
+      points: Array.from(
+        root.querySelectorAll<SVGCircleElement>('[data-parrondos-point="' + run.id + '"]'),
+      ),
+      chips: Array.from(
+        root.querySelectorAll<HTMLElement>('[data-parrondos-chip="' + run.id + '"]'),
+      ),
     }))
 
     const show = (step: number) => {
@@ -205,8 +237,7 @@ const animateData = results.map((run) => ({
         panel.points.forEach((point, j) => point.setAttribute("opacity", j < step ? "1" : "0"))
         panel.chips.forEach((chip, j) => {
           chip.style.opacity = j < step ? "1" : "0.3"
-          chip.style.backgroundColor =
-            j === step - 1 ? "var(--color-explained)" : "transparent"
+          chip.style.backgroundColor = j === step - 1 ? "var(--color-explained)" : "transparent"
         })
         panel.readout.textContent = step === 0 ? "Start at £30." : runs[i].readouts[step - 1]
         panel.ending.hidden = step !== count
