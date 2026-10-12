@@ -36,6 +36,9 @@ jobs:
               git commit -m "Format $slug illustration"
               git push origin "HEAD:refs/heads/$branch"
             fi
+            echo "::group::Astro check $branch"
+            pnpm check
+            echo "::endgroup::"
           done <<'BRANCHES'
           illustration/bertrands-box-gold-draws bertrands-box-paradox
           illustration/discursive-dilemma-majorities discursive-dilemma
