@@ -1,22 +1,30 @@
 ---
-import Disclosure from "~/components/illustration-kit/Disclosure.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 
 const boxes = [
-  { name: "Box 1", coins: ["gold", "gold"] },
-  { name: "Box 2", coins: ["gold", "silver"] },
-  { name: "Box 3", coins: ["silver", "silver"] },
-]
-
-const possibleDraws = [
-  { box: "Box 1", draw: "First gold coin", other: "gold" },
-  { box: "Box 1", draw: "Second gold coin", other: "gold" },
-  { box: "Box 2", draw: "Gold coin", other: "silver" },
+  {
+    name: "Box 1",
+    contents: ["G", "G"],
+    goldDraws: ["G", "G"],
+    otherCoins: ["G", "G"],
+  },
+  {
+    name: "Box 2",
+    contents: ["G", "S"],
+    goldDraws: ["G"],
+    otherCoins: ["S"],
+  },
+  {
+    name: "Box 3",
+    contents: ["S", "S"],
+    goldDraws: [],
+    otherCoins: [],
+  },
 ]
 
 const coinClass = (metal: string) => [
-  "inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-ink text-sm font-bold sm:h-10 sm:w-10 sm:text-base",
-  metal === "gold" ? "bg-series-gold" : "bg-ink/15",
+  "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-ink text-[11px] font-bold sm:h-10 sm:w-10 sm:text-base",
+  metal === "G" ? "bg-series-gold" : "bg-paper",
 ]
 ---
 
@@ -24,58 +32,98 @@ const coinClass = (metal: string) => [
   name="bertrands-box"
   lead="You drew gold. What is the chance the other coin is gold too?"
 >
-  <div class="grid grid-cols-3 gap-2 sm:gap-3" aria-label="The three boxes and their coins">
+  <p class="text-base leading-normal">
+    Follow each box down: which gold coin could you have drawn, and what would be left?
+  </p>
+
+  <div
+    class="mx-auto grid w-full max-w-xl grid-cols-[3.75rem_repeat(3,minmax(0,1fr))] gap-x-0.5 sm:grid-cols-[7rem_repeat(3,minmax(0,1fr))] sm:gap-x-3"
+    aria-label="Three boxes, the ways to draw gold, and the other coin for each possible gold draw"
+  >
+    <div aria-hidden="true"></div>
     {boxes.map((box) => (
-      <div class="flex min-w-0 flex-col items-center gap-2 border border-ink p-2 sm:p-3">
-        <p class="text-sm font-bold">{box.name}</p>
-        <div class="flex items-center justify-center gap-1 sm:gap-2">
-          {box.coins.map((metal) => (
-            <span class:list={coinClass(metal)}>
-              <span aria-hidden="true">{metal === "gold" ? "G" : "S"}</span>
-              <span class="sr-only">{metal} coin</span>
+      <p class="border-b-2 border-ink pb-2 text-center text-sm font-bold sm:text-base">
+        {box.name}
+      </p>
+    ))}
+
+    <p class="flex items-center border-b border-ink/30 py-5 pr-1 text-xs font-bold leading-tight sm:text-base">
+      In the box
+    </p>
+    {boxes.map((box) => (
+      <div class="flex min-w-0 items-center justify-center border-b border-ink/30 py-4">
+        <div
+          class="flex min-h-14 items-center justify-center gap-0.5 border-2 border-ink px-0.5 sm:gap-2 sm:px-3"
+          aria-label={box.contents
+            .map((metal) => (metal === "G" ? "Gold" : "Silver"))
+            .join(" and ")}
+        >
+          {box.contents.map((metal) => (
+            <span class:list={coinClass(metal)} aria-hidden="true">
+              {metal}
             </span>
           ))}
         </div>
       </div>
     ))}
+
+    <p class="flex items-center border-b border-ink/30 py-5 pr-1 text-xs font-bold leading-tight sm:text-base">
+      You drew gold
+    </p>
+    {boxes.map((box) => (
+      <div class="flex min-w-0 flex-col items-center justify-center gap-2 border-b border-ink/30 py-4">
+        {box.goldDraws.length > 0 ? (
+          <>
+            <div class="flex items-center justify-center gap-1 sm:gap-2">
+              {box.goldDraws.map((metal) => (
+                <span class:list={coinClass(metal)} aria-label="Gold draw">
+                  {metal}
+                </span>
+              ))}
+            </div>
+            <p class="text-center text-xs leading-tight sm:text-sm">
+              {box.goldDraws.length} {box.goldDraws.length === 1 ? "option" : "options"}
+            </p>
+          </>
+        ) : (
+          <p class="text-center text-xs leading-tight sm:text-sm">No options</p>
+        )}
+      </div>
+    ))}
+
+    <p class="flex items-center py-5 pr-1 text-xs font-bold leading-tight sm:text-base">
+      Other coin
+    </p>
+    {boxes.map((box) => (
+      <div class="flex min-w-0 flex-col items-center justify-center gap-2 py-4">
+        {box.otherCoins.length > 0 ? (
+          <>
+            <div class="flex items-center justify-center gap-1 sm:gap-2">
+              {box.otherCoins.map((metal) => (
+                <span
+                  class:list={coinClass(metal)}
+                  aria-label={metal === "G" ? "Gold remaining" : "Silver remaining"}
+                >
+                  {metal}
+                </span>
+              ))}
+            </div>
+            <p class="text-center text-xs font-bold leading-tight sm:text-sm">
+              {box.otherCoins.length} {box.otherCoins[0] === "G" ? "gold" : "silver"}
+            </p>
+          </>
+        ) : (
+          <p class="text-center text-xs leading-tight sm:text-sm">No options</p>
+        )}
+      </div>
+    ))}
   </div>
 
-  <p class="text-sm">
-    G = gold, S = silver. Each box is equally likely to be picked, then each coin
-    inside it is equally likely to be drawn.
-  </p>
-
-  <Disclosure summary="Show the possible gold draws">
-    <div class="flex flex-col gap-3 pt-3">
-      <p class="text-base leading-normal">
-        You drew gold, so Box 3 is ruled out. But the two remaining boxes
-        are not equally likely: Box 1 offers two possible gold draws.
-      </p>
-
-      <div class="grid grid-cols-3 gap-2 sm:gap-3">
-        {possibleDraws.map((draw) => (
-          <div class="flex min-w-0 flex-col items-center gap-2 border border-ink p-2 text-center sm:p-3">
-            <p class="text-sm font-bold">{draw.box}</p>
-            <p class="text-xs leading-tight">{draw.draw}</p>
-            <span class:list={coinClass("gold")}>
-              <span aria-hidden="true">G</span>
-              <span class="sr-only">Gold coin drawn</span>
-            </span>
-            <span aria-hidden="true" class="text-sm">↓</span>
-            <span class:list={coinClass(draw.other)}>
-              <span aria-hidden="true">{draw.other === "gold" ? "G" : "S"}</span>
-              <span class="sr-only">{draw.other} coin left in the box</span>
-            </span>
-            <p class="text-xs leading-tight">Other coin: {draw.other}</p>
-          </div>
-        ))}
-      </div>
-
-      <p class="text-base leading-normal">
-        These are the three equally likely gold draws. In two of them, the
-        other coin is gold.
-      </p>
-      <p class="text-xl font-bold">Chance the other coin is gold: 2/3</p>
-    </div>
-  </Disclosure>
+  <div class="flex items-center gap-4 border-t-2 border-ink pt-4">
+    <p class="text-4xl font-bold">2/3</p>
+    <p class="text-base leading-normal">
+      Chance the other coin is gold. Two of the three possible gold draws leave a gold coin
+      behind.
+    </p>
+  </div>
 </IllustrationFigure>
