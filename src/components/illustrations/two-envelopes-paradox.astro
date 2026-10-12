@@ -1,67 +1,67 @@
 ---
-import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import Callout from "~/components/illustration-kit/Callout.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Panel from "~/components/illustration-kit/Panel.astro"
-
-const outcomes = [
-  ["£10", "£20", "+£10"],
-  ["£20", "£10", "−£10"],
-  ["£20", "£40", "+£20"],
-  ["£40", "£20", "−£20"],
-]
+import SideBySide from "~/components/illustration-kit/SideBySide.astro"
 ---
 
 <IllustrationFigure
   name="two-envelopes-paradox"
-  frame={false}
-  lead="Seeing an amount changes which swaps are possible."
+  lead="You open your envelope and find £20."
 >
   <p class="text-base leading-normal">
-    Imagine two possible pairs of envelopes: £10 and £20, or £20 and £40. Each pair is equally
-    likely, and you pick one envelope at random.
+    One envelope holds twice as much as the other. What could be in the still-sealed envelope?
   </p>
 
-  <div class="flex flex-wrap gap-2" role="group" aria-label="Amount in your envelope">
+  <SideBySide>
+    <Panel title="Your envelope" class="min-w-0">
+      <p class="display mt-4 text-3xl sm:text-5xl">£20</p>
+      <p class="mt-2 text-sm">Opened</p>
+    </Panel>
+    <Panel title="Other envelope" class="min-w-0">
+      <p id="two-envelopes-other-amount" class="display mt-4 text-3xl sm:text-5xl">?</p>
+      <p class="mt-2 text-sm">Still sealed</p>
+    </Panel>
+  </SideBySide>
+
+  <div class="flex flex-wrap gap-2" role="group" aria-label="Possible contents of the other envelope">
     <button
       type="button"
       class="btn-toggle"
-      data-two-envelopes-choice="all"
+      data-two-envelopes-possibility="unknown"
       aria-pressed="true"
     >
-      Before looking
+      Unknown
     </button>
-    <button type="button" class="btn-toggle" data-two-envelopes-choice="10" aria-pressed="false">
-      £10
+    <button
+      type="button"
+      class="btn-toggle"
+      data-two-envelopes-possibility="smaller"
+      aria-pressed="false"
+    >
+      Could be £10
     </button>
-    <button type="button" class="btn-toggle" data-two-envelopes-choice="20" aria-pressed="false">
-      £20
-    </button>
-    <button type="button" class="btn-toggle" data-two-envelopes-choice="40" aria-pressed="false">
-      £40
+    <button
+      type="button"
+      class="btn-toggle"
+      data-two-envelopes-possibility="larger"
+      aria-pressed="false"
+    >
+      Could be £40
     </button>
   </div>
 
-  <div id="two-envelopes-outcomes">
-    <ComparisonTable
-      caption="Four equally likely outcomes"
-      columns={["You picked", "Other envelope", "Gain if you swap"]}
-      rows={outcomes}
-    />
-  </div>
-
-  <Panel title="Average gain from swapping" accent="gold">
-    <div aria-live="polite" aria-atomic="true">
-      <p id="two-envelopes-average" class="display mt-2 text-3xl">£0</p>
-      <p id="two-envelopes-explanation" class="mt-2 text-base leading-normal">
-        Before looking, the four equally likely gains and losses cancel.
-      </p>
-    </div>
-  </Panel>
+  <Callout tone="accent">
+    <p id="two-envelopes-explanation" aria-live="polite" aria-atomic="true">
+      The other envelope could contain £10 or £40. Knowing both are possible does not tell you
+      their chances.
+    </p>
+  </Callout>
 
   <Fragment slot="caption">
-    At £20, doubling or halving really is equally likely in this example, and swapping has an
-    average gain of £5. But the same odds do not hold at £10 or £40. The tempting argument wrongly
-    assumes they work for every amount.
+    There are still only two envelopes. The £10 and £40 buttons show different possible ways the
+    pair might have been filled. Both are possible, but that does not make them equally likely.
+    The odds depend on how the amounts were chosen.
   </Fragment>
 </IllustrationFigure>
 
@@ -71,52 +71,43 @@ const outcomes = [
   const root = illustrationRoot("two-envelopes-paradox")
 
   if (root) {
-    const buttons = root.querySelectorAll<HTMLButtonElement>("[data-two-envelopes-choice]")
-    const rows = root.querySelectorAll<HTMLTableRowElement>("#two-envelopes-outcomes tbody tr")
-    const average = find<HTMLElement>(root, "#two-envelopes-average")
+    const buttons = root.querySelectorAll<HTMLButtonElement>(
+      "[data-two-envelopes-possibility]",
+    )
+    const amount = find<HTMLElement>(root, "#two-envelopes-other-amount")
     const explanation = find<HTMLElement>(root, "#two-envelopes-explanation")
 
-    const views: Record<string, { average: string; explanation: string }> = {
-      all: {
-        average: "£0",
-        explanation: "Before looking, the four equally likely gains and losses cancel.",
-      },
-      "10": {
-        average: "+£10",
-        explanation: "Only one outcome is possible: the other envelope contains £20.",
-      },
-      "20": {
-        average: "+£5",
+    const possibilities: Record<string, { amount: string; explanation: string }> = {
+      unknown: {
+        amount: "?",
         explanation:
-          "Two outcomes remain, equally likely: gain £20 or lose £10. Their average is a £5 gain.",
+          "The other envelope could contain £10 or £40. Knowing both are possible does not tell you their chances.",
       },
-      "40": {
-        average: "−£20",
-        explanation: "Only one outcome is possible: the other envelope contains £20.",
+      smaller: {
+        amount: "£10",
+        explanation: "If the pair was £10 and £20, swapping would lose £10.",
       },
-    }
-
-    const show = (choice: string) => {
-      const view = views[choice]
-      if (!view) return
-
-      buttons.forEach((button) => {
-        button.setAttribute("aria-pressed", String(button.dataset.twoEnvelopesChoice === choice))
-      })
-
-      rows.forEach((row) => {
-        const picked = row.querySelector("th")?.textContent?.trim()
-        const matching = choice !== "all" && picked === `£${choice}`
-        row.classList.toggle("bg-disputed", matching)
-        row.classList.toggle("font-bold", matching)
-      })
-
-      average.textContent = view.average
-      explanation.textContent = view.explanation
+      larger: {
+        amount: "£40",
+        explanation: "If the pair was £20 and £40, swapping would gain £20.",
+      },
     }
 
     buttons.forEach((button) => {
-      button.addEventListener("click", () => show(button.dataset.twoEnvelopesChoice ?? "all"))
+      button.addEventListener("click", () => {
+        const choice = button.dataset.twoEnvelopesPossibility ?? "unknown"
+        const selected = possibilities[choice]
+        if (!selected) return
+
+        buttons.forEach((option) => {
+          option.setAttribute(
+            "aria-pressed",
+            String(option.dataset.twoEnvelopesPossibility === choice),
+          )
+        })
+        amount.textContent = selected.amount
+        explanation.textContent = selected.explanation
+      })
     })
   }
 </script>
