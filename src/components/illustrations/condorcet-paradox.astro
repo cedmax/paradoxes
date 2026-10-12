@@ -20,14 +20,6 @@ const comparisons = [
   name="condorcet-paradox"
   lead="Every voter has a consistent ranking. But what happens when they vote in pairs?"
 >
-  <ComparisonTable
-    caption="Three voters, three rankings"
-    columns={["Voter", "First", "Second", "Third"]}
-    rows={rankings}
-    align="center"
-    dense
-  />
-
   <div role="group" aria-label="Choose which pair to compare" class="grid grid-cols-3 gap-2">
     {comparisons.map(({ left, right }, i) => (
       <button
@@ -41,13 +33,6 @@ const comparisons = [
       </button>
     ))}
   </div>
-
-  <p id="condorcet-result" class="font-bold" aria-live="polite" aria-atomic="true">
-    Voters 1 and 3 prefer A to B. A wins, 2–1.
-  </p>
-  <p id="condorcet-highlight-note" class="text-sm">
-    The highlighted rows are the two voters in this majority.
-  </p>
 
   <SvgFigure
     name="condorcet-majorities"
@@ -90,6 +75,22 @@ const comparisons = [
     </g>
   </SvgFigure>
 
+  <p id="condorcet-result" class="font-bold" aria-live="polite" aria-atomic="true">
+    Voters 1 and 3 prefer A to B. A wins, 2–1.
+  </p>
+
+  <ComparisonTable
+    caption="How each voter ranks the options"
+    columns={["Voter", "First", "Second", "Third"]}
+    rows={rankings}
+    align="center"
+    dense
+  />
+  <p id="condorcet-highlight-note" class="text-sm">
+    Yellow cells show the two options being compared. The underlined option is
+    each voter's preference; green rows show who supports the majority winner.
+  </p>
+
   <p id="condorcet-cycle" class="font-bold" hidden>
     The cycle is complete: A beats B, B beats C, and C beats A. There is no single
     majority favourite.
@@ -113,9 +114,9 @@ const comparisons = [
     const result = find<HTMLElement>(root, "#condorcet-result")
     const cycle = find<HTMLElement>(root, "#condorcet-cycle")
     const comparisons = [
-      { supporters: [0, 2], result: "Voters 1 and 3 prefer A to B. A wins, 2–1." },
-      { supporters: [0, 1], result: "Voters 1 and 2 prefer B to C. B wins, 2–1." },
-      { supporters: [1, 2], result: "Voters 2 and 3 prefer C to A. C wins, 2–1." },
+      { left: "A", right: "B", supporters: [0, 2], result: "Voters 1 and 3 prefer A to B. A wins, 2–1." },
+      { left: "B", right: "C", supporters: [0, 1], result: "Voters 1 and 2 prefer B to C. B wins, 2–1." },
+      { left: "C", right: "A", supporters: [1, 2], result: "Voters 2 and 3 prefer C to A. C wins, 2–1." },
     ]
 
     const show = (selected: number) => {
@@ -124,7 +125,21 @@ const comparisons = [
         button.setAttribute("aria-pressed", String(i === selected))
       }
       for (const [i, row] of rows.entries()) {
-        row.classList.toggle("bg-disputed", comparison.supporters.includes(i))
+        row.classList.toggle("bg-explained", comparison.supporters.includes(i))
+        const rankCells = Array.from(row.querySelectorAll<HTMLTableCellElement>("td"))
+        const preferred = rankCells
+          .map((cell) => cell.textContent?.trim())
+          .find((candidate) => candidate === comparison.left || candidate === comparison.right)
+        for (const cell of rankCells) {
+          const candidate = cell.textContent?.trim()
+          const inPair = candidate === comparison.left || candidate === comparison.right
+          const preferredInPair = inPair && candidate === preferred
+          cell.classList.toggle("bg-disputed", inPair)
+          cell.classList.toggle("font-bold", preferredInPair)
+          cell.classList.toggle("underline", preferredInPair)
+          cell.classList.toggle("decoration-2", preferredInPair)
+          cell.classList.toggle("underline-offset-4", preferredInPair)
+        }
       }
       for (const [i, edge] of edges.entries()) {
         edge.setAttribute("opacity", i > selected ? "0" : i === selected ? "1" : ".55")
