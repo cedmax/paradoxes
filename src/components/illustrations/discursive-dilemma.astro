@@ -1,0 +1,59 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import Callout from "~/components/illustration-kit/Callout.astro"
+---
+
+<IllustrationFigure name="discursive-dilemma" frame={false} lead="Three judges, two questions, one verdict">
+  <p class="text-base leading-normal">
+    A defendant is liable only if a contract was <strong>valid</strong> and <strong>broken</strong>.
+    Each judge reasons consistently.
+  </p>
+  <ComparisonTable
+    caption="What each judge thinks"
+    columns={["Judge", "Valid?", "Broken?", "Liable?"]}
+    rows={[
+      ["A", "Yes", "No", "No"],
+      ["B", "No", "Yes", "No"],
+      ["C", "Yes", "Yes", "Yes"],
+    ]}
+    align="center"
+    dense
+  />
+  <button id="discursive-toggle" type="button" class="btn-ghost" aria-expanded="false" aria-controls="discursive-majorities">
+    Count the majorities
+  </button>
+  <div id="discursive-majorities" class="flex flex-col gap-3" hidden>
+    <ComparisonTable
+      caption="Majority answers"
+      columns={["Question", "Valid?", "Broken?", "Liable?"]}
+      rows={[["Majority", "Yes (2)", "Yes (2)", "No (2)"]]}
+      align="center"
+      dense
+      highlight={[1, 2, 3]}
+    />
+    <Callout tone="accent">
+      <p><strong>Vote on the reasons:</strong> Yes to both, so liable.</p>
+      <p><strong>Vote on the verdict:</strong> Two judges say not liable.</p>
+    </Callout>
+  </div>
+  <Fragment slot="caption">
+    The group cannot simultaneously follow the majorities on both reasons and on the final verdict.
+    The dilemma is which kind of majority the group should use.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("discursive-dilemma")
+  if (root) {
+    const button = find<HTMLButtonElement>(root, "#discursive-toggle")
+    const section = find<HTMLElement>(root, "#discursive-majorities")
+    button.addEventListener("click", () => {
+      section.hidden = !section.hidden
+      button.setAttribute("aria-expanded", String(!section.hidden))
+      button.textContent = section.hidden ? "Count the majorities" : "Hide the majorities"
+    })
+  }
+</script>
