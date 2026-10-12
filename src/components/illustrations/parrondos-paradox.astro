@@ -8,7 +8,7 @@ type Play = { game: "A" | "B"; change: 1 | -1 }
 type Example = {
   id: string
   name: string
-  accent: "blue" | "red" | "green"
+  accent?: "blue" | "gold"
   average: string
   games: Play[]
 }
@@ -26,7 +26,7 @@ const examples: Example[] = [
   {
     id: "b",
     name: "Game B alone",
-    accent: "red",
+    accent: "gold",
     average: "Loses about 0.87p per play on average",
     games: [-1, 1, -1, -1, -1, -1, 1, -1, 1, -1, 1, -1].map((change) => ({
       game: "B" as const,
@@ -36,7 +36,6 @@ const examples: Example[] = [
   {
     id: "aabb",
     name: "AABB repeated",
-    accent: "green",
     average: "Wins about 1.47p per play on average",
     games: [-1, -1, 1, 1, 1, -1, -1, 1, 1, 1, 1, -1].map((change, index) => ({
       game: index % 4 < 2 ? ("A" as const) : ("B" as const),
@@ -93,7 +92,10 @@ const animateData = results.map((run) => ({
     otherwise.
   </p>
 
-  <p class="text-base">Each green move wins £1. Each red move loses £1.</p>
+  <p class="text-base">
+    Blue lines show Game A and yellow lines show Game B. Green boxes show wins, red boxes show
+    losses.
+  </p>
 
   <div
     id="parrondos-examples"
@@ -143,7 +145,7 @@ const animateData = results.map((run) => ({
                   y1={y(run.balances[index])}
                   x2={x(index + 1)}
                   y2={y(play.after)}
-                  stroke={play.change > 0 ? series.green : series.red}
+                  stroke={play.game === "A" ? series.blue : series.gold}
                   stroke-width="3.5"
                   stroke-linecap="round"
                   opacity="0"
@@ -153,7 +155,7 @@ const animateData = results.map((run) => ({
                   cx={x(index + 1)}
                   cy={y(play.after)}
                   r="4"
-                  fill={play.change > 0 ? series.green : series.red}
+                  fill={play.game === "A" ? series.blue : series.gold}
                   opacity="0"
                 />
               </g>
@@ -167,7 +169,9 @@ const animateData = results.map((run) => ({
                 data-parrondos-chip={run.id}
                 class:list={[
                   "border px-1.5 py-1 text-xs font-bold",
-                  play.change > 0 ? "border-series-green" : "border-series-red",
+                  play.change > 0
+                    ? "border-series-green bg-series-green/10"
+                    : "border-series-red bg-series-red/10",
                 ]}
                 style="opacity: 0.3"
               >
@@ -188,8 +192,8 @@ const animateData = results.map((run) => ({
 
   <Fragment slot="caption">
     These are fixed example runs, not proof that every twelve plays will end this way. The
-    averages below each graph are calculated over many plays. Green and red show wins and
-    losses, while the labels identify which coin Game B used. Game A can change the amount of
+    averages below each graph are calculated over many plays. Blue and yellow lines identify
+    the game, while green and red boxes show wins and losses. Game A can change the amount of
     money before Game B, making B more likely to use its good coin when the games are mixed.
   </Fragment>
 </IllustrationFigure>
@@ -220,29 +224,27 @@ const animateData = results.map((run) => ({
         root.querySelectorAll<HTMLElement>('[data-parrondos-chip="' + run.id + '"]'),
       ),
     }))
-    const positions = runs.map(() => 0)
 
     const show = (index: number, step: number) => {
-      positions[index] = step
       const panel = panels[index]
       panel.lines.forEach((line, j) => line.setAttribute("opacity", j < step ? "1" : "0"))
       panel.points.forEach((point, j) => point.setAttribute("opacity", j < step ? "1" : "0"))
       panel.chips.forEach((chip, j) => {
         chip.style.opacity = j < step ? "1" : "0.3"
-        chip.style.backgroundColor = j === step - 1 ? "var(--color-ink)" : "transparent"
-        chip.style.color = j === step - 1 ? "var(--color-paper)" : ""
+        chip.style.outline = j === step - 1 ? "2px solid var(--color-ink)" : ""
+        chip.style.outlineOffset = j === step - 1 ? "1px" : ""
       })
       panel.readout.textContent = step === 0 ? "Start at £30." : runs[index].readouts[step - 1]
       panel.ending.hidden = step !== count
       panel.ending.textContent = runs[index].ending
-      panel.button.textContent = step === 0 ? "Play this example" : "Replay this example"
+      panel.button.textContent = "Play this example"
     }
 
     const stop = () => {
       if (timer) window.clearInterval(timer)
       timer = 0
       if (playing !== -1) {
-        panels[playing].button.textContent = "Replay this example"
+        panels[playing].button.textContent = "Play this example"
         playing = -1
       }
     }
