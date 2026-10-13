@@ -1,5 +1,6 @@
 ---
 title: "Twin paradox"
+description: "The twin paradox explained: why the traveller ages less, how the twins take different paths through space and time, and why their situations differ."
 titleAccent: "paradox"
 chapter: time-causation
 status: explained

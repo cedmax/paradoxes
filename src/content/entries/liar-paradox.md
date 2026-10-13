@@ -1,5 +1,6 @@
 ---
 title: Liar paradox
+description: "The liar paradox in plain words: why “This sentence is false” challenges ordinary truth rules, and what the competing fixes give up."
 titleAccent: paradox
 chapter: self-reference
 status: unreconciled

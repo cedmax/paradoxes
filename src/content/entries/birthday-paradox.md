@@ -1,5 +1,7 @@
 ---
 title: "Birthday paradox"
+description: "The birthday paradox explained: why a small group can share a birthday, how counting pairs changes the odds, and which assumptions the calculation uses."
+alternativeNames: ["Birthday problem"]
 titleAccent: "paradox"
 aka: ["birthday problem"]
 chapter: probability

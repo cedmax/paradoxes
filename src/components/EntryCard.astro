@@ -18,7 +18,7 @@ const lower = (...parts: (string | undefined)[]) =>
   parts.filter(Boolean).join(" ").toLowerCase()
 // What the card shows, and what it keeps back. The index card ends on the question, so a search
 // that only matches claimA, claimB or verdict reveals that text on the card (see index.astro).
-const shown = lower(d.title, ...d.aka, anchor?.data.title, d.problem)
+const shown = lower(d.title, ...d.aka, ...d.alternativeNames, anchor?.data.title, d.problem)
 const hits = [
   { label: "Seems true", text: d.claimA },
   { label: "Also seems true", text: d.claimB },

@@ -1,5 +1,7 @@
 ---
 title: "Unexpected hanging paradox"
+description: "The unexpected hanging paradox: how a prisoner rules out every day, why a surprise exam poses the same puzzle, and why its diagnosis is disputed."
+alternativeNames: ["Surprise exam paradox", "Surprise examination paradox"]
 titleAccent: "paradox"
 chapter: belief
 status: disputed

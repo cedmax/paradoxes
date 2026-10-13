@@ -1,5 +1,6 @@
 ---
 title: Sorites paradox
+description: "The Sorites paradox in plain words: how removing one grain at a time challenges the word “heap”, and why philosophers disagree on which rule to give up."
 titleAccent: paradox
 chapter: what-counts
 status: disputed

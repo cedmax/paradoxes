@@ -9,10 +9,14 @@ const entries = defineCollection({
   schema: z
     .object({
       title: z.string(),
+      // Optional search-result summary. Falls back to the title and verdict.
+      description: z.string().trim().min(1).optional(),
       // Title with the last word(s) highlighted on the entry page, e.g. "Sorites" + "paradox".
       titleAccent: z.string().optional(),
       // Other names people search for (e.g. "Zeno", "surprise exam"). Search only, not shown.
       aka: z.array(z.string()).default([]),
+      // Recognised alternative names, shown on the entry page and included in search.
+      alternativeNames: z.array(z.string().trim().min(1)).default([]),
       chapter: z.enum(chapterIds),
       status: z.enum(["explained", "defused", "disputed", "unreconciled"]),
       // Canonical and related entries are always listed on the index. Variants (the same puzzle in

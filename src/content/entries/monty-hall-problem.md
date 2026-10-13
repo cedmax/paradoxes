@@ -1,5 +1,6 @@
 ---
 title: "Monty Hall problem"
+description: "The Monty Hall problem explained in plain words: why switching doors improves your odds under the standard host rules, and when the answer changes."
 titleAccent: "problem"
 aka: ["three doors", "game show"]
 chapter: probability
