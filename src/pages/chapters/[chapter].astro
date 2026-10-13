@@ -61,22 +61,28 @@ const structuredData = [
   description={chapter.introduction}
   structuredData={structuredData}
 >
-  <main class="px-gutter flex flex-col gap-10 pt-4 pb-20">
-    <nav class="mono-label flex flex-wrap items-center gap-2.5" aria-label="Breadcrumb">
-      <a class="inline-flex min-h-11 items-center no-underline hover:text-accent" href="/">
-        Index
-      </a>
-      <span aria-hidden="true">/</span>
-      <span aria-current="page">{chapter.title}</span>
-    </nav>
-    <section class="flex flex-col gap-6">
-      <p class="mono-label text-accent">
-        Chapter {chapter.n}: {chapter.title}
-      </p>
-      <h1 class="font-display text-[clamp(40px,6vw,80px)] leading-none font-extrabold tracking-tighter">
+  <main class="px-gutter flex flex-col pb-20">
+    <section class="flex flex-col gap-6 pt-4 pb-12">
+      <nav class="mono-label flex flex-wrap gap-x-2.5 gap-y-1" aria-label="Breadcrumb">
+        <a class="inline-flex min-h-11 items-center no-underline hover:text-accent" href="/">
+          Index
+        </a>
+        <span class="self-center" aria-hidden="true">
+          /
+        </span>
+        <span class="inline-flex min-h-11 items-center" aria-current="page">
+          {chapter.n} {chapter.title}
+        </span>
+      </nav>
+      <h1 class="font-display text-[clamp(48px,9.4vw,148px)] leading-none font-extrabold tracking-tighter">
         {chapter.pageTitle}
       </h1>
-      <p class="max-w-190 text-xl leading-relaxed">{chapter.introduction}</p>
+      <div class="flex max-w-215 flex-col gap-2">
+        <div class="mono-label opacity-65">The chapter</div>
+        <p class="font-display text-[clamp(26px,3.2vw,40px)] leading-tight font-extrabold tracking-tight">
+          {chapter.introduction}
+        </p>
+      </div>
     </section>
     <section class="flex flex-col gap-5" aria-labelledby="chapter-entries">
       <h2 class="display text-3xl" id="chapter-entries">
@@ -88,7 +94,10 @@ const structuredData = [
         ))}
       </div>
     </section>
-    <nav class="flex flex-col gap-5 border-t-2 border-ink pt-6" aria-label="Other chapters">
+    <nav
+      class="mt-10 flex flex-col gap-5 border-t-2 border-ink pt-6"
+      aria-label="Other chapters"
+    >
       <h2 class="display text-3xl">Other chapters</h2>
       <ul class="grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
         {otherChapters.map((other) => (
