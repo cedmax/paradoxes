@@ -10,11 +10,14 @@ pnpm build        # production build (NODE_ENV=production)
 pnpm preview      # serve the built site
 pnpm lint         # ESLint + Stylelint
 pnpm check        # astro check (types, content schema)
+pnpm check:seo    # validate generated HTML, sitemap, links and structured data after a build
 pnpm format       # Prettier
 pnpm knip         # find unused exports/dependencies
 ```
 
 No test script exists. Validate changes with `pnpm lint`, `pnpm check` and `pnpm build`.
+Run `pnpm check:seo` after SEO or routing changes. For a preview build, use
+`SITE_INDEXING=noindex pnpm check:seo` so it checks preview indexing rather than production.
 If the dev server or a build reports schema fields as missing after a schema change, clear the
 content cache: `rm -rf .astro node_modules/.astro`.
 
