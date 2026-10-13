@@ -44,6 +44,8 @@ in `src/styles/global.css`. `~` maps to `/src`.
   by default, the last one opened is kept in `sessionStorage`). A search or a filter opens every
   chapter with results and the headings stop toggling until it is cleared.
 - `src/pages/entries/[slug].astro` — entry page. `src/pages/about.astro` — "How we write these".
+- `src/pages/chapters/[chapter].astro` — chapter landing pages with introductions and links
+  to published canonical and related entries. The index and entry breadcrumbs link to them.
 - `src/components/PuzzleIllustration.astro` — lazy loader for `illustrations/<slug>.astro`, see
   Illustrations below.
 - `src/components/EntryCard.astro` — index card. It shows title, status, anchor link and

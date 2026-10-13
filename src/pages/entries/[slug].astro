@@ -66,9 +66,12 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
       <span class="self-center" aria-hidden="true">
         /
       </span>
-      <span class="self-center">
+      <a
+        class="inline-flex min-h-11 items-center no-underline hover:text-accent"
+        href={`/chapters/${chapter.id}/`}
+      >
         {chapter.n} {chapter.title}
-      </span>
+      </a>
     </nav>
     <h1 class="font-display text-[clamp(48px,9.4vw,148px)] leading-none font-extrabold tracking-tighter">
       {plain}
