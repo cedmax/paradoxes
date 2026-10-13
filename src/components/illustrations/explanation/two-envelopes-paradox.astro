@@ -8,9 +8,7 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   name="two-envelopes-paradox"
   lead="Watch how opening one envelope seems to change the answer."
 >
-  <p id="two-envelopes-instruction" class="text-base leading-normal" aria-live="polite">
-    Should you swap before looking?
-  </p>
+  <p id="two-envelopes-instruction" class="text-base leading-normal" aria-live="polite" hidden></p>
 
   <SvgFigure
     name="two-envelopes-scene"
@@ -268,7 +266,7 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
     const show = (nextStep: number) => {
       step = nextStep
-      instruction.hidden = step === 3
+      instruction.hidden = step === 0 || step === 3
       const opened = step > 0
       openFlap.classList.toggle("opacity-0", !opened)
       openFlap.classList.toggle("opacity-100", opened)
@@ -299,7 +297,6 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
       }
 
       if (step === 0) {
-        instruction.textContent = "Should you swap before looking?"
         button.textContent = "Open your envelope"
       } else if (step === 1) {
         instruction.textContent =
