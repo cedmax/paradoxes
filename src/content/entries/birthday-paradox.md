@@ -1,6 +1,6 @@
 ---
 title: "Birthday paradox"
-description: "Explore the birthday paradox: how many people need to share a room before a birthday match becomes likely? A probability puzzle in plain words."
+description: "How many people need to share a room before a birthday match becomes likely? The birthday paradox asks whether any two people share a birthday."
 alternativeNames: ["Birthday problem"]
 titleAccent: "paradox"
 chapter: probability

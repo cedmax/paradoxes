@@ -1,6 +1,6 @@
 ---
 title: "Twin paradox"
-description: "Explore the twin paradox: if motion is relative, how can two twins return from a journey at different ages? The puzzle of moving clocks in plain words."
+description: "If motion is relative, why do twins disagree about whose clock runs slowly? One stays home while the other travels to a star and returns."
 titleAccent: "paradox"
 chapter: time-causation
 status: explained

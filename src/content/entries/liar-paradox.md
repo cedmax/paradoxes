@@ -1,6 +1,6 @@
 ---
 title: Liar paradox
-description: "Explore the liar paradox: can the sentence “This sentence is false” be true or false? The puzzle and proposed responses in plain words."
+description: "Is “This sentence is false” true or false? The liar paradox asks how a statement can speak about its own truth, and what rules should apply."
 titleAccent: paradox
 chapter: self-reference
 status: unreconciled

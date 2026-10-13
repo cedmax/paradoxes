@@ -1,6 +1,6 @@
 ---
 title: "Unexpected hanging paradox"
-description: "Explore the unexpected hanging paradox: can a prisoner rule out a surprise hanging? Follow the announcement, backward argument and surprise exam version."
+description: "A prisoner is promised a hanging on a day they cannot predict. Can they rule out every day? The same puzzle can be told with a surprise exam."
 alternativeNames: ["Surprise exam paradox", "Surprise examination paradox"]
 titleAccent: "paradox"
 chapter: belief

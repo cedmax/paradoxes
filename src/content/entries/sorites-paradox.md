@@ -1,6 +1,6 @@
 ---
 title: Sorites paradox
-description: "Explore the Sorites paradox: remove grains from a heap one at a time. When does it stop being a heap? A puzzle about vague boundaries in plain words."
+description: "Take grains from a heap of sand one at a time. When does it stop being a heap? The Sorites paradox asks where an ordinary word draws the line."
 titleAccent: paradox
 chapter: what-counts
 status: disputed

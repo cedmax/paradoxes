@@ -1,6 +1,6 @@
 ---
 title: "Monty Hall problem"
-description: "Explore the Monty Hall problem: three doors, one car and a host who reveals a goat. Should you switch doors, and which rules matter?"
+description: "Three doors, one car. The host shows a goat behind a door you did not pick. Should you switch? The rules matter in the Monty Hall problem."
 titleAccent: "problem"
 aka: ["three doors", "game show"]
 chapter: probability
