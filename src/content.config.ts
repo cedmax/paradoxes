@@ -3,6 +3,7 @@ import { glob } from "astro/loaders"
 import { z } from "astro/zod"
 import { chapterIds } from "./data/chapters"
 import { uniquenessIds } from "./data/uniqueness"
+import { normaliseSearch } from "./data/search"
 
 const entries = defineCollection({
   loader: glob({ pattern: "*.md", base: "./src/content/entries" }),
@@ -13,9 +14,9 @@ const entries = defineCollection({
       description: z.string().trim().min(1).optional(),
       // Title with the last word(s) highlighted on the entry page, e.g. "Sorites" + "paradox".
       titleAccent: z.string().optional(),
-      // Other names people search for (e.g. "Zeno", "surprise exam"). Search only, not shown.
+      // Extra search phrases, excluding names already listed in alternativeNames.
       aka: z.array(z.string()).default([]),
-      // Recognised alternative names, shown on the entry page and included in search.
+      // The shown subset of search aliases. Do not repeat these in aka.
       alternativeNames: z.array(z.string().trim().min(1)).default([]),
       chapter: z.enum(chapterIds),
       status: z.enum(["explained", "defused", "disputed", "unreconciled"]),
@@ -64,6 +65,16 @@ const entries = defineCollection({
       // Display order within a chapter.
       order: z.number().default(100),
     })
+    .refine(
+      (d) => {
+        const shownNames = new Set(d.alternativeNames.map(normaliseSearch))
+        return d.aka.every((name) => !shownNames.has(normaliseSearch(name)))
+      },
+      {
+        message: "aka must not repeat alternativeNames (ignoring case and apostrophe style)",
+        path: ["aka"],
+      },
+    )
     .refine((d) => (d.uniqueness === "canonical") === (d.anchor === undefined), {
       message:
         "anchor is required for related and variant entries, and not allowed for canonical ones",

@@ -200,6 +200,8 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
 </Base>
 
 <script>
+  import { normaliseSearch } from "~/data/search"
+
   const input = document.getElementById("q") as HTMLInputElement
   const chips = Array.from(document.querySelectorAll<HTMLButtonElement>("#chips button"))
   const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-card]"))
@@ -260,7 +262,9 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
   }
 
   function apply() {
-    const q = input.value.trim().toLowerCase()
+    const q = normaliseSearch(input.value)
+    const words = q.split(" ").filter(Boolean)
+    const matches = (text: string) => words.every((word) => text.includes(word))
     filtering = q !== "" || status !== "all" || onlyReviewed.checked
     hideVariants.disabled = q !== ""
     hideVariants.checked = q === "" && hideChoice
@@ -268,17 +272,19 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
     for (const card of cards) {
       const ok =
         (status === "all" || card.dataset.status === status) &&
-        (!q || (card.dataset.text ?? "").includes(q)) &&
+        matches(card.dataset.text ?? "") &&
         isShownBySwitches(card)
       card.hidden = !ok
       if (ok) shown++
       // The card ends on the question. Reveal the claim or verdict a search matched, unless the
       // match is already in what the card shows.
-      const revealed = ok && q !== "" && !(card.dataset.shown ?? "").includes(q)
+      const hiddenWords = words.filter((word) => !(card.dataset.shown ?? "").includes(word))
+      const revealed = ok && hiddenWords.length > 0
       const hits = card.querySelectorAll<HTMLElement>("[data-hit]")
       let any = false
       hits.forEach((hit) => {
-        const on = revealed && (hit.dataset.text ?? "").includes(q)
+        const on =
+          revealed && hiddenWords.some((word) => (hit.dataset.text ?? "").includes(word))
         hit.hidden = !on
         any ||= on
       })

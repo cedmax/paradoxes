@@ -36,7 +36,8 @@ in `src/styles/global.css`. `~` maps to `/src`.
   an entry's anchor and fails the build if it is unknown, a variant, or part of a loop.
 - `src/pages/index.astro` — index with search and status filter (client script). Search matches
   `title`, `aka`, `alternativeNames`, `problem`, `claimA`, `claimB`, `verdict`, plus the anchor's title for related
-  and variant entries. The index lists canonical and related entries. Variants are hidden by
+  and variant entries. Every search word must match, but words need not be adjacent. Search
+  ignores case and straight/curly apostrophe differences. The index lists canonical and related entries. Variants are hidden by
   the "Hide variants" switch in the filters block (on by default); turning it off shows them.
   The switch is disabled and off while a search is active, so search always includes variants.
   A second switch, "Only reviewed" (off by default), lists only entries with `reviewed: true`.
@@ -269,7 +270,8 @@ How to apply them:
 
 - `description` is an optional question-first search summary that holds back the answer.
   Without it, metadata uses `problem`, never `verdict`. `alternativeNames` holds recognised names shown on the entry page and
-  included in search; `aka` also accepts loose search phrases and is not shown.
+  included in search; `aka` contains additional search phrases and is not shown. Never repeat
+  a shown name in `aka`: the schema rejects overlap ignoring case and apostrophe style.
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".
