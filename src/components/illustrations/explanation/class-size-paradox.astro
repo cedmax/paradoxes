@@ -1,0 +1,107 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SideBySide from "~/components/illustration-kit/SideBySide.astro"
+import { series, stroke } from "~/data/palette"
+
+const classes = [
+  { x: 18, n: 10 },
+  { x: 100, n: 10 },
+  { x: 182, n: 10 },
+  { x: 264, n: 10 },
+  { x: 346, n: 100 },
+]
+
+const smallStudents = 40
+const largeStudents = 100
+const totalStudents = smallStudents + largeStudents
+---
+
+<IllustrationFigure lead="A smaller example: the same five classes, counted two ways">
+  <p>Four classes have 10 students each. One has 100.</p>
+
+  <SvgFigure
+    name="class-size"
+    viewBox="0 0 450 195"
+    class="mx-auto w-full max-w-lg"
+    title="Four classes of ten students, and one class of one hundred"
+    desc="Four equally spaced short blue bars each represent a class of ten. One tall gold bar represents a class of one hundred. Together the small classes have forty students, while the large class has one hundred."
+  >
+    {classes.map(({ x, n }, i) => (
+      <g>
+        <rect
+          x={x}
+          y={145 - n}
+          width="64"
+          height={n}
+          fill={n === 100 ? series.gold : series.blue}
+          stroke={stroke}
+          stroke-width="1.5"
+        />
+        <text
+          x={x + 32}
+          y={133 - n}
+          text-anchor="middle"
+          font-size="17"
+          font-weight="bold"
+          fill="currentColor"
+        >
+          {n}
+        </text>
+        <text x={x + 32} y="170" text-anchor="middle" font-size="14" fill="currentColor">
+          {i === 4 ? "Large" : "Small"}
+        </text>
+      </g>
+    ))}
+    <path d="M8 146 H442" stroke={stroke} stroke-width="2" />
+  </SvgFigure>
+
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-2">
+      <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+        <strong>Count classes</strong>
+        <span class="text-sm">The large class is 1 of 5 (20%)</span>
+      </div>
+      <div class="flex h-8 w-full border border-ink" aria-hidden="true">
+        <div class="h-full bg-series-blue" style="width: 80%"></div>
+        <div class="h-full bg-series-gold" style="width: 20%"></div>
+      </div>
+      <p class="text-sm">4 small classes · 1 large class</p>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+        <strong>Count students</strong>
+        <span class="text-sm">The large class has 100 of 140 students (71%)</span>
+      </div>
+      <div class="flex h-8 w-full border border-ink" aria-hidden="true">
+        <div
+          class="h-full bg-series-blue"
+          style={`width: ${(smallStudents / totalStudents) * 100}%`}
+        ></div>
+        <div
+          class="h-full bg-series-gold"
+          style={`width: ${(largeStudents / totalStudents) * 100}%`}
+        ></div>
+      </div>
+      <p class="text-sm">40 students in small classes · 100 in the large class</p>
+    </div>
+  </div>
+
+  <SideBySide>
+    <Panel title="Ask the college">
+      <p class="text-sm">Average across classes</p>
+      <p class="text-3xl font-bold">28</p>
+      <p class="text-sm">140 students ÷ 5 classes</p>
+    </Panel>
+    <Panel title="Ask the students">
+      <p class="text-sm">Average across students</p>
+      <p class="text-3xl font-bold">≈74</p>
+      <p class="text-sm">Most students attend the big class</p>
+    </Panel>
+  </SideBySide>
+  <Fragment slot="caption">
+    Asking students gives bigger classes more weight, so both averages are correct.
+  </Fragment>
+</IllustrationFigure>

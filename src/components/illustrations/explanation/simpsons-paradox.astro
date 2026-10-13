@@ -1,0 +1,81 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure lead="Why does the overall winner change?">
+  <SvgFigure
+    name="simpson-patient-mix"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 500 170"
+    title="Different mixes of easy and hard cases for each treatment"
+    desc="Both treatments saw 350 patients. Treatment A treated 87 with small stones and 263 with large stones. Treatment B treated 270 with small stones and 80 with large stones. The relative widths show the numbers of people in each category, explaining how B had a higher overall success rate despite A's higher success rates within each category."
+  >
+    <g fill="currentColor" font-size="17" font-weight="700">
+      <text x="8" y="56">
+        A
+      </text>
+      <text x="8" y="113">
+        B
+      </text>
+      <text x="280" y="18" font-size="15" text-anchor="middle">
+        350 patients per treatment
+      </text>
+    </g>
+    {[
+      { y: 34, small: 87, large: 263 },
+      { y: 91, small: 270, large: 80 },
+    ].map(({ y, small, large }) => {
+      const x = 58
+      const w = 420
+      const smallW = (w * small) / 350
+      return (
+        <g>
+          <rect x={x} y={y} width={smallW} height="34" fill={series.green} />
+          <rect x={x + smallW} y={y} width={w - smallW} height="34" fill={series.gold} />
+          <rect
+            x={x}
+            y={y}
+            width={w}
+            height="34"
+            stroke={stroke}
+            fill="none"
+            stroke-width="1.5"
+          />
+          <text
+            x={x + smallW / 2}
+            y={y + 23}
+            text-anchor="middle"
+            font-size="16"
+            font-weight="700"
+            fill="var(--color-ink)"
+          >
+            {small}
+          </text>
+          <text
+            x={x + smallW + (w - smallW) / 2}
+            y={y + 23}
+            text-anchor="middle"
+            font-size="16"
+            font-weight="700"
+            fill="var(--color-ink)"
+          >
+            {large}
+          </text>
+        </g>
+      )
+    })}
+    <g font-size="15" fill="currentColor">
+      <rect x="58" y="144" width="14" height="14" fill={series.green} />
+      <text x="79" y="156">
+        Small stones
+      </text>
+      <rect x="258" y="144" width="14" height="14" fill={series.gold} />
+      <text x="279" y="156">
+        Large stones
+      </text>
+    </g>
+  </SvgFigure>
+  <Fragment slot="caption">Widths show patient counts, not success rates.</Fragment>
+</IllustrationFigure>

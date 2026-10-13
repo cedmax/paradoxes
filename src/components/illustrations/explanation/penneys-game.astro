@@ -1,5 +1,4 @@
 ---
-import Callout from "~/components/illustration-kit/Callout.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Panel from "~/components/illustration-kit/Panel.astro"
 
@@ -71,17 +70,8 @@ const later = ["H", "H", "T", "H", "H", "H"]
     </p>
   </Panel>
 
-  <Callout tone="accent">
-    <p class="leading-normal">
-      <strong>Why this always happens after the opening:</strong> If HHH appears later for the
-      first time, the toss just before it must be T. If it were H, HHH would have appeared one
-      toss earlier. That T followed by the first two heads makes THH win before HHH can finish.
-    </p>
-  </Callout>
-
   <Fragment slot="caption">
-    HHH can win only on the first three tosses, with a 1 in 8 chance. In all other cases, THH
-    wins first, with a 7 in 8 chance. Equal odds for a fixed set of three tosses do not mean
-    equal odds of appearing first in a running game.
+    Equal odds for a fixed set of three tosses do not mean equal odds of appearing first in a
+    running game.
   </Fragment>
 </IllustrationFigure>

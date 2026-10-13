@@ -1,0 +1,105 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="ladder-paradox"
+  lead="The doors close together for the barn, but not for the ladder."
+>
+  <div class="flex flex-col gap-4">
+    <Panel title="From the barn" accent="gold" class="flex min-w-0 flex-col gap-2">
+      <SvgFigure
+        name="ladder-barn-doors"
+        class="w-full max-w-md"
+        viewBox="0 100 360 105"
+        title="Barn's view: both doors are closed during the same brief period"
+        desc="On two timelines, red bars show the near and far doors closed during the same brief period. They shut and reopen together in the barn's frame."
+      >
+        <g fill="currentColor" font-size="15">
+          <text x="10" y="115" font-weight="700">
+            Red = door closed
+          </text>
+          <text x="10" y="145">
+            Near
+          </text>
+          <text x="10" y="175">
+            Far
+          </text>
+          <path
+            d="M88 140 H344 M88 170 H344"
+            stroke={stroke}
+            stroke-width="1"
+            stroke-opacity="0.35"
+            fill="none"
+          />
+          <rect x="214" y="132" width="46" height="16" fill={series.red} />
+          <rect x="214" y="162" width="46" height="16" fill={series.red} />
+          <line
+            x1="214"
+            x2="214"
+            y1="130"
+            y2="181"
+            stroke={stroke}
+            stroke-width="1"
+            stroke-dasharray="3 3"
+          />
+          <line
+            x1="260"
+            x2="260"
+            y1="130"
+            y2="181"
+            stroke={stroke}
+            stroke-width="1"
+            stroke-dasharray="3 3"
+          />
+          <text x="88" y="197" font-size="13">
+            Earlier
+          </text>
+          <text x="344" y="197" text-anchor="end" font-size="13">
+            Later →
+          </text>
+        </g>
+      </SvgFigure>
+    </Panel>
+    <Panel title="From the ladder" accent="blue" class="flex min-w-0 flex-col gap-2">
+      <SvgFigure
+        name="ladder-ladder-doors"
+        class="w-full max-w-md"
+        viewBox="0 100 360 105"
+        title="Ladder's view: the far door reopens before the near door closes"
+        desc="Red bars show when each door is closed. The far-door bar finishes well before the near-door bar starts, so both doors are never closed at once in the ladder's frame."
+      >
+        <g fill="currentColor" font-size="15">
+          <text x="10" y="115" font-weight="700">
+            Red = door closed
+          </text>
+          <text x="10" y="145">
+            Near
+          </text>
+          <text x="10" y="175">
+            Far
+          </text>
+          <path
+            d="M88 140 H344 M88 170 H344"
+            stroke={stroke}
+            stroke-width="1"
+            stroke-opacity="0.35"
+            fill="none"
+          />
+          <rect x="274" y="132" width="50" height="16" fill={series.red} />
+          <rect x="118" y="162" width="50" height="16" fill={series.red} />
+          <text x="88" y="197" font-size="13">
+            Earlier
+          </text>
+          <text x="344" y="197" text-anchor="end" font-size="13">
+            Later →
+          </text>
+        </g>
+      </SvgFigure>
+    </Panel>
+  </div>
+  <Fragment slot="caption">Schematic, not to scale.</Fragment>
+</IllustrationFigure>

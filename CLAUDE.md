@@ -55,11 +55,14 @@ Routes (`/entries/<slug>/`) are stable: never rename an entry file without addin
 
 ## Illustrations
 
-An illustration is one file, `src/components/illustrations/<slug>.astro`, where `<slug>` is the
-entry id. `PuzzleIllustration` loads only the file for the page being built, so adding one needs
-no other change. Build it from the kit in `src/components/illustration-kit/`. Do not copy markup
-for sliders, tables, panels, callouts or SVG wrappers into an illustration, and do not write hex
-colours or per-component `<style>` blocks.
+An illustration is one file in either `src/components/illustrations/setup/<slug>.astro`
+or `src/components/illustrations/explanation/<slug>.astro`, where `<slug>` is the entry id.
+The folder determines where the visual appears on the entry page: in “The setup” or in the
+explanation section. `PuzzleIllustration` loads only the matching file for that section, so
+there is no placement registry or frontmatter flag to maintain. Build illustrations from the kit
+in `src/components/illustration-kit/`. Do not copy markup for sliders, tables, panels,
+callouts or SVG wrappers into an illustration, and do not write hex colours or per-component
+`<style>` blocks.
 
 Illustrations must not change the look of the kit: if something is missing, add it to the kit
 (and use it in more than one place) instead of styling around it.

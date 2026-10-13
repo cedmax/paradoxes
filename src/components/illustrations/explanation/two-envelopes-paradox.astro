@@ -8,10 +8,12 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   name="two-envelopes-paradox"
   lead="Watch how opening one envelope seems to change the answer."
 >
-  <p id="two-envelopes-instruction" class="text-base leading-normal" aria-live="polite">
-    Two envelopes contain different amounts, one double the other. You pick one at random.
-    Should you swap before looking?
-  </p>
+  <p
+    id="two-envelopes-instruction"
+    class="text-base leading-normal"
+    aria-live="polite"
+    hidden
+  ></p>
 
   <SvgFigure
     name="two-envelopes-scene"
@@ -244,11 +246,6 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   >
     Open your envelope
   </button>
-
-  <Fragment slot="caption">
-    At £20, double and half might each have a 50% chance, but only under some ways of filling
-    the envelopes. No proper way of choosing amounts makes those odds 50/50 for every amount.
-  </Fragment>
 </IllustrationFigure>
 
 <script>
@@ -274,6 +271,7 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
     const show = (nextStep: number) => {
       step = nextStep
+      instruction.hidden = step === 0 || step === 3
       const opened = step > 0
       openFlap.classList.toggle("opacity-0", !opened)
       openFlap.classList.toggle("opacity-100", opened)
@@ -304,8 +302,6 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
       }
 
       if (step === 0) {
-        instruction.textContent =
-          "Two envelopes contain different amounts, one double the other. You pick one at random. Should you swap before looking?"
         button.textContent = "Open your envelope"
       } else if (step === 1) {
         instruction.textContent =
@@ -316,8 +312,6 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
           "Now assume each possible amount in the other envelope has a 50% chance. The answer seems to change."
         button.textContent = "Are those odds really 50/50?"
       } else {
-        instruction.textContent =
-          "The two possibilities need not have equal chances. Compare how the envelopes might have been filled."
         button.textContent = "Start again"
       }
     }
