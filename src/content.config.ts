@@ -14,9 +14,9 @@ const entries = defineCollection({
       description: z.string().trim().min(1).optional(),
       // Title with the last word(s) highlighted on the entry page, e.g. "Sorites" + "paradox".
       titleAccent: z.string().optional(),
-      // Extra search phrases, excluding names already listed in alternativeNames.
+      // Extra search phrases. Exact normalised duplicates of alternativeNames are rejected.
       aka: z.array(z.string()).default([]),
-      // The shown subset of search aliases. Do not repeat these in aka.
+      // The shown subset of search aliases. Shorter search phrases may still appear in aka.
       alternativeNames: z.array(z.string().trim().min(1)).default([]),
       chapter: z.enum(chapterIds),
       status: z.enum(["explained", "defused", "disputed", "unreconciled"]),

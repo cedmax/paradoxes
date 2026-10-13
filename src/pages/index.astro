@@ -263,8 +263,6 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
 
   function apply() {
     const q = normaliseSearch(input.value)
-    const words = q.split(" ").filter(Boolean)
-    const matches = (text: string) => words.every((word) => text.includes(word))
     filtering = q !== "" || status !== "all" || onlyReviewed.checked
     hideVariants.disabled = q !== ""
     hideVariants.checked = q === "" && hideChoice
@@ -272,19 +270,17 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
     for (const card of cards) {
       const ok =
         (status === "all" || card.dataset.status === status) &&
-        matches(card.dataset.text ?? "") &&
+        (!q || (card.dataset.text ?? "").includes(q)) &&
         isShownBySwitches(card)
       card.hidden = !ok
       if (ok) shown++
       // The card ends on the question. Reveal the claim or verdict a search matched, unless the
       // match is already in what the card shows.
-      const hiddenWords = words.filter((word) => !(card.dataset.shown ?? "").includes(word))
-      const revealed = ok && hiddenWords.length > 0
+      const revealed = ok && q !== "" && !(card.dataset.shown ?? "").includes(q)
       const hits = card.querySelectorAll<HTMLElement>("[data-hit]")
       let any = false
       hits.forEach((hit) => {
-        const on =
-          revealed && hiddenWords.some((word) => (hit.dataset.text ?? "").includes(word))
+        const on = revealed && (hit.dataset.text ?? "").includes(q)
         hit.hidden = !on
         any ||= on
       })
