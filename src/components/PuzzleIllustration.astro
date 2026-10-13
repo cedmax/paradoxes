@@ -9,7 +9,9 @@ interface Props {
 // The folder determines which entry section displays the illustration.
 // Each page only loads its own illustration from that section, if one exists.
 const { slug, placement } = Astro.props
-const loaders = import.meta.glob<{ default: AstroComponentFactory }>("./illustrations/*/*.astro")
+const loaders = import.meta.glob<{ default: AstroComponentFactory }>(
+  "./illustrations/*/*.astro",
+)
 const load = loaders[`./illustrations/${placement}/${slug}.astro`]
 const Illustration = load && (await load()).default
 ---
