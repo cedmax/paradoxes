@@ -15,6 +15,7 @@ const {
 } = Astro.props
 const canonical = new URL(Astro.url.pathname, Astro.site)
 const ogImage = new URL("/og.png", Astro.site)
+const noindex = process.env.SITE_INDEXING === "noindex"
 const data = [
   ...(Astro.url.pathname === "/"
     ? [
@@ -39,6 +40,7 @@ const data = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

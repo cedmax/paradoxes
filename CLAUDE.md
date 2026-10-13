@@ -49,6 +49,9 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/components/StructuredData.astro` — safely serialises JSON-LD. `Base` adds `WebSite`
   data on the homepage; entry and chapter pages pass their breadcrumbs and content data.
   Do not invent authors or publication dates for structured data.
+- `SITE_INDEXING=noindex` adds a robots `noindex` tag to every HTML page. The deploy workflow
+  sets it for pull-request previews and explicitly uses `index` for production builds.
+  Preview robots.txt still allows crawling so search engines can read the noindex tag.
 - `src/components/PuzzleIllustration.astro` — lazy loader for `illustrations/<slug>.astro`, see
   Illustrations below.
 - `src/components/EntryCard.astro` — index card. It shows title, status, anchor link and
