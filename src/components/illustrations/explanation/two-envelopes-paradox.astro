@@ -268,6 +268,7 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
     const show = (nextStep: number) => {
       step = nextStep
+      instruction.hidden = step === 3
       const opened = step > 0
       openFlap.classList.toggle("opacity-0", !opened)
       openFlap.classList.toggle("opacity-100", opened)
@@ -309,8 +310,6 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
           "Now assume each possible amount in the other envelope has a 50% chance. The answer seems to change."
         button.textContent = "Are those odds really 50/50?"
       } else {
-        instruction.textContent =
-          "The two possibilities need not have equal chances. Compare how the envelopes might have been filled."
         button.textContent = "Start again"
       }
     }
