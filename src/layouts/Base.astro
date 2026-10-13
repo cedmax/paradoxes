@@ -17,7 +17,7 @@ const {
 } = Astro.props
 const canonical = new URL(Astro.url.pathname, Astro.site)
 const ogImage = new URL("/og.png", Astro.site)
-const noindex = pageNoindex || process.env.SITE_INDEXING === "noindex"
+const noindex = pageNoindex || import.meta.env.SITE_INDEXING === "noindex"
 const data = [
   ...(Astro.url.pathname === "/"
     ? [
