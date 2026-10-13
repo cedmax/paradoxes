@@ -46,6 +46,9 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/pages/entries/[slug].astro` — entry page. `src/pages/about.astro` — "How we write these".
 - `src/pages/chapters/[chapter].astro` — chapter landing pages with introductions and links
   to published canonical and related entries. The index and entry breadcrumbs link to them.
+- `src/components/StructuredData.astro` — safely serialises JSON-LD. `Base` adds `WebSite`
+  data on the homepage; entry and chapter pages pass their breadcrumbs and content data.
+  Do not invent authors or publication dates for structured data.
 - `src/components/PuzzleIllustration.astro` — lazy loader for `illustrations/<slug>.astro`, see
   Illustrations below.
 - `src/components/EntryCard.astro` — index card. It shows title, status, anchor link and

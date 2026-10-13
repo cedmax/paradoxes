@@ -7,6 +7,7 @@ import { chapterById } from "~/data/chapters"
 import { getPublishedEntries } from "~/data/entries"
 import { statuses, simplifications } from "~/data/status"
 import { anchorOf, uniqueness } from "~/data/uniqueness"
+import { breadcrumbData } from "~/data/seo"
 
 export async function getStaticPaths() {
   const entries = await getPublishedEntries()
@@ -52,11 +53,40 @@ const plain =
 
 const h2 = "display text-5xl"
 const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-sm font-bold"
+const description = d.description ?? `${d.title}: ${d.verdict}`
+const url = new URL(`/entries/${entry.id}/`, Astro.site).href
+const structuredData = [
+  breadcrumbData(
+    [
+      { name: "Index", path: "/" },
+      { name: chapter.title, path: `/chapters/${chapter.id}/` },
+      { name: d.title, path: `/entries/${entry.id}/` },
+    ],
+    Astro.site,
+  ),
+  ...(d.written
+    ? [
+        {
+          "@type": "Article",
+          "@id": `${url}#article`,
+          url,
+          headline: d.title,
+          description,
+          inLanguage: "en-GB",
+          mainEntityOfPage: url,
+          isPartOf: { "@id": new URL("/#website", Astro.site).href },
+          ...(d.alternativeNames.length > 0 ? { alternateName: d.alternativeNames } : {}),
+          citation: d.sources.filter((source) => source.url).map((source) => source.url),
+        },
+      ]
+    : []),
+]
 ---
 
 <Base
   title={`${d.title}: ${d.written ? "explanation" : "the puzzle"} | Logic Benders`}
-  description={d.description ?? `${d.title}: ${d.verdict}`}
+  description={description}
+  structuredData={structuredData}
 >
   <section class="px-gutter flex flex-col gap-6 pt-4 pb-12">
     <nav class="mono-label flex flex-wrap gap-x-2.5 gap-y-1" aria-label="Breadcrumb">
