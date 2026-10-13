@@ -35,10 +35,11 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/data/uniqueness.ts` — uniqueness labels and definitions, and `anchorOf`, which resolves
   an entry's anchor and fails the build if it is unknown, a variant, or part of a loop.
 - `src/pages/index.astro` — index with search and status filter (client script). Search matches
-  `title`, `aka`, `alternativeNames`, `problem`, `claimA`, `claimB`, `verdict`, plus the anchor's title for related
-  and variant entries. Search matches the query as a contiguous phrase. Search
-  ignores case and straight/curly apostrophe differences. The index lists canonical and related entries. Variants are hidden by
-  the "Hide variants" switch in the filters block (on by default); turning it off shows them.
+  `title`, `aka`, `alternativeNames`, `problem`, `claimA`, `claimB`, `verdict`, plus the
+  anchor's title for related and variant entries. Search matches the query as a contiguous
+  phrase. Search ignores case and straight/curly apostrophe differences. The index lists
+  canonical and related entries. Variants are hidden by the "Hide variants" switch in the
+  filters block (on by default); turning it off shows them.
   The switch is disabled and off while a search is active, so search always includes variants.
   A second switch, "Only reviewed" (off by default), lists only entries with `reviewed: true`.
   It works with or without a search. Both switches sit in their own row below the status chips.
@@ -268,12 +269,12 @@ How to apply them:
 
 ### Writing rules
 
-- `description` is an optional question-first search summary that holds back the answer.
-  Without it, metadata uses `problem`, never `verdict`. `alternativeNames` holds recognised names shown on the entry page and
-  included in search; `aka` contains additional search phrases and is not shown. The schema
-  rejects exact duplicates between these fields after normalising case, apostrophe style and
-  whitespace. Shorter phrases such as "surprise exam" alongside "Surprise exam paradox" are
-  allowed.
+- `description` is an optional question-first search summary that holds back the answer. Without
+  it, metadata uses `problem`, never `verdict`. `alternativeNames` holds recognised names shown
+  on the entry page and included in search; `aka` contains additional search phrases and is not
+  shown. The schema rejects exact duplicates between these fields after normalising case,
+  apostrophe style and whitespace. Shorter phrases such as "surprise exam" alongside "Surprise
+  exam paradox" are allowed.
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".
