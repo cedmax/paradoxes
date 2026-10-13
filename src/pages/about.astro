@@ -17,19 +17,6 @@ import { statuses, simplifications } from "~/data/status"
       instead and show the competing positions.
     </p>
 
-    <h2 class="display mt-3 text-3xl">Maintainer</h2>
-    <p>
-      Logic Benders is maintained by{" "}
-      <a class="underline" href="https://cedmax.net">
-        cedmax
-      </a>
-      . To flag an error or suggest a better source,{" "}
-      <a class="underline" href="/corrections/">
-        report a correction
-      </a>
-      .
-    </p>
-
     <h2 class="display mt-3 text-3xl">How a paradox ends</h2>
     <dl class="grid gap-3.5">
       {Object.values(statuses).map((s) => (
@@ -63,6 +50,15 @@ import { statuses, simplifications } from "~/data/status"
       Source checking and human review are recorded separately. A “Human reviewed” badge appears
       only after the site owner has also reviewed the content and marked the entry as approved.
       Source checking is required before that approval can be recorded.
+    </p>
+
+    <h2 class="display mt-3 text-3xl">Corrections</h2>
+    <p>
+      To flag an error or suggest a better source,{" "}
+      <a class="underline" href="/corrections/">
+        report a correction
+      </a>
+      .
     </p>
   </main>
 </Base>
