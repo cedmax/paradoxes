@@ -53,7 +53,7 @@ const plain =
 
 const h2 = "display text-5xl"
 const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-sm font-bold"
-const description = d.description ?? `${d.title}: ${d.verdict}`
+const description = d.description ?? d.problem
 const url = new URL(`/entries/${entry.id}/`, Astro.site).href
 const structuredData = [
   breadcrumbData(

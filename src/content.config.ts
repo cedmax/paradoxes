@@ -9,7 +9,7 @@ const entries = defineCollection({
   schema: z
     .object({
       title: z.string(),
-      // Optional search-result summary. Falls back to the title and verdict.
+      // Optional question-first search summary. Falls back to the problem, never the verdict.
       description: z.string().trim().min(1).optional(),
       // Title with the last word(s) highlighted on the entry page, e.g. "Sorites" + "paradox".
       titleAccent: z.string().optional(),

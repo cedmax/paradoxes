@@ -267,8 +267,8 @@ How to apply them:
 
 ### Writing rules
 
-- `description` is an optional search-result summary. Without it, metadata uses the entry's
-  title and verdict. `alternativeNames` holds recognised names shown on the entry page and
+- `description` is an optional question-first search summary that holds back the answer.
+  Without it, metadata uses `problem`, never `verdict`. `alternativeNames` holds recognised names shown on the entry page and
   included in search; `aka` also accepts loose search phrases and is not shown.
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no

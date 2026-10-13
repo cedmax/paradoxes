@@ -1,6 +1,6 @@
 ---
 title: "Twin paradox"
-description: "The twin paradox explained: why the traveller ages less, how the twins take different paths through space and time, and why their situations differ."
+description: "Explore the twin paradox: if motion is relative, how can two twins return from a journey at different ages? The puzzle of moving clocks in plain words."
 titleAccent: "paradox"
 chapter: time-causation
 status: explained

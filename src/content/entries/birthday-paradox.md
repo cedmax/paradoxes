@@ -1,6 +1,6 @@
 ---
 title: "Birthday paradox"
-description: "The birthday paradox explained: why a small group can share a birthday, how counting pairs changes the odds, and which assumptions the calculation uses."
+description: "Explore the birthday paradox: how many people need to share a room before a birthday match becomes likely? A probability puzzle in plain words."
 alternativeNames: ["Birthday problem"]
 titleAccent: "paradox"
 aka: ["birthday problem"]
