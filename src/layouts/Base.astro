@@ -5,6 +5,7 @@ import StructuredData from "~/components/StructuredData.astro"
 interface Props {
   title: string
   description?: string
+  noindex?: boolean
   structuredData?: Record<string, unknown>[]
 }
 
@@ -12,10 +13,11 @@ const {
   title,
   description = "Paradoxes in plain words. Each starts with a problem and two claims that sound right but can't both be true.",
   structuredData = [],
+  noindex: pageNoindex = false,
 } = Astro.props
 const canonical = new URL(Astro.url.pathname, Astro.site)
 const ogImage = new URL("/og.png", Astro.site)
-const noindex = process.env.SITE_INDEXING === "noindex"
+const noindex = pageNoindex || process.env.SITE_INDEXING === "noindex"
 const data = [
   ...(Astro.url.pathname === "/"
     ? [
@@ -83,8 +85,11 @@ const data = [
     <slot />
     <footer class="px-gutter flex flex-wrap justify-between gap-4 border-t-2 border-ink pt-7 pb-10 text-sm">
       <div>Logic Benders.</div>
+      <a class="inline-flex min-h-11 items-center underline" href="/corrections/">
+        Report a correction
+      </a>
       <div>
-        This site was not made by{" "}
+        Maintained by{" "}
         <a class="underline" href="https://cedmax.net">
           cedmax
         </a>

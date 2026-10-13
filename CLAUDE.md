@@ -52,6 +52,11 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `SITE_INDEXING=noindex` adds a robots `noindex` tag to every HTML page. The deploy workflow
   sets it for pull-request previews and explicitly uses `index` for production builds.
   Preview robots.txt still allows crawling so search engines can read the noindex tag.
+- `src/pages/corrections/index.astro` — static Netlify form for corrections, linked from the
+  footer, About page and entry pages. An entry link pre-fills the page URL in the browser.
+  `corrections/thanks.astro` is always noindex and excluded from the sitemap. Netlify form
+  detection must be enabled before deploying the form; optional email notifications are
+  configured in Netlify, not in this repository.
 - `src/components/PuzzleIllustration.astro` — lazy loader for `illustrations/<slug>.astro`, see
   Illustrations below.
 - `src/components/EntryCard.astro` — index card. It shows title, status, anchor link and
