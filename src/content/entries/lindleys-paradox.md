@@ -1,7 +1,7 @@
 ---
 title: "Lindley's paradox"
 titleAccent: "paradox"
-chapter: numbers-mislead
+chapter: statistics
 status: "explained"
 simplification: light
 noMaths: false

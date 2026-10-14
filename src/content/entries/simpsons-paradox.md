@@ -1,7 +1,7 @@
 ---
 title: "Simpson's paradox"
 titleAccent: "paradox"
-chapter: numbers-mislead
+chapter: statistics
 status: explained
 simplification: light
 order: 10

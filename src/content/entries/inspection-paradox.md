@@ -2,7 +2,7 @@
 title: "Inspection paradox"
 alternativeNames: ["Bus waiting time paradox"]
 titleAccent: "paradox"
-chapter: numbers-mislead
+chapter: statistics
 status: explained
 simplification: light
 noMaths: true

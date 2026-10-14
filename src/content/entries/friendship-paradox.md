@@ -1,7 +1,7 @@
 ---
 title: Friendship paradox
 titleAccent: paradox
-chapter: numbers-mislead
+chapter: statistics
 status: explained
 uniqueness: variant
 anchor: inspection-paradox
