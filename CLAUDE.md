@@ -85,11 +85,12 @@ in `src/styles/global.css`. `~` maps to `/src`.
   `actions/cache`. `ci.yml` does not build. `pnpm check:seo` verifies each entry's image is a
   1200×630 PNG in `dist`, that entries do not share one and that other pages use `/og.png`.
 - Default image: `public/og.png` is generated, not drawn by hand. `pnpm og:default` renders it
-  from the same template as the entry images (same mark, margins and orange bar, headline "It
-  can't be true. It can't be false." at the largest size that passes the margin check) and writes
-  the file. It is not part of `pnpm build` or the deploy workflow, so after any change to
-  `src/og/` or the colour tokens run it and commit the new `public/og.png`. `pnpm check:seo`
-  re-renders the default image and fails if the committed file differs.
+  from the same template as the entry images (same mark, margins and orange bar) and writes the
+  file. The headline "It can't be true. It can't be false." is 108px and centred vertically
+  between the header and the bar; a smaller step is used only if the margin check rejects 108px.
+  It is not part of `pnpm build` or the deploy workflow, so after any change to `src/og/` or the
+  colour tokens run it and commit the new `public/og.png`. `pnpm check:seo` re-renders the
+  default image and fails if the committed file differs.
 
 Routes (`/entries/<slug>/`) are stable: never rename an entry file without adding a redirect.
 
