@@ -15,7 +15,10 @@ const cells = Array.from({ length: 48 }, (_, i) => {
     light: (row + col) % 2 === 0,
   }
 })
-const shadow = "M217 57 Q252 39 292 59 L381 285 Q325 310 235 287 L183 151 Z"
+// A compact cast shadow beginning at the cylinder's base and ending on the board.
+// Keep the B check (264, 168) wholly inside the shadow; A (120, 72) stays outside.
+const shadow =
+  "M214 78 Q254 90 296 69 C298 115 313 174 317 231 Q321 248 302 254 Q257 269 207 254 Q190 249 200 231 C219 177 230 121 214 78 Z"
 ---
 
 <IllustrationFigure

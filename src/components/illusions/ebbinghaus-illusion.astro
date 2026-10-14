@@ -7,13 +7,14 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
   const angle = (index * Math.PI) / 4
   const leftSize = 38
   const rightSize = 11
-  const leftOrbit = 2.7 * leftSize
+  // Leave a clear gap between the large neighbours and the red target.
+  const leftOrbit = 3.1 * leftSize
   const rightOrbit = rightSize + 32
   return {
-    leftX: 151 + leftOrbit * Math.cos(angle),
-    leftY: 155 + leftOrbit * Math.sin(angle),
-    rightX: 459 + rightOrbit * Math.cos(angle),
-    rightY: 155 + rightOrbit * Math.sin(angle),
+    leftX: 165 + leftOrbit * Math.cos(angle),
+    leftY: 175 + leftOrbit * Math.sin(angle),
+    rightX: 485 + rightOrbit * Math.cos(angle),
+    rightY: 175 + rightOrbit * Math.sin(angle),
     angle,
   }
 })
@@ -22,7 +23,7 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
 <IllustrationFigure name="ebbinghaus-illusion" lead="Which red circle looks bigger?">
   <SvgFigure
     name="ebbinghaus-illusion"
-    viewBox="0 0 610 310"
+    viewBox="0 0 650 350"
     class="mx-auto w-full max-w-2xl"
     title="Two equally sized red circles among circles of contrasting sizes"
     desc="The red target circle on the left is surrounded by eight much larger blue circles. The identical red target on the right is tightly surrounded by eight small circles. Changing the slider swaps the surround sizes without changing either red target; both red targets are 50 SVG units across."
@@ -37,8 +38,8 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
         <circle data-ebbinghaus-neighbour cx={rightX} cy={rightY} r="11" />
       ))}
     </g>
-    <circle cx="151" cy="155" r="25" fill="var(--color-series-red)" />
-    <circle cx="459" cy="155" r="25" fill="var(--color-series-red)" />
+    <circle cx="165" cy="175" r="25" fill="var(--color-series-red)" />
+    <circle cx="485" cy="175" r="25" fill="var(--color-series-red)" />
   </SvgFigure>
   <Slider
     id="ebbinghaus-surround-size"
@@ -77,13 +78,13 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
       const sizes = [38 - 27 * t, 11 + 27 * t]
       for (const [groupIndex, group] of [left, right].entries()) {
         const r = sizes[groupIndex]
-        const orbit = Math.max(2.7 * r, r + 32)
-        const centreX = groupIndex === 0 ? 151 : 459
+        const orbit = Math.max(3.1 * r, r + 32)
+        const centreX = groupIndex === 0 ? 165 : 485
         group.forEach((circle, index) => {
           const angle = (index * Math.PI) / 4
           circle.setAttribute("r", String(r))
           circle.setAttribute("cx", String(centreX + orbit * Math.cos(angle)))
-          circle.setAttribute("cy", String(155 + orbit * Math.sin(angle)))
+          circle.setAttribute("cy", String(175 + orbit * Math.sin(angle)))
         })
       }
       if (value === 0) return "Large circles on the left; small circles on the right"
