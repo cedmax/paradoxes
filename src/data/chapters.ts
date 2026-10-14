@@ -68,7 +68,7 @@ export const chapters: Chapter[] = [
     id: "numbers-mislead",
     n: "05",
     title: "Numbers that mislead",
-    pageTitle: "Paradoxes of samples and averages",
+    pageTitle: "Statistical paradoxes",
     introduction:
       "An accurate number can still give a misleading picture. These puzzles ask how observations are selected, grouped or compared, and why changing the sample can change the apparent result.",
     blurb: "Figures that are accurate but come from a skewed sample or a bad comparison.",
