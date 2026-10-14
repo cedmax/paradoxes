@@ -54,6 +54,7 @@ for (const file of files.filter((file) => file.endsWith(".html"))) {
   pages.set(canonical, {
     file,
     description,
+    image: meta.find((item) => item.property === "og:image")?.content,
     noindex,
     graph,
     links: tags(html, "a")
@@ -70,6 +71,55 @@ assert(
   home[1].graph.some((item) => item["@type"] === "WebSite"),
   "Missing WebSite data",
 )
+
+// Every entry has its own 1200x630 PNG in dist, and no two entries share one. Every other page
+// uses the shared /og.png.
+const PNG_SIGNATURE = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])
+async function pngSize(file) {
+  const header = (await readFile(file)).subarray(0, 24)
+  assert(
+    header.length === 24 &&
+      header.subarray(0, 8).equals(PNG_SIGNATURE) &&
+      header.toString("latin1", 12, 16) === "IHDR",
+    `${file}: not a PNG`,
+  )
+  return [header.readUInt32BE(16), header.readUInt32BE(20)]
+}
+const entryImages = new Map()
+for (const [canonical, page] of pages) {
+  const entry = new URL(canonical).pathname.match(/^\/entries\/([^/]+)\/$/)?.[1]
+  if (!entry) {
+    assert.equal(
+      page.image,
+      new URL("/og.png", site).href,
+      `${page.file}: expected the shared /og.png as og:image`,
+    )
+    continue
+  }
+  assert(page.image, `${page.file}: missing og:image`)
+  const image = new URL(page.image)
+  assert.equal(image.origin, site.origin, `${page.file}: og:image uses a different origin`)
+  assert(
+    new RegExp(`^/og/${entry}-[0-9a-f]{10}\\.png$`).test(image.pathname),
+    `${page.file}: og:image should be /og/${entry}-<hash>.png, got ${image.pathname}`,
+  )
+  const [width, height] = await pngSize(resolve(dist, image.pathname.slice(1))).catch(
+    (error) => {
+      assert.fail(
+        `${page.file}: og:image ${image.pathname} is not a readable file in dist (${error.message})`,
+      )
+    },
+  )
+  assert(
+    width === 1200 && height === 630,
+    `${image.pathname}: expected 1200x630, got ${width}x${height}`,
+  )
+  assert(
+    !entryImages.has(page.image),
+    `${page.file}: shares og:image with ${entryImages.get(page.image)}`,
+  )
+  entryImages.set(page.image, page.file)
+}
 
 const sitemapIndex = await readFile(resolve(dist, "sitemap-index.xml"), "utf8")
 const sitemapUrls = new Set()
@@ -151,5 +201,5 @@ assert(
 )
 assert(!/^Disallow:\s*\/\s*$/m.test(robots), "robots.txt blocks the site")
 console.log(
-  `SEO checks passed for ${pages.size} pages and ${sitemapUrls.size} sitemap URLs (${preview ? "preview" : "production"}).`,
+  `SEO checks passed for ${pages.size} pages, ${entryImages.size} entry images and ${sitemapUrls.size} sitemap URLs (${preview ? "preview" : "production"}).`,
 )
