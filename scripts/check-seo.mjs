@@ -127,7 +127,7 @@ for (const [canonical, page] of pages) {
 const { png: freshDefault } = await renderDefaultOg()
 assert(
   freshDefault.equals(await readFile(resolve("public/og.png"))),
-  "public/og.png is out of date. Run `pnpm og:default` and commit the result.",
+  "public/og.png is out of date: run pnpm og:default",
 )
 
 const sitemapIndex = await readFile(resolve(dist, "sitemap-index.xml"), "utf8")

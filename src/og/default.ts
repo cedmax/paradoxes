@@ -5,7 +5,7 @@ import { defaultTitleSizes, ogDefaultTree } from "./template.ts"
 // headline lines inside the margins. Shared by `scripts/og-default.ts`, which writes the file,
 // and `scripts/check-seo.mjs`, which checks the committed file is current.
 export async function renderDefaultOg() {
-  for (const size of [...defaultTitleSizes].sort((a, b) => b - a)) {
+  for (const size of defaultTitleSizes) {
     try {
       return { png: await renderTree("default", ogDefaultTree(size)), size }
     } catch (error) {

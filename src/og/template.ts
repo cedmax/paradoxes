@@ -217,9 +217,14 @@ export function ogTree({ title, titleAccent, problem }: OgInput) {
 }
 
 // The default image (/og.png): the same frame, with the site's two-line headline instead of a
-// title and problem. `scripts/og-default.ts` tries these sizes, largest first, and keeps the first
-// one the margin check accepts.
-export const defaultTitleSizes = titleSteps.map(([, size]) => size)
+// title and problem. The headline is 108px. `renderDefaultOg` falls back to the next smaller step
+// only if the margin check rejects it. Unlike entry images, the headline is centred vertically
+// between the header and the top of the orange bar.
+const DEFAULT_TITLE_SIZE = 108
+export const defaultTitleSizes = titleSteps
+  .map(([, size]) => size)
+  .filter((size) => size <= DEFAULT_TITLE_SIZE)
+  .sort((a, b) => b - a)
 const DEFAULT_LINES = [
   ["It can't be true.", "ink"],
   ["It can't be false.", "accent"],
@@ -227,7 +232,13 @@ const DEFAULT_LINES = [
 export function ogDefaultTree(titleSize: number) {
   return frame([
     el(
-      { display: "flex", flexDirection: "column", marginTop: TITLE_GAP },
+      {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        // From the bottom of the header to the top of the orange bar.
+        height: BAR_TOP - TOP - ICON,
+      },
       DEFAULT_LINES.map(([text, tone]) =>
         titleRow(
           text.split(" ").map((w) => word(w, colours[tone])),
