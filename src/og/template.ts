@@ -51,11 +51,9 @@ function font(pkg: string, file: string) {
   return { data: readFileSync(join(dir, "files", file)), version }
 }
 const archivo = font("archivo", "archivo-latin-800-normal.woff")
-const archivoRegular = font("archivo", "archivo-latin-400-normal.woff")
 const mono = font("jetbrains-mono", "jetbrains-mono-latin-500-normal.woff")
 export const fonts = [
   { name: "Archivo", data: archivo.data, weight: 800, style: "normal" },
-  { name: "Archivo", data: archivoRegular.data, weight: 400, style: "normal" },
   { name: "JetBrains Mono", data: mono.data, weight: 500, style: "normal" },
 ] as const
 
@@ -180,13 +178,7 @@ function frame(body: Node[]) {
           borderTop: `3px solid ${colours.ink}`,
           background: colours.accent,
         },
-        [
-          el(
-            { fontFamily: "Archivo", fontWeight: 400, fontSize: 32 },
-            "Paradoxes in plain words.",
-          ),
-          label("LOGICBENDERS.COM"),
-        ],
+        [label("PARADOXES IN PLAIN WORDS."), label("LOGICBENDERS.COM")],
       ),
     ],
   )
@@ -260,7 +252,6 @@ export const templateVersion = createHash("sha256")
       archivo.version,
       mono.version,
       createHash("sha256").update(archivo.data).digest("hex"),
-      createHash("sha256").update(archivoRegular.data).digest("hex"),
       createHash("sha256").update(mono.data).digest("hex"),
     ]),
   )
