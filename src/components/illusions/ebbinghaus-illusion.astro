@@ -1,53 +1,167 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
-const large = Array.from({ length: 6 }, (_, i) => ({
-  x: 130 + 87 * Math.cos((i * Math.PI) / 3),
-  y: 125 + 87 * Math.sin((i * Math.PI) / 3),
-}))
-const small = Array.from({ length: 8 }, (_, i) => ({
-  x: 390 + 58 * Math.cos((i * Math.PI) / 4),
-  y: 125 + 58 * Math.sin((i * Math.PI) / 4),
-}))
+const neighbours = Array.from({ length: 8 }, (_, index) => {
+  const angle = (index * Math.PI) / 4
+  const leftSize = 38
+  const rightSize = 11
+  const leftOrbit = 2.7 * leftSize
+  const rightOrbit = rightSize + 32
+  return {
+    leftX: 151 + leftOrbit * Math.cos(angle),
+    leftY: 155 + leftOrbit * Math.sin(angle),
+    rightX: 459 + rightOrbit * Math.cos(angle),
+    rightY: 155 + rightOrbit * Math.sin(angle),
+    angle,
+  }
+})
 ---
-<IllustrationFigure name="ebbinghaus-illusion">
-  <SvgFigure name="ebbinghaus-illusion" viewBox="0 0 520 250" class="mx-auto w-full max-w-2xl"
-    title="Two equal circles among different neighbours"
-    desc="On the left a central circle is surrounded by large circles. On the right an equally sized circle is surrounded by smaller circles. The neighbours can be hidden to compare the central circles alone.">
-    <g id="ebbinghaus-context-large">
-      {large.map(({ x, y }) => <circle cx={x} cy={y} r="34" fill="none" stroke="var(--color-series-blue)" stroke-width="3" />)}
+
+<IllustrationFigure name="ebbinghaus-illusion" lead="Which red circle looks bigger?">
+  <SvgFigure
+    name="ebbinghaus-illusion"
+    viewBox="0 0 610 390"
+    class="mx-auto w-full max-w-2xl"
+    title="Two equally sized red circles among circles of contrasting sizes"
+    desc="The red target circle on the left is surrounded by eight much larger blue circles. The identical red target on the right is tightly surrounded by eight small circles. Changing the slider swaps the surround sizes without changing either red target. Comparing copies of the red circles shows the same diameter."
+  >
+    <g id="ebbinghaus-left-neighbours" fill="var(--color-series-blue)">
+      {neighbours.map(({ leftX, leftY }) => (
+        <circle data-ebbinghaus-neighbour cx={leftX} cy={leftY} r="38" />
+      ))}
     </g>
-    <g id="ebbinghaus-context-small">
-      {small.map(({ x, y }) => <circle cx={x} cy={y} r="10" fill="none" stroke="var(--color-series-blue)" stroke-width="3" />)}
+    <g id="ebbinghaus-right-neighbours" fill="var(--color-series-blue)">
+      {neighbours.map(({ rightX, rightY }) => (
+        <circle data-ebbinghaus-neighbour cx={rightX} cy={rightY} r="11" />
+      ))}
     </g>
-    <circle cx="130" cy="125" r="25" fill="var(--color-series-red)" />
-    <circle cx="390" cy="125" r="25" fill="var(--color-series-red)" />
-    <g id="ebbinghaus-measure" visibility="hidden">
-      <path d="M105 125 H155 M365 125 H415" stroke="var(--color-paper)" stroke-width="2" />
-      <path d="M105 116 V134 M155 116 V134 M365 116 V134 M415 116 V134" stroke="var(--color-ink)" stroke-width="2" />
+    <circle cx="151" cy="155" r="25" fill="var(--color-series-red)" />
+    <circle cx="459" cy="155" r="25" fill="var(--color-series-red)" />
+    <rect x="218" y="311" width="174" height="75" fill="var(--color-paper)"
+      stroke="var(--color-stroke)" stroke-width="1.5" aria-hidden="true" />
+    <g id="ebbinghaus-copy-left" visibility="hidden" transform="translate(151 155)">
+      <circle r="25" fill="var(--color-series-red)" />
+    </g>
+    <g id="ebbinghaus-copy-right" visibility="hidden" transform="translate(459 155)">
+      <circle r="25" fill="var(--color-series-red)" />
     </g>
   </SvgFigure>
-  <div class="flex flex-wrap items-center gap-4">
-    <button type="button" class="btn-toggle" id="ebbinghaus-toggle" aria-pressed="false">Remove surrounding circles</button>
-    <p id="ebbinghaus-readout" class="text-base" aria-live="polite" hidden>Both central circles are the same size: 50 SVG units across.</p>
+  <Slider
+    id="ebbinghaus-surround-size"
+    label="Change the surrounding circles"
+    min={0}
+    max={100}
+    value={0}
+    startLabel="Large on left"
+    endLabel="Large on right"
+    describedby="ebbinghaus-size-note"
+    valuetext="Large circles on the left, small circles on the right"
+  >
+    <p id="ebbinghaus-size-note" class="text-base">
+      The blue circles can change size. Both red centres remain unchanged.
+    </p>
+  </Slider>
+  <div class="flex flex-wrap items-center gap-3">
+    <button type="button" id="ebbinghaus-compare" class="btn-toggle" aria-pressed="false">
+      Compare the red circles
+    </button>
+    <p id="ebbinghaus-proof" class="text-base" aria-live="polite" hidden>
+      Both red circles have the same 50-unit diameter. The copies touch, with equal height.
+      Neither red circle changes size as the surrounding circles move.
+    </p>
   </div>
+  <Fragment slot="caption">
+    Change the surroundings first. Then bring copies of the two unchanged red circles together.
+  </Fragment>
 </IllustrationFigure>
+
 <script>
-  import { illustrationRoot, find } from "~/scripts/illustration"
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
   const root = illustrationRoot("ebbinghaus-illusion")
   if (root) {
-    const button = find<HTMLButtonElement>(root, "#ebbinghaus-toggle")
-    const groups = [find<SVGGElement>(root, "#ebbinghaus-context-large"), find<SVGGElement>(root, "#ebbinghaus-context-small")]
-    const measure = find<SVGGElement>(root, "#ebbinghaus-measure")
-    const readout = find<HTMLElement>(root, "#ebbinghaus-readout")
-    button.addEventListener("click", () => {
-      const revealed = button.getAttribute("aria-pressed") !== "true"
-      button.setAttribute("aria-pressed", String(revealed))
-      button.textContent = revealed ? "Restore surrounding circles" : "Remove surrounding circles"
-      groups.forEach((group) => group.setAttribute("visibility", revealed ? "hidden" : "visible"))
-      measure.setAttribute("visibility", revealed ? "visible" : "hidden")
-      readout.hidden = !revealed
+    const input = find<HTMLInputElement>(root, "#ebbinghaus-surround-size")
+    const left = Array.from(
+      root.querySelectorAll<SVGCircleElement>("#ebbinghaus-left-neighbours circle"),
+    )
+    const right = Array.from(
+      root.querySelectorAll<SVGCircleElement>("#ebbinghaus-right-neighbours circle"),
+    )
+    const leftCopy = find<SVGGElement>(root, "#ebbinghaus-copy-left")
+    const rightCopy = find<SVGGElement>(root, "#ebbinghaus-copy-right")
+    const button = find<HTMLButtonElement>(root, "#ebbinghaus-compare")
+    const proof = find<HTMLElement>(root, "#ebbinghaus-proof")
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+
+    bindSlider(input, (value) => {
+      const t = value / 100
+      const sizes = [38 - 27 * t, 11 + 27 * t]
+      for (const [groupIndex, group] of [left, right].entries()) {
+        const r = sizes[groupIndex]
+        const orbit = Math.max(2.7 * r, r + 32)
+        const centreX = groupIndex === 0 ? 151 : 459
+        group.forEach((circle, index) => {
+          const angle = (index * Math.PI) / 4
+          circle.setAttribute("r", String(r))
+          circle.setAttribute("cx", String(centreX + orbit * Math.cos(angle)))
+          circle.setAttribute("cy", String(155 + orbit * Math.sin(angle)))
+        })
+      }
+      if (value === 0) return "Large circles on the left; small circles on the right"
+      if (value === 50) return "Both sets of surrounding circles have the same size"
+      if (value === 100) return "Small circles on the left; large circles on the right"
+      return "Surround sizes changing; red target circles remain fixed"
     })
+
+    let progress = 0
+    let frame = 0
+    const copies = [
+      { element: leftCopy, from: [151, 155], to: [280, 349] },
+      { element: rightCopy, from: [459, 155], to: [330, 349] },
+    ] as const
+
+    const draw = () => {
+      const eased = progress * progress * (3 - 2 * progress)
+      for (const copy of copies) {
+        const x = copy.from[0] + (copy.to[0] - copy.from[0]) * eased
+        const y = copy.from[1] + (copy.to[1] - copy.from[1]) * eased
+        copy.element.setAttribute("transform", "translate(" + x + " " + y + ")")
+        copy.element.setAttribute("visibility", progress > 0 ? "visible" : "hidden")
+      }
+    }
+    const moveCopies = (target: number) => {
+      cancelAnimationFrame(frame)
+      button.setAttribute("aria-pressed", String(target === 1))
+      button.textContent = target === 1 ? "Return the circles" : "Compare the red circles"
+      proof.hidden = target !== 1
+      if (reducedMotion.matches) {
+        progress = target
+        draw()
+        return
+      }
+      const start = progress
+      const duration = 650 * Math.abs(target - start)
+      if (!duration) return
+      let first: number | null = null
+      const tick = (now: number) => {
+        if (first === null) first = now
+        const part = Math.min(1, (now - first) / duration)
+        progress = start + (target - start) * part
+        draw()
+        if (part < 1) frame = requestAnimationFrame(tick)
+      }
+      frame = requestAnimationFrame(tick)
+    }
+    button.addEventListener("click", () => {
+      moveCopies(button.getAttribute("aria-pressed") === "true" ? 0 : 1)
+    })
+    reducedMotion.addEventListener("change", () => {
+      cancelAnimationFrame(frame)
+      progress = button.getAttribute("aria-pressed") === "true" ? 1 : 0
+      draw()
+    })
+    draw()
   }
 </script>

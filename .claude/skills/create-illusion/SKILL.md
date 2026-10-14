@@ -34,10 +34,14 @@ Do not change any existing argument entry to the new format.
    the illustration kit; don't duplicate its primitives. For a checkerboard, literal
    greys may be necessary as **measured data**; never treat arbitrary hex colours as
    decorative branding.
-3. Reveal: let visitors independently verify a particular fact. Removing context,
-   connecting equal-valued tiles, showing measurements or a clear overlay all qualify.
-   Do not merely replace one statement with another. The reveal must not imply more
-   certainty than its evidence establishes.
+3. Reveal: let visitors independently verify a particular fact. First make sure
+   the initial illusion is convincing without a control. Then animate or manipulate
+   **the conditions that create the illusion**, not just the answer appearing.
+   For example, vary a circle's neighbours without resizing the target, rotate
+   arrowheads without changing the line, or move identical pixel samples into contact.
+   Simple show/hide toggles alone are rarely sufficient. Provide a fixed numerical or
+   geometric reference to establish what stayed unchanged. Never imply more certainty
+   than the proof supports.
 4. Why: explain the relevant perceptual effect without asserting disputed neural mechanisms.
    Avoid replaying the setup or proof in the body copy.
 
@@ -51,12 +55,24 @@ Do not change any existing argument entry to the new format.
 - The reveal's measurable evidence must also be available as text (e.g. exact RGB numbers,
   equal diameters or line lengths). Keep button labels and `aria-pressed` state in sync.
 - Avoid opacity and colour filters over areas claimed to have matching final RGB values.
-  Compare **rendered** pixels, excluding overlaid labels or annotations.
+  Compare **rendered** pixels, excluding overlaid labels or annotations. Construct
+  matching sampled areas as opaque fills, with no compositing above them. Keep
+  the visual evidence and its nonvisual text proof in sync.
+- Motion should serve an explicit comparison, respond to user controls, and not
+  run automatically. Support reduced motion with an immediate equivalent.
+  The strongest reveal often includes an adjustable control rather than
+  a single binary toggle.
 
 ## Review process
 
-- Prototype one figure, inspect illusion strength on desktop and ~350px mobile, try every
-  control with mouse and keyboard, and check the nonvisual proof before generalising.
+- Prototype one figure, inspect illusion strength on desktop and ~350px mobile **before
+  triggering any reveal**, try every control with mouse and keyboard, and check the
+  nonvisual proof before generalising. Compare the result with the original illusion
+  and the site's strongest existing visual explanations. If it does not work at rest,
+  redesign the figure rather than compensating with explanatory text.
+- Test that changing the context never changes the target measurements. Verify
+  that matched pixel samples really share the same rendered values, including
+  positions untouched by labels, and that measurement guides stay stationary.
 - Fetch and check each citation against every historical and scientific claim, using
   `verify-sources`. Never mark a source verified yourself or change a human review flag.
 - Run `pnpm lint`, `pnpm check`, `pnpm exec prettier --check .`,

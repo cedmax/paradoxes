@@ -2,56 +2,162 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
-// Both target tiles are identical opaque fills. Never composite over their sampled areas.
-const tileSize = 43
-const targetGrey = "#787878"
-const tiles = Array.from({ length: 48 }, (_, n) => {
-  const column = n % 8
-  const row = Math.floor(n / 8)
-  const inShadow = column >= 4
-  const light = (row + column) % 2 === 0
+// A and B are *literal* matching opaque fills, even after the cast-shadow clip.
+// There are no filters, translucent overlays or CSS opacity on either target.
+// The shadow is a second, differently shaded checkerboard clipped to a cast shape.
+const grey = "#787878"
+const cells = Array.from({ length: 48 }, (_, i) => {
+  const col = i % 8
+  const row = Math.floor(i / 8)
   return {
-    x: 40 + column * tileSize,
-    y: 30 + row * tileSize,
-    fill: light ? (inShadow ? targetGrey : "#dedede") : (inShadow ? "#343434" : targetGrey),
+    x: col * 48,
+    y: row * 48,
+    light: (row + col) % 2 === 0,
   }
 })
+const shadow = "M217 57 Q252 39 292 59 L381 285 Q325 310 235 287 L183 151 Z"
 ---
-<IllustrationFigure name="checker-shadow-illusion">
-  <SvgFigure name="checker-shadow-illusion" viewBox="0 0 440 320" class="mx-auto w-full max-w-xl"
-    title="A checkerboard with a cast shadow"
-    desc="A checkerboard with light tiles and dark tiles, partly in shadow. Tile A is dark outside the shadow, tile B is light inside it. A seems darker than B although both use the same display grey.">
-    <rect x="40" y="30" width="344" height="258" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="2" />
-    {tiles.map((tile) => <rect x={tile.x} y={tile.y} width={tileSize} height={tileSize} fill={tile.fill} />)}
-    <path d="M212 30 V116 M212 202 V288" stroke="var(--color-stroke)" stroke-width="2" stroke-dasharray="7 8" />
-    <g id="checker-proof" visibility="hidden">
-      <path d="M147.5 104.5 L147.5 190.5 L276.5 190.5" stroke={targetGrey} stroke-width="28" stroke-linejoin="round" fill="none" />
+
+<IllustrationFigure
+  name="checker-shadow-illusion"
+  lead="Look at the squares marked A and B. Does one look darker?"
+>
+  <SvgFigure
+    name="checker-shadow-illusion"
+    viewBox="0 0 560 500"
+    class="mx-auto w-full max-w-xl"
+    title="A checkerboard in perspective, with a cylinder casting a shadow"
+    desc="An upright green cylinder casts a diagonal shadow across a checkerboard. A marks a dark check outside the shadow, B a light check inside it. Although they appear different, the uninterrupted interiors of A and B are both RGB 120, 120, 120. The Compare samples control moves matching grey pieces from the checks together beneath the board."
+  >
+    <defs>
+      <clipPath id="checker-shadow-shape">
+        <path d={shadow} />
+      </clipPath>
+      <linearGradient id="checker-cylinder-side">
+        <stop offset="0" stop-color="var(--color-series-green)" />
+        <stop offset=".48" stop-color="#b8cbb8" />
+        <stop offset="1" stop-color="#3a5a3c" />
+      </linearGradient>
+    </defs>
+
+    <!-- Board and clipped shading use the same perspective transform. The targets
+         lie entirely inside one side of the shadow boundary, so they have no seams. -->
+    <g transform="matrix(.95 .18 -.44 .73 138 108)">
+      <path d="M0 288 L384 288 L384 303 L0 303 Z" fill="#626262" />
+      <path d="M384 0 L397 10 L397 297 L384 303 Z" fill="#454545" />
+      <rect width="384" height="288" fill="var(--color-paper)" />
+      {cells.map((cell) => (
+        <rect x={cell.x} y={cell.y} width="48" height="48"
+          fill={cell.light ? "#e2e2e2" : grey} />
+      ))}
+      <g clip-path="url(#checker-shadow-shape)">
+        {cells.map((cell) => (
+          <rect x={cell.x} y={cell.y} width="48" height="48"
+            fill={cell.light ? grey : "#292929"} />
+        ))}
+      </g>
+      <rect width="384" height="288" fill="none" stroke="var(--color-stroke)" stroke-width="2" />
+      <g aria-hidden="true" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle">
+        <circle cx="120" cy="72" r="15" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="1.5" />
+        <text x="120" y="78" fill="var(--color-ink)">A</text>
+        <circle cx="264" cy="168" r="15" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="1.5" />
+        <text x="264" y="174" fill="var(--color-ink)">B</text>
+      </g>
     </g>
-    <g aria-hidden="true" font-family="Arial, sans-serif" font-weight="bold" font-size="15" text-anchor="middle">
-      <circle cx="147.5" cy="104.5" r="13" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="1" />
-      <text x="147.5" y="110" fill="var(--color-ink)">A</text>
-      <circle cx="276.5" cy="190.5" r="13" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="1" />
-      <text x="276.5" y="196" fill="var(--color-ink)">B</text>
+
+    <!-- The cylinder is built from new SVG geometry, not a copy of Adelson's art. -->
+    <ellipse cx="350" cy="208" rx="45" ry="14" fill="#304d34" />
+    <path d="M305 126 V206 A45 14 0 0 0 395 206 V126 Z" fill="url(#checker-cylinder-side)" />
+    <ellipse cx="350" cy="126" rx="45" ry="14" fill="#a1bda2" stroke="#516f53" stroke-width="1" />
+
+    <g aria-hidden="true">
+      <rect x="205" y="411" width="153" height="67" fill="var(--color-paper)" stroke="var(--color-stroke)" stroke-width="1.5" />
+      <text x="281" y="430" text-anchor="middle" fill="currentColor" font-size="13">Compare the samples</text>
+    </g>
+    <!-- Copies move, not the original checks. The two final rectangles abut
+         with neither a gap nor a line between them. -->
+    <g id="checker-sample-a" visibility="hidden" transform="translate(220.32 182.16)">
+      <rect x="-17" y="-17" width="34" height="34" fill={grey} />
+    </g>
+    <g id="checker-sample-b" visibility="hidden" transform="translate(314.88 278.16)">
+      <rect x="-17" y="-17" width="34" height="34" fill={grey} />
     </g>
   </SvgFigure>
   <div class="flex flex-wrap items-center gap-4">
-    <button type="button" class="btn-toggle" id="checker-toggle" aria-pressed="false">Show the proof</button>
-    <p id="checker-readout" class="text-base" aria-live="polite" hidden>Tiles A and B have the same displayed grey: RGB 120, 120, 120 (#787878). The uninterrupted grey strip joins two matching areas.</p>
+    <button type="button" id="checker-compare" class="btn-toggle" aria-pressed="false">
+      Compare samples
+    </button>
+    <p id="checker-values" class="text-base" aria-live="polite" hidden>
+      A = RGB 120, 120, 120. B = RGB 120, 120, 120. Their colour values are exactly equal.
+      The two sample squares meet without a visible boundary.
+    </p>
   </div>
+  <Fragment slot="caption">
+    The board stays unchanged while copies of its two grey squares meet below it.
+  </Fragment>
 </IllustrationFigure>
+
 <script>
-  import { illustrationRoot, find } from "~/scripts/illustration"
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
   const root = illustrationRoot("checker-shadow-illusion")
   if (root) {
-    const button = find<HTMLButtonElement>(root, "#checker-toggle")
-    const strip = find<SVGGElement>(root, "#checker-proof")
-    const readout = find<HTMLElement>(root, "#checker-readout")
+    const button = find<HTMLButtonElement>(root, "#checker-compare")
+    const a = find<SVGGElement>(root, "#checker-sample-a")
+    const b = find<SVGGElement>(root, "#checker-sample-b")
+    const values = find<HTMLElement>(root, "#checker-values")
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const sources = [
+      { element: a, from: [220.32, 182.16], to: [264, 452] },
+      { element: b, from: [314.88, 278.16], to: [298, 452] },
+    ] as const
+    let progress = 0
+    let frame = 0
+
+    const draw = () => {
+      const ease = progress * progress * (3 - 2 * progress)
+      for (const sample of sources) {
+        const x = sample.from[0] + (sample.to[0] - sample.from[0]) * ease
+        const y = sample.from[1] + (sample.to[1] - sample.from[1]) * ease
+        sample.element.setAttribute("transform", "translate(" + x + " " + y + ")")
+      }
+      const visible = progress > 0
+      a.setAttribute("visibility", visible ? "visible" : "hidden")
+      b.setAttribute("visibility", visible ? "visible" : "hidden")
+    }
+
+    const changeTo = (target: number) => {
+      cancelAnimationFrame(frame)
+      button.setAttribute("aria-pressed", String(target === 1))
+      button.textContent = target === 1 ? "Return samples" : "Compare samples"
+      // The text proof is immediately accessible, even with motion switched off.
+      values.hidden = target !== 1
+      if (reducedMotion.matches) {
+        progress = target
+        draw()
+        return
+      }
+      const start = progress
+      const duration = 700 * Math.abs(target - start)
+      if (duration === 0) return
+      let then: number | null = null
+      const tick = (now: number) => {
+        if (then === null) then = now
+        const portion = Math.min(1, (now - then) / duration)
+        progress = start + (target - start) * portion
+        draw()
+        if (portion < 1) frame = requestAnimationFrame(tick)
+      }
+      frame = requestAnimationFrame(tick)
+    }
     button.addEventListener("click", () => {
-      const revealed = button.getAttribute("aria-pressed") !== "true"
-      button.setAttribute("aria-pressed", String(revealed))
-      button.textContent = revealed ? "Hide the proof" : "Show the proof"
-      strip.setAttribute("visibility", revealed ? "visible" : "hidden")
-      readout.hidden = !revealed
+      changeTo(button.getAttribute("aria-pressed") === "true" ? 0 : 1)
     })
+    reducedMotion.addEventListener("change", () => {
+      cancelAnimationFrame(frame)
+      progress = button.getAttribute("aria-pressed") === "true" ? 1 : 0
+      draw()
+    })
+    draw()
   }
 </script>
