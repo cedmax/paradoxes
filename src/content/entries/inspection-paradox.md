@@ -1,5 +1,6 @@
 ---
 title: "Inspection paradox"
+alternativeNames: ["Bus waiting time paradox"]
 titleAccent: "paradox"
 chapter: numbers-mislead
 status: explained
@@ -27,7 +28,7 @@ sources:
     note: "source of the Red Line figures (7.8 and 4.4), which come from the arrival times of 70 trains. Downey gives the expected wait as 3.8 minutes and the gap as about 15%. Half of 7.8 is 3.9, which gives about 13%. The 5 and 15 minute example is worked out here."
   - title: "Wikipedia: Inspection paradox"
     url: https://en.wikipedia.org/wiki/Inspection_paradox
-    note: "lands on a section of the Renewal theory article. It supports only the general idea that a random moment tends to fall in a longer gap."
+    note: "lands on a section of the Renewal theory article. It supports the general idea that a random moment tends to fall in a longer gap and the alternative name “bus waiting time paradox”."
 sourcesVerified: true
 reviewed: true
 ---

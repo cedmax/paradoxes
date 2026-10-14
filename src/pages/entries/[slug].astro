@@ -7,6 +7,7 @@ import { chapterById } from "~/data/chapters"
 import { getPublishedEntries } from "~/data/entries"
 import { statuses, simplifications } from "~/data/status"
 import { anchorOf, uniqueness } from "~/data/uniqueness"
+import { breadcrumbData } from "~/data/seo"
 
 export async function getStaticPaths() {
   const entries = await getPublishedEntries()
@@ -52,9 +53,41 @@ const plain =
 
 const h2 = "display text-5xl"
 const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-sm font-bold"
+const description = d.description ?? d.problem
+const url = new URL(`/entries/${entry.id}/`, Astro.site).href
+const structuredData = [
+  breadcrumbData(
+    [
+      { name: "Index", path: "/" },
+      { name: chapter.title, path: `/chapters/${chapter.id}/` },
+      { name: d.title, path: `/entries/${entry.id}/` },
+    ],
+    Astro.site,
+  ),
+  ...(d.written
+    ? [
+        {
+          "@type": "Article",
+          "@id": `${url}#article`,
+          url,
+          headline: d.title,
+          description,
+          inLanguage: "en-GB",
+          mainEntityOfPage: url,
+          isPartOf: { "@id": new URL("/#website", Astro.site).href },
+          ...(d.alternativeNames.length > 0 ? { alternateName: d.alternativeNames } : {}),
+          citation: d.sources.filter((source) => source.url).map((source) => source.url),
+        },
+      ]
+    : []),
+]
 ---
 
-<Base title={`${d.title}. Logic Benders`} description={d.problem}>
+<Base
+  title={`${d.title}: ${d.written ? "explanation" : "the puzzle"} | Logic Benders`}
+  description={description}
+  structuredData={structuredData}
+>
   <section class="px-gutter flex flex-col gap-6 pt-4 pb-12">
     <nav class="mono-label flex flex-wrap gap-x-2.5 gap-y-1" aria-label="Breadcrumb">
       <a class="inline-flex min-h-11 items-center no-underline hover:text-accent" href="/">
@@ -63,9 +96,12 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
       <span class="self-center" aria-hidden="true">
         /
       </span>
-      <span class="self-center">
+      <a
+        class="inline-flex min-h-11 items-center no-underline hover:text-accent"
+        href={`/chapters/${chapter.id}/`}
+      >
         {chapter.n} {chapter.title}
-      </span>
+      </a>
     </nav>
     <h1 class="font-display text-[clamp(48px,9.4vw,148px)] leading-none font-extrabold tracking-tighter">
       {plain}
@@ -76,6 +112,11 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
         </>
       )}
     </h1>
+    {d.alternativeNames.length > 0 && (
+      <p class="max-w-215 text-lg">
+        <span class="font-bold">Also known as:</span> {d.alternativeNames.join(", ")}
+      </p>
+    )}
     <div class="flex max-w-215 flex-col gap-2">
       <div class="mono-label opacity-65">The problem</div>
       <p class="font-display text-[clamp(26px,3.2vw,40px)] leading-tight font-extrabold tracking-tight">
@@ -261,12 +302,21 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
           </div>
         )}
       </div>
-      <a
-        class="inline-flex min-h-12 items-center font-bold no-underline hover:text-accent"
-        href="/"
-      >
-        ← Back to the index
-      </a>
+      <div class="flex flex-col gap-2">
+        <a
+          class="inline-flex min-h-12 items-center font-bold underline hover:text-accent"
+          href={`/corrections/?entry=${encodeURIComponent(url)}`}
+          rel="nofollow"
+        >
+          Report a correction
+        </a>
+        <a
+          class="inline-flex min-h-12 items-center font-bold no-underline hover:text-accent"
+          href="/"
+        >
+          ← Back to the index
+        </a>
+      </div>
     </aside>
   </div>
 </Base>

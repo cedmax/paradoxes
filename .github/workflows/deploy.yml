@@ -44,6 +44,13 @@ jobs:
 
       # Astro builds on the GitHub runner, not on Netlify.
       - run: pnpm build
+        env:
+          SITE_INDEXING: ${{ github.event_name == 'pull_request' && 'noindex' || 'index' }}
+
+      # Check the built output before it is deployed. A failure blocks the deploy.
+      - run: pnpm check:seo
+        env:
+          SITE_INDEXING: ${{ github.event_name == 'pull_request' && 'noindex' || 'index' }}
 
       # Fork PRs are excluded by the job-level condition above.
       # Netlify only hosts the output: the build already happened, so --no-build.

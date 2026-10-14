@@ -3,16 +3,21 @@ import { glob } from "astro/loaders"
 import { z } from "astro/zod"
 import { chapterIds } from "./data/chapters"
 import { uniquenessIds } from "./data/uniqueness"
+import { normaliseSearch } from "./data/search"
 
 const entries = defineCollection({
   loader: glob({ pattern: "*.md", base: "./src/content/entries" }),
   schema: z
     .object({
       title: z.string(),
+      // Optional question-first search summary. Falls back to the problem, never the verdict.
+      description: z.string().trim().min(1).optional(),
       // Title with the last word(s) highlighted on the entry page, e.g. "Sorites" + "paradox".
       titleAccent: z.string().optional(),
-      // Other names people search for (e.g. "Zeno", "surprise exam"). Search only, not shown.
+      // Extra search phrases. Exact normalised duplicates of alternativeNames are rejected.
       aka: z.array(z.string()).default([]),
+      // The shown subset of search aliases. Shorter search phrases may still appear in aka.
+      alternativeNames: z.array(z.string().trim().min(1)).default([]),
       chapter: z.enum(chapterIds),
       status: z.enum(["explained", "defused", "disputed", "unreconciled"]),
       // Canonical and related entries are always listed on the index. Variants (the same puzzle in
@@ -60,6 +65,16 @@ const entries = defineCollection({
       // Display order within a chapter.
       order: z.number().default(100),
     })
+    .refine(
+      (d) => {
+        const shownNames = new Set(d.alternativeNames.map(normaliseSearch))
+        return d.aka.every((name) => !shownNames.has(normaliseSearch(name)))
+      },
+      {
+        message: "aka must not repeat alternativeNames (ignoring case and apostrophe style)",
+        path: ["aka"],
+      },
+    )
     .refine((d) => (d.uniqueness === "canonical") === (d.anchor === undefined), {
       message:
         "anchor is required for related and variant entries, and not allowed for canonical ones",

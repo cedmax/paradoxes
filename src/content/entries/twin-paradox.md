@@ -1,5 +1,6 @@
 ---
 title: "Twin paradox"
+description: "If motion is relative, why do twins disagree about whose clock runs slowly? One stays home while the other travels to a star and returns."
 titleAccent: "paradox"
 chapter: time-causation
 status: explained

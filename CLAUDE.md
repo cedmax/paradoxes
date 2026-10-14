@@ -10,11 +10,14 @@ pnpm build        # production build (NODE_ENV=production)
 pnpm preview      # serve the built site
 pnpm lint         # ESLint + Stylelint
 pnpm check        # astro check (types, content schema)
+pnpm check:seo    # validate generated HTML, sitemap, links and structured data after a build
 pnpm format       # Prettier
 pnpm knip         # find unused exports/dependencies
 ```
 
 No test script exists. Validate changes with `pnpm lint`, `pnpm check` and `pnpm build`.
+Run `pnpm check:seo` after SEO or routing changes. For a preview build, use
+`SITE_INDEXING=noindex pnpm check:seo` so it checks preview indexing rather than production.
 If the dev server or a build reports schema fields as missing after a schema change, clear the
 content cache: `rm -rf .astro node_modules/.astro`.
 
@@ -32,9 +35,11 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/data/uniqueness.ts` — uniqueness labels and definitions, and `anchorOf`, which resolves
   an entry's anchor and fails the build if it is unknown, a variant, or part of a loop.
 - `src/pages/index.astro` — index with search and status filter (client script). Search matches
-  `title`, `aka`, `problem`, `claimA`, `claimB`, `verdict`, plus the anchor's title for related
-  and variant entries. The index lists canonical and related entries. Variants are hidden by
-  the "Hide variants" switch in the filters block (on by default); turning it off shows them.
+  `title`, `aka`, `alternativeNames`, `problem`, `claimA`, `claimB`, `verdict`, plus the
+  anchor's title for related and variant entries. Search matches the query as a contiguous
+  phrase. Search ignores case and straight/curly apostrophe differences. The index lists
+  canonical and related entries. Variants are hidden by the "Hide variants" switch in the
+  filters block (on by default); turning it off shows them.
   The switch is disabled and off while a search is active, so search always includes variants.
   A second switch, "Only reviewed" (off by default), lists only entries with `reviewed: true`.
   It works with or without a search. Both switches sit in their own row below the status chips.
@@ -44,6 +49,21 @@ in `src/styles/global.css`. `~` maps to `/src`.
   by default, the last one opened is kept in `sessionStorage`). A search or a filter opens every
   chapter with results and the headings stop toggling until it is cleared.
 - `src/pages/entries/[slug].astro` — entry page. `src/pages/about.astro` — "How we write these".
+- `src/pages/chapters/[chapter].astro` — chapter landing pages with introductions and links
+  to published canonical and related entries. On the index, the chapter heading links to its
+  page from `md` up; below `md` the heading toggles the chapter, so the open chapter shows an
+  "Explore this chapter" link instead. Entry breadcrumbs also link to them.
+- `src/components/StructuredData.astro` — safely serialises JSON-LD. `Base` adds `WebSite`
+  data on the homepage; entry and chapter pages pass their breadcrumbs and content data.
+  Do not invent authors or publication dates for structured data.
+- `SITE_INDEXING=noindex` adds a robots `noindex` tag to every HTML page. The deploy workflow
+  sets it for pull-request previews and explicitly uses `index` for production builds.
+  Preview robots.txt still allows crawling so search engines can read the noindex tag.
+- `src/pages/corrections/index.astro` — static Netlify form for corrections, linked from the
+  footer, About page and entry pages. An entry link pre-fills the page URL in the browser.
+  `corrections/thanks.astro` is always noindex and excluded from the sitemap. Netlify form
+  detection must be enabled before deploying the form; optional email notifications are
+  configured in Netlify, not in this repository.
 - `src/components/PuzzleIllustration.astro` — lazy loader for `illustrations/<slug>.astro`, see
   Illustrations below.
 - `src/components/EntryCard.astro` — index card. It shows title, status, anchor link and
@@ -251,6 +271,12 @@ How to apply them:
 
 ### Writing rules
 
+- `description` is an optional question-first search summary that holds back the answer. Without
+  it, metadata uses `problem`, never `verdict`. `alternativeNames` holds recognised names shown
+  on the entry page and included in search; `aka` contains additional search phrases and is not
+  shown. The schema rejects exact duplicates between these fields after normalising case,
+  apostrophe style and whitespace. Shorter phrases such as "surprise exam" alongside "Surprise
+  exam paradox" are allowed.
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".

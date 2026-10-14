@@ -1,5 +1,6 @@
 ---
 title: Sorites paradox
+description: "Take grains from a heap of sand one at a time. When does it stop being a heap? The Sorites paradox asks where an ordinary word draws the line."
 titleAccent: paradox
 chapter: what-counts
 status: disputed

@@ -1,0 +1,14 @@
+---
+interface Props {
+  data: Record<string, unknown>[]
+}
+
+const { data } = Astro.props
+// Escape HTML delimiters so text cannot close the script element.
+const json = JSON.stringify({ "@context": "https://schema.org", "@graph": data }).replaceAll(
+  "<",
+  "\\u003c",
+)
+---
+
+{data.length > 0 && <script type="application/ld+json" set:html={json} />}
