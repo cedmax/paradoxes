@@ -1,7 +1,7 @@
 ---
 title: "French paradox"
 titleAccent: "paradox"
-chapter: numbers-mislead
+chapter: statistics
 status: "disputed"
 simplification: light
 noMaths: true

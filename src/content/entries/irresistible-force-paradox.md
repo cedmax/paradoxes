@@ -1,7 +1,7 @@
 ---
 title: "Irresistible force paradox"
 titleAccent: "paradox"
-chapter: what-counts
+chapter: identity
 status: "defused"
 uniqueness: "related"
 anchor: "omnipotence-paradox"

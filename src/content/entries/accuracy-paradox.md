@@ -3,7 +3,7 @@ title: "Accuracy paradox"
 titleAccent: "paradox"
 aka:
   ["class imbalance", "99 percent accurate", "accuracy is misleading", "precision and recall"]
-chapter: numbers-mislead
+chapter: statistics
 status: explained
 uniqueness: related
 anchor: base-rate-fallacy

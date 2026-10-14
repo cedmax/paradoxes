@@ -6,6 +6,7 @@ import { chapters } from "~/data/chapters"
 import { getPublishedEntries } from "~/data/entries"
 import { anchorOf } from "~/data/uniqueness"
 import { breadcrumbData } from "~/data/seo"
+import { splitTitle } from "~/data/title"
 
 export async function getStaticPaths() {
   const entries = await getPublishedEntries()
@@ -19,6 +20,10 @@ interface Props {
 }
 
 const { chapter } = Astro.props
+if (!chapter.title.endsWith(chapter.titleAccent)) {
+  throw new Error(`Invalid title accent for chapter: ${chapter.id}`)
+}
+const { plain, accent, separator } = splitTitle(chapter.title, chapter.titleAccent)
 const all = await getPublishedEntries()
 const entries = all
   .filter((entry) => entry.data.chapter === chapter.id && entry.data.uniqueness !== "variant")
@@ -75,7 +80,13 @@ const structuredData = [
         </span>
       </nav>
       <h1 class="font-display text-[clamp(48px,9.4vw,148px)] leading-none font-extrabold tracking-tighter">
-        {chapter.title}
+        {plain}
+        {accent && (
+          <>
+            {separator}
+            <span class="text-accent">{accent}</span>
+          </>
+        )}
       </h1>
       <p class="max-w-170 text-xl leading-snug sm:text-2xl">{chapter.introduction}</p>
     </section>

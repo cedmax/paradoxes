@@ -1,7 +1,7 @@
 ---
 title: "Tritone paradox"
 titleAccent: "paradox"
-chapter: what-counts
+chapter: identity
 status: "explained"
 simplification: light
 noMaths: true

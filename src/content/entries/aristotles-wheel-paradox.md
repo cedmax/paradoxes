@@ -1,7 +1,7 @@
 ---
 title: "Aristotle's wheel paradox"
 titleAccent: "paradox"
-chapter: shapes-sums
+chapter: shapes
 status: "explained"
 uniqueness: "related"
 anchor: "galileos-paradox"

@@ -10,7 +10,7 @@ aka:
     "taxicab number",
     "Hardy and Ramanujan",
   ]
-chapter: what-counts
+chapter: identity
 order: 20
 status: defused
 uniqueness: related

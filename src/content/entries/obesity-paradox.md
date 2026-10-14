@@ -9,7 +9,7 @@ aka:
     "heart failure and obesity",
     "collider bias",
   ]
-chapter: numbers-mislead
+chapter: statistics
 order: 90
 status: disputed
 uniqueness: related

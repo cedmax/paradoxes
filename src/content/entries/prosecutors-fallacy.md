@@ -1,7 +1,7 @@
 ---
 title: Prosecutor's fallacy
 titleAccent: fallacy
-chapter: numbers-mislead
+chapter: statistics
 status: explained
 uniqueness: variant
 anchor: base-rate-fallacy

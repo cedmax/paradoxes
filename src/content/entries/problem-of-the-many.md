@@ -2,7 +2,7 @@
 title: "Problem of the many"
 titleAccent: "the many"
 aka: ["many cats", "cloud problem", "Unger", "Tibbles"]
-chapter: what-counts
+chapter: identity
 order: 60
 status: disputed
 uniqueness: related
