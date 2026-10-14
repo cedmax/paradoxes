@@ -12,7 +12,9 @@ interface Props {
 
 const { entry, anchor } = Astro.props
 const d = entry.data
-const s = d.format === "argument" ? statuses[d.status] : undefined
+// Only an explicitly marked illusion uses the new layout. Legacy entries remain arguments.
+const isIllusion = d.format === "illusion"
+const s = isIllusion ? undefined : statuses[d.status]
 const u = uniqueness[d.uniqueness]
 // Searching an anchor's title also finds its variants and related entries.
 const searchText = (...parts: (string | undefined)[]) =>
@@ -26,13 +28,13 @@ const shown = searchText(
   anchor?.data.title,
   d.problem,
 )
-const hits = d.format === "argument"
-  ? [
+const hits = isIllusion
+  ? [{ label: "Why it happens", text: d.why }]
+  : [
       { label: "Seems true", text: d.claimA },
       { label: "Also seems true", text: d.claimB },
       { label: `How it ends: ${s?.label}`, text: d.verdict },
     ]
-  : [{ label: "Why it happens", text: d.why }]
 const haystack = searchText(shown, ...hits.map((h) => h.text))
 ---
 
@@ -40,8 +42,8 @@ const haystack = searchText(shown, ...hits.map((h) => h.text))
 <div
   class="relative flex flex-col gap-4 border-2 border-ink bg-paper p-5 text-ink transition-colors duration-100 hover:bg-ink hover:text-paper has-[[data-main]:focus-visible]:-outline-offset-4 has-[[data-main]:focus-visible]:outline-4 has-[[data-main]:focus-visible]:outline-accent motion-reduce:transition-none"
   data-card
-  data-status={d.format === "argument" ? d.status : undefined}
-  data-format={d.format}
+  data-status={isIllusion ? undefined : d.status}
+  data-format={isIllusion ? "illusion" : "argument"}
   data-variant={String(d.uniqueness === "variant")}
   data-reviewed={String(d.reviewed)}
   data-text={haystack}
