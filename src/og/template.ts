@@ -1,14 +1,19 @@
 import { createHash } from "node:crypto"
 import { readFileSync } from "node:fs"
 import { join, resolve } from "node:path"
-import css from "~/styles/global.css?raw"
-import { splitTitle } from "~/data/title"
-import renderSource from "./render.ts?raw"
-import templateSource from "./template.ts?raw"
+import { splitTitle } from "../data/title.ts"
 
 // Per-entry Open Graph image: the layout, the sizing steps and the hash that names the file.
 // `render.ts` turns the tree below into a PNG. Both files are part of `templateVersion`, so
 // editing either one changes every image URL.
+//
+// This module is also run by `scripts/og-default.ts` with plain Node, outside Vite. That is why it
+// reads files from the project root and imports with relative paths and extensions, instead of
+// using `?raw` and the `~` alias.
+const read = (file: string) => readFileSync(resolve(file), "utf8")
+const css = read("src/styles/global.css")
+const renderSource = read("src/og/render.ts")
+const templateSource = read("src/og/template.ts")
 
 export const WIDTH = 1200
 export const HEIGHT = 630

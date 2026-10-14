@@ -14,7 +14,7 @@ import {
   TOP,
   WIDTH,
   type OgInput,
-} from "./template"
+} from "./template.ts"
 
 // Rendered PNGs live here between builds (gitignored with node_modules). The deploy workflow
 // restores and saves this directory, so a typical build only renders the images that changed.
@@ -31,6 +31,8 @@ function rgb(hex: string) {
 // its size step, so fail the build instead of shipping a clipped image. A few pixels of slack
 // allow for glyph side bearings and negative tracking.
 const BLEED = 4
+
+export class OutsideMarginError extends Error {}
 
 function assertInsideMargin(slug: string, pixels: Uint8Array) {
   const [pr, pg, pb] = rgb(colours.paper)
@@ -49,7 +51,7 @@ function assertInsideMargin(slug: string, pixels: Uint8Array) {
       const diff =
         Math.abs(pixels[i] - pr) + Math.abs(pixels[i + 1] - pg) + Math.abs(pixels[i + 2] - pb)
       if (diff > 24) {
-        throw new Error(
+        throw new OutsideMarginError(
           `OG image for "${slug}" draws outside its text area at (${x}, ${y}): text must stay inside the ${MARGIN}px side margins, below the header margin and above the orange bar. ` +
             "Add a smaller step in the size steps of src/og/template.ts.",
         )
@@ -58,8 +60,10 @@ function assertInsideMargin(slug: string, pixels: Uint8Array) {
   }
 }
 
-async function render(slug: string, input: OgInput) {
-  const svg = await satori(ogTree(input) as Parameters<typeof satori>[0], {
+// Draws a tree from `template.ts` and runs the margin check. Used for entry images and, through
+// `scripts/og-default.ts`, for the default /og.png.
+export async function renderTree(label: string, tree: ReturnType<typeof ogTree>) {
+  const svg = await satori(tree as Parameters<typeof satori>[0], {
     width: WIDTH,
     height: HEIGHT,
     fonts: [...fonts],
@@ -68,7 +72,7 @@ async function render(slug: string, input: OgInput) {
     fitTo: { mode: "width", value: WIDTH },
     font: { loadSystemFonts: false },
   }).render()
-  assertInsideMargin(slug, image.pixels)
+  assertInsideMargin(label, image.pixels)
   return image.asPng()
 }
 
@@ -80,7 +84,7 @@ export async function ogPng(slug: string, input: OgInput) {
   } catch {
     // Not cached yet.
   }
-  const png = await render(slug, input)
+  const png = await renderTree(slug, ogTree(input))
   await mkdir(cacheDir, { recursive: true })
   // Write then rename, so an interrupted build never leaves a half-written file in the cache.
   const temp = `${file}.${process.pid}.tmp`
