@@ -15,10 +15,10 @@ const cells = Array.from({ length: 48 }, (_, i) => {
     light: (row + col) % 2 === 0,
   }
 })
-// On the board plane, the cylinder's footprint is near (257, 74).
-// The shadow has straight sides and a rounded end, with its origin under the
-// cylinder. B (264, 168) stays within the shadow; A (120, 72) stays outside.
-const shadow = "M203 80 L304 80 L311 213 Q317 251 259 250 Q203 251 207 213 Z"
+// Cast from the cylinder's footprint near (257, 74): the shadow continues
+// off the front of the board instead of ending in an artificial rounded blob.
+// A (120, 72) remains outside and B (264, 168) remains well inside.
+const shadow = "M216 78 L304 65 L314 338 L100 338 Z"
 ---
 
 <IllustrationFigure
@@ -33,9 +33,15 @@ const shadow = "M203 80 L304 80 L311 213 Q317 251 259 250 Q203 251 207 213 Z"
     desc="An upright green cylinder casts a diagonal shadow across a checkerboard. A marks a dark check outside the shadow, B a light check inside it. Although they appear different, the uninterrupted interiors of A and B are both RGB 120, 120, 120. The Show grey connection control draws a continuous matching-grey strip between A and B directly on the board."
   >
     <defs>
-      <clipPath id="checker-shadow-shape">
-        <path d={shadow} />
-      </clipPath>
+      <!-- Feather only the boundary of the shadow. A and B stay solid, opaque
+           #787878 at their interior pixels; the penumbra is away from both. -->
+      <filter id="checker-shadow-feather" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+        <feGaussianBlur stdDeviation="3.2" />
+      </filter>
+      <mask id="checker-shadow-mask" maskUnits="userSpaceOnUse" x="-15" y="-15" width="414" height="318">
+        <rect x="-15" y="-15" width="414" height="318" fill="black" />
+        <path d={shadow} fill="white" filter="url(#checker-shadow-feather)" />
+      </mask>
       <linearGradient id="checker-cylinder-side">
         <stop offset="0" stop-color="var(--color-series-green)" />
         <stop offset=".48" stop-color="#b8cbb8" />
@@ -43,8 +49,8 @@ const shadow = "M203 80 L304 80 L311 213 Q317 251 259 250 Q203 251 207 213 Z"
       </linearGradient>
     </defs>
 
-    <!-- Board and clipped shading use the same perspective transform. The targets
-         lie entirely inside one side of the shadow boundary, so they have no seams. -->
+    <!-- Board and masked shading use the same perspective transform. The
+         target checks sit well away from the feathered shadow boundary. -->
     <g transform="matrix(.95 .18 -.44 .73 138 108)">
       <path d="M0 288 L384 288 L384 303 L0 303 Z" fill="#626262" />
       <path d="M384 0 L397 10 L397 297 L384 303 Z" fill="#454545" />
@@ -53,7 +59,7 @@ const shadow = "M203 80 L304 80 L311 213 Q317 251 259 250 Q203 251 207 213 Z"
         <rect x={cell.x} y={cell.y} width="48" height="48"
           fill={cell.light ? "#e2e2e2" : grey} />
       ))}
-      <g clip-path="url(#checker-shadow-shape)">
+      <g mask="url(#checker-shadow-mask)">
         {cells.map((cell) => (
           <rect x={cell.x} y={cell.y} width="48" height="48"
             fill={cell.light ? grey : "#292929"} />
