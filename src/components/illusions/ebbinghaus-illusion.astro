@@ -22,10 +22,10 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
 <IllustrationFigure name="ebbinghaus-illusion" lead="Which red circle looks bigger?">
   <SvgFigure
     name="ebbinghaus-illusion"
-    viewBox="0 0 610 390"
+    viewBox="0 0 610 310"
     class="mx-auto w-full max-w-2xl"
     title="Two equally sized red circles among circles of contrasting sizes"
-    desc="The red target circle on the left is surrounded by eight much larger blue circles. The identical red target on the right is tightly surrounded by eight small circles. Changing the slider swaps the surround sizes without changing either red target. Comparing copies of the red circles shows the same diameter."
+    desc="The red target circle on the left is surrounded by eight much larger blue circles. The identical red target on the right is tightly surrounded by eight small circles. Changing the slider swaps the surround sizes without changing either red target; both red targets are 50 SVG units across."
   >
     <g id="ebbinghaus-left-neighbours" fill="var(--color-series-blue)">
       {neighbours.map(({ leftX, leftY }) => (
@@ -39,14 +39,6 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
     </g>
     <circle cx="151" cy="155" r="25" fill="var(--color-series-red)" />
     <circle cx="459" cy="155" r="25" fill="var(--color-series-red)" />
-    <rect x="218" y="311" width="174" height="75" fill="var(--color-paper)"
-      stroke="var(--color-stroke)" stroke-width="1.5" aria-hidden="true" />
-    <g id="ebbinghaus-copy-left" visibility="hidden" transform="translate(151 155)">
-      <circle r="25" fill="var(--color-series-red)" />
-    </g>
-    <g id="ebbinghaus-copy-right" visibility="hidden" transform="translate(459 155)">
-      <circle r="25" fill="var(--color-series-red)" />
-    </g>
   </SvgFigure>
   <Slider
     id="ebbinghaus-surround-size"
@@ -63,17 +55,8 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
       The blue circles can change size. Both red centres remain unchanged.
     </p>
   </Slider>
-  <div class="flex flex-wrap items-center gap-3">
-    <button type="button" id="ebbinghaus-compare" class="btn-toggle" aria-pressed="false">
-      Compare the red circles
-    </button>
-    <p id="ebbinghaus-proof" class="text-base" aria-live="polite" hidden>
-      Both red circles have the same 50-unit diameter. The copies touch, with equal height.
-      Neither red circle changes size as the surrounding circles move.
-    </p>
-  </div>
   <Fragment slot="caption">
-    Change the surroundings first. Then bring copies of the two unchanged red circles together.
+    Both red circles stay 50 units across while the surrounding circles change size.
   </Fragment>
 </IllustrationFigure>
 
@@ -89,12 +72,6 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
     const right = Array.from(
       root.querySelectorAll<SVGCircleElement>("#ebbinghaus-right-neighbours circle"),
     )
-    const leftCopy = find<SVGGElement>(root, "#ebbinghaus-copy-left")
-    const rightCopy = find<SVGGElement>(root, "#ebbinghaus-copy-right")
-    const button = find<HTMLButtonElement>(root, "#ebbinghaus-compare")
-    const proof = find<HTMLElement>(root, "#ebbinghaus-proof")
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
-
     bindSlider(input, (value) => {
       const t = value / 100
       const sizes = [38 - 27 * t, 11 + 27 * t]
@@ -115,53 +92,6 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
       return "Surround sizes changing; red target circles remain fixed"
     })
 
-    let progress = 0
-    let frame = 0
-    const copies = [
-      { element: leftCopy, from: [151, 155], to: [280, 349] },
-      { element: rightCopy, from: [459, 155], to: [330, 349] },
-    ] as const
 
-    const draw = () => {
-      const eased = progress * progress * (3 - 2 * progress)
-      for (const copy of copies) {
-        const x = copy.from[0] + (copy.to[0] - copy.from[0]) * eased
-        const y = copy.from[1] + (copy.to[1] - copy.from[1]) * eased
-        copy.element.setAttribute("transform", "translate(" + x + " " + y + ")")
-        copy.element.setAttribute("visibility", progress > 0 ? "visible" : "hidden")
-      }
-    }
-    const moveCopies = (target: number) => {
-      cancelAnimationFrame(frame)
-      button.setAttribute("aria-pressed", String(target === 1))
-      button.textContent = target === 1 ? "Return the circles" : "Compare the red circles"
-      proof.hidden = target !== 1
-      if (reducedMotion.matches) {
-        progress = target
-        draw()
-        return
-      }
-      const start = progress
-      const duration = 650 * Math.abs(target - start)
-      if (!duration) return
-      let first: number | null = null
-      const tick = (now: number) => {
-        if (first === null) first = now
-        const part = Math.min(1, (now - first) / duration)
-        progress = start + (target - start) * part
-        draw()
-        if (part < 1) frame = requestAnimationFrame(tick)
-      }
-      frame = requestAnimationFrame(tick)
-    }
-    button.addEventListener("click", () => {
-      moveCopies(button.getAttribute("aria-pressed") === "true" ? 0 : 1)
-    })
-    reducedMotion.addEventListener("change", () => {
-      cancelAnimationFrame(frame)
-      progress = button.getAttribute("aria-pressed") === "true" ? 1 : 0
-      draw()
-    })
-    draw()
   }
 </script>

@@ -24,10 +24,10 @@ const shadow = "M217 57 Q252 39 292 59 L381 285 Q325 310 235 287 L183 151 Z"
 >
   <SvgFigure
     name="checker-shadow-illusion"
-    viewBox="0 0 560 500"
+    viewBox="0 0 560 410"
     class="mx-auto w-full max-w-xl"
     title="A checkerboard in perspective, with a cylinder casting a shadow"
-    desc="An upright green cylinder casts a diagonal shadow across a checkerboard. A marks a dark check outside the shadow, B a light check inside it. Although they appear different, the uninterrupted interiors of A and B are both RGB 120, 120, 120. The Compare samples control moves matching grey pieces from the checks together beneath the board."
+    desc="An upright green cylinder casts a diagonal shadow across a checkerboard. A marks a dark check outside the shadow, B a light check inside it. Although they appear different, the uninterrupted interiors of A and B are both RGB 120, 120, 120. The Show grey connection control draws a continuous matching-grey strip between A and B directly on the board."
   >
     <defs>
       <clipPath id="checker-shadow-shape">
@@ -56,6 +56,9 @@ const shadow = "M217 57 Q252 39 292 59 L381 285 Q325 310 235 287 L183 151 Z"
             fill={cell.light ? grey : "#292929"} />
         ))}
       </g>
+      <!-- The strip follows the board perspective and connects A to B in the original scene. -->
+      <path id="checker-proof" d="M120 72 V168 H264" visibility="hidden"
+        fill="none" stroke={grey} stroke-width="22" stroke-linejoin="round" />
       <rect width="384" height="288" fill="none" stroke="var(--color-stroke)" stroke-width="2" />
       <g aria-hidden="true" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle">
         <circle cx="120" cy="72" r="15" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="1.5" />
@@ -70,30 +73,18 @@ const shadow = "M217 57 Q252 39 292 59 L381 285 Q325 310 235 287 L183 151 Z"
     <path d="M305 126 V206 A45 14 0 0 0 395 206 V126 Z" fill="url(#checker-cylinder-side)" />
     <ellipse cx="350" cy="126" rx="45" ry="14" fill="#a1bda2" stroke="#516f53" stroke-width="1" />
 
-    <g aria-hidden="true">
-      <rect x="205" y="411" width="153" height="67" fill="var(--color-paper)" stroke="var(--color-stroke)" stroke-width="1.5" />
-      <text x="281" y="430" text-anchor="middle" fill="currentColor" font-size="13">Compare the samples</text>
-    </g>
-    <!-- Copies move, not the original checks. The two final rectangles abut
-         with neither a gap nor a line between them. -->
-    <g id="checker-sample-a" visibility="hidden" transform="translate(220.32 182.16)">
-      <rect x="-17" y="-17" width="34" height="34" fill={grey} />
-    </g>
-    <g id="checker-sample-b" visibility="hidden" transform="translate(314.88 278.16)">
-      <rect x="-17" y="-17" width="34" height="34" fill={grey} />
-    </g>
   </SvgFigure>
   <div class="flex flex-wrap items-center gap-4">
     <button type="button" id="checker-compare" class="btn-toggle" aria-pressed="false">
-      Compare samples
+      Show grey connection
     </button>
     <p id="checker-values" class="text-base" aria-live="polite" hidden>
-      A = RGB 120, 120, 120. B = RGB 120, 120, 120. Their colour values are exactly equal.
-      The two sample squares meet without a visible boundary.
+      A = RGB 120, 120, 120. B = RGB 120, 120, 120. The equal-grey strip
+      links them directly on the board, without changing either square.
     </p>
   </div>
   <Fragment slot="caption">
-    The board stays unchanged while copies of its two grey squares meet below it.
+    The grey connection joins A and B without changing either square.
   </Fragment>
 </IllustrationFigure>
 
@@ -103,61 +94,14 @@ const shadow = "M217 57 Q252 39 292 59 L381 285 Q325 310 235 287 L183 151 Z"
   const root = illustrationRoot("checker-shadow-illusion")
   if (root) {
     const button = find<HTMLButtonElement>(root, "#checker-compare")
-    const a = find<SVGGElement>(root, "#checker-sample-a")
-    const b = find<SVGGElement>(root, "#checker-sample-b")
+    const proof = find<SVGPathElement>(root, "#checker-proof")
     const values = find<HTMLElement>(root, "#checker-values")
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const sources = [
-      { element: a, from: [220.32, 182.16], to: [264, 452] },
-      { element: b, from: [314.88, 278.16], to: [298, 452] },
-    ] as const
-    let progress = 0
-    let frame = 0
-
-    const draw = () => {
-      const ease = progress * progress * (3 - 2 * progress)
-      for (const sample of sources) {
-        const x = sample.from[0] + (sample.to[0] - sample.from[0]) * ease
-        const y = sample.from[1] + (sample.to[1] - sample.from[1]) * ease
-        sample.element.setAttribute("transform", "translate(" + x + " " + y + ")")
-      }
-      const visible = progress > 0
-      a.setAttribute("visibility", visible ? "visible" : "hidden")
-      b.setAttribute("visibility", visible ? "visible" : "hidden")
-    }
-
-    const changeTo = (target: number) => {
-      cancelAnimationFrame(frame)
-      button.setAttribute("aria-pressed", String(target === 1))
-      button.textContent = target === 1 ? "Return samples" : "Compare samples"
-      // The text proof is immediately accessible, even with motion switched off.
-      values.hidden = target !== 1
-      if (reducedMotion.matches) {
-        progress = target
-        draw()
-        return
-      }
-      const start = progress
-      const duration = 700 * Math.abs(target - start)
-      if (duration === 0) return
-      let then: number | null = null
-      const tick = (now: number) => {
-        if (then === null) then = now
-        const portion = Math.min(1, (now - then) / duration)
-        progress = start + (target - start) * portion
-        draw()
-        if (portion < 1) frame = requestAnimationFrame(tick)
-      }
-      frame = requestAnimationFrame(tick)
-    }
     button.addEventListener("click", () => {
-      changeTo(button.getAttribute("aria-pressed") === "true" ? 0 : 1)
+      const shown = button.getAttribute("aria-pressed") !== "true"
+      button.setAttribute("aria-pressed", String(shown))
+      button.textContent = shown ? "Hide grey connection" : "Show grey connection"
+      proof.setAttribute("visibility", shown ? "visible" : "hidden")
+      values.hidden = !shown
     })
-    reducedMotion.addEventListener("change", () => {
-      cancelAnimationFrame(frame)
-      progress = button.getAttribute("aria-pressed") === "true" ? 1 : 0
-      draw()
-    })
-    draw()
   }
 </script>

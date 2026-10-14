@@ -38,7 +38,7 @@ Do not change any existing argument entry to the new format.
    the initial illusion is convincing without a control. Then animate or manipulate
    **the conditions that create the illusion**, not just the answer appearing.
    For example, vary a circle's neighbours without resizing the target, rotate
-   arrowheads without changing the line, or move identical pixel samples into contact.
+   arrowheads without changing the line, or connect identical pixel values directly within the original figure.
    Simple show/hide toggles alone are rarely sufficient. Provide a fixed numerical or
    geometric reference to establish what stayed unchanged. Never imply more certainty
    than the proof supports.
@@ -58,6 +58,9 @@ Do not change any existing argument entry to the new format.
   Compare **rendered** pixels, excluding overlaid labels or annotations. Construct
   matching sampled areas as opaque fills, with no compositing above them. Keep
   the visual evidence and its nonvisual text proof in sync.
+- Keep proofs in the same figure wherever possible. Avoid separate comparison
+  boxes and travelling copies when an in-place proof works. An interactive control must
+  change something useful, not just decorate the answer.
 - Motion should serve an explicit comparison, respond to user controls, and not
   run automatically. Support reduced motion with an immediate equivalent.
   The strongest reveal often includes an adjustable control rather than

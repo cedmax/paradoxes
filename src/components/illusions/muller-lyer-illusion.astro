@@ -17,8 +17,8 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
     </g>
     <g id="muller-lyer-fins" fill="none" stroke="var(--color-series-blue)" stroke-width="4"
        stroke-linecap="round" stroke-linejoin="round">
-      <path id="muller-lyer-upper-fins" d="" />
-      <path id="muller-lyer-lower-fins" d="" />
+      <path id="muller-lyer-upper-fins" d="M104 92 L140.77 55.23 M104 92 L140.77 128.77 M456 92 L419.23 55.23 M456 92 L419.23 128.77" />
+      <path id="muller-lyer-lower-fins" d="M104 214 L67.23 177.23 M104 214 L67.23 250.77 M456 214 L492.77 177.23 M456 214 L492.77 250.77" />
     </g>
     <g id="muller-lyer-guides" visibility="hidden" stroke="var(--color-series-red)"
        stroke-width="2" fill="none">
@@ -35,10 +35,10 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
     min={0}
     max={100}
     value={0}
-    startLabel="Fins lean inward on top"
-    endLabel="Fins lean outward on top"
+    startLabel="Fins point outwards on top"
+    endLabel="Fins point inwards on top"
     describedby="muller-lyer-notice"
-    valuetext="Opposing sets of arrowheads"
+    valuetext="Top arrowheads point outwards; bottom arrowheads point inwards"
   >
     <p id="muller-lyer-notice" class="text-base">
       Only the blue fins rotate. The black horizontal segments are fixed.
@@ -96,8 +96,8 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
       upper.setAttribute("d", fins(92, dx, dy))
       lower.setAttribute("d", fins(214, -dx, dy))
       if (value === 50) return "Both pairs of fins stand upright; the straight lines are unchanged"
-      if (value < 50) return "Top fins lean inward, bottom fins lean outward"
-      return "Top fins lean outward, bottom fins lean inward"
+      if (value < 50) return "Top arrowheads point outwards; bottom arrowheads point inwards"
+      return "Top arrowheads point inwards; bottom arrowheads point outwards"
     }
     bindSlider(input, (value) => {
       position = value
