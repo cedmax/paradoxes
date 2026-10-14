@@ -8,6 +8,8 @@ import { getPublishedEntries } from "~/data/entries"
 import { statuses, simplifications } from "~/data/status"
 import { anchorOf, uniqueness } from "~/data/uniqueness"
 import { breadcrumbData } from "~/data/seo"
+import { ogAlt, ogPath } from "~/og/meta"
+import { splitTitle } from "~/data/title"
 
 export async function getStaticPaths() {
   const entries = await getPublishedEntries()
@@ -44,16 +46,12 @@ const siblings = all
   )
   .sort((a, b) => a.data.order - b.data.order)
 
-// Split a title like "Sorites paradox" so the accent word can be highlighted.
-const accent = d.titleAccent
-const plain =
-  accent && d.title.endsWith(accent)
-    ? d.title.slice(0, d.title.length - accent.length).trimEnd()
-    : d.title
+const { plain, accent } = splitTitle(d.title, d.titleAccent)
 
 const h2 = "display text-5xl"
 const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-sm font-bold"
 const description = d.description ?? d.problem
+const og = { title: d.title, titleAccent: d.titleAccent, problem: d.problem }
 const url = new URL(`/entries/${entry.id}/`, Astro.site).href
 const structuredData = [
   breadcrumbData(
@@ -87,6 +85,8 @@ const structuredData = [
   title={`${d.title}: ${d.written ? "explanation" : "the puzzle"} | Logic Benders`}
   description={description}
   structuredData={structuredData}
+  image={ogPath(entry.id, og)}
+  imageAlt={ogAlt(og)}
 >
   <section class="px-gutter flex flex-col gap-6 pt-4 pb-12">
     <nav class="mono-label flex flex-wrap gap-x-2.5 gap-y-1" aria-label="Breadcrumb">

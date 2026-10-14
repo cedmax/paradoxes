@@ -70,6 +70,27 @@ in `src/styles/global.css`. `~` maps to `/src`.
   `problem` only, so the card ends on the question. `claimA`, `claimB` and `verdict` stay on
   the entry page; the card carries them hidden and the index script reveals the ones a search
   matched when the match is not in the shown text.
+- `src/pages/og/[file].png.ts` and `src/og/` — one 1200×630 Open Graph PNG per published entry
+  at `/og/<slug>-<hash>.png`, drawn with `satori` + `@resvg/resvg-js`. Colours come from the
+  `--color-*` tokens in `global.css`; fonts are the static `@fontsource/archivo` and
+  `@fontsource/jetbrains-mono` files. It has the same icon and orange bar as `/og.png`, with the
+  title (split by `splitTitle` in `src/data/title.ts`, shared with the entry page) and `problem`
+  between them, never the claims or verdict. Font sizes come from length steps in
+  `src/og/template.ts`; the build fails if text leaves its area, so add a step if a new entry
+  overflows. The hash covers the drawn text plus a template version (image code, colour tokens,
+  font files), so a change to either changes the URL. Other pages keep `/og.png` (`Base.astro`
+  takes optional `image` and `imageAlt`).
+- OG cache: rendered PNGs live in `node_modules/.cache/og/`, are reused when the hash matches
+  and are pruned when no entry uses them. `deploy.yml` restores and saves that directory with
+  `actions/cache`. `ci.yml` does not build. `pnpm check:seo` verifies each entry's image is a
+  1200×630 PNG in `dist`, that entries do not share one and that other pages use `/og.png`.
+- Default image: `public/og.png` is generated, not drawn by hand. `pnpm og:default` renders it
+  from the same template as the entry images (same mark, margins and orange bar) and writes the
+  file. The headline "It can't be true. It can't be false." is 108px and centred vertically
+  between the header and the bar; a smaller step is used only if the margin check rejects 108px.
+  It is not part of `pnpm build` or the deploy workflow, so after any change to `src/og/` or the
+  colour tokens run it and commit the new `public/og.png`. `pnpm check:seo` re-renders the
+  default image and fails if the committed file differs.
 
 Routes (`/entries/<slug>/`) are stable: never rename an entry file without adding a redirect.
 

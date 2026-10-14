@@ -42,6 +42,16 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # Rendered Open Graph images (see src/og). The key changes with the entries, the image code,
+      # the colour tokens and the font versions. On a miss, restore-keys bring back the newest
+      # cache, so the build only renders the images that changed. The build removes images that no
+      # entry uses, so the saved cache does not carry stale files.
+      - uses: actions/cache@v5
+        with:
+          path: node_modules/.cache/og
+          key: og-${{ hashFiles('src/content/entries/**', 'src/og/**', 'src/data/title.ts', 'src/styles/global.css', 'pnpm-lock.yaml') }}
+          restore-keys: og-
+
       # Astro builds on the GitHub runner, not on Netlify.
       - run: pnpm build
         env:

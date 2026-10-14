@@ -12,7 +12,8 @@
     "build": "NODE_ENV=production astro telemetry disable && astro build",
     "preview": "astro preview --host",
     "check": "astro check",
-    "check:seo": "node scripts/check-seo.mjs",
+    "check:seo": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-seo.mjs",
+    "og:default": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/og-default.ts",
     "format": "prettier --write .",
     "lint": "eslint src scripts && stylelint \"src/**/*.{css,astro}\"",
     "knip": "knip",
@@ -38,8 +39,12 @@
     "@fontsource-variable/archivo": "^5.3.0",
     "@fontsource-variable/hanken-grotesk": "^5.3.0",
     "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource/archivo": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.5",
+    "satori": "^0.54.0",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
