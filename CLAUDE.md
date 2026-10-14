@@ -84,6 +84,11 @@ in `src/styles/global.css`. `~` maps to `/src`.
   and are pruned when no entry uses them. `deploy.yml` restores and saves that directory with
   `actions/cache`. `ci.yml` does not build. `pnpm check:seo` verifies each entry's image is a
   1200×630 PNG in `dist`, that entries do not share one and that other pages use `/og.png`.
+- Default image: `public/og.png` is generated, not drawn by hand. `pnpm og:default` renders it
+  from the same template as the entry images (same mark, margins and orange bar, headline "It
+  can't be true. It can't be false." at the largest size that passes the margin check) and writes
+  the file. It is not part of `pnpm build` or the deploy workflow, so after any change to
+  `src/og/` or the colour tokens run it and commit the new `public/og.png`.
 
 Routes (`/entries/<slug>/`) are stable: never rename an entry file without adding a redirect.
 
