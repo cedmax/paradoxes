@@ -7,6 +7,9 @@ interface Props {
   description?: string
   noindex?: boolean
   structuredData?: Record<string, unknown>[]
+  // Path of the Open Graph image and its alt text. Pages without their own use /og.png.
+  image?: string
+  imageAlt?: string
 }
 
 const {
@@ -14,9 +17,11 @@ const {
   description = "Paradoxes in plain words. Each starts with a problem and two claims that sound right but can't both be true.",
   structuredData = [],
   noindex: pageNoindex = false,
+  image = "/og.png",
+  imageAlt = "Logic Benders. It can't be true. It can't be false.",
 } = Astro.props
 const canonical = new URL(Astro.url.pathname, Astro.site)
-const ogImage = new URL("/og.png", Astro.site)
+const ogImage = new URL(image, Astro.site)
 const noindex = pageNoindex || import.meta.env.SITE_INDEXING === "noindex"
 const data = [
   ...(Astro.url.pathname === "/"
@@ -55,10 +60,7 @@ const data = [
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Logic Benders. It can't be true. It can't be false."
-    />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <StructuredData data={data} />
   </head>
