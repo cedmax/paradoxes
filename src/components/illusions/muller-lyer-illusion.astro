@@ -1,0 +1,40 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+---
+<IllustrationFigure name="muller-lyer-illusion">
+  <SvgFigure name="muller-lyer-illusion" class="mx-auto w-full max-w-2xl" viewBox="0 0 440 240"
+    title="Two lines with opposing arrowhead directions"
+    desc="Two equal horizontal lines. The top line has fins pointing inward at the ends; the bottom has fins pointing outward. The fins can be hidden to compare the unchanged lines.">
+    <path d="M100 65 H340 M100 165 H340" stroke="var(--color-ink)" stroke-width="5" stroke-linecap="round" />
+    <g id="muller-lyer-context" fill="none" stroke="var(--color-series-blue)" stroke-width="4" stroke-linecap="round">
+      <path d="M125 43 L100 65 L125 87 M315 43 L340 65 L315 87" />
+      <path d="M75 143 L100 165 L75 187 M365 143 L340 165 L365 187" />
+    </g>
+    <g id="muller-lyer-measure" visibility="hidden" stroke="var(--color-series-red)" fill="none" stroke-width="2">
+      <path d="M100 95 V105 M340 95 V105 M100 105 H340 M100 195 V205 M340 195 V205 M100 205 H340" />
+    </g>
+  </SvgFigure>
+  <div class="flex flex-wrap items-center gap-4">
+    <button type="button" class="btn-toggle" id="muller-lyer-toggle" aria-pressed="false">Remove arrowheads</button>
+    <p id="muller-lyer-readout" class="text-base" aria-live="polite" hidden>Both horizontal lines measure exactly 240 SVG units. Neither line moved or changed length.</p>
+  </div>
+</IllustrationFigure>
+<script>
+  import { illustrationRoot, find } from "~/scripts/illustration"
+  const root = illustrationRoot("muller-lyer-illusion")
+  if (root) {
+    const button = find<HTMLButtonElement>(root, "#muller-lyer-toggle")
+    const context = find<SVGGElement>(root, "#muller-lyer-context")
+    const measure = find<SVGGElement>(root, "#muller-lyer-measure")
+    const readout = find<HTMLElement>(root, "#muller-lyer-readout")
+    button.addEventListener("click", () => {
+      const revealed = button.getAttribute("aria-pressed") !== "true"
+      button.setAttribute("aria-pressed", String(revealed))
+      button.textContent = revealed ? "Restore arrowheads" : "Remove arrowheads"
+      context.setAttribute("visibility", revealed ? "hidden" : "visible")
+      measure.setAttribute("visibility", revealed ? "visible" : "hidden")
+      readout.hidden = !revealed
+    })
+  }
+</script>

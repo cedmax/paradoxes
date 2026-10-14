@@ -1,0 +1,53 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+const large = Array.from({ length: 6 }, (_, i) => ({
+  x: 130 + 87 * Math.cos((i * Math.PI) / 3),
+  y: 125 + 87 * Math.sin((i * Math.PI) / 3),
+}))
+const small = Array.from({ length: 8 }, (_, i) => ({
+  x: 390 + 58 * Math.cos((i * Math.PI) / 4),
+  y: 125 + 58 * Math.sin((i * Math.PI) / 4),
+}))
+---
+<IllustrationFigure name="ebbinghaus-illusion">
+  <SvgFigure name="ebbinghaus-illusion" viewBox="0 0 520 250" class="mx-auto w-full max-w-2xl"
+    title="Two equal circles among different neighbours"
+    desc="On the left a central circle is surrounded by large circles. On the right an equally sized circle is surrounded by smaller circles. The neighbours can be hidden to compare the central circles alone.">
+    <g id="ebbinghaus-context-large">
+      {large.map(({ x, y }) => <circle cx={x} cy={y} r="34" fill="none" stroke="var(--color-series-blue)" stroke-width="3" />)}
+    </g>
+    <g id="ebbinghaus-context-small">
+      {small.map(({ x, y }) => <circle cx={x} cy={y} r="10" fill="none" stroke="var(--color-series-blue)" stroke-width="3" />)}
+    </g>
+    <circle cx="130" cy="125" r="25" fill="var(--color-series-red)" />
+    <circle cx="390" cy="125" r="25" fill="var(--color-series-red)" />
+    <g id="ebbinghaus-measure" visibility="hidden">
+      <path d="M105 125 H155 M365 125 H415" stroke="var(--color-paper)" stroke-width="2" />
+      <path d="M105 116 V134 M155 116 V134 M365 116 V134 M415 116 V134" stroke="var(--color-ink)" stroke-width="2" />
+    </g>
+  </SvgFigure>
+  <div class="flex flex-wrap items-center gap-4">
+    <button type="button" class="btn-toggle" id="ebbinghaus-toggle" aria-pressed="false">Remove surrounding circles</button>
+    <p id="ebbinghaus-readout" class="text-base" aria-live="polite" hidden>Both central circles are the same size: 50 SVG units across.</p>
+  </div>
+</IllustrationFigure>
+<script>
+  import { illustrationRoot, find } from "~/scripts/illustration"
+  const root = illustrationRoot("ebbinghaus-illusion")
+  if (root) {
+    const button = find<HTMLButtonElement>(root, "#ebbinghaus-toggle")
+    const groups = [find<SVGGElement>(root, "#ebbinghaus-context-large"), find<SVGGElement>(root, "#ebbinghaus-context-small")]
+    const measure = find<SVGGElement>(root, "#ebbinghaus-measure")
+    const readout = find<HTMLElement>(root, "#ebbinghaus-readout")
+    button.addEventListener("click", () => {
+      const revealed = button.getAttribute("aria-pressed") !== "true"
+      button.setAttribute("aria-pressed", String(revealed))
+      button.textContent = revealed ? "Restore surrounding circles" : "Remove surrounding circles"
+      groups.forEach((group) => group.setAttribute("visibility", revealed ? "hidden" : "visible"))
+      measure.setAttribute("visibility", revealed ? "visible" : "hidden")
+      readout.hidden = !revealed
+    })
+  }
+</script>

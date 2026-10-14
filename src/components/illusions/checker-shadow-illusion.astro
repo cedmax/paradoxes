@@ -1,0 +1,57 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+
+// Both target tiles are identical opaque fills. Never composite over their sampled areas.
+const tileSize = 43
+const targetGrey = "#787878"
+const tiles = Array.from({ length: 48 }, (_, n) => {
+  const column = n % 8
+  const row = Math.floor(n / 8)
+  const inShadow = column >= 4
+  const light = (row + column) % 2 === 0
+  return {
+    x: 40 + column * tileSize,
+    y: 30 + row * tileSize,
+    fill: light ? (inShadow ? targetGrey : "#dedede") : (inShadow ? "#343434" : targetGrey),
+  }
+})
+---
+<IllustrationFigure name="checker-shadow-illusion">
+  <SvgFigure name="checker-shadow-illusion" viewBox="0 0 440 320" class="mx-auto w-full max-w-xl"
+    title="A checkerboard with a cast shadow"
+    desc="A checkerboard with light tiles and dark tiles, partly in shadow. Tile A is dark outside the shadow, tile B is light inside it. A seems darker than B although both use the same display grey.">
+    <rect x="40" y="30" width="344" height="258" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="2" />
+    {tiles.map((tile) => <rect x={tile.x} y={tile.y} width={tileSize} height={tileSize} fill={tile.fill} />)}
+    <path d="M212 30 V116 M212 202 V288" stroke="var(--color-stroke)" stroke-width="2" stroke-dasharray="7 8" />
+    <g id="checker-proof" visibility="hidden">
+      <path d="M147.5 104.5 L147.5 190.5 L276.5 190.5" stroke={targetGrey} stroke-width="28" stroke-linejoin="round" fill="none" />
+    </g>
+    <g aria-hidden="true" font-family="Arial, sans-serif" font-weight="bold" font-size="15" text-anchor="middle">
+      <circle cx="147.5" cy="104.5" r="13" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="1" />
+      <text x="147.5" y="110" fill="var(--color-ink)">A</text>
+      <circle cx="276.5" cy="190.5" r="13" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="1" />
+      <text x="276.5" y="196" fill="var(--color-ink)">B</text>
+    </g>
+  </SvgFigure>
+  <div class="flex flex-wrap items-center gap-4">
+    <button type="button" class="btn-toggle" id="checker-toggle" aria-pressed="false">Show the proof</button>
+    <p id="checker-readout" class="text-base" aria-live="polite" hidden>Tiles A and B have the same displayed grey: RGB 120, 120, 120 (#787878). The uninterrupted grey strip joins two matching areas.</p>
+  </div>
+</IllustrationFigure>
+<script>
+  import { illustrationRoot, find } from "~/scripts/illustration"
+  const root = illustrationRoot("checker-shadow-illusion")
+  if (root) {
+    const button = find<HTMLButtonElement>(root, "#checker-toggle")
+    const strip = find<SVGGElement>(root, "#checker-proof")
+    const readout = find<HTMLElement>(root, "#checker-readout")
+    button.addEventListener("click", () => {
+      const revealed = button.getAttribute("aria-pressed") !== "true"
+      button.setAttribute("aria-pressed", String(revealed))
+      button.textContent = revealed ? "Hide the proof" : "Show the proof"
+      strip.setAttribute("visibility", revealed ? "visible" : "hidden")
+      readout.hidden = !revealed
+    })
+  }
+</script>
