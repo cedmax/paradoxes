@@ -75,7 +75,7 @@ const structuredData = [
         </span>
       </nav>
       <h1 class="font-display text-[clamp(48px,9.4vw,148px)] leading-none font-extrabold tracking-tighter">
-        {chapter.pageTitle}
+        {chapter.title}
       </h1>
       <p class="max-w-170 text-xl leading-snug sm:text-2xl">{chapter.introduction}</p>
     </section>
@@ -101,7 +101,7 @@ const structuredData = [
               class="inline-flex min-h-11 items-center font-bold underline hover:text-accent"
               href={`/chapters/${other.id}/`}
             >
-              {other.pageTitle}
+              {other.title}
             </a>
           </li>
         ))}

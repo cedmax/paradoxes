@@ -21,6 +21,8 @@ export interface Chapter {
   n: string
   title: string
   blurb: string
+  // Search name for the chapter page: used in <title> and structured data only. Everything a
+  // reader sees (index, breadcrumbs, the chapter page H1) uses `title`.
   pageTitle: string
   introduction: string
 }
