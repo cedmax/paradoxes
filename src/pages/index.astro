@@ -21,11 +21,14 @@ const byChapter = chapters
   .filter((g) => g.items.length > 0)
 
 const statusKeys = Object.keys(statuses) as Status[]
-const counts: Record<string, number> = { all: listed.length }
+const counts: Record<string, number> = {
+  all: listed.length,
+  illusions: listed.filter((e) => e.data.format === "illusion").length,
+}
 statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k).length))
 ---
 
-<Base title="Paradoxes explained in plain words | Logic Benders">
+<Base title="Paradoxes and visual illusions | Logic Benders">
   <section class="px-gutter flex flex-col gap-7 pt-12 pb-10 sm:pt-18">
     <h1 class="font-display text-[clamp(44px,8.4vw,128px)] leading-none font-extrabold tracking-tighter">
       It can't be true.
@@ -33,14 +36,14 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
       <span class="text-accent">It can't be false.</span>
     </h1>
     <p class="max-w-170 text-xl leading-snug sm:text-2xl">
-      Paradoxes in plain words. Each one starts with a problem, and two claims that sound right
-      but can't possibly be true at the same time. And what happens when you try to fix it.
+      Paradoxes in plain words. Follow two claims that cannot both be right, or test a visual
+      illusion for yourself. Then find out what makes it work.
     </p>
   </section>
 
   <section
     class="px-gutter border-y-2 border-ink bg-accent py-10"
-    aria-label="Search and filter paradoxes"
+    aria-label="Search and filter entries"
   >
     <div class="flex flex-wrap items-end gap-x-8 gap-y-4">
       <label class="flex max-w-115 min-w-0 grow basis-80 flex-col gap-2">
@@ -49,7 +52,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
           type="search"
           id="q"
           placeholder="sand, barber, doors"
-          aria-label="Search paradoxes"
+          aria-label="Search entries"
           class="h-14 w-full rounded-none border-2 border-ink bg-paper px-4.5 text-lg text-ink"
         />
       </label>
@@ -78,6 +81,15 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
             </span>
           </button>
         ))}
+        <button
+          type="button"
+          class="min-h-14 cursor-pointer rounded-none border-2 border-ink bg-paper px-5.5 font-bold text-ink aria-pressed:bg-ink aria-pressed:text-paper"
+          data-filter="illusions"
+          aria-pressed="false"
+        >
+          Visual illusions{" "}
+          <span class="font-mono text-xs font-medium" data-count>{counts.illusions}</span>
+        </button>
       </div>
     </div>
     <!-- The two switches change what is listed, not the kind of paradox, so they sit apart from the status chips. -->
@@ -202,7 +214,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
       </style>
     </noscript>
     <p id="none" hidden class="font-display text-4xl font-extrabold tracking-tight">
-      Nothing matches. That's not a paradox, just a typo.
+      Nothing matches. Try another search.
     </p>
   </main>
 </Base>
@@ -221,6 +233,9 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
   const STORE = "open-chapter"
   let status = "all"
+  const matchesFilter = (card: HTMLElement, filter: string) =>
+    filter === "all" ||
+    (filter === "illusions" ? card.dataset.format === "illusion" : card.dataset.status === filter)
   // What the visitor chose with the switch. While a search is active the switch is forced off
   // and disabled, and this is restored when the search is cleared.
   let hideChoice = input.value.trim() ? true : hideVariants.checked
@@ -277,7 +292,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
     let shown = 0
     for (const card of cards) {
       const ok =
-        (status === "all" || card.dataset.status === status) &&
+        matchesFilter(card, status) &&
         (!q || (card.dataset.text ?? "").includes(q)) &&
         isShownBySwitches(card)
       card.hidden = !ok
@@ -299,7 +314,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
       const filter = chip.dataset.filter ?? "all"
       const count = cards.filter(
         (card) =>
-          (filter === "all" || card.dataset.status === filter) && isShownBySwitches(card),
+          matchesFilter(card, filter) && isShownBySwitches(card),
       ).length
       const label = chip.querySelector("[data-count]")
       if (label) label.textContent = String(count)

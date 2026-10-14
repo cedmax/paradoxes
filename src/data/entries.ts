@@ -1,7 +1,12 @@
 import { getCollection } from "astro:content"
 
-// Entries that are allowed on the site. An entry with `sourcesVerified: false` is left out of the
-// build entirely: no page, no index card, no search result, and it cannot be linked to.
+// Production never includes entries lacking human-approved source verification.
+// Explicit noindex PR previews can show new illusions for review without changing either flag.
 export function getPublishedEntries() {
-  return getCollection("entries", ({ data }) => data.sourcesVerified)
+  const preview = process.env.SITE_INDEXING === "noindex" &&
+    process.env.PREVIEW_UNVERIFIED === "true"
+  return getCollection(
+    "entries",
+    ({ data }) => data.sourcesVerified || (preview && data.format === "illusion"),
+  )
 }
