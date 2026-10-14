@@ -46,7 +46,7 @@ const siblings = all
   )
   .sort((a, b) => a.data.order - b.data.order)
 
-const { plain, accent } = splitTitle(d.title, d.titleAccent)
+const { plain, accent, separator } = splitTitle(d.title, d.titleAccent)
 
 const h2 = "display text-5xl"
 const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-sm font-bold"
@@ -107,7 +107,7 @@ const structuredData = [
       {plain}
       {accent && (
         <>
-          {" "}
+          {separator}
           <span class="text-accent">{accent}</span>
         </>
       )}
