@@ -29,7 +29,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # Run every check even when one fails, with a single install and runner.
+      # Run all four checks even when one fails, with a single install and runner.
       - name: Lint
         id: lint
         run: pnpm lint
@@ -50,23 +50,13 @@ jobs:
         run: pnpm knip
         continue-on-error: true
 
-      - name: Build and SEO checks
-        id: seo
-        run: |
-          SITE_INDEXING=index pnpm build
-          SITE_INDEXING=index pnpm check:seo
-          SITE_INDEXING=noindex pnpm build
-          SITE_INDEXING=noindex pnpm check:seo
-        continue-on-error: true
-
       - name: Report failed checks
         if: always()
         run: |
           if [[ "${{ steps.lint.outcome }}" != "success" ||
                 "${{ steps.check.outcome }}" != "success" ||
                 "${{ steps.format.outcome }}" != "success" ||
-                "${{ steps.knip.outcome }}" != "success" ||
-                "${{ steps.seo.outcome }}" != "success" ]]; then
+                "${{ steps.knip.outcome }}" != "success" ]]; then
             echo "One or more checks failed. Review the steps above." >&2
             exit 1
           fi

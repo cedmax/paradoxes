@@ -12,7 +12,8 @@ pnpm check:seo
 ```
 
 The SEO check reads the generated site and validates page metadata, canonical URLs, internal
-links, the sitemap and JSON-LD. CI checks both production and preview builds.
+links, the sitemap and JSON-LD. The deploy workflow runs it on the built output before every
+deploy, so a failure blocks the deploy.
 
 PR deployments use `SITE_INDEXING=noindex`. To check that build locally:
 
