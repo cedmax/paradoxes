@@ -74,8 +74,9 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/pages/og/[file].png.ts` and `src/og/` — one 1200×630 Open Graph PNG per published entry at
   `/og/<slug>-<hash>.png`, drawn with `satori` + `@resvg/resvg-js` from the `--color-*` tokens in
   `global.css` and the static `@fontsource/archivo` and `@fontsource/jetbrains-mono` fonts. It
-  shows the label, the title (split by `splitTitle` in `src/data/title.ts`, shared with the entry
-  page) and `problem` only, never the claims or verdict. Font sizes come from length steps in
+  has the same icon and orange bar as `/og.png`, with the title (split by `splitTitle` in
+  `src/data/title.ts`, shared with the entry page) and `problem` between them, never the claims or
+  verdict. Font sizes come from length steps in
   `src/og/template.ts`; the build fails if text enters the margin, so add a step if a new entry
   overflows. The hash covers the drawn text plus a template version (image code, colour tokens,
   font files), so any change to either changes the URL. Other pages keep `/og.png` (`Base.astro`

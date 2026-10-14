@@ -14,6 +14,13 @@ export const WIDTH = 1200
 export const HEIGHT = 630
 // Text never goes into this margin. `render.ts` fails the build if it does.
 export const MARGIN = 72
+// Vertical bands, in px. The header (icon and label) starts TOP from the top. The orange bar at
+// the bottom matches /og.png: a 3px ink rule at BAR_TOP, then the accent fill. Title and problem
+// stay above CONTENT_BOTTOM, clear of the bar.
+export const TOP = 56
+export const BAR_TOP = 517
+export const CONTENT_BOTTOM = BAR_TOP - 36
+const ICON = 44 // the favicon mark, scaled
 
 export interface OgInput {
   title: string
@@ -39,9 +46,11 @@ function font(pkg: string, file: string) {
   return { data: readFileSync(join(dir, "files", file)), version }
 }
 const archivo = font("archivo", "archivo-latin-800-normal.woff")
+const archivoRegular = font("archivo", "archivo-latin-400-normal.woff")
 const mono = font("jetbrains-mono", "jetbrains-mono-latin-500-normal.woff")
 export const fonts = [
   { name: "Archivo", data: archivo.data, weight: 800, style: "normal" },
+  { name: "Archivo", data: archivoRegular.data, weight: 400, style: "normal" },
   { name: "JetBrains Mono", data: mono.data, weight: 500, style: "normal" },
 ] as const
 
@@ -50,16 +59,15 @@ export const fonts = [
 // Add a step here if `render.ts` reports an overflow.
 const titleSteps = [
   [12, 150],
-  [16, 128],
+  [14, 128],
   [20, 108],
-  [28, 96],
   [Infinity, 84],
 ] as const
 const problemSteps = [
-  [60, 48],
-  [100, 42],
-  [140, 36],
-  [Infinity, 32],
+  [60, 44],
+  [100, 38],
+  [140, 34],
+  [Infinity, 30],
 ] as const
 const pick = (steps: readonly (readonly [number, number])[], length: number) =>
   steps.find(([longest]) => length <= longest)![1]
@@ -69,6 +77,8 @@ const pick = (steps: readonly (readonly [number, number])[], length: number) =>
 const SPACE_EM = 0.189
 const TITLE_TRACKING_EM = -0.05 // Tailwind tracking-tighter, as on the entry H1
 const PROBLEM_TRACKING_EM = -0.025 // tracking-tight, as on the entry problem
+const TITLE_GAP = 40 // header to title
+const PROBLEM_GAP = 32 // title to problem
 
 interface Node {
   type: string
@@ -91,33 +101,53 @@ export function ogTree({ title, titleAccent, problem }: OgInput) {
     ...(accent ? accent.split(/\s+/).map((text) => word(text, colours.accent)) : []),
   ]
 
+  // The mark from /og.png: an accent square under an ink square, shifted down and right.
+  const square = 25
+  const offset = ICON - square
+  const mark = el({ display: "flex", position: "relative", width: ICON, height: ICON }, [
+    el({
+      position: "absolute",
+      left: offset,
+      top: offset,
+      width: square,
+      height: square,
+      background: colours.accent,
+    }),
+    el({
+      position: "absolute",
+      left: 0,
+      top: 0,
+      width: square,
+      height: square,
+      background: colours.ink,
+    }),
+  ])
+  const label = (text: string) =>
+    el(
+      { fontFamily: "JetBrains Mono", fontWeight: 500, fontSize: 22, letterSpacing: 22 * 0.08 },
+      text,
+    )
+
   return el(
     {
       display: "flex",
       flexDirection: "column",
+      position: "relative",
+      boxSizing: "border-box",
       width: WIDTH,
       height: HEIGHT,
-      boxSizing: "border-box",
-      padding: MARGIN,
+      padding: `${TOP}px ${MARGIN}px 0`,
       background: colours.paper,
       color: colours.ink,
     },
     [
-      el(
-        {
-          fontFamily: "JetBrains Mono",
-          fontWeight: 500,
-          fontSize: 22,
-          letterSpacing: 22 * 0.08,
-        },
-        "LOGIC BENDERS",
-      ),
+      el({ display: "flex", alignItems: "center", gap: 18 }, [mark, label("LOGIC BENDERS")]),
       el(
         {
           display: "flex",
           flexWrap: "wrap",
           columnGap: (SPACE_EM + TITLE_TRACKING_EM) * titleSize,
-          marginTop: 44,
+          marginTop: TITLE_GAP,
           fontFamily: "Archivo",
           fontWeight: 800,
           fontSize: titleSize,
@@ -128,7 +158,7 @@ export function ogTree({ title, titleAccent, problem }: OgInput) {
       ),
       el(
         {
-          marginTop: 40,
+          marginTop: PROBLEM_GAP,
           fontFamily: "Archivo",
           fontWeight: 800,
           fontSize: problemSize,
@@ -136,6 +166,30 @@ export function ogTree({ title, titleAccent, problem }: OgInput) {
           letterSpacing: PROBLEM_TRACKING_EM * problemSize,
         },
         problem,
+      ),
+      // The orange bar from /og.png: tagline left, address right.
+      el(
+        {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          position: "absolute",
+          left: 0,
+          top: BAR_TOP,
+          width: WIDTH,
+          height: HEIGHT - BAR_TOP,
+          boxSizing: "border-box",
+          padding: `6px ${MARGIN - 1}px 0 ${MARGIN}px`,
+          borderTop: `3px solid ${colours.ink}`,
+          background: colours.accent,
+        },
+        [
+          el(
+            { fontFamily: "Archivo", fontWeight: 400, fontSize: 32 },
+            "Paradoxes in plain words.",
+          ),
+          label("LOGICBENDERS.COM"),
+        ],
       ),
     ],
   )
@@ -152,6 +206,7 @@ export const templateVersion = createHash("sha256")
       archivo.version,
       mono.version,
       createHash("sha256").update(archivo.data).digest("hex"),
+      createHash("sha256").update(archivoRegular.data).digest("hex"),
       createHash("sha256").update(mono.data).digest("hex"),
     ]),
   )
