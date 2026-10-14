@@ -141,7 +141,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
         <h2 class="contents">
           <button
             type="button"
-            class="flex w-full cursor-pointer items-center gap-4 text-left max-md:min-h-11 max-md:border-b-2 max-md:border-ink max-md:pb-3 md:pointer-events-none"
+            class="flex w-full cursor-pointer items-center gap-4 text-left max-md:min-h-11 max-md:border-b-2 max-md:border-ink max-md:pb-3 md:hidden"
             aria-expanded="true"
             aria-controls={`chapter-${chapter.id}`}
             data-toggle
@@ -162,6 +162,14 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
               </span>
             </span>
           </button>
+          <!-- From md up the heading links to the chapter page. Below md it is the toggle above. -->
+          <a
+            class="flex flex-wrap items-baseline gap-x-6 gap-y-2 self-start no-underline hover:text-accent max-md:hidden"
+            href={`/chapters/${chapter.id}/`}
+          >
+            <span class="mono-label text-sm text-accent">{chapter.n}</span>
+            <span class="display text-[clamp(30px,4vw,52px)]">{chapter.title}</span>
+          </a>
         </h2>
         <!-- Below md the chapters fold up, one open at a time. From md up they are always open. -->
         <div
@@ -172,7 +180,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
           <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
             <p class="max-w-160 text-lg">{chapter.blurb}</p>
             <a
-              class="inline-flex min-h-11 items-center font-bold underline hover:text-accent"
+              class="inline-flex min-h-11 items-center font-bold underline hover:text-accent md:hidden"
               href={`/chapters/${chapter.id}/`}
             >
               Explore this chapter →
@@ -253,7 +261,7 @@ statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k)
       const toggle = chapter.querySelector<HTMLButtonElement>("[data-toggle]")
       chapter.toggleAttribute("data-open", open)
       if (!toggle) continue
-      // From md up the headings are plain headings: always open, not interactive.
+      // From md up the toggle is hidden: chapters are always open and the heading is a link.
       toggle.tabIndex = mobile.matches ? 0 : -1
       toggle.disabled = mobile.matches && filtering
       if (mobile.matches) toggle.setAttribute("aria-expanded", String(open))

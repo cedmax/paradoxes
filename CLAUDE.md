@@ -50,7 +50,9 @@ in `src/styles/global.css`. `~` maps to `/src`.
   chapter with results and the headings stop toggling until it is cleared.
 - `src/pages/entries/[slug].astro` — entry page. `src/pages/about.astro` — "How we write these".
 - `src/pages/chapters/[chapter].astro` — chapter landing pages with introductions and links
-  to published canonical and related entries. The index and entry breadcrumbs link to them.
+  to published canonical and related entries. On the index, the chapter heading links to its
+  page from `md` up; below `md` the heading toggles the chapter, so the open chapter shows an
+  "Explore this chapter" link instead. Entry breadcrumbs also link to them.
 - `src/components/StructuredData.astro` — safely serialises JSON-LD. `Base` adds `WebSite`
   data on the homepage; entry and chapter pages pass their breadcrumbs and content data.
   Do not invent authors or publication dates for structured data.
