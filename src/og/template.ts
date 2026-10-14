@@ -95,21 +95,39 @@ const el = (
   type = "div",
 ): Node => ({ type, props: { style, children } })
 
-export function ogTree({ title, titleAccent, problem }: OgInput) {
-  const { plain, accent } = splitTitle(title, titleAccent)
-  const titleSize = pick(titleSteps, title.length)
-  const problemSize = pick(problemSteps, problem.length)
-  const word = (text: string, color: string) =>
-    el({ display: "flex", flexShrink: 0, whiteSpace: "nowrap", color }, text)
-  const words = [
-    ...plain.split(/\s+/).map((text) => word(text, colours.ink)),
-    ...(accent ? accent.split(/\s+/).map((text) => word(text, colours.accent)) : []),
-  ]
+const word = (text: string, color: string) =>
+  el({ display: "flex", flexShrink: 0, whiteSpace: "nowrap", color }, text)
 
-  // The mark from /og.png: an accent square under an ink square, shifted down and right.
+// One row of title words. satori cannot wrap a line that mixes colours, so words are separate
+// flex items, and `columnGap` stands in for the space between them.
+function titleRow(words: Node[], size: number, extra: Node["props"]["style"] = {}) {
+  return el(
+    {
+      display: "flex",
+      flexWrap: "wrap",
+      columnGap: (SPACE_EM + TITLE_TRACKING_EM) * size,
+      fontFamily: "Archivo",
+      fontWeight: 800,
+      fontSize: size,
+      lineHeight: 1,
+      letterSpacing: TITLE_TRACKING_EM * size,
+      ...extra,
+    },
+    words,
+  )
+}
+
+const label = (text: string) =>
+  el(
+    { fontFamily: "JetBrains Mono", fontWeight: 500, fontSize: 22, letterSpacing: 22 * 0.08 },
+    text,
+  )
+
+// The mark from /og.png: an accent square under an ink square, shifted down and right.
+function mark() {
   const square = 25
   const offset = ICON - square
-  const mark = el({ display: "flex", position: "relative", width: ICON, height: ICON }, [
+  return el({ display: "flex", position: "relative", width: ICON, height: ICON }, [
     el({
       position: "absolute",
       left: offset,
@@ -127,12 +145,11 @@ export function ogTree({ title, titleAccent, problem }: OgInput) {
       background: colours.ink,
     }),
   ])
-  const label = (text: string) =>
-    el(
-      { fontFamily: "JetBrains Mono", fontWeight: 500, fontSize: 22, letterSpacing: 22 * 0.08 },
-      text,
-    )
+}
 
+// What entry images and the default image share: the paper, the header (mark and label) and the
+// orange bar from /og.png (tagline left, address right). `body` sits between header and bar.
+function frame(body: Node[]) {
   return el(
     {
       display: "flex",
@@ -146,33 +163,8 @@ export function ogTree({ title, titleAccent, problem }: OgInput) {
       color: colours.ink,
     },
     [
-      el({ display: "flex", alignItems: "center", gap: 18 }, [mark, label("LOGIC BENDERS")]),
-      el(
-        {
-          display: "flex",
-          flexWrap: "wrap",
-          columnGap: (SPACE_EM + TITLE_TRACKING_EM) * titleSize,
-          marginTop: TITLE_GAP,
-          fontFamily: "Archivo",
-          fontWeight: 800,
-          fontSize: titleSize,
-          lineHeight: 1,
-          letterSpacing: TITLE_TRACKING_EM * titleSize,
-        },
-        words,
-      ),
-      el(
-        {
-          marginTop: PROBLEM_GAP,
-          fontFamily: "Archivo",
-          fontWeight: 800,
-          fontSize: problemSize,
-          lineHeight: 1.25,
-          letterSpacing: PROBLEM_TRACKING_EM * problemSize,
-        },
-        problem,
-      ),
-      // The orange bar from /og.png: tagline left, address right.
+      el({ display: "flex", alignItems: "center", gap: 18 }, [mark(), label("LOGIC BENDERS")]),
+      ...body,
       el(
         {
           display: "flex",
@@ -198,6 +190,52 @@ export function ogTree({ title, titleAccent, problem }: OgInput) {
       ),
     ],
   )
+}
+
+export function ogTree({ title, titleAccent, problem }: OgInput) {
+  const { plain, accent } = splitTitle(title, titleAccent)
+  const titleSize = pick(titleSteps, title.length)
+  const problemSize = pick(problemSteps, problem.length)
+  const words = [
+    ...plain.split(/\s+/).map((text) => word(text, colours.ink)),
+    ...(accent ? accent.split(/\s+/).map((text) => word(text, colours.accent)) : []),
+  ]
+  return frame([
+    titleRow(words, titleSize, { marginTop: TITLE_GAP }),
+    el(
+      {
+        marginTop: PROBLEM_GAP,
+        fontFamily: "Archivo",
+        fontWeight: 800,
+        fontSize: problemSize,
+        lineHeight: 1.25,
+        letterSpacing: PROBLEM_TRACKING_EM * problemSize,
+      },
+      problem,
+    ),
+  ])
+}
+
+// The default image (/og.png): the same frame, with the site's two-line headline instead of a
+// title and problem. `scripts/og-default.ts` tries these sizes, largest first, and keeps the first
+// one the margin check accepts.
+export const defaultTitleSizes = titleSteps.map(([, size]) => size)
+const DEFAULT_LINES = [
+  ["It can't be true.", "ink"],
+  ["It can't be false.", "accent"],
+] as const
+export function ogDefaultTree(titleSize: number) {
+  return frame([
+    el(
+      { display: "flex", flexDirection: "column", marginTop: TITLE_GAP },
+      DEFAULT_LINES.map(([text, tone]) =>
+        titleRow(
+          text.split(" ").map((w) => word(w, colours[tone])),
+          titleSize,
+        ),
+      ),
+    ),
+  ])
 }
 
 // Everything that changes how every image looks: the image code, the colour tokens and the font
