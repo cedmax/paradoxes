@@ -15,10 +15,10 @@ const cells = Array.from({ length: 48 }, (_, i) => {
     light: (row + col) % 2 === 0,
   }
 })
-// A compact cast shadow beginning at the cylinder's base and ending on the board.
-// Keep the B check (264, 168) wholly inside the shadow; A (120, 72) stays outside.
-const shadow =
-  "M214 78 Q254 90 296 69 C298 115 313 174 317 231 Q321 248 302 254 Q257 269 207 254 Q190 249 200 231 C219 177 230 121 214 78 Z"
+// On the board plane, the cylinder's footprint is near (257, 74).
+// The shadow has straight sides and a rounded end, with its origin under the
+// cylinder. B (264, 168) stays within the shadow; A (120, 72) stays outside.
+const shadow = "M203 80 L304 80 L311 213 Q317 251 259 250 Q203 251 207 213 Z"
 ---
 
 <IllustrationFigure

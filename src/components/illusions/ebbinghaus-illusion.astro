@@ -3,12 +3,12 @@ import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure
 import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
-const neighbours = Array.from({ length: 8 }, (_, index) => {
-  const angle = (index * Math.PI) / 4
+const neighbours = Array.from({ length: 6 }, (_, index) => {
+  const angle = (index * Math.PI) / 3
   const leftSize = 38
   const rightSize = 11
-  // Leave a clear gap between the large neighbours and the red target.
-  const leftOrbit = 3.1 * leftSize
+  // Six large neighbours can sit close to the red target without overlapping.
+  const leftOrbit = Math.max(2.05 * leftSize, leftSize + 32)
   const rightOrbit = rightSize + 32
   return {
     leftX: 165 + leftOrbit * Math.cos(angle),
@@ -26,7 +26,7 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
     viewBox="0 0 650 350"
     class="mx-auto w-full max-w-2xl"
     title="Two equally sized red circles among circles of contrasting sizes"
-    desc="The red target circle on the left is surrounded by eight much larger blue circles. The identical red target on the right is tightly surrounded by eight small circles. Changing the slider swaps the surround sizes without changing either red target; both red targets are 50 SVG units across."
+    desc="The red target circle on the left is surrounded by six much larger blue circles. The identical red target on the right is tightly surrounded by six small circles. Changing the slider swaps the surround sizes without changing either red target; both red targets are 50 SVG units across."
   >
     <g id="ebbinghaus-left-neighbours" fill="var(--color-series-blue)">
       {neighbours.map(({ leftX, leftY }) => (
@@ -78,10 +78,10 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
       const sizes = [38 - 27 * t, 11 + 27 * t]
       for (const [groupIndex, group] of [left, right].entries()) {
         const r = sizes[groupIndex]
-        const orbit = Math.max(3.1 * r, r + 32)
+        const orbit = Math.max(2.05 * r, r + 32)
         const centreX = groupIndex === 0 ? 165 : 485
         group.forEach((circle, index) => {
-          const angle = (index * Math.PI) / 4
+          const angle = (index * Math.PI) / 3
           circle.setAttribute("r", String(r))
           circle.setAttribute("cx", String(centreX + orbit * Math.cos(angle)))
           circle.setAttribute("cy", String(175 + orbit * Math.sin(angle)))
