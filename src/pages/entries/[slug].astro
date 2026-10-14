@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content"
 import Base from "~/layouts/Base.astro"
 import Linked from "~/components/Linked.astro"
 import PuzzleIllustration from "~/components/PuzzleIllustration.astro"
+import IllusionExperience from "~/components/IllusionExperience.astro"
 import { chapterById } from "~/data/chapters"
 import { getPublishedEntries } from "~/data/entries"
 import { statuses, simplifications } from "~/data/status"
@@ -23,7 +24,7 @@ interface Props {
 const { entry } = Astro.props
 const d = entry.data
 const chapter = chapterById(d.chapter)
-const s = statuses[d.status]
+const s = d.format === "argument" ? statuses[d.status] : undefined
 const simp = simplifications[d.simplification]
 
 const all = await getPublishedEntries()
@@ -118,13 +119,13 @@ const structuredData = [
       </p>
     )}
     <div class="flex max-w-215 flex-col gap-2">
-      <div class="mono-label opacity-65">The problem</div>
+      <div class="mono-label opacity-65">{d.format === "argument" ? "The problem" : "The question"}</div>
       <p class="font-display text-[clamp(26px,3.2vw,40px)] leading-tight font-extrabold tracking-tight">
         {d.problem}
       </p>
     </div>
     <div class="flex flex-wrap items-center gap-2.5">
-      <div class:list={[badge, s.bg]}>{s.label}</div>
+      {s && <div class:list={[badge, s.bg]}>{s.label}</div>}
       {anchor && <div class={badge}>{u.label}</div>}
       {d.noMaths && <div class={badge}>No maths needed</div>}
       <div class={badge}>{simp.label}</div>
@@ -144,6 +145,7 @@ const structuredData = [
     )}
   </section>
 
+  {d.format === "argument" && (
   <section
     class="flex flex-col items-stretch min-[920px]:flex-row border-y-2 border-ink"
     aria-label="The two claims"
@@ -167,17 +169,19 @@ const structuredData = [
       </div>
     </div>
   </section>
+  )}
 
   <div class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
     <article class="flex max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
-      {!d.written && (
+      {d.format === "illusion" && <IllusionExperience slug={entry.id} why={d.why} />}
+      {d.format === "argument" && !d.written && (
         <div class="border-2 border-dashed border-ink px-6 py-5 text-lg">
           <strong>Full write-up in progress.</strong> The problem, the two claims and the
           verdict are final. The explanation and sources are not written yet.
         </div>
       )}
 
-      {d.setup && (
+      {d.format === "argument" && d.setup && (
         <section>
           <h2 class={h2}>The setup</h2>
           <p>
@@ -187,7 +191,7 @@ const structuredData = [
         </section>
       )}
 
-      {d.whyWrong && (
+      {d.format === "argument" && d.whyWrong && (
         <section>
           <h2 class={h2}>Why it feels wrong</h2>
           <p>
@@ -196,14 +200,14 @@ const structuredData = [
         </section>
       )}
 
-      {(d.resolution.length > 0 || d.positions.length > 0) && (
+      {d.format === "argument" && (d.resolution.length > 0 || d.positions.length > 0) && (
         <section>
           <h2 class={h2}>
             {d.status === "explained"
               ? "The explanation"
               : d.status === "defused"
                 ? "How it's defused"
-                : `Why it's ${s.label.toLowerCase()}`}
+                : "Why it remains unresolved"}
           </h2>
           {d.resolution.map((p) => (
             <p>
@@ -262,6 +266,7 @@ const structuredData = [
 
     <aside class="flex grow basis-65 flex-col gap-6 lg:max-w-85" aria-label="About this entry">
       <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] items-start gap-6">
+        {d.format === "argument" && (
         <div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
           <div class="mono-label text-accent">What breaks</div>
           <div>
@@ -269,9 +274,10 @@ const structuredData = [
           </div>
           <div class="mono-label text-accent">Status</div>
           <div>
-            {s.label}: <Linked text={d.statusNote} />
+            {s?.label}: <Linked text={d.statusNote} />
           </div>
         </div>
+        )}
         {echoes.length > 0 && (
           <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
             <div class="mono-label mb-1.5 text-accent">Variants and related</div>
