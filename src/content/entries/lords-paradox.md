@@ -10,7 +10,7 @@ aka:
     "change scores",
     "Frederic Lord",
   ]
-chapter: numbers-mislead
+chapter: statistics
 status: explained
 uniqueness: related
 anchor: simpsons-paradox

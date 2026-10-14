@@ -10,7 +10,7 @@ aka:
     "planes that came back",
     "missing data",
   ]
-chapter: numbers-mislead
+chapter: statistics
 order: 100
 status: explained
 uniqueness: related

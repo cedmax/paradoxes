@@ -8,7 +8,7 @@ aka:
     "belt around the world",
     "rope round the world",
   ]
-chapter: shapes-sums
+chapter: shapes
 status: explained
 simplification: light
 noMaths: false

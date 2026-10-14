@@ -9,7 +9,7 @@ aka:
     "geometrical vanish",
     "concealed distribution",
   ]
-chapter: shapes-sums
+chapter: shapes
 status: explained
 uniqueness: related
 anchor: missing-square-puzzle
