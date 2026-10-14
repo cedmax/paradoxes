@@ -11,7 +11,7 @@ simplification: light
 noMaths: true
 order: 210
 written: true
-why: "The size of the surrounding circles changes how big each central circle appears. Our sense of size depends partly on the surrounding shapes, not just the circle itself. Researchers agree that the context matters, but still debate exactly how the surrounding contours produce the effect."
+why: "The size of the surrounding circles changes how big each central circle appears. Perceived size depends partly on the surrounding shapes, not just the circle itself. Researchers agree that the context matters, but still debate exactly how the surrounding contours produce the effect."
 sources:
   - title: "Knol et al. (2015): Quantifying the Ebbinghaus figure effect"
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4631937/

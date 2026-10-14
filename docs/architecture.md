@@ -74,3 +74,27 @@ in `src/styles/global.css`. `~` maps to `/src`.
   default image and fails if the committed file differs.
 
 Routes (`/entries/<slug>/`) are stable: never rename an entry file without adding a redirect.
+
+
+## Visual illusions
+
+Entry frontmatter uses `format: illusion` for visual illusions. Legacy entries omit `format`
+and default to `argument`; their claim-based schema and layout are otherwise unchanged.
+Both formats share `problem` as the question-first catalogue hook, page heading, SEO
+description fallback and OG text. Illusions instead require `why`, which follows
+an original, proof-driven figure loaded by `src/components/IllusionExperience.astro`
+from `src/components/illusions/<slug>.astro`. A figure contains its own initial and
+reveal states; no generic "what you see / what is true" fields are stored.
+
+The existing paradox statuses do not apply to illusions. The catalogue shows no new badge
+on illusion cards, but adds a "Visual illusions" filter backed by the same `format` field.
+Argument status filters exclude illusions; the All filter includes both formats.
+Chapters and uniqueness rules continue to apply to both.
+
+New entries start with `sourcesVerified: false` and `reviewed: false` and are never
+included in a production build until the owner explicitly approves source verification.
+For review, `PREVIEW_UNVERIFIED=true pnpm dev` includes unpublished illusions locally.
+A PR deployment with the opt-in `deploy-preview` label enables the same behaviour only
+for its noindex preview. `main` never enables this exception.
+
+See `.claude/skills/create-illusion/SKILL.md` for the authoring and accessibility checklist.
