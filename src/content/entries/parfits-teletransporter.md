@@ -1,7 +1,7 @@
 ---
 title: Parfit's teletransporter
 titleAccent: teletransporter
-chapter: what-counts
+chapter: identity
 status: disputed
 uniqueness: related
 anchor: ship-of-theseus

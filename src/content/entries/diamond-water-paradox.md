@@ -2,7 +2,7 @@
 title: "Diamond–water paradox"
 titleAccent: "paradox"
 aka: ["paradox of value", "water and diamonds", "Adam Smith", "marginal utility"]
-chapter: what-counts
+chapter: identity
 order: 90
 status: explained
 simplification: light

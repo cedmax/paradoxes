@@ -1,7 +1,7 @@
 ---
 title: "Omnipotence paradox"
 titleAccent: paradox
-chapter: what-counts
+chapter: identity
 status: defused
 uniqueness: related
 anchor: russells-paradox

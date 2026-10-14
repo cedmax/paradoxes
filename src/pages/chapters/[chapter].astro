@@ -19,6 +19,13 @@ interface Props {
 }
 
 const { chapter } = Astro.props
+if (!chapter.title.endsWith(chapter.titleAccent)) {
+  throw new Error(`Invalid title accent for chapter: ${chapter.id}`)
+}
+const titlePrefix = chapter.title.slice(0, -chapter.titleAccent.length).trimEnd()
+const titleSeparator = chapter.title.slice(0, -chapter.titleAccent.length).endsWith(" ")
+  ? " "
+  : ""
 const all = await getPublishedEntries()
 const entries = all
   .filter((entry) => entry.data.chapter === chapter.id && entry.data.uniqueness !== "variant")
@@ -75,7 +82,9 @@ const structuredData = [
         </span>
       </nav>
       <h1 class="font-display text-[clamp(48px,9.4vw,148px)] leading-none font-extrabold tracking-tighter">
-        {chapter.title}
+        {titlePrefix}
+        {titleSeparator}
+        <span class="text-accent">{chapter.titleAccent}</span>
       </h1>
       <p class="max-w-170 text-xl leading-snug sm:text-2xl">{chapter.introduction}</p>
     </section>

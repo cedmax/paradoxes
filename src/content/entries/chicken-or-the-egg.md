@@ -9,7 +9,7 @@ aka:
     "first chicken",
     "ovocleidin",
   ]
-chapter: what-counts
+chapter: identity
 status: defused
 uniqueness: related
 anchor: sorites-paradox

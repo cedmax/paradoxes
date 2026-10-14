@@ -1,7 +1,7 @@
 ---
 title: "Ship of Theseus paradox"
 titleAccent: "paradox"
-chapter: what-counts
+chapter: identity
 status: disputed
 simplification: light
 order: 70

@@ -1,7 +1,7 @@
 ---
 title: "Coastline paradox"
 titleAccent: "paradox"
-chapter: what-counts
+chapter: identity
 status: explained
 simplification: light
 order: 40

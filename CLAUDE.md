@@ -218,7 +218,7 @@ been shown wrong; the chapter never implies a status.
 | What we should believe         | Reasonable rules about evidence and belief lead somewhere sensible. |
 | Time and causation             | Everyone shares one “now” and one order of cause and effect.        |
 | Models meeting reality         | A tidy model or theory matches the world and the other theories.    |
-| Shapes and sums deceiving      | Figures and quick calculations are right at first look.             |
+| Appearances deceiving      | Figures and quick calculations are right at first look.             |
 
 - **What counts as what**: the conflict is over how a word or concept applies: classification,
   boundaries, or whether something stays the same thing. The conflict need not disappear once a
