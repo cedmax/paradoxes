@@ -71,6 +71,20 @@ in `src/styles/global.css`. `~` maps to `/src`.
   the entry page; the card carries them hidden and the index script reveals the ones a search
   matched when the match is not in the shown text.
 
+- `src/pages/og/[file].png.ts` and `src/og/` — one 1200×630 Open Graph PNG per published entry at
+  `/og/<slug>-<hash>.png`, drawn with `satori` + `@resvg/resvg-js` from the `--color-*` tokens in
+  `global.css` and the static `@fontsource/archivo` and `@fontsource/jetbrains-mono` fonts. It
+  shows the label, the title (split by `splitTitle` in `src/data/title.ts`, shared with the entry
+  page) and `problem` only, never the claims or verdict. Font sizes come from length steps in
+  `src/og/template.ts`; the build fails if text enters the margin, so add a step if a new entry
+  overflows. The hash covers the drawn text plus a template version (image code, colour tokens,
+  font files), so any change to either changes the URL. Other pages keep `/og.png` (`Base.astro`
+  takes optional `image` and `imageAlt`).
+- OG cache: rendered PNGs live in `node_modules/.cache/og/`, are reused when the hash matches and
+  are pruned when no entry uses them. `deploy.yml` restores and saves that directory with
+  `actions/cache`. `ci.yml` does not build. `pnpm check:seo` verifies each entry's image is a
+  1200×630 PNG in `dist`, that entries do not share one and that other pages use `/og.png`.
+
 Routes (`/entries/<slug>/`) are stable: never rename an entry file without adding a redirect.
 
 ## Illustrations
