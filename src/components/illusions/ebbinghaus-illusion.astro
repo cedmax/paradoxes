@@ -2,6 +2,7 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series } from "~/data/palette"
 
 const neighbours = Array.from({ length: 7 }, (_, index) => {
   const angle = (index * 2 * Math.PI) / 7
@@ -28,23 +29,23 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
     title="Two equally sized red circles among circles of contrasting sizes"
     desc="The red target circle on the left is surrounded by seven larger blue circles. The identical red target on the right is tightly surrounded by seven small circles. Changing the slider swaps the surround sizes without changing either red target; both red targets are 50 SVG units across."
   >
-    <g id="ebbinghaus-left-neighbours" fill="var(--color-series-blue)">
+    <g id="ebbinghaus-left-neighbours" fill={series.blue}>
       {neighbours.map(({ leftX, leftY }) => (
         <circle data-ebbinghaus-neighbour cx={leftX} cy={leftY} r="32" />
       ))}
     </g>
-    <g id="ebbinghaus-right-neighbours" fill="var(--color-series-blue)">
+    <g id="ebbinghaus-right-neighbours" fill={series.blue}>
       {neighbours.map(({ rightX, rightY }) => (
         <circle data-ebbinghaus-neighbour cx={rightX} cy={rightY} r="11" />
       ))}
     </g>
-    <circle cx="165" cy="175" r="25" fill="var(--color-series-red)" />
-    <circle cx="485" cy="175" r="25" fill="var(--color-series-red)" />
+    <circle cx="165" cy="175" r="25" fill={series.red} />
+    <circle cx="485" cy="175" r="25" fill={series.red} />
     <g
       id="ebbinghaus-guides"
       visibility="hidden"
       fill="none"
-      stroke="var(--color-series-red)"
+      stroke={series.red}
       stroke-width="2"
       aria-hidden="true"
     >
