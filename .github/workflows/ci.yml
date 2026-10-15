@@ -50,13 +50,6 @@ jobs:
         run: pnpm knip
         continue-on-error: true
 
-      # Temporary capture of exact formatter changes; removed in the next commit.
-      - name: Show Prettier corrections
-        if: always()
-        run: |
-          pnpm exec prettier --write src/components/illusions/vertical-horizontal-illusion.astro src/components/illusions/whites-illusion.astro src/components/illusions/wundt-illusion.astro
-          git diff --no-ext-diff -- src/components/illusions/vertical-horizontal-illusion.astro src/components/illusions/whites-illusion.astro src/components/illusions/wundt-illusion.astro
-
       - name: Report failed checks
         if: always()
         run: |

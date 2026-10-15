@@ -25,11 +25,7 @@ import { stroke } from "~/data/palette"
       stroke-width="5"
       stroke-linecap="butt"
     />
-    <MeasurementGuides
-      name="vertical-horizontal-illusion"
-      d="M150 345 H450"
-      width={4}
-    />
+    <MeasurementGuides name="vertical-horizontal-illusion" d="M150 345 H450" width={4} />
   </SvgFigure>
   <IllusionControls
     name="vertical-horizontal-illusion"
@@ -87,7 +83,12 @@ import { stroke } from "~/data/palette"
         ? "The 300-unit red line now lies exactly over the 300-unit upright"
         : "The red 300-unit copy rotates toward the black upright"
     })
-    bindIllusionProof(root, "vertical-horizontal-illusion", "Compare lengths", "Hide comparison")
+    bindIllusionProof(
+      root,
+      "vertical-horizontal-illusion",
+      "Compare lengths",
+      "Hide comparison",
+    )
     toggle.addEventListener("click", () => {
       comparison.hidden = toggle.getAttribute("aria-pressed") !== "true"
     })

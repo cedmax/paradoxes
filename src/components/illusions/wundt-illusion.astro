@@ -22,12 +22,7 @@ const fan = Array.from({ length: 53 }, (_, index) => 14 + index * 7.5)
         <path d={`M20 210 L310 ${y} L600 210`} />
       ))}
     </g>
-    <path
-      d="M255 25 V395 M365 25 V395"
-      fill="none"
-      stroke={series.red}
-      stroke-width="4.5"
-    />
+    <path d="M255 25 V395 M365 25 V395" fill="none" stroke={series.red} stroke-width="4.5" />
   </SvgFigure>
   <Slider
     id="wundt-illusion-diagonals"

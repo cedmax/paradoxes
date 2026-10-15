@@ -12,7 +12,10 @@ const stripes = Array.from({ length: 12 }, (_, index) => ({
 }))
 ---
 
-<IllustrationFigure name="whites-illusion" lead="Do the grey patches in A and B look equally light?">
+<IllustrationFigure
+  name="whites-illusion"
+  lead="Do the grey patches in A and B look equally light?"
+>
   <SvgFigure
     name="whites-illusion"
     viewBox="0 0 620 385"
@@ -22,9 +25,11 @@ const stripes = Array.from({ length: 12 }, (_, index) => ({
   >
     <rect x="25" y="52" width="570" height="288" fill={illusionSurface.paper} />
     <g id="whites-stripes" fill={illusionSurface.ink}>
-      {stripes.filter(({ black }) => black).map(({ y }) => (
-        <rect x="25" y={y} width="570" height="24" />
-      ))}
+      {stripes
+        .filter(({ black }) => black)
+        .map(({ y }) => (
+          <rect x="25" y={y} width="570" height="24" />
+        ))}
     </g>
     <g fill={illusionSurface.midGrey}>
       {stripes.map(({ y, black }) => (
@@ -32,8 +37,12 @@ const stripes = Array.from({ length: 12 }, (_, index) => ({
       ))}
     </g>
     <g fill={illusionSurface.ink} font-size="20" font-weight="700" text-anchor="middle">
-      <text x="201" y="35">A</text>
-      <text x="419" y="35">B</text>
+      <text x="201" y="35">
+        A
+      </text>
+      <text x="419" y="35">
+        B
+      </text>
     </g>
   </SvgFigure>
   <Slider
@@ -52,8 +61,8 @@ const stripes = Array.from({ length: 12 }, (_, index) => ({
     </p>
   </Slider>
   <Fragment slot="caption">
-    The grey rectangles are all identical. Only their place within the striped pattern
-    changes their apparent brightness. Redrawn after Michael White (1979).{" "}
+    The grey rectangles are all identical. Only their place within the striped pattern changes
+    their apparent brightness. Redrawn after Michael White (1979).{" "}
     <a
       href="https://michaelbach.de/ot/lum-white/"
       class="underline"
