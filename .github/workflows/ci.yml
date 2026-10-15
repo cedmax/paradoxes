@@ -57,12 +57,6 @@ jobs:
           pnpm build
           pnpm check:seo
 
-      - name: Exact Ebbinghaus formatting
-        if: always()
-        run: |
-          pnpm exec prettier --write src/components/illusions/ebbinghaus-illusion.astro
-          git diff --no-ext-diff -- src/components/illusions/ebbinghaus-illusion.astro
-
       - name: Report failed checks
         if: always()
         run: |
