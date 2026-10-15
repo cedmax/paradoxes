@@ -1,110 +1,49 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
-import Slider from "~/components/illustration-kit/Slider.astro"
-import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
-import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
 import { illusionSurface } from "~/data/palette"
-const xs = Array.from({ length: 8 }, (_, i) => 55 + i * 70)
-const ys = Array.from({ length: 5 }, (_, i) => 55 + i * 70)
+
+const xs = Array.from({ length: 12 }, (_, index) => 47 + index * 45)
+const ys = Array.from({ length: 8 }, (_, index) => 35 + index * 45)
 const dots = xs.flatMap((x) => ys.map((y) => ({ x, y })))
 ---
 
 <IllustrationFigure
   name="scintillating-grid-illusion"
-  lead="Do you see dark flickers inside the white discs?"
+  lead="Do dark spots seem to flicker inside the little white discs?"
 >
   <SvgFigure
     name="scintillating-grid-illusion"
-    viewBox="0 0 600 390"
+    viewBox="0 0 590 390"
     class="mx-auto w-full max-w-2xl"
-    title="White dots over grey paths against a black field"
-    desc="Grey grid streets on black carry evenly filled white dots at every crossing. Changing their size affects the apparent flickering, but no dark dot is drawn."
+    title="Fine scintillating grid with small borderless white discs"
+    desc="A fine grey grid lies on a black background, with solid, borderless white discs at each crossing. All circles are the same plain white. Brief apparent black spots may flicker in peripheral vision as the viewer looks around."
   >
-    <rect x="20" y="20" width="560" height="350" fill={illusionSurface.ink} />
-    <g stroke={illusionSurface.neutral} stroke-width="16">
+    <rect x="20" y="13" width="550" height="364" fill={illusionSurface.ink} />
+    <g stroke={illusionSurface.neutral} stroke-width="11">
       {xs.map((x) => (
-        <line x1={x} y1="20" x2={x} y2="370" />
+        <line x1={x} y1="13" x2={x} y2="377" />
       ))}
       {ys.map((y) => (
-        <line x1="20" y1={y} x2="580" y2={y} />
+        <line x1="20" y1={y} x2="570" y2={y} />
       ))}
     </g>
-    <g id="scintillating-grid-dots" fill={illusionSurface.paper}>
+    <g fill={illusionSurface.paper} stroke="none">
       {dots.map(({ x, y }) => (
-        <circle cx={x} cy={y} r="10" />
+        <circle cx={x} cy={y} r="7.2" />
       ))}
     </g>
-    <MeasurementGuides
-      name="scintillating-grid-illusion"
-      d="M115 125 A10 10 0 1 0 135 125 A10 10 0 1 0 115 125 M325 195 A10 10 0 1 0 345 195 A10 10 0 1 0 325 195"
-    />
   </SvgFigure>
-  <Slider
-    id="scintillating-grid-illusion-slider"
-    label="Reduce the white discs"
-    min={0}
-    max={100}
-    value={0}
-    startLabel="White dots on every crossing"
-    endLabel="No white dots"
-    describedby="scintillating-grid-illusion-note"
-    valuetext="White dots on every crossing"
-  >
-    <p id="scintillating-grid-illusion-note" class="text-base">
-      Try looking around the grid, then remove the white dots. Every drawn dot is uniformly
-      white.
-    </p>
-  </Slider>
-  <IllusionControls
-    name="scintillating-grid-illusion"
-    proof="Every spot is a solid white circle with no dark centre. Any flickering black centre is apparent, not drawn."
-    proofLabel="Show measurements"
-  />
   <Fragment slot="caption">
-    New vector version of the scintillating grid. Effects vary across displays and with eye
-    movement.{" "}
+    Each disc is uniformly white, without an outline or dark centre. The apparent flicker
+    depends on screen size and where you look.{" "}
     <a
-      class="underline"
       href="https://michaelbach.de/ot/lum-scGrid/"
+      class="underline"
       target="_blank"
       rel="noopener noreferrer"
     >
-      Source and explanation
-    </a>
-    .
+      Scintillating grid demonstration
+    </a>.
   </Fragment>
 </IllustrationFigure>
-
-<script>
-  import {
-    bindSliderPlayback,
-    bindIllusionProof,
-    find,
-    illustrationRoot,
-  } from "~/scripts/illustration"
-  const root = illustrationRoot("scintillating-grid-illusion")
-  if (root) {
-    const slider = find<HTMLInputElement>(root, "#scintillating-grid-illusion-slider")
-    const play = find<HTMLButtonElement>(root, "#scintillating-grid-illusion-play")
-    const dots = Array.from(
-      root.querySelectorAll<SVGCircleElement>("#scintillating-grid-dots circle"),
-    )
-    const guides = find<SVGGElement>(root, "#scintillating-grid-illusion-guides")
-    bindSliderPlayback(slider, play, (value) => {
-      const radius = 10 * (1 - value / 100)
-      for (const dot of dots) dot.setAttribute("r", String(radius))
-      guides.setAttribute("opacity", String(1 - value / 100))
-      return value === 100
-        ? "All white dots removed"
-        : "White dots have matching radius and uniform colour"
-    })
-
-    bindIllusionProof(
-      root,
-      "scintillating-grid-illusion",
-      "Show measurements",
-      "Hide measurements",
-    )
-  }
-</script>

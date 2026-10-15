@@ -3,90 +3,81 @@ import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
-import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
 import { series, stroke } from "~/data/palette"
-const rays = Array.from({ length: 28 }, (_, i) => {
-  const angle = (Math.PI * i) / 14
+
+const rays = Array.from({ length: 80 }, (_, index) => {
+  const angle = (index * 2 * Math.PI) / 80
   return {
-    x: 310 + Math.cos(angle) * 440,
-    y: 200 + Math.sin(angle) * 370,
+    x: 310 + 410 * Math.cos(angle),
+    y: 210 + 410 * Math.sin(angle),
   }
 })
 ---
 
 <IllustrationFigure
   name="hering-illusion"
-  lead="Do the two upright lines bend away from one another?"
+  lead="Do the two upright red lines seem to bow away from one another?"
 >
   <SvgFigure
     name="hering-illusion"
-    viewBox="0 0 620 400"
+    viewBox="0 0 620 420"
     class="mx-auto w-full max-w-2xl"
-    title="Two straight vertical bars laid over radiating strokes"
-    desc="The background rays can make the two straight and parallel bars appear bowed outward. Removing the rays reveals their constant direction."
+    title="Hering illusion with dense radiating black spokes behind two straight red parallel lines"
+    desc="Eighty fine black lines radiate from one point midway between two exactly vertical, parallel red lines. The red lines may appear bowed outwards but remain straight. A slider removes the black rays."
   >
-    <g id="hering-rays" stroke={series.blue} stroke-width="1.8" opacity="0.9">
+    <g id="hering-rays" stroke={stroke} stroke-width="1.7">
       {rays.map(({ x, y }) => (
-        <line x1="310" y1="200" x2={x} y2={y} />
+        <line x1="310" y1="210" x2={x} y2={y} />
       ))}
     </g>
-    <g stroke={stroke} stroke-width="4" stroke-linecap="square">
-      <path d="M220 45 V355 M400 45 V355" />
-    </g>
-    <MeasurementGuides name="hering-illusion" d="M204 45 V355 M416 45 V355" />
+    <path
+      d="M220 30 V390 M400 30 V390"
+      stroke={series.red}
+      stroke-width="5"
+      fill="none"
+    />
   </SvgFigure>
   <Slider
     id="hering-illusion-rays"
-    label="Remove the radiating background"
+    label="Remove the radial background"
     min={0}
     max={100}
     value={0}
-    startLabel="All rays visible"
-    endLabel="Only straight bars"
+    startLabel="Dense radial lines"
+    endLabel="Straight red lines only"
     describedby="hering-illusion-note"
-    valuetext="All rays visible"
+    valuetext="Eighty radial lines behind two fixed parallel red lines"
   >
     <p id="hering-illusion-note" class="text-base">
-      The rays fade away. Both upright bars stay at the same fixed x positions.
+      Only the fine black rays disappear. The red lines stay straight, 180 units apart.
     </p>
   </Slider>
-  <IllusionControls
-    name="hering-illusion"
-    proof="Both black bars run straight from y 45 to y 355. They are 310 units long and 180 units apart."
-  />
+  <IllusionControls name="hering-illusion" />
   <Fragment slot="caption">
-    Redrawn from the Hering illusion demonstration.{" "}
+    A new SVG drawing of Hering's 1861 illusion with the classic single radial centre.{" "}
     <a
-      href="https://michaelbach.de/ot/ang-hering/"
+      href="https://www.illusionsindex.org/i/hering-illusion"
       class="underline"
       target="_blank"
       rel="noopener noreferrer"
     >
-      Source and background
-    </a>
-    .
+      Description of the original effect
+    </a>.
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import {
-    bindSliderPlayback,
-    bindIllusionProof,
-    find,
-    illustrationRoot,
-  } from "~/scripts/illustration"
+  import { bindSliderPlayback, find, illustrationRoot } from "~/scripts/illustration"
   const root = illustrationRoot("hering-illusion")
   if (root) {
-    const input = find<HTMLInputElement>(root, "#hering-illusion-rays")
+    const slider = find<HTMLInputElement>(root, "#hering-illusion-rays")
     const play = find<HTMLButtonElement>(root, "#hering-illusion-play")
     const rays = find<SVGGElement>(root, "#hering-rays")
-    bindSliderPlayback(input, play, (value) => {
-      rays.setAttribute("opacity", String(0.9 * (1 - value / 100)))
+    bindSliderPlayback(slider, play, (value) => {
+      rays.setAttribute("opacity", String(1 - value / 100))
       return value === 100
-        ? "Radiating lines hidden; black bars remain parallel"
-        : "Radiating lines fade; black bars remain parallel"
+        ? "Only two straight red parallel lines remain"
+        : "The background rays are fading; the two red lines remain parallel"
     })
-
-    bindIllusionProof(root, "hering-illusion")
   }
 </script>

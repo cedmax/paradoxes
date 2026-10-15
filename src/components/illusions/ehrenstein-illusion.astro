@@ -1,106 +1,46 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
-import Slider from "~/components/illustration-kit/Slider.astro"
-import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
-import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
 import { stroke } from "~/data/palette"
-const spokes = Array.from({ length: 16 }, (_, i) => {
-  const angle = (Math.PI * 2 * i) / 16
+
+const spokes = Array.from({ length: 24 }, (_, index) => {
+  const angle = (2 * Math.PI * index) / 24
   return { c: Math.cos(angle), s: Math.sin(angle) }
 })
 ---
 
 <IllustrationFigure
   name="ehrenstein-illusion"
-  lead="Can you see a bright disc where no disc is drawn?"
+  lead="Can you see a bright disc where nothing is drawn?"
 >
   <SvgFigure
     name="ehrenstein-illusion"
-    viewBox="0 0 600 380"
-    class="mx-auto w-full max-w-2xl"
-    title="Black radial lines ending around an empty central disc"
-    desc="Sixteen black spokes stop on a common imaginary circle and can produce a bright disc impression. Sliding moves the ends towards the middle, disrupting the implied boundary."
+    viewBox="0 0 600 390"
+    class="mx-auto w-full max-w-xl"
+    title="Ehrenstein illusion, with radial black strokes stopping around an empty centre"
+    desc="Twenty-four black radial strokes terminate at the edge of an undrawn central circle, suggesting a bright disc. The centre contains only the white background; no white disc or circular outline is painted."
   >
-    <g id="ehrenstein-spokes" stroke={stroke} stroke-width="3.5" stroke-linecap="butt">
+    <g stroke={stroke} stroke-width="3" fill="none" stroke-linecap="butt">
       {spokes.map(({ c, s }) => (
         <line
-          data-c={c}
-          data-s={s}
           x1={300 + c * 67}
-          y1={190 + s * 67}
-          x2={300 + c * 170}
-          y2={190 + s * 170}
+          y1={195 + s * 67}
+          x2={300 + c * 183}
+          y2={195 + s * 183}
         />
       ))}
     </g>
-    <MeasurementGuides name="ehrenstein-illusion" d="M360 190 H375" />
   </SvgFigure>
-  <Slider
-    id="ehrenstein-illusion-slider"
-    label="Move the line ends into the centre"
-    min={0}
-    max={100}
-    value={0}
-    startLabel="A bright-looking empty centre"
-    endLabel="Lines meet at the centre"
-    describedby="ehrenstein-illusion-note"
-    valuetext="A bright-looking empty centre"
-  >
-    <p id="ehrenstein-illusion-note" class="text-base">
-      No disc has been filled in. Only the inner tips of the black spokes move.
-    </p>
-  </Slider>
-  <IllusionControls
-    name="ehrenstein-illusion"
-    proof="The white centre is only empty background. The red ticks indicate where the black strokes stop; no white disc is painted."
-    proofLabel="Show endpoints"
-  />
   <Fragment slot="caption">
-    Reconstruction of Walter Ehrenstein's illusory disc, using original SVG strokes.{" "}
+    The centre is empty white background, not a drawn disc. The aligned ends of the black
+    strokes suggest its outline.{" "}
     <a
-      class="underline"
       href="https://michaelbach.de/ot/lum-Ehrenstein/"
+      class="underline"
       target="_blank"
       rel="noopener noreferrer"
     >
-      Source and explanation
-    </a>
-    .
+      Ehrenstein illusion demonstration
+    </a>.
   </Fragment>
 </IllustrationFigure>
-
-<script>
-  import {
-    bindSliderPlayback,
-    bindIllusionProof,
-    find,
-    illustrationRoot,
-  } from "~/scripts/illustration"
-  const root = illustrationRoot("ehrenstein-illusion")
-  if (root) {
-    const slider = find<HTMLInputElement>(root, "#ehrenstein-illusion-slider")
-    const play = find<HTMLButtonElement>(root, "#ehrenstein-illusion-play")
-    const lines = Array.from(root.querySelectorAll<SVGLineElement>("#ehrenstein-spokes line"))
-    const marks = find<SVGGElement>(root, "#ehrenstein-illusion-guides").querySelector("path")
-    bindSliderPlayback(slider, play, (value) => {
-      const radius = 67 * (1 - value / 100)
-      const marksData: string[] = []
-      for (const line of lines) {
-        const c = Number(line.dataset.c)
-        const s = Number(line.dataset.s)
-        const x = 300 + c * radius
-        const y = 190 + s * radius
-        line.setAttribute("x1", String(x))
-        line.setAttribute("y1", String(y))
-        marksData.push("M" + (x - 3) + " " + (y - 3) + " l6 6")
-      }
-      marks?.setAttribute("d", marksData.join(" "))
-      return value === 100
-        ? "Rays now reach the centre; no empty disc remains"
-        : "Black rays stop short of the centre; no white circle is drawn"
-    })
-
-    bindIllusionProof(root, "ehrenstein-illusion", "Show endpoints", "Hide endpoints")
-  }
-</script>

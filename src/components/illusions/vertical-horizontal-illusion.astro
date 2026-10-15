@@ -1,103 +1,54 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
-import Slider from "~/components/illustration-kit/Slider.astro"
 import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
 import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
-import { series, stroke } from "~/data/palette"
+import { stroke } from "~/data/palette"
 ---
 
 <IllustrationFigure
   name="vertical-horizontal-illusion"
-  lead="Which arm of the right angle looks longer?"
+  lead="Which is longer: the upright or the full horizontal line?"
 >
   <SvgFigure
     name="vertical-horizontal-illusion"
-    viewBox="0 0 620 410"
-    class="mx-auto w-full max-w-2xl"
-    title="An L shape built from two lines of identical length"
-    desc="An upright line and a horizontal arm each measure 140 drawing units. The horizontal arm rotates downward without changing its length, making their equality easier to judge."
+    viewBox="0 0 600 430"
+    class="mx-auto w-full max-w-xl"
+    title="Inverted T with equal upright and full horizontal lengths"
+    desc="A vertical 300-unit black line joins the exact middle of a 300-unit horizontal line, making an upside-down T. The vertical looks longer to many observers. Red guides, shown on request, mark the two equal measurements."
   >
-    <g fill="none" stroke={stroke} stroke-width="6" stroke-linecap="round">
-      <path d="M280 230 V90" />
-      <line id="vertical-horizontal-arm" x1="280" y1="230" x2="420" y2="230" />
-    </g>
-    <circle cx="280" cy="230" r="4" fill={series.blue} />
-    <MeasurementGuides name="vertical-horizontal-illusion" d="M255 90 V230 M280 255 H420" />
+    <path
+      d="M150 345 H450 M300 45 V345"
+      fill="none"
+      stroke={stroke}
+      stroke-width="5"
+      stroke-linecap="butt"
+    />
+    <MeasurementGuides
+      name="vertical-horizontal-illusion"
+      d="M115 45 V345 M105 45 H125 M105 345 H125 M150 375 H450 M150 365 V385 M450 365 V385"
+    />
   </SvgFigure>
-  <Slider
-    id="vertical-horizontal-illusion-rotation"
-    label="Rotate the horizontal arm"
-    min={0}
-    max={100}
-    value={0}
-    startLabel="Perpendicular arms"
-    endLabel="One straight line"
-    describedby="vertical-horizontal-illusion-note"
-    valuetext="Perpendicular arms"
-  >
-    <p id="vertical-horizontal-illusion-note" class="text-base">
-      Both arms always measure 140 units, even as one rotates.
-    </p>
-  </Slider>
   <IllusionControls
     name="vertical-horizontal-illusion"
-    proof="The upright and rotating arms both measure 140 drawing units. Neither length changes."
+    play={false}
+    proof="The upright measures 300 units. The entire horizontal line measures 300 units, from left end to right end. The upright joins at its midpoint."
   />
   <Fragment slot="caption">
-    Redrawn from the vertical–horizontal illusion demonstration.{" "}
+    This is the inverted-T arrangement, not two arms forming an L.{" "}
     <a
-      href="https://pubmed.ncbi.nlm.nih.gov/8433908/"
+      href="https://www.esa.int/ESA_Multimedia/Images/2004/06/The_reversed_T_illusion"
       class="underline"
       target="_blank"
       rel="noopener noreferrer"
     >
-      Source and background
-    </a>
-    .
+      ESA's reversed-T demonstration
+    </a>.
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import {
-    bindSliderPlayback,
-    bindIllusionProof,
-    find,
-    illustrationRoot,
-  } from "~/scripts/illustration"
+  import { bindIllusionProof, illustrationRoot } from "~/scripts/illustration"
   const root = illustrationRoot("vertical-horizontal-illusion")
-  if (root) {
-    const input = find<HTMLInputElement>(root, "#vertical-horizontal-illusion-rotation")
-    const play = find<HTMLButtonElement>(root, "#vertical-horizontal-illusion-play")
-    const arm = find<SVGLineElement>(root, "#vertical-horizontal-arm")
-    const guides = find<SVGGElement>(
-      root,
-      "#vertical-horizontal-illusion-guides",
-    ).querySelector("path")
-    bindSliderPlayback(input, play, (value) => {
-      const angle = (Math.PI * value) / 200
-      const endX = 280 + 140 * Math.cos(angle)
-      const endY = 230 + 140 * Math.sin(angle)
-      arm.setAttribute("x2", String(endX))
-      arm.setAttribute("y2", String(endY))
-      const offsetX = -25 * Math.sin(angle)
-      const offsetY = 25 * Math.cos(angle)
-      guides?.setAttribute(
-        "d",
-        "M255 90 V230 M" +
-          (280 + offsetX) +
-          " " +
-          (230 + offsetY) +
-          " L" +
-          (endX + offsetX) +
-          " " +
-          (endY + offsetY),
-      )
-      return value === 100
-        ? "Both 140-unit arms now point vertically"
-        : "Both arms remain 140 drawing units long"
-    })
-
-    bindIllusionProof(root, "vertical-horizontal-illusion")
-  }
+  if (root) bindIllusionProof(root, "vertical-horizontal-illusion")
 </script>
