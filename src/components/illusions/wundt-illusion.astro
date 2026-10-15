@@ -2,74 +2,74 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
-import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
-import { series, stroke } from "~/data/palette"
+import { series } from "~/data/palette"
 
-// The conventional Wundt image uses two external hubs linked by chevrons.
-const points = Array.from({ length: 29 }, (_, index) => 14 + index * 14)
+// Classic Wundt diamond: rays extend from the left and right tips to successive
+// points along the centre axis. Neither red line changes its position or length.
+const fan = Array.from({ length: 53 }, (_, index) => 14 + index * 7.5)
 ---
 
-<IllustrationFigure
-  name="wundt-illusion"
-  lead="Do the two upright red lines seem to bow towards each other?"
->
+<IllustrationFigure name="wundt-illusion" lead="Do the two red lines appear to bend inwards?">
   <SvgFigure
     name="wundt-illusion"
     viewBox="0 0 620 420"
     class="mx-auto w-full max-w-2xl"
-    title="Wundt illusion: two fixed vertical red parallels over a diamond of black chevrons"
-    desc="Two vertical, parallel red target lines lie across dozens of black chevron rays pointing from left and right towards a vertical central axis. The red lines can appear bowed towards each other but are perfectly straight."
+    title="Wundt illusion: two straight red vertical lines across dense blue diamond fans"
+    desc="A blue diamond of tightly packed chevrons extends from sharp left and right points towards the centre axis. Two straight and parallel red vertical lines cross the blue chevrons. The slider hides only the chevrons, exposing the two unchanged red lines."
   >
-    <g id="wundt-fans" stroke={stroke} stroke-width="1.4" fill="none">
-      {points.map((y) => (
-        <path d={`M22 210 L310 ${y} L598 210`} />
+    <g id="wundt-fans" fill="none" stroke={series.blue} stroke-width="1.4">
+      {fan.map((y) => (
+        <path d={`M20 210 L310 ${y} L600 210`} />
       ))}
     </g>
-    <path d="M258 25 V395 M362 25 V395" fill="none" stroke={series.red} stroke-width="5" />
+    <path
+      d="M255 25 V395 M365 25 V395"
+      fill="none"
+      stroke={series.red}
+      stroke-width="4.5"
+    />
   </SvgFigure>
   <Slider
     id="wundt-illusion-diagonals"
-    label="Remove the two fans of lines"
+    label="Remove the blue background"
     min={0}
     max={100}
     value={0}
-    startLabel="Two dense fans"
-    endLabel="Parallel red lines only"
+    startLabel="Blue diamond visible"
+    endLabel="Only the two red lines"
     describedby="wundt-illusion-note"
-    valuetext="A diamond of rays behind two straight, parallel vertical red lines"
+    valuetext="Dense blue chevrons surrounding two fixed red parallel lines"
   >
     <p id="wundt-illusion-note" class="text-base">
-      The black background disappears, but the two red lines stay upright and 104 units apart.
+      The blue chevrons disappear; both red lines remain straight and 110 units apart.
     </p>
   </Slider>
-  <IllusionControls name="wundt-illusion" />
   <Fragment slot="caption">
-    Redrawn using the two-centre arrangement of the Wundt illusion, rather than the Hering
-    single-centre pattern.{" "}
+    Newly drawn after the classic Wundt diamond arrangement, with blue chevrons and red
+    parallels.{" "}
     <a
       href="https://www.illusionsindex.org/i/wundt-illusion"
       class="underline"
       target="_blank"
       rel="noopener noreferrer"
     >
-      Reference figure and description
+      Wundt illusion reference
     </a>
     .
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, find, illustrationRoot } from "~/scripts/illustration"
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
   const root = illustrationRoot("wundt-illusion")
   if (root) {
     const slider = find<HTMLInputElement>(root, "#wundt-illusion-diagonals")
-    const play = find<HTMLButtonElement>(root, "#wundt-illusion-play")
     const fans = find<SVGGElement>(root, "#wundt-fans")
-    bindSliderPlayback(slider, play, (value) => {
+    bindSlider(slider, (value) => {
       fans.setAttribute("opacity", String(1 - value / 100))
       return value === 100
-        ? "Two straight, parallel vertical lines remain"
-        : "Two fans of lines fade; the red parallels stay unchanged"
+        ? "Only two straight, parallel red lines remain"
+        : "The blue background becomes fainter; red lines stay straight"
     })
   }
 </script>

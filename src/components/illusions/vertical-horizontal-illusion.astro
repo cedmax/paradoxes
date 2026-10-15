@@ -1,6 +1,7 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
 import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
 import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
 import { stroke } from "~/data/palette"
@@ -14,8 +15,8 @@ import { stroke } from "~/data/palette"
     name="vertical-horizontal-illusion"
     viewBox="0 0 600 430"
     class="mx-auto w-full max-w-xl"
-    title="Inverted T with equal upright and full horizontal lengths"
-    desc="A vertical 300-unit black line joins the exact middle of a 300-unit horizontal line, making an upside-down T. The vertical looks longer to many observers. Red guides, shown on request, mark the two equal measurements."
+    title="Inverted T with a horizontal length that can be rotated onto the equal upright"
+    desc="An upside-down T has a 300-unit upright and a 300-unit horizontal line. Press Compare lengths to reveal a red copy of the horizontal line. Rotate the copy through 90 degrees until it precisely covers the black upright, verifying equal length."
   >
     <path
       d="M150 345 H450 M300 45 V345"
@@ -26,30 +27,69 @@ import { stroke } from "~/data/palette"
     />
     <MeasurementGuides
       name="vertical-horizontal-illusion"
-      d="M115 45 V345 M105 45 H125 M105 345 H125 M150 375 H450 M150 365 V385 M450 365 V385"
+      d="M150 345 H450"
+      width={4}
     />
   </SvgFigure>
   <IllusionControls
     name="vertical-horizontal-illusion"
     play={false}
-    proof="The upright measures 300 units. The entire horizontal line measures 300 units, from left end to right end. The upright joins at its midpoint."
+    proofLabel="Compare lengths"
+    proof="The red copy of the entire 300-unit horizontal line can rotate and move over the 300-unit upright. At the end they overlap exactly."
   />
+  <div id="vertical-horizontal-comparison" hidden>
+    <Slider
+      id="vertical-horizontal-rotation"
+      label="Rotate the red copy onto the upright"
+      min={0}
+      max={100}
+      value={0}
+      startLabel="Matches the horizontal"
+      endLabel="Matches the upright"
+      describedby="vertical-horizontal-note"
+      valuetext="Red comparison copy overlaps the black horizontal line"
+    >
+      <p id="vertical-horizontal-note" class="text-base">
+        Only the red copy moves. The black inverted T does not change.
+      </p>
+    </Slider>
+  </div>
   <Fragment slot="caption">
-    This is the inverted-T arrangement, not two arms forming an L.{" "}
+    In this reversed T, the horizontal means its complete width, not just one arm.{" "}
     <a
       href="https://www.esa.int/ESA_Multimedia/Images/2004/06/The_reversed_T_illusion"
       class="underline"
       target="_blank"
       rel="noopener noreferrer"
     >
-      ESA's reversed-T demonstration
+      Reversed-T illustration
     </a>
     .
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import { bindIllusionProof, illustrationRoot } from "~/scripts/illustration"
+  import { bindSlider, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
   const root = illustrationRoot("vertical-horizontal-illusion")
-  if (root) bindIllusionProof(root, "vertical-horizontal-illusion")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#vertical-horizontal-rotation")
+    const comparison = find<HTMLElement>(root, "#vertical-horizontal-comparison")
+    const guides = find<SVGPathElement>(root, "#vertical-horizontal-illusion-guides path")
+    const toggle = find<HTMLButtonElement>(root, "#vertical-horizontal-illusion-guide-toggle")
+    bindSlider(slider, (value) => {
+      const t = value / 100
+      const theta = (Math.PI * t) / 2
+      const x = 150 + 150 * t
+      const endX = value === 100 ? 300 : x + 300 * Math.cos(theta)
+      const endY = value === 100 ? 45 : 345 - 300 * Math.sin(theta)
+      guides.setAttribute("d", `M${x} 345 L${endX} ${endY}`)
+      return value === 100
+        ? "The 300-unit red line now lies exactly over the 300-unit upright"
+        : "The red 300-unit copy rotates toward the black upright"
+    })
+    bindIllusionProof(root, "vertical-horizontal-illusion", "Compare lengths", "Hide comparison")
+    toggle.addEventListener("click", () => {
+      comparison.hidden = toggle.getAttribute("aria-pressed") !== "true"
+    })
+  }
 </script>

@@ -2,86 +2,81 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
-import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
-import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
 import { illusionSurface } from "~/data/palette"
 
-const stripes = Array.from({ length: 10 }, (_, index) => 40 + index * 60)
+// White's classic effect: equal grey bars replace alternating sections of
+// different horizontal stripes, rather than covering vertical stripes.
+const stripes = Array.from({ length: 12 }, (_, index) => ({
+  y: 52 + index * 24,
+  black: index % 2 === 0,
+}))
 ---
 
-<IllustrationFigure name="whites-illusion" lead="Do the two grey strips look equally bright?">
+<IllustrationFigure name="whites-illusion" lead="Do the grey patches in A and B look equally light?">
   <SvgFigure
     name="whites-illusion"
-    viewBox="0 0 620 360"
+    viewBox="0 0 620 385"
     class="mx-auto w-full max-w-2xl"
-    title="Two identical grey patches against alternating black and white stripes"
-    desc="Two solid grey vertical bars have identical RGB values and size. The left interrupts a dark stripe and the right a light stripe. Sliding the striped background makes their apparent lightness change without altering the grey bars."
+    title="White's illusion: identical grey bars interrupt different black and white horizontal stripes"
+    desc="A background of horizontal black and white bands holds two columns, A and B, of identical grey bars. A's grey bars replace white bands and B's replace black bands. The slider removes the black-and-white striped background, showing that every grey bar is unchanged and exactly RGB 128, 128, 128."
   >
-    <rect x="25" y="25" width="570" height="310" fill={illusionSurface.paper} />
+    <rect x="25" y="52" width="570" height="288" fill={illusionSurface.paper} />
     <g id="whites-stripes" fill={illusionSurface.ink}>
-      {stripes.map((x) => (
-        <rect x={x} y="25" width="30" height="310" />
+      {stripes.filter(({ black }) => black).map(({ y }) => (
+        <rect x="25" y={y} width="570" height="24" />
       ))}
     </g>
     <g fill={illusionSurface.midGrey}>
-      <rect x="164" y="78" width="22" height="204" />
-      <rect x="434" y="78" width="22" height="204" />
+      {stripes.map(({ y, black }) => (
+        <rect x={black ? 384 : 166} y={y} width="70" height="24" />
+      ))}
     </g>
-    <MeasurementGuides
-      name="whites-illusion"
-      d="M161 75 H189 V285 H161 Z M431 75 H459 V285 H431 Z"
-    />
+    <g fill={illusionSurface.ink} font-size="20" font-weight="700" text-anchor="middle">
+      <text x="201" y="35">A</text>
+      <text x="419" y="35">B</text>
+    </g>
   </SvgFigure>
   <Slider
     id="whites-illusion-slider"
-    label="Move the striped background"
+    label="Remove the striped background"
     min={0}
     max={100}
     value={0}
-    startLabel="Grey on dark / light"
-    endLabel="Grey on light / dark"
-    valuetext="Both grey patches are RGB 128, 128, 128"
+    startLabel="Black and white stripes"
+    endLabel="Same grey on white"
+    valuetext="Both groups of patches are RGB 128, 128, 128"
     describedby="whites-illusion-note"
   >
     <p id="whites-illusion-note" class="text-base">
-      The black stripes shift behind two fixed, identical grey patches. The patches never change
-      colour.
+      The stripes fade away. All the grey rectangles remain the same fixed RGB 128, 128, 128.
     </p>
   </Slider>
-  <IllusionControls
-    name="whites-illusion"
-    proof="Both patches are exactly 22 by 204 units and RGB 128, 128, 128. Only the striped background changes."
-  />
   <Fragment slot="caption">
-    Redrawn after White's lightness effect (1979).{" "}
+    The grey rectangles are all identical. Only their place within the striped pattern
+    changes their apparent brightness. Redrawn after Michael White (1979).{" "}
     <a
       href="https://michaelbach.de/ot/lum-white/"
       class="underline"
       target="_blank"
       rel="noopener noreferrer"
     >
-      Source and explanation
+      Original effect and explanation
     </a>
     .
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import {
-    bindSliderPlayback,
-    bindIllusionProof,
-    find,
-    illustrationRoot,
-  } from "~/scripts/illustration"
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
   const root = illustrationRoot("whites-illusion")
   if (root) {
     const slider = find<HTMLInputElement>(root, "#whites-illusion-slider")
-    const play = find<HTMLButtonElement>(root, "#whites-illusion-play")
     const stripes = find<SVGGElement>(root, "#whites-stripes")
-    bindSliderPlayback(slider, play, (value) => {
-      stripes.setAttribute("transform", "translate(" + (30 * value) / 100 + " 0)")
-      return "Both fixed patches remain RGB 128, 128, 128; background stripes are shifting"
+    bindSlider(slider, (value) => {
+      stripes.setAttribute("opacity", String(1 - value / 100))
+      return value === 100
+        ? "All the grey patches remain RGB 128, 128, 128 on white"
+        : "The black stripes fade; grey patches remain unchanged"
     })
-    bindIllusionProof(root, "whites-illusion")
   }
 </script>

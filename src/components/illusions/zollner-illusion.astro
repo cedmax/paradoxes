@@ -4,7 +4,7 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 import { series, stroke } from "~/data/palette"
 
-const columns = Array.from({ length: 6 }, (_, index) => 95 + index * 78)
+const columns = Array.from({ length: 10 }, (_, index) => 70 + index * 49)
 const crossings = columns.flatMap((x, column) =>
   Array.from({ length: 9 }, (_, row) => {
     const y = 60 + row * 32
@@ -15,14 +15,14 @@ const crossings = columns.flatMap((x, column) =>
 
 <IllustrationFigure
   name="zollner-illusion"
-  lead="Are the six long diagonal lines really parallel?"
+  lead="Are the ten long diagonal lines really parallel?"
 >
   <SvgFigure
     name="zollner-illusion"
     viewBox="0 0 590 380"
     class="mx-auto w-full max-w-2xl"
-    title="Six closely spaced parallel diagonal lines crossed by alternating short blue strokes"
-    desc="Six black long diagonal lines have precisely the same angle. Alternating rows of blue cross strokes make them look unevenly tilted. The slider rotates only the short blue strokes, leaving every long black line fixed."
+    title="Ten closely spaced parallel diagonal lines crossed by alternating short blue strokes"
+    desc="Ten tightly spaced black diagonal lines all have the same angle. Alternating short blue strokes can make them appear to tilt differently. The slider rotates only the short strokes; the black lines never move."
   >
     <g id="zollner-hatches" stroke={series.blue} stroke-width="2.7" stroke-linecap="square">
       {crossings.map(({ x, y, sign }) => (
@@ -52,7 +52,7 @@ const crossings = columns.flatMap((x, column) =>
     startLabel="Alternating diagonal strokes"
     endLabel="Horizontal strokes"
     describedby="zollner-illusion-note"
-    valuetext="Six fixed, parallel diagonal lines with alternating angled blue strokes"
+    valuetext="Ten fixed, parallel diagonal lines with alternating angled blue strokes"
   >
     <p id="zollner-illusion-note" class="text-base">
       Only the short blue strokes rotate. The long black lines never move or change angle.
@@ -90,8 +90,8 @@ const crossings = columns.flatMap((x, column) =>
         line.setAttribute("y2", String(y + sign * incline))
       }
       return value === 100
-        ? "Short strokes are horizontal; all six black lines are still parallel"
-        : "Short strokes rotate; the six long black lines remain parallel"
+        ? "Short strokes are horizontal; all ten black lines are still parallel"
+        : "Short strokes rotate; the ten long black lines remain parallel"
     })
   }
 </script>

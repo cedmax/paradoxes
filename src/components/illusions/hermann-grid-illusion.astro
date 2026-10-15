@@ -19,7 +19,7 @@ const horizontals = Array.from({ length: 6 }, (_, index) => 48 + index * 61)
     desc="Nine thin white vertical streets and six horizontal streets separate black tiles. The white intersections can look dark in peripheral vision but each intersection is uniformly white. There are no changing states or controls."
   >
     <rect x="20" y="13" width="560" height="364" fill={illusionSurface.ink} />
-    <g stroke={illusionSurface.paper} stroke-width="13">
+    <g stroke={illusionSurface.paper} stroke-width="9">
       {verticals.map((x) => (
         <line x1={x} y1="13" x2={x} y2="377" />
       ))}
