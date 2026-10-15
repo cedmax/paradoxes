@@ -1,0 +1,70 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
+import { series, stroke } from "~/data/palette"
+const rays = Array.from({ length: 28 }, (_, i) => {
+  const angle = (Math.PI * i) / 14
+  return {
+    x: 310 + Math.cos(angle) * 440,
+    y: 200 + Math.sin(angle) * 370,
+  }
+})
+---
+
+<IllustrationFigure name="hering-illusion" lead="Do the two upright lines bend away from one another?">
+  <SvgFigure
+    name="hering-illusion"
+    viewBox="0 0 620 400"
+    class="mx-auto w-full max-w-2xl"
+    title="Two straight vertical bars laid over radiating strokes"
+    desc="The background rays can make the two straight and parallel bars appear bowed outward. Removing the rays reveals their constant direction."
+  >
+    <g id="hering-rays" stroke={series.blue} stroke-width="1.8" opacity="0.9">
+      {rays.map(({ x, y }) => <line x1="310" y1="200" x2={x} y2={y} />)}
+    </g>
+    <g stroke={stroke} stroke-width="4" stroke-linecap="square">
+      <path d="M220 45 V355 M400 45 V355" />
+    </g>
+    <MeasurementGuides name="hering-illusion" d="M204 45 V355 M416 45 V355" />
+  </SvgFigure>
+  <Slider
+    id="hering-illusion-rays"
+    label="Remove the radiating background"
+    min={0}
+    max={100}
+    value={0}
+    startLabel="All rays visible"
+    endLabel="Only straight bars"
+    describedby="hering-illusion-note"
+    valuetext="All rays visible"
+  >
+    <p id="hering-illusion-note" class="text-base">The rays fade away. Both upright bars stay at the same fixed x positions.</p>
+  </Slider>
+  <IllusionControls name="hering-illusion"
+    proof="Both black bars run straight from y 45 to y 355. They are 310 units long and 180 units apart." />
+  <Fragment slot="caption">
+    Redrawn from the Hering illusion demonstration.{" "}
+    <a href="https://michaelbach.de/ot/ang-hering/" class="underline" target="_blank" rel="noopener noreferrer">
+      Source and background
+    </a>.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("hering-illusion")
+  if (root) {
+    const input = find<HTMLInputElement>(root, "#hering-illusion-rays")
+    const play = find<HTMLButtonElement>(root, "#hering-illusion-play")
+    const rays = find<SVGGElement>(root, "#hering-rays")
+    bindSliderPlayback(input, play, (value) => {
+      rays.setAttribute("opacity", String(0.9 * (1 - value / 100)))
+      return value === 100 ? "Radiating lines hidden; black bars remain parallel" : "Radiating lines fade; black bars remain parallel"
+    })
+
+    bindIllusionProof(root, "hering-illusion")
+  }
+</script>

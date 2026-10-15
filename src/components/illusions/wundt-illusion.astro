@@ -1,0 +1,70 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
+import { series, stroke } from "~/data/palette"
+const fan = Array.from({ length: 13 }, (_, i) => {
+  const y = 40 + 26 * i
+  return { y, inner: 200 + (y - 200) * 0.32 }
+})
+---
+
+<IllustrationFigure name="wundt-illusion" lead="Do the two upright lines bow towards one another?">
+  <SvgFigure
+    name="wundt-illusion"
+    viewBox="0 0 620 400"
+    class="mx-auto w-full max-w-2xl"
+    title="Two perfectly straight lines surrounded by opposing fans of diagonals"
+    desc="Two equal upright black bars remain fixed while opposed diagonal fans alter their apparent straightness. Hiding the diagonals reveals parallel bars."
+  >
+    <g id="wundt-fans" fill="none" stroke={series.blue} stroke-width="1.9">
+      {fan.map(({ y, inner }) => (
+        <>
+          <line x1="18" y1={y} x2="310" y2={inner} />
+          <line x1="602" y1={y} x2="310" y2={inner} />
+        </>
+      ))}
+    </g>
+    <path d="M220 50 V350 M400 50 V350" fill="none" stroke={stroke} stroke-width="4" />
+    <MeasurementGuides name="wundt-illusion" d="M204 50 V350 M416 50 V350" />
+  </SvgFigure>
+  <Slider
+    id="wundt-illusion-diagonals"
+    label="Remove the angled background"
+    min={0}
+    max={100}
+    value={0}
+    startLabel="Converging strokes"
+    endLabel="Only straight bars"
+    describedby="wundt-illusion-note"
+    valuetext="Converging strokes"
+  >
+    <p id="wundt-illusion-note" class="text-base">The diagonal fans fade; the distance between the two black bars never changes.</p>
+  </Slider>
+  <IllusionControls name="wundt-illusion"
+    proof="Both bars stay straight, 300 units long, 180 units apart. Neither bows inwards." />
+  <Fragment slot="caption">
+    Redrawn from the Wundt illusion demonstration.{" "}
+    <a href="https://manifold.open.umn.edu/read/sensation-perception-v3/section/7d0f87e7-f8f3-470b-a607-c592c0d6395d" class="underline" target="_blank" rel="noopener noreferrer">
+      Source and background
+    </a>.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("wundt-illusion")
+  if (root) {
+    const input = find<HTMLInputElement>(root, "#wundt-illusion-diagonals")
+    const play = find<HTMLButtonElement>(root, "#wundt-illusion-play")
+    const fans = find<SVGGElement>(root, "#wundt-fans")
+    bindSliderPlayback(input, play, (value) => {
+      fans.setAttribute("opacity", String(1 - value / 100))
+      return value === 100 ? "Only the straight black lines remain" : "Background diagonal strokes fade, but the black lines never move"
+    })
+
+    bindIllusionProof(root, "wundt-illusion")
+  }
+</script>
