@@ -50,13 +50,12 @@ jobs:
         run: pnpm knip
         continue-on-error: true
 
-
-      # Temporary: capture the project's exact formatting to apply in the next commit.
-      - name: Show Prettier corrections
-        if: always()
+      # One-time PR #87 build smoke check, without triggering a Netlify deployment.
+      - name: Smoke build PR 87
+        if: github.event.pull_request.number == 87
         run: |
-          pnpm exec prettier --write docs/architecture.md scripts/check-illusion-assets.mjs src/components/IllusionExperience.astro src/components/illusions/checker-shadow-illusion.astro src/components/illusions/ebbinghaus-illusion.astro src/components/illusions/muller-lyer-illusion.astro src/content.config.ts 'src/pages/entries/[slug].astro' src/pages/index.astro
-          git diff --no-ext-diff -- docs/architecture.md scripts/check-illusion-assets.mjs src/components/IllusionExperience.astro src/components/illusions/checker-shadow-illusion.astro src/components/illusions/ebbinghaus-illusion.astro src/components/illusions/muller-lyer-illusion.astro src/content.config.ts 'src/pages/entries/[slug].astro' src/pages/index.astro
+          pnpm build
+          pnpm check:seo
 
       - name: Report failed checks
         if: always()

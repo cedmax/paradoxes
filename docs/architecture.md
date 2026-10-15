@@ -75,7 +75,6 @@ in `src/styles/global.css`. `~` maps to `/src`.
 
 Routes (`/entries/<slug>/`) are stable: never rename an entry file without adding a redirect.
 
-
 ## Visual illusions
 
 Entry frontmatter uses `format: illusion` for visual illusions. Legacy entries omit `format`

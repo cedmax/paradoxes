@@ -13,7 +13,7 @@ try {
   if (error.code !== "ENOENT") throw error
   throw new Error(
     "Missing Adelson's checker-shadow PNG. Commit " +
-    "public/illustrations/checker-shadow-original.png before building.",
+      "public/illustrations/checker-shadow-original.png before building.",
     { cause: error },
   )
 }

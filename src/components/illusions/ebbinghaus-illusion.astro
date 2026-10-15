@@ -57,9 +57,14 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
     </p>
   </Slider>
   <Fragment slot="caption">
-    Both red circles stay 50 units across while the surrounding circles change size.
-    Redrawn after Hermann Ebbinghaus's circles, first published by{" "}
-    <a href="https://books.google.com/books?id=DSlWAAAAMAAJ" class="underline" target="_blank" rel="noopener noreferrer">
+    Both red circles stay 50 units across while the surrounding circles change size. Redrawn
+    after Hermann Ebbinghaus's circles, first published by{" "}
+    <a
+      href="https://books.google.com/books?id=DSlWAAAAMAAJ"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       Wilhelm Wundt (1898)
     </a>
     .
@@ -97,7 +102,5 @@ const neighbours = Array.from({ length: 8 }, (_, index) => {
       if (value === 100) return "Small circles on the left; large circles on the right"
       return "Surround sizes changing; red target circles remain fixed"
     })
-
-
   }
 </script>

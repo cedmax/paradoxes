@@ -10,7 +10,10 @@ const load = loaders["./illusions/" + slug + ".astro"]
 if (!load) throw new Error("Missing visual illusion figure: " + slug)
 const Figure = (await load()).default
 ---
-<section aria-label="Visual illusion and its proof"><Figure /></section>
+
+<section aria-label="Visual illusion and its proof">
+  <Figure />
+</section>
 <section>
   <h2 class="display text-5xl">Why it happens</h2>
   <p>{why}</p>

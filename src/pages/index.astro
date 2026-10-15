@@ -27,7 +27,9 @@ const counts: Record<string, number> = {
 }
 statusKeys.forEach(
   (k) =>
-    (counts[k] = listed.filter((e) => e.data.format === "argument" && e.data.status === k).length),
+    (counts[k] = listed.filter(
+      (e) => e.data.format === "argument" && e.data.status === k,
+    ).length),
 )
 ---
 
@@ -91,7 +93,9 @@ statusKeys.forEach(
           aria-pressed="false"
         >
           Visual illusions{" "}
-          <span class="font-mono text-xs font-medium" data-count>{counts.illusions}</span>
+          <span class="font-mono text-xs font-medium" data-count>
+            {counts.illusions}
+          </span>
         </button>
       </div>
     </div>
@@ -238,7 +242,9 @@ statusKeys.forEach(
   let status = "all"
   const matchesFilter = (card: HTMLElement, filter: string) =>
     filter === "all" ||
-    (filter === "illusions" ? card.dataset.format === "illusion" : card.dataset.status === filter)
+    (filter === "illusions"
+      ? card.dataset.format === "illusion"
+      : card.dataset.status === filter)
   // What the visitor chose with the switch. While a search is active the switch is forced off
   // and disabled, and this is restored when the search is cleared.
   let hideChoice = input.value.trim() ? true : hideVariants.checked
@@ -316,8 +322,7 @@ statusKeys.forEach(
     for (const chip of chips) {
       const filter = chip.dataset.filter ?? "all"
       const count = cards.filter(
-        (card) =>
-          matchesFilter(card, filter) && isShownBySwitches(card),
+        (card) => matchesFilter(card, filter) && isShownBySwitches(card),
       ).length
       const label = chip.querySelector("[data-count]")
       if (label) label.textContent = String(count)

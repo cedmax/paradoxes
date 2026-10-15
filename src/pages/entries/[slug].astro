@@ -148,29 +148,29 @@ const structuredData = [
   </section>
 
   {!isIllusion && (
-  <section
-    class="flex flex-col items-stretch min-[920px]:flex-row border-y-2 border-ink"
-    aria-label="The two claims"
-  >
-    <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
-      <div class="mono-label opacity-65">Seems true</div>
-      <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
-        {d.claimA}
-      </div>
-    </div>
-    <div
-      class="font-display flex-none self-center px-2 py-4 text-center text-4xl leading-none font-extrabold tracking-tight text-accent uppercase sm:text-6xl"
-      aria-hidden="true"
+    <section
+      class="flex flex-col items-stretch min-[920px]:flex-row border-y-2 border-ink"
+      aria-label="The two claims"
     >
-      but
-    </div>
-    <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
-      <div class="mono-label opacity-65">Also seems true</div>
-      <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
-        {d.claimB}
+      <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
+        <div class="mono-label opacity-65">Seems true</div>
+        <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
+          {d.claimA}
+        </div>
       </div>
-    </div>
-  </section>
+      <div
+        class="font-display flex-none self-center px-2 py-4 text-center text-4xl leading-none font-extrabold tracking-tight text-accent uppercase sm:text-6xl"
+        aria-hidden="true"
+      >
+        but
+      </div>
+      <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
+        <div class="mono-label opacity-65">Also seems true</div>
+        <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
+          {d.claimB}
+        </div>
+      </div>
+    </section>
   )}
 
   <div class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
@@ -269,16 +269,16 @@ const structuredData = [
     <aside class="flex grow basis-65 flex-col gap-6 lg:max-w-85" aria-label="About this entry">
       <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] items-start gap-6">
         {!isIllusion && (
-        <div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
-          <div class="mono-label text-accent">What breaks</div>
-          <div>
-            <Linked text={d.whatBreaks} />
+          <div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
+            <div class="mono-label text-accent">What breaks</div>
+            <div>
+              <Linked text={d.whatBreaks} />
+            </div>
+            <div class="mono-label text-accent">Status</div>
+            <div>
+              {s?.label}: <Linked text={d.statusNote} />
+            </div>
           </div>
-          <div class="mono-label text-accent">Status</div>
-          <div>
-            {s?.label}: <Linked text={d.statusNote} />
-          </div>
-        </div>
         )}
         {echoes.length > 0 && (
           <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
