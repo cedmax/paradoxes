@@ -43,7 +43,7 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
     </g>
     <circle cx="165" cy="175" r="25" fill={series.red} />
     <circle cx="485" cy="175" r="25" fill={series.red} />
-<MeasurementGuides name="ebbinghaus-illusion" d="M120 150 H530 M120 200 H530" />
+    <MeasurementGuides name="ebbinghaus-illusion" d="M120 150 H530 M120 200 H530" />
   </SvgFigure>
   <Slider
     id="ebbinghaus-surround-size"
@@ -80,7 +80,12 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  import {
+    bindSliderPlayback,
+    bindIllusionProof,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
 
   const root = illustrationRoot("ebbinghaus-illusion")
   if (root) {

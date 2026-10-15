@@ -7,7 +7,10 @@ import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.a
 import { series, stroke } from "~/data/palette"
 ---
 
-<IllustrationFigure name="vertical-horizontal-illusion" lead="Which arm of the right angle looks longer?">
+<IllustrationFigure
+  name="vertical-horizontal-illusion"
+  lead="Which arm of the right angle looks longer?"
+>
   <SvgFigure
     name="vertical-horizontal-illusion"
     viewBox="0 0 620 410"
@@ -33,36 +36,66 @@ import { series, stroke } from "~/data/palette"
     describedby="vertical-horizontal-illusion-note"
     valuetext="Perpendicular arms"
   >
-    <p id="vertical-horizontal-illusion-note" class="text-base">Both arms always measure 140 units, even as one rotates.</p>
+    <p id="vertical-horizontal-illusion-note" class="text-base">
+      Both arms always measure 140 units, even as one rotates.
+    </p>
   </Slider>
-  <IllusionControls name="vertical-horizontal-illusion"
-    proof="The upright and rotating arms both measure 140 drawing units. Neither length changes." />
+  <IllusionControls
+    name="vertical-horizontal-illusion"
+    proof="The upright and rotating arms both measure 140 drawing units. Neither length changes."
+  />
   <Fragment slot="caption">
     Redrawn from the vertical–horizontal illusion demonstration.{" "}
-    <a href="https://pubmed.ncbi.nlm.nih.gov/8433908/" class="underline" target="_blank" rel="noopener noreferrer">
+    <a
+      href="https://pubmed.ncbi.nlm.nih.gov/8433908/"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       Source and background
-    </a>.
+    </a>
+    .
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  import {
+    bindSliderPlayback,
+    bindIllusionProof,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
   const root = illustrationRoot("vertical-horizontal-illusion")
   if (root) {
     const input = find<HTMLInputElement>(root, "#vertical-horizontal-illusion-rotation")
     const play = find<HTMLButtonElement>(root, "#vertical-horizontal-illusion-play")
     const arm = find<SVGLineElement>(root, "#vertical-horizontal-arm")
-    const guides = find<SVGGElement>(root, "#vertical-horizontal-illusion-guides").querySelector("path")
+    const guides = find<SVGGElement>(
+      root,
+      "#vertical-horizontal-illusion-guides",
+    ).querySelector("path")
     bindSliderPlayback(input, play, (value) => {
-      const angle = Math.PI * value / 200
+      const angle = (Math.PI * value) / 200
       const endX = 280 + 140 * Math.cos(angle)
       const endY = 230 + 140 * Math.sin(angle)
       arm.setAttribute("x2", String(endX))
       arm.setAttribute("y2", String(endY))
       const offsetX = -25 * Math.sin(angle)
       const offsetY = 25 * Math.cos(angle)
-      guides?.setAttribute("d", "M255 90 V230 M" + (280 + offsetX) + " " + (230 + offsetY) + " L" + (endX + offsetX) + " " + (endY + offsetY))
-      return value === 100 ? "Both 140-unit arms now point vertically" : "Both arms remain 140 drawing units long"
+      guides?.setAttribute(
+        "d",
+        "M255 90 V230 M" +
+          (280 + offsetX) +
+          " " +
+          (230 + offsetY) +
+          " L" +
+          (endX + offsetX) +
+          " " +
+          (endY + offsetY),
+      )
+      return value === 100
+        ? "Both 140-unit arms now point vertically"
+        : "Both arms remain 140 drawing units long"
     })
 
     bindIllusionProof(root, "vertical-horizontal-illusion")

@@ -14,7 +14,10 @@ const rays = Array.from({ length: 28 }, (_, i) => {
 })
 ---
 
-<IllustrationFigure name="hering-illusion" lead="Do the two upright lines bend away from one another?">
+<IllustrationFigure
+  name="hering-illusion"
+  lead="Do the two upright lines bend away from one another?"
+>
   <SvgFigure
     name="hering-illusion"
     viewBox="0 0 620 400"
@@ -23,7 +26,9 @@ const rays = Array.from({ length: 28 }, (_, i) => {
     desc="The background rays can make the two straight and parallel bars appear bowed outward. Removing the rays reveals their constant direction."
   >
     <g id="hering-rays" stroke={series.blue} stroke-width="1.8" opacity="0.9">
-      {rays.map(({ x, y }) => <line x1="310" y1="200" x2={x} y2={y} />)}
+      {rays.map(({ x, y }) => (
+        <line x1="310" y1="200" x2={x} y2={y} />
+      ))}
     </g>
     <g stroke={stroke} stroke-width="4" stroke-linecap="square">
       <path d="M220 45 V355 M400 45 V355" />
@@ -41,20 +46,35 @@ const rays = Array.from({ length: 28 }, (_, i) => {
     describedby="hering-illusion-note"
     valuetext="All rays visible"
   >
-    <p id="hering-illusion-note" class="text-base">The rays fade away. Both upright bars stay at the same fixed x positions.</p>
+    <p id="hering-illusion-note" class="text-base">
+      The rays fade away. Both upright bars stay at the same fixed x positions.
+    </p>
   </Slider>
-  <IllusionControls name="hering-illusion"
-    proof="Both black bars run straight from y 45 to y 355. They are 310 units long and 180 units apart." />
+  <IllusionControls
+    name="hering-illusion"
+    proof="Both black bars run straight from y 45 to y 355. They are 310 units long and 180 units apart."
+  />
   <Fragment slot="caption">
     Redrawn from the Hering illusion demonstration.{" "}
-    <a href="https://michaelbach.de/ot/ang-hering/" class="underline" target="_blank" rel="noopener noreferrer">
+    <a
+      href="https://michaelbach.de/ot/ang-hering/"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       Source and background
-    </a>.
+    </a>
+    .
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  import {
+    bindSliderPlayback,
+    bindIllusionProof,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
   const root = illustrationRoot("hering-illusion")
   if (root) {
     const input = find<HTMLInputElement>(root, "#hering-illusion-rays")
@@ -62,7 +82,9 @@ const rays = Array.from({ length: 28 }, (_, i) => {
     const rays = find<SVGGElement>(root, "#hering-rays")
     bindSliderPlayback(input, play, (value) => {
       rays.setAttribute("opacity", String(0.9 * (1 - value / 100)))
-      return value === 100 ? "Radiating lines hidden; black bars remain parallel" : "Radiating lines fade; black bars remain parallel"
+      return value === 100
+        ? "Radiating lines hidden; black bars remain parallel"
+        : "Radiating lines fade; black bars remain parallel"
     })
 
     bindIllusionProof(root, "hering-illusion")

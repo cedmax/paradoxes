@@ -11,7 +11,10 @@ const fan = Array.from({ length: 13 }, (_, i) => {
 })
 ---
 
-<IllustrationFigure name="wundt-illusion" lead="Do the two upright lines bow towards one another?">
+<IllustrationFigure
+  name="wundt-illusion"
+  lead="Do the two upright lines bow towards one another?"
+>
   <SvgFigure
     name="wundt-illusion"
     viewBox="0 0 620 400"
@@ -41,20 +44,35 @@ const fan = Array.from({ length: 13 }, (_, i) => {
     describedby="wundt-illusion-note"
     valuetext="Converging strokes"
   >
-    <p id="wundt-illusion-note" class="text-base">The diagonal fans fade; the distance between the two black bars never changes.</p>
+    <p id="wundt-illusion-note" class="text-base">
+      The diagonal fans fade; the distance between the two black bars never changes.
+    </p>
   </Slider>
-  <IllusionControls name="wundt-illusion"
-    proof="Both bars stay straight, 300 units long, 180 units apart. Neither bows inwards." />
+  <IllusionControls
+    name="wundt-illusion"
+    proof="Both bars stay straight, 300 units long, 180 units apart. Neither bows inwards."
+  />
   <Fragment slot="caption">
     Redrawn from the Wundt illusion demonstration.{" "}
-    <a href="https://manifold.open.umn.edu/read/sensation-perception-v3/section/7d0f87e7-f8f3-470b-a607-c592c0d6395d" class="underline" target="_blank" rel="noopener noreferrer">
+    <a
+      href="https://manifold.open.umn.edu/read/sensation-perception-v3/section/7d0f87e7-f8f3-470b-a607-c592c0d6395d"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       Source and background
-    </a>.
+    </a>
+    .
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  import {
+    bindSliderPlayback,
+    bindIllusionProof,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
   const root = illustrationRoot("wundt-illusion")
   if (root) {
     const input = find<HTMLInputElement>(root, "#wundt-illusion-diagonals")
@@ -62,7 +80,9 @@ const fan = Array.from({ length: 13 }, (_, i) => {
     const fans = find<SVGGElement>(root, "#wundt-fans")
     bindSliderPlayback(input, play, (value) => {
       fans.setAttribute("opacity", String(1 - value / 100))
-      return value === 100 ? "Only the straight black lines remain" : "Background diagonal strokes fade, but the black lines never move"
+      return value === 100
+        ? "Only the straight black lines remain"
+        : "Background diagonal strokes fade, but the black lines never move"
     })
 
     bindIllusionProof(root, "wundt-illusion")

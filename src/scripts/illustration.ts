@@ -103,7 +103,12 @@ export function bindSliderPlayback(
 }
 
 /** Share the same keyboard-operable reveal control on every measurement figure. */
-export function bindIllusionProof(root: Element, name: string, label = "Show measurements", hideLabel = "Hide measurements") {
+export function bindIllusionProof(
+  root: Element,
+  name: string,
+  label = "Show measurements",
+  hideLabel = "Hide measurements",
+) {
   const button = find<HTMLButtonElement>(root, `#${name}-guide-toggle`)
   const guides = find<SVGGElement>(root, `#${name}-guides`)
   const proof = find<HTMLElement>(root, `#${name}-proof`)
@@ -165,7 +170,9 @@ export function bindSliderLoopPlayback(
     button.disabled = reducedMotion.matches
     button.title = reducedMotion.matches ? "Use the slider without animation" : ""
   }
-  document.addEventListener("visibilitychange", () => { if (document.hidden) stop() })
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stop()
+  })
   reducedMotion.addEventListener("change", motionChanged)
   motionChanged()
 }

@@ -50,22 +50,6 @@ jobs:
         run: pnpm knip
         continue-on-error: true
 
-      # One-time check: compile published pages and all unverified preview illusions.
-      - name: Smoke build PR 87
-        if: github.event.pull_request.number == 87
-        run: |
-          pnpm build
-          pnpm check:seo
-          PREVIEW_UNVERIFIED=true SITE_INDEXING=noindex pnpm build
-          SITE_INDEXING=noindex pnpm check:seo
-
-      # Temporary capture of the project's canonical formatter output.
-      - name: Show illusion formatting corrections
-        if: always()
-        run: |
-          pnpm exec prettier --write src/components/illusions src/components/illustration-kit/IllusionControls.astro src/components/illustration-kit/MeasurementGuides.astro src/content/entries/zollner-illusion.md src/content/entries/lilac-chaser.md src/content/entries/hermann-grid-illusion.md src/content/entries/vertical-horizontal-illusion.md src/content/entries/hering-illusion.md src/content/entries/scintillating-grid-illusion.md src/content/entries/ehrenstein-illusion.md src/content/entries/whites-illusion.md src/content/entries/wundt-illusion.md src/data/palette.ts src/scripts/illustration.ts src/styles/global.css docs/architecture.md .claude/skills/build-illustration/SKILL.md
-          git diff --no-ext-diff -- src/components/illusions src/components/illustration-kit/IllusionControls.astro src/components/illustration-kit/MeasurementGuides.astro src/content/entries/zollner-illusion.md src/content/entries/lilac-chaser.md src/content/entries/hermann-grid-illusion.md src/content/entries/vertical-horizontal-illusion.md src/content/entries/hering-illusion.md src/content/entries/scintillating-grid-illusion.md src/content/entries/ehrenstein-illusion.md src/content/entries/whites-illusion.md src/content/entries/wundt-illusion.md src/data/palette.ts src/scripts/illustration.ts src/styles/global.css docs/architecture.md .claude/skills/build-illustration/SKILL.md
-
       - name: Report failed checks
         if: always()
         run: |

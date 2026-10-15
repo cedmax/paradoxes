@@ -19,7 +19,9 @@ const stripes = Array.from({ length: 10 }, (_, index) => 40 + index * 60)
   >
     <rect x="25" y="25" width="570" height="310" fill={illusionSurface.paper} />
     <g id="whites-stripes" fill={illusionSurface.ink}>
-      {stripes.map((x) => <rect x={x} y="25" width="30" height="310" />)}
+      {stripes.map((x) => (
+        <rect x={x} y="25" width="30" height="310" />
+      ))}
     </g>
     <g fill={illusionSurface.midGrey}>
       <rect x="164" y="78" width="22" height="204" />
@@ -42,7 +44,8 @@ const stripes = Array.from({ length: 10 }, (_, index) => 40 + index * 60)
     describedby="whites-illusion-note"
   >
     <p id="whites-illusion-note" class="text-base">
-      The black stripes shift behind two fixed, identical grey patches. The patches never change colour.
+      The black stripes shift behind two fixed, identical grey patches. The patches never change
+      colour.
     </p>
   </Slider>
   <IllusionControls
@@ -58,19 +61,25 @@ const stripes = Array.from({ length: 10 }, (_, index) => 40 + index * 60)
       rel="noopener noreferrer"
     >
       Source and explanation
-    </a>.
+    </a>
+    .
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  import {
+    bindSliderPlayback,
+    bindIllusionProof,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
   const root = illustrationRoot("whites-illusion")
   if (root) {
     const slider = find<HTMLInputElement>(root, "#whites-illusion-slider")
     const play = find<HTMLButtonElement>(root, "#whites-illusion-play")
     const stripes = find<SVGGElement>(root, "#whites-stripes")
     bindSliderPlayback(slider, play, (value) => {
-      stripes.setAttribute("transform", "translate(" + 30 * value / 100 + " 0)")
+      stripes.setAttribute("transform", "translate(" + (30 * value) / 100 + " 0)")
       return "Both fixed patches remain RGB 128, 128, 128; background stripes are shifting"
     })
     bindIllusionProof(root, "whites-illusion")

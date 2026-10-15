@@ -35,7 +35,10 @@ import IllusionControls from "~/components/illustration-kit/IllusionControls.ast
         d="M104 214 L67.23 177.23 M104 214 L67.23 250.77 M456 214 L492.77 177.23 M456 214 L492.77 250.77"
       />
     </g>
-<MeasurementGuides name="muller-lyer-illusion" d="M104 132 V150 M456 132 V150 M104 141 H456 M104 254 V272 M456 254 V272 M104 263 H456" />
+    <MeasurementGuides
+      name="muller-lyer-illusion"
+      d="M104 132 V150 M456 132 V150 M104 141 H456 M104 254 V272 M456 254 V272 M104 263 H456"
+    />
     <g
       aria-hidden="true"
       font-size="14"
@@ -83,7 +86,12 @@ import IllusionControls from "~/components/illustration-kit/IllusionControls.ast
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  import {
+    bindSliderPlayback,
+    bindIllusionProof,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
 
   const root = illustrationRoot("muller-lyer-illusion")
   if (root) {

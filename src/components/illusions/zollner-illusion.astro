@@ -11,7 +11,10 @@ const hatches = longLines.flatMap((x, column) =>
 )
 ---
 
-<IllustrationFigure name="zollner-illusion" lead="Do the five long lines tilt towards each other?">
+<IllustrationFigure
+  name="zollner-illusion"
+  lead="Do the five long lines tilt towards each other?"
+>
   <SvgFigure
     name="zollner-illusion"
     viewBox="0 0 600 360"
@@ -21,13 +24,26 @@ const hatches = longLines.flatMap((x, column) =>
   >
     <g id="zollner-hatches" stroke={series.blue} stroke-width="3" stroke-linecap="round">
       {hatches.map(({ x, y, sign }) => (
-        <line data-x={x} data-y={y} data-sign={sign} x1={x - 26} y1={y - sign * 16} x2={x + 26} y2={y + sign * 16} />
+        <line
+          data-x={x}
+          data-y={y}
+          data-sign={sign}
+          x1={x - 26}
+          y1={y - sign * 16}
+          x2={x + 26}
+          y2={y + sign * 16}
+        />
       ))}
     </g>
     <g stroke={stroke} stroke-width="4">
-      {longLines.map((x) => <line x1={x} x2={x} y1="40" y2="320" />)}
+      {longLines.map((x) => (
+        <line x1={x} x2={x} y1="40" y2="320" />
+      ))}
     </g>
-    <MeasurementGuides name="zollner-illusion" d="M88 40 V320 M188 40 V320 M288 40 V320 M388 40 V320 M488 40 V320" />
+    <MeasurementGuides
+      name="zollner-illusion"
+      d="M88 40 V320 M188 40 V320 M288 40 V320 M388 40 V320 M488 40 V320"
+    />
   </SvgFigure>
   <Slider
     id="zollner-illusion-angles"
@@ -40,20 +56,36 @@ const hatches = longLines.flatMap((x, column) =>
     describedby="zollner-illusion-note"
     valuetext="Alternating diagonals"
   >
-    <p id="zollner-illusion-note" class="text-base">Only the short blue strokes rotate. The five black lines remain exactly vertical and parallel.</p>
+    <p id="zollner-illusion-note" class="text-base">
+      Only the short blue strokes rotate. The five black lines remain exactly vertical and
+      parallel.
+    </p>
   </Slider>
-  <IllusionControls name="zollner-illusion"
-    proof="Each long black line is 280 units high, with the same direction and spacing." />
+  <IllusionControls
+    name="zollner-illusion"
+    proof="Each long black line is 280 units high, with the same direction and spacing."
+  />
   <Fragment slot="caption">
     Redrawn from the Zöllner illusion demonstration.{" "}
-    <a href="https://michaelbach.de/ot/ang-tiltedTable/" class="underline" target="_blank" rel="noopener noreferrer">
+    <a
+      href="https://michaelbach.de/ot/ang-tiltedTable/"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       Source and background
-    </a>.
+    </a>
+    .
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  import {
+    bindSliderPlayback,
+    bindIllusionProof,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
   const root = illustrationRoot("zollner-illusion")
   if (root) {
     const input = find<HTMLInputElement>(root, "#zollner-illusion-angles")
@@ -70,7 +102,9 @@ const hatches = longLines.flatMap((x, column) =>
         line.setAttribute("y1", String(y - sign * incline))
         line.setAttribute("y2", String(y + sign * incline))
       }
-      return value === 100 ? "The crossings are horizontal; long lines remain parallel" : "Short crossings rotate; all five long lines remain parallel"
+      return value === 100
+        ? "The crossings are horizontal; long lines remain parallel"
+        : "Short crossings rotate; all five long lines remain parallel"
     })
 
     bindIllusionProof(root, "zollner-illusion")

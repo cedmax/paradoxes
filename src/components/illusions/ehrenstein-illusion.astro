@@ -11,7 +11,10 @@ const spokes = Array.from({ length: 16 }, (_, i) => {
 })
 ---
 
-<IllustrationFigure name="ehrenstein-illusion" lead="Can you see a bright disc where no disc is drawn?">
+<IllustrationFigure
+  name="ehrenstein-illusion"
+  lead="Can you see a bright disc where no disc is drawn?"
+>
   <SvgFigure
     name="ehrenstein-illusion"
     viewBox="0 0 600 380"
@@ -21,7 +24,14 @@ const spokes = Array.from({ length: 16 }, (_, i) => {
   >
     <g id="ehrenstein-spokes" stroke={stroke} stroke-width="3.5" stroke-linecap="butt">
       {spokes.map(({ c, s }) => (
-        <line data-c={c} data-s={s} x1={300 + c * 67} y1={190 + s * 67} x2={300 + c * 170} y2={190 + s * 170} />
+        <line
+          data-c={c}
+          data-s={s}
+          x1={300 + c * 67}
+          y1={190 + s * 67}
+          x2={300 + c * 170}
+          y2={190 + s * 170}
+        />
       ))}
     </g>
     <MeasurementGuides name="ehrenstein-illusion" d="M360 190 H375" />
@@ -37,21 +47,36 @@ const spokes = Array.from({ length: 16 }, (_, i) => {
     describedby="ehrenstein-illusion-note"
     valuetext="A bright-looking empty centre"
   >
-    <p id="ehrenstein-illusion-note" class="text-base">No disc has been filled in. Only the inner tips of the black spokes move.</p>
+    <p id="ehrenstein-illusion-note" class="text-base">
+      No disc has been filled in. Only the inner tips of the black spokes move.
+    </p>
   </Slider>
-  <IllusionControls name="ehrenstein-illusion"
+  <IllusionControls
+    name="ehrenstein-illusion"
     proof="The white centre is only empty background. The red ticks indicate where the black strokes stop; no white disc is painted."
-    proofLabel="Show endpoints" />
+    proofLabel="Show endpoints"
+  />
   <Fragment slot="caption">
     Reconstruction of Walter Ehrenstein's illusory disc, using original SVG strokes.{" "}
-    <a class="underline" href="https://michaelbach.de/ot/lum-Ehrenstein/" target="_blank" rel="noopener noreferrer">
+    <a
+      class="underline"
+      href="https://michaelbach.de/ot/lum-Ehrenstein/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       Source and explanation
-    </a>.
+    </a>
+    .
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  import {
+    bindSliderPlayback,
+    bindIllusionProof,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
   const root = illustrationRoot("ehrenstein-illusion")
   if (root) {
     const slider = find<HTMLInputElement>(root, "#ehrenstein-illusion-slider")
@@ -71,7 +96,9 @@ const spokes = Array.from({ length: 16 }, (_, i) => {
         marksData.push("M" + (x - 3) + " " + (y - 3) + " l6 6")
       }
       marks?.setAttribute("d", marksData.join(" "))
-      return value === 100 ? "Rays now reach the centre; no empty disc remains" : "Black rays stop short of the centre; no white circle is drawn"
+      return value === 100
+        ? "Rays now reach the centre; no empty disc remains"
+        : "Black rays stop short of the centre; no white circle is drawn"
     })
 
     bindIllusionProof(root, "ehrenstein-illusion", "Show endpoints", "Hide endpoints")
