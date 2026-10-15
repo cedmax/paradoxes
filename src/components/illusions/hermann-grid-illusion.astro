@@ -1,0 +1,68 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
+import { series, stroke, illusionSurface } from "~/data/palette"
+const verticals = Array.from({ length: 6 }, (_, i) => 80 + i * 88)
+const horizontals = Array.from({ length: 4 }, (_, i) => 72 + i * 80)
+---
+
+<IllustrationFigure name="hermann-grid-illusion" lead="Do you notice dark smudges in the white street crossings?">
+  <SvgFigure
+    name="hermann-grid-illusion"
+    viewBox="0 0 600 390"
+    class="mx-auto w-full max-w-2xl"
+    title="Black square tiles separated by a white Hermann grid"
+    desc="Black tiles and uniformly white vertical and horizontal streets make intersections where some observers see dark smudges. The streets narrow but stay white when the slider moves."
+  >
+    <rect x="25" y="26" width="550" height="338" fill={illusionSurface.ink} />
+    <g id="hermann-streets" stroke={illusionSurface.paper} stroke-width="22">
+      {verticals.map((x) => <line x1={x} y1="26" x2={x} y2="364" />)}
+      {horizontals.map((y) => <line x1="25" y1={y} x2="575" y2={y} />)}
+    </g>
+    <MeasurementGuides
+      name="hermann-grid-illusion"
+      d="M156 64 H180 V88 H156 Z M332 144 H356 V168 H332 Z"
+    />
+  </SvgFigure>
+  <Slider
+    id="hermann-grid-illusion-slider"
+    label="Narrow the white streets"
+    min={0}
+    max={100}
+    value={0}
+    startLabel="Wide white streets"
+    endLabel="Thin white grid"
+    describedby="hermann-grid-illusion-note"
+    valuetext="Wide white streets"
+  >
+    <p id="hermann-grid-illusion-note" class="text-base">The corridors and their crossings are drawn with the same white stroke; there are no dark spots in the picture.</p>
+  </Slider>
+  <IllusionControls name="hermann-grid-illusion"
+    proof="The white grid crossings are drawn from exactly the same flat white strokes as the corridors, with no dark circles."
+    proofLabel="Show measurements" />
+  <Fragment slot="caption">
+    A newly drawn version of Hermann's grid (1870). The strength of the apparent spots depends on viewing size and position.{" "}
+    <a class="underline" href="https://michaelbach.de/ot/lum-herGrid/" target="_blank" rel="noopener noreferrer">
+      Source and explanation
+    </a>.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("hermann-grid-illusion")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#hermann-grid-illusion-slider")
+    const play = find<HTMLButtonElement>(root, "#hermann-grid-illusion-play")
+    const streets = find<SVGGElement>(root, "#hermann-streets")
+    bindSliderPlayback(slider, play, (value) => {
+      streets.setAttribute("stroke-width", String(22 - 17 * value / 100))
+      return "Crossings and straight streets stay equally white; street width changes"
+    })
+
+    bindIllusionProof(root, "hermann-grid-illusion", "Show measurements", "Hide measurements")
+  }
+</script>
