@@ -40,6 +40,10 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
     </g>
     <circle cx="165" cy="175" r="25" fill="var(--color-series-red)" />
     <circle cx="485" cy="175" r="25" fill="var(--color-series-red)" />
+    <g id="ebbinghaus-guides" visibility="hidden" fill="none" aria-hidden="true">
+      <path d="M120 150 H530 M120 200 H530" stroke="var(--color-paper)" stroke-width="7" />
+      <path d="M120 150 H530 M120 200 H530" stroke="var(--color-ink)" stroke-width="2.5" />
+    </g>
   </SvgFigure>
   <Slider
     id="ebbinghaus-surround-size"
@@ -60,6 +64,17 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
     <button type="button" id="ebbinghaus-play" class="btn-ghost" aria-pressed="false">
       Play
     </button>
+    <button
+      type="button"
+      id="ebbinghaus-guide-toggle"
+      class="btn-toggle"
+      aria-pressed="false"
+    >
+      Show measurements
+    </button>
+    <p id="ebbinghaus-proof" class="text-base" aria-live="polite" hidden>
+      Both red circles fit between the same two lines, 50 drawing units apart.
+    </p>
   </div>
   <Fragment slot="caption">
     Both red circles stay 50 units across while the surrounding circles change size. Redrawn
@@ -83,6 +98,9 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
   if (root) {
     const input = find<HTMLInputElement>(root, "#ebbinghaus-surround-size")
     const play = find<HTMLButtonElement>(root, "#ebbinghaus-play")
+    const guideButton = find<HTMLButtonElement>(root, "#ebbinghaus-guide-toggle")
+    const guides = find<SVGGElement>(root, "#ebbinghaus-guides")
+    const proof = find<HTMLElement>(root, "#ebbinghaus-proof")
     const left = Array.from(
       root.querySelectorAll<SVGCircleElement>("#ebbinghaus-left-neighbours circle"),
     )
@@ -107,6 +125,14 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
       if (value === 50) return "Both sets of surrounding circles have the same size"
       if (value === 100) return "Small circles on the left; large circles on the right"
       return "Surround sizes changing; red target circles remain fixed"
+    })
+
+    guideButton.addEventListener("click", () => {
+      const shown = guideButton.getAttribute("aria-pressed") !== "true"
+      guideButton.setAttribute("aria-pressed", String(shown))
+      guideButton.textContent = shown ? "Hide measurements" : "Show measurements"
+      guides.setAttribute("visibility", shown ? "visible" : "hidden")
+      proof.hidden = !shown
     })
   }
 </script>
