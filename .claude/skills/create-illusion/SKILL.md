@@ -30,9 +30,13 @@ Do not change any existing argument entry to the new format.
 1. Prefer the **original figure or recording**, when its actual reuse licence permits
    the intended site use and it still supports a faithful demonstration or reveal.
    Read the rights statement, choose a lossless or unaltered source where possible,
-   credit its creator and link to the original and licence. Prefer local asset hosting
-   when the original bytes are available. Do not infer permission merely because the
-   asset is visible online. When reuse is not permitted, or a redraw materially
+   credit its creator and link to the original and licence. **Every media asset
+   used by the site must be self-hosted and stored in the repository**: no remote
+   images, audio, videos, iframes or hotlinked proof media, even on PR previews.
+   Source and licence links are ordinary citations and may point elsewhere.
+   If the original bytes cannot be obtained, do not silently hotlink or replace
+   them with an approximation; leave the entry pending. Do not infer permission
+   merely because an asset is visible online. When reuse is not permitted, or a redraw materially
    improves the demonstration, create our own and still credit the originator.
 2. Keep each implementation in `src/components/illusions/<slug>.astro`, using the
    existing illustration kit for figures and controls. The initial presentation
@@ -81,6 +85,10 @@ Do not change any existing argument entry to the new format.
 
 ## Review process
 
+- Check all rendered media sources for remote runtime dependencies. External
+  links are allowed only as references, citations or intentional navigation.
+  Vendor the exact binary assets and commit them before merge. A vendor tool
+  should validate provenance and dimensions and not redownload existing assets.
 - Prototype one figure, inspect illusion strength on desktop and ~350px mobile **before
   triggering any reveal**, try every control with mouse and keyboard, and check the
   nonvisual proof before generalising. Compare the result with the original illusion

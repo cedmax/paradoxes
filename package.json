@@ -7,9 +7,9 @@
   "author": "cedmax",
   "packageManager": "pnpm@12.9.1",
   "scripts": {
-    "dev": "astro dev --host",
-    "start": "astro dev --host",
-    "build": "NODE_ENV=production astro telemetry disable && astro build",
+    "dev": "node scripts/vendor-illusion-assets.mjs && astro dev --host",
+    "start": "node scripts/vendor-illusion-assets.mjs && astro dev --host",
+    "build": "node scripts/vendor-illusion-assets.mjs && NODE_ENV=production astro telemetry disable && astro build",
     "preview": "astro preview --host",
     "check": "astro check",
     "check:seo": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-seo.mjs",
@@ -17,7 +17,8 @@
     "format": "prettier --write .",
     "lint": "eslint src scripts && stylelint \"src/**/*.{css,astro}\"",
     "knip": "knip",
-    "prepare": "husky"
+    "prepare": "husky",
+    "assets:vendor": "node scripts/vendor-illusion-assets.mjs"
   },
   "lint-staged": {
     "*.{js,jsx,json,md,ts}": [

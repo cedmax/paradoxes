@@ -86,7 +86,12 @@ an original or appropriately licensed source image, vector or audio demonstratio
 loaded by `src/components/IllusionExperience.astro`
 from `src/components/illusions/<slug>.astro`. Each demonstration owns its initial and reveal states; no generic "what you see /
 what is true" fields are stored. Prefer the original media where reuse is
-permitted and faithful; otherwise redraw or synthesize and credit the originator.
+permitted and faithful; otherwise redraw or synthesise and credit the originator.
+All displayed media must be served from this site's own public assets; third-party
+URLs may only be used for attribution and source links. Adelson's original and
+proof PNGs are expected in `public/illustrations/` and are checked/downloaded
+if missing by `scripts/vendor-illusion-assets.mjs` when starting development or a
+build. **Commit both binaries before merging** so no build-time download is needed.
 `format` describes the editorial structure, not which sense the presentation
 uses. A visual vanishing puzzle may remain an argument; audio illusions may be
 added later without changing the format schema.

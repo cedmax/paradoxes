@@ -1,15 +1,11 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 
-// Edward H. Adelson's 1995 original, reproduced as the full-resolution lossless
-// PNG available through Wikimedia Commons, not a redraw. Adelson's MIT page
-// explicitly permits free redistribution. The proof is a PNG adaptation of the
-// original with equal-grey connecting strips; both files retain their pixels.
-// TODO: vendor these original PNG bytes in public/ when direct download is available.
-const original =
-  "https://upload.wikimedia.org/wikipedia/commons/a/ae/Same_color_illusion.png"
-const proof =
-  "https://upload.wikimedia.org/wikipedia/commons/e/ed/Same_color_illusion_proof2.png"
+// Edward H. Adelson's original and the lossless proof adaptation are served
+// entirely from our own /illustrations/ assets. External URLs below are credits,
+// not images fetched by the reader.
+const original = "/illustrations/checker-shadow-original.png"
+const proof = "/illustrations/checker-shadow-proof.png"
 ---
 
 <IllustrationFigure
