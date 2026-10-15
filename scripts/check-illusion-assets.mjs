@@ -19,11 +19,11 @@ const assets = [
     sha256: "5c6d8fff1e4371f11b63fa6531731876a37bed991cad4d6f94e9d0aef9eda85e",
   },
   {
-    name: "checker-shadow-proof-still.png",
+    name: "checker-shadow-scrub-frames.png",
     type: "png",
-    width: 540,
-    height: 420,
-    sha256: "9f163f6d52106d1f5124f58e5a79d76faaae0d63bdcb913375d06abe10c9ba1c",
+    width: 2700,
+    height: 2100,
+    sha256: "99c5dfe92908f990921e11dcf6964555279ff5fa1d86155e766bd3ecb7eeb9af",
   },
 ]
 
