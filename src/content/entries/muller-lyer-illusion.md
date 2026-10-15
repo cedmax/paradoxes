@@ -13,6 +13,9 @@ order: 220
 written: true
 why: "The fins at each end change the apparent length of the line, even though the straight segments match exactly. The surrounding angles affect how the lines are judged. Several explanations have been proposed, including how visual experience shapes estimates of size and distance. There is no single agreed account of the whole effect."
 sources:
+  - title: "Franz Carl Müller-Lyer (1889): Optische Urteilstäuschungen"
+    url: https://cir.nii.ac.jp/crid/1570009750247005312
+    note: "Original publication in Archiv für Anatomie und Physiologie, Physiologische Abteilung, pp. 263–270. The page uses a newly drawn vector."
   - title: "APA Dictionary of Psychology: Müller-Lyer illusion"
     url: https://dictionary.apa.org/muller-lyer-illusion
     note: "Defines the effect and credits Franz Müller-Lyer, 1889."

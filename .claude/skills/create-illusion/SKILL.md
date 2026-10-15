@@ -27,13 +27,20 @@ Do not change any existing argument entry to the new format.
 
 ## Figure → reveal → why
 
-1. Create an original figure in `src/components/illusions/<slug>.astro`. Do not copy
-   copyrighted images; attribute the original illusion and cite supporting research.
-2. Figure: do the visual setup, without a second prose explanation of what is visible.
-   Use the existing `IllustrationFigure`, `SvgFigure`, buttons, tokens and helpers from
-   the illustration kit; don't duplicate its primitives. For a checkerboard, literal
-   greys may be necessary as **measured data**; never treat arbitrary hex colours as
-   decorative branding.
+1. Prefer the **original figure or recording**, when its actual reuse licence permits
+   the intended site use and it still supports a faithful demonstration or reveal.
+   Read the rights statement, choose a lossless or unaltered source where possible,
+   credit its creator and link to the original and licence. Prefer local asset hosting
+   when the original bytes are available. Do not infer permission merely because the
+   asset is visible online. When reuse is not permitted, or a redraw materially
+   improves the demonstration, create our own and still credit the originator.
+2. Keep each implementation in `src/components/illusions/<slug>.astro`, using the
+   existing illustration kit for figures and controls. The initial presentation
+   should communicate the effect without repeating the same visible setup in prose.
+   For audio use real play/replay controls, and capture the listener's judgement
+   before exposing explanation. Use source-faithful audio or independently produced
+   tones with explicit parameters; don't republish copyrighted samples without
+   permission. Exact greys and measurements are **data**, not decorative colours.
 3. Reveal: let visitors independently verify a particular fact. First make sure
    the initial illusion is convincing without a control. Then animate or manipulate
    **the conditions that create the illusion**, not just the answer appearing.
@@ -63,6 +70,12 @@ Do not change any existing argument entry to the new format.
   change something useful, not just decorate the answer.
 - Motion should serve an explicit comparison, respond to user controls, and not
   run automatically. Support reduced motion with an immediate equivalent.
+- Format is editorial, not sensory: an existing argument can demonstrate a
+  perceptual trick (e.g. the vanishing puzzle) without becoming an illusion entry.
+  Auditory illusions, including the tritone paradox, may use the same `illusion`
+  format without needing a separate collection. Offer stop/replay, a textual
+  description, optional hearing/speaker advice, and an accessible alternative that
+  does not claim to replicate the subjective auditory experience.
   The strongest reveal often includes an adjustable control rather than
   a single binary toggle.
 

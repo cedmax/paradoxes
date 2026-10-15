@@ -82,9 +82,14 @@ Entry frontmatter uses `format: illusion` for visual illusions. Legacy entries o
 and default to `argument`; their claim-based schema and layout are otherwise unchanged.
 Both formats share `problem` as the question-first catalogue hook, page heading, SEO
 description fallback and OG text. Illusions instead require `why`, which follows
-an original, proof-driven figure loaded by `src/components/IllusionExperience.astro`
-from `src/components/illusions/<slug>.astro`. A figure contains its own initial and
-reveal states; no generic "what you see / what is true" fields are stored.
+an original or appropriately licensed source image, vector or audio demonstration,
+loaded by `src/components/IllusionExperience.astro`
+from `src/components/illusions/<slug>.astro`. Each demonstration owns its initial and reveal states; no generic "what you see /
+what is true" fields are stored. Prefer the original media where reuse is
+permitted and faithful; otherwise redraw or synthesize and credit the originator.
+`format` describes the editorial structure, not which sense the presentation
+uses. A visual vanishing puzzle may remain an argument; audio illusions may be
+added later without changing the format schema.
 
 The existing paradox statuses do not apply to illusions. The catalogue shows no new badge
 on illusion cards, but adds a "Visual illusions" filter backed by the same `format` field.

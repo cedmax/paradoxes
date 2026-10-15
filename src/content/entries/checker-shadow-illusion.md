@@ -14,7 +14,16 @@ why: "The eye does not judge each patch on its own. It also uses neighbouring ti
 sources:
   - title: "Edward H. Adelson: Checker Shadow Illusion"
     url: https://persci.mit.edu/gallery/checkershadow/
-    note: "Original illusion (1995). The figure on this page is newly drawn."
+    note: "Adelson's original image (1995), reproduced unchanged as a full-resolution lossless PNG. His MIT page expressly permits free distribution."
+  - title: "Adelson: original and proof images for download"
+    url: https://persci.mit.edu/gallery/checkershadow/download/
+    note: "Original image and direct grey-connection proof; freely redistributable."
+  - title: "Wikimedia Commons: Same color illusion PNG"
+    url: https://commons.wikimedia.org/wiki/File:Same_color_illusion.png
+    note: "Full-resolution PNG copy of Adelson's original, 1078 × 838 pixels."
+  - title: "Wikimedia Commons: Same color illusion proof2 PNG"
+    url: https://commons.wikimedia.org/wiki/File:Same_color_illusion_proof2.png
+    note: "Lossless proof adaptation with connecting grey strip."
   - title: "Adelson's Checker-Shadow Illusion, Illusions Index"
     url: https://www.illusionsindex.org/i/adelson-s-checker-shadow-illusion
     note: "Explains the role of lightness constancy, shadow interpretation and contrast."
