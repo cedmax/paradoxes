@@ -30,12 +30,14 @@ import Slider from "~/components/illustration-kit/Slider.astro"
     valuetext="Checkerboard visible; A and B look different"
   >
     <p id="checker-reveal-note" class="text-base">
-      Move the slider in either direction. A and B are both RGB 120, 120, 120; only the surrounding
-      scene changes.
+      Move the slider in either direction. A and B are both RGB 120, 120, 120; only the
+      surrounding scene changes.
     </p>
   </Slider>
   <div class="flex flex-wrap items-center gap-3">
-    <button type="button" id="checker-play" class="btn-ghost" aria-pressed="false">Play</button>
+    <button type="button" id="checker-play" class="btn-ghost" aria-pressed="false">
+      Play
+    </button>
   </div>
   <Fragment slot="caption">
     Original illusion by{" "}
@@ -69,16 +71,21 @@ import Slider from "~/components/illustration-kit/Slider.astro"
     const input = find<HTMLInputElement>(root, "#checker-reveal")
     const play = find<HTMLButtonElement>(root, "#checker-play")
 
-    bindSliderPlayback(input, play, (value) => {
-      // Scrub the 24 kept frames in reverse through a 6×4 sprite.
-      const frame = 23 - value
-      const x = (frame % 6) * 20
-      const y = Math.floor(frame / 6) * (100 / 3)
-      scene.style.backgroundPosition = String(x) + "% " + String(y) + "%"
+    bindSliderPlayback(
+      input,
+      play,
+      (value) => {
+        // Scrub the 24 kept frames in reverse through a 6×4 sprite.
+        const frame = 23 - value
+        const x = (frame % 6) * 20
+        const y = Math.floor(frame / 6) * (100 / 3)
+        scene.style.backgroundPosition = String(x) + "% " + String(y) + "%"
 
-      if (value === 0) return "Checkerboard visible; A and B look different"
-      if (value === 23) return "Only the two matching grey A and B patches remain"
-      return "Surrounding checkerboard partially removed; A and B keep the same grey"
-    }, 3000)
+        if (value === 0) return "Checkerboard visible; A and B look different"
+        if (value === 23) return "Only the two matching grey A and B patches remain"
+        return "Surrounding checkerboard partially removed; A and B keep the same grey"
+      },
+      3000,
+    )
   }
 </script>
