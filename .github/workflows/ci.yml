@@ -57,6 +57,12 @@ jobs:
           pnpm build
           pnpm check:seo
 
+      - name: Show checker proof formatting diff
+        if: always()
+        run: |
+          pnpm exec prettier --write src/components/illusions/checker-shadow-illusion.astro
+          git diff --no-ext-diff -- src/components/illusions/checker-shadow-illusion.astro
+
       - name: Report failed checks
         if: always()
         run: |
