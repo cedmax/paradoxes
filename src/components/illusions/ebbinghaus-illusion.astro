@@ -40,9 +40,15 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
     </g>
     <circle cx="165" cy="175" r="25" fill="var(--color-series-red)" />
     <circle cx="485" cy="175" r="25" fill="var(--color-series-red)" />
-    <g id="ebbinghaus-guides" visibility="hidden" fill="none" aria-hidden="true">
-      <path d="M120 150 H530 M120 200 H530" stroke="var(--color-paper)" stroke-width="7" />
-      <path d="M120 150 H530 M120 200 H530" stroke="var(--color-ink)" stroke-width="2.5" />
+    <g
+      id="ebbinghaus-guides"
+      visibility="hidden"
+      fill="none"
+      stroke="var(--color-series-red)"
+      stroke-width="2"
+      aria-hidden="true"
+    >
+      <path d="M120 150 H530 M120 200 H530" />
     </g>
   </SvgFigure>
   <Slider
