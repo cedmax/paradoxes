@@ -1,0 +1,108 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
+import { illusionSurface } from "~/data/palette"
+
+const rows = Array.from({ length: 8 }, (_, index) => index)
+const columns = Array.from({ length: 16 }, (_, index) => index - 2)
+---
+
+<IllustrationFigure
+  name="cafe-wall-illusion"
+  lead="Do the horizontal grey lines tilt in alternating directions?"
+>
+  <SvgFigure
+    name="cafe-wall-illusion"
+    viewBox="0 0 620 390"
+    class="mx-auto w-full max-w-2xl"
+    title="Café wall illusion with offset black-and-white tiles and parallel grey mortar"
+    desc="Eight alternating rows of black and white rectangular tiles are offset by half a tile. Narrow grey horizontal mortar strips appear slanted, but they are all straight and parallel. A slider realigns the alternate rows while the mortar stays fixed."
+  >
+    <defs>
+      <clipPath id="cafe-wall-window">
+        <rect x="20" y="18" width="580" height="340" />
+      </clipPath>
+    </defs>
+    <rect x="20" y="18" width="580" height="340" fill={illusionSurface.neutral} />
+    <g clip-path="url(#cafe-wall-window)">
+      {rows.map((row) => (
+        <g data-cafe-row={row} transform={row % 2 ? "translate(21 0)" : undefined}>
+          {columns.map((column) => (
+            <rect
+              x={20 + column * 42}
+              y={18 + row * 42}
+              width="42"
+              height="38"
+              fill={column % 2 ? illusionSurface.paper : illusionSurface.ink}
+            />
+          ))}
+        </g>
+      ))}
+    </g>
+    <MeasurementGuides
+      name="cafe-wall-illusion"
+      d="M20 59 H600 M20 143 H600 M20 227 H600 M20 311 H600"
+    />
+  </SvgFigure>
+  <Slider
+    id="cafe-wall-illusion-shift"
+    label="Align the alternate rows"
+    min={0}
+    max={100}
+    value={0}
+    startLabel="Offset black-and-white tiles"
+    endLabel="Rows aligned"
+    describedby="cafe-wall-illusion-note"
+    valuetext="Alternating tile rows are offset by half a tile; the grey mortar is parallel"
+  >
+    <p id="cafe-wall-illusion-note" class="text-base">
+      The black-and-white tiles move sideways while the grey mortar lines stay exactly horizontal.
+    </p>
+  </Slider>
+  <IllusionControls
+    name="cafe-wall-illusion"
+    proof="Every grey mortar strip is four drawing units high and perfectly horizontal. Only alternate rows of tiles slide sideways."
+  />
+  <Fragment slot="caption">
+    Redrawn after Gregory and Heard's 1979 study of the café wall effect.{" "}
+    <a
+      href="https://pubmed.ncbi.nlm.nih.gov/503767/"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Original study
+    </a>.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import {
+    bindSliderPlayback,
+    bindIllusionProof,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
+
+  const root = illustrationRoot("cafe-wall-illusion")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#cafe-wall-illusion-shift")
+    const play = find<HTMLButtonElement>(root, "#cafe-wall-illusion-play")
+    const rows = Array.from(root.querySelectorAll<SVGGElement>("[data-cafe-row]"))
+    bindSliderPlayback(slider, play, (value) => {
+      const offset = 21 * (1 - value / 100)
+      for (const row of rows) {
+        if (Number(row.dataset.cafeRow) % 2 === 1) {
+          row.setAttribute("transform", "translate(" + offset + " 0)")
+        }
+      }
+      return value === 100
+        ? "Black-and-white rows aligned; grey mortar lines remain parallel"
+        : "Alternate tile rows shifting; grey mortar lines remain parallel"
+    })
+    bindIllusionProof(root, "cafe-wall-illusion")
+  }
+</script>

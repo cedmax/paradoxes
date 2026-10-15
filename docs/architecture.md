@@ -114,6 +114,6 @@ New illusion figures live in `src/components/illusions/` and share the illustrat
 `IllusionControls`, `MeasurementGuides`, `Slider`, `SvgFigure` and `IllustrationFigure`.
 Their scripts use the shared playback and measurement helpers, and import colours from
 `src/data/palette.ts`. The catalogue includes geometric, grid, contour and lightness
-illusions as well as the motion-dependent Lilac Chaser. All are initially unverified.
+illusions as well as the motion-dependent Lilac Chaser and interactive Café wall.\nGrid and Ehrenstein figures are deliberately static when an extra state adds no evidence.\nAll are initially unverified.
 
 See `.claude/skills/create-illusion/SKILL.md` for the authoring and accessibility checklist.

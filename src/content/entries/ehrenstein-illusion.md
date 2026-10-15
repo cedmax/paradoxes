@@ -10,7 +10,7 @@ simplification: light
 noMaths: true
 order: 290
 written: true
-why: "Radial black strokes that stop together can make a bright white disc seem to float in the empty centre. No disc or circular outline is drawn. Moving the line ends changes the suggested boundary and can weaken the apparent disc."
+why: "Radial black strokes that stop together can make a bright white disc seem to float in the empty centre. No disc or circular outline is drawn. The aligned endpoints suggest its boundary even though the central region is unpainted."
 sources:
   - title: "Michael Bach: Ehrenstein Illusion"
     url: https://michaelbach.de/ot/lum-Ehrenstein/

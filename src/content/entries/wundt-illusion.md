@@ -15,6 +15,9 @@ sources:
   - title: "University of Minnesota: Sensation & Perception, Depth Perception"
     url: https://manifold.open.umn.edu/read/sensation-perception-v3/section/7d0f87e7-f8f3-470b-a607-c592c0d6395d
     note: "Explains straight parallel lines seeming to bow outwards in Hering and inwards in Wundt."
+  - title: "Wolfram MathWorld: Wundt illusion"
+    url: https://mathworld.wolfram.com/WundtIllusion.html
+    note: "Illustrates two straight parallel red horizontal lines that appear bowed inward among radiating background strokes."
   - title: "Wundt illusion: description and historical attribution"
     url: https://en.wikipedia.org/wiki/Wundt_illusion
     note: "Background summary of Wundt's 1898 illusion and inward-bowing effect."
