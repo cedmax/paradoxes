@@ -6,13 +6,13 @@ import { series, stroke } from "~/data/palette"
 
 // Classic Wundt diamond: rays extend from the left and right tips to successive
 // points along the centre axis. Neither red line changes its position or length.
-const fan = Array.from({ length: 20 }, (_, index) => 14 + index * 20)
+const fan = Array.from({ length: 20 }, (_, index) => index * 25 - 25)
 ---
 
 <IllustrationFigure name="wundt-illusion" lead="Do the two red lines appear to bend inwards?">
   <SvgFigure
     name="wundt-illusion"
-    viewBox="0 0 620 420"
+    viewBox="0 0 620 220"
     class="mx-auto w-full max-w-2xl"
     title="Wundt illusion: two straight red horizontal lines across a diamond of dark chevrons"
     desc="A diamond of dark chevrons crosses two straight, parallel red horizontal lines. The entire drawing has been rotated together, preserving the chevron arrangement, widths, colours and line lengths. The slider hides only the chevrons."
@@ -20,10 +20,10 @@ const fan = Array.from({ length: 20 }, (_, index) => 14 + index * 20)
     <g transform="rotate(90 310 210)">
       <g id="wundt-fans" fill="none" stroke={stroke} stroke-width="1.2">
         {fan.map((y) => (
-          <path d={`M210 210 L310 ${y} L400 210`} />
+          <path d={`M110 210 L210 ${y} L300 210`} />
         ))}
       </g>
-      <path d="M285 15 V385 M335 15 V385" fill="none" stroke={series.red} stroke-width="3" />
+      <path d="M185 15 V410 M235 15 V410" fill="none" stroke={series.red} stroke-width="3" />
     </g>
   </SvgFigure>
   <Slider
