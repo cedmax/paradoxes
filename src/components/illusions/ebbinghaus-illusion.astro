@@ -3,6 +3,8 @@ import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure
 import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series } from "~/data/palette"
+import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
 
 const neighbours = Array.from({ length: 7 }, (_, index) => {
   const angle = (index * 2 * Math.PI) / 7
@@ -41,16 +43,7 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
     </g>
     <circle cx="165" cy="175" r="25" fill={series.red} />
     <circle cx="485" cy="175" r="25" fill={series.red} />
-    <g
-      id="ebbinghaus-guides"
-      visibility="hidden"
-      fill="none"
-      stroke={series.red}
-      stroke-width="2"
-      aria-hidden="true"
-    >
-      <path d="M120 150 H530 M120 200 H530" />
-    </g>
+<MeasurementGuides name="ebbinghaus-illusion" d="M120 150 H530 M120 200 H530" />
   </SvgFigure>
   <Slider
     id="ebbinghaus-surround-size"
@@ -67,17 +60,10 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
       The blue circles can change size. Both red centres remain unchanged.
     </p>
   </Slider>
-  <div class="flex flex-wrap items-center gap-3">
-    <button type="button" id="ebbinghaus-play" class="btn-ghost" aria-pressed="false">
-      Play
-    </button>
-    <button type="button" id="ebbinghaus-guide-toggle" class="btn-toggle" aria-pressed="false">
-      Show measurements
-    </button>
-    <p id="ebbinghaus-proof" class="text-base" aria-live="polite" hidden>
-      Both red circles fit between the same two lines, 50 drawing units apart.
-    </p>
-  </div>
+  <IllusionControls
+    name="ebbinghaus-illusion"
+    proof="Both red circles fit between the same two lines, 50 drawing units apart."
+  />
   <Fragment slot="caption">
     Both red circles stay 50 units across while the surrounding circles change size. Redrawn
     after Hermann Ebbinghaus's circles, first published by{" "}
@@ -94,15 +80,12 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, find, illustrationRoot } from "~/scripts/illustration"
+  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
 
   const root = illustrationRoot("ebbinghaus-illusion")
   if (root) {
     const input = find<HTMLInputElement>(root, "#ebbinghaus-surround-size")
     const play = find<HTMLButtonElement>(root, "#ebbinghaus-play")
-    const guideButton = find<HTMLButtonElement>(root, "#ebbinghaus-guide-toggle")
-    const guides = find<SVGGElement>(root, "#ebbinghaus-guides")
-    const proof = find<HTMLElement>(root, "#ebbinghaus-proof")
     const left = Array.from(
       root.querySelectorAll<SVGCircleElement>("#ebbinghaus-left-neighbours circle"),
     )
@@ -129,12 +112,6 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
       return "Surround sizes changing; red target circles remain fixed"
     })
 
-    guideButton.addEventListener("click", () => {
-      const shown = guideButton.getAttribute("aria-pressed") !== "true"
-      guideButton.setAttribute("aria-pressed", String(shown))
-      guideButton.textContent = shown ? "Hide measurements" : "Show measurements"
-      guides.setAttribute("visibility", shown ? "visible" : "hidden")
-      proof.hidden = !shown
-    })
+    bindIllusionProof(root, "ebbinghaus-illusion")
   }
 </script>

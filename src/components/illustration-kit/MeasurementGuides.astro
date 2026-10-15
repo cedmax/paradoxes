@@ -1,0 +1,21 @@
+---
+import { series } from "~/data/palette"
+
+interface Props {
+  name: string
+  d: string
+  width?: number
+}
+const { name, d, width = 2 } = Astro.props
+---
+
+<g
+  id={name + "-guides"}
+  visibility="hidden"
+  fill="none"
+  stroke={series.red}
+  stroke-width={width}
+  aria-hidden="true"
+>
+  <path d={d} />
+</g>

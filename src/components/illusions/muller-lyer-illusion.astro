@@ -3,6 +3,8 @@ import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure
 import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
+import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
 ---
 
 <IllustrationFigure name="muller-lyer-illusion" lead="Which horizontal line looks longer?">
@@ -33,15 +35,7 @@ import { series, stroke } from "~/data/palette"
         d="M104 214 L67.23 177.23 M104 214 L67.23 250.77 M456 214 L492.77 177.23 M456 214 L492.77 250.77"
       />
     </g>
-    <g
-      id="muller-lyer-guides"
-      visibility="hidden"
-      stroke={series.red}
-      stroke-width="2"
-      fill="none"
-    >
-      <path d="M104 132 V150 M456 132 V150 M104 141 H456 M104 254 V272 M456 254 V272 M104 263 H456" />
-    </g>
+<MeasurementGuides name="muller-lyer-illusion" d="M104 132 V150 M456 132 V150 M104 141 H456 M104 254 V272 M456 254 V272 M104 263 H456" />
     <g
       aria-hidden="true"
       font-size="14"
@@ -69,18 +63,10 @@ import { series, stroke } from "~/data/palette"
       Only the blue fins rotate. The black horizontal segments are fixed.
     </p>
   </Slider>
-  <div class="flex flex-wrap items-center gap-3">
-    <button type="button" id="muller-lyer-play" class="btn-ghost">
-      Play
-    </button>
-    <button type="button" id="muller-lyer-guide-toggle" class="btn-toggle" aria-pressed="false">
-      Show measurements
-    </button>
-    <p id="muller-lyer-proof" class="text-base" aria-live="polite" hidden>
-      Upper line: 352 SVG units. Lower line: 352 SVG units. Both endpoints remain fixed as the
-      blue fins rotate.
-    </p>
-  </div>
+  <IllusionControls
+    name="muller-lyer-illusion"
+    proof="Upper line: 352 SVG units. Lower line: 352 SVG units. Both endpoints remain fixed as the blue fins rotate."
+  />
   <Fragment slot="caption">
     Rotate the arrowheads to change the apparent lengths. The red guides measure the same
     unchanged line segments. Redrawn after{" "}
@@ -97,16 +83,13 @@ import { series, stroke } from "~/data/palette"
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, find, illustrationRoot } from "~/scripts/illustration"
+  import { bindSliderPlayback, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
 
   const root = illustrationRoot("muller-lyer-illusion")
   if (root) {
     const input = find<HTMLInputElement>(root, "#muller-lyer-fins")
     const upper = find<SVGPathElement>(root, "#muller-lyer-upper-fins")
     const lower = find<SVGPathElement>(root, "#muller-lyer-lower-fins")
-    const guides = find<SVGGElement>(root, "#muller-lyer-guides")
-    const proof = find<HTMLElement>(root, "#muller-lyer-proof")
-    const guideButton = find<HTMLButtonElement>(root, "#muller-lyer-guide-toggle")
     const play = find<HTMLButtonElement>(root, "#muller-lyer-play")
     // Each blue fin has constant length 52 and rotates about a fixed line endpoint.
     const fins = (y: number, horizontal: number, vertical: number) => {
@@ -152,12 +135,6 @@ import { series, stroke } from "~/data/palette"
     }
     bindSliderPlayback(input, play, render)
 
-    guideButton.addEventListener("click", () => {
-      const revealed = guideButton.getAttribute("aria-pressed") !== "true"
-      guideButton.setAttribute("aria-pressed", String(revealed))
-      guideButton.textContent = revealed ? "Hide measurements" : "Show measurements"
-      guides.setAttribute("visibility", revealed ? "visible" : "hidden")
-      proof.hidden = !revealed
-    })
+    bindIllusionProof(root, "muller-lyer-illusion")
   }
 </script>

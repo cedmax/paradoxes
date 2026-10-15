@@ -101,3 +101,71 @@ export function bindSliderPlayback(
   reducedMotion.addEventListener("change", motionChanged)
   motionChanged()
 }
+
+/** Share the same keyboard-operable reveal control on every measurement figure. */
+export function bindIllusionProof(root: Element, name: string, label = "Show measurements", hideLabel = "Hide measurements") {
+  const button = find<HTMLButtonElement>(root, `#${name}-guide-toggle`)
+  const guides = find<SVGGElement>(root, `#${name}-guides`)
+  const proof = find<HTMLElement>(root, `#${name}-proof`)
+  button.addEventListener("click", () => {
+    const shown = button.getAttribute("aria-pressed") !== "true"
+    button.setAttribute("aria-pressed", String(shown))
+    button.textContent = shown ? hideLabel : label
+    guides.setAttribute("visibility", shown ? "visible" : "hidden")
+    proof.hidden = !shown
+  })
+}
+
+/** Loop a discrete sequence forwards for illusions whose movement has a direction. */
+export function bindSliderLoopPlayback(
+  input: HTMLInputElement,
+  button: HTMLButtonElement,
+  render: (value: number) => string | void,
+  frameMs = 125,
+) {
+  const update = bindSlider(input, render)
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+  const min = Number(input.min)
+  const max = Number(input.max)
+  let current = Number(input.value)
+  let active = false
+  let frame = 0
+  let lastTime = 0
+  const stop = () => {
+    active = false
+    cancelAnimationFrame(frame)
+    button.textContent = "Play"
+    button.setAttribute("aria-pressed", "false")
+  }
+  const tick = (now: number) => {
+    if (!active) return
+    if (now - lastTime >= frameMs) {
+      current = current >= max ? min : current + 1
+      input.value = String(current)
+      update()
+      lastTime = now
+    }
+    frame = requestAnimationFrame(tick)
+  }
+  button.addEventListener("click", () => {
+    if (active) return stop()
+    if (reducedMotion.matches) return
+    active = true
+    lastTime = performance.now()
+    button.textContent = "Pause"
+    button.setAttribute("aria-pressed", "true")
+    frame = requestAnimationFrame(tick)
+  })
+  input.addEventListener("input", () => {
+    current = Number(input.value)
+    stop()
+  })
+  const motionChanged = () => {
+    stop()
+    button.disabled = reducedMotion.matches
+    button.title = reducedMotion.matches ? "Use the slider without animation" : ""
+  }
+  document.addEventListener("visibilitychange", () => { if (document.hidden) stop() })
+  reducedMotion.addEventListener("change", motionChanged)
+  motionChanged()
+}
