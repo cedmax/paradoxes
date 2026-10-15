@@ -50,6 +50,14 @@ jobs:
         run: pnpm knip
         continue-on-error: true
 
+
+      # Temporary: capture the project's exact formatting to apply in the next commit.
+      - name: Show Prettier corrections
+        if: always()
+        run: |
+          pnpm exec prettier --write docs/architecture.md scripts/check-illusion-assets.mjs src/components/IllusionExperience.astro src/components/illusions/checker-shadow-illusion.astro src/components/illusions/ebbinghaus-illusion.astro src/components/illusions/muller-lyer-illusion.astro src/content.config.ts 'src/pages/entries/[slug].astro' src/pages/index.astro
+          git diff --no-ext-diff -- docs/architecture.md scripts/check-illusion-assets.mjs src/components/IllusionExperience.astro src/components/illusions/checker-shadow-illusion.astro src/components/illusions/ebbinghaus-illusion.astro src/components/illusions/muller-lyer-illusion.astro src/content.config.ts 'src/pages/entries/[slug].astro' src/pages/index.astro
+
       - name: Report failed checks
         if: always()
         run: |

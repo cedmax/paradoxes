@@ -25,7 +25,10 @@ const counts: Record<string, number> = {
   all: listed.length,
   illusions: listed.filter((e) => e.data.format === "illusion").length,
 }
-statusKeys.forEach((k) => (counts[k] = listed.filter((e) => e.data.status === k).length))
+statusKeys.forEach(
+  (k) =>
+    (counts[k] = listed.filter((e) => e.data.format === "argument" && e.data.status === k).length),
+)
 ---
 
 <Base title="Paradoxes and visual illusions | Logic Benders">

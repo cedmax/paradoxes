@@ -14,6 +14,7 @@ try {
   throw new Error(
     "Missing Adelson's checker-shadow PNG. Commit " +
     "public/illustrations/checker-shadow-original.png before building.",
+    { cause: error },
   )
 }
 const signature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])
