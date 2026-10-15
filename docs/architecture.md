@@ -88,10 +88,13 @@ from `src/components/illusions/<slug>.astro`. Each demonstration owns its initia
 what is true" fields are stored. Prefer the original media where reuse is
 permitted and faithful; otherwise redraw or synthesise and credit the originator.
 All displayed media must be served from this site's own public assets; third-party
-URLs may only be used for attribution and source links. Adelson's original and
-proof PNGs are expected in `public/illustrations/` and are checked/downloaded
-if missing by `scripts/vendor-illusion-assets.mjs` when starting development or a
-build. **Commit both binaries before merging** so no build-time download is needed.
+URLs may only be used for attribution and source links. Adelson's original PNG
+belongs in `public/illustrations/checker-shadow-original.png`; the proof is an
+in-place SVG overlay (not a second externally sourced image). The production build
+checks the supplied original's dimensions and SHA-256 with
+`scripts/check-illusion-assets.mjs`. Missing or altered assets fail the build; no
+media are downloaded at runtime or during building. Commit the original PNG
+before merging the PR.
 `format` describes the editorial structure, not which sense the presentation
 uses. A visual vanishing puzzle may remain an argument; audio illusions may be
 added later without changing the format schema.

@@ -1,77 +1,70 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 
-// Edward H. Adelson's original and the lossless proof adaptation are served
-// entirely from our own /illustrations/ assets. External URLs below are credits,
-// not images fetched by the reader.
+// The source PNG is Adelson's original, without edits or recompression.
+// A locally rendered SVG overlay demonstrates that A and B share RGB 120,120,120.
 const original = "/illustrations/checker-shadow-original.png"
-const proof = "/illustrations/checker-shadow-proof.png"
 ---
 
 <IllustrationFigure
   name="checker-shadow-illusion"
   lead="Look at the squares marked A and B. Does one look darker?"
 >
-  <div class="mx-auto w-full max-w-xl">
+  <div class="relative mx-auto w-full max-w-xl">
     <img
-      id="checker-original"
       src={original}
       width="1078"
       height="838"
       class="h-auto w-full"
-      alt="Edward Adelson's checkerboard: a green cylinder casts a soft shadow. A marks a dark tile outside the shadow; B marks a light tile within it."
+      alt="Edward Adelson's checkerboard. A green cylinder casts a soft shadow. A is a dark tile outside the shadow and B is a light tile inside it. Both have exactly the same RGB value."
     />
-    <img
-      id="checker-proof-image"
-      src={proof}
-      width="1087"
-      height="844"
-      class="h-auto w-full"
-      alt=""
+    <svg
+      id="checker-proof-overlay"
+      viewBox="0 0 1078 838"
+      class="pointer-events-none absolute inset-0 hidden size-full"
+      role="presentation"
       aria-hidden="true"
-      hidden
-    />
+      focusable="false"
+    >
+      <path d="M570 292 V466" fill="none" stroke="#787878" stroke-width="22" />
+    </svg>
   </div>
   <div class="flex flex-wrap items-center gap-4">
     <button type="button" id="checker-compare" class="btn-toggle" aria-pressed="false">
       Show the proof
     </button>
     <p id="checker-values" class="text-base" aria-live="polite" hidden>
-      A and B have identical displayed grey values: RGB 120, 120, 120.
-      The proof connects them with an equally grey band.
+      Squares A and B have identical displayed grey: RGB 120, 120, 120.
+      The grey connection over the original image shows how they match.
     </p>
   </div>
   <Fragment slot="caption">
-    Original illusion by{" "}
-    <a href="https://persci.mit.edu/gallery/checkershadow/" class="font-bold underline" target="_blank" rel="noopener noreferrer">
-      Edward H. Adelson (1995)
-    </a>
-    , reproduced with permission for free distribution.{" "}
-    <a href="https://commons.wikimedia.org/wiki/File:Same_color_illusion.png" class="underline" target="_blank" rel="noopener noreferrer">
-      Lossless original image
-    </a>
-    ;{" "}
-    <a href="https://commons.wikimedia.org/wiki/File:Same_color_illusion_proof2.png" class="underline" target="_blank" rel="noopener noreferrer">
-      proof image adapted from Adelson's original
-    </a>
-    .
+    Original image by{" "}
+    <a
+      class="font-bold underline"
+      href="https://persci.mit.edu/gallery/checkershadow/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >Edward H. Adelson (1995)</a>
+    , reproduced with permission for free redistribution. The original image is
+    self-hosted and the grey connection is drawn over it.
   </Fragment>
 </IllustrationFigure>
 
 <script>
   import { find, illustrationRoot } from "~/scripts/illustration"
+
   const root = illustrationRoot("checker-shadow-illusion")
   if (root) {
     const button = find<HTMLButtonElement>(root, "#checker-compare")
-    const original = find<HTMLImageElement>(root, "#checker-original")
-    const proof = find<HTMLImageElement>(root, "#checker-proof-image")
+    const proof = find<SVGSVGElement>(root, "#checker-proof-overlay")
     const values = find<HTMLElement>(root, "#checker-values")
+
     button.addEventListener("click", () => {
       const shown = button.getAttribute("aria-pressed") !== "true"
       button.setAttribute("aria-pressed", String(shown))
-      button.textContent = shown ? "Show the original" : "Show the proof"
-      original.hidden = shown
-      proof.hidden = !shown
+      button.textContent = shown ? "Hide the proof" : "Show the proof"
+      proof.classList.toggle("hidden", !shown)
       values.hidden = !shown
     })
   }
