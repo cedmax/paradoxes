@@ -2,8 +2,8 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 
-// Twenty-five pixel-identical GIF frames in a lossless, self-hosted 5x5 sprite.
-// Frame 24 shows the checkerboard; frame 0 shows A and B without context.
+// The first 24 GIF frames, unchanged and stored losslessly in a self-hosted 6x4 sprite.
+// Frame 23 shows the checkerboard; frame 0 isolates A and B without context.
 ---
 
 <IllustrationFigure
@@ -13,7 +13,7 @@ import Slider from "~/components/illustration-kit/Slider.astro"
   <div
     id="checker-frame"
     class="mx-auto w-full max-w-xl"
-    style="aspect-ratio: 9 / 7; background-image: url('/illustrations/checker-shadow-scrub-frames.png'); background-size: 500% 500%; background-position: 100% 100%; background-repeat: no-repeat;"
+    style="aspect-ratio: 9 / 7; background-image: url('/illustrations/checker-shadow-scrub-frames.png'); background-size: 600% 400%; background-position: 100% 100%; background-repeat: no-repeat;"
     role="img"
     aria-label="A checkerboard partly shaded by a cylinder. Squares A and B appear different, although both are the same grey. Moving the slider removes the surroundings until they form a single uniform grey rectangle."
   ></div>
@@ -21,13 +21,13 @@ import Slider from "~/components/illustration-kit/Slider.astro"
     id="checker-reveal"
     label="Remove the surroundings"
     min={0}
-    max={24}
+    max={23}
     step={1}
     value={0}
-    startLabel="Full checkerboard"
+    startLabel="Checkerboard"
     endLabel="Only A and B"
     describedby="checker-reveal-note"
-    valuetext="Full checkerboard visible; A and B look different"
+    valuetext="Checkerboard visible; A and B look different"
   >
     <p id="checker-reveal-note" class="text-base">
       Move the slider in either direction. A and B are both RGB 120, 120, 120; only the surrounding
@@ -66,14 +66,14 @@ import Slider from "~/components/illustration-kit/Slider.astro"
     const input = find<HTMLInputElement>(root, "#checker-reveal")
 
     bindSlider(input, (value) => {
-      // Reverse the 25-frame animation in a 5×5 sprite, one frame per slider step.
-      const frame = 24 - value
-      const x = (frame % 5) * 25
-      const y = Math.floor(frame / 5) * 25
+      // Scrub the 24 kept frames in reverse through a 6×4 sprite.
+      const frame = 23 - value
+      const x = (frame % 6) * 20
+      const y = Math.floor(frame / 6) * (100 / 3)
       scene.style.backgroundPosition = String(x) + "% " + String(y) + "%"
 
-      if (value === 0) return "Full checkerboard visible; A and B look different"
-      if (value === 24) return "Only A and B remain: one uniform grey rectangle"
+      if (value === 0) return "Checkerboard visible; A and B look different"
+      if (value === 23) return "Only A and B remain: one uniform grey rectangle"
       return "Surrounding checkerboard partially removed; A and B keep the same grey"
     })
   }

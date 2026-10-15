@@ -87,13 +87,14 @@ from `src/components/illusions/<slug>.astro`. Each demonstration owns its initia
 what is true" fields are stored. Prefer the original media where reuse is
 permitted and faithful; otherwise redraw or synthesise and credit the originator.
 All displayed media must be served from this site's own public assets; third-party
-URLs may only be used for attribution and source links. Adelson's original PNG
-belongs in `public/illustrations/checker-shadow-original.png`; the proof is an
-in-place SVG overlay (not a second externally sourced image). The production build
-checks the supplied original's dimensions and SHA-256 with
-`scripts/check-illusion-assets.mjs`. Missing or altered assets fail the build; no
-media are downloaded at runtime or during building. Commit the original PNG
-before merging the PR.
+URLs may only be used for attribution and source links. The checker-shadow
+original is stored in `public/illustrations/checker-shadow-original.png`, while
+its interactive reveal scrubs 24 unmodified frames from the freely reusable
+Wikimedia Commons GIF in a local, lossless `checker-shadow-scrub-frames.png`
+sprite. The final GIF frame is intentionally omitted. The original GIF is kept
+in `public/illustrations/checker-shadow-proof.gif` for provenance. The production
+build checks all these source assets' dimensions and SHA-256 using
+`scripts/check-illusion-assets.mjs`; no media are downloaded by the browser or build.
 `format` describes the editorial structure, not which sense the presentation
 uses. A visual vanishing puzzle may remain an argument; audio illusions may be
 added later without changing the format schema.

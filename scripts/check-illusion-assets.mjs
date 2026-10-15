@@ -21,9 +21,9 @@ const assets = [
   {
     name: "checker-shadow-scrub-frames.png",
     type: "png",
-    width: 2700,
-    height: 2100,
-    sha256: "99c5dfe92908f990921e11dcf6964555279ff5fa1d86155e766bd3ecb7eeb9af",
+    width: 3240,
+    height: 1680,
+    sha256: "8a9ef3a724cc0568b655ae7e49f1ecd636f50fd0a990eb27c4abc583047c1a5c",
   },
 ]
 
