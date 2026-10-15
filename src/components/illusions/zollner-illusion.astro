@@ -39,12 +39,7 @@ const crossings = columns.flatMap((x, column) =>
     </g>
     <g stroke={stroke} stroke-width="3" stroke-linecap="square">
       {columns.map((x) => (
-        <line
-          x1={x - 37.8}
-          y1="48"
-          x2={x + 37.8}
-          y2="328"
-        />
+        <line x1={x - 37.8} y1="48" x2={x + 37.8} y2="328" />
       ))}
     </g>
   </SvgFigure>
@@ -72,7 +67,8 @@ const crossings = columns.flatMap((x, column) =>
       rel="noopener noreferrer"
     >
       Zöllner's original diagonal arrangement
-    </a>.
+    </a>
+    .
   </Fragment>
 </IllustrationFigure>
 

@@ -5,36 +5,27 @@ import Slider from "~/components/illustration-kit/Slider.astro"
 import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
 import { series, stroke } from "~/data/palette"
 
-// Unlike Hering's single hub, Wundt's familiar horizontal-line figure uses two
-// distinct fan centres. Keep the target parallels fixed while removing the fans.
-const points = Array.from({ length: 39 }, (_, index) => 20 + index * 15)
+// The conventional Wundt image uses two external hubs linked by chevrons.
+const points = Array.from({ length: 29 }, (_, index) => 14 + index * 14)
 ---
 
 <IllustrationFigure
   name="wundt-illusion"
-  lead="Do the two horizontal red lines seem to bend towards each other?"
+  lead="Do the two upright red lines seem to bow towards each other?"
 >
   <SvgFigure
     name="wundt-illusion"
     viewBox="0 0 620 420"
     class="mx-auto w-full max-w-2xl"
-    title="Wundt illusion with two dense fans of black rays and two red horizontal parallels"
-    desc="Two horizontal, parallel red target lines lie across black diagonal rays converging separately at a point above and a point below their middle. The lines can appear bowed inwards but are perfectly straight."
+    title="Wundt illusion: two fixed vertical red parallels over a diamond of black chevrons"
+    desc="Two vertical, parallel red target lines lie across dozens of black chevron rays pointing from left and right towards a vertical central axis. The red lines can appear bowed towards each other but are perfectly straight."
   >
     <g id="wundt-fans" stroke={stroke} stroke-width="1.4" fill="none">
-      {points.map((x) => (
-        <>
-          <line x1="310" y1="20" x2={x} y2="400" />
-          <line x1="310" y1="400" x2={x} y2="20" />
-        </>
+      {points.map((y) => (
+        <path d={`M22 210 L310 ${y} L598 210`} />
       ))}
     </g>
-    <path
-      d="M42 180 H578 M42 240 H578"
-      fill="none"
-      stroke={series.red}
-      stroke-width="5"
-    />
+    <path d="M258 25 V395 M362 25 V395" fill="none" stroke={series.red} stroke-width="5" />
   </SvgFigure>
   <Slider
     id="wundt-illusion-diagonals"
@@ -45,24 +36,25 @@ const points = Array.from({ length: 39 }, (_, index) => 20 + index * 15)
     startLabel="Two dense fans"
     endLabel="Parallel red lines only"
     describedby="wundt-illusion-note"
-    valuetext="Two converging fans behind two fixed horizontal red lines"
+    valuetext="A diamond of rays behind two straight, parallel vertical red lines"
   >
     <p id="wundt-illusion-note" class="text-base">
-      The black background disappears, but the two red lines stay horizontal and 60 units apart.
+      The black background disappears, but the two red lines stay upright and 104 units apart.
     </p>
   </Slider>
   <IllusionControls name="wundt-illusion" />
   <Fragment slot="caption">
-    Redrawn using the two-centre arrangement of the Wundt illusion, rather than the
-    Hering single-centre pattern.{" "}
+    Redrawn using the two-centre arrangement of the Wundt illusion, rather than the Hering
+    single-centre pattern.{" "}
     <a
-      href="https://mathworld.wolfram.com/WundtIllusion.html"
+      href="https://www.illusionsindex.org/i/wundt-illusion"
       class="underline"
       target="_blank"
       rel="noopener noreferrer"
     >
       Reference figure and description
-    </a>.
+    </a>
+    .
   </Fragment>
 </IllustrationFigure>
 
@@ -76,7 +68,7 @@ const points = Array.from({ length: 39 }, (_, index) => 20 + index * 15)
     bindSliderPlayback(slider, play, (value) => {
       fans.setAttribute("opacity", String(1 - value / 100))
       return value === 100
-        ? "Two straight, parallel horizontal lines remain"
+        ? "Two straight, parallel vertical lines remain"
         : "Two fans of lines fade; the red parallels stay unchanged"
     })
   }

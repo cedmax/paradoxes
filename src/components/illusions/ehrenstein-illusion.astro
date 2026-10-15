@@ -22,12 +22,7 @@ const spokes = Array.from({ length: 24 }, (_, index) => {
   >
     <g stroke={stroke} stroke-width="3" fill="none" stroke-linecap="butt">
       {spokes.map(({ c, s }) => (
-        <line
-          x1={300 + c * 67}
-          y1={195 + s * 67}
-          x2={300 + c * 183}
-          y2={195 + s * 183}
-        />
+        <line x1={300 + c * 67} y1={195 + s * 67} x2={300 + c * 183} y2={195 + s * 183} />
       ))}
     </g>
   </SvgFigure>
@@ -41,6 +36,7 @@ const spokes = Array.from({ length: 24 }, (_, index) => {
       rel="noopener noreferrer"
     >
       Ehrenstein illusion demonstration
-    </a>.
+    </a>
+    .
   </Fragment>
 </IllustrationFigure>
