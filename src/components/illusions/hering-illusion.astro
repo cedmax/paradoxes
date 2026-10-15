@@ -25,12 +25,12 @@ const rays = Array.from({ length: 80 }, (_, index) => {
     title="Hering illusion with dense radiating black spokes behind two straight red parallel lines"
     desc="Eighty fine black lines radiate from one point midway between two exactly vertical, parallel red lines. The red lines may appear bowed outwards but remain straight. A slider removes the black rays."
   >
-    <g id="hering-rays" stroke={stroke} stroke-width="1.7">
+    <g id="hering-rays" stroke={stroke} stroke-width="1">
       {rays.map(({ x, y }) => (
         <line x1="310" y1="210" x2={x} y2={y} />
       ))}
     </g>
-    <path d="M220 30 V390 M400 30 V390" stroke={series.red} stroke-width="5" fill="none" />
+    <path d="M250 30 V390 M370 30 V390" stroke={series.red} stroke-width="3" fill="none" />
   </SvgFigure>
   <Slider
     id="hering-illusion-rays"

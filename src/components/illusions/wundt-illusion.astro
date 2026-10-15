@@ -2,11 +2,11 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
-import { series } from "~/data/palette"
+import { series, stroke } from "~/data/palette"
 
 // Classic Wundt diamond: rays extend from the left and right tips to successive
 // points along the centre axis. Neither red line changes its position or length.
-const fan = Array.from({ length: 53 }, (_, index) => 14 + index * 7.5)
+const fan = Array.from({ length: 20 }, (_, index) => 14 + index * 20)
 ---
 
 <IllustrationFigure name="wundt-illusion" lead="Do the two red lines appear to bend inwards?">
@@ -17,12 +17,12 @@ const fan = Array.from({ length: 53 }, (_, index) => 14 + index * 7.5)
     title="Wundt illusion: two straight red vertical lines across dense blue diamond fans"
     desc="A blue diamond of tightly packed chevrons extends from sharp left and right points towards the centre axis. Two straight and parallel red vertical lines cross the blue chevrons. The slider hides only the chevrons, exposing the two unchanged red lines."
   >
-    <g id="wundt-fans" fill="none" stroke={series.blue} stroke-width="1.4">
+    <g id="wundt-fans" fill="none" stroke={stroke} stroke-width="1.2">
       {fan.map((y) => (
-        <path d={`M20 210 L310 ${y} L600 210`} />
+        <path d={`M210 210 L310 ${y} L400 210`} />
       ))}
     </g>
-    <path d="M255 25 V395 M365 25 V395" fill="none" stroke={series.red} stroke-width="4.5" />
+    <path d="M285 15 V385 M335 15 V385" fill="none" stroke={series.red} stroke-width="3" />
   </SvgFigure>
   <Slider
     id="wundt-illusion-diagonals"
@@ -36,7 +36,7 @@ const fan = Array.from({ length: 53 }, (_, index) => 14 + index * 7.5)
     valuetext="Dense blue chevrons surrounding two fixed red parallel lines"
   >
     <p id="wundt-illusion-note" class="text-base">
-      The blue chevrons disappear; both red lines remain straight and 110 units apart.
+      The chevrons disappear; both red lines remain straight and 110 units apart.
     </p>
   </Slider>
   <Fragment slot="caption">
