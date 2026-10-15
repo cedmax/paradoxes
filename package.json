@@ -3,7 +3,7 @@
   "description": "Paradoxes in plain words",
   "version": "0.0.1",
   "private": true,
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "author": "cedmax",
   "packageManager": "pnpm@12.9.1",
   "scripts": {
