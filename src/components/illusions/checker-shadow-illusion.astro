@@ -1,8 +1,9 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 
-// The source PNG is Adelson's original, without edits or recompression.
-// A locally rendered SVG overlay demonstrates that A and B share RGB 120,120,120.
+// Adelson's original image is self-hosted, unchanged, at its full resolution.
+// The proof samples pixels directly from this PNG rather than adding a solid
+// line across the checkerboard's naturally shaded neighbouring tiles.
 const original = "/illustrations/checker-shadow-original.png"
 ---
 
@@ -12,30 +13,55 @@ const original = "/illustrations/checker-shadow-original.png"
 >
   <div class="relative mx-auto w-full max-w-xl">
     <img
+      id="checker-original"
       src={original}
       width="1078"
       height="838"
       class="h-auto w-full"
-      alt="Edward Adelson's checkerboard. A green cylinder casts a soft shadow. A is a dark tile outside the shadow and B is a light tile inside it. Both have exactly the same RGB value."
+      alt="Edward Adelson's checkerboard. A green cylinder casts a soft shadow. A is a dark tile outside the shadow and B is a light tile inside it."
     />
     <svg
-      id="checker-proof-overlay"
+      id="checker-sample-markers"
       viewBox="0 0 1078 838"
       class="pointer-events-none absolute inset-0 hidden size-full"
       role="presentation"
       aria-hidden="true"
       focusable="false"
     >
-      <path d="M570 292 V466" fill="none" stroke="#787878" stroke-width="22" />
+      <g fill="none" stroke="#fff" stroke-width="7">
+        <circle cx="595" cy="302" r="19" />
+        <circle cx="585" cy="475" r="19" />
+      </g>
+      <g fill="none" stroke="#0a0a0a" stroke-width="3">
+        <circle cx="595" cy="302" r="19" />
+        <circle cx="585" cy="475" r="19" />
+      </g>
     </svg>
   </div>
   <div class="flex flex-wrap items-center gap-4">
     <button type="button" id="checker-compare" class="btn-toggle" aria-pressed="false">
       Show the proof
     </button>
-    <p id="checker-values" class="text-base" aria-live="polite" hidden>
-      Squares A and B have identical displayed grey: RGB 120, 120, 120. The grey connection over
-      the original image shows how they match.
+  </div>
+  <div id="checker-proof" class="flex flex-col gap-3" hidden>
+    <p class="font-bold">Take one pixel from each marked square and put them together.</p>
+    <div class="w-full max-w-lg">
+      <div class="grid grid-cols-2 text-center text-base font-bold">
+        <span>From A</span>
+        <span>From B</span>
+      </div>
+      <canvas
+        id="checker-samples"
+        width="480"
+        height="112"
+        class="block h-auto w-full"
+        role="img"
+        aria-label="Two samples taken directly from the original PNG, joined edge to edge. Both are RGB 120, 120, 120."
+      ></canvas>
+    </div>
+    <p id="checker-values" class="text-base" aria-live="polite">
+      Both sampled pixels are RGB 120, 120, 120. With the surrounding shading removed,
+      there is no boundary between them.
     </p>
   </div>
   <Fragment slot="caption">
@@ -48,8 +74,8 @@ const original = "/illustrations/checker-shadow-original.png"
     >
       Edward H. Adelson (1995)
     </a>
-    , reproduced with permission for free redistribution. The original image is self-hosted and
-    the grey connection is drawn over it.
+    , reproduced with permission for free redistribution. The comparison reads
+    pixels from the unchanged, self-hosted image, without a filter or a redraw.
   </Fragment>
 </IllustrationFigure>
 
@@ -59,15 +85,42 @@ const original = "/illustrations/checker-shadow-original.png"
   const root = illustrationRoot("checker-shadow-illusion")
   if (root) {
     const button = find<HTMLButtonElement>(root, "#checker-compare")
-    const proof = find<SVGSVGElement>(root, "#checker-proof-overlay")
+    const image = find<HTMLImageElement>(root, "#checker-original")
+    const markers = find<SVGSVGElement>(root, "#checker-sample-markers")
+    const proof = find<HTMLElement>(root, "#checker-proof")
+    const canvas = find<HTMLCanvasElement>(root, "#checker-samples")
     const values = find<HTMLElement>(root, "#checker-values")
+    let sampled = false
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
       const shown = button.getAttribute("aria-pressed") !== "true"
+      if (shown && !sampled) {
+        await image.decode()
+        const source = document.createElement("canvas")
+        source.width = image.naturalWidth
+        source.height = image.naturalHeight
+        const from = source.getContext("2d", { willReadFrequently: true })
+        const to = canvas.getContext("2d")
+        if (!from || !to) return
+        from.drawImage(image, 0, 0)
+        const a = from.getImageData(595, 302, 1, 1).data
+        const b = from.getImageData(585, 475, 1, 1).data
+        const colour = (pixel: Uint8ClampedArray) =>
+          `rgb(${pixel[0]} ${pixel[1]} ${pixel[2]})`
+        to.fillStyle = colour(a)
+        to.fillRect(0, 0, 240, 112)
+        to.fillStyle = colour(b)
+        to.fillRect(240, 0, 240, 112)
+        values.textContent =
+          `A: RGB ${a[0]}, ${a[1]}, ${a[2]}. ` +
+          `B: RGB ${b[0]}, ${b[1]}, ${b[2]}. ` +
+          "The two samples touch without a dividing line."
+        sampled = true
+      }
       button.setAttribute("aria-pressed", String(shown))
       button.textContent = shown ? "Hide the proof" : "Show the proof"
-      proof.classList.toggle("hidden", !shown)
-      values.hidden = !shown
+      markers.classList.toggle("hidden", !shown)
+      proof.hidden = !shown
     })
   }
 </script>
