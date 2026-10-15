@@ -1,6 +1,6 @@
 ---
 name: create-illusion
-description: Create, refine or review a Logic Benders visual illusion, including original SVG figure, interactive reveal, accessible text proof, editorial copy and source checks.
+description: Create, refine or review a Logic Benders illusion (visual or auditory), preferring licensed originals and including accessible interaction, factual reveal, credit and source checks.
 ---
 
 # Create a visual illusion
