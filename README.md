@@ -36,3 +36,8 @@ can be configured there; no address is stored in this repository.
 See Netlify's [form setup](https://docs.netlify.com/manage/forms/setup/) and
 [notification instructions](https://docs.netlify.com/manage/forms/notifications/).
 The local Astro preview does not provide Netlify's form submission backend.
+
+## Licence
+
+Code is [MIT](./LICENSE). Written content is [CC BY-NC 4.0](./LICENSE-CONTENT).
+Third-party images are excluded and keep their original terms.
