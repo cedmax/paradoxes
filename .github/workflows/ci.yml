@@ -50,6 +50,21 @@ jobs:
         run: pnpm knip
         continue-on-error: true
 
+      # Temporary source and rendered preview validation for the visual corrections.
+      - name: Smoke build PR 87
+        if: github.event.pull_request.number == 87
+        run: |
+          pnpm build
+          pnpm check:seo
+          PREVIEW_UNVERIFIED=true SITE_INDEXING=noindex pnpm build
+          SITE_INDEXING=noindex pnpm check:seo
+
+      - name: Show corrected-illusion Prettier patch
+        if: always()
+        run: |
+          pnpm exec prettier --write src/components/illusions/cafe-wall-illusion.astro src/components/illusions/vertical-horizontal-illusion.astro src/components/illusions/wundt-illusion.astro src/components/illusions/hering-illusion.astro src/components/illusions/scintillating-grid-illusion.astro src/components/illusions/hermann-grid-illusion.astro src/components/illusions/ehrenstein-illusion.astro src/components/illusions/zollner-illusion.astro src/content/entries/cafe-wall-illusion.md src/content/entries/vertical-horizontal-illusion.md src/content/entries/ehrenstein-illusion.md src/content/entries/wundt-illusion.md src/content/entries/hering-illusion.md docs/architecture.md
+          git diff --no-ext-diff -- src/components/illusions/cafe-wall-illusion.astro src/components/illusions/vertical-horizontal-illusion.astro src/components/illusions/wundt-illusion.astro src/components/illusions/hering-illusion.astro src/components/illusions/scintillating-grid-illusion.astro src/components/illusions/hermann-grid-illusion.astro src/components/illusions/ehrenstein-illusion.astro src/components/illusions/zollner-illusion.astro src/content/entries/cafe-wall-illusion.md src/content/entries/vertical-horizontal-illusion.md src/content/entries/ehrenstein-illusion.md src/content/entries/wundt-illusion.md src/content/entries/hering-illusion.md docs/architecture.md
+
       - name: Report failed checks
         if: always()
         run: |
