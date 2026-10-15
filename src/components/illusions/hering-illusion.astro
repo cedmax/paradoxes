@@ -2,7 +2,6 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
-import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
 import { series, stroke } from "~/data/palette"
 
 const rays = Array.from({ length: 80 }, (_, index) => {
@@ -44,10 +43,9 @@ const rays = Array.from({ length: 80 }, (_, index) => {
     valuetext="Eighty radial lines behind two fixed parallel red lines"
   >
     <p id="hering-illusion-note" class="text-base">
-      Only the fine black rays disappear. The red lines stay straight, 180 units apart.
+      Only the fine black rays disappear. The red lines stay straight, 120 units apart.
     </p>
   </Slider>
-  <IllusionControls name="hering-illusion" />
   <Fragment slot="caption">
     A new SVG drawing of Hering's 1861 illusion with the classic single radial centre.{" "}
     <a
@@ -63,13 +61,12 @@ const rays = Array.from({ length: 80 }, (_, index) => {
 </IllustrationFigure>
 
 <script>
-  import { bindSliderPlayback, find, illustrationRoot } from "~/scripts/illustration"
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
   const root = illustrationRoot("hering-illusion")
   if (root) {
     const slider = find<HTMLInputElement>(root, "#hering-illusion-rays")
-    const play = find<HTMLButtonElement>(root, "#hering-illusion-play")
     const rays = find<SVGGElement>(root, "#hering-rays")
-    bindSliderPlayback(slider, play, (value) => {
+    bindSlider(slider, (value) => {
       rays.setAttribute("opacity", String(1 - value / 100))
       return value === 100
         ? "Only two straight red parallel lines remain"

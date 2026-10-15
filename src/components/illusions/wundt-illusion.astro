@@ -14,33 +14,35 @@ const fan = Array.from({ length: 20 }, (_, index) => 14 + index * 20)
     name="wundt-illusion"
     viewBox="0 0 620 420"
     class="mx-auto w-full max-w-2xl"
-    title="Wundt illusion: two straight red vertical lines across dense blue diamond fans"
-    desc="A blue diamond of tightly packed chevrons extends from sharp left and right points towards the centre axis. Two straight and parallel red vertical lines cross the blue chevrons. The slider hides only the chevrons, exposing the two unchanged red lines."
+    title="Wundt illusion: two straight red horizontal lines across a diamond of dark chevrons"
+    desc="A diamond of dark chevrons crosses two straight, parallel red horizontal lines. The entire drawing has been rotated together, preserving the chevron arrangement, widths, colours and line lengths. The slider hides only the chevrons."
   >
-    <g id="wundt-fans" fill="none" stroke={stroke} stroke-width="1.2">
-      {fan.map((y) => (
-        <path d={`M210 210 L310 ${y} L400 210`} />
-      ))}
+    <g transform="rotate(90 310 210)">
+      <g id="wundt-fans" fill="none" stroke={stroke} stroke-width="1.2">
+        {fan.map((y) => (
+          <path d={`M210 210 L310 ${y} L400 210`} />
+        ))}
+      </g>
+      <path d="M285 15 V385 M335 15 V385" fill="none" stroke={series.red} stroke-width="3" />
     </g>
-    <path d="M285 15 V385 M335 15 V385" fill="none" stroke={series.red} stroke-width="3" />
   </SvgFigure>
   <Slider
     id="wundt-illusion-diagonals"
-    label="Remove the blue background"
+    label="Remove the chevron background"
     min={0}
     max={100}
     value={0}
-    startLabel="Blue diamond visible"
+    startLabel="Dark diamond visible"
     endLabel="Only the two red lines"
     describedby="wundt-illusion-note"
-    valuetext="Dense blue chevrons surrounding two fixed red parallel lines"
+    valuetext="Dark chevrons crossing two fixed horizontal red parallel lines"
   >
     <p id="wundt-illusion-note" class="text-base">
-      The chevrons disappear; both red lines remain straight and 110 units apart.
+      The chevrons disappear; both red lines remain straight and 50 units apart.
     </p>
   </Slider>
   <Fragment slot="caption">
-    Newly drawn after the classic Wundt diamond arrangement, with blue chevrons and red
+    Newly drawn after the classic Wundt diamond arrangement, with dark chevrons and red
     parallels.{" "}
     <a
       href="https://www.illusionsindex.org/i/wundt-illusion"
@@ -64,7 +66,7 @@ const fan = Array.from({ length: 20 }, (_, index) => 14 + index * 20)
       fans.setAttribute("opacity", String(1 - value / 100))
       return value === 100
         ? "Only two straight, parallel red lines remain"
-        : "The blue background becomes fainter; red lines stay straight"
+        : "The chevrons become fainter; red lines stay straight"
     })
   }
 </script>
