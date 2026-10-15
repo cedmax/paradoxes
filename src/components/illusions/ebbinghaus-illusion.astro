@@ -56,6 +56,7 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
       The blue circles can change size. Both red centres remain unchanged.
     </p>
   </Slider>
+  <button type="button" id="ebbinghaus-play" class="btn-ghost" aria-pressed="false">Play</button>
   <Fragment slot="caption">
     Both red circles stay 50 units across while the surrounding circles change size. Redrawn
     after Hermann Ebbinghaus's circles, first published by{" "}
@@ -72,18 +73,19 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
 </IllustrationFigure>
 
 <script>
-  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+  import { bindSliderPlayback, find, illustrationRoot } from "~/scripts/illustration"
 
   const root = illustrationRoot("ebbinghaus-illusion")
   if (root) {
     const input = find<HTMLInputElement>(root, "#ebbinghaus-surround-size")
+    const play = find<HTMLButtonElement>(root, "#ebbinghaus-play")
     const left = Array.from(
       root.querySelectorAll<SVGCircleElement>("#ebbinghaus-left-neighbours circle"),
     )
     const right = Array.from(
       root.querySelectorAll<SVGCircleElement>("#ebbinghaus-right-neighbours circle"),
     )
-    bindSlider(input, (value) => {
+    bindSliderPlayback(input, play, (value) => {
       const t = value / 100
       const sizes = [32 - 21 * t, 11 + 21 * t]
       for (const [groupIndex, group] of [left, right].entries()) {

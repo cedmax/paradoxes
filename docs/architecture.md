@@ -91,7 +91,7 @@ URLs may only be used for attribution and source links. The checker-shadow
 original is stored in `public/illustrations/checker-shadow-original.png`, while
 its interactive reveal scrubs 24 unmodified frames from the freely reusable
 Wikimedia Commons GIF in a local, lossless `checker-shadow-scrub-frames.png`
-sprite. The final GIF frame is intentionally omitted. The original GIF is kept
+sprite. The earliest GIF frame (which appears last when scrubbing in reverse) is intentionally omitted. The original GIF is kept
 in `public/illustrations/checker-shadow-proof.gif` for provenance. The production
 build checks all these source assets' dimensions and SHA-256 using
 `scripts/check-illusion-assets.mjs`; no media are downloaded by the browser or build.

@@ -23,7 +23,7 @@ sources:
     note: "Full-resolution PNG copy of Adelson's original, 1078 × 838 pixels."
   - title: "Wikimedia Commons: Optical illusion greysquares.gif"
     url: https://commons.wikimedia.org/wiki/File:Optical_illusion_greysquares.gif
-    note: "Proof animation by (3ucky(3all (2006); the interactive slider uses its first 24 frames (excluding the final frame), rearranged in a lossless sprite. Commons permits unrestricted reuse."
+    note: "Proof animation by (3ucky(3all (2006); the interactive slider uses frames 1–24 (excluding the isolated first frame), rearranged in a lossless sprite. Commons permits unrestricted reuse."
   - title: "Adelson's Checker-Shadow Illusion, Illusions Index"
     url: https://www.illusionsindex.org/i/adelson-s-checker-shadow-illusion
     note: "Explains the role of lightness constancy, shadow interpretation and contrast."

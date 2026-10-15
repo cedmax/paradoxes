@@ -25,3 +25,79 @@ export function bindSlider(input: HTMLInputElement, render: (value: number) => s
   update()
   return update
 }
+
+/**
+ * Consistent Play/Pause controls for illustrations with manual range sliders.
+ * Each instance is independent. Dragging pauses animation; reduced-motion
+ * preferences disable playback without affecting manual scrubbing.
+ */
+export function bindSliderPlayback(
+  input: HTMLInputElement,
+  button: HTMLButtonElement,
+  render: (value: number) => string | void,
+  durationMs = 2600,
+) {
+  const update = bindSlider(input, render)
+  const min = Number(input.min)
+  const max = Number(input.max)
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+  let position = Number(input.value)
+  let direction = 1
+  let lastTime: number | null = null
+  let frame = 0
+  let running = false
+
+  const stop = () => {
+    running = false
+    cancelAnimationFrame(frame)
+    lastTime = null
+    button.textContent = "Play"
+    button.setAttribute("aria-pressed", "false")
+  }
+  const tick = (now: number) => {
+    if (!running) return
+    if (lastTime !== null) {
+      position += ((now - lastTime) * direction * (max - min)) / durationMs
+      if (position >= max) {
+        position = max
+        direction = -1
+      } else if (position <= min) {
+        position = min
+        direction = 1
+      }
+    }
+    lastTime = now
+    input.value = String(Math.round(position))
+    update()
+    frame = requestAnimationFrame(tick)
+  }
+
+  button.addEventListener("click", () => {
+    if (running) {
+      stop()
+      return
+    }
+    if (reducedMotion.matches) return
+    running = true
+    lastTime = null
+    button.textContent = "Pause"
+    button.setAttribute("aria-pressed", "true")
+    frame = requestAnimationFrame(tick)
+  })
+  input.addEventListener("input", () => {
+    position = Number(input.value)
+    if (position === max) direction = -1
+    if (position === min) direction = 1
+    stop()
+  })
+  const motionChanged = () => {
+    stop()
+    button.disabled = reducedMotion.matches
+    button.title = reducedMotion.matches ? "Use the slider without animation" : ""
+  }
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stop()
+  })
+  reducedMotion.addEventListener("change", motionChanged)
+  motionChanged()
+}

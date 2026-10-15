@@ -23,7 +23,7 @@ const assets = [
     type: "png",
     width: 3240,
     height: 1680,
-    sha256: "8a9ef3a724cc0568b655ae7e49f1ecd636f50fd0a990eb27c4abc583047c1a5c",
+    sha256: "ac51047f77ae2f400f4bc165efcbee811b3eb84297e4c659b2e8648a21b6986a",
   },
 ]
 

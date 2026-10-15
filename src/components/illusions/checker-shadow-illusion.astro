@@ -2,8 +2,8 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 
-// The first 24 GIF frames, unchanged and stored losslessly in a self-hosted 6x4 sprite.
-// Frame 23 shows the checkerboard; frame 0 isolates A and B without context.
+// Keep original GIF frames 1 through 24 in a lossless, self-hosted 6x4 sprite.
+// The full checkerboard is restored; the final isolated solid block is omitted.
 ---
 
 <IllustrationFigure
@@ -15,7 +15,7 @@ import Slider from "~/components/illustration-kit/Slider.astro"
     class="mx-auto w-full max-w-xl"
     style="aspect-ratio: 9 / 7; background-image: url('/illustrations/checker-shadow-scrub-frames.png'); background-size: 600% 400%; background-position: 100% 100%; background-repeat: no-repeat;"
     role="img"
-    aria-label="A checkerboard partly shaded by a cylinder. Squares A and B appear different, although both are the same grey. Moving the slider removes the surroundings until they form a single uniform grey rectangle."
+    aria-label="A checkerboard partly shaded by a cylinder. Squares A and B appear different, although both are the same grey. Moving the slider removes the surroundings until only the separate matching grey patches remain."
   ></div>
   <Slider
     id="checker-reveal"
@@ -25,7 +25,7 @@ import Slider from "~/components/illustration-kit/Slider.astro"
     step={1}
     value={0}
     startLabel="Checkerboard"
-    endLabel="Only A and B"
+    endLabel="A and B isolated"
     describedby="checker-reveal-note"
     valuetext="Checkerboard visible; A and B look different"
   >
@@ -34,6 +34,7 @@ import Slider from "~/components/illustration-kit/Slider.astro"
       scene changes.
     </p>
   </Slider>
+  <button type="button" id="checker-play" class="btn-ghost" aria-pressed="false">Play</button>
   <Fragment slot="caption">
     Original illusion by{" "}
     <a
@@ -58,14 +59,15 @@ import Slider from "~/components/illustration-kit/Slider.astro"
 </IllustrationFigure>
 
 <script>
-  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+  import { bindSliderPlayback, find, illustrationRoot } from "~/scripts/illustration"
 
   const root = illustrationRoot("checker-shadow-illusion")
   if (root) {
     const scene = find<HTMLElement>(root, "#checker-frame")
     const input = find<HTMLInputElement>(root, "#checker-reveal")
+    const play = find<HTMLButtonElement>(root, "#checker-play")
 
-    bindSlider(input, (value) => {
+    bindSliderPlayback(input, play, (value) => {
       // Scrub the 24 kept frames in reverse through a 6×4 sprite.
       const frame = 23 - value
       const x = (frame % 6) * 20
@@ -73,8 +75,8 @@ import Slider from "~/components/illustration-kit/Slider.astro"
       scene.style.backgroundPosition = String(x) + "% " + String(y) + "%"
 
       if (value === 0) return "Checkerboard visible; A and B look different"
-      if (value === 23) return "Only A and B remain: one uniform grey rectangle"
+      if (value === 23) return "Only the two matching grey A and B patches remain"
       return "Surrounding checkerboard partially removed; A and B keep the same grey"
-    })
+    }, 3000)
   }
 </script>
