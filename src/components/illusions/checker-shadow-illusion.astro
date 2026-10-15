@@ -1,81 +1,72 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 
-// Adelson's original image is self-hosted, unchanged, at its full resolution.
-// The proof samples pixels directly from this PNG rather than adding a solid
-// line across the checkerboard's naturally shaded neighbouring tiles.
+// All figures are self-hosted. The original 1995 figure is unaltered;
+// the freely reusable Commons GIF animates the proof without overlaying gradients.
 const original = "/illustrations/checker-shadow-original.png"
+const animatedProof = "/illustrations/checker-shadow-proof.gif"
+const stillProof = "/illustrations/checker-shadow-proof-still.png"
 ---
 
 <IllustrationFigure
   name="checker-shadow-illusion"
   lead="Look at the squares marked A and B. Does one look darker?"
 >
-  <div class="relative mx-auto w-full max-w-xl">
+  <div class="mx-auto w-full max-w-xl">
     <img
       id="checker-original"
       src={original}
       width="1078"
       height="838"
-      class="h-auto w-full"
-      alt="Edward Adelson's checkerboard. A green cylinder casts a soft shadow. A is a dark tile outside the shadow and B is a light tile inside it."
+      class="block h-auto w-full"
+      alt="Adelson's original checkerboard: A is a dark square outside the cylinder's shadow; B is a light square within it."
     />
-    <svg
-      id="checker-sample-markers"
-      viewBox="0 0 1078 838"
-      class="pointer-events-none absolute inset-0 hidden size-full"
-      role="presentation"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <g fill="none" stroke="#fff" stroke-width="7">
-        <circle cx="595" cy="302" r="19" />
-        <circle cx="585" cy="475" r="19" />
-      </g>
-      <g fill="none" stroke="#0a0a0a" stroke-width="3">
-        <circle cx="595" cy="302" r="19" />
-        <circle cx="585" cy="475" r="19" />
-      </g>
-    </svg>
+    <img
+      id="checker-proof-animation"
+      width="540"
+      height="420"
+      class="block h-auto w-full"
+      alt="Animation: A and B begin as one uniform grey rectangle. The rest of the checkerboard and its green cylinder gradually reassemble around them, making the two parts appear different."
+      hidden
+    />
+    <img
+      id="checker-proof-still"
+      src={stillProof}
+      width="540"
+      height="420"
+      class="block h-auto w-full"
+      alt="A and B are adjacent parts of one solid grey rectangle. Without the checkerboard and shadow, they look identical."
+      hidden
+    />
   </div>
-  <div class="flex flex-wrap items-center gap-4">
+  <div class="flex flex-wrap items-center gap-3">
     <button type="button" id="checker-compare" class="btn-toggle" aria-pressed="false">
       Show the proof
     </button>
+    <button type="button" id="checker-replay" class="btn-ghost" hidden>
+      Replay animation
+    </button>
   </div>
-  <div id="checker-proof" class="flex flex-col gap-3" hidden>
-    <p class="font-bold">Take one pixel from each marked square and put them together.</p>
-    <div class="w-full max-w-lg">
-      <div class="grid grid-cols-2 text-center text-base font-bold">
-        <span>From A</span>
-        <span>From B</span>
-      </div>
-      <canvas
-        id="checker-samples"
-        width="480"
-        height="112"
-        class="block h-auto w-full"
-        role="img"
-        aria-label="Two samples taken directly from the original PNG, joined edge to edge. Both are RGB 120, 120, 120."
-      ></canvas>
-    </div>
-    <p id="checker-values" class="text-base" aria-live="polite">
-      Both sampled pixels are RGB 120, 120, 120. With the surrounding shading removed,
-      there is no boundary between them.
-    </p>
-  </div>
+  <p id="checker-values" class="text-base" aria-live="polite" hidden>
+    A and B have exactly the same grey value: RGB 120, 120, 120.
+    The animation removes and rebuilds the surrounding scene to reveal why they seem different.
+  </p>
   <Fragment slot="caption">
-    Original image by{" "}
+    Original illusion by{" "}
     <a
-      class="font-bold underline"
       href="https://persci.mit.edu/gallery/checkershadow/"
+      class="font-bold underline"
       target="_blank"
       rel="noopener noreferrer"
-    >
-      Edward H. Adelson (1995)
-    </a>
-    , reproduced with permission for free redistribution. The comparison reads
-    pixels from the unchanged, self-hosted image, without a filter or a redraw.
+    >Edward H. Adelson (1995)</a>.
+    Proof animation by{" "}
+    <a
+      href="https://commons.wikimedia.org/wiki/File:Optical_illusion_greysquares.gif"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >(3ucky(3all, via Wikimedia Commons</a>
+    (freely reusable). Both images are hosted on Logic Benders.
   </Fragment>
 </IllustrationFigure>
 
@@ -84,43 +75,57 @@ const original = "/illustrations/checker-shadow-original.png"
 
   const root = illustrationRoot("checker-shadow-illusion")
   if (root) {
-    const button = find<HTMLButtonElement>(root, "#checker-compare")
-    const image = find<HTMLImageElement>(root, "#checker-original")
-    const markers = find<SVGSVGElement>(root, "#checker-sample-markers")
-    const proof = find<HTMLElement>(root, "#checker-proof")
-    const canvas = find<HTMLCanvasElement>(root, "#checker-samples")
+    const toggle = find<HTMLButtonElement>(root, "#checker-compare")
+    const replay = find<HTMLButtonElement>(root, "#checker-replay")
+    const original = find<HTMLImageElement>(root, "#checker-original")
+    const animated = find<HTMLImageElement>(root, "#checker-proof-animation")
+    const still = find<HTMLImageElement>(root, "#checker-proof-still")
     const values = find<HTMLElement>(root, "#checker-values")
-    let sampled = false
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const proofPath = "/illustrations/checker-shadow-proof.gif"
+    let playCount = 0
 
-    button.addEventListener("click", async () => {
-      const shown = button.getAttribute("aria-pressed") !== "true"
-      if (shown && !sampled) {
-        await image.decode()
-        const source = document.createElement("canvas")
-        source.width = image.naturalWidth
-        source.height = image.naturalHeight
-        const from = source.getContext("2d", { willReadFrequently: true })
-        const to = canvas.getContext("2d")
-        if (!from || !to) return
-        from.drawImage(image, 0, 0)
-        const a = from.getImageData(595, 302, 1, 1).data
-        const b = from.getImageData(585, 475, 1, 1).data
-        const colour = (pixel: Uint8ClampedArray) =>
-          `rgb(${pixel[0]} ${pixel[1]} ${pixel[2]})`
-        to.fillStyle = colour(a)
-        to.fillRect(0, 0, 240, 112)
-        to.fillStyle = colour(b)
-        to.fillRect(240, 0, 240, 112)
-        values.textContent =
-          `A: RGB ${a[0]}, ${a[1]}, ${a[2]}. ` +
-          `B: RGB ${b[0]}, ${b[1]}, ${b[2]}. ` +
-          "The two samples touch without a dividing line."
-        sampled = true
+    const play = () => {
+      still.hidden = true
+      animated.hidden = false
+      // A fresh same-origin URL makes the GIF begin at its first frame on replay.
+      animated.src = proofPath + "?replay=" + ++playCount
+      replay.textContent = "Replay animation"
+    }
+
+    const showStill = () => {
+      animated.hidden = true
+      animated.removeAttribute("src")
+      still.hidden = false
+      replay.textContent = "Play animation"
+    }
+
+    const render = (shown: boolean) => {
+      toggle.setAttribute("aria-pressed", String(shown))
+      toggle.textContent = shown ? "Hide the proof" : "Show the proof"
+      original.hidden = shown
+      replay.hidden = !shown
+      values.hidden = !shown
+      if (!shown) {
+        animated.hidden = true
+        animated.removeAttribute("src")
+        still.hidden = true
+      } else if (reducedMotion.matches) {
+        showStill()
+      } else {
+        play()
       }
-      button.setAttribute("aria-pressed", String(shown))
-      button.textContent = shown ? "Hide the proof" : "Show the proof"
-      markers.classList.toggle("hidden", !shown)
-      proof.hidden = !shown
+    }
+
+    toggle.addEventListener("click", () => {
+      render(toggle.getAttribute("aria-pressed") !== "true")
+    })
+    replay.addEventListener("click", play)
+    reducedMotion.addEventListener("change", () => {
+      if (toggle.getAttribute("aria-pressed") === "true") {
+        if (reducedMotion.matches) showStill()
+        else play()
+      }
     })
   }
 </script>

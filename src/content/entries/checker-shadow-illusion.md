@@ -21,6 +21,9 @@ sources:
   - title: "Wikimedia Commons: Same color illusion PNG"
     url: https://commons.wikimedia.org/wiki/File:Same_color_illusion.png
     note: "Full-resolution PNG copy of Adelson's original, 1078 × 838 pixels."
+  - title: "Wikimedia Commons: Optical illusion greysquares.gif"
+    url: https://commons.wikimedia.org/wiki/File:Optical_illusion_greysquares.gif
+    note: "Proof animation by (3ucky(3all (2006), hosted locally without modification; Commons permits unrestricted reuse. The still image is its first frame."
   - title: "Adelson's Checker-Shadow Illusion, Illusions Index"
     url: https://www.illusionsindex.org/i/adelson-s-checker-shadow-illusion
     note: "Explains the role of lightness constancy, shadow interpretation and contrast."

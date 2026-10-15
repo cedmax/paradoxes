@@ -50,6 +50,13 @@ jobs:
         run: pnpm knip
         continue-on-error: true
 
+      # Temporary smoke test for this PR. Remove once it passes.
+      - name: Smoke build PR 87
+        if: github.event.pull_request.number == 87
+        run: |
+          pnpm build
+          pnpm check:seo
+
       - name: Report failed checks
         if: always()
         run: |
