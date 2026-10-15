@@ -56,7 +56,9 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
       The blue circles can change size. Both red centres remain unchanged.
     </p>
   </Slider>
-  <button type="button" id="ebbinghaus-play" class="btn-ghost" aria-pressed="false">Play</button>
+  <div class="flex flex-wrap items-center gap-3">
+    <button type="button" id="ebbinghaus-play" class="btn-ghost" aria-pressed="false">Play</button>
+  </div>
   <Fragment slot="caption">
     Both red circles stay 50 units across while the surrounding circles change size. Redrawn
     after Hermann Ebbinghaus's circles, first published by{" "}
