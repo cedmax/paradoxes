@@ -4,7 +4,7 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
 import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
-import { series, stroke, illusionSurface } from "~/data/palette"
+import { illusionSurface } from "~/data/palette"
 const xs = Array.from({ length: 8 }, (_, i) => 55 + i * 70)
 const ys = Array.from({ length: 5 }, (_, i) => 55 + i * 70)
 const dots = xs.flatMap((x) => ys.map((y) => ({ x, y })))
@@ -26,7 +26,7 @@ const dots = xs.flatMap((x) => ys.map((y) => ({ x, y })))
     <g id="scintillating-grid-dots" fill={illusionSurface.paper}>
       {dots.map(({ x, y }) => <circle cx={x} cy={y} r="10" />)}
     </g>
-    <MeasurementGuides name="scintillating-grid-illusion" d="M100 125 A10 10 0 1 0 120 125 A10 10 0 1 0 100 125 M310 195 A10 10 0 1 0 330 195 A10 10 0 1 0 310 195" />
+    <MeasurementGuides name="scintillating-grid-illusion" d="M115 125 A10 10 0 1 0 135 125 A10 10 0 1 0 115 125 M325 195 A10 10 0 1 0 345 195 A10 10 0 1 0 325 195" />
   </SvgFigure>
   <Slider
     id="scintillating-grid-illusion-slider"

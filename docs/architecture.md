@@ -110,4 +110,10 @@ For review, `PREVIEW_UNVERIFIED=true pnpm dev` includes unpublished illusions lo
 A PR deployment with the opt-in `deploy-preview` label enables the same behaviour only
 for its noindex preview. `main` never enables this exception.
 
+New illusion figures live in `src/components/illusions/` and share the illustration kit's
+`IllusionControls`, `MeasurementGuides`, `Slider`, `SvgFigure` and `IllustrationFigure`.
+Their scripts use the shared playback and measurement helpers, and import colours from
+`src/data/palette.ts`. The catalogue includes geometric, grid, contour and lightness
+illusions as well as the motion-dependent Lilac Chaser. All are initially unverified.
+
 See `.claude/skills/create-illusion/SKILL.md` for the authoring and accessibility checklist.
