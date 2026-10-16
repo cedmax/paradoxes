@@ -136,10 +136,10 @@ export const chapters: Chapter[] = [
     n: "11",
     title: "Appearances deceiving",
     titleAccent: "deceiving",
-    pageTitle: "Paradoxes of shapes and sums",
+    pageTitle: "Deceptive appearances, shapes and sums",
     introduction:
-      "A diagram or quick calculation can look convincing before its details are checked. These puzzles invite a closer look at lengths, areas, movement and arithmetic to find the step that creates the surprise.",
-    blurb: "Figures and quick calculations that look right until you measure or count again.",
+      "A diagram, a colour or a calculation can look convincing even when the details say otherwise. These puzzles investigate misleading appearances, shapes, lengths, areas and arithmetic.",
+    blurb: "Things that look different from what they are, even when you look closer or measure again.",
   },
 ]
 

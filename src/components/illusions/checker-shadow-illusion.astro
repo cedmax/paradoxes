@@ -79,7 +79,7 @@ import Slider from "~/components/illustration-kit/Slider.astro"
         const frame = 23 - value
         const x = (frame % 6) * 20
         const y = Math.floor(frame / 6) * (100 / 3)
-        scene.style.backgroundPosition = String(x) + "% " + String(y) + "%"
+        scene.style.backgroundPosition = `${x}% ${y}%`
 
         if (value === 0) return "Checkerboard visible; A and B look different"
         if (value === 23) return "Only the two matching grey A and B patches remain"

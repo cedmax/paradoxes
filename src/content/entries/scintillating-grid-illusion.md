@@ -5,7 +5,8 @@ format: illusion
 chapter: shapes
 description: "Are dark spots really flashing inside the white dots?"
 problem: "Are dark spots really flashing inside the white dots?"
-uniqueness: canonical
+uniqueness: related
+anchor: hermann-grid-illusion
 simplification: light
 noMaths: true
 order: 280

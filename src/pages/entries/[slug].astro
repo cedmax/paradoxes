@@ -209,7 +209,7 @@ const structuredData = [
               ? "The explanation"
               : d.status === "defused"
                 ? "How it's defused"
-                : "Why it's " + statuses[d.status].label.toLowerCase()}
+                : `Why it's ${statuses[d.status].label.toLowerCase()}`}
           </h2>
           {d.resolution.map((p) => (
             <p>

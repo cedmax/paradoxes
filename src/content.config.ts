@@ -8,17 +8,26 @@ import { normaliseSearch } from "./data/search"
 // All entries share the shell, but only arguments have opposing claims and a paradox status.
 const common = z.object({
   title: z.string(),
+  // Optional question-first search summary. Falls back to the problem, never the verdict.
   description: z.string().trim().min(1).optional(),
+  // Title with its final word(s) highlighted on the page, e.g. "Sorites" + "paradox".
   titleAccent: z.string().optional(),
+  // Extra search phrases, excluding normalised duplicates of alternativeNames.
   aka: z.array(z.string()).default([]),
+  // Displayed search aliases; shorter variants may still appear in aka.
   alternativeNames: z.array(z.string().trim().min(1)).default([]),
   chapter: z.enum(chapterIds),
+  // Canonical and related entries always appear on the index; variants are hidden by default.
+  // A related entry shares an idea but adds a distinctive twist.
   uniqueness: z.enum(uniquenessIds).default("canonical"),
+  // Slug of a canonical or related entry, never a variant. Required for related and variant;
+  // forbidden for canonical entries.
   anchor: z.string().optional(),
   simplification: z.enum(["none", "light", "heavy"]).default("light"),
   noMaths: z.boolean().default(true),
   // Question-first hook shared by cards, entry headers and OG images.
   problem: z.string().trim().min(1),
+  // Whether long-form body copy is written. Draft entries remain on the PR.
   written: z.boolean().default(false),
   sources: z
     .array(
@@ -29,9 +38,12 @@ const common = z.object({
       }),
     )
     .default([]),
-  // Human-controlled publishing and review gates; never infer these from completeness.
+  // Publishing gate: source checks and claims must be manually approved by the site owner.
   sourcesVerified: z.boolean().default(false),
+  // Human approval. Set true only by the site owner after personal review; requires sourcesVerified.
+  // Controls the "Human reviewed" badge.
   reviewed: z.boolean().default(false),
+  // Display order within the chapter.
   order: z.number().default(100),
 })
 
@@ -40,13 +52,17 @@ const argument = common.extend({
   status: z.enum(["explained", "defused", "disputed", "unreconciled"]),
   claimA: z.string(),
   claimB: z.string(),
+  // One-line "How it ends" on the card.
   verdict: z.string(),
+  // Sidebar: what assumption fails, and the status note.
   whatBreaks: z.string(),
   statusNote: z.string(),
+  // Long-form argument body, written in plain paragraphs.
   setup: z.string().optional(),
   whyWrong: z.string().optional(),
   resolution: z.array(z.string()).default([]),
   finePrint: z.string().optional(),
+  // Optional extra block after the resolution (e.g. Sorites positions).
   positions: z.array(z.object({ title: z.string(), body: z.string() })).default([]),
 })
 

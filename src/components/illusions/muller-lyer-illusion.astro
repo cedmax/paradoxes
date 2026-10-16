@@ -103,32 +103,7 @@ import IllusionControls from "~/components/illustration-kit/IllusionControls.ast
     const fins = (y: number, horizontal: number, vertical: number) => {
       const left = 104 + horizontal
       const right = 456 - horizontal
-      return (
-        "M104 " +
-        y +
-        " L" +
-        left +
-        " " +
-        (y - vertical) +
-        " M104 " +
-        y +
-        " L" +
-        left +
-        " " +
-        (y + vertical) +
-        " M456 " +
-        y +
-        " L" +
-        right +
-        " " +
-        (y - vertical) +
-        " M456 " +
-        y +
-        " L" +
-        right +
-        " " +
-        (y + vertical)
-      )
+      return `M104 ${y} L${left} ${y - vertical} M104 ${y} L${left} ${y + vertical} M456 ${y} L${right} ${y - vertical} M456 ${y} L${right} ${y + vertical}`
     }
     const render = (value: number) => {
       const angle = Math.PI * (0.25 + (0.5 * value) / 100)

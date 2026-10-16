@@ -81,7 +81,7 @@ const columns = Array.from({ length: 13 }, (_, index) => index - 2)
       const offset = 30 * (1 - value / 100)
       for (const row of rows) {
         if (Number(row.dataset.cafeRow) % 2 === 1) {
-          row.setAttribute("transform", "translate(" + offset + " 0)")
+          row.setAttribute("transform", `translate(${offset} 0)`)
         }
       }
       return value === 100
