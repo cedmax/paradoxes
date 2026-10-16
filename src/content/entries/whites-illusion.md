@@ -14,7 +14,7 @@ why: "A grey patch can seem lighter or darker depending on how it interrupts a p
 sources:
   - title: "Michael Bach: Munker–White illusion"
     url: https://michaelbach.de/ot/lum-white/
-    note: "Explains matching patch luminance and how moving the striped context changes perceived lightness."
+    note: "Demonstrates how moving the striped context changes the perceived lightness of the grey bars."
   - title: "Michael White (1979): A New Effect of Pattern on Perceived Lightness"
     url: https://journals.sagepub.com/doi/10.1068/p080413
     note: "Original paper and attribution; examines perceived lightness in repeated light and dark patterns."

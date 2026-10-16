@@ -11,7 +11,7 @@ simplification: light
 noMaths: true
 order: 280
 written: true
-why: "White dots on the crossings of grey paths may seem to flicker with dark spots as you look around. Every drawn dot remains uniformly white; the dark flickers are not in the picture. Their appearance depends on eye movements and viewing conditions, and differs from the older Hermann grid effect."
+why: "White dots on the crossings of grey paths may seem to flicker with dark spots as you look around. Every drawn dot remains uniformly white; the dark flickers are not in the picture. Their appearance depends on eye movements and viewing conditions, and is related to, but more vivid than, the Hermann grid effect."
 sources:
   - title: "Michael Bach: Scintillating Grid"
     url: https://michaelbach.de/ot/lum-scGrid/

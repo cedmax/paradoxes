@@ -11,7 +11,7 @@ simplification: light
 noMaths: true
 order: 315
 written: true
-why: "Shifting alternate rows of black and white tiles makes the thin grey mortar lines between them look as if they slope. The mortar actually stays perfectly straight and parallel. The apparent tilt depends on the tile contrast, the thickness and brightness of the mortar, and the offset between rows. Aligning the tiles can weaken the effect."
+why: "Shifting alternate rows of black and white tiles makes the thin grey mortar lines between them look as if they slope. The mortar actually stays perfectly straight and parallel. The apparent tilt depends on the tile contrast, the thickness and brightness of the mortar, and the offset between rows."
 sources:
   - title: "Gregory and Heard (1979): Border locking and the Café Wall illusion"
     url: https://pubmed.ncbi.nlm.nih.gov/503767/

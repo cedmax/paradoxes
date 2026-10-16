@@ -14,13 +14,10 @@ why: "The eye does not judge each patch on its own. It also uses neighbouring ti
 sources:
   - title: "Edward H. Adelson: Checker Shadow Illusion"
     url: https://persci.mit.edu/gallery/checkershadow/
-    note: "Adelson's original image (1995), reproduced unchanged as a full-resolution lossless PNG. His MIT page expressly permits free distribution."
+    note: "Adelson's original image (1995) and his explanation of the illusion. His MIT page expressly permits free distribution."
   - title: "Adelson: original and proof images for download"
     url: https://persci.mit.edu/gallery/checkershadow/download/
     note: "Original image and direct grey-connection proof; freely redistributable."
-  - title: "Wikimedia Commons: Same color illusion PNG"
-    url: https://commons.wikimedia.org/wiki/File:Same_color_illusion.png
-    note: "Full-resolution PNG copy of Adelson's original, 1078 × 838 pixels."
   - title: "Wikimedia Commons: Optical illusion greysquares.gif"
     url: https://commons.wikimedia.org/wiki/File:Optical_illusion_greysquares.gif
     note: "Proof animation by (3ucky(3all (2006); the interactive slider uses frames 1–24 (excluding the isolated first frame), rearranged in a lossless sprite. Commons permits unrestricted reuse."

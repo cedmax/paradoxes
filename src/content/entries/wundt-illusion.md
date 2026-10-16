@@ -18,7 +18,7 @@ sources:
     note: "Explains straight parallel lines seeming to bow outwards in Hering and inwards in Wundt."
   - title: "Illusions Index: Wundt illusion"
     url: https://www.illusionsindex.org/i/wundt-illusion
-    note: "Documents the standard vertical red parallel lines that appear to bow inwards against a two-sided chevron background."
+    note: "Documents the standard vertical red parallel lines that appear to bow inwards against blue radial lines."
   - title: "Wundt illusion: description and historical attribution"
     url: https://en.wikipedia.org/wiki/Wundt_illusion
     note: "Background summary of Wundt's 1898 illusion and inward-bowing effect."

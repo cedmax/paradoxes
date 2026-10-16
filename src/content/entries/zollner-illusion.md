@@ -10,7 +10,7 @@ simplification: light
 noMaths: true
 order: 230
 written: true
-why: "Short strokes meeting longer lines at different angles can make the long lines seem to tilt apart. The long lines themselves stay parallel. Rotating the crossing strokes changes the misleading context, not the measured direction of the long lines."
+why: "Short strokes meeting longer lines at different angles can make the long lines seem to converge and diverge. The long lines themselves stay parallel. Rotating the crossing strokes changes the misleading context, not the measured direction of the long lines."
 sources:
   - title: "Michael Bach: Tilted Table and Zöllner illusion"
     url: https://michaelbach.de/ot/ang-tiltedTable/

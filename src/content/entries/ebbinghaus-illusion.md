@@ -11,7 +11,7 @@ simplification: light
 noMaths: true
 order: 210
 written: true
-why: "The size of the surrounding circles changes how big each central circle appears. Perceived size depends partly on the surrounding shapes, not just the circle itself. Researchers agree that the context matters, but still debate exactly how the surrounding contours produce the effect."
+why: "The size of the surrounding circles changes how big each central circle appears. Perceived size depends partly on the surrounding shapes, not just the circle itself. Both the contours and the context of the surrounding circles seem to play a part, and not every combination of sizes and distances produces an illusion."
 sources:
   - title: "Wilhelm Wundt (1898): Die geometrisch-optischen Täuschungen"
     url: https://books.google.com/books?id=DSlWAAAAMAAJ
