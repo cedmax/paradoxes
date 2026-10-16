@@ -10,17 +10,17 @@ const { name, play = true, proof, proofLabel = "Show measurements" } = Astro.pro
 
 <div class="flex flex-wrap items-center gap-3">
   {play && (
-    <button type="button" id={name + "-play"} class="btn-ghost" aria-pressed="false">
+    <button type="button" id={`${name}-play`} class="btn-ghost" aria-pressed="false">
       Play
     </button>
   )}
   {proof && (
-    <button type="button" id={name + "-guide-toggle"} class="btn-toggle" aria-pressed="false">
+    <button type="button" id={`${name}-guide-toggle`} class="btn-toggle" aria-pressed="false">
       {proofLabel}
     </button>
   )}
   {proof && (
-    <p id={name + "-proof"} class="text-base" aria-live="polite" hidden>
+    <p id={`${name}-proof`} class="text-base" aria-live="polite" hidden>
       {proof}
     </p>
   )}

@@ -88,13 +88,12 @@ what is true" fields are stored. Prefer the original media where reuse is
 permitted and faithful; otherwise redraw or synthesise and credit the originator.
 All displayed media must be served from this site's own public assets; third-party
 URLs may only be used for attribution and source links. The checker-shadow
-original is stored in `public/illustrations/checker-shadow-original.png`, while
-its interactive reveal scrubs 24 unmodified frames from the freely reusable
-Wikimedia Commons GIF in a local, lossless `checker-shadow-scrub-frames.png`
-sprite. The earliest GIF frame (which appears last when scrubbing in reverse) is intentionally omitted. The original GIF is kept
-in `public/illustrations/checker-shadow-proof.gif` for provenance. The production
-build checks all these source assets' dimensions and SHA-256 using
-`scripts/check-illusion-assets.mjs`; no media are downloaded by the browser or build.
+reveal scrubs 24 frames from the freely reusable Wikimedia Commons animation,
+packaged as a local, lossless `public/illustrations/checker-shadow-scrub-frames.png`
+sprite. The earliest source frame (which would appear last in the reverse scrub)
+is intentionally omitted. The original PNG and GIF are not shipped; only the
+sprite is used. There is no fixed-hash or dimension-check gate in the build.
+No media are downloaded by the browser or build.
 `format` describes the editorial structure, not which sense the presentation
 uses. A visual vanishing puzzle may remain an argument; audio illusions may be
 added later without changing the format schema.
@@ -114,6 +113,8 @@ New illusion figures live in `src/components/illusions/` and share the illustrat
 `IllusionControls`, `MeasurementGuides`, `Slider`, `SvgFigure` and `IllustrationFigure`.
 Their scripts use the shared playback and measurement helpers, and import colours from
 `src/data/palette.ts`. The catalogue includes geometric, grid, contour and lightness
-illusions as well as the motion-dependent Lilac Chaser and interactive Café wall.\nGrid and Ehrenstein figures are deliberately static when an extra state adds no evidence.\nAll are initially unverified.
+illusions as well as the motion-dependent Lilac Chaser and interactive Café wall.
+Grid and Ehrenstein figures are deliberately static when an extra state adds no evidence.
+All are initially unverified.
 
 See `.claude/skills/create-illusion/SKILL.md` for the authoring and accessibility checklist.
