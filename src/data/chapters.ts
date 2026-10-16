@@ -139,7 +139,8 @@ export const chapters: Chapter[] = [
     pageTitle: "Deceptive appearances, shapes and sums",
     introduction:
       "A diagram, a colour or a calculation can look convincing even when the details say otherwise. These puzzles investigate misleading appearances, shapes, lengths, areas and arithmetic.",
-    blurb: "Things that look different from what they are, even when you look closer or measure again.",
+    blurb:
+      "Things that look different from what they are, even when you look closer or measure again.",
   },
 ]
 
