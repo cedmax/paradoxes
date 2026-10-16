@@ -15,7 +15,7 @@ why: "The size of the surrounding circles changes how big each central circle ap
 sources:
   - title: "Wilhelm Wundt (1898): Die geometrisch-optischen Täuschungen"
     url: https://books.google.com/books?id=DSlWAAAAMAAJ
-    note: "Early published presentation of the circles illusion, crediting Hermann Ebbinghaus. No separate original Ebbinghaus paper is known."
+    note: "Early published reproduction of the circles illusion (figure 49). Attribution to Ebbinghaus is historically uncertain; Thiéry published the figure in 1896."
   - title: "E. B. Titchener (1901): Experimental Psychology"
     url: https://openlibrary.org/books/OL13554536M/Experimental_psychology
     note: "Early textbook presentation of the illusion, also known as Titchener circles."
@@ -25,6 +25,12 @@ sources:
   - title: "Weintraub (1979): Ebbinghaus illusion, context, contour and age"
     url: https://pubmed.ncbi.nlm.nih.gov/528945/
     note: "Reports context and contour effects on perceived circle size."
+  - title: "Vicario (2008): Optical-geometrical illusions, the nomenclature"
+    url: https://ai4ch.uniud.it/Archivio/ArchivioFL/Per%20Archivio/Vicario%20Optical-Geometrical%20Illusions%20The%20Nomenclature%202008.pdf
+    note: "Identifies Thiéry (1896) as the first publication of the circles figure and notes that Wundt (1898) reproduces it without naming an author."
+  - title: "Burton (2001): The Tenacity of Historical Misinformation: Titchener Did Not Invent the Titchener Illusion"
+    url: https://data.isiscb.org/isis/authority/CBA000142282/?
+    note: "History of Psychology article on the attribution history; the link is a bibliographic listing, and the article itself was not opened."
 sourcesVerified: false
 reviewed: false
 ---
