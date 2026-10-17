@@ -136,10 +136,11 @@ export const chapters: Chapter[] = [
     n: "11",
     title: "Appearances deceiving",
     titleAccent: "deceiving",
-    pageTitle: "Deceptive appearances, shapes and sums",
+    pageTitle: "Deceptive appearances, illusions and sums",
     introduction:
-      "An image, diagram or quick calculation can look convincing at first. These puzzles ask what is actually drawn, measured or counted, and why the first impression can mislead.",
-    blurb: "Images and calculations that can mislead until you look closer, measure or count.",
+      "An image, a sound or a quick calculation can look convincing at first. These puzzles ask what is actually drawn, played, measured or counted, and why the first impression can mislead.",
+    blurb:
+      "Images, sounds and calculations that can mislead until you look closer, listen again, measure or count.",
   },
 ]
 

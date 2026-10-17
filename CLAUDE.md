@@ -25,7 +25,7 @@ Keep the editorial promise: "Paradoxes in plain words."
 - `.claude/skills/verify-sources/SKILL.md` — fetch and audit references and factual claims.
 - `.claude/skills/build-illustration/SKILL.md` — build or review interactive or static visuals
   and the illustration kit.
-- `.claude/skills/create-illusion/SKILL.md` — create a visual illusion with its original figure,
+- `.claude/skills/create-illusion/SKILL.md` — create an illusion (visual or auditory) with its original figure,
   measurable reveal, accessible proof and supported explanation.
 - `.claude/skills/review-pr/SKILL.md` — review a branch or pull request against its base.
 

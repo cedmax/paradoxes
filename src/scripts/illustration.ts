@@ -176,3 +176,42 @@ export function bindSliderLoopPlayback(
   reducedMotion.addEventListener("change", motionChanged)
   motionChanged()
 }
+
+/**
+ * Answer buttons for a listening judgement (see ListenerChoice). The answers stay disabled until
+ * `enable()` is called, normally after the first play. `onChoice` receives the chosen value, or
+ * "skip", and may return text to show beneath the buttons.
+ */
+export function bindListenerChoice(
+  root: Element,
+  name: string,
+  onChoice: (value: string) => string | void,
+) {
+  const group = find<HTMLElement>(root, `#${name}-choices`)
+  const note = find<HTMLElement>(root, `#${name}-choice-note`)
+  const answers = Array.from(group.querySelectorAll<HTMLButtonElement>("button[data-choice]"))
+  for (const button of answers) {
+    button.addEventListener("click", () => {
+      const value = button.dataset.choice ?? ""
+      for (const other of answers) {
+        if (other.dataset.choice !== "skip")
+          other.setAttribute("aria-pressed", String(other === button))
+      }
+      const text = onChoice(value)
+      note.hidden = !text
+      note.textContent = text ?? ""
+    })
+  }
+  return {
+    enable() {
+      for (const button of answers) button.disabled = false
+    },
+    reset() {
+      for (const button of answers) {
+        if (button.dataset.choice !== "skip") button.setAttribute("aria-pressed", "false")
+      }
+      note.hidden = true
+      note.textContent = ""
+    },
+  }
+}

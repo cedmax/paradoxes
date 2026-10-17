@@ -7,11 +7,11 @@ interface Props {
 const { slug, why } = Astro.props
 const loaders = import.meta.glob<{ default: AstroComponentFactory }>("./illusions/*.astro")
 const load = loaders[`./illusions/${slug}.astro`]
-if (!load) throw new Error(`Missing visual illusion figure: ${slug}`)
+if (!load) throw new Error(`Missing illusion figure: ${slug}`)
 const Figure = (await load()).default
 ---
 
-<section aria-label="Visual illusion and its proof">
+<section aria-label="Illusion and its proof">
   <Figure />
 </section>
 <section>

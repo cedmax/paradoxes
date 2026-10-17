@@ -1,0 +1,39 @@
+---
+interface Props {
+  /** Prefix for ids: "<name>-question", "<name>-choices", "<name>-choice-note". */
+  name: string
+  question: string
+  options: { value: string; label: string }[]
+  /** Label of the last button, for visitors who cannot play or hear the sound. */
+  skipLabel?: string
+}
+const { name, question, options, skipLabel = "I can't play or hear this" } = Astro.props
+---
+
+<div
+  id={`${name}-choices`}
+  role="group"
+  aria-labelledby={`${name}-question`}
+  class="flex flex-col gap-3"
+>
+  <p id={`${name}-question`} class="font-bold">
+    {question}
+  </p>
+  <div class="flex flex-wrap gap-3">
+    {options.map((option) => (
+      <button
+        type="button"
+        class="btn-toggle"
+        data-choice={option.value}
+        aria-pressed="false"
+        disabled
+      >
+        {option.label}
+      </button>
+    ))}
+    <button type="button" class="btn-ghost" data-choice="skip">
+      {skipLabel}
+    </button>
+  </div>
+  <p id={`${name}-choice-note`} class="text-base" aria-live="polite" hidden></p>
+</div>
