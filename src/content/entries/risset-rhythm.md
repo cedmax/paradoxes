@@ -18,6 +18,9 @@ sources:
   - title: "Nicolas Titeux: Shepard and Risset audio illusions"
     url: "https://www.nicolastiteux.com/en/blog/shepard-and-risset-audio-illusions/"
     note: "Credits Jean-Claude Risset with the infinite acceleration rhythm and describes the layered, octave-related construction. A secondary source."
+  - title: "Dan Stowell (2011): Scheduling and composing with Risset eternal accelerando rhythms"
+    url: "https://quod.lib.umich.edu/i/icmc/bbp2372.2011.096/--scheduling-and-composing-with-risset-eternal-accelerando?rgn=main%3Bview%3Dfulltext"
+    note: "Published paper (International Computer Music Conference 2011) on constructing and scheduling Risset eternal accelerando rhythms. Listed here as further reading; its text has not yet been checked against this entry."
 sourcesVerified: false
 reviewed: false
 ---

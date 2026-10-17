@@ -205,7 +205,7 @@ function biquad(
   const w0 = (TWO_PI * cutoff) / sampleRate
   const alpha = Math.sin(w0) / (2 * Math.SQRT1_2)
   const cos = Math.cos(w0)
-  const sign = type === "high" ? -1 : 1
+  const sign = type === "high" ? 1 : -1
   const b0 = (1 + sign * cos) / 2
   const b1 = -sign * (1 + sign * cos)
   const b2 = b0
@@ -235,16 +235,23 @@ export function renderContinuity(levelStep: number, sampleRate: number): Float32
   const gap = ms(gapMs)
   const length = segment * 2 + gap + ms(silenceMs)
   const out = new Float32Array(length)
+  // 10 ms fades only at the two ends of the whole trial. Where the tone meets the gap it is held
+  // at full level up to a 2 ms edge, which is too short to hear as a fade: a falling tone just
+  // before the noise would tell the listener the tone really stopped (Bregman & Dannenbring, 1977).
   const edge = Math.round(0.01 * sampleRate)
+  const cut = Math.round(0.002 * sampleRate)
 
-  // The two tone segments. The gap between them holds no tone at all.
-  for (const start of [0, segment + gap]) {
+  // The two tone segments, in phase with each other. The gap between them holds no tone at all.
+  for (const [start, fadeIn, fadeOut] of [
+    [0, edge, cut],
+    [segment + gap, cut, edge],
+  ]) {
     for (let i = 0; i < segment; i++) {
       out[start + i] =
         toneAmplitude *
         Math.sin((TWO_PI * toneHz * (start + i)) / sampleRate) *
-        raise(i, edge) *
-        raise(segment - 1 - i, edge)
+        raise(i, fadeIn) *
+        raise(segment - 1 - i, fadeOut)
     }
   }
 
@@ -259,7 +266,7 @@ export function renderContinuity(levelStep: number, sampleRate: number): Float32
     const target = (toneAmplitude / Math.SQRT2) * 10 ** (level / 20)
     for (let i = 0; i < gap; i++) {
       out[segment + i] +=
-        (noise[i] / noiseRms) * target * raise(i, edge) * raise(gap - 1 - i, edge)
+        (noise[i] / noiseRms) * target * raise(i, cut) * raise(gap - 1 - i, cut)
     }
   }
   return out

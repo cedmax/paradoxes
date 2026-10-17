@@ -17,6 +17,9 @@ sources:
   - title: "Warren and Obusek (1972): Auditory induction: illusory continuity of the fainter of two alternating sounds"
     url: "https://labs.sonicfield.org/library/auditory-induction-illusory-continuity-of-the-fainter-of-two-alternating-sounds"
     note: "Reports that the fainter of two alternating sounds seems to continue, and that the level difference required depends on the sounds."
+  - title: "Bregman and Dannenbring (1977): Auditory continuity and amplitude edges"
+    url: "https://webpages.mcgill.ca/staff/Group2/abregm1/web/pdf/1977_Bregman_Dannenbring-Continuity-amplitude-edges.pdf"
+    note: "Found that brief changes in the tone's amplitude just before and after the noise reduced the illusion of continuity, more so when the tone faded before the noise. Used to keep the tone at full level up to the noise here."
 sourcesVerified: false
 reviewed: false
 ---

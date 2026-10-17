@@ -352,13 +352,27 @@ const ring = names.map((label, index) => {
         result.textContent = `Your answers do not point to one clear highest note: the best fit agrees with ${best} of ${total} pairs. That happens, and a one-second pair is a noisy test.`
         return
       }
-      const mid = peaks.length === 1 ? peaks[0] : peaks[0] + 0.5
+      // Two equally good notes only share a peak if they sit side by side on the circle,
+      // including across the gap between B and C.
+      const [first, second] = peaks
+      const wraps = peaks.length === 2 && first === 0 && second === 11
+      const adjacent = peaks.length === 2 && (second - first === 1 || wraps)
+      if (peaks.length === 2 && !adjacent) {
+        peakLine.setAttribute("visibility", "hidden")
+        result.textContent = `Two notes, ${name(first)} and ${name(second)}, fit your answers equally well (${best} of ${total} pairs), so there is no single highest note to point to.`
+        return
+      }
+      const mid = peaks.length === 1 ? first : wraps ? 11.5 : first + 0.5
       const angle = (mid * Math.PI) / 6
       peakLine.setAttribute("x2", (centre + 96 * Math.sin(angle)).toFixed(1))
       peakLine.setAttribute("y2", (centre - 96 * Math.cos(angle)).toFixed(1))
       peakLine.setAttribute("visibility", "visible")
       const where =
-        peaks.length === 1 ? name(peaks[0]) : `between ${name(peaks[0])} and ${name(peaks[1])}`
+        peaks.length === 1
+          ? name(first)
+          : wraps
+            ? `between ${name(second)} and ${name(0)}`
+            : `between ${name(first)} and ${name(second)}`
       result.textContent = `Your answers fit a highest note ${where}, agreeing with ${best} of ${total} pairs. Another listener's line can point somewhere quite different for the same tones. This is a rough fit, not a measurement.`
     }
 
