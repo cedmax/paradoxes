@@ -1,4 +1,5 @@
 ---
+import AudioControls from "~/components/illustration-kit/AudioControls.astro"
 import Disclosure from "~/components/illustration-kit/Disclosure.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
@@ -30,14 +31,10 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
     {STREAMING.triplets} repeats of three beeps and a rest, at one steady speed. Use headphones
     or speakers at a comfortable volume. Stop whenever you like.
   </p>
-  <div class="flex flex-wrap items-center gap-3">
-    <button id="auditory-streaming-play" type="button" class="btn-ghost" aria-pressed="false">
-      Play
-    </button>
-  </div>
-  <p id="auditory-streaming-unsupported" class="text-base" hidden>
-    This browser cannot play the sound. The picture below still shows what changes.
-  </p>
+  <AudioControls
+    name="auditory-streaming"
+    unsupported="This browser cannot play the sound. The picture below still shows what changes."
+  />
   <ListenerChoice
     name="auditory-streaming"
     question="What do you hear?"
@@ -158,12 +155,11 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
     find,
     illustrationRoot,
   } from "~/scripts/illustration"
-  import { audioAvailable, playSamples, stopAudio } from "~/scripts/audio"
+  import { bindLoopingAudio } from "~/scripts/audio"
   import { STREAMING, renderStreaming, streamingHighHz } from "~/scripts/audio-synth"
 
   const root = illustrationRoot("auditory-streaming")
   if (root) {
-    const play = find<HTMLButtonElement>(root, "#auditory-streaming-play")
     const reveal = find<HTMLElement>(root, "#auditory-streaming-reveal")
     const slider = find<HTMLInputElement>(root, "#auditory-streaming-gap")
     const readout = find<HTMLElement>(root, "#auditory-streaming-readout")
@@ -172,18 +168,6 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
     const baseline = 190
     const scale = 6
     let gap = Number(slider.value)
-
-    const setPlaying = (on: boolean) => {
-      play.textContent = on ? "Stop" : "Play"
-      play.setAttribute("aria-pressed", String(on))
-    }
-    const start = async () => {
-      const started = await playSamples((rate) => renderStreaming(gap, rate), {
-        loop: true,
-        onStop: () => setPlaying(false),
-      })
-      if (started) setPlaying(true)
-    }
 
     const choices = bindListenerChoice(root, "auditory-streaming", (value) => {
       reveal.hidden = false
@@ -194,19 +178,6 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
         skip: "The picture and slider below still show what changes.",
       }[value]
     })
-
-    if (audioAvailable()) {
-      play.addEventListener("click", () => {
-        if (play.getAttribute("aria-pressed") === "true") stopAudio()
-        else {
-          void start()
-          choices.enable()
-        }
-      })
-    } else {
-      play.disabled = true
-      find<HTMLElement>(root, "#auditory-streaming-unsupported").hidden = false
-    }
 
     bindSlider(slider, (value) => {
       gap = value
@@ -220,8 +191,10 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
           : `High note ${Math.round(hz)} Hz, ${value} semitone${value === 1 ? "" : "s"} above the low note (${STREAMING.lowHz} Hz).`
       return value === 0 ? "0 semitones, the same note" : `${value} semitones`
     })
-    slider.addEventListener("input", () => {
-      if (play.getAttribute("aria-pressed") === "true") void start()
+    bindLoopingAudio(root, "auditory-streaming", {
+      render: (rate) => renderStreaming(gap, rate),
+      choices,
+      slider,
     })
   }
 </script>

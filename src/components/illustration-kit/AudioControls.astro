@@ -1,0 +1,16 @@
+---
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+
+interface Props {
+  /** Prefix for ids: "<name>-play" and "<name>-unsupported". Pair with bindLoopingAudio. */
+  name: string
+  /** Shown instead of the sound when the browser has no Web Audio. */
+  unsupported: string
+}
+const { name, unsupported } = Astro.props
+---
+
+<IllusionControls name={name} />
+<p id={`${name}-unsupported`} class="text-base" hidden>
+  {unsupported}
+</p>
