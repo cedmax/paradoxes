@@ -1,4 +1,5 @@
 ---
+import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
@@ -64,14 +65,9 @@ const stripes = Array.from({ length: 12 }, (_, index) => ({
   <Fragment slot="caption">
     The grey rectangles are all identical. Only their place within the striped pattern changes
     their apparent brightness. Redrawn after Michael White (1979).{" "}
-    <a
-      href="https://michaelbach.de/ot/lum-white/"
-      class="underline"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <ExternalLink href="https://michaelbach.de/ot/lum-white/">
       Original effect and explanation
-    </a>
+    </ExternalLink>
     .
   </Fragment>
 </IllustrationFigure>

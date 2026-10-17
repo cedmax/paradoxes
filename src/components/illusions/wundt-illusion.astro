@@ -1,4 +1,5 @@
 ---
+import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
@@ -44,14 +45,9 @@ const fan = Array.from({ length: 20 }, (_, index) => index * 25 - 25)
   <Fragment slot="caption">
     Newly drawn after the classic Wundt diamond arrangement, with dark chevrons and red
     parallels.{" "}
-    <a
-      href="https://www.illusionsindex.org/i/wundt-illusion"
-      class="underline"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <ExternalLink href="https://www.illusionsindex.org/i/wundt-illusion">
       Wundt illusion reference
-    </a>
+    </ExternalLink>
     .
   </Fragment>
 </IllustrationFigure>

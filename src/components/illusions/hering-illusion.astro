@@ -1,4 +1,5 @@
 ---
+import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
@@ -48,14 +49,9 @@ const rays = Array.from({ length: 80 }, (_, index) => {
   </Slider>
   <Fragment slot="caption">
     A new SVG drawing of Hering's 1861 illusion with the classic single radial centre.{" "}
-    <a
-      href="https://www.illusionsindex.org/i/hering-illusion"
-      class="underline"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <ExternalLink href="https://www.illusionsindex.org/i/hering-illusion">
       Description of the original effect
-    </a>
+    </ExternalLink>
     .
   </Fragment>
 </IllustrationFigure>

@@ -1,4 +1,5 @@
 ---
+import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Callout from "~/components/illustration-kit/Callout.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
@@ -86,14 +87,12 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   <Fragment slot="caption">
     Count the boys, then turn the disc and count again. The centre rotates, but the artwork
     never switches. Original puzzle by Sam Loyd, reproduced by{" "}
-    <a
-      class="font-bold underline"
+    <ExternalLink
       href="https://mathshistory.st-andrews.ac.uk/Extras/Get_off_the_earth/"
-      target="_blank"
-      rel="noopener noreferrer"
+      class="font-bold underline"
     >
       MacTutor
-    </a>
+    </ExternalLink>
     .
   </Fragment>
 </IllustrationFigure>

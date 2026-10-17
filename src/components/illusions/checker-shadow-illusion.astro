@@ -1,4 +1,5 @@
 ---
+import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 
@@ -41,23 +42,16 @@ import Slider from "~/components/illustration-kit/Slider.astro"
   </div>
   <Fragment slot="caption">
     Original illusion by{" "}
-    <a
+    <ExternalLink
       href="https://persci.mit.edu/gallery/checkershadow/"
       class="font-bold underline"
-      target="_blank"
-      rel="noopener noreferrer"
     >
       Edward H. Adelson (1995)
-    </a>
+    </ExternalLink>
     . Interactive frames from the{" "}
-    <a
-      href="https://commons.wikimedia.org/wiki/File:Optical_illusion_greysquares.gif"
-      class="underline"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <ExternalLink href="https://commons.wikimedia.org/wiki/File:Optical_illusion_greysquares.gif">
       freely reusable animation by (3ucky(3all
-    </a>
+    </ExternalLink>
     . The image and every frame are hosted on Logic Benders.
   </Fragment>
 </IllustrationFigure>
