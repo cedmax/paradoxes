@@ -70,6 +70,8 @@ const illusion = common.extend({
   format: z.literal("illusion"),
   // The figure owns setup and proof; this is the short, evidence-based explanation.
   why: z.string().trim().min(1),
+  // Caveats, research detail and competing accounts kept out of the plain-words `why`.
+  finePrint: z.string().optional(),
 })
 
 const entries = defineCollection({

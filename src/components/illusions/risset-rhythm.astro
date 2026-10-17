@@ -28,7 +28,7 @@ const axisY = 24 + RISSET.layers * 30
   lead="Press Play and listen for half a minute. What does the beat do?"
 >
   <p class="text-base">
-    A steady stream of clicks. Use headphones or speakers at a comfortable volume, and stop
+    A steady stream of pulses. Use headphones or speakers at a comfortable volume, and stop
     whenever you like.
   </p>
   <div class="flex flex-wrap items-center gap-3">
@@ -52,8 +52,8 @@ const axisY = 24 + RISSET.layers * 30
       name="risset-rhythm"
       viewBox={`0 0 600 ${axisY + 24}`}
       class="mx-auto w-full max-w-xl"
-      title={`Click times of ${layerWord} layers over one loop, each fading in and out`}
-      desc={`Time runs left to right over one ${seconds} second loop. Each row is one layer of clicks. Within a row the clicks come closer together, because the layer speeds up. A darker mark is a louder click. A layer starts quiet and slow, grows, then fades as it becomes fast, and the next layer takes over at the speed where it ended.`}
+      title={`Pulse times of ${layerWord} layers over one loop, each fading in and out`}
+      desc={`Time runs left to right over one ${seconds} second loop. Each row is one layer of pulses. Within a row the pulses come closer together, because the layer speeds up. A darker mark is a louder pulse. A layer starts quiet and slow, grows, then fades as it becomes fast, and the next layer takes over at the speed where it ended.`}
     >
       {layers.map(({ k, y, clicks }) => (
         <g data-layer={k}>
@@ -111,25 +111,20 @@ const axisY = 24 + RISSET.layers * 30
   <Disclosure summary="Exact sound and a text description" slot="after">
     <div class="flex flex-col gap-3 pt-3 text-base">
       <p>
-        {RISSET.layers} layers of short thumps, each a {RISSET.bodyHz} Hz tone with a brief
+        {RISSET.layers} layers of short pulses, each a {RISSET.bodyHz} Hz tone with a brief
         bright tick on top. Layer 1 starts at {rissetStartHz(0)}
-        clicks a second. Each later layer starts at double the speed of the one before, up to
-        {rissetStartHz(RISSET.layers - 1)} clicks a second for layer {RISSET.layers}. Every
+        pulses a second. Each later layer starts at double the speed of the one before, up to
+        {rissetStartHz(RISSET.layers - 1)} pulses a second for layer {RISSET.layers}. Every
         layer doubles its speed smoothly over {seconds} s, which is the whole loop, and the loop
         then repeats exactly. Each layer's loudness follows a raised-cosine curve over its place
         in the range of speeds, so it fades in when slow and out when fast.
-      </p>
-      <p>
-        The result is an endless acceleration that never gets anywhere: the same set of tempi
-        returns every {seconds} seconds. Many listeners hear it keep speeding up for a while and
-        then notice the pattern has not changed. How strongly you hear it depends on you.
       </p>
     </div>
   </Disclosure>
   <Fragment slot="caption">
     Our own synthesis, built on the principle described for Jean-Claude Risset's accelerating
     rhythm, the rhythmic counterpart of the Shepard tone. It is not a recording of his work. The
-    loudness curve and click sound are our choices.
+    loudness curve and pulse sound are our choices.
   </Fragment>
 </IllustrationFigure>
 
@@ -207,8 +202,8 @@ const axisY = 24 + RISSET.layers * 30
       }
       const text =
         solo === null
-          ? `All ${layerWord} layers. Layer 1 goes from ${hz(rissetStartHz(0))} to ${hz(rissetStartHz(1))} clicks a second while the others do the same one octave up each, to layer ${RISSET.layers}, which goes from ${hz(rissetStartHz(RISSET.layers - 1))} to ${hz(rissetStartHz(RISSET.layers))}. The whole pattern repeats exactly every ${seconds} seconds.`
-          : `Layer ${solo + 1} alone: it speeds up from ${hz(rissetStartHz(solo))} to ${hz(rissetStartHz(solo + 1))} clicks a second over ${seconds} seconds, then starts again.`
+          ? `All ${layerWord} layers. Layer 1 goes from ${hz(rissetStartHz(0))} to ${hz(rissetStartHz(1))} pulses a second while each other layer does the same at twice the speed of the one before, up to layer ${RISSET.layers}, which goes from ${hz(rissetStartHz(RISSET.layers - 1))} to ${hz(rissetStartHz(RISSET.layers))}. The whole pattern repeats exactly every ${seconds} seconds.`
+          : `Layer ${solo + 1} alone: it speeds up from ${hz(rissetStartHz(solo))} to ${hz(rissetStartHz(solo + 1))} pulses a second over ${seconds} seconds, then starts again.`
       readout.textContent = text
       return solo === null ? `All ${layerWord} layers` : `Layer ${solo + 1} alone`
     })

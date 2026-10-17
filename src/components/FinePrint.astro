@@ -1,0 +1,13 @@
+---
+import Linked from "~/components/Linked.astro"
+
+interface Props {
+  text: string
+}
+
+const { text } = Astro.props
+---
+
+<div class="mt-6 border-2 border-ink bg-disputed px-6 py-5 text-lg leading-normal">
+  <strong>The fine print.</strong> <Linked text={text} />
+</div>

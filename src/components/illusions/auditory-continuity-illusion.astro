@@ -134,22 +134,16 @@ const cycles = [0, cycle].map((start) => ({
         tone, and this one-second cycle repeats until you stop it. During the {gapMs} ms there
         is white noise (flat up to about {CONTINUITY.noiseLowpassHz / 1000} kHz), whose level is
         set relative to the tone's RMS. The slider goes from no noise to{" "}
-        {levels[levels.length - 1]} dB. The timing and levels follow the apparent-continuity
-        demonstration in Bregman and Ahad (1996), measured from the recording. Everything here
-        is generated in your browser.
-      </p>
-      <p>
-        With no noise you hear a clear silent gap. With enough noise, many listeners hear the
-        tone carry on through it. The tone is never played during the gap. Next to the noise the
-        tone is held at full level up to a 2 ms edge, because a tone that fades before a noise
-        tends to weaken the illusion.
+        {levels[levels.length - 1]} dB. The tone is never played during the gap. Next to the
+        noise the tone is held at full level up to a 2 ms edge, because a tone that fades before
+        a noise tends to weaken the illusion. Everything here is generated in your browser.
       </p>
     </div>
   </Disclosure>
   <Fragment slot="caption">
     Our own synthesis, after Warren and Obusek's auditory induction (1972) and later work on the
-    continuity illusion. Timing and levels are matched to the recorded demonstration by Bregman
-    and Ahad (1996), but the sound is our own synthesis, not their recording.
+    continuity illusion, with timing and levels measured from the recorded demonstration by
+    Bregman and Ahad (1996). It is not their recording.
   </Fragment>
 </IllustrationFigure>
 
