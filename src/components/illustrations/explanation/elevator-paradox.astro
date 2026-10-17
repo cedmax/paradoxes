@@ -1,0 +1,170 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="elevator-paradox"
+  lead="A random arrival is more likely to land in a long wait"
+>
+  <p class="text-base leading-normal">
+    Imagine one lift travelling up and down at a constant speed, without stops. Choose where you
+    wait.
+  </p>
+  <SvgFigure
+    name="elevator-intervals"
+    viewBox="0 0 460 240"
+    class="mx-auto w-full max-w-lg"
+    title="A floor marker on a lift shaft and two competing wait intervals"
+    desc="A low floor has a long interval before the lift next passes down and a short interval before it passes up. Higher floors reverse this pattern."
+  >
+    <path
+      d="M70 20 V200 M106 20 V200 M52 20 H124 M52 200 H124"
+      fill="none"
+      stroke={stroke}
+      stroke-width="3"
+    />
+    <g fill="currentColor" font-size="15">
+      <text x="13" y="26">
+        Top
+      </text>
+      <text x="6" y="207">
+        Bottom
+      </text>
+    </g>
+    <rect
+      id="elevator-paradox-marker"
+      x="66"
+      y="156"
+      width="44"
+      height="23"
+      fill={series.gold}
+      stroke={stroke}
+      stroke-width="2"
+    />
+    <text
+      id="elevator-paradox-floor-label"
+      x="129"
+      y="176"
+      fill="currentColor"
+      font-size="16"
+      font-weight="bold"
+    >
+      Position 2/10
+    </text>
+    <text x="20" y="233" fill="currentColor" font-size="13">
+      Lift shaft
+    </text>
+    <g fill="currentColor" font-size="16" font-weight="bold">
+      <text x="222" y="46">
+        Next arrival direction
+      </text>
+      <text x="222" y="87">
+        Down
+      </text>
+      <text x="222" y="146">
+        Up
+      </text>
+    </g>
+    <rect
+      x="222"
+      y="95"
+      width="220"
+      height="17"
+      fill="none"
+      stroke={stroke}
+      stroke-width="1.5"
+    />
+    <rect
+      x="222"
+      y="154"
+      width="220"
+      height="17"
+      fill="none"
+      stroke={stroke}
+      stroke-width="1.5"
+    />
+    <rect
+      id="elevator-paradox-down-bar"
+      x="222"
+      y="95"
+      width="176"
+      height="17"
+      fill={series.blue}
+    />
+    <rect
+      id="elevator-paradox-up-bar"
+      x="222"
+      y="154"
+      width="44"
+      height="17"
+      fill={series.gold}
+    />
+    <g fill="currentColor" font-size="15" font-weight="bold">
+      <text id="elevator-paradox-down-pct" x="222" y="131">
+        80% of arrival times
+      </text>
+      <text id="elevator-paradox-up-pct" x="222" y="191">
+        20% of arrival times
+      </text>
+    </g>
+  </SvgFigure>
+  <Slider
+    id="elevator-paradox-position"
+    label="Waiting position"
+    min={1}
+    max={9}
+    step={1}
+    value={2}
+    startLabel="Near bottom"
+    endLabel="Near top"
+    describedby="elevator-paradox-readout"
+  >
+    <p id="elevator-paradox-readout" class="text-base leading-normal" aria-live="polite">
+      Near the bottom, most random arrivals happen during the longer wait before a downward
+      pass.
+    </p>
+  </Slider>
+  <Fragment slot="caption">
+    Each direction passes your floor once per round trip, but the intervals between passes are
+    unequal. The percentages assume a lift with constant speed and no stops, and a person
+    arriving at a random time. Real lifts have stops and dispatch systems.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("elevator-paradox")
+  if (root) {
+    const input = find<HTMLInputElement>(root, "#elevator-paradox-position")
+    const marker = find<SVGRectElement>(root, "#elevator-paradox-marker")
+    const label = find<SVGTextElement>(root, "#elevator-paradox-floor-label")
+    const downBar = find<SVGRectElement>(root, "#elevator-paradox-down-bar")
+    const upBar = find<SVGRectElement>(root, "#elevator-paradox-up-bar")
+    const downPct = find<SVGTextElement>(root, "#elevator-paradox-down-pct")
+    const upPct = find<SVGTextElement>(root, "#elevator-paradox-up-pct")
+    const readout = find<HTMLElement>(root, "#elevator-paradox-readout")
+    bindSlider(input, (position) => {
+      const down = (10 - position) * 10
+      const up = position * 10
+      marker.setAttribute("y", String(189 - 18 * position))
+      label.setAttribute("y", String(209 - 18 * position))
+      label.textContent = "Position " + position + "/10"
+      downBar.setAttribute("width", String(down * 2.2))
+      upBar.setAttribute("width", String(up * 2.2))
+      downPct.textContent = down + "% of arrival times"
+      upPct.textContent = up + "% of arrival times"
+      readout.textContent =
+        down === up
+          ? "In the middle, the two intervals are equal."
+          : "At this position, the next lift is more likely to arrive going " +
+            (down > up ? "down." : "up.")
+      return (
+        "Position " + position + " out of 10: " + down + " percent down, " + up + " percent up"
+      )
+    })
+  }
+</script>
