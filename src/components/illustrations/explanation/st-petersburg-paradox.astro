@@ -1,0 +1,199 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+
+const examples = Array.from({ length: 5 }, (_, index) => {
+  const round = index + 1
+  return {
+    round,
+    chance: (2 ** round).toLocaleString("en-GB"),
+    prize: (2 ** round).toLocaleString("en-GB"),
+    chanceWidth: 100 / 2 ** index,
+    prizeWidth: 100 / 2 ** (4 - index),
+  }
+})
+---
+
+<IllustrationFigure
+  name="st-petersburg"
+  lead="The chance halves, the prize doubles, and each round still adds £1 to the average"
+>
+  <p class="text-base leading-normal">
+    Each row is a different way the game could end. Watch what happens to the chance and prize
+    when you include later rounds.
+  </p>
+  <Slider
+    id="st-petersburg-round"
+    label="Include possible stopping rounds"
+    min={1}
+    max={20}
+    step={1}
+    value={3}
+    startLabel="Round 1"
+    endLabel="Round 20 · ~£1m bank"
+    describedby="st-petersburg-readout"
+  >
+    <p id="st-petersburg-readout" class="sr-only" aria-live="polite">
+      Through round 3, £3 is added to the average. 7 in 8 games have ended with a prize of £8 or
+      less; 1 in 8 continues.
+    </p>
+  </Slider>
+  <div class="flex flex-col gap-2">
+    <p id="st-petersburg-visible-range" class="text-sm font-bold">
+      Rounds 1–3
+    </p>
+    <table class="w-full table-fixed text-left text-sm leading-normal">
+      <thead>
+        <tr class="border-b border-ink text-xs">
+          <th scope="col" class="w-10 py-2 pr-1">
+            Round
+          </th>
+          <th scope="col" class="py-2 pr-2">
+            Chance
+          </th>
+          <th scope="col" class="py-2 pr-2">
+            Prize
+          </th>
+          <th scope="col" class="w-20 py-2 text-right">
+            Average added
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {examples.map((example) => (
+          <tr
+            data-st-petersburg-example
+            hidden={example.round > 3}
+            class="border-b border-ink/15"
+          >
+            <th scope="row" data-st-petersburg-number class="py-2 pr-1 font-bold tabular-nums">
+              {example.round}
+            </th>
+            <td class="py-2 pr-2">
+              <span
+                data-st-petersburg-chance
+                class="block whitespace-nowrap text-xs tabular-nums"
+              >
+                1 in {example.chance}
+              </span>
+              <div class="mt-1 h-2 bg-ink/10" aria-hidden="true">
+                <div
+                  data-st-petersburg-chance-bar
+                  class="h-full bg-series-blue"
+                  style={`width: ${example.chanceWidth}%`}
+                />
+              </div>
+            </td>
+            <td class="py-2 pr-2">
+              <span
+                data-st-petersburg-prize
+                class="block whitespace-nowrap text-xs tabular-nums"
+              >
+                £{example.prize}
+              </span>
+              <div class="mt-1 h-2 bg-ink/10" aria-hidden="true">
+                <div
+                  data-st-petersburg-prize-bar
+                  class="h-full bg-series-gold"
+                  style={`width: ${example.prizeWidth}%`}
+                />
+              </div>
+            </td>
+            <td class="py-2 text-right font-bold tabular-nums">£1</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p class="text-sm leading-normal">
+      The bars compare the rounds shown. Each chance × prize equals £1.
+    </p>
+  </div>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <div class="border-l-4 border-series-gold pl-4">
+      <p id="st-petersburg-average-label" class="text-base leading-normal">
+        Added to the average through round 3
+      </p>
+      <p id="st-petersburg-total" class="text-2xl font-bold tabular-nums">
+        £3
+      </p>
+    </div>
+    <div class="border-l-4 border-series-blue pl-4">
+      <p id="st-petersburg-ended-label" class="text-base leading-normal">
+        Games that end by round 3
+      </p>
+      <p id="st-petersburg-ended" class="text-2xl font-bold tabular-nums">
+        7 in 8
+      </p>
+      <p id="st-petersburg-ending-detail" class="text-sm leading-normal">
+        Paid £8 or less; 1 in 8 games continue.
+      </p>
+    </div>
+  </div>
+  <Fragment slot="caption">
+    Most games end early, but each later possible stopping round adds another £1 to the average,
+    however unlikely it becomes. The ideal game has no last round, so its average is infinite.
+    Round 20 matches the scale of the entry's roughly £1m bank example; the ideal game itself is
+    not capped there.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("st-petersburg")
+  if (root) {
+    const input = find<HTMLInputElement>(root, "#st-petersburg-round")
+    const rows = root.querySelectorAll<HTMLTableRowElement>("[data-st-petersburg-example]")
+    const range = find<HTMLElement>(root, "#st-petersburg-visible-range")
+    const total = find<HTMLElement>(root, "#st-petersburg-total")
+    const averageLabel = find<HTMLElement>(root, "#st-petersburg-average-label")
+    const ended = find<HTMLElement>(root, "#st-petersburg-ended")
+    const endedLabel = find<HTMLElement>(root, "#st-petersburg-ended-label")
+    const endingDetail = find<HTMLElement>(root, "#st-petersburg-ending-detail")
+    const readout = find<HTMLElement>(root, "#st-petersburg-readout")
+
+    bindSlider(input, (round) => {
+      const first = Math.max(1, round - 4)
+      const count = round - first + 1
+      rows.forEach((row, index) => {
+        const number = first + index
+        row.hidden = index >= count
+        if (row.hidden) return
+
+        const odds = (2 ** number).toLocaleString("en-GB")
+        find<HTMLElement>(row, "[data-st-petersburg-number]").textContent = String(number)
+        find<HTMLElement>(row, "[data-st-petersburg-chance]").textContent = "1 in " + odds
+        find<HTMLElement>(row, "[data-st-petersburg-prize]").textContent = "£" + odds
+        find<HTMLElement>(row, "[data-st-petersburg-chance-bar]").style.width =
+          100 / 2 ** index + "%"
+        find<HTMLElement>(row, "[data-st-petersburg-prize-bar]").style.width =
+          100 / 2 ** (count - index - 1) + "%"
+      })
+
+      range.textContent =
+        first === 1
+          ? "Rounds 1–" + round
+          : "Rounds " + first + "–" + round + " (earlier rounds are included in the total)"
+
+      const possible = 2 ** round
+      const formattedPossible = possible.toLocaleString("en-GB")
+      const precision = round >= 17 ? 4 : round >= 14 ? 3 : round >= 11 ? 2 : 1
+      const endedChance =
+        round <= 6
+          ? `${(possible - 1).toLocaleString("en-GB")} in ${formattedPossible}`
+          : `${(100 * (1 - 1 / possible)).toFixed(precision)}%`
+      const maxPrize = `£${formattedPossible}`
+      total.textContent = `£${round}`
+      averageLabel.textContent = `Added to the average through round ${round}`
+      ended.textContent = endedChance
+      endedLabel.textContent = `Games that end by round ${round}`
+      endingDetail.textContent = `Paid ${maxPrize} or less; 1 in ${formattedPossible} games continue.`
+      const endedDescription = round <= 6 ? `${endedChance} games` : `${endedChance} of games`
+      readout.textContent =
+        `Through round ${round}, £${round} is added to the average. ` +
+        `${endedDescription} have ended with a prize of ${maxPrize} or less. ` +
+        `1 in ${formattedPossible} games continue.`
+      return `Rounds 1 to ${round}: £${round} added to the average; ${endedChance} have ended`
+    })
+  }
+</script>
