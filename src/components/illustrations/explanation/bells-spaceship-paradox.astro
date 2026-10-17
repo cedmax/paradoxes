@@ -1,0 +1,116 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="bells-spaceship"
+  lead="Their gap stays fixed. Does that mean the string stays unstretched?"
+>
+  <SvgFigure
+    name="bells-spaceship-lengths"
+    viewBox="0 0 460 252"
+    class="mx-auto w-full max-w-lg"
+    title="Two accelerating spacecraft keep the same gap in their launch frame, compared with an unstretched moving string"
+    desc="The ships' separation stays fixed when measured from their launch site. At higher speeds, an unstretched string moving alongside them would be measured shorter in that same frame, leaving a mismatch that puts the attached string under tension."
+  >
+    <g fill="none" stroke={stroke} stroke-width="2">
+      <path d="M80 54 H378" stroke-dasharray="6 5" />
+      <path d="M80 44 V64 M378 44 V64" />
+    </g>
+    <g fill={series.blue} stroke={stroke} stroke-width="2">
+      <path d="M50 39 L92 39 L108 54 L92 69 L50 69 L64 54 Z" />
+      <path d="M348 39 L390 39 L406 54 L390 69 L348 69 L362 54 Z" />
+    </g>
+    <g fill="var(--color-paper)" font-size="15" font-weight="bold" text-anchor="middle">
+      <text x="80" y="58">
+        A
+      </text>
+      <text x="378" y="58">
+        B
+      </text>
+    </g>
+    <g fill="currentColor" font-size="16">
+      <text x="230" y="24" text-anchor="middle" font-weight="bold">
+        Same gap measured from launch
+      </text>
+      <text x="30" y="110">
+        Gap between ships
+      </text>
+      <text x="30" y="172">
+        Unstretched moving string
+      </text>
+    </g>
+    <rect x="30" y="118" width="390" height="22" fill={series.blue} />
+    <rect
+      id="bells-spaceship-short-string"
+      x="30"
+      y="180"
+      width="390"
+      height="22"
+      fill={series.gold}
+    />
+    <g fill="currentColor" font-size="14">
+      <text id="bells-spaceship-string-pct" x="30" y="226">
+        100% of the original gap
+      </text>
+      <text x="30" y="248">
+        Both lengths are compared in the launch frame.
+      </text>
+    </g>
+  </SvgFigure>
+  <Slider
+    id="bells-spaceship-speed"
+    label="Ship speed"
+    min={0}
+    max={90}
+    step={10}
+    value={0}
+    startLabel="At rest"
+    endLabel="90% of light speed"
+    describedby="bells-spaceship-readout"
+  >
+    <p id="bells-spaceship-readout" class="text-base leading-normal" aria-live="polite">
+      At rest, an unstretched string fits the gap.
+    </p>
+  </Slider>
+  <Fragment slot="caption">
+    The upper bar stays the same length because the ships have identical motions in the launch
+    frame. The lower bar shows how long an <strong>unstretched</strong> string moving at that
+    speed would measure there. A string attached across the unchanging gap cannot remain
+    unstretched as the ships accelerate. The diagram compares instantaneous lengths; it does not
+    specify when a real string breaks.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("bells-spaceship")
+  if (root) {
+    const input = find<HTMLInputElement>(root, "#bells-spaceship-speed")
+    const stringBar = find<SVGRectElement>(root, "#bells-spaceship-short-string")
+    const percent = find<SVGTextElement>(root, "#bells-spaceship-string-pct")
+    const readout = find<HTMLElement>(root, "#bells-spaceship-readout")
+    bindSlider(input, (speed) => {
+      const fraction = speed / 100
+      const ratio = Math.sqrt(1 - fraction * fraction)
+      const pct = Math.round(ratio * 100)
+      stringBar.setAttribute("width", String(390 * ratio))
+      percent.textContent = pct + "% of the original gap"
+      readout.textContent =
+        speed === 0
+          ? "At rest, an unstretched string fits the gap."
+          : "At " +
+            speed +
+            "% of light speed, an unstretched string would measure " +
+            pct +
+            "% of the fixed gap in the launch frame. The attached string must stretch."
+      return (
+        speed + "% of light speed: unstretched moving string measures " + pct + "% of the gap"
+      )
+    })
+  }
+</script>
