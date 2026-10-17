@@ -54,7 +54,8 @@ Do not change any existing argument entry to the new format.
 2. Keep each implementation in `src/components/illusions/<slug>.astro`, using the
    existing illustration kit for figures and controls. The initial presentation
    should communicate the effect without repeating the same visible setup in prose.
-   For audio use real play/replay controls, and capture the listener's judgement
+   For audio, use Play/Stop controls, plus a replay button where the listener judges
+   one short sound (as in the tritone paradox), and capture the listener's judgement
    before exposing explanation. Use source-faithful audio or independently produced
    tones with explicit parameters; don't republish copyrighted samples without
    permission. Exact greys and measurements are **data**, not decorative colours.
@@ -93,8 +94,8 @@ Do not change any existing argument entry to the new format.
 - Format is editorial, not sensory: an existing argument can demonstrate a
   perceptual trick (e.g. the vanishing puzzle) without becoming an illusion entry.
   Auditory illusions, including the tritone paradox, may use the same `illusion`
-  format without needing a separate collection. Offer stop/replay, a textual
-  description, optional hearing/speaker advice, and an accessible alternative that
+  format without needing a separate collection. Offer Play/Stop (and replay where
+  needed), a textual description, optional hearing/speaker advice, and an accessible alternative that
   does not claim to replicate the subjective auditory experience.
   The strongest reveal often includes an adjustable control rather than
   a single binary toggle.
