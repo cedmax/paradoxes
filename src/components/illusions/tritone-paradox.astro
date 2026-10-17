@@ -1,69 +1,145 @@
 ---
 import Disclosure from "~/components/illustration-kit/Disclosure.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
-import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
-import { TRITONE_ENVELOPES } from "~/scripts/audio-synth"
+import { NOTE_NAMES, TRITONE_ENVELOPES } from "~/scripts/audio-synth"
 
-const directions = [
-  { value: "up", label: "Up: the second tone is higher" },
-  { value: "down", label: "Down: the second tone is lower" },
-]
+const names = NOTE_NAMES.map((note) => note.replace("#", "♯"))
+// Note names around a clock face, C at the top, a step of one semitone every 30 degrees.
+const centre = 160
+const radius = 112
+const ring = names.map((label, index) => {
+  const angle = (index * Math.PI) / 6
+  return {
+    label,
+    x: centre + radius * Math.sin(angle),
+    y: centre - radius * Math.cos(angle),
+    labelX: centre + (radius + 26) * Math.sin(angle),
+    labelY: centre - (radius + 26) * Math.cos(angle) + 5,
+  }
+})
 ---
 
 <IllustrationFigure
   name="tritone-paradox"
-  lead="Two tones, one after the other. Is the second higher or lower than the first?"
+  lead="Twelve pairs of tones. For each, is the second tone higher or lower than the first?"
 >
   <p class="text-base">
     Use headphones or speakers at a comfortable volume, with any spatial or surround effect
-    turned off. A pair lasts one second. Try it with someone else if you can, and compare
-    answers.
+    turned off. Each pair lasts one second. Pick the notes in any order, and answer at least
+    eight. Try it with someone else if you can, and compare answers.
   </p>
-  <div class="flex flex-wrap items-center gap-3">
-    <button id="tritone-paradox-play" type="button" class="btn-ghost">
-      Play a pair
-    </button>
+  <div
+    id="tritone-paradox-notes"
+    role="group"
+    aria-label="Pairs, named by the note the first tone is on"
+    class="grid grid-cols-4 gap-3 sm:grid-cols-6"
+  >
+    {names.map((label, index) => (
+      <button
+        type="button"
+        class="btn-ghost"
+        data-pc={index}
+        data-label={label}
+        aria-label={`Play the pair that starts on ${label}`}
+      >
+        {label}
+      </button>
+    ))}
   </div>
   <p id="tritone-paradox-unsupported" class="text-base" hidden>
     This browser cannot play the sound. The picture below still shows what the tones are made
     of.
   </p>
-  <ListenerChoice
-    name="tritone-paradox"
-    question="Which way did it step?"
-    options={directions}
-  />
-  <div id="tritone-paradox-reveal" class="flex flex-col gap-3" hidden>
-    <p class="font-bold">Now the same two tones, the other way round</p>
-    <p class="text-base">
-      The second tone comes first and the first comes second. Nothing else changes.
-    </p>
-    <div class="flex flex-wrap items-center gap-3">
-      <button id="tritone-paradox-reverse" type="button" class="btn-ghost">
-        Play them reversed
+  <div id="tritone-paradox-answer" class="flex flex-col gap-3" hidden>
+    <p id="tritone-paradox-pair" class="font-bold" aria-live="polite"></p>
+    <div role="group" aria-label="Which way did it step?" class="flex flex-wrap gap-3">
+      <button type="button" class="btn-toggle" data-answer="up" aria-pressed="false">
+        Up: the second tone is higher
+      </button>
+      <button type="button" class="btn-toggle" data-answer="down" aria-pressed="false">
+        Down: the second tone is lower
+      </button>
+      <button type="button" class="btn-toggle" data-answer="unsure" aria-pressed="false">
+        I can't tell
+      </button>
+      <button id="tritone-paradox-again" type="button" class="btn-ghost">
+        Play it again
       </button>
     </div>
-    <ListenerChoice
-      name="tritone-reverse"
-      question="And this time?"
-      options={directions}
-      skipLabel="I can't tell"
-    />
   </div>
-  <div id="tritone-paradox-final" class="flex flex-col gap-6" hidden>
-    <div class="flex flex-wrap items-center gap-3">
-      <button id="tritone-paradox-next" type="button" class="btn-ghost">
-        Try another pair
-      </button>
+  <p id="tritone-paradox-progress" class="text-base" aria-live="polite">
+    No pairs answered yet.
+  </p>
+  <button id="tritone-paradox-skip" type="button" class="btn-ghost self-start">
+    I can't play or hear this
+  </button>
+  <div id="tritone-paradox-reveal" class="flex flex-col gap-6" hidden>
+    <div class="flex flex-col gap-3">
+      <p class="font-bold">Which notes you hear as high</p>
+      <SvgFigure
+        name="tritone-paradox-ring"
+        viewBox="0 0 320 320"
+        class="mx-auto w-full max-w-xs"
+        title="Twelve note names around a circle, with a large dot on each note you heard as the higher tone of a pair"
+        desc="The twelve note names run clockwise from C at the top. For each pair you answered, a filled dot marks the note you heard as higher. If your answers follow a pattern, the dots gather on one side of the circle, and a line points to the note that best fits them."
+      >
+        <circle
+          cx={centre}
+          cy={centre}
+          r={radius}
+          fill="none"
+          stroke={stroke}
+          stroke-width="1"
+          stroke-opacity="0.4"
+        ></circle>
+        <line
+          id="tritone-paradox-peak"
+          x1={centre}
+          y1={centre}
+          x2={centre}
+          y2={centre}
+          stroke={series.red}
+          stroke-width="2"
+          stroke-dasharray="5 4"
+          visibility="hidden"
+        ></line>
+        {ring.map(({ label, x, y, labelX, labelY }, index) => (
+          <>
+            <circle
+              cx={x.toFixed(1)}
+              cy={y.toFixed(1)}
+              r="4"
+              fill="none"
+              stroke={stroke}
+              stroke-width="1.5"
+            ></circle>
+            <circle
+              cx={x.toFixed(1)}
+              cy={y.toFixed(1)}
+              r="0"
+              fill={series.red}
+              data-higher={index}
+            ></circle>
+            <text
+              x={labelX.toFixed(1)}
+              y={labelY.toFixed(1)}
+              font-size="14"
+              text-anchor="middle"
+              fill={stroke}
+            >
+              {label}
+            </text>
+          </>
+        ))}
+      </SvgFigure>
+      <p id="tritone-paradox-result" class="text-base" aria-live="polite"></p>
+      <p id="tritone-paradox-readout-answers" class="text-base"></p>
     </div>
     <div class="flex flex-col gap-4">
       <p class="font-bold">What each tone is made of</p>
-      <p class="text-base">
-        Move the slider and the same pair plays again with the envelope in its new place.
-      </p>
       <SvgFigure
         name="tritone-paradox"
         viewBox="0 0 600 250"
@@ -99,6 +175,7 @@ const directions = [
           Second tone
         </text>
       </SvgFigure>
+      <p id="tritone-paradox-which" class="text-base"></p>
       <Slider
         id="tritone-paradox-envelope-slider"
         label="Where the envelope sits"
@@ -114,8 +191,10 @@ const directions = [
         <p id="tritone-paradox-readout" class="text-base" aria-live="polite"></p>
       </Slider>
       <p class="text-base">
-        The two tones keep their note names whichever way the envelope moves. In Deutsch's
-        studies, many listeners judged the direction much the same wherever it sat.
+        When you let go of the slider, the pair you last played sounds again with the envelope
+        in its new place. The note names stay the same. Answer again, and see whether your
+        answer changes. In Deutsch's studies, many listeners judged the direction much the same
+        wherever the envelope sat.
       </p>
     </div>
   </div>
@@ -130,9 +209,13 @@ const directions = [
         which the published description does not mention, so the tones do not click.
       </p>
       <p>
-        The pair is chosen at random from the twelve note names, so you may hear C then F♯, D
-        then G♯, and so on. Listeners often disagree about the direction, so this page describes
-        the effect rather than telling you what you should hear.
+        The twelve pairs start on each note name in turn, so you may hear C then F♯, D then G♯,
+        and so on. The pair starting on F♯ is the pair starting on C played backwards. The
+        circle assumes a simple model: one note sounds highest, and the notes sound lower the
+        further round the circle they are from it. The line shows the position that fits most of
+        your answers. It is a rough fit to what you chose, not a measurement of you. Listeners
+        often disagree about the direction, so this page describes the effect rather than
+        telling you what you should hear.
       </p>
     </div>
   </Disclosure>
@@ -152,12 +235,7 @@ const directions = [
 </IllustrationFigure>
 
 <script>
-  import {
-    bindListenerChoice,
-    bindSlider,
-    find,
-    illustrationRoot,
-  } from "~/scripts/illustration"
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
   import { audioAvailable, playSamples } from "~/scripts/audio"
   import {
     NOTE_NAMES,
@@ -166,48 +244,151 @@ const directions = [
     tritonePartials,
   } from "~/scripts/audio-synth"
 
+  type Answer = "up" | "down" | "unsure"
+  const marks: Record<Answer, string> = { up: "↑", down: "↓", unsure: "?" }
+  const MIN_ANSWERS = 8
+  const centre = 160
+
   const root = illustrationRoot("tritone-paradox")
   if (root) {
-    const play = find<HTMLButtonElement>(root, "#tritone-paradox-play")
+    const noteButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("button[data-pc]"))
+    const answerPanel = find<HTMLElement>(root, "#tritone-paradox-answer")
+    const pairLabel = find<HTMLElement>(root, "#tritone-paradox-pair")
+    const answerButtons = Array.from(
+      root.querySelectorAll<HTMLButtonElement>("button[data-answer]"),
+    )
+    const again = find<HTMLButtonElement>(root, "#tritone-paradox-again")
+    const progress = find<HTMLElement>(root, "#tritone-paradox-progress")
+    const skip = find<HTMLButtonElement>(root, "#tritone-paradox-skip")
     const reveal = find<HTMLElement>(root, "#tritone-paradox-reveal")
-    const reverse = find<HTMLButtonElement>(root, "#tritone-paradox-reverse")
-    const next = find<HTMLButtonElement>(root, "#tritone-paradox-next")
-    const final = find<HTMLElement>(root, "#tritone-paradox-final")
+    const result = find<HTMLElement>(root, "#tritone-paradox-result")
+    const answersText = find<HTMLElement>(root, "#tritone-paradox-readout-answers")
+    const peakLine = find<SVGLineElement>(root, "#tritone-paradox-peak")
+    const which = find<HTMLElement>(root, "#tritone-paradox-which")
     const slider = find<HTMLInputElement>(root, "#tritone-paradox-envelope-slider")
     const readout = find<HTMLElement>(root, "#tritone-paradox-readout")
     const envelopePath = find<SVGPathElement>(root, "#tritone-paradox-envelope")
     const firstBars = find<SVGGElement>(root, "#tritone-paradox-first")
     const secondBars = find<SVGGElement>(root, "#tritone-paradox-second")
+    const dots = Array.from(root.querySelectorAll<SVGCircleElement>("circle[data-higher]"))
 
-    let firstPitchClass = Math.floor(Math.random() * 12)
+    const answers = new Map<number, Answer>()
+    let current = Math.floor(Math.random() * 12)
     let envelope = 2
-    let answers: { forward?: string; reversed?: string } = {}
-    const labels: Record<string, string> = { up: "rose", down: "fell", skip: "" }
     const name = (pc: number) => NOTE_NAMES[((pc % 12) + 12) % 12].replace("#", "♯")
+    const pairText = (pc: number) => `${name(pc)} then ${name(pc + 6)}`
+    const decided = () => [...answers].filter(([, answer]) => answer !== "unsure")
 
-    const playPair = (reversed: boolean) =>
-      playSamples((rate) =>
-        renderTritonePair(
-          reversed ? firstPitchClass + 6 : firstPitchClass,
-          TRITONE_ENVELOPES[envelope].semitones,
-          rate,
-        ),
+    // In the simple model, a note sounds higher the nearer it is to the peak on the circle of note
+    // names. A pair is a tritone apart, so its notes are only equally far from the peak (and the pair
+    // tells us nothing) when the peak sits three semitones from both.
+    const circular = (a: number, b: number) => {
+      const gap = Math.abs(a - b) % 12
+      return Math.min(gap, 12 - gap)
+    }
+    const fit = () => {
+      const scores = Array.from({ length: 12 }, (_, peak) => {
+        let agree = 0
+        let total = 0
+        for (const [pc, answer] of decided()) {
+          const near = circular(pc, peak)
+          const far = circular(pc + 6, peak)
+          if (near === far) continue
+          total += 1
+          if ((answer === "up") === far < near) agree += 1
+        }
+        return { agree, total }
+      })
+      const best = Math.max(...scores.map(({ agree }) => agree))
+      const peaks = scores.flatMap(({ agree }, peak) => (agree === best ? [peak] : []))
+      return { best, total: scores[peaks[0]].total, peaks }
+    }
+
+    const refresh = () => {
+      for (const button of noteButtons) {
+        const pc = Number(button.dataset.pc)
+        const answer = answers.get(pc)
+        const label = button.dataset.label ?? ""
+        button.textContent = answer ? `${label} ${marks[answer]}` : label
+        button.setAttribute(
+          "aria-label",
+          `Play the pair that starts on ${label}${answer ? `, answered ${answer === "unsure" ? "can't tell" : answer}` : ""}`,
+        )
+      }
+      for (const button of answerButtons) {
+        button.setAttribute(
+          "aria-pressed",
+          String(answers.get(current) === button.dataset.answer),
+        )
+      }
+      const count = decided().length
+      progress.textContent =
+        count === 0
+          ? "No pairs answered yet."
+          : `${count} of 12 pairs answered.${count < MIN_ANSWERS ? ` Answer ${MIN_ANSWERS - count} more to see what they show.` : ""}`
+      // Dots on the circle: the note heard as higher in each answered pair.
+      const higher = new Array<number>(12).fill(0)
+      for (const [pc, answer] of decided()) higher[answer === "up" ? (pc + 6) % 12 : pc] += 1
+      dots.forEach((dot, index) =>
+        dot.setAttribute("r", String(higher[index] ? 5 + higher[index] * 3 : 0)),
       )
+      const list = [...answers]
+        .sort(([a], [b]) => a - b)
+        .map(
+          ([pc, answer]) =>
+            `${pairText(pc)}: ${answer === "unsure" ? "couldn't tell" : answer}`,
+        )
+      answersText.textContent = list.length ? `Your answers. ${list.join("; ")}.` : ""
+      if (count >= MIN_ANSWERS) {
+        showFit()
+        reveal.hidden = false
+      }
+    }
 
-    const choices = bindListenerChoice(root, "tritone-paradox", (value) => {
-      answers.forward = value
+    const showFit = () => {
+      const { best, total, peaks } = fit()
+      if (peaks.length > 2 || best < total * 0.7) {
+        peakLine.setAttribute("visibility", "hidden")
+        result.textContent = `Your answers do not point to one clear highest note: the best fit agrees with ${best} of ${total} pairs. That happens, and a one-second pair is a noisy test.`
+        return
+      }
+      const mid = peaks.length === 1 ? peaks[0] : peaks[0] + 0.5
+      const angle = (mid * Math.PI) / 6
+      peakLine.setAttribute("x2", (centre + 96 * Math.sin(angle)).toFixed(1))
+      peakLine.setAttribute("y2", (centre - 96 * Math.cos(angle)).toFixed(1))
+      peakLine.setAttribute("visibility", "visible")
+      const where =
+        peaks.length === 1 ? name(peaks[0]) : `between ${name(peaks[0])} and ${name(peaks[1])}`
+      result.textContent = `Your answers fit a highest note ${where}, agreeing with ${best} of ${total} pairs. Another listener's line can point somewhere quite different for the same tones. This is a rough fit, not a measurement.`
+    }
+
+    const playCurrent = () =>
+      audioAvailable()
+        ? playSamples((rate) =>
+            renderTritonePair(current, TRITONE_ENVELOPES[envelope].semitones, rate),
+          )
+        : Promise.resolve()
+
+    const select = (pc: number) => {
+      current = pc
+      answerPanel.hidden = false
+      pairLabel.textContent = `Pair starting on ${name(pc)}: ${pairText(pc)}. Which way did it step?`
+      void playCurrent()
+      refresh()
+      draw()
+    }
+    for (const button of noteButtons)
+      button.addEventListener("click", () => select(Number(button.dataset.pc)))
+    again.addEventListener("click", () => void playCurrent())
+    for (const button of answerButtons) {
+      button.addEventListener("click", () => {
+        answers.set(current, button.dataset.answer as Answer)
+        refresh()
+      })
+    }
+    skip.addEventListener("click", () => {
       reveal.hidden = false
-      return value === "skip"
-        ? "The controls below still work without the first answer."
-        : `You heard it ${labels[value]}.`
-    })
-    const reverseChoices = bindListenerChoice(root, "tritone-reverse", (value) => {
-      answers.reversed = value
-      final.hidden = false
-      if (value === "skip" || !answers.forward || answers.forward === "skip") return
-      return answers.forward === value
-        ? "You heard both orders go the same way. Not every listener hears a consistent direction."
-        : "You heard opposite directions for the two orders. That is the usual result, although which tone counts as higher differs between listeners."
+      draw()
     })
 
     const draw = () => {
@@ -233,42 +414,23 @@ const directions = [
           }),
         )
       }
-      bars(firstBars, firstPitchClass, -3)
-      bars(secondBars, firstPitchClass + 6, 3)
+      bars(firstBars, current, -3)
+      bars(secondBars, current + 6, 3)
       const list = (pc: number) =>
         tritonePartials(pc, semitones)
           .map(({ freq, amp }) => `${Math.round(freq)} Hz (${Math.round(amp * 100)}%)`)
           .join(", ")
-      readout.textContent = `Envelope centred on ${envelopeName} (${hz} Hz). First tone, ${name(firstPitchClass)}: ${list(firstPitchClass)}. Second tone, ${name(firstPitchClass + 6)}: ${list(firstPitchClass + 6)}.`
+      which.textContent = `Showing the pair ${pairText(current)}.`
+      readout.textContent = `Envelope centred on ${envelopeName} (${hz} Hz). First tone, ${name(current)}: ${list(current)}. Second tone, ${name(current + 6)}: ${list(current + 6)}.`
     }
 
-    if (audioAvailable()) {
-      play.addEventListener("click", () => {
-        void playPair(false)
-        play.textContent = "Play it again"
-        choices.enable()
-      })
-      reverse.addEventListener("click", () => {
-        void playPair(true)
-        reverseChoices.enable()
-      })
-      slider.addEventListener("change", () => void playPair(false))
-    } else {
-      for (const button of [play, reverse]) button.disabled = true
+    if (!audioAvailable()) {
+      for (const button of noteButtons) button.disabled = true
+      again.disabled = true
       find<HTMLElement>(root, "#tritone-paradox-unsupported").hidden = false
+    } else {
+      slider.addEventListener("change", () => void playCurrent())
     }
-
-    next.addEventListener("click", () => {
-      firstPitchClass = (firstPitchClass + 1 + Math.floor(Math.random() * 10)) % 12
-      answers = {}
-      choices.reset()
-      reverseChoices.reset()
-      reveal.hidden = true
-      final.hidden = true
-      play.textContent = "Play a pair"
-      draw()
-      play.focus()
-    })
 
     bindSlider(slider, (value) => {
       envelope = value
