@@ -1,0 +1,104 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure name="teletransporter" lead="Who steps out on Mars?">
+  <div
+    class="flex flex-wrap gap-2"
+    role="group"
+    aria-label="What happens to the person on Earth"
+  >
+    <button id="teletransporter-destroy" type="button" class="btn-toggle" aria-pressed="true">
+      Original destroyed
+    </button>
+    <button id="teletransporter-survive" type="button" class="btn-toggle" aria-pressed="false">
+      Original survives
+    </button>
+  </div>
+  <SvgFigure
+    name="teletransporter-scene"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 460 190"
+    title="Earth original and Mars duplicate after a teletransporter scan"
+    desc="A scanner copies someone's physical and mental state into a new body on Mars. In one version, the original on Earth is destroyed; in another, the original remains alive while the copy is created."
+  >
+    <g fill="none" stroke={stroke} stroke-width="2">
+      <rect x="18" y="23" width="180" height="144" />
+      <rect x="262" y="23" width="180" height="144" />
+      <path d="M199 88 H259" stroke-dasharray="6 6" />
+      <path d="M251 82 L259 88 L251 94" />
+    </g>
+    <g fill="currentColor" font-size="17" font-weight="bold" text-anchor="middle">
+      <text x="108" y="18">
+        Earth
+      </text>
+      <text x="352" y="18">
+        Mars
+      </text>
+    </g>
+    <g
+      id="teletransporter-earth-alive"
+      visibility="hidden"
+      fill={series.blue}
+      stroke={stroke}
+      stroke-width="2"
+    >
+      <circle cx="108" cy="71" r="18" />
+      <path d="M89 96 Q108 83 127 96 L132 140 H84 Z" />
+    </g>
+    <g id="teletransporter-earth-gone" fill="none" stroke={series.red} stroke-width="4">
+      <circle cx="108" cy="95" r="34" stroke-dasharray="5 6" />
+      <path d="M86 73 L130 117 M130 73 L86 117" />
+    </g>
+    <g fill={series.green} stroke={stroke} stroke-width="2">
+      <circle cx="352" cy="71" r="18" />
+      <path d="M333 96 Q352 83 371 96 L376 140 H328 Z" />
+    </g>
+    <g fill="currentColor" font-size="14" text-anchor="middle">
+      <text x="108" y="158">
+        Original
+      </text>
+      <text x="352" y="158">
+        Exact duplicate
+      </text>
+    </g>
+  </SvgFigure>
+  <p id="teletransporter-destroy-copy" class="text-base leading-normal">
+    The body on Earth is destroyed. The person on Mars remembers your entire life and believes
+    they are you.
+    <strong> Did you travel, or did you die?</strong>
+  </p>
+  <p id="teletransporter-survive-copy" class="text-base leading-normal" hidden>
+    The original on Earth is still alive, and an exact duplicate appears on Mars.
+    <strong> If both remember being you, which one is you?</strong>
+  </p>
+  <Fragment slot="caption">
+    The copy's memories are the same in both versions. What the scenario separates is
+    psychological continuity from the survival of the original body.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("teletransporter")
+  if (root) {
+    const destroy = find<HTMLButtonElement>(root, "#teletransporter-destroy")
+    const survive = find<HTMLButtonElement>(root, "#teletransporter-survive")
+    const earthAlive = find<SVGGElement>(root, "#teletransporter-earth-alive")
+    const earthGone = find<SVGGElement>(root, "#teletransporter-earth-gone")
+    const destroyCopy = find<HTMLElement>(root, "#teletransporter-destroy-copy")
+    const surviveCopy = find<HTMLElement>(root, "#teletransporter-survive-copy")
+    const show = (survives: boolean) => {
+      earthAlive.setAttribute("visibility", survives ? "visible" : "hidden")
+      earthGone.setAttribute("visibility", survives ? "hidden" : "visible")
+      destroyCopy.hidden = survives
+      surviveCopy.hidden = !survives
+      destroy.setAttribute("aria-pressed", String(!survives))
+      survive.setAttribute("aria-pressed", String(survives))
+    }
+    destroy.addEventListener("click", () => show(false))
+    survive.addEventListener("click", () => show(true))
+  }
+</script>
