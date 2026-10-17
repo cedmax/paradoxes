@@ -22,7 +22,7 @@ sources:
     note: "Found that brief changes in the tone's amplitude just before and after the noise reduced the illusion of continuity, more so when the tone faded before the noise. Used to keep the tone at full level up to the noise here."
   - title: "Bregman and Ahad (1996): Demonstrations of auditory scene analysis, demonstration 28 (Apparent continuity)"
     url: "https://webpages.mcgill.ca/staff/Group2/abregm1/web/downloadstoc.htm"
-    note: "A recorded demonstration of apparent continuity to compare with this page's synthesis. Only its title in the table of contents has been seen; its description and sound have not yet been checked against this entry."
+    note: "A recorded demonstration of apparent continuity to compare with this page's synthesis. The booklet gives a 1000 Hz tone alternating 900 ms of tone with 100 ms of white noise, with the noise raised in steps until its spectrum level equals the tone's. The booklet text was read; the recording was compared by measurement only."
 sourcesVerified: false
 reviewed: false
 ---

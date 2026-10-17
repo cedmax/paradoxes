@@ -19,7 +19,7 @@ sources:
     note: "An interactive version of the A-B-A pattern, with one stream, two streams and switching described as the three possible outcomes. The page says it approximates the original experiment."
   - title: "Bregman and Ahad (1996): Demonstrations of auditory scene analysis (booklet and audio)"
     url: "https://webpages.mcgill.ca/staff/Group2/abregm1/web/snd/ASA-Demo-Booklet9V4.pdf"
-    note: "Companion booklet to Bregman's Auditory Scene Analysis demonstrations. Per the demonstrations' table of contents, demonstrations 3 and 4 use a galloping high-low-high pattern that splits into two streams, and repetition makes the split stronger. The booklet itself has not yet been opened or checked against this entry. The matching audio is on the same site, listed in the demonstrations' table of contents."
+    note: "Companion booklet to Bregman's Auditory Scene Analysis demonstrations. Demonstration 3 describes the galloping high-low-high pattern splitting into two streams as speed and frequency separation increase. Demonstration 4 gives 2000 Hz and 700 Hz sine tones, 12.5 ms rise and decay, a low tone 6 dB louder, and groups of 2 to 32 cycles, to show that segregation builds up with repetition. This page uses those tone settings with a low-high-low order and a fixed number of repeats, so it is adapted from the demonstration."
 sourcesVerified: false
 reviewed: false
 ---

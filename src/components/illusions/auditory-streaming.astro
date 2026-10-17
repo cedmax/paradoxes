@@ -128,12 +128,15 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
     <div class="flex flex-col gap-3 pt-3 text-base">
       <p>
         Pattern, repeated {STREAMING.triplets} times: low note, high note, low note, rest. Each
-        slot lasts {STREAMING.slotMs} ms and each note {STREAMING.toneMs} ms, with 5 ms fades.
-        The low note is {STREAMING.lowHz} Hz and is 6 dB louder than the high one. The high note
-        starts {STREAMING.defaultSemitones} semitones above it, near {Math.round(highDefault)}{" "}
-        Hz, and the slider moves it from the same note up to two octaves higher. Each note has a{" "}
-        {STREAMING.fadeMs} ms rise and fall. These settings follow the recorded galloping
-        demonstration in Bregman and Ahad (1996). Pure sine tones, generated in your browser.
+        slot lasts {STREAMING.slotMs} ms and each note {STREAMING.toneMs} ms. The low note is{" "}
+        {STREAMING.lowHz} Hz and is 6 dB louder than the high one. The high note starts{" "}
+        {STREAMING.defaultSemitones} semitones above it, near {Math.round(highDefault)} Hz, and
+        the slider moves it from the same note up to two octaves higher. Each note has a{" "}
+        {STREAMING.fadeMs} ms rise and fall. The frequencies, level difference, note length and
+        fades follow Bregman and Ahad's (1996) demonstration 4, which plays high, low, high,
+        rest and builds up from short to long groups. This page plays low, high, low, rest,
+        repeated a fixed number of times, so it is adapted from that demonstration, not a copy.
+        Pure sine tones, generated in your browser.
       </p>
       <p>
         With a small gap the notes form one galloping beat, like a horse. With a large gap you
@@ -143,8 +146,8 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
   </Disclosure>
   <Fragment slot="caption">
     After van Noorden's galloping rhythm (1975) and Bregman's account of auditory streaming. The
-    tones here are our own synthesis, with settings matched to the recorded demonstration by
-    Bregman and Ahad (1996), not a recording from any of these sources.
+    tones here are our own synthesis, with settings taken from demonstration 4 by Bregman and
+    Ahad (1996) but a different note order, not a recording from any of these sources.
   </Fragment>
 </IllustrationFigure>
 
