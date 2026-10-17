@@ -119,7 +119,7 @@ const examples = Array.from({ length: 5 }, (_, index) => {
     </div>
     <div class="border-l-4 border-series-blue pl-4">
       <p id="st-petersburg-ended-label" class="text-base leading-normal">
-        Games already ended by round 3
+        Games that end by round 3
       </p>
       <p id="st-petersburg-ended" class="text-2xl font-bold tabular-nums">
         7 in 8
@@ -186,7 +186,7 @@ const examples = Array.from({ length: 5 }, (_, index) => {
       total.textContent = `£${round}`
       averageLabel.textContent = `Added to the average through round ${round}`
       ended.textContent = endedChance
-      endedLabel.textContent = `Games already ended by round ${round}`
+      endedLabel.textContent = `Games that end by round ${round}`
       endingDetail.textContent = `Paid ${maxPrize} or less; 1 in ${formattedPossible} games continue.`
       const endedDescription = round <= 6 ? `${endedChance} games` : `${endedChance} of games`
       readout.textContent =
