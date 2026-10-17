@@ -44,7 +44,7 @@ export const TRITONE_ENVELOPES = [
 
 const C4_HZ = 440 * 2 ** (-9 / 12)
 const OCTAVES = 6
-const TONE_RMS = 0.1
+const TONE_RMS = 0.265
 
 export interface SpectralPartial {
   freq: number
@@ -73,7 +73,7 @@ export function renderTritonePair(
   sampleRate: number,
 ): Float32Array {
   const toneMs = 500
-  const rampMs = 10
+  const rampMs = 5
   const tones = [firstPitchClass, firstPitchClass + 6].map((pitchClass) => {
     const parts = tritonePartials(mod(pitchClass, 12), centre)
     // Sinusoids are orthogonal, so power is the sum of a^2 / 2: this gives every tone equal RMS.
@@ -108,29 +108,36 @@ export function renderTritonePair(
 /* Auditory streaming                                                                         */
 /* ------------------------------------------------------------------------------------------ */
 // A repeating A B A _ pattern (van Noorden, 1975; Bregman, 1990). A is fixed at 440 Hz and B is
-// `semitones` above it. Timing never changes: four 125 ms slots per triplet, 100 ms tones.
+// `semitones` above it. Timing never changes: four 125 ms slots per triplet.
 
 export const STREAMING = {
-  lowHz: 440,
-  toneMs: 100,
+  lowHz: 700,
+  /** 12.5 ms rise, 88 ms steady, 12.5 ms decay, then 12 ms silence within the 125 ms slot. */
+  toneMs: 113,
+  fadeMs: 12.5,
   slotMs: 125,
   triplets: 8,
+  /** Default separation, in semitones: 18 puts the high note near 2 kHz. */
+  defaultSemitones: 18,
   /** Largest separation offered, in semitones. */
-  maxSemitones: 12,
+  maxSemitones: 24,
+  /** Levels follow the demonstration this was matched to: the low note is 6 dB louder. */
+  lowAmplitude: 0.063,
+  highAmplitude: 0.0315,
 } as const
 
 export const streamingHighHz = (semitones: number) => STREAMING.lowHz * 2 ** (semitones / 12)
 
 export function renderStreaming(semitones: number, sampleRate: number): Float32Array {
-  const { lowHz, toneMs, slotMs, triplets } = STREAMING
+  const { lowHz, toneMs, fadeMs, slotMs, triplets, lowAmplitude, highAmplitude } = STREAMING
   const slot = Math.round((slotMs * sampleRate) / 1000)
   const tone = Math.round((toneMs * sampleRate) / 1000)
-  const edge = Math.round(0.005 * sampleRate)
+  const edge = Math.round((fadeMs * sampleRate) / 1000)
   const out = new Float32Array(slot * 4 * triplets)
-  const amplitude = 0.12
   const highHz = streamingHighHz(semitones)
   // Slots in a triplet: A, B, A, silence.
   const slots = [lowHz, highHz, lowHz, 0]
+  const amplitudes = [lowAmplitude, highAmplitude, lowAmplitude, 0]
 
   for (let n = 0; n < triplets; n++) {
     slots.forEach((hz, k) => {
@@ -138,7 +145,7 @@ export function renderStreaming(semitones: number, sampleRate: number): Float32A
       const start = (n * 4 + k) * slot
       for (let i = 0; i < tone; i++) {
         out[start + i] =
-          amplitude *
+          amplitudes[k] *
           Math.sin((TWO_PI * hz * i) / sampleRate) *
           raise(i, edge) *
           raise(tone - 1 - i, edge)
@@ -151,20 +158,20 @@ export function renderStreaming(semitones: number, sampleRate: number): Float32A
 /* ------------------------------------------------------------------------------------------ */
 /* Auditory continuity illusion                                                               */
 /* ------------------------------------------------------------------------------------------ */
-// A 1 kHz tone, interrupted for `gapMs` by band-limited noise (700 Hz to 1.4 kHz, about an octave
-// centred on the tone). The tone is absent while the noise plays: the stimulus contains nothing
-// at 1 kHz except the noise.
-// Cf. Warren & Obusek (1972), Bregman & Dannenbring (1977).
+// A 1 kHz tone, interrupted every second for `gapMs` by a burst of white noise (low-passed at
+// 12 kHz). The tone is absent while the noise plays. Timing, levels and the hard tone edges are
+// matched to the apparent-continuity demonstration measured in Bregman & Ahad (1996), demo 28: a
+// 900 ms tone and a 100 ms noise burst repeat, and the noise is raised in steps up to about
+// 22 dB above the tone's RMS. Cf. Warren & Obusek (1972), Bregman & Dannenbring (1977).
 
 export const CONTINUITY = {
   toneHz: 1000,
-  toneAmplitude: 0.03,
-  segmentMs: 600,
-  gapMs: 300,
-  silenceMs: 600,
-  noiseBand: [700, 1400],
+  toneAmplitude: 0.012,
+  segmentMs: 900,
+  gapMs: 100,
+  noiseLowpassHz: 12000,
   /** Noise level relative to the tone's RMS, in dB, one entry per slider step. Step 0 is silence. */
-  levels: [null, -6, 0, 6, 12, 18],
+  levels: [null, -10, -4, 2, 8, 16, 22],
 } as const
 
 export const continuityLevelLabel = (step: number) => {
@@ -227,45 +234,35 @@ function biquad(
   }
 }
 
-/** One trial: tone, `gapMs` of noise (or silence), tone, then silence before the next. */
+/** One cycle: `segmentMs` of tone, then `gapMs` of noise (or silence). Looped, it repeats exactly. */
 export function renderContinuity(levelStep: number, sampleRate: number): Float32Array {
-  const { toneHz, toneAmplitude, segmentMs, gapMs, silenceMs, noiseBand } = CONTINUITY
+  const { toneHz, toneAmplitude, segmentMs, gapMs, noiseLowpassHz } = CONTINUITY
   const ms = (value: number) => Math.round((value * sampleRate) / 1000)
   const segment = ms(segmentMs)
   const gap = ms(gapMs)
-  const length = segment * 2 + gap + ms(silenceMs)
-  const out = new Float32Array(length)
-  // 10 ms fades only at the two ends of the whole trial. Where the tone meets the gap it is held
-  // at full level up to a 2 ms edge, which is too short to hear as a fade: a falling tone just
-  // before the noise would tell the listener the tone really stopped (Bregman & Dannenbring, 1977).
-  const edge = Math.round(0.01 * sampleRate)
+  const out = new Float32Array(segment + gap)
+  // The tone is held at full level up to a 2 ms edge, too short to hear as a fade: a tone that
+  // fades before the noise weakens the illusion (Bregman & Dannenbring, 1977). The tone's phase
+  // is continuous from one cycle to the next, as if it had never stopped.
   const cut = Math.round(0.002 * sampleRate)
-
-  // The two tone segments, in phase with each other. The gap between them holds no tone at all.
-  for (const [start, fadeIn, fadeOut] of [
-    [0, edge, cut],
-    [segment + gap, cut, edge],
-  ]) {
-    for (let i = 0; i < segment; i++) {
-      out[start + i] =
-        toneAmplitude *
-        Math.sin((TWO_PI * toneHz * (start + i)) / sampleRate) *
-        raise(i, fadeIn) *
-        raise(segment - 1 - i, fadeOut)
-    }
+  for (let i = 0; i < segment; i++) {
+    out[i] =
+      toneAmplitude *
+      Math.sin((TWO_PI * toneHz * i) / sampleRate) *
+      raise(i, cut) *
+      raise(segment - 1 - i, cut)
   }
 
   const level = CONTINUITY.levels[levelStep]
   if (level !== null) {
     const noise = gaussianNoise(gap, 20261017)
-    biquad(noise, "high", noiseBand[0], sampleRate)
-    biquad(noise, "low", noiseBand[1], sampleRate)
+    biquad(noise, "low", noiseLowpassHz, sampleRate)
     let power = 0
     for (const v of noise) power += v * v
     const noiseRms = Math.sqrt(power / noise.length)
     const target = (toneAmplitude / Math.SQRT2) * 10 ** (level / 20)
     for (let i = 0; i < gap; i++) {
-      out[segment + i] +=
+      out[segment + i] =
         (noise[i] / noiseRms) * target * raise(i, cut) * raise(gap - 1 - i, cut)
     }
   }

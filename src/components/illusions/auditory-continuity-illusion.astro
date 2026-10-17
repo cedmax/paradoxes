@@ -7,25 +7,28 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
 import { CONTINUITY } from "~/scripts/audio-synth"
 
-// Timeline geometry: one trial, in seconds.
-const { segmentMs, gapMs, silenceMs, levels } = CONTINUITY
-const total = (2 * segmentMs + gapMs + silenceMs) / 1000
+// Timeline geometry: two repeats of the one-second cycle, in seconds.
+const { segmentMs, gapMs, levels } = CONTINUITY
+const cycle = (segmentMs + gapMs) / 1000
+const total = 2 * cycle
 const left = 40
 const width = 520
 const x = (seconds: number) => left + (seconds / total) * width
-const toneEnd = segmentMs / 1000
-const gapEnd = toneEnd + gapMs / 1000
-const secondEnd = gapEnd + segmentMs / 1000
+const cycles = [0, cycle].map((start) => ({
+  start,
+  toneEnd: start + segmentMs / 1000,
+  end: start + cycle,
+}))
 ---
 
 <IllustrationFigure
   name="auditory-continuity-illusion"
-  lead="A steady tone, a burst of noise, then the tone again. What does the tone do during the noise?"
+  lead="A steady tone, interrupted by a burst of noise, over and over. What does the tone do during the noise?"
 >
   <p class="text-base">
-    <strong>Turn the volume down first:</strong> the noise burst is louder than the tone. Set
-    the volume so the tone is comfortable, then press Play. The trial repeats until you press
-    Stop. Headphones or speakers both work.
+    <strong>Turn the volume down first:</strong> the noise bursts are much louder than the tone.
+    Set the volume so the tone is comfortable, then press Play. The sound repeats until you
+    press Stop. Headphones or speakers both work.
   </p>
   <div class="flex flex-wrap items-center gap-3">
     <button
@@ -53,8 +56,8 @@ const secondEnd = gapEnd + segmentMs / 1000
       name="auditory-continuity-illusion"
       viewBox="0 0 600 200"
       class="mx-auto w-full max-w-xl"
-      title="Timeline of one trial: a tone, a gap filled only by noise, the tone again, then silence"
-      desc="Time runs left to right across about two seconds. The blue bars are the tone. Between them is a gap where no tone is played. The gold bar in the gap is the noise. The slider changes how tall, meaning how loud, the noise is."
+      title="Timeline of two repeats: a long tone, then a short gap filled only by noise"
+      desc="Time runs left to right across two seconds, two repeats of the same one-second cycle. The blue bars are the tone, lasting 900 milliseconds each. After each tone is a 100 millisecond gap where no tone is played. The gold bar in the gap is the noise. The slider changes how tall, meaning how loud, the noise is."
     >
       <line
         x1={left}
@@ -64,43 +67,45 @@ const secondEnd = gapEnd + segmentMs / 1000
         stroke={stroke}
         stroke-width="1"
       ></line>
-      <rect x={x(0)} y="100" width={x(toneEnd) - x(0)} height="40" fill={series.blue}></rect>
-      <rect
-        x={x(toneEnd)}
-        y="100"
-        width={x(gapEnd) - x(toneEnd)}
-        height="40"
-        fill="none"
-        stroke={stroke}
-        stroke-width="2"
-        stroke-dasharray="5 4"
-      ></rect>
-      <rect
-        x={x(gapEnd)}
-        y="100"
-        width={x(secondEnd) - x(gapEnd)}
-        height="40"
-        fill={series.blue}
-      ></rect>
-      <rect
-        id="auditory-continuity-illusion-noise"
-        x={x(toneEnd)}
-        y="140"
-        width={x(gapEnd) - x(toneEnd)}
-        height="0"
-        fill={series.gold}
-      ></rect>
-      <text x={x(0)} y="162" font-size="13" fill={stroke}>
-        tone
-      </text>
-      <text x={x(toneEnd) + 4} y="94" font-size="13" fill={stroke}>
-        no tone here
-      </text>
-      <text x={x(gapEnd)} y="162" font-size="13" fill={stroke}>
-        tone
-      </text>
+      {cycles.map(({ start, toneEnd, end }, index) => (
+        <>
+          <rect
+            x={x(start)}
+            y="100"
+            width={x(toneEnd) - x(start)}
+            height="40"
+            fill={series.blue}
+          ></rect>
+          <rect
+            x={x(toneEnd)}
+            y="100"
+            width={x(end) - x(toneEnd)}
+            height="40"
+            fill="none"
+            stroke={stroke}
+            stroke-width="2"
+            stroke-dasharray="5 4"
+          ></rect>
+          <rect
+            data-noise
+            x={x(toneEnd)}
+            y="140"
+            width={x(end) - x(toneEnd)}
+            height="0"
+            fill={series.gold}
+          ></rect>
+          <text x={x(start)} y="162" font-size="13" fill={stroke}>
+            tone
+          </text>
+          {index === 0 && (
+            <text x={x(toneEnd) - 66} y="94" font-size="13" fill={stroke}>
+              no tone in the gap
+            </text>
+          )}
+        </>
+      ))}
       <text x={left} y="190" font-size="13" fill={stroke}>
-        time, about two seconds
+        time, two seconds
       </text>
     </SvgFigure>
     <Slider
@@ -109,11 +114,11 @@ const secondEnd = gapEnd + segmentMs / 1000
       min={0}
       max={levels.length - 1}
       step={1}
-      value={4}
+      value={levels.length - 1}
       startLabel="Silence"
       endLabel="Loudest noise"
       describedby="auditory-continuity-illusion-readout"
-      valuetext="Plus 12 decibels relative to the tone"
+      valuetext="Plus 22 decibels relative to the tone"
     >
       <p id="auditory-continuity-illusion-readout" class="text-base" aria-live="polite"></p>
     </Slider>
@@ -125,26 +130,26 @@ const secondEnd = gapEnd + segmentMs / 1000
   <Disclosure summary="Exact sound and a text description" slot="after">
     <div class="flex flex-col gap-3 pt-3 text-base">
       <p>
-        One trial is a {CONTINUITY.toneHz} Hz sine tone for {segmentMs} ms, then {gapMs} ms with
-        no tone, then the tone again for {segmentMs} ms, then {silenceMs} ms of silence, and the
-        trial then repeats until you stop it. During the
-        {gapMs} ms there is band-limited noise, from {CONTINUITY.noiseBand[0]} Hz to{" "}
-        {CONTINUITY.noiseBand[1]} Hz, whose level is set relative to the tone. The slider goes
-        from no noise to {levels[levels.length - 1]} dB. Everything is generated in your
-        browser.
+        A {CONTINUITY.toneHz} Hz sine tone plays for {segmentMs} ms, then {gapMs} ms with no
+        tone, and this one-second cycle repeats until you stop it. During the {gapMs} ms there
+        is white noise (flat up to about {CONTINUITY.noiseLowpassHz / 1000} kHz), whose level is
+        set relative to the tone's RMS. The slider goes from no noise to{" "}
+        {levels[levels.length - 1]} dB. The timing and levels follow the apparent-continuity
+        demonstration in Bregman and Ahad (1996), measured from the recording. Everything here
+        is generated in your browser.
       </p>
       <p>
         With no noise you hear a clear silent gap. With enough noise, many listeners hear the
-        tone carry on through it. The tone is never played during the gap. The tone has 10 ms
-        fades only at the start and end of the whole trial. Next to the noise it is held at full
-        level up to a 2 ms edge, because a tone that fades before a noise tends to weaken the
-        illusion.
+        tone carry on through it. The tone is never played during the gap. Next to the noise the
+        tone is held at full level up to a 2 ms edge, because a tone that fades before a noise
+        tends to weaken the illusion.
       </p>
     </div>
   </Disclosure>
   <Fragment slot="caption">
     Our own synthesis, after Warren and Obusek's auditory induction (1972) and later work on the
-    continuity illusion. The levels are our choice, not those of any published experiment.
+    continuity illusion. Timing and levels are matched to the recorded demonstration by Bregman
+    and Ahad (1996), but the sound is our own synthesis, not their recording.
   </Fragment>
 </IllustrationFigure>
 
@@ -165,7 +170,7 @@ const secondEnd = gapEnd + segmentMs / 1000
     const reveal = find<HTMLElement>(root, `#${name}-reveal`)
     const slider = find<HTMLInputElement>(root, `#${name}-level`)
     const readout = find<HTMLElement>(root, `#${name}-readout`)
-    const noise = find<SVGRectElement>(root, `#${name}-noise`)
+    const noises = Array.from(root.querySelectorAll<SVGRectElement>("rect[data-noise]"))
     let step = Number(slider.value)
 
     const setPlaying = (on: boolean) => {
@@ -207,7 +212,8 @@ const secondEnd = gapEnd + segmentMs / 1000
     bindSlider(slider, (value) => {
       step = value
       const level = CONTINUITY.levels[value]
-      noise.setAttribute("height", String(level === null ? 0 : 20 + (level + 6) * 3.2))
+      for (const noise of noises)
+        noise.setAttribute("height", String(level === null ? 0 : 6 + (level + 10) * 1.4))
       readout.textContent = `Noise: ${continuityLevelLabel(value)}. No tone is played during the noise.`
       return `Noise ${continuityLevelLabel(value)}`
     })

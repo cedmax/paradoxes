@@ -5,13 +5,16 @@ import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
-import { STREAMING } from "~/scripts/audio-synth"
+import { STREAMING, streamingHighHz } from "~/scripts/audio-synth"
 
 // Piano-roll geometry: eight slots across, two repeats of "A B A rest".
 const left = 60
 const slotWidth = 62
 const toneWidth = slotWidth * (STREAMING.toneMs / STREAMING.slotMs)
 const baseline = 190
+// Vertical pixels per semitone in the piano roll.
+const scale = 6
+const highDefault = streamingHighHz(STREAMING.defaultSemitones)
 const slots = Array.from({ length: 8 }, (_, index) => ({
   index,
   role: ["A", "B", "A", "rest"][index % 4],
@@ -92,7 +95,7 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
       <text
         id="auditory-streaming-b-label"
         x="4"
-        y={baseline - 60}
+        y={baseline - STREAMING.defaultSemitones * scale}
         font-size="14"
         fill={stroke}
       >
@@ -108,11 +111,11 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
       min={0}
       max={STREAMING.maxSemitones}
       step={1}
-      value={7}
+      value={STREAMING.defaultSemitones}
       startLabel="0: the same note"
-      endLabel="12: an octave apart"
+      endLabel={`${STREAMING.maxSemitones}: two octaves apart`}
       describedby="auditory-streaming-readout"
-      valuetext="7 semitones"
+      valuetext={`${STREAMING.defaultSemitones} semitones`}
     >
       <p id="auditory-streaming-readout" class="text-base" aria-live="polite"></p>
     </Slider>
@@ -126,9 +129,11 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
       <p>
         Pattern, repeated {STREAMING.triplets} times: low note, high note, low note, rest. Each
         slot lasts {STREAMING.slotMs} ms and each note {STREAMING.toneMs} ms, with 5 ms fades.
-        The low note is {STREAMING.lowHz} Hz. The high note starts 7 semitones above it, and the
-        slider moves it anywhere from the same note to an octave higher (880 Hz). Pure sine
-        tones, generated in your browser.
+        The low note is {STREAMING.lowHz} Hz and is 6 dB louder than the high one. The high note
+        starts {STREAMING.defaultSemitones} semitones above it, near {Math.round(highDefault)}{" "}
+        Hz, and the slider moves it from the same note up to two octaves higher. Each note has a{" "}
+        {STREAMING.fadeMs} ms rise and fall. These settings follow the recorded galloping
+        demonstration in Bregman and Ahad (1996). Pure sine tones, generated in your browser.
       </p>
       <p>
         With a small gap the notes form one galloping beat, like a horse. With a large gap you
@@ -138,8 +143,8 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
   </Disclosure>
   <Fragment slot="caption">
     After van Noorden's galloping rhythm (1975) and Bregman's account of auditory streaming. The
-    tones here are our own synthesis with the parameters above, not a recording from either
-    source.
+    tones here are our own synthesis, with settings matched to the recorded demonstration by
+    Bregman and Ahad (1996), not a recording from any of these sources.
   </Fragment>
 </IllustrationFigure>
 
@@ -151,7 +156,7 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
     illustrationRoot,
   } from "~/scripts/illustration"
   import { audioAvailable, playSamples, stopAudio } from "~/scripts/audio"
-  import { renderStreaming, streamingHighHz } from "~/scripts/audio-synth"
+  import { STREAMING, renderStreaming, streamingHighHz } from "~/scripts/audio-synth"
 
   const root = illustrationRoot("auditory-streaming")
   if (root) {
@@ -162,6 +167,7 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
     const label = find<SVGTextElement>(root, "#auditory-streaming-b-label")
     const highs = Array.from(root.querySelectorAll<SVGRectElement>("rect[data-high]"))
     const baseline = 190
+    const scale = 6
     let gap = Number(slider.value)
 
     const setPlaying = (on: boolean) => {
@@ -201,14 +207,14 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
 
     bindSlider(slider, (value) => {
       gap = value
-      const y = baseline - value * 10
+      const y = baseline - value * scale
       for (const bar of highs) bar.setAttribute("y", String(y - 8))
       label.setAttribute("y", String(y + 5))
       const hz = streamingHighHz(value)
       readout.textContent =
         value === 0
-          ? `Both notes are 440 Hz: the same note.`
-          : `High note ${Math.round(hz)} Hz, ${value} semitone${value === 1 ? "" : "s"} above the low note (440 Hz).`
+          ? `Both notes are ${STREAMING.lowHz} Hz: the same note.`
+          : `High note ${Math.round(hz)} Hz, ${value} semitone${value === 1 ? "" : "s"} above the low note (${STREAMING.lowHz} Hz).`
       return value === 0 ? "0 semitones, the same note" : `${value} semitones`
     })
     slider.addEventListener("input", () => {
