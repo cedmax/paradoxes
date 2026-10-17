@@ -1,0 +1,187 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+
+const families = [
+  { type: "BB", children: ["B", "B"], family: 1, encounters: 2 },
+  { type: "BG", children: ["B", "G"], family: 1, encounters: 1 },
+  { type: "GB", children: ["G", "B"], family: 1, encounters: 1 },
+  { type: "GG", children: ["G", "G"], family: 0, encounters: 0 },
+]
+const familyOutcomes = [
+  { type: "BB", detail: "Two boys", both: true },
+  { type: "BG", detail: "One boy", both: false },
+  { type: "GB", detail: "One boy", both: false },
+]
+const childOutcomes = [
+  { type: "BB", detail: "Older boy", both: true },
+  { type: "BB", detail: "Younger boy", both: true },
+  { type: "BG", detail: "Older boy", both: false },
+  { type: "GB", detail: "Younger boy", both: false },
+]
+---
+
+<IllustrationFigure
+  name="boy-or-girl"
+  lead="How you find out about the boy changes what you count"
+>
+  <p class="text-base leading-normal">
+    Imagine Mr Smith chosen at random from families with two children. All four family types are
+    equally likely. B = boy, G = girl, older child first.
+  </p>
+  <div class="flex flex-wrap gap-2" role="group" aria-label="How you discover the boy">
+    <button id="boy-or-girl-family" type="button" class="btn-toggle" aria-pressed="true">
+      Ask if they have a boy
+    </button>
+    <button id="boy-or-girl-child" type="button" class="btn-toggle" aria-pressed="false">
+      Meet one child at random
+    </button>
+  </div>
+
+  <div class="flex flex-col gap-3" aria-live="polite">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+      <p id="boy-or-girl-count" class="text-xl font-bold">
+        3 families that answer yes
+      </p>
+      <p id="boy-or-girl-unit" class="text-base">
+        One box per family
+      </p>
+    </div>
+    <div id="boy-or-girl-family-outcomes" class="grid grid-cols-3 gap-2 [&[hidden]]:hidden">
+      {familyOutcomes.map((outcome) => (
+        <div
+          class:list={[
+            "flex min-h-24 flex-col items-center justify-center gap-1 border-2 border-ink p-2 text-center",
+            outcome.both && "bg-series-gold",
+          ]}
+        >
+          <span class="text-2xl font-bold">{outcome.type}</span>
+          <span class="text-sm">{outcome.detail}</span>
+        </div>
+      ))}
+    </div>
+    <div
+      id="boy-or-girl-child-outcomes"
+      class="grid grid-cols-2 gap-2 sm:grid-cols-4 [&[hidden]]:hidden"
+      hidden
+    >
+      {childOutcomes.map((outcome) => (
+        <div
+          class:list={[
+            "flex min-h-24 flex-col items-center justify-center gap-1 border-2 border-ink p-2 text-center",
+            outcome.both && "bg-series-gold",
+          ]}
+        >
+          <span class="text-2xl font-bold">{outcome.type}</span>
+          <span class="text-sm">{outcome.detail}</span>
+        </div>
+      ))}
+    </div>
+    <p id="boy-or-girl-process" class="text-base leading-normal">
+      Three families can answer yes. Each family gets one box, including BB.
+    </p>
+  </div>
+
+  <div class="border-l-4 border-series-gold pl-4" aria-live="polite">
+    <p class="text-base">Chance both children are boys</p>
+    <p id="boy-or-girl-result" class="text-2xl font-bold">
+      1 of 3 boxes = one in three
+    </p>
+    <p id="boy-or-girl-reason" class="text-base leading-normal">
+      Just one of the three family boxes is BB.
+    </p>
+  </div>
+
+  <details class="group">
+    <summary class="cursor-pointer font-bold underline">
+      See the four possible family types
+    </summary>
+    <div class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      {families.map((family) => (
+        <div
+          class:list={[
+            "border-2 border-ink p-3 text-center",
+            family.family === 0 && "opacity-40",
+          ]}
+          data-family-card
+          data-family={family.family}
+          data-encounters={family.encounters}
+        >
+          <p class="font-bold">{family.type}</p>
+          <div class="my-3 flex justify-center gap-2">
+            {family.children.map((child) => (
+              <span
+                class:list={[
+                  "flex size-10 items-center justify-center border border-ink font-bold text-paper",
+                  child === "B" ? "bg-series-gold" : "bg-series-blue",
+                ]}
+                data-girl={child === "G" ? "true" : undefined}
+              >
+                {child}
+              </span>
+            ))}
+          </div>
+          <p class="text-sm font-bold" data-family-weight>
+            {family.family === 0 ? "Ruled out" : "1 family that answers yes"}
+          </p>
+        </div>
+      ))}
+    </div>
+  </details>
+
+  <Fragment slot="caption">
+    Asking about a family counts each family that answers yes once. Meeting a boy counts
+    possible encounters: BB supplies two boys who might be met, while BG and GB supply one each.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("boy-or-girl")
+  if (root) {
+    const familyButton = find<HTMLButtonElement>(root, "#boy-or-girl-family")
+    const childButton = find<HTMLButtonElement>(root, "#boy-or-girl-child")
+    const count = find<HTMLElement>(root, "#boy-or-girl-count")
+    const unit = find<HTMLElement>(root, "#boy-or-girl-unit")
+    const familyOutcomes = find<HTMLElement>(root, "#boy-or-girl-family-outcomes")
+    const childOutcomes = find<HTMLElement>(root, "#boy-or-girl-child-outcomes")
+    const process = find<HTMLElement>(root, "#boy-or-girl-process")
+    const cards = root.querySelectorAll<HTMLElement>("[data-family-card]")
+    const girls = root.querySelectorAll<HTMLElement>("[data-girl]")
+    const result = find<HTMLElement>(root, "#boy-or-girl-result")
+    const reason = find<HTMLElement>(root, "#boy-or-girl-reason")
+
+    const show = (meetChild: boolean) => {
+      familyButton.setAttribute("aria-pressed", String(!meetChild))
+      childButton.setAttribute("aria-pressed", String(meetChild))
+      familyOutcomes.hidden = meetChild
+      childOutcomes.hidden = !meetChild
+      count.textContent = meetChild ? "4 possible boy encounters" : "3 families that answer yes"
+      unit.textContent = meetChild ? "One box per boy you could meet" : "One box per family"
+      process.textContent = meetChild
+        ? "BB has two boys you might meet, so it gets two boxes. BG and GB get one each."
+        : "Three families can answer yes. Each family gets one box, including BB."
+      result.textContent = meetChild
+        ? "2 of 4 boxes = one in two"
+        : "1 of 3 boxes = one in three"
+      reason.textContent = meetChild
+        ? "Two of the four equally likely boy encounters are from BB."
+        : "Just one of the three family boxes is BB."
+
+      girls.forEach((girl) => girl.classList.toggle("opacity-30", meetChild))
+      cards.forEach((card) => {
+        const weight = meetChild ? Number(card.dataset.encounters) : Number(card.dataset.family)
+        const label = find<HTMLElement>(card, "[data-family-weight]")
+        label.textContent =
+          weight === 0
+            ? "Ruled out"
+            : meetChild
+              ? weight + (weight === 1 ? " way to meet a boy" : " ways to meet a boy")
+              : "1 family that answers yes"
+      })
+    }
+
+    familyButton.addEventListener("click", () => show(false))
+    childButton.addEventListener("click", () => show(true))
+  }
+</script>
