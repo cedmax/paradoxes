@@ -1,0 +1,168 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="elevator-paradox"
+  lead="The lift spends more time on one side of your floor"
+>
+  <p class="text-base leading-normal">
+    One lift travels up and down at a constant speed without stopping. Move the floor where you
+    wait.
+  </p>
+  <SvgFigure
+    name="elevator-route"
+    viewBox="0 0 280 280"
+    class="mx-auto w-full max-w-xs"
+    title="A lift shaft showing the journey above and below the waiting floor"
+    desc="The blue segment above the waiting floor ends in a downward arrival. The gold segment below ends in an upward arrival. A low floor has much more travel above it."
+  >
+    <g stroke={stroke} stroke-width="3" fill="none">
+      <path d="M100 30 V240 M154 30 V240 M84 30 H170 M84 240 H170" />
+    </g>
+    <g font-size="16" fill="currentColor">
+      <text x="18" y="36">
+        Top
+      </text>
+      <text x="10" y="246">
+        Bottom
+      </text>
+    </g>
+    <line
+      id="elevator-paradox-above"
+      x1="127"
+      y1="30"
+      x2="127"
+      y2="198"
+      stroke={series.blue}
+      stroke-width="16"
+    />
+    <line
+      id="elevator-paradox-below"
+      x1="127"
+      y1="198"
+      x2="127"
+      y2="240"
+      stroke={series.gold}
+      stroke-width="16"
+    />
+    <path
+      id="elevator-paradox-floor"
+      d="M80 198 H180"
+      fill="none"
+      stroke={stroke}
+      stroke-width="3"
+      stroke-dasharray="5 4"
+    />
+    <text
+      id="elevator-paradox-floor-label"
+      x="188"
+      y="203"
+      font-size="17"
+      font-weight="bold"
+      fill="currentColor"
+    >
+      2/10
+    </text>
+    <text x="127" y="268" text-anchor="middle" font-size="14" fill="currentColor">
+      Lift shaft
+    </text>
+  </SvgFigure>
+  <div class="flex flex-col gap-3">
+    <p class="text-base font-bold">Time between passes at your floor</p>
+    <p class="text-base leading-normal">
+      After an upward pass, the lift travels above you before returning down. After a downward
+      pass, it travels below you before returning up.
+    </p>
+    <div class="flex h-9 overflow-hidden border-2 border-ink" aria-hidden="true">
+      <div
+        id="elevator-paradox-gap-down"
+        class="h-full shrink-0 bg-series-blue"
+        style="width: 80%"
+      ></div>
+      <div
+        id="elevator-paradox-gap-up"
+        class="h-full shrink-0 bg-series-gold"
+        style="width: 20%"
+      ></div>
+    </div>
+    <div class="grid grid-cols-2 gap-3 text-base leading-normal">
+      <div class="border-l-4 border-series-blue pl-3">
+        <p>Upward pass → next downward pass</p>
+        <p id="elevator-paradox-down" class="font-bold">
+          80% chance next lift goes down
+        </p>
+      </div>
+      <div class="border-l-4 border-series-gold pl-3">
+        <p>Downward pass → next upward pass</p>
+        <p id="elevator-paradox-up" class="font-bold">
+          20% chance next lift goes up
+        </p>
+      </div>
+    </div>
+  </div>
+  <Slider
+    id="elevator-paradox-position"
+    label="Waiting floor"
+    min={1}
+    max={9}
+    step={1}
+    value={2}
+    startLabel="Near bottom"
+    endLabel="Near top"
+    describedby="elevator-paradox-readout"
+  >
+    <p id="elevator-paradox-readout" class="text-base leading-normal" aria-live="polite">
+      Near the bottom, the longer wait ends with a downward pass.
+    </p>
+  </Slider>
+  <Fragment slot="caption">
+    The lift passes every floor once in each direction, but waits between passes are unequal.
+    The proportions assume constant speed and a random arrival time. Real lifts have stops and
+    dispatch systems.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("elevator-paradox")
+  if (root) {
+    const input = find<HTMLInputElement>(root, "#elevator-paradox-position")
+    const above = find<SVGLineElement>(root, "#elevator-paradox-above")
+    const below = find<SVGLineElement>(root, "#elevator-paradox-below")
+    const floor = find<SVGPathElement>(root, "#elevator-paradox-floor")
+    const label = find<SVGTextElement>(root, "#elevator-paradox-floor-label")
+    const downGap = find<HTMLElement>(root, "#elevator-paradox-gap-down")
+    const upGap = find<HTMLElement>(root, "#elevator-paradox-gap-up")
+    const downText = find<HTMLElement>(root, "#elevator-paradox-down")
+    const upText = find<HTMLElement>(root, "#elevator-paradox-up")
+    const readout = find<HTMLElement>(root, "#elevator-paradox-readout")
+    bindSlider(input, (position) => {
+      const y = 240 - 21 * position
+      const down = (10 - position) * 10
+      const up = position * 10
+      above.setAttribute("y2", String(y))
+      below.setAttribute("y1", String(y))
+      floor.setAttribute("d", "M80 " + y + " H180")
+      label.setAttribute("y", String(y + 5))
+      label.textContent = position + "/10"
+      downGap.style.width = down + "%"
+      upGap.style.width = up + "%"
+      downText.textContent = down + "% chance next lift goes down"
+      upText.textContent = up + "% chance next lift goes up"
+      readout.textContent =
+        down === up
+          ? "Halfway up, the intervals are equally long."
+          : "The longer journey is " +
+            (down > up ? "above" : "below") +
+            " this floor, so a random wait is more likely to end with an " +
+            (down > up ? "downward" : "upward") +
+            " pass."
+      return "Floor " + position + " of 10: " + down + "% down and " + up + "% up"
+    })
+  }
+</script>
