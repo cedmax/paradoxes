@@ -7,91 +7,96 @@ const frames = [
   {
     id: "full-draw",
     label: "At full draw: points away from the target",
-    title: "Straight arrow pointing to one side of the target",
-    desc: "The arrow starts at the string, passes above the bow grip, and points away from the dashed target line.",
-    shaft: "M34 63 L430 19",
-    head: "M436 18 L422 14 L425 25 Z",
-    feathers: "M37 62 L29 56 M37 64 L30 70",
+    title: "Arrow at full draw, pointing above the target line",
+    desc: "A straight arrow points slightly away from the dashed target line. The bow grip is below the shaft.",
+    shaft: "M32 64 L418 44",
+    head: { x: 418, y: 44, angle: -3 },
+    tail: { x: 32, y: 64, angle: -3 },
   },
   {
     id: "release",
-    label: "On release: bends around the grip",
-    title: "Arrow flexing gently to clear the bow",
-    desc: "The arrow has moved forward. Its middle bends to the side of the bow grip rather than passing through it.",
-    shaft: "M80 63 C121 63 143 43 181 43 C224 43 248 62 296 63 S365 63 436 63",
-    head: "M443 63 L429 58 L429 68 Z",
-    feathers: "M83 62 L76 56 M83 64 L76 70",
+    label: "On release: flexes to clear the bow",
+    title: "Arrow curving gently around the bow grip",
+    desc: "The moving arrow arches slightly away from the gold grip, then curves back towards the dashed target line.",
+    shaft: "M84 65 C120 65 142 54 185 54 C230 54 255 66 298 65 S393 65 434 65",
+    head: { x: 434, y: 65, angle: 0 },
+    tail: { x: 84, y: 65, angle: 0 },
   },
   {
     id: "clearing",
-    label: "Clearing the bow: still slightly bent",
-    title: "Arrow continuing forward while clearing the grip",
-    desc: "The arrow's back is beside the bow grip as the shaft flexes gently towards the target line.",
-    shaft: "M145 43 C182 43 204 46 249 57 S352 65 463 63",
-    head: "M470 63 L456 58 L456 68 Z",
-    feathers: "M148 42 L141 36 M148 44 L141 50",
+    label: "Clearing the grip: still gently bent",
+    title: "Rear of the arrow passing beside the grip",
+    desc: "The rear of the arrow is just behind the grip, still bent to clear it, while the point is aligned with the target line.",
+    shaft: "M155 55 C199 52 213 55 256 61 S374 65 468 65",
+    head: { x: 468, y: 65, angle: 0 },
+    tail: { x: 155, y: 55, angle: -2 },
   },
   {
     id: "flight",
-    label: "In flight: travels towards the target",
-    title: "Arrow past the bow and moving along the target line",
-    desc: "The arrow is fully beyond the grip, travelling along the target line with a slight residual flex.",
-    shaft: "M233 63 C280 59 319 61 359 64 S447 62 497 63",
-    head: "M504 63 L490 58 L490 68 Z",
-    feathers: "M236 62 L229 56 M236 64 L229 70",
+    label: "In flight: small oscillations remain",
+    title: "Arrow entirely past the bow, moving towards the target",
+    desc: "The arrow has cleared the fixed grip and travels along the target line, with only a small remaining bend.",
+    shaft: "M244 65 C280 62 303 62 343 65 S418 67 489 65",
+    head: { x: 489, y: 65, angle: 0 },
+    tail: { x: 244, y: 65, angle: -2 },
   },
 ] as const
 ---
 
 <IllustrationFigure name="archers-paradox" lead="The arrow flexes past the bow, not through it">
   <p class="text-base leading-normal">
-    Seen from above: the gold circle is the bow grip, and the dashed line points to the target.
-    Each picture shows a later moment of the same shot.
+    Seen from above: the gold circle is the stationary bow grip, and the dashed line points to
+    the target. Each frame shows a later moment of the same shot.
   </p>
   <div class="grid gap-4">
     {frames.map((frame, index) => (
       <div class="grid gap-2">
         <p class="text-base font-bold">
-          ${index + 1}. ${frame.label}
+          {index + 1}. {frame.label}
         </p>
         <SvgFigure
           name={`archers-paradox-${frame.id}`}
           class="w-full max-w-2xl"
-          viewBox="0 0 540 96"
+          viewBox="0 0 520 100"
           title={frame.title}
           desc={frame.desc}
         >
           <path
-            d="M22 63 H512"
+            d="M22 71 H502"
             stroke={stroke}
             stroke-width="1.2"
             stroke-dasharray="6 6"
-            opacity=".5"
+            opacity=".4"
             fill="none"
           />
-          <circle cx="188" cy="63" r="12" stroke={stroke} stroke-width="2" fill={series.gold} />
+          <path
+            d="M498 67 L505 71 L498 75"
+            stroke={stroke}
+            stroke-width="1.1"
+            fill="none"
+          />
+          <circle cx="185" cy="76" r="12" fill="var(--color-paper)" />
+          <circle cx="185" cy="76" r="9" stroke={stroke} stroke-width="2" fill={series.gold} />
           <path
             d={frame.shaft}
             fill="none"
             stroke={series.blue}
-            stroke-width="4"
+            stroke-width="3.5"
             stroke-linecap="round"
           />
-          <path d={frame.head} fill={series.blue} />
-          <path
-            d={frame.feathers}
-            fill="none"
-            stroke={series.blue}
-            stroke-width="1.8"
-            stroke-linecap="round"
-          />
+          <g transform={`translate(${frame.head.x} ${frame.head.y}) rotate(${frame.head.angle})`}>
+            <path d="M13 0 L-3 -5 L0 0 L-3 5 Z" fill={series.blue} />
+          </g>
+          <g transform={`translate(${frame.tail.x} ${frame.tail.y}) rotate(${frame.tail.angle})`}>
+            <path d="M4 0 L-7 -6 L-2 -1 Z M4 0 L-7 6 L-2 1 Z" fill={series.blue} />
+          </g>
         </SvgFigure>
       </div>
     ))}
   </div>
   <Fragment slot="caption">
-    The arrow does not follow the direction it initially points. Its flexible shaft bends past
-    the bow grip, then oscillates as it travels towards the target. The bend is shown
-    schematically.
+    The arrow does not follow the direction it initially points. Its flexible shaft bends
+    around the bow grip, then oscillates as it travels towards the target. The bends are
+    shown schematically.
   </Fragment>
 </IllustrationFigure>
