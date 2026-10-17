@@ -1,0 +1,227 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { illusionSurface, series, stroke } from "~/data/palette"
+
+const people = [
+  { x: 175, y: 105, name: "Sam", degree: 4, friendAverage: 1, color: series.gold },
+  { x: 55, y: 42, name: "Ada", degree: 1, friendAverage: 4, color: series.blue },
+  { x: 295, y: 42, name: "Bo", degree: 1, friendAverage: 4, color: series.blue },
+  { x: 55, y: 174, name: "Cy", degree: 1, friendAverage: 4, color: series.blue },
+  { x: 295, y: 174, name: "Dee", degree: 1, friendAverage: 4, color: series.blue },
+]
+const links = people.slice(1).map((person) => {
+  const dx = person.x - people[0].x
+  const dy = person.y - people[0].y
+  const inset = 29 / Math.hypot(dx, dy)
+  return {
+    ...person,
+    x1: people[0].x + dx * inset,
+    y1: people[0].y + dy * inset,
+    x2: person.x - dx * inset,
+    y2: person.y - dy * inset,
+  }
+})
+---
+
+<IllustrationFigure name="friendship-paradox" lead="How many friends do your friends have?">
+  <SvgFigure
+    name="friendship-network"
+    class="mx-auto w-full max-w-sm"
+    viewBox="0 0 350 230"
+    title="Five people in a star-shaped friendship network"
+    desc="Sam has four friends. Ada, Bo, Cy and Dee each have one friend: Sam. Select any person to highlight their connections and comparison row."
+  >
+    {links.map((person) => (
+      <line
+        x1={person.x1}
+        y1={person.y1}
+        x2={person.x2}
+        y2={person.y2}
+        stroke={stroke}
+        stroke-width="5"
+        data-friendship-link={person.name}
+      />
+    ))}
+    {people.map((person) => (
+      <g
+        data-friendship-node={person.name}
+        role="button"
+        tabindex="0"
+        aria-pressed={person.name === "Sam"}
+        aria-label={`Select ${person.name}: ${person.degree} friends; their friends have ${person.friendAverage} on average`}
+        class="cursor-pointer focus-visible:outline-4 focus-visible:outline-accent"
+      >
+        <circle
+          cx={person.x}
+          cy={person.y}
+          r="33"
+          fill="none"
+          stroke={series.red}
+          stroke-width="3"
+          visibility={person.name === "Sam" ? "visible" : "hidden"}
+          data-friendship-ring={person.name}
+        />
+        <circle
+          cx={person.x}
+          cy={person.y}
+          r="27"
+          fill={person.color}
+          stroke={stroke}
+          stroke-width="2"
+        />
+        <text
+          x={person.x}
+          y={person.y + 5}
+          fill={illusionSurface.paper}
+          font-size="16"
+          font-weight="bold"
+          text-anchor="middle"
+        >
+          {person.name}
+        </text>
+        <text
+          x={person.x}
+          y={person.y + 43}
+          fill="currentColor"
+          font-size="13"
+          text-anchor="middle"
+        >
+          {person.degree} {person.degree === 1 ? "friend" : "friends"}
+        </text>
+      </g>
+    ))}
+  </SvgFigure>
+
+  <p class="text-base leading-normal">
+    Select a person in the network or a row below. The two views stay in sync.
+  </p>
+  <div class="flex flex-col gap-2">
+    <p class="text-base font-bold">Compare all five people</p>
+    <div class="grid grid-cols-[3.5rem_minmax(0,1fr)_minmax(0,1fr)] items-end gap-2 px-2 text-sm font-bold sm:grid-cols-[4.25rem_minmax(0,1fr)_minmax(0,1fr)]">
+      <span>Person</span>
+      <span>Own friends</span>
+      <span>Friends' average</span>
+    </div>
+    <div class="flex flex-col gap-1">
+      {people.map((person) => (
+        <button
+          type="button"
+          class="grid w-full grid-cols-[3.5rem_minmax(0,1fr)_minmax(0,1fr)] items-center gap-2 border-2 border-transparent px-2 py-2 text-left hover:border-ink focus-visible:outline-4 focus-visible:outline-accent aria-pressed:border-accent sm:grid-cols-[4.25rem_minmax(0,1fr)_minmax(0,1fr)]"
+          data-friendship-row={person.name}
+          aria-pressed={person.name === "Sam"}
+          aria-label={`${person.name}: ${person.degree} friends, friends' average ${person.friendAverage}`}
+        >
+          <span class="font-bold">{person.name}</span>
+          <span class="flex min-w-0 items-center gap-1">
+            <span class="block h-4 min-w-0 flex-1 bg-ink/10">
+              <span
+                class="block h-full bg-series-gold"
+                style={`width: ${person.degree * 25}%`}
+              ></span>
+            </span>
+            <span class="w-3 shrink-0 text-right font-mono text-xs">{person.degree}</span>
+          </span>
+          <span class="flex min-w-0 items-center gap-1">
+            <span class="block h-4 min-w-0 flex-1 bg-ink/10">
+              <span
+                class="block h-full bg-series-blue"
+                style={`width: ${person.friendAverage * 25}%`}
+              ></span>
+            </span>
+            <span class="w-3 shrink-0 text-right font-mono text-xs">
+              {person.friendAverage}
+            </span>
+          </span>
+        </button>
+      ))}
+    </div>
+    <p id="friendship-paradox-description" class="text-base leading-normal" aria-live="polite">
+      Sam has four friends, but each of them has only one friend: Sam.
+    </p>
+  </div>
+
+  <div class="flex flex-col gap-3 border-t-2 border-ink pt-4">
+    <p class="text-base font-bold">Across all five people</p>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div class="flex flex-col gap-1">
+        <p class="flex-1 text-base">Friends per person</p>
+        <p class="text-2xl font-bold">1.6</p>
+        <p class="text-sm">Sam has four; everyone else has one.</p>
+      </div>
+      <div class="flex flex-col gap-1">
+        <p class="flex-1 text-base">Friends in everyone's lists, pooled</p>
+        <p class="text-2xl font-bold">2.5</p>
+        <p class="text-sm">Sam appears four times, each other person once.</p>
+      </div>
+      <div class="flex flex-col gap-1">
+        <p class="flex-1 text-base">Average of each person's friends</p>
+        <p class="text-2xl font-bold">3.4</p>
+        <p class="text-sm">Give each person's friends' average equal weight.</p>
+      </div>
+    </div>
+    <p class="text-base leading-normal">
+      For four people the friends' bar is longer. Only Sam sees the reverse. Both ways of
+      averaging friends give a higher result than 1.6.
+    </p>
+  </div>
+  <Fragment slot="caption">
+    Friends are not a random sample of people. Well-connected people appear in more people's
+    friend groups, so the averages differ. It does not mean everyone's friends are more popular.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("friendship-paradox")
+  if (root) {
+    const rows = root.querySelectorAll<HTMLButtonElement>("[data-friendship-row]")
+    const nodes = root.querySelectorAll<SVGGElement>("[data-friendship-node]")
+    const rings = root.querySelectorAll<SVGCircleElement>("[data-friendship-ring]")
+    const links = root.querySelectorAll<SVGLineElement>("[data-friendship-link]")
+    const description = find<HTMLElement>(root, "#friendship-paradox-description")
+
+    const show = (name: string) => {
+      const sam = name === "Sam"
+      rows.forEach((row) => {
+        row.setAttribute("aria-pressed", String(row.dataset.friendshipRow === name))
+      })
+      nodes.forEach((node) => {
+        node.setAttribute("aria-pressed", String(node.dataset.friendshipNode === name))
+        node.classList.toggle(
+          "opacity-50",
+          !sam && node.dataset.friendshipNode !== name && node.dataset.friendshipNode !== "Sam",
+        )
+      })
+      rings.forEach((ring) => {
+        ring.setAttribute(
+          "visibility",
+          ring.dataset.friendshipRing === name ? "visible" : "hidden",
+        )
+      })
+      links.forEach((link) => {
+        const highlighted = sam || link.dataset.friendshipLink === name
+        link.setAttribute("stroke-width", highlighted ? "5" : "2")
+        link.setAttribute("stroke-opacity", highlighted ? "1" : "0.35")
+      })
+      description.textContent = sam
+        ? "Sam has four friends, but each of them has only one friend: Sam."
+        : name + "'s only friend is Sam, who has four friends."
+    }
+
+    rows.forEach((row) => {
+      row.addEventListener("click", () => show(row.dataset.friendshipRow ?? "Sam"))
+    })
+    nodes.forEach((node) => {
+      node.addEventListener("click", () => show(node.dataset.friendshipNode ?? "Sam"))
+      node.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault()
+          show(node.dataset.friendshipNode ?? "Sam")
+        }
+      })
+    })
+    show("Sam")
+  }
+</script>
