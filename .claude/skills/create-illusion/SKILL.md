@@ -3,7 +3,7 @@ name: create-illusion
 description: Create, refine or review a Logic Benders illusion (visual or auditory), preferring licensed originals and including accessible interaction, factual reveal, credit and source checks.
 ---
 
-# Create a visual illusion
+# Create an illusion (visual or auditory)
 
 Read `CLAUDE.md`, `docs/architecture.md`, `src/content.config.ts` and the
 `build-illustration` skill before working. Never introduce the term "exhibit".

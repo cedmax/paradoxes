@@ -1,0 +1,275 @@
+---
+import Disclosure from "~/components/illustration-kit/Disclosure.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+import { TRITONE_ENVELOPES } from "~/scripts/audio-synth"
+
+const directions = [
+  { value: "up", label: "Up: the second tone is higher" },
+  { value: "down", label: "Down: the second tone is lower" },
+]
+---
+
+<IllustrationFigure
+  name="tritone-paradox"
+  lead="Two tones, one after the other. Is the second higher or lower than the first?"
+>
+  <p class="text-base">
+    Use headphones or speakers at a comfortable volume, with any spatial or surround effect
+    turned off. A pair lasts one second. Try it with someone else if you can, and compare
+    answers.
+  </p>
+  <div class="flex flex-wrap items-center gap-3">
+    <button id="tritone-paradox-play" type="button" class="btn-ghost">
+      Play a pair
+    </button>
+  </div>
+  <p id="tritone-paradox-unsupported" class="text-base" hidden>
+    This browser cannot play the sound. The picture below still shows what the tones are made
+    of.
+  </p>
+  <ListenerChoice
+    name="tritone-paradox"
+    question="Which way did it step?"
+    options={directions}
+  />
+  <div id="tritone-paradox-reveal" class="flex flex-col gap-6" hidden>
+    <div class="flex flex-col gap-3">
+      <p class="font-bold">The same two tones, the other way round</p>
+      <p class="text-base">
+        Now the second tone comes first and the first comes second. Nothing else changes.
+      </p>
+      <div class="flex flex-wrap items-center gap-3">
+        <button id="tritone-paradox-reverse" type="button" class="btn-ghost">
+          Play them reversed
+        </button>
+        <button id="tritone-paradox-next" type="button" class="btn-ghost">
+          Try a different pair
+        </button>
+      </div>
+      <ListenerChoice
+        name="tritone-reverse"
+        question="And this time?"
+        options={directions}
+        skipLabel="I can't tell"
+      />
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="font-bold">What each tone is made of</p>
+      <SvgFigure
+        name="tritone-paradox"
+        viewBox="0 0 600 250"
+        class="mx-auto w-full max-w-xl"
+        title="Spectrum of the two tones: six octave-spaced components under a bell-shaped envelope"
+        desc="Frequency runs left to right on a logarithmic scale. Each tone is six vertical bars, one per octave. The curve is the bell-shaped envelope that sets their strengths. Both tones use the same envelope. The slider moves the envelope up or down."
+      >
+        <line x1="40" y1="200" x2="560" y2="200" stroke={stroke} stroke-width="1"></line>
+        <path
+          id="tritone-paradox-envelope"
+          fill="none"
+          stroke={stroke}
+          stroke-width="2"
+          stroke-dasharray="5 4"
+        ></path>
+        <g id="tritone-paradox-bars" stroke-width="5">
+          <g id="tritone-paradox-first" stroke={series.red}></g>
+          <g id="tritone-paradox-second" stroke={series.blue}></g>
+        </g>
+        <text x="40" y="222" font-size="13" fill={stroke}>
+          100 Hz
+        </text>
+        <text x="236" y="222" font-size="13" fill={stroke}>
+          1 kHz
+        </text>
+        <text x="440" y="222" font-size="13" fill={stroke}>
+          5 kHz
+        </text>
+        <text x="40" y="244" font-size="13" fill={series.red}>
+          First tone
+        </text>
+        <text x="130" y="244" font-size="13" fill={series.blue}>
+          Second tone
+        </text>
+      </SvgFigure>
+      <Slider
+        id="tritone-paradox-envelope-slider"
+        label="Where the envelope sits"
+        min={0}
+        max={TRITONE_ENVELOPES.length - 1}
+        step={1}
+        value={2}
+        startLabel="Lowest: C4, 262 Hz"
+        endLabel="Highest: F#5, 740 Hz"
+        describedby="tritone-paradox-readout"
+        valuetext="Envelope centred on C5, 523 Hz"
+      >
+        <p id="tritone-paradox-readout" class="text-base" aria-live="polite"></p>
+      </Slider>
+      <div class="flex flex-wrap items-center gap-3">
+        <button id="tritone-paradox-replay" type="button" class="btn-ghost">
+          Play this pair with this envelope
+        </button>
+      </div>
+      <p class="text-base">
+        The two tones keep their note names whichever way the envelope moves. In Deutsch's
+        studies, many listeners judged the direction much the same wherever it sat.
+      </p>
+    </div>
+  </div>
+  <Disclosure summary="Exact sound and a text description" slot="after">
+    <div class="flex flex-col gap-3 pt-3 text-base">
+      <p>
+        Each tone is six sine waves, an octave apart, so it has a clear note name but no clear
+        octave. Their strengths follow a raised-cosine curve on a logarithmic frequency scale
+        that covers six octaves, centred on C4, F#4, C5 or F#5. Each tone lasts 500 ms, with
+        nothing between the two, and the second tone is a half-octave (six semitones) from the
+        first. Both tones have the same loudness. We add 10 ms fades at the edges and the join,
+        which the published description does not mention, so the tones do not click.
+      </p>
+      <p>
+        The pair is chosen at random from the twelve note names, so you may hear C then F♯, D
+        then G♯, and so on. Listeners often disagree about the direction, so this page describes
+        the effect rather than telling you what you should hear.
+      </p>
+    </div>
+  </Disclosure>
+  <Fragment slot="caption">
+    Our own synthesis following the published recipe in Deutsch (1986, 1987, 1990, 1991), not a
+    recording from her site or her CD. Listen to her original demonstration on her{" "}
+    <a
+      href="https://deutsch.ucsd.edu/psychology/play.php?i=6206"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      website
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import {
+    bindListenerChoice,
+    bindSlider,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
+  import { audioAvailable, playSamples } from "~/scripts/audio"
+  import {
+    NOTE_NAMES,
+    TRITONE_ENVELOPES,
+    renderTritonePair,
+    tritonePartials,
+  } from "~/scripts/audio-synth"
+
+  const root = illustrationRoot("tritone-paradox")
+  if (root) {
+    const play = find<HTMLButtonElement>(root, "#tritone-paradox-play")
+    const reveal = find<HTMLElement>(root, "#tritone-paradox-reveal")
+    const reverse = find<HTMLButtonElement>(root, "#tritone-paradox-reverse")
+    const next = find<HTMLButtonElement>(root, "#tritone-paradox-next")
+    const replay = find<HTMLButtonElement>(root, "#tritone-paradox-replay")
+    const slider = find<HTMLInputElement>(root, "#tritone-paradox-envelope-slider")
+    const readout = find<HTMLElement>(root, "#tritone-paradox-readout")
+    const envelopePath = find<SVGPathElement>(root, "#tritone-paradox-envelope")
+    const firstBars = find<SVGGElement>(root, "#tritone-paradox-first")
+    const secondBars = find<SVGGElement>(root, "#tritone-paradox-second")
+
+    let firstPitchClass = Math.floor(Math.random() * 12)
+    let envelope = 2
+    let answers: { forward?: string; reversed?: string } = {}
+    const labels: Record<string, string> = { up: "rose", down: "fell", skip: "" }
+    const name = (pc: number) => NOTE_NAMES[((pc % 12) + 12) % 12].replace("#", "♯")
+
+    const playPair = (reversed: boolean) =>
+      playSamples((rate) =>
+        renderTritonePair(
+          reversed ? firstPitchClass + 6 : firstPitchClass,
+          TRITONE_ENVELOPES[envelope].semitones,
+          rate,
+        ),
+      )
+
+    const choices = bindListenerChoice(root, "tritone-paradox", (value) => {
+      answers.forward = value
+      reveal.hidden = false
+      return value === "skip"
+        ? "The controls below still work without the first answer."
+        : `You heard it ${labels[value]}.`
+    })
+    const reverseChoices = bindListenerChoice(root, "tritone-reverse", (value) => {
+      answers.reversed = value
+      if (value === "skip" || !answers.forward || answers.forward === "skip") return
+      return answers.forward === value
+        ? "You heard both orders go the same way. Not every listener hears a consistent direction."
+        : "You heard opposite directions for the two orders. That is the usual result, although which tone counts as higher differs between listeners."
+    })
+
+    const draw = () => {
+      const { semitones, name: envelopeName, hz } = TRITONE_ENVELOPES[envelope]
+      const fmin = hz / 8
+      const x = (f: number) => 40 + (Math.log2(f / 30) / Math.log2(200)) * 520
+      // The bell-shaped envelope across its six octaves.
+      const points = Array.from({ length: 61 }, (_, i) => {
+        const f = fmin * 2 ** (i / 10)
+        const a = 0.5 - 0.5 * Math.cos((2 * Math.PI * i) / 60)
+        return `${i === 0 ? "M" : "L"}${x(f).toFixed(1)} ${(200 - a * 150).toFixed(1)}`
+      })
+      envelopePath.setAttribute("d", points.join(" "))
+      const bars = (group: SVGGElement, pc: number, shift: number) => {
+        group.replaceChildren(
+          ...tritonePartials(pc, semitones).map(({ freq, amp }) => {
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line")
+            line.setAttribute("x1", String(x(freq) + shift))
+            line.setAttribute("x2", String(x(freq) + shift))
+            line.setAttribute("y1", "200")
+            line.setAttribute("y2", String(200 - amp * 150))
+            return line
+          }),
+        )
+      }
+      bars(firstBars, firstPitchClass, -3)
+      bars(secondBars, firstPitchClass + 6, 3)
+      const list = (pc: number) =>
+        tritonePartials(pc, semitones)
+          .map(({ freq, amp }) => `${Math.round(freq)} Hz (${Math.round(amp * 100)}%)`)
+          .join(", ")
+      readout.textContent = `Envelope centred on ${envelopeName} (${hz} Hz). First tone, ${name(firstPitchClass)}: ${list(firstPitchClass)}. Second tone, ${name(firstPitchClass + 6)}: ${list(firstPitchClass + 6)}.`
+    }
+
+    if (audioAvailable()) {
+      play.addEventListener("click", () => {
+        void playPair(false)
+        play.textContent = "Play it again"
+        choices.enable()
+      })
+      reverse.addEventListener("click", () => {
+        void playPair(true)
+        reverseChoices.enable()
+      })
+      replay.addEventListener("click", () => void playPair(false))
+    } else {
+      for (const button of [play, reverse, replay]) button.disabled = true
+      find<HTMLElement>(root, "#tritone-paradox-unsupported").hidden = false
+    }
+
+    next.addEventListener("click", () => {
+      firstPitchClass = (firstPitchClass + 1 + Math.floor(Math.random() * 10)) % 12
+      answers = {}
+      choices.reset()
+      reverseChoices.reset()
+      draw()
+      void (audioAvailable() && playPair(false))
+    })
+
+    bindSlider(slider, (value) => {
+      envelope = value
+      draw()
+      return `Envelope centred on ${TRITONE_ENVELOPES[value].name}, ${TRITONE_ENVELOPES[value].hz} Hz`
+    })
+  }
+</script>

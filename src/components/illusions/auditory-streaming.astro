@@ -1,0 +1,218 @@
+---
+import Disclosure from "~/components/illustration-kit/Disclosure.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+import { STREAMING } from "~/scripts/audio-synth"
+
+// Piano-roll geometry: eight slots across, two repeats of "A B A rest".
+const left = 60
+const slotWidth = 62
+const toneWidth = slotWidth * (STREAMING.toneMs / STREAMING.slotMs)
+const baseline = 190
+const slots = Array.from({ length: 8 }, (_, index) => ({
+  index,
+  role: ["A", "B", "A", "rest"][index % 4],
+  x: left + index * slotWidth,
+}))
+---
+
+<IllustrationFigure
+  name="auditory-streaming"
+  lead="Press Play and listen for ten seconds or so. What do you hear?"
+>
+  <p class="text-base">
+    {STREAMING.triplets} repeats of three beeps and a rest, at one steady speed. Use headphones
+    or speakers at a comfortable volume. Stop whenever you like.
+  </p>
+  <div class="flex flex-wrap items-center gap-3">
+    <button id="auditory-streaming-play" type="button" class="btn-ghost" aria-pressed="false">
+      Play
+    </button>
+  </div>
+  <p id="auditory-streaming-unsupported" class="text-base" hidden>
+    This browser cannot play the sound. The picture below still shows what changes.
+  </p>
+  <ListenerChoice
+    name="auditory-streaming"
+    question="What do you hear?"
+    options={[
+      { value: "one", label: "One galloping rhythm" },
+      { value: "two", label: "Two separate streams" },
+      { value: "flip", label: "It switches between the two" },
+    ]}
+  />
+  <div id="auditory-streaming-reveal" class="flex flex-col gap-4" hidden>
+    <SvgFigure
+      name="auditory-streaming"
+      viewBox="0 0 600 230"
+      class="mx-auto w-full max-w-xl"
+      title="Piano-roll picture of the pattern: low note, high note, low note, rest, repeated twice"
+      desc="Time runs left to right. The lower bars are the low note A, which never moves. The upper bars are the high note B. The slider raises or lowers B. The timing of every note stays the same."
+    >
+      <line
+        x1={left - 10}
+        y1={baseline}
+        x2={left + 8 * slotWidth}
+        y2={baseline}
+        stroke={stroke}
+        stroke-width="1"
+        stroke-dasharray="4 4"
+      ></line>
+      {slots.map(({ index, role, x }) => (
+        <>
+          {role === "A" && (
+            <rect
+              x={x}
+              y={baseline - 8}
+              width={toneWidth}
+              height="16"
+              fill={series.blue}
+              data-low
+            ></rect>
+          )}
+          {role === "B" && (
+            <rect
+              x={x}
+              y={baseline - 8}
+              width={toneWidth}
+              height="16"
+              fill={series.red}
+              data-high
+              data-index={index}
+            ></rect>
+          )}
+        </>
+      ))}
+      <text x="4" y={baseline + 5} font-size="14" fill={stroke}>
+        A
+      </text>
+      <text
+        id="auditory-streaming-b-label"
+        x="4"
+        y={baseline - 60}
+        font-size="14"
+        fill={stroke}
+      >
+        B
+      </text>
+      <text x={left} y="222" font-size="13" fill={stroke}>
+        time, one repeat every half second
+      </text>
+    </SvgFigure>
+    <Slider
+      id="auditory-streaming-gap"
+      label="Pitch gap between the two notes"
+      min={0}
+      max={STREAMING.maxSemitones}
+      step={1}
+      value={7}
+      startLabel="0: the same note"
+      endLabel="12: an octave apart"
+      describedby="auditory-streaming-readout"
+      valuetext="7 semitones"
+    >
+      <p id="auditory-streaming-readout" class="text-base" aria-live="polite"></p>
+    </Slider>
+    <p class="text-base">
+      Only the high note moves. The low note and every start time stay put. If the sound is
+      playing, it restarts when you move the slider.
+    </p>
+  </div>
+  <Disclosure summary="Exact sound and a text description" slot="after">
+    <div class="flex flex-col gap-3 pt-3 text-base">
+      <p>
+        Pattern, repeated {STREAMING.triplets} times: low note, high note, low note, rest. Each
+        slot lasts {STREAMING.slotMs} ms and each note {STREAMING.toneMs} ms, with 5 ms fades.
+        The low note is {STREAMING.lowHz} Hz. The high note starts 7 semitones above it, and the
+        slider moves it anywhere from the same note to an octave higher (880 Hz). Pure sine
+        tones, generated in your browser.
+      </p>
+      <p>
+        With a small gap the notes form one galloping beat, like a horse. With a large gap you
+        may hear a slow stream of high notes beside a faster stream of low ones.
+      </p>
+    </div>
+  </Disclosure>
+  <Fragment slot="caption">
+    After van Noorden's galloping rhythm (1975) and Bregman's account of auditory streaming. The
+    tones here are our own synthesis with the parameters above, not a recording from either
+    source.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import {
+    bindListenerChoice,
+    bindSlider,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
+  import { audioAvailable, playSamples, stopAudio } from "~/scripts/audio"
+  import { renderStreaming, streamingHighHz } from "~/scripts/audio-synth"
+
+  const root = illustrationRoot("auditory-streaming")
+  if (root) {
+    const play = find<HTMLButtonElement>(root, "#auditory-streaming-play")
+    const reveal = find<HTMLElement>(root, "#auditory-streaming-reveal")
+    const slider = find<HTMLInputElement>(root, "#auditory-streaming-gap")
+    const readout = find<HTMLElement>(root, "#auditory-streaming-readout")
+    const label = find<SVGTextElement>(root, "#auditory-streaming-b-label")
+    const highs = Array.from(root.querySelectorAll<SVGRectElement>("rect[data-high]"))
+    const baseline = 190
+    let gap = Number(slider.value)
+
+    const setPlaying = (on: boolean) => {
+      play.textContent = on ? "Stop" : "Play"
+      play.setAttribute("aria-pressed", String(on))
+    }
+    const start = async () => {
+      await playSamples((rate) => renderStreaming(gap, rate), {
+        loop: true,
+        onStop: () => setPlaying(false),
+      })
+      setPlaying(true)
+    }
+
+    const choices = bindListenerChoice(root, "auditory-streaming", (value) => {
+      reveal.hidden = false
+      return {
+        one: "One galloping rhythm is a common answer, especially when the notes are close in pitch.",
+        two: "Two streams is a common answer, especially when the notes are far apart in pitch.",
+        flip: "Switching is normal: this pattern can be heard either way, and what you hear can change as you listen.",
+        skip: "The picture and slider below still show what changes.",
+      }[value]
+    })
+
+    if (audioAvailable()) {
+      play.addEventListener("click", () => {
+        if (play.getAttribute("aria-pressed") === "true") stopAudio()
+        else {
+          void start()
+          choices.enable()
+        }
+      })
+    } else {
+      play.disabled = true
+      find<HTMLElement>(root, "#auditory-streaming-unsupported").hidden = false
+    }
+
+    bindSlider(slider, (value) => {
+      gap = value
+      const y = baseline - value * 10
+      for (const bar of highs) bar.setAttribute("y", String(y - 8))
+      label.setAttribute("y", String(y + 5))
+      const hz = streamingHighHz(value)
+      readout.textContent =
+        value === 0
+          ? `Both notes are 440 Hz: the same note.`
+          : `High note ${Math.round(hz)} Hz, ${value} semitone${value === 1 ? "" : "s"} above the low note (440 Hz).`
+      return value === 0 ? "0 semitones, the same note" : `${value} semitones`
+    })
+    slider.addEventListener("input", () => {
+      if (play.getAttribute("aria-pressed") === "true") void start()
+    })
+  }
+</script>

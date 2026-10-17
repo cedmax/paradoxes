@@ -1,30 +1,33 @@
 ---
 title: "Tritone paradox"
 titleAccent: "paradox"
-chapter: identity
-status: "explained"
+format: illusion
+chapter: shapes
+aka:
+  - "tritone illusion"
+  - "Deutsch tritone paradox"
+uniqueness: canonical
 simplification: light
 noMaths: true
-order: 140
+order: 330
 written: true
-sourcesVerified: true
-reviewed: false
 problem: "How can the same two tones sound as if they rise to one listener and fall to another?"
-claimA: "A fixed pair of tones must have the same apparent upward or downward direction for every listener."
-claimB: "The same carefully made pair can sound rising to one listener and falling to another."
-verdict: "The tones are designed to leave their octave uncertain, and listeners resolve that uncertainty differently."
-whatBreaks: "The assumption that every sound has an unambiguous pitch height that all listeners hear the same way."
-statusNote: "these specially constructed sounds can produce different direction judgements without the recorded notes changing."
-setup: "Play two special computer-made tones separated by half an octave. Each tone contains several copies of a note at different octaves, blended so no single octave stands out."
-whyWrong: "One listener hears a rise. Another hears a fall. The same recording has not changed, but each person has settled the ambiguous height differently."
-resolution:
-  - "The sounds are called Shepard tones. Their blended octaves make the direction of the step ambiguous, and listening habits can affect which interpretation dominates."
-  - "Diana Deutsch studied systematic differences between listeners. A normal pair of simple piano notes does not produce the same ambiguity."
-finePrint: "The tritone is an interval of six semitones. This effect requires carefully arranged complex tones, not merely any two notes spaced that far apart."
+why: "Each tone blends six copies of one note an octave apart, so its note name is clear but its octave is not. Listeners tend to hear some note names as higher than others, but where that boundary falls differs from person to person, so one listener's rise is another's fall. Deutsch found that the direction people hear is related to the pitch range of their speaking voice, and that listeners who grew up in California and in southern England tended to disagree. Whether speech experience is the explanation is a hypothesis. In her studies most listeners showed the effect, whatever their musical training."
 sources:
   - title: "Wikipedia: Tritone paradox"
     url: "https://en.wikipedia.org/wiki/Tritone_paradox"
   - title: "Diana Deutsch: Tritone Paradox"
     url: "https://deutsch.ucsd.edu/psychology/pages.php?i=206"
-    note: "The researcher’s account of the Shepard-tone experiment and why different listeners hear opposite directions."
+    note: "The researcher's account of the Shepard-tone experiment and why different listeners hear opposite directions."
+  - title: "Diana Deutsch: Tritone paradox sound file"
+    url: "https://deutsch.ucsd.edu/psychology/play.php?i=6206"
+    note: "Her own demonstration recording and listening notes. Not reused on this site."
+  - title: "Deutsch (1991): The tritone paradox: an influence of language on music perception"
+    url: "https://deutsch.ucsd.edu/pdf/MP-1991_8_335-347.pdf"
+    note: "Describes how the tones are built, and compares listeners from California and southern England."
+  - title: "Deutsch, North and Ray (1990): The tritone paradox: correlate with the listener's vocal range for speech"
+    url: "https://deutsch.ucsd.edu/pdf/MP-1990_7_371-384.pdf"
+    note: "Links the direction heard to the pitch range of the listener's speaking voice."
+sourcesVerified: true
+reviewed: false
 ---

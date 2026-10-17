@@ -75,9 +75,9 @@ in `src/styles/global.css`. `~` maps to `/src`.
 
 Routes (`/entries/<slug>/`) are stable: never rename an entry file without adding a redirect.
 
-## Visual illusions
+## Illusions
 
-Entry frontmatter uses `format: illusion` for visual illusions. Legacy entries omit `format`
+Entry frontmatter uses `format: illusion` for visual and auditory illusions. Legacy entries omit `format`
 and default to `argument`; their claim-based schema and layout are otherwise unchanged.
 Both formats share `problem` as the question-first catalogue hook, page heading, SEO
 description fallback and OG text. Illusions instead require `why`, which follows
@@ -95,11 +95,20 @@ is intentionally omitted. The original PNG and GIF are not shipped; only the
 sprite is used. There is no fixed-hash or dimension-check gate in the build.
 No media are downloaded by the browser or build.
 `format` describes the editorial structure, not which sense the presentation
-uses. A visual vanishing puzzle may remain an argument; audio illusions may be
-added later without changing the format schema.
+uses. A visual vanishing puzzle may remain an argument; audio illusions use the same
+format and schema as visual ones.
+
+Audio illusions (tritone paradox, auditory streaming, auditory continuity illusion and Risset
+rhythm) ship no sound files. Their samples are generated in the browser by the pure functions
+in `src/scripts/audio-synth.ts`, played one at a time by `src/scripts/audio.ts`, and only after a
+button press. The stimulus parameters are explicit in that file and are shown beside each figure.
+`ListenerChoice` and `bindListenerChoice` capture the visitor's judgement before the reveal
+controls appear; a "can't play or hear this" answer unlocks the reveal without sound. The
+tritone synthesis follows the recipe published by Deutsch; the other three are our own
+constructions built on the cited principles, with levels and timings chosen by us.
 
 The existing paradox statuses do not apply to illusions. The catalogue shows no new badge
-on illusion cards, but adds a "Visual illusions" filter backed by the same `format` field.
+on illusion cards, but adds an "Illusions" filter backed by the same `format` field.
 Argument status filters exclude illusions; the All filter includes both formats.
 Chapters and uniqueness rules continue to apply to both.
 

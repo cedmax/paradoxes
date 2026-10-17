@@ -1,0 +1,203 @@
+---
+import Disclosure from "~/components/illustration-kit/Disclosure.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+import { CONTINUITY } from "~/scripts/audio-synth"
+
+// Timeline geometry: one trial, in seconds.
+const { segmentMs, gapMs, silenceMs, levels } = CONTINUITY
+const total = (2 * segmentMs + gapMs + silenceMs) / 1000
+const left = 40
+const width = 520
+const x = (seconds: number) => left + (seconds / total) * width
+const toneEnd = segmentMs / 1000
+const gapEnd = toneEnd + gapMs / 1000
+const secondEnd = gapEnd + segmentMs / 1000
+---
+
+<IllustrationFigure
+  name="auditory-continuity-illusion"
+  lead="A steady tone, a burst of noise, then the tone again. What does the tone do during the noise?"
+>
+  <p class="text-base">
+    <strong>Turn the volume down first:</strong> the noise burst is louder than the tone. Set
+    the volume so the tone is comfortable, then press Play. Headphones or speakers both work.
+  </p>
+  <div class="flex flex-wrap items-center gap-3">
+    <button id="auditory-continuity-illusion-play" type="button" class="btn-ghost">
+      Play
+    </button>
+  </div>
+  <p id="auditory-continuity-illusion-unsupported" class="text-base" hidden>
+    This browser cannot play the sound. The picture below still shows what is played.
+  </p>
+  <ListenerChoice
+    name="auditory-continuity-illusion"
+    question="What did the tone do during the noise?"
+    options={[
+      { value: "carried-on", label: "It carried on behind the noise" },
+      { value: "stopped", label: "It stopped and started again" },
+    ]}
+  />
+  <div id="auditory-continuity-illusion-reveal" class="flex flex-col gap-4" hidden>
+    <SvgFigure
+      name="auditory-continuity-illusion"
+      viewBox="0 0 600 200"
+      class="mx-auto w-full max-w-xl"
+      title="Timeline of one trial: a tone, a gap filled only by noise, the tone again, then silence"
+      desc="Time runs left to right across about two seconds. The blue bars are the tone. Between them is a gap where no tone is played. The gold bar in the gap is the noise. The slider changes how tall, meaning how loud, the noise is."
+    >
+      <line
+        x1={left}
+        y1="140"
+        x2={left + width}
+        y2="140"
+        stroke={stroke}
+        stroke-width="1"
+      ></line>
+      <rect x={x(0)} y="100" width={x(toneEnd) - x(0)} height="40" fill={series.blue}></rect>
+      <rect
+        x={x(toneEnd)}
+        y="100"
+        width={x(gapEnd) - x(toneEnd)}
+        height="40"
+        fill="none"
+        stroke={stroke}
+        stroke-width="2"
+        stroke-dasharray="5 4"
+      ></rect>
+      <rect
+        x={x(gapEnd)}
+        y="100"
+        width={x(secondEnd) - x(gapEnd)}
+        height="40"
+        fill={series.blue}
+      ></rect>
+      <rect
+        id="auditory-continuity-illusion-noise"
+        x={x(toneEnd)}
+        y="140"
+        width={x(gapEnd) - x(toneEnd)}
+        height="0"
+        fill={series.gold}
+      ></rect>
+      <text x={x(0)} y="162" font-size="13" fill={stroke}>
+        tone
+      </text>
+      <text x={x(toneEnd) + 4} y="94" font-size="13" fill={stroke}>
+        no tone here
+      </text>
+      <text x={x(gapEnd)} y="162" font-size="13" fill={stroke}>
+        tone
+      </text>
+      <text x={left} y="190" font-size="13" fill={stroke}>
+        time, about two seconds
+      </text>
+    </SvgFigure>
+    <Slider
+      id="auditory-continuity-illusion-level"
+      label="Noise level"
+      min={0}
+      max={levels.length - 1}
+      step={1}
+      value={4}
+      startLabel="Silence"
+      endLabel="Loudest noise"
+      describedby="auditory-continuity-illusion-readout"
+      valuetext="Plus 12 decibels relative to the tone"
+    >
+      <p id="auditory-continuity-illusion-readout" class="text-base" aria-live="polite"></p>
+    </Slider>
+    <div class="flex flex-wrap items-center gap-3">
+      <button id="auditory-continuity-illusion-replay" type="button" class="btn-ghost">
+        Play with this noise level
+      </button>
+    </div>
+    <p class="text-base">
+      At every setting the tone is switched off for the same {gapMs} ms. Only the noise changes.
+    </p>
+  </div>
+  <Disclosure summary="Exact sound and a text description" slot="after">
+    <div class="flex flex-col gap-3 pt-3 text-base">
+      <p>
+        One trial is a {CONTINUITY.toneHz} Hz sine tone for {segmentMs} ms, then {gapMs} ms with
+        no tone, then the tone again for {segmentMs} ms, then {silenceMs} ms of silence. During
+        the
+        {gapMs} ms there is band-limited noise, from {CONTINUITY.noiseBand[0]} Hz to{" "}
+        {CONTINUITY.noiseBand[1]} Hz, whose level is set relative to the tone. The slider goes
+        from no noise to {levels[levels.length - 1]} dB. Everything is generated in your
+        browser.
+      </p>
+      <p>
+        With no noise you hear a clear silent gap. With enough noise, many listeners hear the
+        tone carry on through it. The tone is never played during the gap.
+      </p>
+    </div>
+  </Disclosure>
+  <Fragment slot="caption">
+    Our own synthesis, after Warren and Obusek's auditory induction (1972) and later work on the
+    continuity illusion. The levels are our choice, not those of any published experiment.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import {
+    bindListenerChoice,
+    bindSlider,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
+  import { audioAvailable, playSamples } from "~/scripts/audio"
+  import { CONTINUITY, continuityLevelLabel, renderContinuity } from "~/scripts/audio-synth"
+
+  const name = "auditory-continuity-illusion"
+  const root = illustrationRoot(name)
+  if (root) {
+    const play = find<HTMLButtonElement>(root, `#${name}-play`)
+    const replay = find<HTMLButtonElement>(root, `#${name}-replay`)
+    const reveal = find<HTMLElement>(root, `#${name}-reveal`)
+    const slider = find<HTMLInputElement>(root, `#${name}-level`)
+    const readout = find<HTMLElement>(root, `#${name}-readout`)
+    const noise = find<SVGRectElement>(root, `#${name}-noise`)
+    const defaultStep = Number(slider.value)
+    let step = defaultStep
+
+    const choices = bindListenerChoice(root, name, (value) => {
+      reveal.hidden = false
+      return {
+        "carried-on":
+          "Hearing the tone continue is the illusion: no tone was played during the noise.",
+        stopped:
+          "Hearing it stop is also a valid result. The effect depends on the noise level and on the listener, so try the slider below.",
+        skip: "The picture and slider below still show what is played.",
+      }[value]
+    })
+
+    if (audioAvailable()) {
+      play.addEventListener("click", () => {
+        void playSamples((rate) => renderContinuity(defaultStep, rate))
+        play.textContent = "Play again"
+        choices.enable()
+      })
+      replay.addEventListener(
+        "click",
+        () => void playSamples((rate) => renderContinuity(step, rate)),
+      )
+    } else {
+      play.disabled = true
+      replay.disabled = true
+      find<HTMLElement>(root, `#${name}-unsupported`).hidden = false
+    }
+
+    bindSlider(slider, (value) => {
+      step = value
+      const level = CONTINUITY.levels[value]
+      noise.setAttribute("height", String(level === null ? 0 : 20 + (level + 6) * 3.2))
+      readout.textContent = `Noise: ${continuityLevelLabel(value)}. No tone is played during the noise.`
+      return `Noise ${continuityLevelLabel(value)}`
+    })
+  }
+</script>
