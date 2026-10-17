@@ -1,0 +1,125 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure name="archers-paradox" lead="The arrow is not a rigid rod">
+  <div class="flex flex-wrap gap-2" role="group" aria-label="Stages of the shot">
+    <button type="button" class="btn-toggle" data-stage="0" aria-pressed="true">
+      1. At full draw
+    </button>
+    <button type="button" class="btn-toggle" data-stage="1" aria-pressed="false">
+      2. On release
+    </button>
+    <button type="button" class="btn-toggle" data-stage="2" aria-pressed="false">
+      3. In flight
+    </button>
+  </div>
+  <SvgFigure
+    name="archers-paradox-stages"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 420 190"
+    title="Schematic top view of an arrow bending as it leaves a traditional bow"
+    desc="The arrow begins offset from the bow's grip. The shaft bends as the bowstring releases it, curves around the grip, then flexes back and forth in flight. The bending is exaggerated to make it visible."
+  >
+    <path
+      d="M15 95 H405"
+      fill="none"
+      stroke={stroke}
+      stroke-width="1"
+      stroke-dasharray="5 6"
+      opacity=".45"
+    />
+    <g id="archers-paradox-bow" stroke={stroke} fill="none" stroke-width="3">
+      <path d="M158 23 Q205 95 158 167" />
+      <path d="M158 23 L55 95 L158 167" stroke-width="1.5" />
+    </g>
+    <rect
+      id="archers-paradox-grip"
+      x="151"
+      y="84"
+      width="17"
+      height="27"
+      fill={series.gold}
+      stroke={stroke}
+      stroke-width="2"
+    />
+    <g id="archers-paradox-stage-0">
+      <path
+        d="M55 95 L353 45"
+        stroke={series.blue}
+        fill="none"
+        stroke-width="6"
+        stroke-linecap="round"
+      />
+      <path d="M353 45 L337 39 L341 53 Z" fill={series.blue} />
+      <text x="200" y="177" fill="currentColor" font-size="16" text-anchor="middle">
+        The arrow points past the side of the grip.
+      </text>
+    </g>
+    <g id="archers-paradox-stage-1" visibility="hidden">
+      <path
+        d="M55 122 C110 45 165 43 205 72 S310 124 357 83"
+        stroke={series.blue}
+        fill="none"
+        stroke-width="6"
+        stroke-linecap="round"
+      />
+      <path d="M357 83 L341 82 L351 94 Z" fill={series.blue} />
+      <text x="200" y="177" fill="currentColor" font-size="16" text-anchor="middle">
+        The shaft flexes around the grip.
+      </text>
+    </g>
+    <g id="archers-paradox-stage-2" visibility="hidden">
+      <path
+        d="M80 93 Q140 53 200 93 T335 93"
+        stroke={series.blue}
+        fill="none"
+        stroke-width="6"
+        stroke-linecap="round"
+      />
+      <path d="M335 93 L320 83 L320 103 Z" fill={series.blue} />
+      <text x="200" y="177" fill="currentColor" font-size="16" text-anchor="middle">
+        The arrow continues flexing in flight.
+      </text>
+    </g>
+  </SvgFigure>
+  <p id="archers-paradox-stage-caption" class="text-base leading-normal" aria-live="polite">
+    At full draw the shaft is offset because the bow's grip is in the way.
+  </p>
+  <Fragment slot="caption">
+    Viewed from above; bending greatly exaggerated. The arrow's stiffness must suit the bow: too
+    little or too much flex can send it off-course. The last frame isolates the arrow in free
+    flight, without the bow. This is a schematic, not a literal high-speed recording.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("archers-paradox")
+  if (root) {
+    const buttons = root.querySelectorAll<HTMLButtonElement>("[data-stage]")
+    const groups = [0, 1, 2].map((n) => find<SVGGElement>(root, "#archers-paradox-stage-" + n))
+    const caption = find<HTMLElement>(root, "#archers-paradox-stage-caption")
+    const bow = find<SVGGElement>(root, "#archers-paradox-bow")
+    const grip = find<SVGRectElement>(root, "#archers-paradox-grip")
+    const captions = [
+      "At full draw the shaft is offset because the bow's grip is in the way.",
+      "As the string releases, the arrow bends rather than flying as a stiff, straight rod.",
+      "After it clears the bow, the shaft continues to oscillate while travelling towards the target.",
+    ]
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const stage = Number(button.dataset.stage)
+        groups.forEach((group, i) =>
+          group.setAttribute("visibility", i === stage ? "visible" : "hidden"),
+        )
+        bow.setAttribute("visibility", stage === 2 ? "hidden" : "visible")
+        grip.setAttribute("visibility", stage === 2 ? "hidden" : "visible")
+        buttons.forEach((item, i) => item.setAttribute("aria-pressed", String(i === stage)))
+        caption.textContent = captions[stage]
+      })
+    })
+  }
+</script>
