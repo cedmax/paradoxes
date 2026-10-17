@@ -20,6 +20,6 @@ sources:
   - title: "Bregman and Ahad (1996): Demonstrations of auditory scene analysis (booklet and audio)"
     url: "https://webpages.mcgill.ca/staff/Group2/abregm1/web/snd/ASA-Demo-Booklet9V4.pdf"
     note: "Companion booklet to Bregman's Auditory Scene Analysis demonstrations. Demonstration 3 describes the galloping high-low-high pattern splitting into two streams as speed and frequency separation increase. Demonstration 4 gives 2000 Hz and 700 Hz sine tones, 12.5 ms rise and decay, a low tone 6 dB louder, and groups of 2 to 32 cycles, to show that segregation builds up with repetition. This page uses those tone settings with a low-high-low order and a fixed number of repeats, so it is adapted from the demonstration."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---

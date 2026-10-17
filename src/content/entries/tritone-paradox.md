@@ -28,6 +28,6 @@ sources:
   - title: "Deutsch, North and Ray (1990): The tritone paradox: correlate with the listener's vocal range for speech"
     url: "https://deutsch.ucsd.edu/pdf/MP-1990_7_371-384.pdf"
     note: "Links the direction heard to the pitch range of the listener's speaking voice."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---
