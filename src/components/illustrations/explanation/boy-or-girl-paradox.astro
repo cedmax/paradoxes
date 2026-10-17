@@ -1,0 +1,84 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import Callout from "~/components/illustration-kit/Callout.astro"
+---
+
+<IllustrationFigure
+  name="boy-or-girl"
+  frame={false}
+  lead="How did you find out there was a boy?"
+>
+  <p class="text-base leading-normal">
+    B = boy, G = girl. The first letter is the older child. Each family type starts equally
+    likely.
+  </p>
+  <div class="flex flex-wrap gap-2" role="group" aria-label="How the information was learned">
+    <button id="boy-or-girl-family" type="button" class="btn-toggle" aria-pressed="true">
+      Choose a family with a boy
+    </button>
+    <button id="boy-or-girl-child" type="button" class="btn-toggle" aria-pressed="false">
+      Meet a child by chance
+    </button>
+  </div>
+  <div id="boy-or-girl-family-view" class="space-y-3">
+    <ComparisonTable
+      caption="You select a family known to have at least one boy"
+      columns={["Children", "Eligible families", "Both boys?"]}
+      rows={[
+        ["BB", "1", "Yes"],
+        ["BG", "1", "No"],
+        ["GB", "1", "No"],
+        ["GG", "0", "Ruled out"],
+      ]}
+      align="center"
+    />
+    <Callout tone="accent">
+      <p>
+        <strong>1 out of 3.</strong> BB, BG and GB are equally likely among eligible families.
+      </p>
+    </Callout>
+  </div>
+  <div id="boy-or-girl-child-view" class="space-y-3" hidden>
+    <ComparisonTable
+      caption="A random child is encountered, and that child is a boy"
+      columns={["Children", "Ways to meet a boy", "Both boys?"]}
+      rows={[
+        ["BB", "2", "Yes"],
+        ["BG", "1", "No"],
+        ["GB", "1", "No"],
+        ["GG", "0", "Ruled out"],
+      ]}
+      align="center"
+    />
+    <Callout tone="accent">
+      <p>
+        <strong>2 out of 4 = 1/2.</strong> In BB, you could have met either of two boys.
+      </p>
+    </Callout>
+  </div>
+  <Fragment slot="caption">
+    The facts about the children did not change. What changed was the procedure that produced
+    the information.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("boy-or-girl")
+  if (root) {
+    const family = find<HTMLButtonElement>(root, "#boy-or-girl-family")
+    const child = find<HTMLButtonElement>(root, "#boy-or-girl-child")
+    const familyView = find<HTMLElement>(root, "#boy-or-girl-family-view")
+    const childView = find<HTMLElement>(root, "#boy-or-girl-child-view")
+    const show = (meetChild: boolean) => {
+      familyView.hidden = meetChild
+      childView.hidden = !meetChild
+      family.setAttribute("aria-pressed", String(!meetChild))
+      child.setAttribute("aria-pressed", String(meetChild))
+    }
+    family.addEventListener("click", () => show(false))
+    child.addEventListener("click", () => show(true))
+  }
+</script>
