@@ -12,7 +12,7 @@ noMaths: true
 order: 210
 written: true
 why: "The circles around a circle change how big it looks: ringed by large circles it seems smaller, ringed by small ones it seems bigger. Not every combination of sizes and distances does this."
-finePrint: "Both the outlines of the surrounding circles and their overall context seem to play a part (Weintraub, 1979), and some arrangements of size and distance produce little or no illusion (Knol and colleagues, 2015). Despite the name, Ebbinghaus may not have been first: Thiéry published the figure in 1896, and Wundt reproduced it in 1898 without naming an author. The other name, Titchener circles, is also a misattribution."
+finePrint: "Both the outlines of the surrounding circles and their overall context seem to play a part (Weintraub, 1979), and some arrangements of size and distance produce little or no illusion (Knol and colleagues, 2015). Thiéry published the figure in 1896, and Wundt reproduced it in 1898. Who first devised it is uncertain. Titchener later published it too, but did not invent it."
 sources:
   - title: "Wilhelm Wundt (1898): Die geometrisch-optischen Täuschungen"
     url: https://books.google.com/books?id=DSlWAAAAMAAJ
