@@ -24,10 +24,16 @@ const secondEnd = gapEnd + segmentMs / 1000
 >
   <p class="text-base">
     <strong>Turn the volume down first:</strong> the noise burst is louder than the tone. Set
-    the volume so the tone is comfortable, then press Play. Headphones or speakers both work.
+    the volume so the tone is comfortable, then press Play. The trial repeats until you press
+    Stop. Headphones or speakers both work.
   </p>
   <div class="flex flex-wrap items-center gap-3">
-    <button id="auditory-continuity-illusion-play" type="button" class="btn-ghost">
+    <button
+      id="auditory-continuity-illusion-play"
+      type="button"
+      class="btn-ghost"
+      aria-pressed="false"
+    >
       Play
     </button>
   </div>
@@ -111,21 +117,17 @@ const secondEnd = gapEnd + segmentMs / 1000
     >
       <p id="auditory-continuity-illusion-readout" class="text-base" aria-live="polite"></p>
     </Slider>
-    <div class="flex flex-wrap items-center gap-3">
-      <button id="auditory-continuity-illusion-replay" type="button" class="btn-ghost">
-        Play with this noise level
-      </button>
-    </div>
     <p class="text-base">
       At every setting the tone is switched off for the same {gapMs} ms. Only the noise changes.
+      If the sound is playing, it restarts when you move the slider.
     </p>
   </div>
   <Disclosure summary="Exact sound and a text description" slot="after">
     <div class="flex flex-col gap-3 pt-3 text-base">
       <p>
         One trial is a {CONTINUITY.toneHz} Hz sine tone for {segmentMs} ms, then {gapMs} ms with
-        no tone, then the tone again for {segmentMs} ms, then {silenceMs} ms of silence. During
-        the
+        no tone, then the tone again for {segmentMs} ms, then {silenceMs} ms of silence, and the
+        trial then repeats until you stop it. During the
         {gapMs} ms there is band-limited noise, from {CONTINUITY.noiseBand[0]} Hz to{" "}
         {CONTINUITY.noiseBand[1]} Hz, whose level is set relative to the tone. The slider goes
         from no noise to {levels[levels.length - 1]} dB. Everything is generated in your
@@ -150,20 +152,30 @@ const secondEnd = gapEnd + segmentMs / 1000
     find,
     illustrationRoot,
   } from "~/scripts/illustration"
-  import { audioAvailable, playSamples } from "~/scripts/audio"
+  import { audioAvailable, playSamples, stopAudio } from "~/scripts/audio"
   import { CONTINUITY, continuityLevelLabel, renderContinuity } from "~/scripts/audio-synth"
 
   const name = "auditory-continuity-illusion"
   const root = illustrationRoot(name)
   if (root) {
     const play = find<HTMLButtonElement>(root, `#${name}-play`)
-    const replay = find<HTMLButtonElement>(root, `#${name}-replay`)
     const reveal = find<HTMLElement>(root, `#${name}-reveal`)
     const slider = find<HTMLInputElement>(root, `#${name}-level`)
     const readout = find<HTMLElement>(root, `#${name}-readout`)
     const noise = find<SVGRectElement>(root, `#${name}-noise`)
-    const defaultStep = Number(slider.value)
-    let step = defaultStep
+    let step = Number(slider.value)
+
+    const setPlaying = (on: boolean) => {
+      play.textContent = on ? "Stop" : "Play"
+      play.setAttribute("aria-pressed", String(on))
+    }
+    const start = async () => {
+      await playSamples((rate) => renderContinuity(step, rate), {
+        loop: true,
+        onStop: () => setPlaying(false),
+      })
+      setPlaying(true)
+    }
 
     const choices = bindListenerChoice(root, name, (value) => {
       reveal.hidden = false
@@ -178,17 +190,14 @@ const secondEnd = gapEnd + segmentMs / 1000
 
     if (audioAvailable()) {
       play.addEventListener("click", () => {
-        void playSamples((rate) => renderContinuity(defaultStep, rate))
-        play.textContent = "Play again"
-        choices.enable()
+        if (play.getAttribute("aria-pressed") === "true") stopAudio()
+        else {
+          void start()
+          choices.enable()
+        }
       })
-      replay.addEventListener(
-        "click",
-        () => void playSamples((rate) => renderContinuity(step, rate)),
-      )
     } else {
       play.disabled = true
-      replay.disabled = true
       find<HTMLElement>(root, `#${name}-unsupported`).hidden = false
     }
 
@@ -198,6 +207,9 @@ const secondEnd = gapEnd + segmentMs / 1000
       noise.setAttribute("height", String(level === null ? 0 : 20 + (level + 6) * 3.2))
       readout.textContent = `Noise: ${continuityLevelLabel(value)}. No tone is played during the noise.`
       return `Noise ${continuityLevelLabel(value)}`
+    })
+    slider.addEventListener("input", () => {
+      if (play.getAttribute("aria-pressed") === "true") void start()
     })
   }
 </script>
