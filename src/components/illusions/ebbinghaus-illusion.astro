@@ -90,7 +90,7 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
   const root = illustrationRoot("ebbinghaus-illusion")
   if (root) {
     const input = find<HTMLInputElement>(root, "#ebbinghaus-surround-size")
-    const play = find<HTMLButtonElement>(root, "#ebbinghaus-play")
+    const play = find<HTMLButtonElement>(root, "#ebbinghaus-illusion-play")
     const left = Array.from(
       root.querySelectorAll<SVGCircleElement>("#ebbinghaus-left-neighbours circle"),
     )
