@@ -1,0 +1,168 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="ross-littlewood"
+  lead="The count grows, but what happens to each numbered ball?"
+>
+  <p class="text-base leading-normal">
+    At step <em>n</em>, balls numbered 10n − 9 through 10n go in, then ball n comes out. Every
+    step is quicker than the last, and infinitely many steps finish by noon.
+  </p>
+  <div
+    class="flex flex-wrap gap-2"
+    role="group"
+    aria-label="Which stage of the vase experiment to show"
+  >
+    <button type="button" class="btn-toggle" data-step="1" aria-pressed="true">
+      Step 1
+    </button>
+    <button type="button" class="btn-toggle" data-step="2" aria-pressed="false">
+      Step 2
+    </button>
+    <button type="button" class="btn-toggle" data-step="10" aria-pressed="false">
+      Step 10
+    </button>
+    <button type="button" class="btn-toggle" data-step="100" aria-pressed="false">
+      Step 100
+    </button>
+    <button type="button" class="btn-toggle" data-step="noon" aria-pressed="false">
+      At noon
+    </button>
+  </div>
+  <SvgFigure
+    name="ross-littlewood-vase"
+    class="mx-auto w-full max-w-sm"
+    viewBox="0 0 350 235"
+    title="A vase with some of its numbered balls shown"
+    desc="At each finite step n there are 9n balls remaining, numbered n+1 through 10n. At noon every particular numbered ball has been removed, so the vase is empty in the usual set-of-balls interpretation."
+  >
+    <path
+      d="M65 35 H285 L264 206 Q175 228 86 206 Z"
+      fill="none"
+      stroke={stroke}
+      stroke-width="3"
+    />
+    <path d="M62 35 H288" stroke={stroke} stroke-width="5" />
+    <g id="ross-littlewood-balls" fill={series.gold} stroke={stroke} stroke-width="1.5">
+      {[
+        [120, 154],
+        [175, 154],
+        [230, 154],
+        [120, 116],
+        [175, 116],
+        [230, 116],
+        [120, 78],
+        [175, 78],
+        [230, 78],
+      ].map(([x, y]) => (
+        <circle cx={x} cy={y} r="17" />
+      ))}
+    </g>
+    <g
+      id="ross-littlewood-number-labels"
+      fill="currentColor"
+      font-size="15"
+      text-anchor="middle"
+      font-weight="bold"
+    >
+      {[
+        [120, 159],
+        [175, 159],
+        [230, 159],
+        [120, 121],
+        [175, 121],
+        [230, 121],
+        [120, 83],
+        [175, 83],
+        [230, 83],
+      ].map(([x, y], i) => (
+        <text data-ross-number x={x} y={y}>
+          {i + 2}
+        </text>
+      ))}
+    </g>
+    <text
+      id="ross-littlewood-empty"
+      x="175"
+      y="127"
+      fill="currentColor"
+      font-size="24"
+      font-weight="bold"
+      text-anchor="middle"
+      visibility="hidden"
+    >
+      EMPTY
+    </text>
+  </SvgFigure>
+  <div class="space-y-2 text-base leading-normal" aria-live="polite">
+    <p id="ross-littlewood-count" class="text-2xl font-bold">
+      9 balls in the vase
+    </p>
+    <p id="ross-littlewood-range">Balls 2 through 10 remain. Ball 1 has been removed.</p>
+    <p id="ross-littlewood-note" class="text-sm">
+      All nine remaining balls are shown.
+    </p>
+  </div>
+  <Fragment slot="caption">
+    At every <em>finite</em> step the count increases. But each fixed ball, including ball one
+    million, is eventually removed at a numbered step before noon. There is no last finite step.
+    The noon state is not obtained by stopping after step 100.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("ross-littlewood")
+  if (root) {
+    const buttons = root.querySelectorAll<HTMLButtonElement>("[data-step]")
+    const balls = find<SVGGElement>(root, "#ross-littlewood-balls")
+    const labels = find<SVGGElement>(root, "#ross-littlewood-number-labels")
+    const numbers = root.querySelectorAll<SVGTextElement>("[data-ross-number]")
+    const empty = find<SVGTextElement>(root, "#ross-littlewood-empty")
+    const count = find<HTMLElement>(root, "#ross-littlewood-count")
+    const range = find<HTMLElement>(root, "#ross-littlewood-range")
+    const note = find<HTMLElement>(root, "#ross-littlewood-note")
+    const show = (step: string) => {
+      const noon = step === "noon"
+      balls.setAttribute("visibility", noon ? "hidden" : "visible")
+      labels.setAttribute("visibility", noon ? "hidden" : "visible")
+      empty.setAttribute("visibility", noon ? "visible" : "hidden")
+      if (noon) {
+        count.textContent = "0 balls at noon (in the usual account)"
+        range.textContent =
+          "Every fixed ball n was removed at step n. No numbered ball is left."
+        note.textContent = "Infinitely many steps have occurred; there was no final step."
+      } else {
+        const n = Number(step)
+        numbers.forEach((item, i) => {
+          item.textContent = String(n + i + 1)
+        })
+        count.textContent = 9 * n + " balls in the vase"
+        range.textContent =
+          "Balls " +
+          (n + 1) +
+          " through " +
+          10 * n +
+          " remain. Balls 1 through " +
+          n +
+          " have been removed."
+        note.textContent =
+          n === 1
+            ? "All nine remaining balls are shown."
+            : "The first nine remaining balls are shown; " +
+              (9 * n - 9) +
+              " more are not drawn."
+      }
+      buttons.forEach((button) =>
+        button.setAttribute("aria-pressed", String(button.dataset.step === step)),
+      )
+    }
+    buttons.forEach((button) =>
+      button.addEventListener("click", () => show(button.dataset.step || "1")),
+    )
+  }
+</script>
