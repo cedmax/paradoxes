@@ -11,7 +11,8 @@ simplification: light
 noMaths: true
 order: 220
 written: true
-why: "The fins at each end change the apparent length of the line, even though the straight segments match exactly. The surrounding angles affect how the lines are judged. Several explanations have been proposed, including how visual experience shapes estimates of size and distance."
+why: "Fins at the ends of a line change how long it looks, even when the lines match exactly. Why is not settled, and several explanations have been proposed."
+finePrint: "Franz Carl Müller-Lyer published the figure in 1889. One family of explanations holds that experience of real scenes shapes how size and distance are estimated from angles like these. Howe and Purves (2005) developed one such account, based on the statistics of natural images. It is not the only proposed explanation."
 sources:
   - title: "Franz Carl Müller-Lyer (1889): Optische Urtheilstäuschungen"
     url: https://cir.nii.ac.jp/crid/1570009750247005312
