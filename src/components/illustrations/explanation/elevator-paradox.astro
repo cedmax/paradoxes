@@ -80,12 +80,8 @@ import { series, stroke } from "~/data/palette"
     value={2}
     startLabel="Near bottom"
     endLabel="Near top"
-    describedby="elevator-paradox-readout"
-  >
-    <p id="elevator-paradox-readout" class="text-base leading-normal" aria-live="polite">
-      Near the bottom, the longer wait ends with a downward pass.
-    </p>
-  </Slider>
+    valuetext="Floor 2 of 10: 80% down and 20% up"
+  />
   <div class="flex flex-col gap-3">
     <div class="flex h-9 overflow-hidden border-2 border-ink" aria-hidden="true">
       <div
@@ -142,7 +138,6 @@ import { series, stroke } from "~/data/palette"
     const upGap = find<HTMLElement>(root, "#elevator-paradox-gap-up")
     const downText = find<HTMLElement>(root, "#elevator-paradox-down")
     const upText = find<HTMLElement>(root, "#elevator-paradox-up")
-    const readout = find<HTMLElement>(root, "#elevator-paradox-readout")
     bindSlider(input, (position) => {
       const y = 240 - 21 * position
       const down = (10 - position) * 10
@@ -156,14 +151,6 @@ import { series, stroke } from "~/data/palette"
       upGap.style.width = up + "%"
       downText.textContent = down + "% chance next lift goes down"
       upText.textContent = up + "% chance next lift goes up"
-      readout.textContent =
-        down === up
-          ? "Halfway up, the intervals are equally long."
-          : "The longer journey is " +
-            (down > up ? "above" : "below") +
-            " this floor, so a random wait is more likely to end with an " +
-            (down > up ? "downward" : "upward") +
-            " pass."
       return "Floor " + position + " of 10: " + down + "% down and " + up + "% up"
     })
   }
