@@ -1,64 +1,61 @@
 ---
-import Base from "~/layouts/Base.astro"
+import PageTitle from "~/components/PageTitle.astro"
+import ProsePage from "~/layouts/ProsePage.astro"
 import { statuses, simplifications } from "~/data/status"
 ---
 
-<Base
+<ProsePage
   title="How the paradoxes are written and checked | Logic Benders"
   description="How Logic Benders explains paradoxes, checks sources, marks human review, and distinguishes settled answers from disputed or unreconciled puzzles."
 >
-  <main class="px-gutter flex max-w-225 flex-col gap-7 pt-12 pb-24">
-    <h1 class="font-display text-[clamp(40px,6vw,80px)] leading-none font-extrabold tracking-tighter">
-      How we write these
-    </h1>
-    <p>
-      Every entry says what the paradox claims, in two sentences that both seem true. Then it
-      says what gives. Where the answer is settled, we say so. Where it isn't, we say that
-      instead and show the competing positions.
-    </p>
+  <PageTitle>How we write these</PageTitle>
+  <p>
+    Every entry says what the paradox claims, in two sentences that both seem true. Then it says
+    what gives. Where the answer is settled, we say so. Where it isn't, we say that instead and
+    show the competing positions.
+  </p>
 
-    <h2 class="display mt-3 text-3xl">How a paradox ends</h2>
-    <dl class="grid gap-3.5">
-      {Object.values(statuses).map((s) => (
-        <div>
-          <dt class="font-bold">{s.label}</dt>
-          <dd class="m-0">{s.definition}</dd>
-        </div>
-      ))}
-    </dl>
+  <h2 class="display mt-3 text-3xl">How a paradox ends</h2>
+  <dl class="grid gap-3.5">
+    {Object.values(statuses).map((s) => (
+      <div>
+        <dt class="font-bold">{s.label}</dt>
+        <dd class="m-0">{s.definition}</dd>
+      </div>
+    ))}
+  </dl>
 
-    <h2 class="display mt-3 text-3xl">How much we simplified</h2>
-    <p>Every entry flags where the explanation is simplified, using one of three levels.</p>
-    <dl class="grid gap-3.5">
-      {Object.values(simplifications).map((s) => (
-        <div>
-          <dt class="font-bold">{s.label}</dt>
-          <dd class="m-0">{s.definition}</dd>
-        </div>
-      ))}
-    </dl>
+  <h2 class="display mt-3 text-3xl">How much we simplified</h2>
+  <p>Every entry flags where the explanation is simplified, using one of three levels.</p>
+  <dl class="grid gap-3.5">
+    {Object.values(simplifications).map((s) => (
+      <div>
+        <dt class="font-bold">{s.label}</dt>
+        <dd class="m-0">{s.definition}</dd>
+      </div>
+    ))}
+  </dl>
 
-    <h2 class="display mt-3 text-3xl">Sources</h2>
-    <p>
-      Each entry lists its sources. An entry is published only once its cited sources have been
-      checked and its claims brought into line with them. That does not mean every claim is
-      undisputed: where experts disagree, the entry says so.
-    </p>
+  <h2 class="display mt-3 text-3xl">Sources</h2>
+  <p>
+    Each entry lists its sources. An entry is published only once its cited sources have been
+    checked and its claims brought into line with them. That does not mean every claim is
+    undisputed: where experts disagree, the entry says so.
+  </p>
 
-    <h2 class="display mt-3 text-3xl">Human review</h2>
-    <p>
-      Source checking and human review are recorded separately. A “Human reviewed” badge appears
-      only after the site owner has also reviewed the content and marked the entry as approved.
-      Source checking is required before that approval can be recorded.
-    </p>
+  <h2 class="display mt-3 text-3xl">Human review</h2>
+  <p>
+    Source checking and human review are recorded separately. A “Human reviewed” badge appears
+    only after the site owner has also reviewed the content and marked the entry as approved.
+    Source checking is required before that approval can be recorded.
+  </p>
 
-    <h2 class="display mt-3 text-3xl">Corrections</h2>
-    <p>
-      To flag an error or suggest a better source,{" "}
-      <a class="underline" href="/corrections/">
-        report a correction
-      </a>
-      .
-    </p>
-  </main>
-</Base>
+  <h2 class="display mt-3 text-3xl">Corrections</h2>
+  <p>
+    To flag an error or suggest a better source,{" "}
+    <a class="underline" href="/corrections/">
+      report a correction
+    </a>
+    .
+  </p>
+</ProsePage>

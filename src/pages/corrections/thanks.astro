@@ -1,19 +1,16 @@
 ---
-import Base from "~/layouts/Base.astro"
+import PageTitle from "~/components/PageTitle.astro"
+import ProsePage from "~/layouts/ProsePage.astro"
 ---
 
-<Base
+<ProsePage
   title="Correction received | Logic Benders"
   description="The correction report has been received by Logic Benders."
   noindex
 >
-  <main class="px-gutter flex max-w-225 flex-col gap-7 pt-12 pb-24">
-    <h1 class="font-display text-[clamp(40px,6vw,80px)] leading-none font-extrabold tracking-tighter">
-      Correction received
-    </h1>
-    <p>The report has been sent to the site owner for review.</p>
-    <a class="inline-flex min-h-11 items-center font-bold underline" href="/">
-      Back to the index
-    </a>
-  </main>
-</Base>
+  <PageTitle>Correction received</PageTitle>
+  <p>The report has been sent to the site owner for review.</p>
+  <a class="inline-flex min-h-11 items-center font-bold underline" href="/">
+    Back to the index
+  </a>
+</ProsePage>

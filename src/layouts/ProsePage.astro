@@ -1,0 +1,12 @@
+---
+import type { ComponentProps } from "astro/types"
+import Base from "~/layouts/Base.astro"
+
+type Props = ComponentProps<typeof Base>
+---
+
+<Base {...Astro.props}>
+  <main class="px-gutter flex max-w-225 flex-col gap-7 pt-12 pb-24">
+    <slot />
+  </main>
+</Base>

@@ -1,4 +1,5 @@
 ---
+import PageTitle from "~/components/PageTitle.astro"
 import type { Chapter } from "~/data/chapters"
 import Base from "~/layouts/Base.astro"
 import EntryCard from "~/components/EntryCard.astro"
@@ -79,7 +80,7 @@ const structuredData = [
           {chapter.n} {chapter.title}
         </span>
       </nav>
-      <h1 class="font-display text-[clamp(48px,9.4vw,148px)] leading-none font-extrabold tracking-tighter">
+      <PageTitle size="entry">
         {plain}
         {accent && (
           <>
@@ -87,7 +88,7 @@ const structuredData = [
             <span class="text-accent">{accent}</span>
           </>
         )}
-      </h1>
+      </PageTitle>
       <p class="max-w-190 text-xl leading-snug sm:text-2xl">{chapter.introduction}</p>
     </section>
     <section class="flex flex-col gap-5" aria-labelledby="chapter-entries">
