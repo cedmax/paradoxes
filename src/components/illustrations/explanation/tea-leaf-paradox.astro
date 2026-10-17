@@ -1,0 +1,72 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="tea-leaf-paradox"
+  lead="The secondary flow carries water inwards along the bottom"
+>
+  <SvgFigure
+    name="tea-leaf-paradox-flow"
+    viewBox="0 0 300 226"
+    class="mx-auto w-full max-w-sm"
+    title="Cross-section of a stirred teacup showing the secondary flow"
+    desc="The surface of the tea dips in the middle and rises at the rim. Red arrows show the secondary flow: outwards near the surface, down the sides, inwards along the bottom, and up in the middle."
+  >
+    <defs>
+      <marker
+        id="tea-leaf-paradox-arrow"
+        markerWidth="12"
+        markerHeight="12"
+        refX="10"
+        refY="6"
+        orient="auto"
+      >
+        <path d="M0 0 L12 6 L0 12" fill="none" stroke={series.red} stroke-width="2" />
+      </marker>
+    </defs>
+    <g transform="translate(2 34) scale(.62)">
+      <path
+        d="M55 35 Q50 210 135 237 H345 Q430 210 425 35"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="7"
+        stroke-linecap="round"
+      />
+      <path
+        d="M65 56 Q240 90 415 56"
+        stroke={series.blue}
+        stroke-width="3"
+        stroke-dasharray="6 6"
+        fill="none"
+      />
+      <g
+        fill="none"
+        stroke={series.red}
+        stroke-width="5"
+        marker-end="url(#tea-leaf-paradox-arrow)"
+      >
+        <path d="M83 95 Q85 185 195 218" />
+        <path d="M397 95 Q395 185 285 218" />
+        <path d="M232 203 V105" />
+        <path d="M250 103 Q320 66 360 75" />
+        <path d="M229 102 Q160 65 116 75" />
+      </g>
+    </g>
+    <g fill="currentColor" font-size="16">
+      <text x="150" y="22" text-anchor="middle">
+        Outwards near the surface
+      </text>
+      <text x="150" y="218" text-anchor="middle">
+        Inwards along the bottom
+      </text>
+    </g>
+  </SvgFigure>
+  <Fragment slot="caption">
+    The blue line shows the surface dipping in the middle. Red arrows show the secondary flow,
+    not the main spin. The inward current along the bottom carries settled leaves towards the
+    centre.
+  </Fragment>
+</IllustrationFigure>
