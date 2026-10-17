@@ -1,0 +1,194 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import { series } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="tea-leaf-paradox"
+  lead="The spinning surface is not the whole story. Water creeps inward along the bottom."
+>
+  <SvgFigure
+    name="tea-leaf-paradox-flow"
+    viewBox="0 0 300 226"
+    class="mx-auto w-full max-w-sm"
+    title="Cross-section of a teacup showing its slower circulation"
+    desc="Red arrows show the slower circulation: outwards near the surface, down the walls, inwards along the bottom and up in the middle. Four identical yellow tea leaves enter at different times and follow the circulation. Some rise at the centre for another circuit before all eventually settle on the bottom."
+  >
+    <defs>
+      <marker
+        id="tea-leaf-paradox-arrow"
+        markerWidth="12"
+        markerHeight="12"
+        refX="10"
+        refY="6"
+        orient="auto"
+      >
+        <path d="M0 0 L12 6 L0 12" fill="none" stroke={series.red} stroke-width="2" />
+      </marker>
+    </defs>
+    <g transform="translate(2 34) scale(.62)">
+      <g fill="none" stroke="none" aria-hidden="true">
+        <path
+          data-tea-leaf-route
+          d="M145 8 C145 33 150 60 145 78 C127 79 110 82 90 101 C87 144 100 186 144 211 C169 223 199 231 218 229 C228 230 232 216 232 203 C233 162 232 126 232 105 C207 77 155 74 116 80 C98 84 86 92 90 110 C86 151 104 187 145 211 C170 224 195 230 218 229"
+        />
+        <path
+          data-tea-leaf-route
+          d="M183 8 C183 35 181 60 180 78 C155 79 111 83 96 102 C89 142 101 186 155 213 C175 226 206 232 231 231"
+        />
+        <path
+          data-tea-leaf-route
+          d="M299 8 C299 32 301 61 300 77 C330 79 365 85 387 103 C392 144 381 188 339 211 C315 223 275 231 244 229 C239 221 237 212 240 203 C242 158 241 121 243 105 C276 79 329 72 360 77 C385 80 391 97 389 111 C390 157 372 190 339 211 C310 225 274 232 244 229"
+        />
+        <path
+          data-tea-leaf-route
+          d="M337 8 C337 34 337 60 336 77 C365 79 384 86 393 103 C396 145 381 186 347 211 C320 227 285 234 257 231"
+        />
+      </g>
+      <path
+        d="M55 35 Q50 210 135 237 H345 Q430 210 425 35"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="7"
+        stroke-linecap="round"
+      />
+      <path d="M65 65 H415" stroke={series.blue} stroke-width="3" stroke-dasharray="6 6" />
+      <g
+        fill="none"
+        stroke={series.red}
+        stroke-width="5"
+        marker-end="url(#tea-leaf-paradox-arrow)"
+      >
+        <path d="M83 95 Q85 185 195 218" />
+        <path d="M397 95 Q395 185 285 218" />
+        <path d="M232 203 V105" />
+        <path d="M250 103 Q320 66 360 75" />
+        <path d="M229 102 Q160 65 116 75" />
+      </g>
+      <g fill={series.gold}>
+        <circle data-tea-leaf cx="145" cy="8" r="6" />
+        <circle data-tea-leaf cx="183" cy="8" r="6" />
+        <circle data-tea-leaf cx="299" cy="8" r="6" />
+        <circle data-tea-leaf cx="337" cy="8" r="6" />
+      </g>
+    </g>
+    <g fill="currentColor" font-size="16">
+      <text x="150" y="22" text-anchor="middle">
+        Outwards near the surface
+      </text>
+      <text x="150" y="218" text-anchor="middle">
+        Inwards along the bottom
+      </text>
+    </g>
+  </SvgFigure>
+  <IllusionControls name="tea-leaf-paradox" />
+  <p id="tea-leaf-paradox-status" class="text-base leading-normal" aria-live="polite">
+    Press Play to see why some leaves circle again while others settle at the centre.
+  </p>
+
+  <Fragment slot="caption">
+    Spinning water piles up near the rim, creating pressure that pushes towards the centre.
+    Friction slows the spin near the bottom, so this inward push wins there. Water flows towards
+    the middle, carrying the leaves with it. Some suspended leaves can make another circuit;
+    leaves that settle are swept inwards. Arrows show the slow circulation, not the main spin.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("tea-leaf-paradox")
+  if (root) {
+    const button = find<HTMLButtonElement>(root, "#tea-leaf-paradox-play")
+    const status = find<HTMLElement>(root, "#tea-leaf-paradox-status")
+    const leaves = Array.from(root.querySelectorAll<SVGCircleElement>("[data-tea-leaf]"))
+    const routes = Array.from(root.querySelectorAll<SVGPathElement>("[data-tea-leaf-route]"))
+    const routeLengths = routes.map((route) => route.getTotalLength())
+    const stagger = 700
+    const durations = routeLengths.map((length) => length / 0.16)
+    const duration = Math.max(...durations.map((time, i) => time + i * stagger))
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    let elapsed = 0
+    let lastTime: number | null = null
+    let frame = 0
+    let playing = false
+
+    const draw = (time: number) => {
+      leaves.forEach((leaf, index) => {
+        const localTime = time - index * stagger
+        leaf.setAttribute("visibility", localTime < 0 ? "hidden" : "visible")
+        const progress = Math.max(0, Math.min(1, localTime / durations[index]))
+        const point = routes[index].getPointAtLength(routeLengths[index] * progress)
+        leaf.setAttribute("cx", String(point.x))
+        leaf.setAttribute("cy", String(point.y))
+      })
+    }
+
+    const stop = () => {
+      playing = false
+      cancelAnimationFrame(frame)
+      lastTime = null
+      button.textContent = "Play"
+      button.setAttribute("aria-pressed", "false")
+    }
+
+    const tick = (now: number) => {
+      if (!playing) return
+      if (lastTime !== null) elapsed = Math.min(duration, elapsed + now - lastTime)
+      lastTime = now
+      draw(elapsed)
+      if (elapsed >= duration) {
+        stop()
+        status.textContent =
+          "Some leaves made another circuit; all have now settled at the centre."
+        return
+      }
+      frame = requestAnimationFrame(tick)
+    }
+
+    const motionChanged = () => {
+      stop()
+      const reduced = reducedMotion.matches
+      button.disabled = reduced
+      button.title = reduced ? "Animation disabled by reduced-motion preference" : ""
+      if (reduced) {
+        elapsed = duration
+        draw(duration)
+        status.textContent = "Red arrows show the slow current that gathers the leaves."
+      } else if (elapsed === duration) {
+        status.textContent = "Press Play to drop the leaves in again."
+      } else {
+        draw(elapsed)
+      }
+    }
+
+    button.addEventListener("click", () => {
+      if (playing) {
+        stop()
+        status.textContent = "Paused. Press Play to continue."
+        return
+      }
+      if (reducedMotion.matches) return
+      if (elapsed >= duration) elapsed = 0
+      draw(elapsed)
+      playing = true
+      lastTime = null
+      button.textContent = "Pause"
+      button.setAttribute("aria-pressed", "true")
+      status.textContent =
+        "Some leaves rise with the return flow and circle again before settling."
+      frame = requestAnimationFrame(tick)
+    })
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && playing) {
+        stop()
+        status.textContent = "Paused. Press Play to continue."
+      }
+    })
+    reducedMotion.addEventListener("change", motionChanged)
+    motionChanged()
+  }
+</script>
