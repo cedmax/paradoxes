@@ -22,6 +22,6 @@ sources:
   - title: "Howe and Purves (2005): The Müller-Lyer illusion explained by the statistics of image-source relationships"
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC544622/
     note: "Develops one probabilistic explanation; not the only proposed account."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---

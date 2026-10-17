@@ -18,6 +18,6 @@ sources:
   - title: "Michael Bach: Hering Illusion"
     url: https://michaelbach.de/ot/ang-hering/
     note: "Demonstration with straight bars and removable radiating lines; historical attribution to Hering (1861)."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---

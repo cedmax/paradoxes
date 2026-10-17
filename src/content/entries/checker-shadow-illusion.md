@@ -24,6 +24,6 @@ sources:
   - title: "Adelson's Checker-Shadow Illusion, Illusions Index"
     url: https://www.illusionsindex.org/i/adelson-s-checker-shadow-illusion
     note: "Explains the role of lightness constancy, shadow interpretation and contrast."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---

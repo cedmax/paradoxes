@@ -18,6 +18,6 @@ sources:
   - title: "Nature (1892): Some Optical Illusions"
     url: https://www.nature.com/articles/046590a0
     note: "Historical discussion of parallel lines that appear to converge and diverge."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---

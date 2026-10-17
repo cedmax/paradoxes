@@ -18,6 +18,6 @@ sources:
   - title: "Prinzmetal and Gettleman (1993): Vertical-horizontal illusion"
     url: https://pubmed.ncbi.nlm.nih.gov/8433908/
     note: "Defines the equal-length vertical/horizontal effect and studies the viewing context."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---

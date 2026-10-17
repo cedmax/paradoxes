@@ -19,6 +19,6 @@ sources:
   - title: "Gregory and Heard (1979): full text"
     url: https://www.richardgregory.org/papers/cafe_wall/cafe-wall_p1.htm
     note: "The authors' original paper and its explanation of the café wall illusion."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---

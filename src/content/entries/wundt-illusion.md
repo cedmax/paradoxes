@@ -22,6 +22,6 @@ sources:
   - title: "Wundt illusion: description and historical attribution"
     url: https://en.wikipedia.org/wiki/Wundt_illusion
     note: "Background summary of Wundt's 1898 illusion and inward-bowing effect."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---

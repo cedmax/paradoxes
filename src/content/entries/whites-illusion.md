@@ -18,6 +18,6 @@ sources:
   - title: "Michael White (1979): A New Effect of Pattern on Perceived Lightness"
     url: https://journals.sagepub.com/doi/10.1068/p080413
     note: "Original paper and attribution; examines perceived lightness in repeated light and dark patterns."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---

@@ -18,6 +18,6 @@ sources:
   - title: "Pinna, Ehrenstein and Spillmann (2004)"
     url: https://pubmed.ncbi.nlm.nih.gov/15145679/
     note: "Study of apparent contours and brightness in Ehrenstein-type figures."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---

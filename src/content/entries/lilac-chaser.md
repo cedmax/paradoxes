@@ -15,6 +15,6 @@ sources:
   - title: "Michael Bach: Lilac Chaser"
     url: https://michaelbach.de/ot/col-lilacChaser/
     note: "Interactive demonstration, adaptation explanation and attribution to Jeremy Hinton (2005)."
-sourcesVerified: false
+sourcesVerified: true
 reviewed: false
 ---
