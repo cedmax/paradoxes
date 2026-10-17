@@ -36,29 +36,34 @@ const directions = [
     question="Which way did it step?"
     options={directions}
   />
-  <div id="tritone-paradox-reveal" class="flex flex-col gap-6" hidden>
-    <div class="flex flex-col gap-3">
-      <p class="font-bold">The same two tones, the other way round</p>
-      <p class="text-base">
-        Now the second tone comes first and the first comes second. Nothing else changes.
-      </p>
-      <div class="flex flex-wrap items-center gap-3">
-        <button id="tritone-paradox-reverse" type="button" class="btn-ghost">
-          Play them reversed
-        </button>
-        <button id="tritone-paradox-next" type="button" class="btn-ghost">
-          Try a different pair
-        </button>
-      </div>
-      <ListenerChoice
-        name="tritone-reverse"
-        question="And this time?"
-        options={directions}
-        skipLabel="I can't tell"
-      />
+  <div id="tritone-paradox-reveal" class="flex flex-col gap-3" hidden>
+    <p class="font-bold">Now the same two tones, the other way round</p>
+    <p class="text-base">
+      The second tone comes first and the first comes second. Nothing else changes.
+    </p>
+    <div class="flex flex-wrap items-center gap-3">
+      <button id="tritone-paradox-reverse" type="button" class="btn-ghost">
+        Play them reversed
+      </button>
+    </div>
+    <ListenerChoice
+      name="tritone-reverse"
+      question="And this time?"
+      options={directions}
+      skipLabel="I can't tell"
+    />
+  </div>
+  <div id="tritone-paradox-final" class="flex flex-col gap-6" hidden>
+    <div class="flex flex-wrap items-center gap-3">
+      <button id="tritone-paradox-next" type="button" class="btn-ghost">
+        Try another pair
+      </button>
     </div>
     <div class="flex flex-col gap-4">
       <p class="font-bold">What each tone is made of</p>
+      <p class="text-base">
+        Move the slider and the same pair plays again with the envelope in its new place.
+      </p>
       <SvgFigure
         name="tritone-paradox"
         viewBox="0 0 600 250"
@@ -108,11 +113,6 @@ const directions = [
       >
         <p id="tritone-paradox-readout" class="text-base" aria-live="polite"></p>
       </Slider>
-      <div class="flex flex-wrap items-center gap-3">
-        <button id="tritone-paradox-replay" type="button" class="btn-ghost">
-          Play this pair with this envelope
-        </button>
-      </div>
       <p class="text-base">
         The two tones keep their note names whichever way the envelope moves. In Deutsch's
         studies, many listeners judged the direction much the same wherever it sat.
@@ -172,7 +172,7 @@ const directions = [
     const reveal = find<HTMLElement>(root, "#tritone-paradox-reveal")
     const reverse = find<HTMLButtonElement>(root, "#tritone-paradox-reverse")
     const next = find<HTMLButtonElement>(root, "#tritone-paradox-next")
-    const replay = find<HTMLButtonElement>(root, "#tritone-paradox-replay")
+    const final = find<HTMLElement>(root, "#tritone-paradox-final")
     const slider = find<HTMLInputElement>(root, "#tritone-paradox-envelope-slider")
     const readout = find<HTMLElement>(root, "#tritone-paradox-readout")
     const envelopePath = find<SVGPathElement>(root, "#tritone-paradox-envelope")
@@ -203,6 +203,7 @@ const directions = [
     })
     const reverseChoices = bindListenerChoice(root, "tritone-reverse", (value) => {
       answers.reversed = value
+      final.hidden = false
       if (value === "skip" || !answers.forward || answers.forward === "skip") return
       return answers.forward === value
         ? "You heard both orders go the same way. Not every listener hears a consistent direction."
@@ -251,9 +252,9 @@ const directions = [
         void playPair(true)
         reverseChoices.enable()
       })
-      replay.addEventListener("click", () => void playPair(false))
+      slider.addEventListener("change", () => void playPair(false))
     } else {
-      for (const button of [play, reverse, replay]) button.disabled = true
+      for (const button of [play, reverse]) button.disabled = true
       find<HTMLElement>(root, "#tritone-paradox-unsupported").hidden = false
     }
 
@@ -262,8 +263,11 @@ const directions = [
       answers = {}
       choices.reset()
       reverseChoices.reset()
+      reveal.hidden = true
+      final.hidden = true
+      play.textContent = "Play a pair"
       draw()
-      void (audioAvailable() && playPair(false))
+      play.focus()
     })
 
     bindSlider(slider, (value) => {
