@@ -108,6 +108,10 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
   `MeasurementGuides` for red SVG guide lines. Use `bindIllusionProof` and
   `bindSliderPlayback` from `~/scripts/illustration` rather than duplicating behaviour.
   Toggle buttons use `btn-toggle` and `aria-pressed`; other buttons use `btn-ghost`.
+- `IllusionControls` builds its element IDs from its `name` prop: `${name}-play`,
+  `${name}-guide-toggle` and `${name}-proof`. Scripts must select exactly those IDs, not a
+  shortened or renamed version. A wrong selector is still valid TypeScript, so lint, type
+  checks and the build will not catch it.
 - Spacing between blocks inside a figure comes from `IllustrationFigure` (`gap-4`). Use `gap-4`
   between panels and `gap-3` only where a kit component already does.
 
@@ -116,3 +120,8 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 Run `pnpm lint`, `pnpm check` and `pnpm build`. Then look at the page at a desktop width and a
 phone width (about 350px), move every slider and press every button. When changing the kit
 itself, screenshot every illustration before and after and compare them.
+
+Passing lint, `pnpm check` and the build is not enough. Before calling an interactive
+illustration finished, check in a browser that moving each slider changes the figure, Play
+starts the animation, Pause stops it, each toggle changes its state, and the console reports
+no JavaScript errors. If this could not be done, say so.

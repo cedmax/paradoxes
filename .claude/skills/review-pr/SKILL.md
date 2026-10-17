@@ -15,7 +15,9 @@ request does not authorise edits, commits, pushes or flag changes.
    owner explicitly approved them.
 3. For illustrations, use `build-illustration`. Check whether they belong in setup or
    explanation, whether the visual is genuinely useful, and whether controls, keyboard
-   behaviour, responsiveness and accessibility work.
+   behaviour, responsiveness and accessibility work. For illusions, use `create-illusion`.
+   An audio illusion is not ready to merge until it has been listened to on real devices
+   (headphones and speakers); if nobody has done that, report it as an open acceptance step.
 4. Verify build/config/routing changes against `docs/architecture.md`. Pay special attention
    to publication gates, stable slugs, page indexing, generated OG assets and previews.
 5. Run the applicable checks when an executable checkout is available: `pnpm lint`,

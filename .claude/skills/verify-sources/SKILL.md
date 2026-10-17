@@ -29,6 +29,9 @@ report findings without editing anything.
   actually fetched (Wikipedia, Stanford Encyclopedia of Philosophy, the original paper). Never
   invent URLs, quotes or figures. Recompute numbers.
 - Only list a URL in `sources` if it was fetched and supports what the entry uses it for.
+- For historical attribution, separate first publication from invention or first use. Where
+  historians disagree, attribute each account to its source in the source note and fine print
+  ("Vicario states…") instead of presenting one reconstruction as settled.
 - `sourcesVerified` means the cited sources have been checked and the entry's claims brought into
   line with them, not that every claim is undisputed. New or substantially changed entries start
   at `false`. Set it to `true` only after the site owner has approved doing so for that entry,
@@ -42,5 +45,7 @@ report findings without editing anything.
 Distinguish evidence validation from publication approval. A conclusion that an entry is
 source-supported is **not** permission to set `sourcesVerified` or `reviewed`. When material
 changes make a previously verified entry require renewed review, tell the owner it needs its
-publishing flag reconsidered; do not silently flip it. Provide a concrete correction list
+publishing flag reconsidered; do not silently flip it. That includes adding a source or
+changing a claim on an entry already at `sourcesVerified: true`: leave the flag as it is and
+list the entry and the new or changed claims in the PR description for the owner to recheck. Provide a concrete correction list
 before recommending approval.
