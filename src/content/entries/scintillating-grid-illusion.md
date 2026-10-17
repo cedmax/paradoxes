@@ -11,7 +11,7 @@ simplification: light
 noMaths: true
 order: 280
 written: true
-why: "White dots at the crossings of grey paths can seem to flicker with dark spots as you look around. Every dot is uniformly white; no dark spots are drawn. Eye movements are not necessary: moving the grid or showing it briefly can also produce the effect. With steady fixation on a continuously displayed, stationary grid, the flickers disappear. The illusion is related to, but more vivid than, the Hermann grid effect."
+why: "White dots at the crossings of grey paths can seem to flicker with dark spots as you look around. Every dot is uniformly white; no dark spots are drawn. Darting eye movements aren't needed: smoothly following a moving point, moving the grid, or showing it briefly can also produce the effect. With a stationary grid viewed continuously and a steady gaze, the flickers disappear. The illusion is related to, but more vivid than, the Hermann grid effect."
 sources:
   - title: "Michael Bach: Scintillating Grid"
     url: https://michaelbach.de/ot/lum-scGrid/
