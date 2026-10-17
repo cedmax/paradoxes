@@ -137,6 +137,10 @@ const ring = names.map((label, index) => {
       </SvgFigure>
       <p id="tritone-paradox-result" class="text-base" aria-live="polite"></p>
       <p id="tritone-paradox-readout-answers" class="text-base"></p>
+      <p class="text-base">
+        The pair starting on F♯ is the pair starting on C played backwards, so if one sounds
+        like a rise, the other should sound like a fall.
+      </p>
     </div>
     <div class="flex flex-col gap-4">
       <p class="font-bold">What each tone is made of</p>
@@ -144,8 +148,8 @@ const ring = names.map((label, index) => {
         name="tritone-paradox"
         viewBox="0 0 600 250"
         class="mx-auto w-full max-w-xl"
-        title="Spectrum of the two tones: six octave-spaced components under a bell-shaped envelope"
-        desc="Frequency runs left to right on a logarithmic scale. Each tone is six vertical bars, one per octave. The curve is the bell-shaped envelope that sets their strengths. Both tones use the same envelope. The slider moves the envelope up or down."
+        title="Spectrum of the two tones: six octave-spaced components under a bell-shaped loudness hump"
+        desc="Frequency runs left to right on a logarithmic scale. Each tone is six vertical bars, one per octave. The curve is the bell-shaped loudness hump that sets their strengths. Both tones use the same hump. The slider moves the hump up or down."
       >
         <line x1="40" y1="200" x2="560" y2="200" stroke={stroke} stroke-width="1"></line>
         <path
@@ -178,7 +182,7 @@ const ring = names.map((label, index) => {
       <p id="tritone-paradox-which" class="text-base"></p>
       <Slider
         id="tritone-paradox-envelope-slider"
-        label="Where the envelope sits"
+        label="Where the loudness hump sits"
         min={0}
         max={TRITONE_ENVELOPES.length - 1}
         step={1}
@@ -186,15 +190,15 @@ const ring = names.map((label, index) => {
         startLabel="Lowest: C4, 262 Hz"
         endLabel="Highest: F#5, 740 Hz"
         describedby="tritone-paradox-readout"
-        valuetext="Envelope centred on C5, 523 Hz"
+        valuetext="Hump centred on C5, 523 Hz"
       >
         <p id="tritone-paradox-readout" class="text-base" aria-live="polite"></p>
       </Slider>
       <p class="text-base">
-        When you let go of the slider, the pair you last played sounds again with the envelope
-        in its new place. The note names stay the same. Answer again, and see whether your
-        answer changes. In Deutsch's studies, many listeners judged the direction much the same
-        wherever the envelope sat.
+        Moving the loudness hump changes which frequencies stand out, but not the note names.
+        When you let go of the slider, the pair you last played sounds again with the hump in
+        its new place. Answer again: some listeners still hear the same direction, others change
+        their answer.
       </p>
     </div>
   </div>
@@ -202,27 +206,26 @@ const ring = names.map((label, index) => {
     <div class="flex flex-col gap-3 pt-3 text-base">
       <p>
         Each tone is six sine waves, an octave apart, so it has a clear note name but no clear
-        octave. Their strengths follow a raised-cosine curve on a logarithmic frequency scale
-        that covers six octaves, centred on C4, F#4, C5 or F#5. Each tone lasts 500 ms, with
-        nothing between the two, and the second tone is a half-octave (six semitones) from the
-        first. Both tones have the same loudness, set to match Deutsch's recording. We add 5 ms
-        fades at the edges and the join, which the published description does not mention, so
-        the tones do not click.
+        octave. Their strengths follow a raised-cosine curve (the loudness hump) on a
+        logarithmic frequency scale that covers six octaves, centred on C4, F#4, C5 or F#5. Each
+        tone lasts 500 ms, with nothing between the two, and the second tone is a half-octave
+        (six semitones) from the first. Both tones have the same loudness, set to match
+        Deutsch's recording. Short 5 ms fades at the edges and the join, not in the published
+        description, stop the tones clicking.
       </p>
       <p>
         The twelve pairs start on each note name in turn, so you may hear C then F♯, D then G♯,
-        and so on. The pair starting on F♯ is the pair starting on C played backwards. The
-        circle assumes a simple model: one note sounds highest, and the notes sound lower the
-        further round the circle they are from it. The line shows the position that fits most of
-        your answers. It is a rough fit to what you chose, not a measurement of you. Listeners
-        often disagree about the direction, so this page describes the effect rather than
-        telling you what you should hear.
+        and so on. The circle assumes a simple model: one note sounds highest, and the notes
+        sound lower the further round the circle they are from it. The line shows the position
+        that fits most of your answers. It is a rough fit to what you chose, not a measurement
+        of you. Listeners often disagree about the direction, so this page describes the effect
+        rather than telling you what you should hear.
       </p>
     </div>
   </Disclosure>
   <Fragment slot="caption">
-    Our own synthesis following the published recipe in Deutsch (1986, 1987, 1990, 1991), not a
-    recording from her site or her CD. Listen to her original demonstration on her{" "}
+    Synthesised for this site following the published recipe in Deutsch (1986, 1987, 1990,
+    1991), not a recording from her site or her CD. Listen to her original demonstration on her{" "}
     <a
       href="https://deutsch.ucsd.edu/psychology/play.php?i=6206"
       class="underline"
@@ -436,7 +439,7 @@ const ring = names.map((label, index) => {
           .map(({ freq, amp }) => `${Math.round(freq)} Hz (${Math.round(amp * 100)}%)`)
           .join(", ")
       which.textContent = `Showing the pair ${pairText(current)}.`
-      readout.textContent = `Envelope centred on ${envelopeName} (${hz} Hz). First tone, ${name(current)}: ${list(current)}. Second tone, ${name(current + 6)}: ${list(current + 6)}.`
+      readout.textContent = `Hump centred on ${envelopeName} (${hz} Hz). First tone, ${name(current)}: ${list(current)}. Second tone, ${name(current + 6)}: ${list(current + 6)}.`
     }
 
     if (!audioAvailable()) {
@@ -450,7 +453,7 @@ const ring = names.map((label, index) => {
     bindSlider(slider, (value) => {
       envelope = value
       draw()
-      return `Envelope centred on ${TRITONE_ENVELOPES[value].name}, ${TRITONE_ENVELOPES[value].hz} Hz`
+      return `Hump centred on ${TRITONE_ENVELOPES[value].name}, ${TRITONE_ENVELOPES[value].hz} Hz`
     })
   }
 </script>

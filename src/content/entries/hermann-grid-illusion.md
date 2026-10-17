@@ -10,7 +10,8 @@ simplification: light
 noMaths: true
 order: 250
 written: true
-why: "Dark smudges sometimes seem to appear between black squares, especially away from the point you look at directly. The grid crossings are actually the same light colour as the straight corridors. Slightly changing the grid's geometry can weaken or remove the effect; its exact visual mechanism is still debated."
+why: "Dark smudges can seem to appear where the white streets cross, mostly away from the spot you look at directly. The crossings are the same white as the rest of the streets. Why this happens is still debated."
+finePrint: "Bending or distorting the streets slightly can weaken the smudges or remove them (Geier and colleagues, 2008), which suggests that the straightness of the streets matters. The [scintillating grid](scintillating-grid-illusion) is a related, more vivid effect."
 sources:
   - title: "Michael Bach: Hermann Grid"
     url: https://michaelbach.de/ot/lum-herGrid/

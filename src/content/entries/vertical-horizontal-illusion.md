@@ -10,7 +10,8 @@ simplification: light
 noMaths: true
 order: 260
 written: true
-why: "A vertical segment can look longer than a horizontal segment even when both measure the same. The effect depends on their arrangement and the surrounding frame of reference. In the inverted-T layout, the upright joins the centre of an equally long horizontal line."
+why: "An upright line can look longer than a flat line of exactly the same length. How strong this is depends on how the two lines are arranged and on what surrounds them."
+finePrint: "In the inverted T used here, the upright meets the middle of a horizontal line of equal length. Prinzmetal and Gettleman (1993) studied how the surrounding frame of reference affects the effect."
 sources:
   - title: "ESA (2004): The reversed T illusion"
     url: https://www.esa.int/ESA_Multimedia/Images/2004/06/The_reversed_T_illusion

@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content"
 import Base from "~/layouts/Base.astro"
+import FinePrint from "~/components/FinePrint.astro"
 import Linked from "~/components/Linked.astro"
 import PuzzleIllustration from "~/components/PuzzleIllustration.astro"
 import IllusionExperience from "~/components/IllusionExperience.astro"
@@ -175,7 +176,7 @@ const structuredData = [
 
   <div class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
     <article class="flex w-full max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
-      {isIllusion && <IllusionExperience slug={entry.id} why={d.why} />}
+      {isIllusion && <IllusionExperience slug={entry.id} why={d.why} finePrint={d.finePrint} />}
       {!isIllusion && !d.written && (
         <div class="border-2 border-dashed border-ink px-6 py-5 text-lg">
           <strong>Full write-up in progress.</strong> The problem, the two claims and the
@@ -231,11 +232,7 @@ const structuredData = [
               ))}
             </div>
           )}
-          {d.finePrint && (
-            <div class="mt-6 border-2 border-ink bg-disputed px-6 py-5 text-lg leading-normal">
-              <strong>The fine print.</strong> <Linked text={d.finePrint} />
-            </div>
-          )}
+          {d.finePrint && <FinePrint text={d.finePrint} />}
         </section>
       )}
 

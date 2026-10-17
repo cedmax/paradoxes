@@ -10,7 +10,8 @@ simplification: light
 noMaths: true
 order: 200
 written: true
-why: "The eye does not judge each patch on its own. It also uses neighbouring tiles and clues about the light. A looks like a dark tile in the light, while B looks like a light tile in shadow. Normally, accounting for lighting helps recognise surfaces. Here it makes identical greys look different."
+why: "The eye does not judge each square on its own. It also uses the squares around it and clues about where the light falls. A looks like a dark square in the light, while B looks like a light square in shadow, so the same grey looks different. Normally this helps people see the real colour of a surface despite shadows."
+finePrint: "Edward Adelson made the image in 1995. The effect is usually explained by lightness constancy: judging how light or dark a surface is, rather than how much light reaches the eye from it, using contrast with neighbouring areas and the apparent shadow."
 sources:
   - title: "Edward H. Adelson: Checker Shadow Illusion"
     url: https://persci.mit.edu/gallery/checkershadow/

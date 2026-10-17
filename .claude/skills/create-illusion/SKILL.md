@@ -24,6 +24,11 @@ Do not change any existing argument entry to the new format.
 - `why` is a short factual explanation in plain British English. Distinguish what the
   reveal verifies from theories about the visual mechanism. Where scientific explanations
   compete, say so. Follow the `verify-sources` skill before proposing approval.
+- Split detail into three tiers. `why` is the plain mechanism; keep the uncertainty the
+  evidence needs there ("some listeners", "can seem"). Optional `finePrint` takes named
+  researchers, specific findings, competing accounts and site-specific settings. The
+  "Exact sound" or equivalent disclosure in the figure holds only the technical spec;
+  plain takeaways belong in the visible reveal, and provenance goes in the caption once.
 
 ## Figure → reveal → why
 

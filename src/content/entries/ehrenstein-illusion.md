@@ -10,7 +10,8 @@ simplification: light
 noMaths: true
 order: 290
 written: true
-why: "Radial black strokes that stop together can make a bright white disc seem to float in the empty centre. No disc or circular outline is drawn. The aligned endpoints suggest its boundary even though the central region is unpainted."
+why: "Black strokes pointing at a centre and stopping together can make a bright white disc seem to float there. No disc or outline is drawn: the lined-up ends of the strokes suggest an edge, and the space inside it can look brighter than the page around it."
+finePrint: "Walter Ehrenstein described the effect in 1941. Pinna, Ehrenstein and Spillmann (2004) studied the apparent edge and brightness in figures of this kind."
 sources:
   - title: "Michael Bach: Ehrenstein Illusion"
     url: https://michaelbach.de/ot/lum-Ehrenstein/

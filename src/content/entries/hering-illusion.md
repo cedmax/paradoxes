@@ -10,7 +10,8 @@ simplification: light
 noMaths: true
 order: 270
 written: true
-why: "The radiating background can make two straight, parallel lines seem to bow away from one another. Hide the radiating strokes and their true shape is easier to see. The effect is about how the background alters apparent shape, not about any physical bend."
+why: "A background of lines spreading out from one point can make two straight, parallel lines seem to bow apart. The lines never bend: the background changes how their shape is judged."
+finePrint: "Ewald Hering described the effect in 1861. In the [Wundt illusion](wundt-illusion), a different background makes the same kind of lines seem to bow inwards."
 sources:
   - title: "Illusions Index: Hering illusion"
     url: https://www.illusionsindex.org/i/hering-illusion

@@ -11,7 +11,8 @@ simplification: light
 noMaths: true
 order: 310
 written: true
-why: "Two straight, parallel lines can appear to bow inwards when arranged against angled background strokes. The effect runs opposite to the outward bow often seen in the Hering illusion. The lines do not actually curve; changing the angled context changes what they seem to do."
+why: "Two straight, parallel lines can seem to bow inwards when angled strokes run behind them. The lines never bend: the background changes how their shape is judged."
+finePrint: "Wilhelm Wundt described the effect in 1898. It is the reverse of the [Hering illusion](hering-illusion), where a different background makes the same kind of lines seem to bow outwards."
 sources:
   - title: "University of Minnesota: Sensation & Perception, Depth Perception"
     url: https://manifold.open.umn.edu/read/sensation-perception-v3/section/7d0f87e7-f8f3-470b-a607-c592c0d6395d

@@ -84,7 +84,8 @@ description fallback and OG text. Illusions instead require `why`, which follows
 an original or appropriately licensed source image, vector or audio demonstration,
 loaded by `src/components/IllusionExperience.astro`
 from `src/components/illusions/<slug>.astro`. Each demonstration owns its initial and reveal states; no generic "what you see /
-what is true" fields are stored. Prefer the original media where reuse is
+what is true" fields are stored. An optional `finePrint` holds research detail and caveats
+below `why`, in the same "The fine print." box arguments use (`src/components/FinePrint.astro`). Prefer the original media where reuse is
 permitted and faithful; otherwise redraw or synthesise and credit the originator.
 All displayed media must be served from this site's own public assets; third-party
 URLs may only be used for attribution and source links. The checker-shadow

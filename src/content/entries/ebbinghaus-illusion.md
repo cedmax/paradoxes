@@ -11,7 +11,8 @@ simplification: light
 noMaths: true
 order: 210
 written: true
-why: "The size of the surrounding circles changes how big each central circle appears. Perceived size depends partly on the surrounding shapes, not just the circle itself. Both the contours and the context of the surrounding circles seem to play a part, and not every combination of sizes and distances produces an illusion."
+why: "The circles around a circle change how big it looks: ringed by large circles it seems smaller, ringed by small ones it seems bigger. Not every combination of sizes and distances does this."
+finePrint: "Both the outlines of the surrounding circles and their overall context seem to play a part (Weintraub, 1979), and some arrangements of size and distance produce little or no illusion (Knol and colleagues, 2015). Thiéry published the figure in 1896, and Wundt reproduced it in 1898. Who first devised it is uncertain. Titchener later published it too, but did not invent it."
 sources:
   - title: "Wilhelm Wundt (1898): Die geometrisch-optischen Täuschungen"
     url: https://books.google.com/books?id=DSlWAAAAMAAJ
@@ -27,7 +28,7 @@ sources:
     note: "Reports context and contour effects on perceived circle size."
   - title: "Vicario (2008): Optical-geometrical illusions, the nomenclature"
     url: https://www.gestalttheory.net/uploads/pdf/GTH-Archive/Vicario2008Optical-GeometricalIllusions.pdf
-    note: "Identifies Thiéry (1896) as the first publication of the circles figure and notes that Wundt (1898) reproduces it without naming an author."
+    note: "Vicario identifies Thiéry (1896) as the first publication of the circles figure and states that Wundt (1898) reproduces it without naming an author. Other historical accounts differ, including on whether Wundt credited Ebbinghaus."
   - title: "Burton (2001): The Tenacity of Historical Misinformation: Titchener Did Not Invent the Titchener Illusion"
     url: https://doi.org/10.1037/1093-4510.4.3.228
     note: "History of Psychology 4(3), pp. 228–244, on the attribution history. Bibliographic details and conclusion checked through the abstract; the full article was not inspected."

@@ -10,7 +10,7 @@ simplification: light
 noMaths: true
 order: 300
 written: true
-why: "A grey patch can seem lighter or darker depending on how it interrupts a pattern of dark and light stripes. Both patches are made from the same fixed grey. Removing the striped context reveals that all the grey bars have identical RGB values. Researchers disagree about a complete explanation."
+why: "A grey patch can look lighter or darker depending on where it sits in a pattern of dark and light stripes. Researchers still disagree about a full explanation."
 sources:
   - title: "Michael Bach: Munker–White illusion"
     url: https://michaelbach.de/ot/lum-white/

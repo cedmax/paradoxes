@@ -120,6 +120,11 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
       <p id="auditory-streaming-readout" class="text-base" aria-live="polite"></p>
     </Slider>
     <p class="text-base">
+      With a small gap the notes form one galloping beat, like a horse. With a large gap you may
+      hear a slow stream of high notes beside a faster stream of low ones. When the notes are
+      far enough apart, they can become easier to hear as separate streams after a few seconds.
+    </p>
+    <p class="text-base">
       Only the high note moves. The low note and every start time stay put. If the sound is
       playing, it restarts when you move the slider.
     </p>
@@ -134,20 +139,15 @@ const slots = Array.from({ length: 8 }, (_, index) => ({
         the slider moves it from the same note up to two octaves higher. Each note has a{" "}
         {STREAMING.fadeMs} ms rise and fall. The frequencies, level difference, note length and
         fades follow Bregman and Ahad's (1996) demonstration 4, which plays high, low, high,
-        rest and builds up from short to long groups. This page plays low, high, low, rest,
-        repeated a fixed number of times, so it is adapted from that demonstration, not a copy.
-        Pure sine tones, generated in your browser.
-      </p>
-      <p>
-        With a small gap the notes form one galloping beat, like a horse. With a large gap you
-        may hear a slow stream of high notes beside a faster stream of low ones.
+        rest in groups that grow from short to long. Here the order is low, high, low, rest, and
+        the number of repeats is fixed. Pure sine tones, generated in your browser.
       </p>
     </div>
   </Disclosure>
   <Fragment slot="caption">
-    After van Noorden's galloping rhythm (1975) and Bregman's account of auditory streaming. The
-    tones here are our own synthesis, with settings taken from demonstration 4 by Bregman and
-    Ahad (1996) but a different note order, not a recording from any of these sources.
+    Synthesised for this site, after van Noorden's galloping rhythm (1975) and Bregman's account
+    of auditory streaming, with settings taken from demonstration 4 by Bregman and Ahad (1996)
+    but a different note order. It is not a recording from any of these sources.
   </Fragment>
 </IllustrationFigure>
 
