@@ -135,7 +135,7 @@ const structuredData = [
     </div>
     {anchor && (
       <a
-        class="flex max-w-190 flex-col gap-1.5 border-2 border-ink p-5 text-ink no-underline transition-colors duration-100 hover:bg-ink hover:text-paper focus-visible:-outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"
+        class="flex w-full max-w-190 flex-col gap-1.5 border-2 border-ink p-5 text-ink no-underline transition-colors duration-100 hover:bg-ink hover:text-paper focus-visible:-outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"
         href={`/entries/${anchor.id}/`}
       >
         <span class="mono-label opacity-65">{u.relation}</span>
@@ -174,7 +174,7 @@ const structuredData = [
   )}
 
   <div class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
-    <article class="flex max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
+    <article class="flex w-full max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
       {isIllusion && <IllusionExperience slug={entry.id} why={d.why} />}
       {!isIllusion && !d.written && (
         <div class="border-2 border-dashed border-ink px-6 py-5 text-lg">
