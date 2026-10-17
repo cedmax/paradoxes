@@ -272,21 +272,25 @@ export function renderContinuity(levelStep: number, sampleRate: number): Float32
 /* ------------------------------------------------------------------------------------------ */
 /* Risset rhythm                                                                              */
 /* ------------------------------------------------------------------------------------------ */
-// Six click trains whose tempi are always an octave apart (ratio 2). Every train speeds up
+// Five click trains whose tempi are always an octave apart (ratio 2). Every train speeds up
 // exponentially by one octave per loop; a raised-cosine weight on log-tempo fades each in at the
 // slow end and out at the fast end, as in a Shepard tone. At the loop boundary train k has the
 // tempo, weight and click phase that train k + 1 has at the start, so the loop is seamless.
 // With `a` = r0 * T / ln 2 an integer, click phases line up exactly; see the construction below.
 
 export const RISSET = {
-  layers: 6,
+  layers: 5,
   /** Slowest starting tempo, in clicks per second. */
-  slowestHz: 0.25,
+  slowestHz: 0.2,
   /** Click count constant: a = slowestHz * seconds / ln 2. Must be an integer for a seamless loop. */
-  a: 4,
-  clickHz: 800,
-  clickDecayMs: 12,
-  clickMs: 60,
+  a: 8,
+  /** Each click is a low thump with a short, bright tick on top, so it carries on small speakers. */
+  bodyHz: 140,
+  bodyDecayMs: 35,
+  tickHz: 1800,
+  tickDecayMs: 3,
+  tickGain: 0.25,
+  clickMs: 160,
 } as const
 
 /** A fractional click phase shared by all layers, which keeps clicks off the loop boundary. */
@@ -319,13 +323,15 @@ export function rissetClicks(k: number): { time: number; weight: number }[] {
  * to its slow tempo at the loop point. `solo = null` plays all layers.
  */
 export function renderRisset(sampleRate: number, solo: number | null = null): Float32Array {
-  const { layers, clickHz, clickDecayMs, clickMs } = RISSET
+  const { layers, bodyHz, bodyDecayMs, tickHz, tickDecayMs, tickGain, clickMs } = RISSET
   const length = Math.round(RISSET_LOOP_SECONDS * sampleRate)
   const clickLength = Math.round((clickMs * sampleRate) / 1000)
   const click = new Float32Array(clickLength)
   for (let i = 0; i < clickLength; i++) {
     const t = i / sampleRate
-    click[i] = Math.sin(TWO_PI * clickHz * t) * Math.exp(-t / (clickDecayMs / 1000))
+    click[i] =
+      Math.sin(TWO_PI * bodyHz * t) * Math.exp(-t / (bodyDecayMs / 1000)) +
+      tickGain * Math.sin(TWO_PI * tickHz * t) * Math.exp(-t / (tickDecayMs / 1000))
   }
   const mix = (only: number | null) => {
     const out = new Float32Array(length)

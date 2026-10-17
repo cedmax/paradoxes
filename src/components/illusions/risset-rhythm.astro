@@ -19,6 +19,8 @@ const layers = Array.from({ length: RISSET.layers }, (_, k) => ({
   })),
 }))
 const seconds = RISSET_LOOP_SECONDS.toFixed(1)
+const layerWord = ["", "one", "two", "three", "four", "five", "six"][RISSET.layers]
+const axisY = 24 + RISSET.layers * 30
 ---
 
 <IllustrationFigure
@@ -48,9 +50,9 @@ const seconds = RISSET_LOOP_SECONDS.toFixed(1)
   <div id="risset-rhythm-reveal" class="flex flex-col gap-4" hidden>
     <SvgFigure
       name="risset-rhythm"
-      viewBox="0 0 600 230"
+      viewBox={`0 0 600 ${axisY + 24}`}
       class="mx-auto w-full max-w-xl"
-      title="Click times of six layers over one loop, each fading in and out"
+      title={`Click times of ${layerWord} layers over one loop, each fading in and out`}
       desc={`Time runs left to right over one ${seconds} second loop. Each row is one layer of clicks. Within a row the clicks come closer together, because the layer speeds up. A darker mark is a louder click. A layer starts quiet and slow, grows, then fades as it becomes fast, and the next layer takes over at the speed where it ended.`}
     >
       {layers.map(({ k, y, clicks }) => (
@@ -73,16 +75,16 @@ const seconds = RISSET_LOOP_SECONDS.toFixed(1)
       ))}
       <line
         x1={left}
-        y1="206"
+        y1={axisY}
         x2={left + width}
-        y2="206"
+        y2={axisY}
         stroke={stroke}
         stroke-width="1"
       ></line>
-      <text x={left} y="224" font-size="13" fill={stroke}>
+      <text x={left} y={axisY + 18} font-size="13" fill={stroke}>
         {`0 s`}
       </text>
-      <text x={left + width - 60} y="224" font-size="13" fill={stroke}>
+      <text x={left + width - 60} y={axisY + 18} font-size="13" fill={stroke}>
         {`${seconds} s, then it repeats`}
       </text>
     </SvgFigure>
@@ -93,10 +95,10 @@ const seconds = RISSET_LOOP_SECONDS.toFixed(1)
       max={RISSET.layers}
       step={1}
       value={0}
-      startLabel="All six together"
-      endLabel="Layer 6 alone"
+      startLabel={`All ${layerWord} together`}
+      endLabel={`Layer ${RISSET.layers} alone`}
       describedby="risset-rhythm-readout"
-      valuetext="All six layers"
+      valuetext={`All ${layerWord} layers`}
     >
       <p id="risset-rhythm-readout" class="text-base" aria-live="polite"></p>
     </Slider>
@@ -109,8 +111,8 @@ const seconds = RISSET_LOOP_SECONDS.toFixed(1)
   <Disclosure summary="Exact sound and a text description" slot="after">
     <div class="flex flex-col gap-3 pt-3 text-base">
       <p>
-        {RISSET.layers} layers of short {RISSET.clickHz} Hz clicks. Layer 1 starts at{" "}
-        {rissetStartHz(0)}
+        {RISSET.layers} layers of short thumps, each a {RISSET.bodyHz} Hz tone with a brief
+        bright tick on top. Layer 1 starts at {rissetStartHz(0)}
         clicks a second. Each later layer starts at double the speed of the one before, up to
         {rissetStartHz(RISSET.layers - 1)} clicks a second for layer {RISSET.layers}. Every
         layer doubles its speed smoothly over {seconds} s, which is the whole loop, and the loop
@@ -139,7 +141,12 @@ const seconds = RISSET_LOOP_SECONDS.toFixed(1)
     illustrationRoot,
   } from "~/scripts/illustration"
   import { audioAvailable, playSamples, stopAudio } from "~/scripts/audio"
-  import { RISSET_LOOP_SECONDS, renderRisset, rissetStartHz } from "~/scripts/audio-synth"
+  import {
+    RISSET,
+    RISSET_LOOP_SECONDS,
+    renderRisset,
+    rissetStartHz,
+  } from "~/scripts/audio-synth"
 
   const name = "risset-rhythm"
   const root = illustrationRoot(name)
@@ -152,6 +159,7 @@ const seconds = RISSET_LOOP_SECONDS.toFixed(1)
     let solo: number | null = null
     const seconds = RISSET_LOOP_SECONDS.toFixed(1)
     const hz = (value: number) => String(Math.round(value * 100) / 100)
+    const layerWord = ["", "one", "two", "three", "four", "five", "six"][RISSET.layers]
 
     const setPlaying = (on: boolean) => {
       play.textContent = on ? "Stop" : "Play"
@@ -199,10 +207,10 @@ const seconds = RISSET_LOOP_SECONDS.toFixed(1)
       }
       const text =
         solo === null
-          ? `All six layers. Layer 1 goes from ${hz(rissetStartHz(0))} to ${hz(rissetStartHz(1))} clicks a second while the others do the same one octave up each, to layer 6, which goes from ${hz(rissetStartHz(5))} to ${hz(rissetStartHz(6))}. The whole pattern repeats exactly every ${seconds} seconds.`
+          ? `All ${layerWord} layers. Layer 1 goes from ${hz(rissetStartHz(0))} to ${hz(rissetStartHz(1))} clicks a second while the others do the same one octave up each, to layer ${RISSET.layers}, which goes from ${hz(rissetStartHz(RISSET.layers - 1))} to ${hz(rissetStartHz(RISSET.layers))}. The whole pattern repeats exactly every ${seconds} seconds.`
           : `Layer ${solo + 1} alone: it speeds up from ${hz(rissetStartHz(solo))} to ${hz(rissetStartHz(solo + 1))} clicks a second over ${seconds} seconds, then starts again.`
       readout.textContent = text
-      return solo === null ? "All six layers" : `Layer ${solo + 1} alone`
+      return solo === null ? `All ${layerWord} layers` : `Layer ${solo + 1} alone`
     })
     slider.addEventListener("input", () => {
       if (play.getAttribute("aria-pressed") === "true") void start()
