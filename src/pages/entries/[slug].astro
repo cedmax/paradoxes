@@ -120,7 +120,7 @@ const structuredData = [
         <span class="font-bold">Also known as:</span> {d.alternativeNames.join(", ")}
       </p>
     )}
-    <div class="flex max-w-215 flex-col gap-2">
+    <div class="flex max-w-215 text-balance flex-col gap-2">
       <div class="mono-label opacity-65">{!isIllusion ? "The problem" : "The question"}</div>
       <p class="font-display text-[clamp(26px,3.2vw,40px)] leading-tight font-extrabold tracking-tight">
         {d.problem}
@@ -135,7 +135,7 @@ const structuredData = [
     </div>
     {anchor && (
       <a
-        class="flex max-w-215 flex-col gap-1.5 border-2 border-ink p-5 text-ink no-underline transition-colors duration-100 hover:bg-ink hover:text-paper focus-visible:-outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"
+        class="flex max-w-190 flex-col gap-1.5 border-2 border-ink p-5 text-ink no-underline transition-colors duration-100 hover:bg-ink hover:text-paper focus-visible:-outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"
         href={`/entries/${anchor.id}/`}
       >
         <span class="mono-label opacity-65">{u.relation}</span>
