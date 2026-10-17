@@ -29,6 +29,14 @@ Do not change any existing argument entry to the new format.
   researchers, specific findings, competing accounts and site-specific settings. The
   "Exact sound" or equivalent disclosure in the figure holds only the technical spec;
   plain takeaways belong in the visible reveal, and provenance goes in the caption once.
+- Describe what people perceive or report ("can seem to carry on", "many listeners hear"),
+  not what the brain or ear does ("the brain assumes", "your ear misses"), unless a source
+  establishes that mechanism.
+- Keep the conditions a finding holds under (for example "mainly at in-between pitch gaps").
+  Call a neighbouring effect "related" unless a source shows it is the same process.
+- Captions and other figure copy follow the entry writing rules too: no first person or
+  inclusive "we". Use "Synthesised for this site" or "Redrawn for this site", and keep the
+  credit to the original researchers or creator.
 
 ## Figure → reveal → why
 
@@ -57,8 +65,11 @@ Do not change any existing argument entry to the new format.
    arrowheads without changing the line, or connect identical pixel values directly within the original figure.
    Simple show/hide toggles alone are rarely sufficient. Provide a fixed numerical or
    geometric reference to establish what stayed unchanged. Never imply more certainty
-   than the proof supports.
-4. Why: explain the relevant perceptual effect without asserting disputed neural mechanisms.
+   than the proof supports. When the evidence shows listeners or viewers respond
+   differently to a control, describe the possible outcomes rather than one expected
+   result.
+4. Why: explain the relevant perceptual effect, visual or auditory, without asserting
+   disputed neural mechanisms.
    Avoid replaying the setup or proof in the body copy.
 
 ## Accessibility
@@ -99,6 +110,9 @@ Do not change any existing argument entry to the new format.
   nonvisual proof before generalising. Compare the result with the original illusion
   and the site's strongest existing visual explanations. If it does not work at rest,
   redesign the figure rather than compensating with explanatory text.
+- For audio, listen on real devices, both headphones and speakers at a comfortable volume,
+  before proposing approval. Checks and builds do not confirm that the sound works; say so
+  if listening was not done.
 - Test that changing the context never changes the target measurements. Verify
   that matched pixel samples really share the same rendered values, including
   positions untouched by labels, and that measurement guides stay stationary.
