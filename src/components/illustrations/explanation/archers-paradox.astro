@@ -1,0 +1,97 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+const frames = [
+  {
+    id: "full-draw",
+    label: "At full draw: points away from the target",
+    title: "Straight arrow pointing to one side of the target",
+    desc: "The arrow starts at the string, passes above the bow grip, and points away from the dashed target line.",
+    shaft: "M34 63 L430 19",
+    head: "M436 18 L422 14 L425 25 Z",
+    feathers: "M37 62 L29 56 M37 64 L30 70",
+  },
+  {
+    id: "release",
+    label: "On release: bends around the grip",
+    title: "Arrow flexing gently to clear the bow",
+    desc: "The arrow has moved forward. Its middle bends to the side of the bow grip rather than passing through it.",
+    shaft: "M80 63 C121 63 143 43 181 43 C224 43 248 62 296 63 S365 63 436 63",
+    head: "M443 63 L429 58 L429 68 Z",
+    feathers: "M83 62 L76 56 M83 64 L76 70",
+  },
+  {
+    id: "clearing",
+    label: "Clearing the bow: still slightly bent",
+    title: "Arrow continuing forward while clearing the grip",
+    desc: "The arrow's back is beside the bow grip as the shaft flexes gently towards the target line.",
+    shaft: "M145 43 C182 43 204 46 249 57 S352 65 463 63",
+    head: "M470 63 L456 58 L456 68 Z",
+    feathers: "M148 42 L141 36 M148 44 L141 50",
+  },
+  {
+    id: "flight",
+    label: "In flight: travels towards the target",
+    title: "Arrow past the bow and moving along the target line",
+    desc: "The arrow is fully beyond the grip, travelling along the target line with a slight residual flex.",
+    shaft: "M233 63 C280 59 319 61 359 64 S447 62 497 63",
+    head: "M504 63 L490 58 L490 68 Z",
+    feathers: "M236 62 L229 56 M236 64 L229 70",
+  },
+] as const
+---
+
+<IllustrationFigure name="archers-paradox" lead="The arrow flexes past the bow, not through it">
+  <p class="text-base leading-normal">
+    Seen from above: the gold circle is the bow grip, and the dashed line points to the target.
+    Each picture shows a later moment of the same shot.
+  </p>
+  <div class="grid gap-4">
+    {frames.map((frame, index) => (
+      <div class="grid gap-2">
+        <p class="text-base font-bold">
+          ${index + 1}. ${frame.label}
+        </p>
+        <SvgFigure
+          name={`archers-paradox-${frame.id}`}
+          class="w-full max-w-2xl"
+          viewBox="0 0 540 96"
+          title={frame.title}
+          desc={frame.desc}
+        >
+          <path
+            d="M22 63 H512"
+            stroke={stroke}
+            stroke-width="1.2"
+            stroke-dasharray="6 6"
+            opacity=".5"
+            fill="none"
+          />
+          <circle cx="188" cy="63" r="12" stroke={stroke} stroke-width="2" fill={series.gold} />
+          <path
+            d={frame.shaft}
+            fill="none"
+            stroke={series.blue}
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+          <path d={frame.head} fill={series.blue} />
+          <path
+            d={frame.feathers}
+            fill="none"
+            stroke={series.blue}
+            stroke-width="1.8"
+            stroke-linecap="round"
+          />
+        </SvgFigure>
+      </div>
+    ))}
+  </div>
+  <Fragment slot="caption">
+    The arrow does not follow the direction it initially points. Its flexible shaft bends past
+    the bow grip, then oscillates as it travels towards the target. The bend is shown
+    schematically.
+  </Fragment>
+</IllustrationFigure>
