@@ -178,11 +178,11 @@ const cycles = [0, cycle].map((start) => ({
       play.setAttribute("aria-pressed", String(on))
     }
     const start = async () => {
-      await playSamples((rate) => renderContinuity(step, rate), {
+      const started = await playSamples((rate) => renderContinuity(step, rate), {
         loop: true,
         onStop: () => setPlaying(false),
       })
-      setPlaying(true)
+      if (started) setPlaying(true)
     }
 
     const choices = bindListenerChoice(root, name, (value) => {

@@ -9,6 +9,8 @@ interface Playing {
 
 let context: AudioContext | undefined
 let playing: Playing | undefined
+/** Bumped by every stop and every new request, so a request still waiting can tell it is stale. */
+let generation = 0
 
 type AudioWindow = Window & {
   AudioContext?: typeof AudioContext
@@ -41,14 +43,18 @@ function ensureContext() {
   return context
 }
 
-/** iOS can report "interrupted" as well as "suspended", and resume() may never settle. */
+/**
+ * iOS can report "interrupted" as well as "suspended", and resume() may never settle, so give
+ * up after a second. The caller must still check the state: a timeout is not a resume.
+ */
 async function wake(audio: AudioContext) {
   if (audio.state === "running") return
-  await Promise.race([audio.resume(), new Promise((done) => setTimeout(done, 500))])
+  await Promise.race([audio.resume(), new Promise((done) => setTimeout(done, 1000))])
 }
 
 /** Fade out and stop whatever is playing, then tell its owner so the buttons can reset. */
 export function stopAudio() {
+  generation++
   const current = playing
   if (!current || !context) return
   playing = undefined
@@ -63,14 +69,18 @@ export function stopAudio() {
 /**
  * Render and play a mono buffer. Must be called from a click handler, so the browser allows
  * sound. Replaces anything already playing. `onStop` runs when it ends or is stopped.
+ * Resolves to true only if the sound started; false if it was stopped or replaced while the
+ * browser was still waking the audio, or the context never began running.
  */
 export async function playSamples(
   render: (sampleRate: number) => Float32Array,
   options: { loop?: boolean; onStop?: () => void } = {},
 ) {
   stopAudio()
+  const request = generation
   const audio = ensureContext()
   await wake(audio)
+  if (request !== generation || audio.state !== "running") return false
   const samples = render(audio.sampleRate)
   const buffer = audio.createBuffer(1, samples.length, audio.sampleRate)
   buffer.copyToChannel(samples as Float32Array<ArrayBuffer>, 0)
@@ -88,6 +98,7 @@ export async function playSamples(
     }
   }
   source.start()
+  return true
 }
 
 // Sound must never carry on once the page is hidden or left.
