@@ -1,0 +1,114 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { illusionSurface, series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="friendship-paradox"
+  lead="One popular person appears in many people's friend lists"
+>
+  <SvgFigure
+    name="friendship-network"
+    class="mx-auto w-full max-w-sm"
+    viewBox="0 0 350 230"
+    title="A star-shaped friendship network"
+    desc="Sam is friends with Ada, Bo, Cy and Dee. Each of those four is friends only with Sam. Sam has four friends; everyone else has one."
+  >
+    {[
+      [175, 110, 60, 40],
+      [175, 110, 290, 40],
+      [175, 110, 60, 185],
+      [175, 110, 290, 185],
+    ].map(([x1, y1, x2, y2]) => (
+      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={stroke} stroke-width="3" />
+    ))}
+    {[
+      { x: 175, y: 110, name: "Sam", count: 4, color: series.gold },
+      { x: 60, y: 40, name: "Ada", count: 1, color: series.blue },
+      { x: 290, y: 40, name: "Bo", count: 1, color: series.blue },
+      { x: 60, y: 185, name: "Cy", count: 1, color: series.blue },
+      { x: 290, y: 185, name: "Dee", count: 1, color: series.blue },
+    ].map((p) => (
+      <g>
+        <circle cx={p.x} cy={p.y} r="28" fill={p.color} stroke={stroke} stroke-width="2" />
+        <text
+          x={p.x}
+          y={p.y + 5}
+          fill={illusionSurface.paper}
+          font-size="16"
+          font-weight="bold"
+          text-anchor="middle"
+        >
+          {p.name}
+        </text>
+        <text x={p.x} y={p.y + 43} fill="currentColor" font-size="13" text-anchor="middle">
+          {p.count} {p.count === 1 ? "friend" : "friends"}
+        </text>
+      </g>
+    ))}
+  </SvgFigure>
+  <div class="flex flex-wrap gap-2" role="group" aria-label="How to count the network">
+    <button id="friendship-paradox-people" type="button" class="btn-toggle" aria-pressed="true">
+      Count people
+    </button>
+    <button id="friendship-paradox-lists" type="button" class="btn-toggle" aria-pressed="false">
+      Count friend-list entries
+    </button>
+  </div>
+  <div id="friendship-paradox-people-view" class="space-y-2 text-base leading-normal">
+    <p>Five people, counted once each:</p>
+    <div class="flex flex-wrap gap-1 font-mono text-sm">
+      {["Sam · 4", "Ada · 1", "Bo · 1", "Cy · 1", "Dee · 1"].map((name) => (
+        <span class="border border-ink px-2 py-1">{name}</span>
+      ))}
+    </div>
+    <p>
+      <strong>Average person: (4 + 1 + 1 + 1 + 1) ÷ 5 = 1.6 friends.</strong>
+    </p>
+  </div>
+  <div id="friendship-paradox-lists-view" class="space-y-2 text-base leading-normal" hidden>
+    <p>Now pool all eight entries on everyone's friend lists:</p>
+    <div class="flex flex-wrap gap-1 font-mono text-sm">
+      {[
+        "Sam · 4",
+        "Sam · 4",
+        "Sam · 4",
+        "Sam · 4",
+        "Ada · 1",
+        "Bo · 1",
+        "Cy · 1",
+        "Dee · 1",
+      ].map((name) => (
+        <span class="border border-ink px-2 py-1">{name}</span>
+      ))}
+    </div>
+    <p>
+      <strong>Average listed friend: (4 × 4 + 4 × 1) ÷ 8 = 2.5 friends.</strong>
+    </p>
+  </div>
+  <Fragment slot="caption">
+    Sam turns up on four lists because four people know Sam. A popular person is counted more
+    often when sampling through friendships. This is a statement about averages, not every
+    person's individual friendships.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("friendship-paradox")
+  if (root) {
+    const people = find<HTMLButtonElement>(root, "#friendship-paradox-people")
+    const lists = find<HTMLButtonElement>(root, "#friendship-paradox-lists")
+    const peopleView = find<HTMLElement>(root, "#friendship-paradox-people-view")
+    const listsView = find<HTMLElement>(root, "#friendship-paradox-lists-view")
+    const show = (useLists: boolean) => {
+      peopleView.hidden = useLists
+      listsView.hidden = !useLists
+      people.setAttribute("aria-pressed", String(!useLists))
+      lists.setAttribute("aria-pressed", String(useLists))
+    }
+    people.addEventListener("click", () => show(false))
+    lists.addEventListener("click", () => show(true))
+  }
+</script>
