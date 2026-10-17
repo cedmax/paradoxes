@@ -12,7 +12,7 @@ noMaths: true
 order: 350
 written: true
 problem: "Can a tone seem to carry on through a burst of noise that replaced it?"
-why: "When a louder sound could have covered a quieter one, the quieter sound can seem to carry on behind it. Here the tone really stops during each burst of noise, yet with noise loud enough to have hidden it, many listeners hear the tone as if it carried on, even though it stopped. With quiet noise the gap is heard as a gap. Speech does the same: a word can sound complete when a cough has replaced part of it."
+why: "When a louder sound could have covered a quieter one, the quieter sound can seem to carry on behind it. Here the tone really stops during each burst of noise, yet with noise loud enough to have hidden it, many listeners hear the tone as if it carried on, even though it stopped. With quiet noise the gap is heard as a gap. A related illusion happens with speech: a word can sound complete even when a cough replaces part of it."
 finePrint: "Warren and Obusek found that the illusion works when the louder sound would have masked the quieter one had both been present. That depends on how loud the noise is and on which frequencies it contains, and the level difference needed varies widely with the sounds used. Bregman and Dannenbring found that the illusion weakens if the tone fades just before the noise. Warren (1970) showed the speech version, called phonemic restoration: with part of a word in a sentence replaced by a cough, nearly every listener reported hearing all of the speech sounds. How hearing fills the gap is described in more than one way."
 sources:
   - title: "Warren and Obusek (1972): Auditory induction: illusory continuity of the fainter of two alternating sounds"

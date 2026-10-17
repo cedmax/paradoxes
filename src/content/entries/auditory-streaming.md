@@ -13,7 +13,7 @@ order: 340
 written: true
 problem: "Can the same repeating beeps sound like one galloping rhythm or like two separate streams?"
 why: "Hearing tends to group sounds that are close in pitch and timing and to separate those that are not, which helps a listener follow one voice among others. With a small pitch gap the notes join into one galloping rhythm. With a larger gap they tend to split into a high stream and a low one. In between, listeners can hear either, and what they hear can switch. Even when the sound stays the same, what you hear can change."
-finePrint: "Speed matters too: in the research, faster patterns split apart more easily, but the control on this page changes only the pitch gap, at one fixed speed. Splitting also builds up with repetition, which Bregman and Ahad’s demonstration 4 shows by playing longer and longer groups, so the longer the pattern plays, the more likely the notes are to separate. The exact boundaries depend on the speed, the listener and where attention is."
+finePrint: "Speed matters too: in the research, faster patterns split apart more easily, but the control on this page changes only the pitch gap, at one fixed speed. Splitting can also build up with repetition, which Bregman and Ahad’s demonstration 4 shows by playing longer and longer groups. This happens mainly at in-between pitch gaps: a very small gap tends to stay one stream, and a very large one can split straight away. The exact boundaries depend on the speed, the listener and where attention is."
 sources:
   - title: "Galloping rhythm (after van Noorden, 1975), University of Oldenburg"
     url: "https://uol.de/f/3/inst/musik/musik-wahrnehmung/SoundExamples/Ex_VanNoorden.html"
