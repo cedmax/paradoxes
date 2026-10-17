@@ -71,12 +71,22 @@ import { series, stroke } from "~/data/palette"
       Lift shaft
     </text>
   </SvgFigure>
-  <div class="flex flex-col gap-3">
-    <p class="text-base font-bold">Time between passes at your floor</p>
-    <p class="text-base leading-normal">
-      After an upward pass, the lift travels above you before returning down. After a downward
-      pass, it travels below you before returning up.
+  <Slider
+    id="elevator-paradox-position"
+    label="Waiting floor"
+    min={1}
+    max={9}
+    step={1}
+    value={2}
+    startLabel="Near bottom"
+    endLabel="Near top"
+    describedby="elevator-paradox-readout"
+  >
+    <p id="elevator-paradox-readout" class="text-base leading-normal" aria-live="polite">
+      Near the bottom, the longer wait ends with a downward pass.
     </p>
+  </Slider>
+  <div class="flex flex-col gap-3">
     <div class="flex h-9 overflow-hidden border-2 border-ink" aria-hidden="true">
       <div
         id="elevator-paradox-gap-down"
@@ -104,21 +114,13 @@ import { series, stroke } from "~/data/palette"
       </div>
     </div>
   </div>
-  <Slider
-    id="elevator-paradox-position"
-    label="Waiting floor"
-    min={1}
-    max={9}
-    step={1}
-    value={2}
-    startLabel="Near bottom"
-    endLabel="Near top"
-    describedby="elevator-paradox-readout"
-  >
-    <p id="elevator-paradox-readout" class="text-base leading-normal" aria-live="polite">
-      Near the bottom, the longer wait ends with a downward pass.
+  <div class="flex flex-col gap-3">
+    <p class="text-base font-bold">Time between passes at your floor</p>
+    <p class="text-base leading-normal">
+      After an upward pass, the lift travels above you before returning down. After a downward
+      pass, it travels below you before returning up.
     </p>
-  </Slider>
+  </div>
   <Fragment slot="caption">
     The lift passes every floor once in each direction, but waits between passes are unequal.
     The proportions assume constant speed and a random arrival time. Real lifts have stops and
