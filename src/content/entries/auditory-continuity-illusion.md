@@ -20,6 +20,9 @@ sources:
   - title: "Bregman and Dannenbring (1977): Auditory continuity and amplitude edges"
     url: "https://webpages.mcgill.ca/staff/Group2/abregm1/web/pdf/1977_Bregman_Dannenbring-Continuity-amplitude-edges.pdf"
     note: "Found that brief changes in the tone's amplitude just before and after the noise reduced the illusion of continuity, more so when the tone faded before the noise. Used to keep the tone at full level up to the noise here."
+  - title: "Bregman and Ahad (1996): Demonstrations of auditory scene analysis, demonstration 28 (Apparent continuity)"
+    url: "https://webpages.mcgill.ca/staff/Group2/abregm1/web/downloadstoc.htm"
+    note: "A recorded demonstration of apparent continuity to compare with this page's synthesis. Only its title in the table of contents has been seen; its description and sound have not yet been checked against this entry."
 sourcesVerified: false
 reviewed: false
 ---
