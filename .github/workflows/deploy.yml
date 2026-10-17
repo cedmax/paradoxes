@@ -56,6 +56,7 @@ jobs:
       - run: pnpm build
         env:
           SITE_INDEXING: ${{ github.event_name == 'pull_request' && 'noindex' || 'index' }}
+          PREVIEW_UNVERIFIED: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
 
       # Check the built output before it is deployed. A failure blocks the deploy.
       - run: pnpm check:seo

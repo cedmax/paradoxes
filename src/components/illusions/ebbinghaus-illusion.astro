@@ -1,0 +1,122 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series } from "~/data/palette"
+import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+
+const neighbours = Array.from({ length: 7 }, (_, index) => {
+  const angle = (index * 2 * Math.PI) / 7
+  const leftSize = 32
+  const rightSize = 11
+  // Seven larger neighbours, spaced evenly without overlapping one another.
+  const leftOrbit = Math.max(2.625 * leftSize, leftSize + 32)
+  const rightOrbit = rightSize + 32
+  return {
+    leftX: 165 + leftOrbit * Math.cos(angle),
+    leftY: 175 + leftOrbit * Math.sin(angle),
+    rightX: 485 + rightOrbit * Math.cos(angle),
+    rightY: 175 + rightOrbit * Math.sin(angle),
+    angle,
+  }
+})
+---
+
+<IllustrationFigure name="ebbinghaus-illusion" lead="Which red circle looks bigger?">
+  <SvgFigure
+    name="ebbinghaus-illusion"
+    viewBox="0 0 650 350"
+    class="mx-auto w-full max-w-2xl"
+    title="Two equally sized red circles among circles of contrasting sizes"
+    desc="The red target circle on the left is surrounded by seven larger blue circles. The identical red target on the right is tightly surrounded by seven small circles. Changing the slider swaps the surround sizes without changing either red target; both red targets are 50 SVG units across."
+  >
+    <g id="ebbinghaus-left-neighbours" fill={series.blue}>
+      {neighbours.map(({ leftX, leftY }) => (
+        <circle data-ebbinghaus-neighbour cx={leftX} cy={leftY} r="32" />
+      ))}
+    </g>
+    <g id="ebbinghaus-right-neighbours" fill={series.blue}>
+      {neighbours.map(({ rightX, rightY }) => (
+        <circle data-ebbinghaus-neighbour cx={rightX} cy={rightY} r="11" />
+      ))}
+    </g>
+    <circle cx="165" cy="175" r="25" fill={series.red} />
+    <circle cx="485" cy="175" r="25" fill={series.red} />
+    <MeasurementGuides name="ebbinghaus-illusion" d="M120 150 H530 M120 200 H530" />
+  </SvgFigure>
+  <Slider
+    id="ebbinghaus-surround-size"
+    label="Change the surrounding circles"
+    min={0}
+    max={100}
+    value={0}
+    startLabel="Large on left"
+    endLabel="Large on right"
+    describedby="ebbinghaus-size-note"
+    valuetext="Large circles on the left, small circles on the right"
+  >
+    <p id="ebbinghaus-size-note" class="text-base">
+      The blue circles can change size. Both red centres remain unchanged.
+    </p>
+  </Slider>
+  <IllusionControls
+    name="ebbinghaus-illusion"
+    proof="Both red circles fit between the same two lines, 50 drawing units apart."
+  />
+  <Fragment slot="caption">
+    Both red circles stay 50 units across while the surrounding circles change size. Redrawn
+    after the circles reproduced by{" "}
+    <a
+      href="https://books.google.com/books?id=DSlWAAAAMAAJ"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Wilhelm Wundt (1898)
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import {
+    bindSliderPlayback,
+    bindIllusionProof,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
+
+  const root = illustrationRoot("ebbinghaus-illusion")
+  if (root) {
+    const input = find<HTMLInputElement>(root, "#ebbinghaus-surround-size")
+    const play = find<HTMLButtonElement>(root, "#ebbinghaus-play")
+    const left = Array.from(
+      root.querySelectorAll<SVGCircleElement>("#ebbinghaus-left-neighbours circle"),
+    )
+    const right = Array.from(
+      root.querySelectorAll<SVGCircleElement>("#ebbinghaus-right-neighbours circle"),
+    )
+    bindSliderPlayback(input, play, (value) => {
+      const t = value / 100
+      const sizes = [32 - 21 * t, 11 + 21 * t]
+      for (const [groupIndex, group] of [left, right].entries()) {
+        const r = sizes[groupIndex]
+        const orbit = Math.max(2.625 * r, r + 32)
+        const centreX = groupIndex === 0 ? 165 : 485
+        group.forEach((circle, index) => {
+          const angle = (index * 2 * Math.PI) / 7
+          circle.setAttribute("r", String(r))
+          circle.setAttribute("cx", String(centreX + orbit * Math.cos(angle)))
+          circle.setAttribute("cy", String(175 + orbit * Math.sin(angle)))
+        })
+      }
+      if (value === 0) return "Large circles on the left; small circles on the right"
+      if (value === 50) return "Both sets of surrounding circles have the same size"
+      if (value === 100) return "Small circles on the left; large circles on the right"
+      return "Surround sizes changing; red target circles remain fixed"
+    })
+
+    bindIllusionProof(root, "ebbinghaus-illusion")
+  }
+</script>

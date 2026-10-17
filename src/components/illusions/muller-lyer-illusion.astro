@@ -1,0 +1,123 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+---
+
+<IllustrationFigure name="muller-lyer-illusion" lead="Which horizontal line looks longer?">
+  <SvgFigure
+    name="muller-lyer-illusion"
+    viewBox="0 0 560 310"
+    class="mx-auto w-full max-w-2xl"
+    title="Two equal lines with fins that rotate around fixed endpoints"
+    desc="Two horizontal lines run from x 104 to x 456, so each is exactly 352 drawing units long. The four pairs of blue fins lean in opposite directions. Rotating the fins can change which line seems longer, but never changes a black segment or its endpoints. Measurement guides show the unchanged lengths."
+  >
+    <g fill="none" stroke={stroke} stroke-width="5" stroke-linecap="butt">
+      <path d="M104 92 H456 M104 214 H456" />
+    </g>
+    <g
+      id="muller-lyer-fin-shapes"
+      fill="none"
+      stroke={series.blue}
+      stroke-width="4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path
+        id="muller-lyer-upper-fins"
+        d="M104 92 L140.77 55.23 M104 92 L140.77 128.77 M456 92 L419.23 55.23 M456 92 L419.23 128.77"
+      />
+      <path
+        id="muller-lyer-lower-fins"
+        d="M104 214 L67.23 177.23 M104 214 L67.23 250.77 M456 214 L492.77 177.23 M456 214 L492.77 250.77"
+      />
+    </g>
+    <MeasurementGuides
+      name="muller-lyer-illusion"
+      d="M104 132 V150 M456 132 V150 M104 141 H456 M104 254 V272 M456 254 V272 M104 263 H456"
+    />
+    <g
+      aria-hidden="true"
+      font-size="14"
+      fill="currentColor"
+      font-family="Arial, sans-serif"
+      text-anchor="middle"
+    >
+      <text x="280" y="25">
+        The straight lines never move
+      </text>
+    </g>
+  </SvgFigure>
+  <Slider
+    id="muller-lyer-fins"
+    label="Rotate the arrowheads"
+    min={0}
+    max={100}
+    value={0}
+    startLabel="Fins point outwards on top"
+    endLabel="Fins point inwards on top"
+    describedby="muller-lyer-notice"
+    valuetext="Top arrowheads point outwards; bottom arrowheads point inwards"
+  >
+    <p id="muller-lyer-notice" class="text-base">
+      Only the blue fins rotate. The black horizontal segments are fixed.
+    </p>
+  </Slider>
+  <IllusionControls
+    name="muller-lyer-illusion"
+    proof="Upper line: 352 SVG units. Lower line: 352 SVG units. Both endpoints remain fixed as the blue fins rotate."
+  />
+  <Fragment slot="caption">
+    Rotate the arrowheads to change the apparent lengths. The red guides measure the same
+    unchanged line segments. Modern version of the illusion first described by{" "}
+    <a
+      href="https://cir.nii.ac.jp/crid/1570009750247005312"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Franz Carl Müller-Lyer (1889)
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import {
+    bindSliderPlayback,
+    bindIllusionProof,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
+
+  const root = illustrationRoot("muller-lyer-illusion")
+  if (root) {
+    const input = find<HTMLInputElement>(root, "#muller-lyer-fins")
+    const upper = find<SVGPathElement>(root, "#muller-lyer-upper-fins")
+    const lower = find<SVGPathElement>(root, "#muller-lyer-lower-fins")
+    const play = find<HTMLButtonElement>(root, "#muller-lyer-play")
+    // Each blue fin has constant length 52 and rotates about a fixed line endpoint.
+    const fins = (y: number, horizontal: number, vertical: number) => {
+      const left = 104 + horizontal
+      const right = 456 - horizontal
+      return `M104 ${y} L${left} ${y - vertical} M104 ${y} L${left} ${y + vertical} M456 ${y} L${right} ${y - vertical} M456 ${y} L${right} ${y + vertical}`
+    }
+    const render = (value: number) => {
+      const angle = Math.PI * (0.25 + (0.5 * value) / 100)
+      const dx = 52 * Math.cos(angle)
+      const dy = 52 * Math.sin(angle)
+      upper.setAttribute("d", fins(92, dx, dy))
+      lower.setAttribute("d", fins(214, -dx, dy))
+      if (value === 50)
+        return "Both pairs of fins stand upright; the straight lines are unchanged"
+      if (value < 50) return "Top arrowheads point outwards; bottom arrowheads point inwards"
+      return "Top arrowheads point inwards; bottom arrowheads point outwards"
+    }
+    bindSliderPlayback(input, play, render)
+
+    bindIllusionProof(root, "muller-lyer-illusion")
+  }
+</script>

@@ -1,0 +1,44 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { illusionSurface } from "~/data/palette"
+
+const verticals = Array.from({ length: 9 }, (_, index) => 56 + index * 61)
+const horizontals = Array.from({ length: 6 }, (_, index) => 48 + index * 61)
+---
+
+<IllustrationFigure
+  name="hermann-grid-illusion"
+  lead="Do dark smudges seem to appear between the black squares?"
+>
+  <SvgFigure
+    name="hermann-grid-illusion"
+    viewBox="0 0 600 390"
+    class="mx-auto w-full max-w-2xl"
+    title="Classic Hermann grid: black squares and even white crossings"
+    desc="Nine thin white vertical streets and six horizontal streets separate black tiles. The white intersections can look dark in peripheral vision but each intersection is uniformly white. There are no changing states or controls."
+  >
+    <rect x="20" y="13" width="560" height="364" fill={illusionSurface.ink} />
+    <g stroke={illusionSurface.paper} stroke-width="9">
+      {verticals.map((x) => (
+        <line x1={x} y1="13" x2={x} y2="377" />
+      ))}
+      {horizontals.map((y) => (
+        <line x1="20" y1={y} x2="580" y2={y} />
+      ))}
+    </g>
+  </SvgFigure>
+  <Fragment slot="caption">
+    No dark dots are drawn: the crossing strips use the same solid white as the rest of the
+    grid. Look slightly away from an intersection, then directly at it.{" "}
+    <a
+      href="https://michaelbach.de/ot/lum-herGrid/"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Hermann grid demonstration
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>

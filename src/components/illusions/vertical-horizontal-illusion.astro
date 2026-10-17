@@ -1,0 +1,96 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
+import { stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="vertical-horizontal-illusion"
+  lead="Which is longer: the upright or the full horizontal line?"
+>
+  <SvgFigure
+    name="vertical-horizontal-illusion"
+    viewBox="0 0 600 430"
+    class="mx-auto w-full max-w-xl"
+    title="Inverted T with a horizontal length that can be rotated onto the equal upright"
+    desc="An upside-down T has a 300-unit upright and a 300-unit horizontal line. Press Compare lengths to reveal a red copy of the horizontal line. Rotate the copy through 90 degrees until it precisely covers the black upright, verifying equal length."
+  >
+    <path
+      d="M150 345 H450 M300 45 V345"
+      fill="none"
+      stroke={stroke}
+      stroke-width="5"
+      stroke-linecap="butt"
+    />
+    <MeasurementGuides name="vertical-horizontal-illusion" d="M150 345 H450" width={4} />
+  </SvgFigure>
+  <IllusionControls
+    name="vertical-horizontal-illusion"
+    play={false}
+    proofLabel="Compare lengths"
+    proof="The red copy of the entire 300-unit horizontal line can rotate and move over the 300-unit upright. At the end they overlap exactly."
+  />
+  <div id="vertical-horizontal-comparison" hidden>
+    <Slider
+      id="vertical-horizontal-rotation"
+      label="Rotate the red copy onto the upright"
+      min={0}
+      max={100}
+      value={0}
+      startLabel="Matches the horizontal"
+      endLabel="Matches the upright"
+      describedby="vertical-horizontal-note"
+      valuetext="Red comparison copy overlaps the black horizontal line"
+    >
+      <p id="vertical-horizontal-note" class="text-base">
+        Only the red copy moves. The black inverted T does not change.
+      </p>
+    </Slider>
+  </div>
+  <Fragment slot="caption">
+    In this reversed T, the horizontal means its complete width, not just one arm.{" "}
+    <a
+      href="https://www.esa.int/ESA_Multimedia/Images/2004/06/The_reversed_T_illusion"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Reversed-T illustration
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("vertical-horizontal-illusion")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#vertical-horizontal-rotation")
+    const comparison = find<HTMLElement>(root, "#vertical-horizontal-comparison")
+    const guides = find<SVGPathElement>(root, "#vertical-horizontal-illusion-guides path")
+    const toggle = find<HTMLButtonElement>(root, "#vertical-horizontal-illusion-guide-toggle")
+    bindSlider(slider, (value) => {
+      const t = value / 100
+      const theta = (Math.PI * t) / 2
+      const x = 150 + 150 * t
+      const endX = value === 100 ? 300 : x + 300 * Math.cos(theta)
+      const endY = value === 100 ? 45 : 345 - 300 * Math.sin(theta)
+      guides.setAttribute("d", `M${x} 345 L${endX} ${endY}`)
+      return value === 100
+        ? "The 300-unit red line now lies exactly over the 300-unit upright"
+        : "The red 300-unit copy rotates toward the black upright"
+    })
+    bindIllusionProof(
+      root,
+      "vertical-horizontal-illusion",
+      "Compare lengths",
+      "Hide comparison",
+    )
+    toggle.addEventListener("click", () => {
+      comparison.hidden = toggle.getAttribute("aria-pressed") !== "true"
+    })
+  }
+</script>

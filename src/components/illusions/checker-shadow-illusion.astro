@@ -1,0 +1,91 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+
+// Keep original GIF frames 1 through 24 in a lossless, self-hosted 6x4 sprite.
+// The full checkerboard is restored; the final isolated solid block is omitted.
+---
+
+<IllustrationFigure
+  name="checker-shadow-illusion"
+  lead="Look at squares A and B. Does one look darker?"
+>
+  <div
+    id="checker-frame"
+    class="mx-auto w-full max-w-xl"
+    style="aspect-ratio: 9 / 7; background-image: url('/illustrations/checker-shadow-scrub-frames.png'); background-size: 600% 400%; background-position: 100% 100%; background-repeat: no-repeat;"
+    role="img"
+    aria-label="A checkerboard partly shaded by a cylinder. Squares A and B appear different, although both are the same grey. Moving the slider removes the surroundings until only the separate matching grey patches remain."
+  ></div>
+  <Slider
+    id="checker-reveal"
+    label="Remove the surroundings"
+    min={0}
+    max={23}
+    step={1}
+    value={0}
+    startLabel="Checkerboard"
+    endLabel="A and B isolated"
+    describedby="checker-reveal-note"
+    valuetext="Checkerboard visible; A and B look different"
+  >
+    <p id="checker-reveal-note" class="text-base">
+      Move the slider in either direction. A and B are both RGB 120, 120, 120; only the
+      surrounding scene changes.
+    </p>
+  </Slider>
+  <div class="flex flex-wrap items-center gap-3">
+    <button type="button" id="checker-play" class="btn-ghost" aria-pressed="false">
+      Play
+    </button>
+  </div>
+  <Fragment slot="caption">
+    Original illusion by{" "}
+    <a
+      href="https://persci.mit.edu/gallery/checkershadow/"
+      class="font-bold underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Edward H. Adelson (1995)
+    </a>
+    . Interactive frames from the{" "}
+    <a
+      href="https://commons.wikimedia.org/wiki/File:Optical_illusion_greysquares.gif"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      freely reusable animation by (3ucky(3all
+    </a>
+    . The image and every frame are hosted on Logic Benders.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSliderPlayback, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("checker-shadow-illusion")
+  if (root) {
+    const scene = find<HTMLElement>(root, "#checker-frame")
+    const input = find<HTMLInputElement>(root, "#checker-reveal")
+    const play = find<HTMLButtonElement>(root, "#checker-play")
+
+    bindSliderPlayback(
+      input,
+      play,
+      (value) => {
+        // Scrub the 24 kept frames in reverse through a 6×4 sprite.
+        const frame = 23 - value
+        const x = (frame % 6) * 20
+        const y = Math.floor(frame / 6) * (100 / 3)
+        scene.style.backgroundPosition = `${x}% ${y}%`
+
+        if (value === 0) return "Checkerboard visible; A and B look different"
+        if (value === 23) return "Only the two matching grey A and B patches remain"
+        return "Surrounding checkerboard partially removed; A and B keep the same grey"
+      },
+      3000,
+    )
+  }
+</script>

@@ -1,0 +1,97 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import { series, stroke } from "~/data/palette"
+
+const columns = Array.from({ length: 10 }, (_, index) => 70 + index * 49)
+const crossings = columns.flatMap((x, column) =>
+  Array.from({ length: 9 }, (_, row) => {
+    const y = 60 + row * 32
+    return { x: x + (y - 188) * 0.27, y, sign: column % 2 ? -1 : 1 }
+  }),
+)
+---
+
+<IllustrationFigure
+  name="zollner-illusion"
+  lead="Are the ten long diagonal lines really parallel?"
+>
+  <SvgFigure
+    name="zollner-illusion"
+    viewBox="0 0 590 380"
+    class="mx-auto w-full max-w-2xl"
+    title="Ten closely spaced parallel diagonal lines crossed by alternating short blue strokes"
+    desc="Ten tightly spaced black diagonal lines all have the same angle. Alternating short blue strokes can make them appear to tilt differently. The slider rotates only the short strokes; the black lines never move."
+  >
+    <g id="zollner-hatches" stroke={series.blue} stroke-width="2.7" stroke-linecap="square">
+      {crossings.map(({ x, y, sign }) => (
+        <line
+          data-x={x}
+          data-y={y}
+          data-sign={sign}
+          x1={x - 22}
+          x2={x + 22}
+          y1={y - sign * 14}
+          y2={y + sign * 14}
+        />
+      ))}
+    </g>
+    <g stroke={stroke} stroke-width="3" stroke-linecap="square">
+      {columns.map((x) => (
+        <line x1={x - 40} y1="48" x2={x + 40} y2="328" />
+      ))}
+    </g>
+  </SvgFigure>
+  <Slider
+    id="zollner-illusion-angles"
+    label="Rotate the short crossing strokes"
+    min={0}
+    max={100}
+    value={0}
+    startLabel="Alternating diagonal strokes"
+    endLabel="Horizontal strokes"
+    describedby="zollner-illusion-note"
+    valuetext="Ten fixed, parallel diagonal lines with alternating angled blue strokes"
+  >
+    <p id="zollner-illusion-note" class="text-base">
+      Only the short blue strokes rotate. The long black lines never move or change angle.
+    </p>
+  </Slider>
+  <Fragment slot="caption">
+    The black lines have the same angle and spacing throughout.{" "}
+    <a
+      href="https://en.wikipedia.org/wiki/Z%C3%B6llner_illusion"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Zöllner's original diagonal arrangement
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("zollner-illusion")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#zollner-illusion-angles")
+    const segments = Array.from(root.querySelectorAll<SVGLineElement>("#zollner-hatches line"))
+    bindSlider(slider, (value) => {
+      const incline = 14 * (1 - value / 100)
+      for (const line of segments) {
+        const x = Number(line.dataset.x)
+        const y = Number(line.dataset.y)
+        const sign = Number(line.dataset.sign)
+        line.setAttribute("x1", String(x - 22))
+        line.setAttribute("x2", String(x + 22))
+        line.setAttribute("y1", String(y - sign * incline))
+        line.setAttribute("y2", String(y + sign * incline))
+      }
+      return value === 100
+        ? "Short strokes are horizontal; all ten black lines are still parallel"
+        : "Short strokes rotate; the ten long black lines remain parallel"
+    })
+  }
+</script>

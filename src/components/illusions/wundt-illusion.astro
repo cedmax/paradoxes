@@ -1,0 +1,72 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import { series, stroke } from "~/data/palette"
+
+// Classic Wundt diamond: rays extend from the left and right tips to successive
+// points along the centre axis. Neither red line changes its position or length.
+const fan = Array.from({ length: 20 }, (_, index) => index * 25 - 25)
+---
+
+<IllustrationFigure name="wundt-illusion" lead="Do the two red lines appear to bend inwards?">
+  <SvgFigure
+    name="wundt-illusion"
+    viewBox="0 0 620 220"
+    class="mx-auto w-full max-w-2xl"
+    title="Wundt illusion: two straight red horizontal lines across a diamond of dark chevrons"
+    desc="A diamond of dark chevrons crosses two straight, parallel red horizontal lines. The entire drawing has been rotated together, preserving the chevron arrangement, widths, colours and line lengths. The slider hides only the chevrons."
+  >
+    <g transform="rotate(90 310 210)">
+      <g id="wundt-fans" fill="none" stroke={stroke} stroke-width="1.2">
+        {fan.map((y) => (
+          <path d={`M110 210 L210 ${y} L300 210`} />
+        ))}
+      </g>
+      <path d="M185 15 V410 M235 15 V410" fill="none" stroke={series.red} stroke-width="3" />
+    </g>
+  </SvgFigure>
+  <Slider
+    id="wundt-illusion-diagonals"
+    label="Remove the chevron background"
+    min={0}
+    max={100}
+    value={0}
+    startLabel="Dark diamond visible"
+    endLabel="Only the two red lines"
+    describedby="wundt-illusion-note"
+    valuetext="Dark chevrons crossing two fixed horizontal red parallel lines"
+  >
+    <p id="wundt-illusion-note" class="text-base">
+      The chevrons disappear; both red lines remain straight and 50 units apart.
+    </p>
+  </Slider>
+  <Fragment slot="caption">
+    Newly drawn after the classic Wundt diamond arrangement, with dark chevrons and red
+    parallels.{" "}
+    <a
+      href="https://www.illusionsindex.org/i/wundt-illusion"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Wundt illusion reference
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("wundt-illusion")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#wundt-illusion-diagonals")
+    const fans = find<SVGGElement>(root, "#wundt-fans")
+    bindSlider(slider, (value) => {
+      fans.setAttribute("opacity", String(1 - value / 100))
+      return value === 100
+        ? "Only two straight, parallel red lines remain"
+        : "The chevrons become fainter; red lines stay straight"
+    })
+  }
+</script>

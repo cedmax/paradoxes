@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content"
 import Base from "~/layouts/Base.astro"
 import Linked from "~/components/Linked.astro"
 import PuzzleIllustration from "~/components/PuzzleIllustration.astro"
+import IllusionExperience from "~/components/IllusionExperience.astro"
 import { chapterById } from "~/data/chapters"
 import { getPublishedEntries } from "~/data/entries"
 import { statuses, simplifications } from "~/data/status"
@@ -23,7 +24,9 @@ interface Props {
 const { entry } = Astro.props
 const d = entry.data
 const chapter = chapterById(d.chapter)
-const s = statuses[d.status]
+// Absent format is the existing argument type, not an illusion.
+const isIllusion = d.format === "illusion"
+const s = isIllusion ? undefined : statuses[d.status]
 const simp = simplifications[d.simplification]
 
 const all = await getPublishedEntries()
@@ -117,14 +120,14 @@ const structuredData = [
         <span class="font-bold">Also known as:</span> {d.alternativeNames.join(", ")}
       </p>
     )}
-    <div class="flex max-w-215 flex-col gap-2">
-      <div class="mono-label opacity-65">The problem</div>
+    <div class="flex max-w-215 text-balance flex-col gap-2">
+      <div class="mono-label opacity-65">{!isIllusion ? "The problem" : "The question"}</div>
       <p class="font-display text-[clamp(26px,3.2vw,40px)] leading-tight font-extrabold tracking-tight">
         {d.problem}
       </p>
     </div>
     <div class="flex flex-wrap items-center gap-2.5">
-      <div class:list={[badge, s.bg]}>{s.label}</div>
+      {s && <div class:list={[badge, s.bg]}>{s.label}</div>}
       {anchor && <div class={badge}>{u.label}</div>}
       {d.noMaths && <div class={badge}>No maths needed</div>}
       <div class={badge}>{simp.label}</div>
@@ -132,7 +135,7 @@ const structuredData = [
     </div>
     {anchor && (
       <a
-        class="flex max-w-215 flex-col gap-1.5 border-2 border-ink p-5 text-ink no-underline transition-colors duration-100 hover:bg-ink hover:text-paper focus-visible:-outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"
+        class="flex w-full max-w-190 flex-col gap-1.5 border-2 border-ink p-5 text-ink no-underline transition-colors duration-100 hover:bg-ink hover:text-paper focus-visible:-outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"
         href={`/entries/${anchor.id}/`}
       >
         <span class="mono-label opacity-65">{u.relation}</span>
@@ -144,40 +147,43 @@ const structuredData = [
     )}
   </section>
 
-  <section
-    class="flex flex-col items-stretch min-[920px]:flex-row border-y-2 border-ink"
-    aria-label="The two claims"
-  >
-    <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
-      <div class="mono-label opacity-65">Seems true</div>
-      <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
-        {d.claimA}
-      </div>
-    </div>
-    <div
-      class="font-display flex-none self-center px-2 py-4 text-center text-4xl leading-none font-extrabold tracking-tight text-accent uppercase sm:text-6xl"
-      aria-hidden="true"
+  {!isIllusion && (
+    <section
+      class="flex flex-col items-stretch min-[920px]:flex-row border-y-2 border-ink"
+      aria-label="The two claims"
     >
-      but
-    </div>
-    <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
-      <div class="mono-label opacity-65">Also seems true</div>
-      <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
-        {d.claimB}
+      <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
+        <div class="mono-label opacity-65">Seems true</div>
+        <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
+          {d.claimA}
+        </div>
       </div>
-    </div>
-  </section>
+      <div
+        class="font-display flex-none self-center px-2 py-4 text-center text-4xl leading-none font-extrabold tracking-tight text-accent uppercase sm:text-6xl"
+        aria-hidden="true"
+      >
+        but
+      </div>
+      <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
+        <div class="mono-label opacity-65">Also seems true</div>
+        <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
+          {d.claimB}
+        </div>
+      </div>
+    </section>
+  )}
 
   <div class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
-    <article class="flex max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
-      {!d.written && (
+    <article class="flex w-full max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
+      {isIllusion && <IllusionExperience slug={entry.id} why={d.why} />}
+      {!isIllusion && !d.written && (
         <div class="border-2 border-dashed border-ink px-6 py-5 text-lg">
           <strong>Full write-up in progress.</strong> The problem, the two claims and the
           verdict are final. The explanation and sources are not written yet.
         </div>
       )}
 
-      {d.setup && (
+      {!isIllusion && d.setup && (
         <section>
           <h2 class={h2}>The setup</h2>
           <p>
@@ -187,7 +193,7 @@ const structuredData = [
         </section>
       )}
 
-      {d.whyWrong && (
+      {!isIllusion && d.whyWrong && (
         <section>
           <h2 class={h2}>Why it feels wrong</h2>
           <p>
@@ -196,14 +202,14 @@ const structuredData = [
         </section>
       )}
 
-      {(d.resolution.length > 0 || d.positions.length > 0) && (
+      {!isIllusion && (d.resolution.length > 0 || d.positions.length > 0) && (
         <section>
           <h2 class={h2}>
             {d.status === "explained"
               ? "The explanation"
               : d.status === "defused"
                 ? "How it's defused"
-                : `Why it's ${s.label.toLowerCase()}`}
+                : `Why it's ${statuses[d.status].label.toLowerCase()}`}
           </h2>
           {d.resolution.map((p) => (
             <p>
@@ -262,16 +268,18 @@ const structuredData = [
 
     <aside class="flex grow basis-65 flex-col gap-6 lg:max-w-85" aria-label="About this entry">
       <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] items-start gap-6">
-        <div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
-          <div class="mono-label text-accent">What breaks</div>
-          <div>
-            <Linked text={d.whatBreaks} />
+        {!isIllusion && (
+          <div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
+            <div class="mono-label text-accent">What breaks</div>
+            <div>
+              <Linked text={d.whatBreaks} />
+            </div>
+            <div class="mono-label text-accent">Status</div>
+            <div>
+              {s?.label}: <Linked text={d.statusNote} />
+            </div>
           </div>
-          <div class="mono-label text-accent">Status</div>
-          <div>
-            {s.label}: <Linked text={d.statusNote} />
-          </div>
-        </div>
+        )}
         {echoes.length > 0 && (
           <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
             <div class="mono-label mb-1.5 text-accent">Variants and related</div>

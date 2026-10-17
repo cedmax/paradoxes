@@ -99,11 +99,15 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 
 ### Colours and buttons
 
-- Chart colours are tokens: `--color-series-red`, `-blue`, `-gold`, `-green`, plus
-  `--color-stroke` for outlines. In SVG attributes use `var(--color-series-blue)`; in Astro
-  frontmatter use `series`, `seriesList` and `stroke` from `~/data/palette`; in classes use the
-  utilities (`border-series-blue`, `bg-series-gold`). Never write the hex values.
-- Toggle buttons use the `btn-toggle` class and `aria-pressed`. Other buttons use `btn-ghost`.
+- Chart colours are tokens, not hand-written CSS variables. Import `series`, `seriesList`,
+  `stroke` and (where necessary) `illusionSurface` from `~/data/palette` in Astro frontmatter.
+  In SVG attributes, use `stroke={series.blue}`, `fill={series.red}` or `stroke={stroke}`.
+  Use Tailwind utilities in CSS classes (`border-series-blue`, `bg-series-gold`). Never
+  duplicate palette string values or put hex colours in illustrations.
+- Use shared `IllusionControls` for Play/Pause and Show/Hide measurement buttons, with
+  `MeasurementGuides` for red SVG guide lines. Use `bindIllusionProof` and
+  `bindSliderPlayback` from `~/scripts/illustration` rather than duplicating behaviour.
+  Toggle buttons use `btn-toggle` and `aria-pressed`; other buttons use `btn-ghost`.
 - Spacing between blocks inside a figure comes from `IllustrationFigure` (`gap-4`). Use `gap-4`
   between panels and `gap-3` only where a kit component already does.
 

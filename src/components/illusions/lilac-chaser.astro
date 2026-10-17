@@ -1,0 +1,105 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import { series, stroke, illusionSurface } from "~/data/palette"
+
+const spots = Array.from({ length: 12 }, (_, index) => {
+  const angle = (index * Math.PI) / 6 - Math.PI / 2
+  return { index, x: 300 + 130 * Math.cos(angle), y: 190 + 130 * Math.sin(angle) }
+})
+---
+
+<IllustrationFigure
+  name="lilac-chaser"
+  lead="Keep your eyes on the cross while the gap moves. What colour follows it?"
+>
+  <SvgFigure
+    name="lilac-chaser"
+    viewBox="0 0 600 380"
+    class="mx-auto w-full max-w-xl"
+    title="Twelve softly blurred lilac spots in a ring with a missing spot and a central fixation cross"
+    desc="Only lilac spots are drawn. One spot is missing at a time. Playing moves the gap around the circle; holding your gaze on the central cross may make a moving green afterimage appear, although no green spot is ever displayed."
+  >
+    <defs>
+      <filter id="lilac-chaser-soften" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="3" />
+      </filter>
+    </defs>
+    <rect x="20" y="18" width="560" height="344" fill={illusionSurface.neutral} />
+    <g id="lilac-chaser-spots" fill={series.lilac} filter="url(#lilac-chaser-soften)">
+      {spots.map(({ index, x, y }) => (
+        <circle
+          data-index={index}
+          cx={x}
+          cy={y}
+          r="24"
+          visibility={index === 0 ? "hidden" : "visible"}
+        />
+      ))}
+    </g>
+    <path
+      d="M290 190 H310 M300 180 V200"
+      stroke={stroke}
+      stroke-width="3"
+      stroke-linecap="round"
+    />
+  </SvgFigure>
+  <Slider
+    id="lilac-chaser-slider"
+    label="Move the missing spot"
+    min={0}
+    max={11}
+    step={1}
+    value={0}
+    startLabel="First gap"
+    endLabel="Last gap"
+    describedby="lilac-chaser-note"
+    valuetext="One of the twelve lilac spots is hidden; no green spot is drawn"
+  >
+    <p id="lilac-chaser-note" class="text-base">
+      Press Play and fix your gaze on the cross for several cycles. A greenish spot may seem to
+      move around the ring, but the picture never draws one. Stop if you feel uncomfortable.
+    </p>
+  </Slider>
+  <IllusionControls name="lilac-chaser" />
+  <Fragment slot="caption">
+    An SVG reconstruction of Jeremy Hinton's Lilac Chaser (2005), not an original image.{" "}
+    <a
+      href="https://michaelbach.de/ot/col-lilacChaser/"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Demonstration and source
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSliderLoopPlayback, find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("lilac-chaser")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#lilac-chaser-slider")
+    const play = find<HTMLButtonElement>(root, "#lilac-chaser-play")
+    const spots = Array.from(
+      root.querySelectorAll<SVGCircleElement>("#lilac-chaser-spots circle"),
+    )
+    bindSliderLoopPlayback(
+      slider,
+      play,
+      (value) => {
+        for (const spot of spots) {
+          spot.setAttribute(
+            "visibility",
+            Number(spot.dataset.index) === value ? "hidden" : "visible",
+          )
+        }
+        return `Spot ${value + 1} of twelve is hidden; no green spot is displayed`
+      },
+      125,
+    )
+  }
+</script>

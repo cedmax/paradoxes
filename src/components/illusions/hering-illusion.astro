@@ -1,0 +1,76 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import { series, stroke } from "~/data/palette"
+
+const rays = Array.from({ length: 80 }, (_, index) => {
+  const angle = (index * 2 * Math.PI) / 80
+  return {
+    x: 310 + 410 * Math.cos(angle),
+    y: 210 + 410 * Math.sin(angle),
+  }
+})
+---
+
+<IllustrationFigure
+  name="hering-illusion"
+  lead="Do the two upright red lines seem to bow away from one another?"
+>
+  <SvgFigure
+    name="hering-illusion"
+    viewBox="0 0 620 420"
+    class="mx-auto w-full max-w-2xl"
+    title="Hering illusion with dense radiating black spokes behind two straight red parallel lines"
+    desc="Eighty fine black lines radiate from one point midway between two exactly vertical, parallel red lines. The red lines may appear bowed outwards but remain straight. A slider removes the black rays."
+  >
+    <g id="hering-rays" stroke={stroke} stroke-width="1">
+      {rays.map(({ x, y }) => (
+        <line x1="310" y1="210" x2={x} y2={y} />
+      ))}
+    </g>
+    <path d="M250 30 V390 M370 30 V390" stroke={series.red} stroke-width="3" fill="none" />
+  </SvgFigure>
+  <Slider
+    id="hering-illusion-rays"
+    label="Remove the radial background"
+    min={0}
+    max={100}
+    value={0}
+    startLabel="Dense radial lines"
+    endLabel="Straight red lines only"
+    describedby="hering-illusion-note"
+    valuetext="Eighty radial lines behind two fixed parallel red lines"
+  >
+    <p id="hering-illusion-note" class="text-base">
+      Only the fine black rays disappear. The red lines stay straight, 120 units apart.
+    </p>
+  </Slider>
+  <Fragment slot="caption">
+    A new SVG drawing of Hering's 1861 illusion with the classic single radial centre.{" "}
+    <a
+      href="https://www.illusionsindex.org/i/hering-illusion"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Description of the original effect
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+  const root = illustrationRoot("hering-illusion")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#hering-illusion-rays")
+    const rays = find<SVGGElement>(root, "#hering-rays")
+    bindSlider(slider, (value) => {
+      rays.setAttribute("opacity", String(1 - value / 100))
+      return value === 100
+        ? "Only two straight red parallel lines remain"
+        : "The background rays are fading; the two red lines remain parallel"
+    })
+  }
+</script>

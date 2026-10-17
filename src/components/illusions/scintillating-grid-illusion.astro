@@ -1,0 +1,50 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { illusionSurface } from "~/data/palette"
+
+const xs = Array.from({ length: 12 }, (_, index) => 47 + index * 45)
+const ys = Array.from({ length: 8 }, (_, index) => 35 + index * 45)
+const dots = xs.flatMap((x) => ys.map((y) => ({ x, y })))
+---
+
+<IllustrationFigure
+  name="scintillating-grid-illusion"
+  lead="Do dark spots seem to flicker inside the little white discs?"
+>
+  <SvgFigure
+    name="scintillating-grid-illusion"
+    viewBox="0 0 590 390"
+    class="mx-auto w-full max-w-2xl"
+    title="Fine scintillating grid with small borderless white discs"
+    desc="A fine grey grid lies on a black background, with solid, borderless white discs at each crossing. All circles are the same plain white. Brief apparent black spots may flicker in peripheral vision as the viewer looks around."
+  >
+    <rect x="20" y="13" width="550" height="364" fill={illusionSurface.ink} />
+    <g stroke={illusionSurface.neutral} stroke-width="11">
+      {xs.map((x) => (
+        <line x1={x} y1="13" x2={x} y2="377" />
+      ))}
+      {ys.map((y) => (
+        <line x1="20" y1={y} x2="570" y2={y} />
+      ))}
+    </g>
+    <g fill={illusionSurface.paper} stroke="none">
+      {dots.map(({ x, y }) => (
+        <circle cx={x} cy={y} r="7.2" />
+      ))}
+    </g>
+  </SvgFigure>
+  <Fragment slot="caption">
+    Each disc is uniformly white, without an outline or dark centre. The apparent flicker
+    depends on screen size and where you look.{" "}
+    <a
+      href="https://michaelbach.de/ot/lum-scGrid/"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Scintillating grid demonstration
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>

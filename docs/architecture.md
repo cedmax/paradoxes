@@ -74,3 +74,47 @@ in `src/styles/global.css`. `~` maps to `/src`.
   default image and fails if the committed file differs.
 
 Routes (`/entries/<slug>/`) are stable: never rename an entry file without adding a redirect.
+
+## Visual illusions
+
+Entry frontmatter uses `format: illusion` for visual illusions. Legacy entries omit `format`
+and default to `argument`; their claim-based schema and layout are otherwise unchanged.
+Both formats share `problem` as the question-first catalogue hook, page heading, SEO
+description fallback and OG text. Illusions instead require `why`, which follows
+an original or appropriately licensed source image, vector or audio demonstration,
+loaded by `src/components/IllusionExperience.astro`
+from `src/components/illusions/<slug>.astro`. Each demonstration owns its initial and reveal states; no generic "what you see /
+what is true" fields are stored. Prefer the original media where reuse is
+permitted and faithful; otherwise redraw or synthesise and credit the originator.
+All displayed media must be served from this site's own public assets; third-party
+URLs may only be used for attribution and source links. The checker-shadow
+reveal scrubs 24 frames from the freely reusable Wikimedia Commons animation,
+packaged as a local, lossless `public/illustrations/checker-shadow-scrub-frames.png`
+sprite. The earliest source frame (which would appear last in the reverse scrub)
+is intentionally omitted. The original PNG and GIF are not shipped; only the
+sprite is used. There is no fixed-hash or dimension-check gate in the build.
+No media are downloaded by the browser or build.
+`format` describes the editorial structure, not which sense the presentation
+uses. A visual vanishing puzzle may remain an argument; audio illusions may be
+added later without changing the format schema.
+
+The existing paradox statuses do not apply to illusions. The catalogue shows no new badge
+on illusion cards, but adds a "Visual illusions" filter backed by the same `format` field.
+Argument status filters exclude illusions; the All filter includes both formats.
+Chapters and uniqueness rules continue to apply to both.
+
+New entries start with `sourcesVerified: false` and `reviewed: false` and are never
+included in a production build until the owner explicitly approves source verification.
+For review, `PREVIEW_UNVERIFIED=true pnpm dev` includes unpublished illusions locally.
+A PR deployment with the opt-in `deploy-preview` label enables the same behaviour only
+for its noindex preview. `main` never enables this exception.
+
+New illusion figures live in `src/components/illusions/` and share the illustration kit's
+`IllusionControls`, `MeasurementGuides`, `Slider`, `SvgFigure` and `IllustrationFigure`.
+Their scripts use the shared playback and measurement helpers, and import colours from
+`src/data/palette.ts`. The catalogue includes geometric, grid, contour and lightness
+illusions as well as the motion-dependent Lilac Chaser and interactive Café wall.
+Grid and Ehrenstein figures are deliberately static when an extra state adds no evidence.
+All are initially unverified.
+
+See `.claude/skills/create-illusion/SKILL.md` for the authoring and accessibility checklist.

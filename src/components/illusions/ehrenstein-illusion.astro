@@ -1,0 +1,42 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { stroke } from "~/data/palette"
+
+const spokes = Array.from({ length: 24 }, (_, index) => {
+  const angle = (2 * Math.PI * index) / 24
+  return { c: Math.cos(angle), s: Math.sin(angle) }
+})
+---
+
+<IllustrationFigure
+  name="ehrenstein-illusion"
+  lead="Can you see a bright disc where nothing is drawn?"
+>
+  <SvgFigure
+    name="ehrenstein-illusion"
+    viewBox="0 0 600 390"
+    class="mx-auto w-full max-w-xl"
+    title="Ehrenstein illusion, with radial black strokes stopping around an empty centre"
+    desc="Twenty-four black radial strokes terminate at the edge of an undrawn central circle, suggesting a bright disc. The centre contains only the white background; no white disc or circular outline is painted."
+  >
+    <g stroke={stroke} stroke-width="3" fill="none" stroke-linecap="butt">
+      {spokes.map(({ c, s }) => (
+        <line x1={300 + c * 44} y1={195 + s * 44} x2={300 + c * 183} y2={195 + s * 183} />
+      ))}
+    </g>
+  </SvgFigure>
+  <Fragment slot="caption">
+    The centre is empty white background, not a drawn disc. The aligned ends of the black
+    strokes suggest its outline.{" "}
+    <a
+      href="https://michaelbach.de/ot/lum-Ehrenstein/"
+      class="underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Ehrenstein illusion demonstration
+    </a>
+    .
+  </Fragment>
+</IllustrationFigure>
