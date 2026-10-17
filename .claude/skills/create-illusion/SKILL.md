@@ -54,9 +54,9 @@ Do not change any existing argument entry to the new format.
 2. Keep each implementation in `src/components/illusions/<slug>.astro`, using the
    existing illustration kit for figures and controls. The initial presentation
    should communicate the effect without repeating the same visible setup in prose.
-   For audio, use Play/Stop controls, plus a replay button where the listener judges
-   one short sound (as in the tritone paradox), and capture the listener's judgement
-   before exposing explanation. Use source-faithful audio or independently produced
+   For audio, use Play/Stop controls, plus a replay button where the listener judges a
+   single short sound or sequence, rather than continuous playback. Capture the
+   listener's judgement before exposing explanation. Use source-faithful audio or independently produced
    tones with explicit parameters; don't republish copyrighted samples without
    permission. Exact greys and measurements are **data**, not decorative colours.
 3. Reveal: let visitors independently verify a particular fact. First make sure
