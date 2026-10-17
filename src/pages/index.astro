@@ -3,17 +3,15 @@ import Base from "~/layouts/Base.astro"
 import EntryCard from "~/components/EntryCard.astro"
 import { chapters } from "~/data/chapters"
 import { statuses, type Status } from "~/data/status"
-import { getPublishedEntries } from "~/data/entries"
+import { byOrder, getPublishedEntries, isListed } from "~/data/entries"
 import { anchorOf } from "~/data/uniqueness"
 
 const all = await getPublishedEntries()
-const sorted = all.sort(
-  (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title),
-)
+const sorted = all.sort(byOrder)
 // Every entry is in the page. Variants start hidden; turning the "Hide variants" switch off
 // shows them. The count chips follow the switch.
 const anchors = new Map(sorted.map((e) => [e.id, anchorOf(e, all)]))
-const listed = sorted.filter((e) => e.data.uniqueness !== "variant")
+const listed = sorted.filter(isListed)
 const variantCount = sorted.length - listed.length
 const reviewedCount = sorted.filter((e) => e.data.reviewed).length
 const byChapter = chapters
@@ -155,7 +153,7 @@ statusKeys.forEach(
         class="group/chapter flex flex-col gap-5"
         data-chapter={chapter.id}
         data-open={chapter.id === byChapter[0]?.chapter.id ? "" : undefined}
-        hidden={!items.some((e) => e.data.uniqueness !== "variant")}
+        hidden={!items.some(isListed)}
       >
         <h2 class="contents">
           <button
@@ -173,9 +171,7 @@ statusKeys.forEach(
               class="mono-label flex shrink-0 items-center gap-3 md:hidden"
               aria-hidden="true"
             >
-              <span data-chapter-count>
-                {items.filter((e) => e.data.uniqueness !== "variant").length}
-              </span>
+              <span data-chapter-count>{items.filter(isListed).length}</span>
               <span class="text-2xl leading-none transition-transform group-data-open/chapter:rotate-45 motion-reduce:transition-none">
                 +
               </span>

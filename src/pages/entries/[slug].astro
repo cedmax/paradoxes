@@ -6,7 +6,7 @@ import Linked from "~/components/Linked.astro"
 import PuzzleIllustration from "~/components/PuzzleIllustration.astro"
 import IllusionExperience from "~/components/IllusionExperience.astro"
 import { chapterById } from "~/data/chapters"
-import { getPublishedEntries } from "~/data/entries"
+import { byTitle, getPublishedEntries, isListed } from "~/data/entries"
 import { statuses, simplifications } from "~/data/status"
 import { anchorOf, uniqueness } from "~/data/uniqueness"
 import { breadcrumbData } from "~/data/seo"
@@ -34,9 +34,7 @@ const all = await getPublishedEntries()
 const u = uniqueness[d.uniqueness]
 const anchor = anchorOf(entry, all)
 // Related and variant entries that point here, shown on this entry's page.
-const echoes = all
-  .filter((e) => e.data.anchor === entry.id)
-  .sort((a, b) => a.data.title.localeCompare(b.data.title))
+const echoes = all.filter((e) => e.data.anchor === entry.id).sort(byTitle)
 
 // Variants are not listed as neighbours. They are reached through their anchor. Entries already
 // shown in the box above are not repeated.
@@ -45,7 +43,7 @@ const siblings = all
     (e) =>
       e.data.chapter === d.chapter &&
       e.id !== entry.id &&
-      e.data.uniqueness !== "variant" &&
+      isListed(e) &&
       !echoes.some((x) => x.id === e.id),
   )
   .sort((a, b) => a.data.order - b.data.order)

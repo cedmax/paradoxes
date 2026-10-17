@@ -3,7 +3,7 @@ import type { Chapter } from "~/data/chapters"
 import Base from "~/layouts/Base.astro"
 import EntryCard from "~/components/EntryCard.astro"
 import { chapters } from "~/data/chapters"
-import { getPublishedEntries } from "~/data/entries"
+import { byOrder, getPublishedEntries, isListed } from "~/data/entries"
 import { anchorOf } from "~/data/uniqueness"
 import { breadcrumbData } from "~/data/seo"
 import { splitTitle } from "~/data/title"
@@ -26,8 +26,8 @@ if (!chapter.title.endsWith(chapter.titleAccent)) {
 const { plain, accent, separator } = splitTitle(chapter.title, chapter.titleAccent)
 const all = await getPublishedEntries()
 const entries = all
-  .filter((entry) => entry.data.chapter === chapter.id && entry.data.uniqueness !== "variant")
-  .sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title))
+  .filter((entry) => entry.data.chapter === chapter.id && isListed(entry))
+  .sort(byOrder)
 const otherChapters = chapters.filter(
   (other) => other.id !== chapter.id && all.some((entry) => entry.data.chapter === other.id),
 )
