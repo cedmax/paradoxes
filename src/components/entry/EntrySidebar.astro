@@ -39,10 +39,10 @@ const { echoes, siblings, url } = Astro.props
         <div class="mono-label mb-1.5 text-accent">Same chapter</div>
         {siblings.map((e) => (
           <a
-            class="inline-flex min-h-11 items-center font-bold no-underline hover:text-accent"
+            class="inline-flex text-balance min-h-11 items-center font-bold no-underline hover:text-accent"
             href={`/entries/${e.id}/`}
           >
-            {e.data.title} →
+            {e.data.title}&nbsp;→
           </a>
         ))}
       </div>
