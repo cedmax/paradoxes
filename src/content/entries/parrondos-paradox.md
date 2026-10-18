@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "Can two games that each lose money, played one after the other, together win money?"
 claimA: "If each of two games loses money on average, any way of playing them together must lose money too."
 claimB: "Two games that each lose on average can be played in a pattern that wins."
-verdict: "Mixing can win because the games are not separate bets. One game changes the situation the other is played in."
 whatBreaks: "The assumption that games played one after another are independent bets. The second game’s odds depend on the player’s money, and the first game changes the money."
 statusNote: "the first claim is wrong. It treats the two games as independent, but the second game’s odds depend on the player’s capital and the first game shifts the capital. The effect is real and the arithmetic is not in dispute."
 setup: "Game A: flip a coin that wins 49.5 percent of the time. Win a pound if it lands the right way, lose a pound if not. Game B: look at how many pounds you have. If the number is a multiple of three, flip a bad coin that wins only 9.5 percent of the time. Otherwise flip a good coin that wins 74.5 percent of the time. Each game, played on its own, slowly loses money. Yet playing two of game A, then two of game B, and repeating that pattern wins money, and so does playing ABBABB over and over. Playing ABAB over and over still loses."

@@ -19,7 +19,6 @@ sourcesVerified: true
 problem: "Two players can keep doubling a pot by passing it back and forth. Why does strict logic say the first player should grab it at once?"
 claimA: "Players who are rational, and who know that about each other all the way down, take the money at the very first move."
 claimB: "Players who are rational, and who know that about each other, can do better by passing the money on for a while."
-verdict: "Reasoning back from the last move says grab the money at once, and whether ideally rational players really must do that is still argued."
 whatBreaks: "Whether the shared knowledge required by the backward argument is justified, especially after a player passes."
 statusNote: "the backward calculation is settled. Its assumptions about rationality and what players know remain contested."
 setup: "Alice and Bob take turns with two piles of coins. A player can take the bigger pile and give the other player the smaller one, ending the game. Or the player can pass, doubling both piles and giving the next choice to the other player. There is a known final turn. Passing for a while could make both much richer."

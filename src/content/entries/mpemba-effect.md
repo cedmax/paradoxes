@@ -19,7 +19,6 @@ sourcesVerified: true
 problem: "Can hot water freeze sooner than cooler water put in the same freezer?"
 claimA: "Under the same conditions, water that starts out hotter does not freeze first in any meaningful, reproducible way."
 claimB: "Under some conditions, water that starts out hotter really does freeze before otherwise identical water that starts out cooler."
-verdict: "Scientists still disagree on whether hot water really freezes first in a reproducible way, and what would cause it. A related speed-up in cooling has been shown in other systems."
 whatBreaks: "The contested choice is between accepting that hot water can genuinely freeze first under some conditions, and treating the reported cases in water as errors of measurement or chance."
 statusNote: "water experiments disagree, and their definitions of freezing differ. Broader cooling effects in other systems do not resolve that disagreement."
 setup: "Put otherwise identical samples of hot and cooler water in a freezer. The hot water has further to cool, so it seems it must freeze later. Some experiments report the opposite. The question is whether the reversal is reproducible, and under which conditions."

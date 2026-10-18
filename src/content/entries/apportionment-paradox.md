@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: "How can giving a parliament one more seat cause a state to lose a seat?"
 claimA: "Adding a seat to the total cannot reduce any state’s allocated number."
 claimB: "Under a largest-remainders rule, adding one seat can reduce a state’s allocation."
-verdict: "Rounding proportional shares can reshuffle the winners when the total number of seats changes."
 whatBreaks: "The assumption that increasing the total must give each state at least as many seats as before."
 statusNote: "the largest-remainder method can produce the Alabama paradox; the arithmetic is not disputed."
 setup: "Suppose a fixed number of seats is divided between states according to population. Every state gets its whole-number share first, then the leftover seats go to the largest fractional remainders."

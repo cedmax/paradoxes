@@ -12,7 +12,6 @@ sourcesVerified: true
 problem: "Can moving one person from one group to another raise the average of both groups?"
 claimA: "Moving one member from group S to group R cannot raise both averages, because the combined average does not change."
 claimB: "Moving one member from group S to group R can raise the average of both groups."
-verdict: "The combined average does stay the same, but it is a weighted blend of the two groups. A member who is above one group’s average and below the other’s can lift both."
 whatBreaks: "The assumption that when the overall average cannot change, one group’s average must go up and the other’s must go down."
 statusNote: "the first claim is wrong. The overall average is a size-weighted blend of the two group averages, and moving a member in between the two averages can raise both. The arithmetic is not in dispute."
 setup: "Take two groups of numbers. Group R is 1, 2, 3, 4, with an average of 2.5. Group S is 5, 6, 7, 8, 9, with an average of 7. Now move the number 5 from S to R. Group R becomes 1, 2, 3, 4, 5, and its average rises to 3. Group S becomes 6, 7, 8, 9, and its average rises to 7.5. Both averages went up, yet nothing about any number changed. The average of all nine numbers is 5 before and after."

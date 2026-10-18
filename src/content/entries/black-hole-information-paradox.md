@@ -12,7 +12,6 @@ sourcesVerified: true
 problem: "What happens to the information about what fell into a black hole once the black hole has evaporated?"
 claimA: "In ordinary quantum theory, the information about a system’s starting state is never lost as it changes."
 claimB: "A black hole that evaporates leaves only featureless heat radiation, which cannot carry information about what fell in."
-verdict: "Physicists disagree about what must change to reconcile black-hole evaporation with quantum information preservation. The proposed answers each have a cost."
 whatBreaks: "The contested choice is between giving up the rule that quantum physics never loses information, and giving up part of Hawking’s calculation of how a black hole radiates."
 statusNote: "experts agree the puzzle is real and disagree on which claim to give up or how the evaporation calculation should change."
 setup: "Throw something into a black hole. Hawking’s calculation says the hole slowly radiates and can eventually disappear. The radiation appears to be heat with no record of what fell in. Ordinary quantum evolution, however, preserves information about the starting state."

@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: "A coin is tossed while Sleeping Beauty sleeps. When she wakes, how likely is it that it landed heads?"
 claimA: "When she wakes, she should give heads one chance in two, since she learns nothing new."
 claimB: "When she wakes, she should give heads one chance in three, since two of every three wakings follow tails."
-verdict: "Both answers have serious defenders, and no side has won."
 whatBreaks: "Whether being awake right now should change her belief about the coin. Experts split, and some say the two answers address different questions."
 statusNote: "both sides accept that two of every three wakings follow tails, but philosophers still split over whether that count should set her belief on waking, giving one third, or whether she should stay at one half."
 setup: "A fair coin decides Sleeping Beauty’s wakings. Heads means one, on Monday. Tails means two, on Monday and Tuesday. After each waking her memory is erased, so they feel identical. She knows the rules. On waking, what chance should she give heads?"

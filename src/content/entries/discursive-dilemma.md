@@ -20,7 +20,6 @@ sourcesVerified: true
 problem: "Three judges each reason consistently, yet the majority on the reasons and the majority on the verdict point opposite ways. Which should the court follow?"
 claimA: "The court should decide each reason by majority and let the verdict follow from those decisions."
 claimB: "The court should decide the verdict itself by majority, whatever the majorities on the reasons."
-verdict: "Majorities on the reasons and on the verdict can clash, and legal theorists and philosophers disagree on which one a group should follow."
 whatBreaks: "The contested choice: follow the majority on each reason and give up the majority on the verdict, or follow the majority on the verdict and give up the majorities on the reasons."
 statusNote: "the clash between majorities is established. Sources present different rules as trade-offs rather than one agreed solution."
 setup: "The court’s rule is simple: a defendant is liable if the contract was both valid and broken, and not liable otherwise. Three judges agree on the rule, but disagree on the facts."

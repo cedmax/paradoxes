@@ -18,7 +18,6 @@ sourcesVerified: true
 problem: "A Cretan says that all Cretans are liars. Can that be true, and can it be false?"
 claimA: "The statement cannot be false without a contradiction, because if it is false, every Cretan, Epimenides included, is honest, and then what he said is true."
 claimB: "The statement can be false without any contradiction, because it only needs one honest Cretan, who need not be Epimenides."
-verdict: "Denying that all Cretans are liars only says that some Cretan is honest. So a Cretan who says it can simply be wrong, and there is no paradox."
 whatBreaks: "The assumption that the opposite of “all Cretans are liars” is “all Cretans are honest”."
 statusNote: "the belief that the statement cannot be false is wrong. Its opposite is only that some Cretan is honest, so it can be false with no contradiction."
 setup: "Epimenides was a Cretan who lived around 600 BC. A typical modern telling, in Douglas Hofstadter’s book Gödel, Escher, Bach, has him say: “All Cretans are liars.” That is not an exact quote. The line that has come down, through the Epistle to Titus in the New Testament, is “The Cretians are always liars, evil beasts, slow bellies”, and the epistle says it was spoken by a prophet of the Cretans themselves. It is often claimed that a paradox of self-reference arises when one asks whether Epimenides could have spoken the truth. Thomas Fowler set out the reasoning in 1869: Epimenides is himself a Cretan, so if what he says is untrue, the Cretans are truthful, and then what he says is true, and so on in a circle."

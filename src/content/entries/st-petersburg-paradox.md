@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: "A coin game has an infinite average prize. Why would nobody pay much to play it?"
 claimA: "Since the average prize is endless, you should be willing to pay any price to play."
 claimB: "No sensible person would pay more than a modest sum to play."
-verdict: "The game has an infinite average payout but seems worth only a modest entry fee. Proposed answers change the value rule or the ideal game, and none is accepted as the whole answer."
 whatBreaks: "The rule that a bet is worth its average payout. Each fix either changes the rule, changes the game, or drops it, and each pays a cost."
 statusNote: "each fix has a known cost. Counting what money is worth to you can be beaten by a game with bigger prizes, a limited bank leaves the idealised game untouched, ignoring tiny chances raises the question of why any very improbable outcome should be ignored, and replacing the average means giving up expected value as the rule for decisions. None is accepted as the whole answer, and the Stanford Encyclopedia of Philosophy’s survey ends without settling the question."
 setup: "A casino tosses a fair coin until the first head. A head on toss one pays 2 pounds; on toss two, 4; on toss three, 8. The prize keeps doubling. How much is it worth paying to play?"

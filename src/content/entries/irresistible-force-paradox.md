@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "What happens when an unstoppable force meets an immovable object?"
 claimA: "An unstoppable force and an immovable object can both exist in the same world."
 claimB: "If the force truly cannot be stopped, then no object can be immovable against it."
-verdict: "The two absolute descriptions cannot both apply to objects that can meet."
 whatBreaks: "The premise that both mutually exclusive absolutes can exist together."
 statusNote: "the imagined pair cannot both satisfy their definitions; there is no collision to predict under those assumptions."
 setup: "Picture a force that nothing can stop and a wall that nothing can move. Imagine the force hitting the wall."

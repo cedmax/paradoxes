@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "Could a tiny being that only opens and closes a door sort fast molecules from slow ones, and so beat the second law of thermodynamics?"
 claimA: "A demon that only opens a door can sort a gas into hot and cold sides without doing any work."
 claimB: "The second law of thermodynamics forbids heat flowing from cold to hot with no work and no other change."
-verdict: "To run the process repeatedly, the demon must deal with the information it stores. In the standard account, resetting that memory has a thermodynamic cost, so the sorting is not free."
 whatBreaks: "The assumption that the demon’s knowledge costs nothing. On the standard account, its memory must be reset to run again, and resetting it gives off heat."
 statusNote: "the first claim is wrong. On the standard account the cost falls on erasing the demon’s memory, which restores the second law. How general the proofs are, and what they rest on, is still debated."
 setup: "In a letter to Peter Tait in 1867, James Clerk Maxwell described a gas in a box divided by a partition with a small hole. A tiny being, later called a demon, watches the molecules and works a shutter on the hole. It lets fast molecules through one way and slow molecules the other. After a while one side is hotter than the other, though the demon seems to have done no work. A temperature difference can be used to run an engine, which would break the second law."

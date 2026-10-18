@@ -13,7 +13,6 @@ sourcesVerified: true
 problem: "Can a predictor that is right 99% of the time be useless?"
 claimA: "A predictor with a higher accuracy score is always more useful."
 claimB: "A predictor with a lower accuracy score can be more useful."
-verdict: "When one outcome is very common, a high accuracy score mostly reflects how common it is, not how useful the predictor is."
 whatBreaks: "The idea that a higher accuracy score always means a more useful predictor."
 statusNote: "the idea that a higher accuracy score always means a more useful predictor is wrong. When one outcome is far more common than the other, guessing it every time earns a high score with no skill at all."
 setup: "A classifier is a rule or program that sorts cases into groups, such as “fraud” and “not fraud”. Accuracy is the share of cases it gets right. A higher score sounds like a better classifier. But if nearly everything belongs to one group, does that score tell you whether it finds what matters?"

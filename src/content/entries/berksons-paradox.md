@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "How can two traits that have nothing to do with each other look linked in the things you can see?"
 claimA: "If two traits are unrelated across a whole collection, they must look unrelated in any large group taken from it."
 claimB: "In the stamps on display, prettiness and rarity look linked, although they are unrelated in the full collection."
-verdict: "A group chosen because its members have at least one of the traits makes the traits look linked. The link is created by the choosing."
 whatBreaks: "The assumption that a large group is a fair sample. Here the group was chosen using the traits themselves."
 statusNote: "the first claim is wrong. It holds for a group picked without regard to the traits, but not for one picked because its members have at least one of them. The arithmetic is not in dispute."
 setup: "A collector has 1,000 stamps. Of these, 300 are pretty, 100 are rare, and 30 are both. Prettiness and rarity are unrelated: 10 percent of all stamps are rare, and 10 percent of the pretty ones are rare too. The collector puts on display every stamp that is pretty or rare, which is 370 stamps. On the display, 27 percent of the stamps are rare, but only 10 percent of the pretty ones are. Every one of the 70 plain stamps on display is rare. A visitor would conclude that pretty stamps tend not to be rare, and that plain ones tend to be."

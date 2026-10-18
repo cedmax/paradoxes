@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "If a time traveller hands you a watch that you later carry back to give to your younger self, where did the watch come from?"
 claimA: "Everything that exists has to come from somewhere."
 claimB: "A time loop could contain an object or a piece of information that has no origin."
-verdict: "It breaks no logic, but philosophers disagree on whether such a loop is acceptable."
 whatBreaks: "The idea that everything must have a cause or a beginning."
 statusNote: "the puzzle is real. Experts disagree on whether to accept loops or reject them, and no time machine is known to be possible."
 setup: "An old woman gives a young playwright a watch. Years later he travels back in time and gives the same watch to the same woman when she was young. She keeps it for life and hands it to him as an old woman. Nobody ever made the watch. It simply goes round the loop. The same can be told with information, such as a theory that a time traveller learns from a book and then passes on to its author."

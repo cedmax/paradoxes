@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "What happens to the sentence “This sentence is not known” if someone proves it?"
 claimA: "Anything established by a valid proof can be known."
 claimB: "The sentence “This sentence is not known” can be proved but cannot consistently be known."
-verdict: "Applying ordinary rules about proof and knowledge to this sentence produces both knowledge and its denial."
 whatBreaks: "Which unrestricted rule must change: that knowing makes something true, that proof gives knowledge, or that self-reference is allowed without limits."
 statusNote: "the clash has several proposed diagnoses, and the unrestricted rules about self-referential knowledge cannot all survive."
 setup: "David Kaplan and Richard Montague developed a paradox about knowledge in 1960. Consider the sentence “This sentence is not known”. If someone knows it, then what it says is true, so it is not known. That rules out knowing it. Yet this argument itself seems to prove the sentence."

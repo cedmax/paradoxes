@@ -13,7 +13,6 @@ sourcesVerified: true
 problem: "Can a short phrase name the smallest number that cannot be named in so few words?"
 claimA: "“Definable in under sixty letters” means one fixed thing, so some whole number is the smallest that has no such definition."
 claimB: "The phrase “the smallest positive integer not definable in under sixty letters” has fewer than sixty letters, so it defines that number in under sixty letters."
-verdict: "An unrestricted test for what a phrase defines cannot also cover phrases about that very test. Giving definitions levels is one standard way to block the clash."
 whatBreaks: "The assumption that one fixed, unrestricted meaning of “definable” can cover descriptions about definability itself."
 statusNote: "the unrestricted definition test fails. A standard repair separates levels of definition, though that repair has limits and other formal treatments exist."
 setup: "Only finitely many phrases have fewer than sixty letters, so they cannot name every positive whole number. Consider “the smallest positive integer not definable in under sixty letters”. It has fifty-seven letters. It seems to define a number that it says has no definition that short."

@@ -10,7 +10,6 @@ searchTerms: ["base rate fallacy", "medical test", "false positive"]
 problem: "A test for a rare condition catches 90% of people who have it. You test positive. Are you probably ill?"
 claimA: "The test catches 90% of people who have the condition, so a positive result means you are probably ill."
 claimB: "Most people who test positive do not have the condition."
-verdict: "When the condition is rare, false alarms outnumber true ones."
 whatBreaks: "The assumption that how often a test catches a condition tells you how likely a positive result is to be right."
 statusNote: "the first claim is wrong. Counting people settles it, and experts agree."
 setup: "Take an invented condition called blue-ear. One person in 100 has it. A test for it catches 90% of people who have it, and wrongly flags 9% of people who do not. You test positive. What are the chances you have blue-ear?"

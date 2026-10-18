@@ -12,7 +12,6 @@ sourcesVerified: true
 problem: "A parent has two children and at least one is a boy. What are the odds that both are?"
 claimA: "As usually stated, the question has one right answer."
 claimB: "The answer depends on how you learned that at least one is a boy."
-verdict: "The question as usually stated has no single answer. It is one in three or one half, depending on how you found out."
 whatBreaks: "The assumption that the bare fact “at least one is a boy” fixes the odds, however you came to learn it."
 statusNote: "the question has no single answer until it says how you learned about the boy. Then it is one in three or one half, and both figures are agreed."
 setup: "Mr Smith has two children, and you learn that at least one of them is a boy. What is the chance that both are boys? Take it that each child is equally likely to be a boy or a girl, independently of the other."

@@ -20,7 +20,6 @@ reviewed: true
 problem: "Turning part of a picture changes how many people it shows. Where does the missing one go?"
 claimA: "Every figure in the picture is a whole, full-sized figure in both positions, so the count cannot change."
 claimB: "One position shows 13 boys and the other shows 12."
-verdict: "The figures are not the same size in both positions. Turning the disc shares the pieces of one figure out among the others, so there are fewer, slightly larger figures."
 whatBreaks: "The assumption that each figure stays whole and the same size when the pieces move."
 statusNote: "the idea that every figure stays whole and the same size is wrong. The pieces of one figure are spread among the rest, so each of the remaining figures is a little larger and none is lost."
 setup: "A picture is cut into parts. In one arrangement it shows a certain number of figures. Move the parts and it shows one fewer. In Sam Loyd’s Disappearing Bicyclist, turning a disc changes 13 boys into 12. No part of the card is taken away."

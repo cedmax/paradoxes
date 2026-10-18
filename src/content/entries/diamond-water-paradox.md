@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "Why does water, which people cannot live without, cost so little, while diamonds, which they can easily live without, cost so much?"
 claimA: "The more useful something is, the more it should be worth."
 claimB: "Water is far more useful than diamonds, yet it is far cheaper."
-verdict: "Price follows how much one more unit is worth to a buyer, not how useful the whole supply is. Water is plentiful, so one more unit adds little."
 whatBreaks: "The assumption that price measures total usefulness. It measures what one extra unit is worth, which depends on how much is already available."
 statusNote: "the first claim is wrong. Price follows the value of one extra unit, and the usefulness of the whole supply does not enter. The idea is the basis of marginal-utility theory."
 setup: "Adam Smith put the puzzle in The Wealth of Nations (1776). He wrote that nothing is more useful than water, but that it will hardly buy anything, while a diamond has almost no use but can be exchanged for a great deal. The puzzle is older than Smith. It appears earlier in Plato’s dialogue Euthydemus, and Copernicus, John Locke and John Law also dealt with it."

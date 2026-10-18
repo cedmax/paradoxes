@@ -19,7 +19,6 @@ sourcesVerified: true
 problem: "Which came first, the chicken or the egg?"
 claimA: "Every chicken hatched from an egg laid by a chicken, so the chain of chickens and eggs has no first link."
 claimB: "Chickens have not always existed, so the chain of chickens and eggs must have a first link."
-verdict: "Chickens evolved from birds that were not chickens, so the chain does have a start, and eggs existed long before any chicken."
 whatBreaks: "The rule that every chicken hatched from an egg laid by a chicken."
 statusNote: "the rule that every chicken hatched from a chicken’s egg is false. The earliest chickens hatched from eggs laid by birds that were not quite chickens. Exactly where to draw the line between the two is vague, as in the [sorites paradox](sorites-paradox), but that does not change which claim fails."
 setup: "All chickens hatch from eggs, and all chicken eggs are laid by chickens. So which came first? Plutarch posed the question as a philosophical problem in his Symposiacs, in the 1st century CE. Aristotle, four centuries earlier, had concluded that the sequence goes back for ever, with no true beginning. The phrase “chicken and egg” is now also used for any case where it is unclear which of two things causes the other, or which of two jobs has to be done first."

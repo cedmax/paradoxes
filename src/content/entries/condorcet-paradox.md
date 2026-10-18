@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: Can three sensible voters, choosing by majority, end up preferring A to B, B to C and C to A?
 claimA: "If every voter has a consistent ranking, majority voting gives a consistent group ranking."
 claimB: "Three voters with consistent rankings can make the majorities go round in a circle."
-verdict: "Majority voting can go round in a circle, even when every voter’s own ranking is consistent."
 whatBreaks: "The first claim, that majority rule always turns consistent individual rankings into a consistent group ranking."
 statusNote: "a three-voter example is enough to show that majority voting can cycle, and nobody disputes it. Which voting rule to use instead is a separate question."
 setup: "Three friends choose a restaurant from three options, A, B and C. Each ranks them from best to worst. Voter 1 ranks A, then B, then C. Voter 2 ranks B, then C, then A. Voter 3 ranks C, then A, then B. Nobody is being silly. Each ranking is perfectly consistent. Now compare the options two at a time and let the majority decide."

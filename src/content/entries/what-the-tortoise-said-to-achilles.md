@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: "If someone accepts every premise of an argument, can they still refuse its conclusion forever?"
 claimA: "Writing down enough extra premises must eventually force the tortoise to accept the conclusion."
 claimB: "Adding another premise can never replace applying the rule that takes one from premises to a conclusion."
-verdict: "A rule of inference must be used, not merely written down as one more claim."
 whatBreaks: "The belief that any rule for drawing a conclusion can do its work simply by being added as another premise."
 statusNote: "a further written premise does not make an inference happen; the reasoning rule must actually be applied."
 setup: "Achilles tells the tortoise two facts about a triangle and a rule saying what follows from them. The tortoise agrees to all three but asks for another rule saying that agreement with the first three requires the answer. Then another, without end."

@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "Do Lewis Carroll’s rules about a barbershop prove that one barber must always be in?"
 claimA: "If Carr is out, the rules force Allen to be both in and out, so Carr cannot be out."
 claimB: "Carr can be out without breaking the rules, provided Allen is in."
-verdict: "If Carr is out, Allen must be in. Brown may be in or out, so Carr is not required to be present."
 whatBreaks: "The mistaken step from two statements about what happens if Allen is out to the assertion that Carr must be in."
 statusNote: "the conclusion that Carr must be present is wrong; if Carr is out, the barbershop rules require Allen to be in, not Brown."
 setup: "A shop has three barbers: Allen, Brown and Carr. Someone must be in the shop. Whenever Allen is out, Brown is out too. An uncle argues that Carr must always be in."

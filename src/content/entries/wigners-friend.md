@@ -20,7 +20,6 @@ sourcesVerified: true
 problem: "When a friend in a sealed lab sees one quantum measurement result, how can an observer outside describe the whole lab as a superposition?"
 claimA: "Ordinary quantum rules completely describe the whole sealed lab, including the friend, as a superposition rather than one settled result."
 claimB: "The friend’s measurement has produced one settled result, so the whole lab is no longer in that superposition."
-verdict: "The friend sees one result while an outside quantum description keeps both possibilities together. There is no agreed way to make the accounts fit, and the main answers each face serious objections."
 whatBreaks: "How to combine quantum rules for the whole lab with the claim that the friend’s measurement has already ended its superposition."
 statusNote: "the main interpretations make different sacrifices, and there is no consensus on which gives the right account of measurement."
 setup: "A friend measures a particle inside a sealed lab and sees one result, either 0 or 1. An observer outside applies quantum theory to the whole lab. The theory gives a superposition: “the particle is 0 and the friend saw 0” together with “the particle is 1 and the friend saw 1”. A superposition is a quantum combination, not simply ignorance about a result already chosen."

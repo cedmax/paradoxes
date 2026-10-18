@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: "Can reason establish both that the world began and that it never began?"
 claimA: "Reason alone can settle whether the world as a whole had a first moment."
 claimB: "Reason alone cannot settle whether the world as a whole had a first moment."
-verdict: "Kant used opposing arguments about the world’s beginning to challenge what pure reason can establish about the whole universe."
 whatBreaks: "Whether reasoning that works about things within experience can decide the beginning of all time."
 statusNote: "the two proofs do not settle the world’s beginning on Kant’s account, but his limits on metaphysical knowledge remain disputed."
 setup: "Kant presented arguments that time must have a beginning and arguments that time cannot have a beginning. Both look persuasive when the world is treated as one complete thing."

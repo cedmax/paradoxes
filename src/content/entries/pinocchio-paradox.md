@@ -19,7 +19,6 @@ sourcesVerified: true
 problem: "Pinocchio’s nose grows exactly when he says something false. What happens when he says “My nose is growing”?"
 claimA: "Pinocchio’s contradictory nose is a problem about truth itself, like the liar paradox."
 claimB: "Pinocchio’s contradictory nose is only an impossible story, with no new problem about truth itself."
-verdict: "Logicians disagree on whether this is a real Liar paradox that needs no word like “true”, or just a story that cannot happen."
 whatBreaks: "The disagreement is over whether the story reveals a problem about truth or merely describes something impossible."
 statusNote: "the authors disagree over what the clash shows. Eldridge-Smith treats it as a liar paradox without a truth word in the sentence. Beall treats it as an impossible story like the [barber paradox](barber-paradox)."
 setup: "In this version of the story, Pinocchio’s nose grows exactly when what he says is false. He says “My nose is growing”. If the nose grows, his statement is true, so the rule says it should not grow. If it does not grow, his statement is false, so it should grow."

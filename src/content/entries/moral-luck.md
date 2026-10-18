@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "Is it fair to judge people for things that turned out well or badly because of luck?"
 claimA: "People are fairly judged morally only for what is under their control."
 claimB: "People are rightly judged by results, circumstances and character that were partly or wholly outside their control."
-verdict: "Keeping the principle means giving up many of our ordinary moral judgements, and keeping the judgements means giving up the principle."
 whatBreaks: "The contested choice is between the principle that moral judgement must track control and the everyday judgements that seem to break it."
 statusNote: "experts agree the puzzle is real and disagree on which claim to give up. Some deny that luck affects moral standing, some accept that it does, and most take a middle route that has to draw a principled line."
 setup: "Suppose two people drive home after drinking the same amount. One gets home safely. The other hits a child who steps out. Most people blame the second driver far more, even though the only difference was luck. The philosophers Bernard Williams (1976) and Thomas Nagel (1979) argued that ordinary moral judgement is full of cases like this. Nagel named four kinds: luck in how things turn out, luck in the circumstances one is in, luck in who one is, given genes and upbringing, and luck in how one is shaped by earlier events."

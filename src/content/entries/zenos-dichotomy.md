@@ -12,7 +12,6 @@ reviewed: true
 problem: "Can you ever walk across a room?"
 claimA: "Endlessly many steps can never all be finished."
 claimB: "People cross rooms all the time."
-verdict: "Endless steps can add up to a finite distance and a finite time."
 whatBreaks: "The idea that endlessly many steps can never all be finished, because they must take endless time."
 statusNote: "the first claim is wrong. The endless half-steps add up to one finite trip in a finite time, so you do arrive."
 setup: "You want to walk across a room. Before you get to the far wall, you have to get halfway. Before that, you have to get a quarter of the way. Before that, an eighth. You can keep halving forever, so there is no first step you could take. And to arrive, it seems you would have to finish endlessly many jobs. Zeno of Elea, who lived around 490 to 430 BC, is credited with this argument, and it comes to us through Aristotle."

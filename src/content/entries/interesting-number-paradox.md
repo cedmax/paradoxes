@@ -20,7 +20,6 @@ sourcesVerified: true
 problem: "If some whole numbers are dull, wouldn’t the smallest dull number be interesting for that very reason?"
 claimA: "Whether a number is interesting is one fixed fact, and being the smallest uninteresting number is itself enough to make a number interesting."
 claimB: "Some whole numbers are uninteresting."
-verdict: "“Interesting” cannot be both a fixed label and one that lacking it can earn. Defined strictly, the smallest dull number simply stays dull. Left loose, there is no fixed list of dull numbers to take the smallest from."
 whatBreaks: "The assumption that “interesting” is one fixed property that also counts the fact of not having it."
 statusNote: "the first claim is wrong. Once “interesting” is given a fixed meaning, such as appearing in a published list of number sequences, being the smallest number without it does not give it. The sources treat the puzzle mostly as a joke, and this diagnosis, that the word is too loose to sort numbers once and for all, is the one Wikipedia gives."
 setup: "Some numbers seem interesting. One divides every whole number, two is the smallest prime, and so on. Others seem dull. Now suppose some whole numbers are dull, and take the smallest of them. Being the smallest dull number is a rather interesting fact. So that number is interesting after all, and not dull. Whatever number turns out to be the smallest dull one, the same thing happens to it. So it seems no number can be dull: every whole number is interesting."

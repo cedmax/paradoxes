@@ -17,7 +17,6 @@ sourcesVerified: true
 problem: "How can a mathematical world with only enough objects to list still contain a set it calls impossible to list?"
 claimA: "If all the objects in a mathematical world can be listed from outside, that world must be able to list every set inside it."
 claimB: "A mathematical world can have only enough objects to list from outside, yet correctly say that some of its sets cannot be listed inside it."
-verdict: "The outside list uses a matching that the mathematical world itself does not contain. A set can be countable from outside and uncountable inside."
 whatBreaks: "The assumption that a counting method available outside a mathematical world must also be available inside it."
 statusNote: "the apparent contradiction confuses counting from outside with counting inside. The missing matching explains the difference, and the mathematics is settled."
 setup: "A set is countable if its members can be matched one by one with the counting numbers. A model is a mathematical world in which a theory’s rules hold. A theorem says that, if ordinary set theory has a model, it has one with only countably many objects. Yet set theory proves that some sets are uncountable."

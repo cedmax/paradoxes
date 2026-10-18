@@ -11,7 +11,6 @@ searchTerms: ["why your friends have more friends", "Scott Feld", "social networ
 problem: "Why do your friends have more friends than you do?"
 claimA: "You and your friends are ordinary people, so you should have about as many friends as they do."
 claimB: "On average, your friends have more friends than you do."
-verdict: "Popular people turn up in far more friend lists, so they are over-counted."
 whatBreaks: "The assumption that a randomly picked friend is a typical person."
 statusNote: "the first claim is wrong. The effect follows from counting, and experts agree."
 setup: "Count your friends, then ask how many friends they have. Friends tend to look more connected than people chosen at random. A person with many friends appears on many lists; a person with few appears on few."

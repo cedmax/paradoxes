@@ -19,7 +19,6 @@ sourcesVerified: true
 problem: "If every truth could in principle be known, must every truth actually be known by someone at some time?"
 claimA: "Every truth could be known by someone at some time."
 claimB: "Some truths are never known by anyone, at any time."
-verdict: "Under familiar rules of logic, saying every truth could be known entails that every truth is actually known by someone at some time. There is no consensus on whether to reject the principle, restrict it or change the logic."
 whatBreaks: "Whether to give up unrestricted knowability or the ordinary logic that turns it into universal knowledge."
 statusNote: "the proof has no consensus diagnosis. Many reject unrestricted knowability; others try to restrict it or revise the logic."
 setup: "“Every truth could be known” sounds much weaker than “every truth is actually known by someone at some time”. It seems to leave room for truths that nobody ever knows. Fitch’s puzzle shows that, under familiar rules of logic, the first claim unexpectedly leads to the second."

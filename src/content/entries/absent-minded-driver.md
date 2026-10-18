@@ -19,7 +19,6 @@ sourcesVerified: true
 problem: "A driver cannot tell two exits apart or remember passing one. Why does her best plan seem worse when she reaches an exit?"
 claimA: "Recalculating at an exit gives her a better plan, even though she has learned nothing new."
 claimB: "Her best plan is still best at an exit, because she has learned nothing new."
-verdict: "The apparent improvement does not establish a better plan. The cited responses retain the original plan, though they differ on how to analyse a decision made without remembering earlier decisions."
 whatBreaks: "The inference that the calculation at an exit establishes a better plan. The cited responses reject that inference, while differing on how to model the decision."
 statusNote: "the cited responses retain the original plan, though they differ on the formal diagnosis of the recalculation."
 setup: "A driver passes two identical motorway exits. The first leads to a dangerous area, the second leads home, and missing both means a night in a motel. She gives these outcomes scores: 0 for danger, 4 for home and 1 for the motel. At either exit she cannot tell which one it is or remember passing the first. She must use the same rule each time. Before leaving, she finds the rule with the best average score over many journeys: take an exit with a chance of one in three, which averages about 1.33 points a journey. Always leaving would mean danger; always passing would mean the motel. Randomising gives her a chance of reaching home."

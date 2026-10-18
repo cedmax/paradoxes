@@ -18,7 +18,6 @@ sourcesVerified: true
 problem: "Dozens of kinds of phytoplankton share the same water and compete for the same few nutrients. Why has one not driven out the rest?"
 claimA: "The water stays uniform and steady until competition settles, so no more plankton species can survive than there are scarce resources they need."
 claimB: "Dozens of plankton species survive together in the same water on only a few scarce resources."
-verdict: "Real plankton communities do not meet the model’s assumptions. Changing conditions, uneven water and unsettled competition can let many species coexist."
 whatBreaks: "The assumption that plankton live in a uniform, unchanging world where competition has settled."
 statusNote: "the model’s assumptions fail in real communities. Which departures explain the diversity in a particular lake or sea remains open."
 setup: "Phytoplankton are microscopic organisms that drift in water and use sunlight to grow. Many need the same few nutrients. A model of settled competition says that, in uniform and unchanging conditions, there cannot be more surviving species than scarce resources. Yet many species live together."

@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "If one twin flies off at high speed and comes back, why is that twin younger than the one who stayed home?"
 claimA: "Motion is relative, so each twin can say the other one was moving, and each should find the other younger."
 claimB: "When they meet again, only one of them can be the younger."
-verdict: "The twins are not symmetric: only one of them switches from an outward motion to a homeward one."
 whatBreaks: "The assumption that the two twins' situations are mirror images."
 statusNote: "one claim is wrong. The twins are not equal, and special relativity says exactly why."
 setup: "Einstein's special relativity says that a moving clock ticks more slowly than a stationary one, as measured by the stationary observer. Take twins, Stella and Terence. Stella flies to a star at high speed and returns. Terence stays on Earth. From Terence's view, Stella's clock runs slow. But from Stella's view, Terence was the one moving away and back, so his clock should run slow. Each should be the younger. That cannot be true when they meet."

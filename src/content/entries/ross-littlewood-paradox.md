@@ -19,7 +19,6 @@ sourcesVerified: true
 problem: "Ten balls go into a vase and one comes out, over and over, faster and faster until noon. How many balls are in the vase at noon?"
 claimA: "More balls enter than leave at every step, so the vase cannot be empty at noon."
 claimB: "Every ball is removed before noon, so the vase is empty."
-verdict: "How many balls are in the vase along the way does not settle how many are left at noon. What is left depends on which balls are taken out, and with this order, every ball is gone."
 whatBreaks: "The assumption that the number of balls at noon must follow the trend of the numbers before noon."
 statusNote: "the first claim is wrong. The count before noon grows without end, but what is left at noon depends on which balls are removed, not on how many are inside along the way. With ball n taken out at step n, no ball stays. Some philosophers go further and say the story fixes nothing at noon at all, or that the task cannot be done, but none of the named views defends the first claim."
 setup: "Start with an empty vase and an endless supply of numbered balls. At 30 seconds before noon, put balls 1 to 10 in and take ball 1 out. At 15 seconds before noon, put balls 11 to 20 in and take ball 2 out. Each step comes in half the time of the one before, so there are endlessly many steps, and all of them are done before noon. After every step there are 9 more balls than before: 9 after one step, 18 after two, 9,000 after a thousand. So how many are in the vase at noon?"

@@ -18,7 +18,7 @@ in `src/styles/global.css`. `~` maps to `/src`.
   the slug it points to, and `anchorOf` resolves that anchor and fails the build if it is
   unknown, a variant, or part of a loop.
 - `src/pages/index.astro` — index with search and status filter (client script). Search matches
-  `title`, `searchTerms`, `alternativeNames`, `problem`, `claimA`, `claimB`, `verdict`, plus the
+  `title`, `searchTerms`, `alternativeNames`, `problem`, `claimA`, `claimB`, `statusNote`, plus the
   anchor's title for related and variant entries. Search matches the query as a contiguous
   phrase. Search ignores case and straight/curly apostrophe differences. The index lists
   canonical and related entries. Variants are hidden by the "Hide variants" switch in the
@@ -50,15 +50,15 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/components/PuzzleIllustration.astro` — loads `illustrations/setup/<slug>.astro` or
   `illustrations/explanation/<slug>.astro` based on placement. See the build-illustration skill.
 - `src/components/EntryCard.astro` — index card. It shows title, status, anchor link and
-  `problem` only, so the card ends on the question. `claimA`, `claimB` and `verdict` stay on
-  the entry page; the card carries them hidden and the index script reveals the ones a search
+  `problem` only, so the card ends on the question. `claimA`, `claimB` and `statusNote` (with its
+  status label) stay on the entry page; the card carries them hidden and the index script reveals the ones a search
   matched when the match is not in the shown text.
 - `src/pages/og/[file].png.ts` and `src/og/` — one 1200×630 Open Graph PNG per published entry
   at `/og/<slug>-<hash>.png`, drawn with `satori` + `@resvg/resvg-js`. Colours come from the
   `--color-*` tokens in `global.css`; fonts are the static `@fontsource/archivo` and
   `@fontsource/jetbrains-mono` files. It has the same icon and orange bar as `/og.png`, with the
   title (split by `splitTitle` in `src/data/title.ts`, shared with the entry page, using the
-  entry's `titleAccent`) and `problem` between them, never the claims or verdict. Font sizes come from length steps in
+  entry's `titleAccent`) and `problem` between them, never the claims or status note. Font sizes come from length steps in
   `src/og/template.ts`; the build fails if text leaves its area, so add a step if a new entry
   overflows. The hash covers the drawn text plus a template version (image code, colour tokens,
   font files), so a change to either changes the URL. Other pages keep `/og.png` (`Base.astro`

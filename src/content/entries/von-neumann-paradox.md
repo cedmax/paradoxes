@@ -19,7 +19,6 @@ sourcesVerified: true
 problem: "Can scattered points from one square be rearranged into two equal squares using moves that preserve ordinary area?"
 claimA: "Every set of points has an area that adds up correctly and survives moves that preserve the area of ordinary shapes."
 claimB: "One square can be split and moved by area-preserving stretches and shears into two squares of the same size."
-verdict: "The pieces are sets of scattered points with no ordinary area. Moves that preserve the area of ordinary shapes cannot preserve an area for every possible set of points."
 whatBreaks: "The assumption that every possible set of points has an area preserved by these moves."
 statusNote: "the proof rules out an area for every set of points that both adds up correctly and survives all the allowed moves. Ordinary shapes still keep their area."
 setup: "Imagine stretching a square to twice its width while squeezing it to half its height. Its area stays the same. Von Neumann’s puzzle allows moves like this, as well as shears, which slant a shape sideways. It also allows pieces that are scattered sets of points, rather than shapes that scissors could cut out."

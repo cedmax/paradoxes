@@ -19,7 +19,6 @@ sourcesVerified: true
 problem: "If a time traveller killed Hitler as a baby, what would later send the traveller back to do it?"
 claimA: "The past can be changed: a traveller could kill the infant Hitler, and history would then run differently."
 claimB: "The past cannot be changed: Hitler grew up and died in 1945, so any traveller sent to kill him as a baby must fail."
-verdict: "Philosophers disagree on whether a visit to the past could change it, and no answer is settled."
 whatBreaks: "The contested choice: give up the idea that a traveller can change the past, or give up the idea that there is only one past to change."
 statusNote: "philosophers split on whether the past could be changed at all, the same split as in the [grandfather paradox](grandfather-paradox). No answer can be tested, because no time machine is known to be possible."
 setup: "Killing baby Hitler is a thought experiment: travel back in time and kill Adolf Hitler as an infant, before he can take power. Stories using the idea date back to the Second World War, with examples in the magazines Weird Tales (1941) and Astounding Science Fiction (1942). The question has an ethical side, which this entry does not cover and on which it takes no side. It also has a logical side, sometimes called the “Hitler’s murder paradox”, which is a version of the [grandfather paradox](grandfather-paradox)."

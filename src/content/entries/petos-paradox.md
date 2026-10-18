@@ -12,7 +12,6 @@ sourcesVerified: true
 problem: "Larger animals have more cells that could become cancerous. Do they actually get more cancer?"
 claimA: "Large animals do not have higher cancer prevalence than small animals, despite having many more cells."
 claimB: "Large animals have higher cancer prevalence than small animals, consistent with the number of cells contributing to cancer risk."
-verdict: "Studies disagree on how cancer varies with body size across species. Larger animals may have stronger defences, but newer data challenge the claim that cancer does not rise with size."
 whatBreaks: "Which claim to give up: that large animals get no more cancer than small ones, or that their extra cells show up as more cancer."
 statusNote: "earlier studies found no clear size link; larger recent analyses found one. Two recent analyses share a dataset, and animals in human care may not represent wild populations."
 setup: "Cancer starts with harmful changes in cells. More cells seem to mean more opportunities for cancer, so large animals should face a much bigger risk if every cell has the same chance. Yet comparisons between species have often found much less extra cancer than that simple prediction suggests."

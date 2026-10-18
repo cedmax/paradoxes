@@ -11,7 +11,6 @@ reviewed: true
 problem: If you remove grains from a heap of sand one at a time, when does it stop being a heap?
 claimA: "Taking away one grain never turns a heap into a non-heap."
 claimB: "A million grains of sand make a heap, and a single grain does not."
-verdict: Philosophers disagree on where the argument breaks.
 whatBreaks: "Either the rule that one grain never makes the difference or the claim that a million grains make a heap has to go, and experts split on which, and on how."
 statusNote: "the main responses blame the one-grain rule but disagree on how it fails: a sharp edge nobody can know, truth that comes in degrees, or a cut-off at no particular grain. A minority, the nihilists, keep the rule and deny that there are any heaps."
 setup: A million grains of sand piled up are a heap. One grain on its own is not. Take a single grain away from a heap and it is still a heap, because nobody can see the difference. But keep doing that, and the heap shrinks to one grain, which is not a heap. Somewhere a heap became not a heap. Where?

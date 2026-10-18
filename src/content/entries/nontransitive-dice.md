@@ -11,7 +11,6 @@ searchTerms: ["Efron's dice", "intransitive dice", "Penney's game"]
 problem: "Can dice A beat B, B beat C, C beat D, and D beat A, each most of the time?"
 claimA: "If A usually beats B, and B usually beats C, then A should usually beat C."
 claimB: "Some sets of dice beat each other in a circle."
-verdict: "Beating is not like height. It does not have to chain."
 whatBreaks: "The assumption that if A beats B and B beats C, then A beats C."
 statusNote: "the first claim is wrong. Every pairing can be checked by counting, and experts agree."
 setup: "Four dice have the faces shown below. Each player chooses one and rolls once; the higher number wins. A usually beats B, B usually beats C, C usually beats D and D usually beats A. Each advantage is two chances in three."

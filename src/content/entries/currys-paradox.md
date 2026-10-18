@@ -13,7 +13,6 @@ sourcesVerified: true
 problem: "Can the sentence “If this sentence is true, then Germany borders China” prove that Germany borders China?"
 claimA: "A sentence is true exactly when what it says is so, and the usual rules for “if … then” apply to it."
 claimB: "Some claims, such as “Germany borders China”, are false and cannot be proved."
-verdict: "With a sentence that talks about its own truth and a few familiar rules of reasoning, any claim at all can be proved. There is no agreed fix, and each proposed fix gives up a principle that is widely relied on."
 whatBreaks: "Either unrestricted talk about a sentence’s own truth or a familiar rule for “if … then” must change. There is no agreed choice."
 statusNote: "there is no agreed fix. Unlike the [liar paradox](liar-paradox), the argument uses no denial, so changing the rules for “not” alone is not enough."
 setup: "Take the sentence “If this sentence is true, then Germany borders China.” Suppose it is true. The rule that a true sentence says something that is the case lets the supposition yield what it says: “If this sentence is true, then Germany borders China.” Its condition is met by the same supposition, so Germany borders China follows. That seems to prove exactly what the sentence says: if it is true, Germany borders China. If what a sentence says is the case, the sentence is true. That rule now lets the conclusion establish that this sentence is true. Apply the conditional once more and Germany borders China follows outright."

@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "Can a rise in a price make people buy more of the thing that has become dearer?"
 claimA: "When the price of a good goes up, people buy less of it."
 claimB: "For some goods used by the very poor, a rise in price makes people buy more."
-verdict: "A price rise also makes people poorer, and for a basic food that can push them to buy more of it and give up the dearer treats."
 whatBreaks: "The assumption that a price rise only ever makes people want less of that good. It can also cut what people can afford, and that effect can win."
 statusNote: "the first claim is wrong for goods where the loss of buying power outweighs the pull towards substitutes. The mechanism is not in dispute. Clear real-world cases are rare."
 setup: "In ordinary markets, a higher price means lower demand. A Giffen good is a rare exception. Alfred Marshall credited the idea to Robert Giffen in his Principles of Economics (1890), based on the buying habits of the Victorian poor. George Stigler’s 1947 article corrected an error in Marshall’s attribution."

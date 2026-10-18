@@ -13,7 +13,6 @@ sourcesVerified: true
 problem: "A man takes a year to write up each day of his life. If he lived for ever, would any day go unwritten?"
 claimA: "Even with endless time, a growing backlog leaves some days unwritten."
 claimB: "With endless time, every day gets written about."
-verdict: "Falling further behind does not mean leaving anything out. Each day has its own year of writing, so if he never stops, every day is written up, though the book is never finished at any moment."
 whatBreaks: "The idea that a backlog which grows for ever must leave some days unwritten for ever."
 statusNote: "the first claim is wrong. The backlog grows without end, but any day you pick, say the nth, is written up in the nth year. That is the point Bertrand Russell made in 1903."
 setup: "In Laurence Sterne’s comic novel Tristram Shandy, published from 1759 to 1767, the narrator complains that he is a whole year older than when he started, yet has only got as far as his first day of life. So he has 364 more days to write about than when he began, and the more he writes, the more he will have to write. Bertrand Russell, in The Principles of Mathematics (1903), retold this as Tristram having taken two years to write the history of his first two days, and asked what would happen if he lived for ever and kept up the same pace."

@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content"
 import { statuses } from "~/data/status"
 import { uniqueness, uniquenessOf } from "~/data/uniqueness"
-import { normaliseSearch } from "~/data/search"
+import { normaliseSearch, stripLinks } from "~/data/search"
 
 interface Props {
   entry: CollectionEntry<"entries">
@@ -21,7 +21,7 @@ const u = uniqueness[kind]
 const searchText = (...parts: (string | undefined)[]) =>
   normaliseSearch(parts.filter(Boolean).join(" "))
 // What the card shows, and what it keeps back. The index card ends on the question, so a search
-// that only matches claimA, claimB or verdict reveals that text on the card (see index.astro).
+// that only matches claimA, claimB or statusNote reveals that text on the card (see index.astro).
 const shown = searchText(
   d.title,
   ...d.searchTerms,
@@ -29,14 +29,17 @@ const shown = searchText(
   anchor?.data.title,
   d.problem,
 )
-const hits = isIllusion
+// `match` is the text a search is compared with, when it differs from the text shown. The status
+// label is shown with the note, but a search must match the note only.
+const note = isIllusion ? undefined : stripLinks(d.statusNote)
+const hits: { label: string; text: string; match?: string }[] = isIllusion
   ? [{ label: "Why it happens", text: d.why }]
   : [
       { label: "Seems true", text: d.claimA },
       { label: "Also seems true", text: d.claimB },
-      { label: `How it ends: ${s?.label}`, text: d.verdict },
+      { label: "How it ends", text: `${s?.label}: ${note}`, match: note },
     ]
-const haystack = searchText(shown, ...hits.map((h) => h.text))
+const haystack = searchText(shown, ...hits.map((h) => h.match ?? h.text))
 ---
 
 <!-- The title link covers the whole card, so the anchor link can sit inside it without nesting links. -->
@@ -89,10 +92,15 @@ const haystack = searchText(shown, ...hits.map((h) => h.text))
       {d.problem}
     </div>
   </div>
-  <!-- The face-off and the verdict are on the entry page. The card ends on the question. -->
+  <!-- The face-off and the status note are on the entry page. The card ends on the question. -->
   <div class="flex flex-col gap-3 border-t-2 border-current pt-4" data-hits hidden>
     {hits.map((h) => (
-      <div class="flex flex-col gap-1" data-hit data-text={normaliseSearch(h.text)} hidden>
+      <div
+        class="flex flex-col gap-1"
+        data-hit
+        data-text={normaliseSearch(h.match ?? h.text)}
+        hidden
+      >
         <span class="mono-label opacity-65">{h.label}</span>
         <span class="text-lg leading-snug font-semibold">{h.text}</span>
       </div>

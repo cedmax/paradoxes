@@ -11,7 +11,6 @@ noMaths: true
 problem: "Is the word “heterological” a heterological word?"
 claimA: "Every describing word either describes itself or does not."
 claimB: "“Heterological” is itself a describing word."
-verdict: "There is no agreed fix. Each proposal, such as levels of language, gaps or allowing some contradictions, has a big cost."
 whatBreaks: "How to keep the ordinary rules for describing words when a word’s definition includes its own case. The responses give up different parts of those rules."
 statusNote: "it is a version of the [liar paradox](liar-paradox) about words, and the Stanford Encyclopedia of Philosophy says “no commonly agreed upon solution to the paradoxes of self-reference exists”."
 setup: "“English” is an English word, so it describes itself. “Long” is a short word, so it does not. Call a word heterological if it does not describe itself. Now ask whether “heterological” is heterological."

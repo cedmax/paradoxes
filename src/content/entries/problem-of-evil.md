@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: "How can an all-powerful, perfectly good God exist when suffering exists?"
 claimA: "If an all-powerful, all-knowing and perfectly good God exists, suffering cannot exist."
 claimB: "Suffering exists and could coexist with a God who has all three qualities."
-verdict: "The argument turns on whether a perfectly good God could have sufficient reason to allow suffering; philosophers disagree."
 whatBreaks: "Whether the existence of suffering rules out a God who is all-powerful, all-knowing and perfectly good."
 statusNote: "philosophers disagree about the logical and evidential force of suffering against the existence of such a God."
 setup: "The world contains terrible suffering, including suffering that appears undeserved. A perfectly good being would seem to want to prevent it, and an all-knowing, all-powerful being could seem able to do so."

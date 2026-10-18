@@ -12,7 +12,6 @@ reviewed: true
 problem: "How many people need to be in a room before two probably share a birthday?"
 claimA: "There are 365 days, so you'd need far more than a few dozen people."
 claimB: "With just 23 people, it's more likely than not."
-verdict: "The odds depend on the number of pairs, not the number of people."
 whatBreaks: "Intuition about probability: we count people when we should count pairs."
 statusNote: "the intuition is wrong. The accepted explanation can be checked by counting pairs."
 setup: "Imagine a room with 23 people in it. How likely is it that at least two of them have the same birthday? With 365 days to choose from and only 23 people, most of us would guess a small chance, perhaps one in ten."

@@ -13,7 +13,6 @@ sourcesVerified: true
 problem: "Two travellers each name a value for identical lost luggage, and whoever names less gets a small bonus. Why does strict logic push both down to the minimum?"
 claimA: "Rational players who know each other to be rational both write 2, the lowest number allowed."
 claimB: "Rational players can write a large number, expecting the other to do the same."
-verdict: "Formal game theory picks the lowest claim, most people claim high and earn more, and whether claiming high is rational is still argued."
 whatBreaks: "Whether shared rationality requires undercutting down to $2, or can support expecting a high claim."
 statusNote: "the unique equilibrium is agreed. There is no agreed answer about whether ideal rational players can reasonably reject it."
 setup: "An airline loses two identical antiques. Their owners separately claim a value from $2 to $100. Equal claims are paid in full. For unequal claims, both receive the lower amount, but the lower claimant gets a $2 bonus and the higher claimant loses $2."

@@ -86,7 +86,7 @@ function apply() {
       isShownBySwitches(facts, switches)
     card.hidden = !ok
     if (ok) shown++
-    // The card ends on the question. A search reveals the claim or verdict it matched, unless
+    // The card ends on the question. A search reveals the claim or status note it matched, unless
     // the match is already in what the card shows.
     const revealed = ok && q !== "" && !(facts.shown ?? "").includes(q)
     const hits = card.querySelectorAll<HTMLElement>("[data-hit]")

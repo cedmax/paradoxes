@@ -13,7 +13,6 @@ sourcesVerified: true
 problem: "How many clouds are in the sky when the edge of the cloud is a haze of droplets with no clear boundary?"
 claimA: "There is exactly one cloud in the sky."
 claimB: "Many slightly different collections of droplets are equally good candidates for being that cloud, and each of them is one."
-verdict: "Each response keeps most of what seems obvious and gives up one piece of it, and philosophers disagree about which piece."
 whatBreaks: "Philosophers split over what to give up: that there is only one cloud, that any of the candidates is a cloud, or the ordinary idea of counting."
 statusNote: "experts agree the puzzle is real and disagree on which assumption to drop. Nihilism, overpopulation, Lewis’s almost-identity view and supervaluationism all have defenders, and none has won out."
 setup: "From the ground a cloud looks like one thing with a clear outline. Up close, the edge is a haze. Some droplets are neither clearly part of the cloud nor clearly outside it. Pick any collection of droplets that stretches a little further, or stops a little sooner, and it looks just as good a candidate for being the cloud as the next one. If each candidate is a cloud, the sky holds millions of clouds. If only one is, nothing explains why that one. The philosopher Peter Unger set out the problem in 1980, and Peter Geach raised a similar one at the same time. David Lewis gave an influential treatment in 1993."

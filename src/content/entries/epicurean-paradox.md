@@ -11,7 +11,6 @@ sourcesVerified: true
 problem: "If God can stop suffering and wants to, why is suffering still here?"
 claimA: "The suffering in the world rules out a God who is both all-good and all-powerful."
 claimB: "The suffering in the world does not rule out a God who is both all-good and all-powerful."
-verdict: "Whether suffering rules out an all-good, all-powerful God is disputed; the ancient dilemma does not settle it by itself."
 whatBreaks: "Whether even one instance of suffering contradicts perfect goodness combined with unlimited power."
 statusNote: "philosophers disagree whether suffering defeats the combination of perfect goodness and power, while the familiar wording is not securely attested in Epicurus’s writings."
 setup: "An old dilemma asks whether a God can prevent suffering, whether God wants to prevent it and why suffering still exists. If God lacks the power, that seems to challenge unlimited power. If God lacks the wish, that seems to challenge perfect goodness."

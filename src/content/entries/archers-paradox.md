@@ -19,7 +19,6 @@ reviewed: true
 problem: "On a traditional bow the arrow rests against the side of the bow and points a little off the target. Why does it still fly to the target?"
 claimA: "An arrow stays straight as it leaves the bow, so one pointing to the side of the target misses."
 claimB: "An arrow pointing to one side can still hit the target."
-verdict: "The arrow is not rigid. It bends as it is shot, snakes around the grip of the bow and straightens out as it flies, provided its stiffness suits the bow."
 whatBreaks: "The assumption that the arrow stays straight while it leaves the bow. It flexes around the grip and comes out on the line to the target."
 statusNote: "the first claim is wrong. The arrow bends as the string slips off the fingers, flexes around the grip of the bow and leaves on the line to the target, as high-speed film has shown."
 setup: "On a traditional bow, the grip is in the way, so the arrow cannot lie along the middle of the bow. For a right-handed archer it rests on the left side. At full draw the back of the arrow is on the string, in line with the middle of the bow, while the front lies to the left of the grip. So the arrow points a little to the left of the target. It seems it should fly off to the left. Yet a good archer hits the target. The word “paradox” for this was first used by E. J. Rendtorff in 1913, in the magazine Forest and Stream, and archery writers had described the effect much earlier, including Horace A. Ford in his 1859 book Archery: Its Theory and Practice."

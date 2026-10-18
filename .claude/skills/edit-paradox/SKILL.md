@@ -63,7 +63,7 @@ How to apply them:
 
 - `claimA` and `claimB` must genuinely conflict: they cannot both be true.
 - If the real wrong step is a hidden premise, make that premise one of the displayed claims.
-- **explained** and **defused**: `verdict`, `whatBreaks`, `statusNote` and `resolution` all
+- **explained** and **defused**: `whatBreaks`, `statusNote` and `resolution` all
   name the same wrong claim. The test between them: if the reasoning that produces the clash
   contains an error, it is explained; if the reasoning is sound and the clash knocks out a
   premise (barber, Russell, Olbers), it is defused. If experts agree the claim fails but disagree
@@ -72,7 +72,7 @@ How to apply them:
   `statusNote` or `finePrint`. If there is no agreed error to point to, and every candidate fix
   carries a big cost, the entry is unreconciled (St Petersburg).
 - **disputed**: the two claims are the positions expert camps actually hold; each camp gives up
-  a different one (`newcombs-paradox.md` is the model). `whatBreaks`, `verdict`, `whyWrong` and
+  a different one (`newcombs-paradox.md` is the model). `whatBreaks`, `statusNote`, `whyWrong` and
   `resolution` must not pick a side; phrase `whatBreaks` as the contested choice. Attribute
   arguments to the people who make them and include replies where sources give them.
 - **unreconciled**: every listed position carries a big, sourced cost. "None is widely accepted"
@@ -98,7 +98,7 @@ enforces anchor integrity. Do not duplicate definitions here.
 ## Writing rules
 
 - `description` is an optional question-first search summary that holds back the answer. Without
-  it, metadata uses `problem`, never `verdict`. `alternativeNames` holds recognised names shown
+  it, metadata uses `problem`, never `statusNote`. `alternativeNames` holds recognised names shown
   on the entry page and included in search; `searchTerms` contains additional search phrases and
   is not shown. The schema rejects a `searchTerms` value that repeats `alternativeNames` or the
   `title`, after normalising case, apostrophe style and whitespace. Shorter phrases such as
@@ -112,11 +112,11 @@ enforces anchor integrity. Do not duplicate definitions here.
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".
-- `verdict` should make sense without the claims, because a search hit can show it alone on the
-  index card. Never write “the first claim” or “the second claim” in it.
+- `statusNote` should make sense without the claims, because a search hit can show it alone on
+  the index card after “How it ends”. Never write “the first claim” or “the second claim” in it.
 - When a body field (`setup`, `whyWrong`, `resolution`, `positions`, `finePrint`, `whatBreaks`,
   `statusNote`) mentions another entry, link it as `[shown text](entry-slug)`. The build fails on
-  an unknown slug. A link to an entry that is not published yet shows as plain text until it is. Never put links in `title`, `problem`, `claimA`, `claimB` or `verdict`.
+  an unknown slug. A link to an entry that is not published yet shows as plain text until it is. Never put links in `title`, `problem`, `claimA` or `claimB`.
 - `problem` is a question. `statusNote` starts lowercase, completes "Explained: …" etc., and is
   specific to the entry.
 - Political and religious entries take no side, including through word choice or which view

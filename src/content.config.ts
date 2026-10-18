@@ -8,7 +8,7 @@ import { lastWord } from "./data/title"
 // All entries share the shell, but only arguments have opposing claims and a paradox status.
 const common = z.object({
   title: z.string(),
-  // Optional question-first search summary. Falls back to the problem, never the verdict.
+  // Optional question-first search summary. Falls back to the problem, never the status note.
   description: z.string().trim().min(1).optional(),
   // Final word(s) of the title highlighted on the page. Defaults to the last word, e.g. "paradox"
   // for "Sorites paradox"; set it only for a longer accent, e.g. "toxin puzzle". It must end the
@@ -54,8 +54,6 @@ const argument = common.extend({
   status: z.enum(["explained", "defused", "disputed", "unreconciled"]),
   claimA: z.string(),
   claimB: z.string(),
-  // One-line "How it ends" on the card.
-  verdict: z.string(),
   // Sidebar: what assumption fails, and the status note.
   whatBreaks: z.string(),
   statusNote: z.string(),

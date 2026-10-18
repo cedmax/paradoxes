@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: Is the sentence “This sentence is false” true or false?
 claimA: "Every sentence is true or false."
 claimB: "A sentence is true if what it says is right, and false if it isn't."
-verdict: "The liar sentence defeats the ordinary rules for assigning truth and falsehood. The main fixes change language or logic, and none is widely accepted."
 whatBreaks: "Whether to restrict self-applied truth, allow gaps or allow contradictions. The proposals give up different parts of the ordinary rules."
 statusNote: every known fix costs something big, and none is widely accepted.
 setup: "Consider “This statement is false”. If it is true, what it says holds, so it is false. If it is false, what it says holds, so it is true. Either answer leads to the other."

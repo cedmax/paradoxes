@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: "A machine scans and destroys your body, then builds a body exactly like yours on Mars from the scan. Have you travelled, or died?"
 claimA: "The person on Mars has a body exactly like yours, with all your memories and character, so it is you."
 claimB: Your original body was destroyed, so the person on Mars is someone else, a copy.
-verdict: Parfit said the question has no deeper answer. Many philosophers disagree.
 whatBreaks: "Whether psychological continuity is enough for survival. Either it is, and the trip is as good as surviving, or it is not, and the trip ends you. Experts split on which."
 statusNote: "philosophers disagree on whether the person on Mars is you. Many views based on psychological continuity say yes, views that tie you to your living body say no, and Parfit held that there is no further fact to settle it and that identity is not what matters."
 setup: "A booth scans your body, destroys it and sends the details to Mars. Another machine builds an exact copy. The person who steps out has your memories, character and plans. Did you travel to Mars, or die while a copy took your place?"

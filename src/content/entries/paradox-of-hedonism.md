@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: "Can trying too hard to feel happy make happiness harder to find?"
 claimA: "Deliberately chasing pleasure always increases the pleasure obtained."
 claimB: "Deliberately chasing pleasure can spoil the very experiences that would have been pleasant."
-verdict: "Attention, anxiety and expectations can make direct pursuit of pleasure counterproductive."
 whatBreaks: "The assumption that a valuable experience always improves when attention is fixed on obtaining it."
 statusNote: "direct pursuit does not reliably maximise pleasure; the effect depends on the person and the situation."
 setup: "Imagine going to a party with one job: have the best possible time. Instead of speaking naturally or enjoying the music, every few minutes involves checking whether enough fun is happening."

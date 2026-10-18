@@ -20,7 +20,6 @@ sourcesVerified: true
 problem: "Two careful analyses of the same before and after weights give opposite answers about boys and girls. Can both be right?"
 claimA: "Two correct analyses of the same data must give the same answer about whether the diet affected boys and girls differently."
 claimB: "In Lord’s data, one correct analysis finds no difference between boys and girls, and another finds that boys gained more."
-verdict: "The two analyses answer different questions, one about average gains and one about students who started at the same weight, so both can be right."
 whatBreaks: "The assumption that both analyses answer the same question. One compares average gains; the other compares boys and girls who started at the same weight."
 statusNote: "the two calculations describe different comparisons and can both be correct. Holland and Rubin stress the extra causal assumptions; Pearl argues that an explicit causal model settles which comparison answers the causal question."
 setup: "A university weighs students before and after a year of dining hall meals. Boys start heavier than girls on average. Neither group’s average weight changes. One analyst says the groups gained the same amount. Another compares boys and girls who started at the same weight and finds that the boys gained more."

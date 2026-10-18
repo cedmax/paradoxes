@@ -10,7 +10,6 @@ reviewed: true
 problem: "Can one treatment beat another in every group of patients and still lose overall?"
 claimA: "A treatment that does better for every kind of patient must do better overall."
 claimB: "In this study, Treatment B did better overall, even though A did better for small stones and for large stones."
-verdict: "Doing better in every group does not guarantee doing better overall. Treatment A won for each kind of stone but lost overall, because it was given mostly the harder, large stones."
 whatBreaks: "The rule that a treatment which wins in every group must win overall. It can fail when the two treatments saw a different mix of small and large stones."
 statusNote: "the first claim is wrong. Treatment A wins for each stone size but loses overall, because the mix of stone sizes differs between the two groups. The arithmetic is not in dispute."
 setup: "A real study of kidney stone treatments, published in 1986, covered 1,052 patients. This example uses two of its groups, 350 patients who had open surgery (A) and 350 who had a keyhole method through the skin (B). A treatment counted as a success if the stones were gone, or smaller than 2 mm, three months later. The paper split patients into small stones (under 2 cm across) and large ones (2 cm or more, or several stones). Success rates for small stones: A 93% (81 of 87), B 87% (234 of 270). For large stones: A 73% (192 of 263), B 69% (55 of 80). All patients together: A 78% (273 of 350), B 83% (289 of 350)."

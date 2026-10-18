@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: "If reason cannot settle whether God exists, is believing in God the sensible bet?"
 claimA: "A chance of infinite reward makes wagering for God the rational choice."
 claimB: "Rival promises and rival strategies can offer infinite expected reward too, so that calculation does not make wagering for God the rational choice."
-verdict: "Pascal’s calculation promises a decisive reason to wager for God. Critics dispute whether infinite rewards select that action, and defenders offer contested replies."
 whatBreaks: "Whether the prospect of infinite reward selects wagering for God, once rival promises and strategies are considered."
 statusNote: "critics argue that rival gods and strategies stop the calculation selecting one action. Defenders offer repairs, and there is no settled agreement on whether those repairs work."
 setup: "Pascal asks how someone should act when reason has not settled whether God exists. Wagering for God might bring an infinitely happy life. If there is no God, the cost is finite. A positive chance of an infinite reward seems to outweigh any finite cost."

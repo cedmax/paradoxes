@@ -11,7 +11,6 @@ searchTerms: ["defence attorney's fallacy", "Sally Clark", "forensic evidence"]
 problem: "If the chance of an innocent person matching the evidence is tiny, is the person who matches almost certainly guilty?"
 claimA: "Only 1 in 1,000 innocent people would match this evidence, so a match means guilt is nearly certain."
 claimB: "In a big enough population, many innocent people match too."
-verdict: "How rare a match is and how likely a match is to be guilty are different numbers."
 whatBreaks: "The assumption that a rare coincidence for an innocent person makes guilt almost certain."
 statusNote: "the first claim is wrong. It swaps one probability for another, and experts agree."
 setup: "Police find a trace at a crime scene that matches only 1 in 1,000 people. They test a suspect and it matches. The prosecutor tells the jury: the chance of an innocent person matching is 1 in 1,000, so there is a 999 in 1,000 chance the suspect is guilty."

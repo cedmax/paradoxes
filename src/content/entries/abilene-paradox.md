@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: How can a whole group agree to do something that not one of them wants?
 claimA: If a group does something, at least some of its members must want it.
 claimB: Every member can privately prefer another plan, and the group still goes ahead.
-verdict: Each person wrongly assumes the others want it, and stays quiet.
 whatBreaks: The idea that a group decision shows what its members want.
 statusNote: the first claim is wrong, and the mechanism is clear. It is a well-known description, not a formal proof.
 setup: "A family agrees to drive a long way for dinner on a hot day. Each person privately wants to stay home, but thinks the others want the trip. Each says yes to avoid disappointing them."

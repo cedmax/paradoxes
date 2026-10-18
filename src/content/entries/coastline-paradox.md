@@ -9,7 +9,6 @@ sourcesVerified: true
 problem: "How long is the coast of Britain?"
 claimA: "Even an ideal coastline must have a fixed, finite length."
 claimB: "Some ideal coastlines have no finite length."
-verdict: "Not every outline has a finite length that finer measurements approach. A quoted coastline length needs a scale and a method; unlimited growth is a mathematical idealisation."
 whatBreaks: "The assumption that every outline must have a finite length that finer measurements approach."
 statusNote: "an ideal rough outline need not have a finite limiting length. Real coastline measurements need a scale and method, without assuming physical detail continues for ever."
 setup: "Measure the coast of Britain with a ruler 100 kilometres long and the result is about 2,800 kilometres. Use a ruler 50 kilometres long and it is about 3,400. The shorter ruler follows more bays and headlands. Which answer is the coast’s length?"

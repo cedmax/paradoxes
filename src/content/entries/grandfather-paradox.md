@@ -10,7 +10,6 @@ sourcesVerified: true
 problem: "If you travelled back in time and stopped your grandfather having children, how could you ever have been born?"
 claimA: "A time traveller is free to do anything any other person could do, including stopping their own grandfather becoming a father."
 claimB: "The past is fixed: you can only be there if you were born, so you cannot stop your own birth."
-verdict: "Changing the past seems to undo the traveller’s own existence. Proposed answers keep one consistent history, introduce another history or rule out the travel, and none is established."
 whatBreaks: "The idea that a person can both visit the past and be free to change it."
 statusNote: "the puzzle is real, and there are several rival ways out. None can be tested, because no time machine is known to be possible."
 setup: "Suppose a time machine exists. You travel back to before your parent was born, find your grandfather as a young man, and set out to kill him. If you succeed, your parent is never born, so you are never born, so you never travel back, so you never kill him. The story undoes itself."

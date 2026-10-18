@@ -11,7 +11,6 @@ reviewed: true
 problem: "If the galaxy is so big and so old, where is everybody?"
 claimA: "With billions of habitable planets and billions of years, intelligent life should have appeared elsewhere and left some sign."
 claimB: "No sign of it has been found."
-verdict: "Nobody knows. It is an open question, with many untested answers."
 whatBreaks: "Guesses about how common intelligent life is, and how it behaves."
 statusNote: "it is a real puzzle and there is no agreed answer. Each proposal rests on guesses that cannot yet be tested."
 setup: "In 1950, the physicist Enrico Fermi was walking to lunch with colleagues at Los Alamos, talking about reports of flying saucers and whether travel faster than light was possible. At the table he asked a question that everyone took to be about alien life. Edward Teller remembered it as “Where is everybody?”, and the others recalled slightly different words. His point was that if intelligent civilisations are common, some of them should have spread across the galaxy or been visible from Earth by now. The Milky Way has billions of planets that could be habitable, and it has existed for a very long time. Yet decades of searching have found no clear sign of aliens."

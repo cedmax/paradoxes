@@ -12,7 +12,6 @@ sourcesVerified: true
 problem: "Does 1 − 1 + 1 − 1 + … add up to 0, to 1, or to one half?"
 claimA: "The sum 1 − 1 + 1 − 1 + … has a definite value that regrouping cannot change."
 claimB: "Regrouping the same terms gives 0 one way and 1 another."
-verdict: "The running totals of 1 − 1 + 1 − 1 + … never settle, so the series has no ordinary sum, and regrouping it proves nothing. One half is the value that special summation methods assign to it."
 whatBreaks: "The assumption that the series has an ordinary sum which survives regrouping, as a finite sum would."
 statusNote: "the running totals never settle, so the series has no ordinary sum. The bracketed answers do not establish one."
 setup: "Add 1, then subtract 1, then add 1, for ever. Pair the terms as (1 − 1) + (1 − 1) + … and the answer looks like 0. Leave the first 1 outside the pairs, as 1 + (−1 + 1) + …, and the answer looks like 1."

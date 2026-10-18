@@ -19,7 +19,6 @@ sourcesVerified: true
 problem: "An endless line of reapers, each killing a man only if no earlier reaper has, cannot exist. What does that show?"
 claimA: "Something can have infinitely many causes, with no first cause among them."
 claimB: "If endless chains of causes are possible, individually possible reapers can be combined into an endless line."
-verdict: "Everyone agrees the line of reapers cannot exist. Experts disagree about whether that shows endless chains of causes are impossible, or only that this one arrangement contradicts itself."
 whatBreaks: "Whether to rule out endless chains of causes, or reject the step from individually possible reapers to this impossible arrangement."
 statusNote: "the arrangement is agreed to be impossible. The dispute is whether that rules out endless chains of causes or only this particular arrangement."
 setup: "A man is alive at noon. One reaper will check him at 1pm, another at 12:30pm, another at 12:15pm, and so on, always halving the wait. There is no earliest reaper after noon. Each kills him if he is still alive and does nothing otherwise."

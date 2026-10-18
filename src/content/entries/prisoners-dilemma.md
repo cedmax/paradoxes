@@ -9,7 +9,6 @@ sourcesVerified: true
 problem: If each of two people does best by betraying the other, why do both end up worse off than if they had trusted each other?
 claimA: "Rational players testify, because it is better for each whatever the other does."
 claimB: "Rational players stay silent, because two rational players who reason alike both do better."
-verdict: "The arithmetic is agreed, but whether rational players should testify or stay silent is still argued."
 whatBreaks: "The idea that a choice which is better for you whatever the other does is always the rational one, even against someone who reasons exactly as you do."
 statusNote: "game theorists agree on the arithmetic, but for players who reason alike the Stanford Encyclopedia says there remain people committed to each view."
 setup: "Two prisoners are held separately and cannot talk. Each must decide whether to stay silent or testify against the other, without knowing what the other will choose. Their sentences depend on both decisions."

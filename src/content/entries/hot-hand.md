@@ -12,7 +12,6 @@ sourcesVerified: true
 problem: "Why did a famous study find no streaks in basketball shooting, when shooters and fans are sure they exist?"
 claimA: "The 1985 study showed that shooting streaks are an illusion."
 claimB: "Correcting its counting method reveals some evidence of streak shooting."
-verdict: "The study’s way of counting is biased against finding streaks. Corrected, the same data show some evidence of streak shooting."
 whatBreaks: "The assumption that a streak-free shooter would show no change after a streak when counted this way. Counted this way, a streak-free shooter shows fewer hits after a streak. A later analysis found the 1985 method was biased against finding streaks. Corrected, the same data show some evidence of a hot hand."
 statusNote: "the first claim is wrong, because the counting method is biased in a way that hides streaks. How large the effect is, and in how many players, is still debated."
 setup: "In 1985 Gilovich, Vallone and Tversky published a study of basketball. They looked at the shot records of the 1980 to 1981 Philadelphia 76ers, at free throws, and at a controlled shooting experiment. They found that shots were no more likely to go in after hits than after misses, and concluded that feeling hot does not predict the next shot. For decades the hot hand was the standard example of a belief that is an illusion."

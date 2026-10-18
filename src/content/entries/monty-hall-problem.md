@@ -12,7 +12,6 @@ reviewed: true
 problem: "Three doors, one car. You pick one and the host opens a door with a goat behind it. Should you switch?"
 claimA: "Two doors left, so it's 50/50."
 claimB: "Switching wins 2 times in 3."
-verdict: "The 50/50 intuition is wrong."
 whatBreaks: "Intuition about probability: new information changes the odds unevenly."
 statusNote: "the 50/50 intuition is wrong. The accepted explanation can be checked by listing every case."
 setup: "A game show has three doors. Behind one is a car, behind the other two are goats. You pick a door. The host, who knows where the car is, opens one of the other two doors and shows you a goat. He then offers you a deal, stick with your door, or switch to the one left closed."

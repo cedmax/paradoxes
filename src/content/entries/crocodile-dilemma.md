@@ -12,7 +12,6 @@ noMaths: true
 problem: "A crocodile promises to return a stolen child if and only if the parent correctly predicts what it will do. The parent says it will not return the child. What can the crocodile do?"
 claimA: "The crocodile can keep its promise whatever the parent predicts."
 claimB: "The crocodile’s own choice decides whether the parent predicted right."
-verdict: "Once the parent predicts the child will not come back, no action keeps the promise. The contradiction stays, and that is what it proves."
 whatBreaks: "The assumption that the crocodile can keep its promise whatever the parent predicts."
 statusNote: "the parent’s prediction makes the promise impossible to keep. Checking both actions proves this, rather than leaving an unanswered choice."
 setup: "A crocodile has stolen a child. It tells the parent, I will give the child back if and only if you correctly say what I will do. The parent answers: you will not give my child back. Now the crocodile has to act. If it keeps the child, the parent was right, so by its promise it must return the child. If it returns the child, the parent was wrong, so by its promise it must not."

@@ -9,7 +9,6 @@ sourcesVerified: true
 problem: A hungry donkey stands exactly halfway between two identical piles of hay. What should it do?
 claimA: "A rational agent only chooses when it has a reason to prefer one option."
 claimB: "A rational agent facing a perfect tie should still choose and eat."
-verdict: "A perfect tie tests whether choosing rationally needs a reason to favour one option. Philosophers disagree about arbitrary choice, free choice and whether such a tie can occur."
 whatBreaks: "Whether rational choice requires a reason favouring one option, or can proceed when the reasons are equal."
 statusNote: "the dispute is whether a rational agent can simply pick when reasons are tied, or whether a perfect tie prevents choice or never really occurs."
 setup: "A hungry donkey stands equally close to two identical piles of hay. Nothing favours either pile. If it can act only for a reason that favours one, it cannot move and starves. Yet choosing either pile seems plainly better than starving."
