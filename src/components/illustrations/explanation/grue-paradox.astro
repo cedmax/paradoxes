@@ -6,12 +6,12 @@ import { series, stroke } from "~/data/palette"
 
 const gemPoints = (x: number, y: number) =>
   [
-    [x, y - 20],
-    [x + 16, y - 8],
-    [x + 12, y + 14],
-    [x, y + 20],
-    [x - 12, y + 14],
-    [x - 16, y - 8],
+    [x, y - 28],
+    [x + 22, y - 11],
+    [x + 17, y + 20],
+    [x, y + 28],
+    [x - 17, y + 20],
+    [x - 22, y - 11],
   ]
     .map((point) => point.join(","))
     .join(" ")
@@ -25,21 +25,21 @@ const gemPoints = (x: number, y: number) =>
     <p class="text-center font-bold">Examined before t</p>
     <SvgFigure
       name="grue-observed"
-      class="w-full"
-      viewBox="0 0 400 72"
+      class="mx-auto w-full max-w-72"
+      viewBox="0 0 288 84"
       title="Four green emeralds examined before t"
       desc="Four emeralds were examined before t. They were green, so all four also satisfy the definition of grue."
     >
-      {[68, 156, 244, 332].map((x) => (
+      {[40, 108, 180, 248].map((x) => (
         <polygon
-          points={gemPoints(x, 36)}
+          points={gemPoints(x, 42)}
           fill={series.green}
           stroke={stroke}
           stroke-width="1.5"
         />
       ))}
     </SvgFigure>
-    <p class="text-center text-sm leading-normal">
+    <p class="text-center text-sm text-balance leading-normal">
       <strong>Grue:</strong> green if examined before t, blue if not.
     </p>
     <p class="text-center text-base leading-normal">
@@ -70,7 +70,7 @@ const gemPoints = (x: number, y: number) =>
           <strong>All emeralds are green</strong>
           <SvgFigure
             name="grue-predict-green"
-            class="h-16 w-20"
+            class="h-20 w-20"
             viewBox="0 0 80 80"
             title="Predicted green emerald"
             desc="The claim all emeralds are green predicts that an emerald first examined after t is green."
@@ -90,7 +90,7 @@ const gemPoints = (x: number, y: number) =>
           <strong>All emeralds are grue</strong>
           <SvgFigure
             name="grue-predict-blue"
-            class="h-16 w-20"
+            class="h-20 w-20"
             viewBox="0 0 80 80"
             title="Predicted blue emerald"
             desc="The claim all emeralds are grue predicts that an emerald first examined after t is blue."
