@@ -1,0 +1,34 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import SideBySide from "~/components/illustration-kit/SideBySide.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+---
+
+<IllustrationFigure
+  name="raven-paradox"
+  lead="A green apple fits the second sentence, even though it tells us nothing obvious about ravens."
+>
+  <SideBySide>
+    <Panel title="Rule about ravens" accent="blue">
+      <p class="text-base">All ravens are black.</p>
+    </Panel>
+    <Panel title="Equivalent rule" accent="green">
+      <p class="text-base">All non-black things are non-ravens.</p>
+    </Panel>
+  </SideBySide>
+  <ComparisonTable
+    caption="Classify an object by colour and whether it is a raven"
+    columns={["", "Black", "Not black"]}
+    rows={[
+      ["Raven", "Black raven: fits the rule", "Non-black raven: would refute it"],
+      ["Not a raven", "Black shoe", "<strong>Green apple: fits the equivalent rule</strong>"],
+    ]}
+    highlight={[2]}
+  />
+  <Fragment slot="caption">
+    The apple is in the non-black, non-raven cell, so it matches the equivalent wording.
+    What remains disputed is whether that makes it evidence for the original claim that
+    all ravens are black, and if so how much.
+  </Fragment>
+</IllustrationFigure>
