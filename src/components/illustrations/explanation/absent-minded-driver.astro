@@ -56,38 +56,7 @@ const curve = Array.from({ length: 101 }, (_, index) => {
     chance of continuing at both.
   </p>
 
-  <Slider
-    id="driver-carry"
-    label="Chance of continuing at each exit"
-    min={0}
-    max={100}
-    step={1}
-    value={67}
-    startLabel="0% · always leave"
-    endLabel="100% · always continue"
-    describedby="driver-carry-readout"
-    valuetext="Continue 67 percent, leave 33 percent, average payoff 1.33"
-  >
-    <div id="driver-carry-readout" class="flex flex-col gap-1" aria-live="polite">
-      <p class="text-base">
-        Continue:{" "}
-        <strong id="driver-continue" class="tabular-nums">
-          67%
-        </strong>
-        {" · "}Leave:{" "}
-        <strong id="driver-leave" class="tabular-nums">
-          33%
-        </strong>
-      </p>
-      <p class="text-base">
-        Average payoff per journey:{" "}
-        <strong id="driver-payoff" class="tabular-nums">
-          1.33
-        </strong>{" "}
-        points
-      </p>
-    </div>
-  </Slider>
+
 
   <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
     <span class="flex items-center gap-2">
@@ -162,6 +131,38 @@ const curve = Array.from({ length: 101 }, (_, index) => {
       stroke-width="3"
     />
   </SvgFigure>
+  <Slider
+    id="driver-carry"
+    label="Chance of continuing at each exit"
+    min={0}
+    max={100}
+    step={1}
+    value={67}
+    startLabel="0% · always leave"
+    endLabel="100% · always continue"
+    describedby="driver-carry-readout"
+    valuetext="Continue 67 percent, leave 33 percent, average payoff 1.33"
+  >
+    <div id="driver-carry-readout" class="flex flex-col gap-1" aria-live="polite">
+      <p class="text-base">
+        Continue:{" "}
+        <strong id="driver-continue" class="tabular-nums">
+          67%
+        </strong>
+        {" · "}Leave:{" "}
+        <strong id="driver-leave" class="tabular-nums">
+          33%
+        </strong>
+      </p>
+      <p class="text-base">
+        Average payoff per journey:{" "}
+        <strong id="driver-payoff" class="tabular-nums">
+          1.33
+        </strong>{" "}
+        points
+      </p>
+    </div>
+  </Slider>
   <p class="text-base leading-normal">
     The best advance rule is to <strong>continue two times in three</strong> (leave one time in
     three). It averages <strong>4/3 points</strong> per journey, more than either always leaving
