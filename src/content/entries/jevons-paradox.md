@@ -12,7 +12,7 @@ problem: "Can making a resource cheaper to use per job cause people to use more 
 claimA: "If a machine gets more efficient at using a resource, total use of that resource must fall."
 claimB: "After steam engines became more efficient, England’s coal use soared."
 whatBreaks: "The assumption that the amount of work done stays the same when it gets cheaper. It goes up, and sometimes by more than the saving."
-statusNote: "when lower costs raise demand by more than the saving per job, total use of the resource rises. Economists agree this can happen and still argue about how often; in a single market the rebound is usually below 100 percent."
+statusNote: "when lower costs raise demand by more than the saving per job, total use of the resource rises. Economists agree this can happen but argue about how often, and in a single market the rebound is usually below 100 percent."
 setup: "In his 1865 book The Coal Question, the economist William Stanley Jevons noted that England’s coal use soared after James Watt’s steam engine improved on Thomas Newcomen’s design. Watt’s engine got more work from each lump of coal. Jevons argued that it is a confusion to suppose that economical use of fuel means less fuel is used."
 whyWrong: "The first claim treats the amount of work to be done as fixed. If the work is fixed, a more efficient machine needs less fuel. But better efficiency also lowers the cost of each job, and people buy more of what gets cheaper. The extra jobs need fuel too."
 resolution:

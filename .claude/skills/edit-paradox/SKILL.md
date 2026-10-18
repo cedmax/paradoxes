@@ -118,7 +118,7 @@ enforces anchor integrity. Do not duplicate definitions here.
 - `statusNote` says why this entry has its status. A search hit can show it alone on the index
   card after “How it ends”, so it must make sense without the claims.
   - Start lowercase, so it completes "Explained: …". Use one or two sentences and at most 40
-    words, with no semicolon chains.
+    words, with no semicolons.
   - **explained** and **defused**: say what settles it, such as which premise fails, what makes
     the answer checkable or accepted, and any condition it depends on.
   - **disputed**: say what each main camp holds, in a few words. **unreconciled**: do the same

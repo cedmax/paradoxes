@@ -12,7 +12,7 @@ problem: "Can killing more members of a species actually leave a larger populati
 claimA: "Raising a population’s death rate must make its long-term population smaller."
 claimB: "Under some patterns of crowding and competition, raising deaths can make the long-term population larger."
 whatBreaks: "The assumption that each extra death only subtracts from population growth without changing the survivors’ conditions."
-statusNote: "population models can show this reversal under particular density-dependent conditions; it is not a universal result of culling."
+statusNote: "population models can show this reversal under particular density-dependent conditions, but it is not a universal result of culling."
 setup: "Imagine a crowded population with intense competition for food. Not every young animal can survive. Now raise the death rate in a way that reduces crowding."
 whyWrong: "Fewer animals initially remain, but those survivors may have more food, mature faster or produce many more offspring. The later population can become larger."
 resolution:

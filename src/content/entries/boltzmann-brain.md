@@ -20,7 +20,7 @@ problem: "If a universe produces far more brief brains with false memories than 
 claimA: "In some cosmological models, brief brains with false memories far outnumber evolved observers, so any observer should expect to be one."
 claimB: "Observers in an orderly universe can trust their memories and their view of cosmic history."
 whatBreaks: "Whether to change the universe’s long-term behaviour, the production or counting of observers, or the assumption that an observer should be typical."
-statusNote: "the fixes say the universe ends before such brains take over, that quantum theory lets empty space make none, that a different count of observers removes them, or that we need not be typical."
+statusNote: "one fix ends the universe before such brains take over, another says quantum theory lets empty space make none, another counts observers differently, and another denies we should expect to be typical observers."
 setup: "Imagine a brain briefly forming by chance in otherwise empty space. It has memories of a life that never happened, then disappears. Some models of a universe lasting for ever predict so many such brains that they vastly outnumber observers who evolved on planets."
 whyWrong: "If an observer should expect to be typical, it should expect to be one of those brains. Its memories and observations would then be unreliable, including the evidence used to support the model. The theory seems to undermine the grounds for believing it."
 resolution:

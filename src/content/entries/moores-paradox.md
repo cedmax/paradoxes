@@ -9,7 +9,7 @@ problem: "Why does “It's raining, but I don't believe it” sound absurd, when
 claimA: "The sentence could be true, so saying it contradicts nothing."
 claimB: "A sentence that sounds absurd to say must contain some contradiction."
 whatBreaks: "Whether the apparent clash lies in what assertion communicates, in the speaker’s beliefs or in their reasoning about those beliefs."
-statusNote: "the sentence is consistent yet absurd to say. Accounts locate the absurdity in what assertion presents the speaker as believing, in “I believe” acting as a cautious assertion, or in how belief is formed from the facts."
+statusNote: "the sentence is consistent yet absurd to say. Accounts say stating something presents you as believing it, that “I believe” can be a cautious way of asserting, or that belief is formed by looking at the facts."
 setup: "Someone says “It is raining, but I do not believe it”. It could be raining while they do not believe that it is. Another person can report this without oddity. But saying it sincerely about oneself sounds absurd. “It is raining, but I believe it is not” raises a related problem."
 whyWrong: "The sentence is not simply “It is raining and it is not raining”. Its parts can both be true. The puzzle concerns what happens when a speaker sincerely presents them together, or thinks them together."
 resolution:

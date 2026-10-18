@@ -12,7 +12,7 @@ problem: "Must there always be a person in a pub whose drinking means everyone i
 claimA: "The drinker’s theorem needs one person whose choice controls the whole pub."
 claimB: "The theorem holds even when nobody controls anyone else’s drinking."
 whatBreaks: "The idea that a statement beginning with “if” always describes a causal link."
-statusNote: "the person need not make anybody drink; the conditional is true by the ordinary rules of classical logic."
+statusNote: "the person need not make anybody drink, because the conditional is true by the ordinary rules of classical logic."
 setup: "Suppose the pub has at least one customer. The puzzle promises a customer of whom it is true: if this customer is drinking, everyone is drinking. Nobody needs to know who that customer is in advance."
 whyWrong: "It sounds like the chosen drinker has a mysterious influence over the others. But the statement is about what follows if that person drinks, not about making others do anything."
 resolution:

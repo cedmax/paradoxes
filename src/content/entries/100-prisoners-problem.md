@@ -12,7 +12,7 @@ problem: "How can 100 prisoners find their numbers with about a 31 percent chanc
 claimA: "No plan gives prisoners who open 50 boxes each more than a tiny chance of all succeeding."
 claimB: "Following the numbers in the boxes gives them about a 31 percent chance of all succeeding."
 whatBreaks: "The assumption that every prisoner must search independently and succeed by luck."
-statusNote: "the shared strategy exploits the arrangement of the numbers; its chance is about 31 percent rather than the tiny chance from separate searches."
+statusNote: "the shared strategy exploits the arrangement of the numbers, so its chance is about 31 percent rather than the tiny chance from separate searches."
 setup: "One hundred boxes contain the numbers 1 to 100 in random order. Each prisoner may open 50 boxes, must find their own number and cannot tell the others what they saw. Everyone must succeed."
 whyWrong: "A prisoner randomly opening half the boxes has a one-in-two chance. If each searches independently, the chance all 100 succeed is one in two multiplied by itself 100 times."
 resolution:
