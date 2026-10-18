@@ -11,55 +11,80 @@ import { series, stroke } from "~/data/palette"
   <SvgFigure
     name="dalembert-flows"
     class="mx-auto w-full max-w-lg"
-    viewBox="0 0 400 310"
+    viewBox="0 0 400 340"
     title="Symmetric ideal flow compared with separated real flow"
-    desc="Above, smooth streamlines bend equally around the front and back of a stationary round body in an ideal frictionless flow. Below, flow moving left to right separates around the body, leaving a softly shaded red wake region and a small eddy behind it. The figure is schematic, not a measured flow field."
+    desc="Above, smooth streamlines bend equally around the front and back of a stationary round body in an ideal frictionless flow. Below, separated streamlines remain apart behind the body, enclosing a broad shaded red wake region with a small eddy. Flow moves from left to right in both panels. Schematic, not a measured flow field."
   >
-    <g fill="currentColor" font-size="17" font-weight="700">
-      <text x="12" y="21">
-        Ideal flow: front and back match
-      </text>
-      <text x="12" y="177">
-        Real flow: separation and a wake
-      </text>
-    </g>
-    <!-- Both panels have one unobtrusive left-to-right flow arrow. -->
-    <g
+    <!-- Ideal flow is symmetric in front of and behind the body. -->
+    <text x="12" y="21" fill="currentColor" font-size="17" font-weight="700">
+      Ideal flow: front and back match
+    </text>
+    <path
+      d="M20 36 H62 m-6 -5 6 5 -6 5"
       fill="none"
       stroke={series.blue}
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-    >
-      <path d="M20 36 H62 m-6 -5 6 5 -6 5" />
-      <path d="M20 193 H62 m-6 -5 6 5 -6 5" />
-    </g>
+    />
     <g fill="none" stroke={series.blue} stroke-width="2">
       <path d="M12 48 H388" />
       <path d="M12 79 C106 79 123 61 200 61 S294 79 388 79" />
       <path d="M12 127 C106 127 123 145 200 145 S294 127 388 127" />
       <path d="M12 158 H388" />
-      <!-- Streamlines pass around the body, then separate downstream. -->
-      <path d="M12 224 C112 224 124 205 190 205 C219 205 237 215 259 221 C310 217 351 221 388 224" />
-      <path d="M12 282 C112 282 124 301 190 301 C219 301 237 291 259 285 C310 289 351 285 388 282" />
     </g>
-    <!-- One subdued wake region, rather than overlapping dashed boundaries. -->
-    <path
-      d="M228 238 C275 230 324 232 388 239 L388 267 C324 274 275 276 228 268 Z"
-      fill={series.red}
-      fill-opacity=".15"
-    />
-    <g fill={series.gold} fill-opacity=".25" stroke={stroke} stroke-width="2">
-      <circle cx="200" cy="103" r="30" />
-      <circle cx="200" cy="253" r="30" />
-    </g>
-    <path
-      d="M267 252 C280 241 300 243 305 253 C312 269 288 272 282 259"
-      fill="none"
-      stroke={series.red}
+    <circle
+      cx="200"
+      cy="103"
+      r="30"
+      fill={series.gold}
+      fill-opacity=".25"
+      stroke={stroke}
       stroke-width="2"
-      stroke-linecap="round"
     />
+
+    <!-- Lower panel is shifted down so its heading clears the upper flow. -->
+    <g transform="translate(0 20)">
+      <text x="12" y="180" fill="currentColor" font-size="17" font-weight="700">
+        Real flow: separation and a wake
+      </text>
+      <path
+        d="M20 199 H62 m-6 -5 6 5 -6 5"
+        fill="none"
+        stroke={series.blue}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <!-- The shaded wake stays at least as wide as the body downstream. -->
+      <path
+        d="M230 227 C276 213 330 214 388 216 L388 294 C330 294 276 293 230 279 Z"
+        fill={series.red}
+        fill-opacity=".15"
+      />
+      <!-- The outer streamlines do not close back together behind the body. -->
+      <g fill="none" stroke={series.blue} stroke-width="2">
+        <path d="M12 224 C105 224 140 210 182 210 C202 210 218 217 232 227 C281 218 335 218 388 218" />
+        <path d="M12 282 C105 282 140 296 182 296 C202 296 218 289 232 279 C281 288 335 288 388 288" />
+      </g>
+      <circle
+        cx="200"
+        cy="253"
+        r="30"
+        fill={series.gold}
+        fill-opacity=".25"
+        stroke={stroke}
+        stroke-width="2"
+      />
+      <path
+        d="M267 253 C280 242 300 244 305 254 C312 270 288 273 282 260"
+        fill="none"
+        stroke={series.red}
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </g>
   </SvgFigure>
   <Fragment slot="caption">
     Without viscosity the idealised steady flow has front-back symmetry and predicts zero drag.
