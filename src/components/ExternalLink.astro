@@ -2,10 +2,14 @@
 interface Props {
   href: string
   class?: string
+  /** Punctuation that follows the link, rendered with no gap. Prettier puts text after a closing
+   * tag on its own line, which would otherwise show up as a space before the full stop. */
+  after?: string
 }
-const { href, class: className = "underline" } = Astro.props
+const { href, class: className = "underline", after } = Astro.props
 // Trimmed so that source formatting (a link label on its own line) never adds underlined spaces.
 const label = (await Astro.slots.render("default")).trim()
 ---
 
 <a href={href} class={className} target="_blank" rel="noopener noreferrer" set:html={label} />
+{after}
