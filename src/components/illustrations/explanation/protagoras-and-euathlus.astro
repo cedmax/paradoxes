@@ -13,13 +13,17 @@ import Panel from "~/components/illustration-kit/Panel.astro"
     columns={["If the court…", "The judgment says", "The contract says"]}
     rows={[
       ["Rules for Protagoras", "Euathlus must pay now", "Euathlus has not yet won a case"],
-      ["Rules for Euathlus", "Euathlus need not pay in this suit", "His first win has now occurred"],
+      [
+        "Rules for Euathlus",
+        "Euathlus need not pay in this suit",
+        "His first win has now occurred",
+      ],
     ]}
   />
   <Panel title="Keep the two lawsuits separate" accent="blue">
     <p class="text-base">
-      <strong>First lawsuit:</strong> Euathlus has not yet won a case when Protagoras sues.
-      The fee is not due, so Euathlus wins.
+      <strong>First lawsuit:</strong> Euathlus has not yet won a case when Protagoras sues. The
+      fee is not due, so Euathlus wins.
     </p>
     <p class="mt-2 text-base">
       <strong>Possible second lawsuit:</strong> After that first victory, the contract's
@@ -27,8 +31,8 @@ import Panel from "~/components/illustration-kit/Panel.astro"
     </p>
   </Panel>
   <Fragment slot="caption">
-    A later result cannot retroactively make the unpaid fee due at the start of the
-    first case. The ordinary answer distinguishes the contract's condition becoming
-    true <em>after</em> a ruling from what was owed <em>before</em> it.
+    A later result cannot retroactively make the unpaid fee due at the start of the first case.
+    The ordinary answer distinguishes the contract's condition becoming true <em>after</em> a
+    ruling from what was owed <em>before</em> it.
   </Fragment>
 </IllustrationFigure>
