@@ -1,0 +1,225 @@
+---
+import Disclosure from "~/components/illustration-kit/Disclosure.astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+// p is the chance of continuing at each indistinguishable exit.
+// Danger: 1-p; home: p(1-p); motel: p².
+const payoff = (p: number) => 4 * p * (1 - p) + p * p
+const graphX = (p: number) => 48 + 396 * p
+const graphY = (value: number) => 202 - 100 * value
+const curve = Array.from({ length: 101 }, (_, index) => {
+  const p = index / 100
+  return (index === 0 ? "M" : "L") + graphX(p) + " " + graphY(payoff(p))
+}).join(" ")
+---
+
+<IllustrationFigure
+  name="absent-minded-driver"
+  lead="A little uncertainty gives the driver her best average outcome"
+>
+  <SvgFigure
+    name="driver-exits"
+    class="mx-auto w-full max-w-xl"
+    viewBox="0 0 480 132"
+    title="Two indistinguishable exits and three possible outcomes"
+    desc="Along the road, taking the first exit leads to danger for 0 points. Passing the first and taking the second leads home for 4 points. Passing both leads to the motel for 1 point."
+  >
+    <path d="M32 76 H448" fill="none" stroke={stroke} stroke-width="4" />
+    <path d="M142 76 V43 M310 76 V43" fill="none" stroke={stroke} stroke-width="3" />
+    <path d="M142 40 L137 47 H147 Z M310 40 L305 47 H315 Z" fill={stroke} />
+    <circle cx="142" cy="76" r="6" fill={series.blue} />
+    <circle cx="310" cy="76" r="6" fill={series.blue} />
+    <g fill="currentColor" font-size="15" text-anchor="middle">
+      <text x="142" y="22" font-weight="700">
+        First exit
+      </text>
+      <text x="310" y="22" font-weight="700">
+        Second exit
+      </text>
+      <text x="142" y="108">
+        Danger · 0
+      </text>
+      <text x="310" y="108">
+        Home · 4
+      </text>
+      <text x="445" y="126" text-anchor="end">
+        Miss both · motel · 1
+      </text>
+    </g>
+  </SvgFigure>
+  <p class="text-base leading-normal">
+    At either exit she cannot tell whether it is the first or second. She must use the same
+    chance of continuing at both.
+  </p>
+
+  <Slider
+    id="driver-carry"
+    label="Chance of continuing at each exit"
+    min={0}
+    max={100}
+    step={1}
+    value={67}
+    startLabel="0% · always leave"
+    endLabel="100% · always continue"
+    describedby="driver-carry-readout"
+    valuetext="Continue 67 percent, leave 33 percent, average payoff 1.33"
+  >
+    <div id="driver-carry-readout" class="flex flex-col gap-1" aria-live="polite">
+      <p class="text-base">
+        Continue:{" "}
+        <strong id="driver-continue" class="tabular-nums">
+          67%
+        </strong>
+        {" · "}Leave:{" "}
+        <strong id="driver-leave" class="tabular-nums">
+          33%
+        </strong>
+      </p>
+      <p class="text-base">
+        Average payoff per journey:{" "}
+        <strong id="driver-payoff" class="tabular-nums">
+          1.33
+        </strong>{" "}
+        points
+      </p>
+    </div>
+  </Slider>
+
+  <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+    <span class="flex items-center gap-2">
+      <span class="h-1 w-6 bg-series-blue" aria-hidden="true"></span>
+      Average payoff
+    </span>
+    <span class="flex items-center gap-2">
+      <span class="inline-block size-3 rounded-full bg-series-gold" aria-hidden="true"></span>
+      Best plan from the start
+    </span>
+    <span class="flex items-center gap-2">
+      <span
+        class="inline-block size-3 rounded-full border-2 border-series-red"
+        aria-hidden="true"
+      ></span>
+      Your slider position
+    </span>
+  </div>
+  <SvgFigure
+    name="driver-payoff-curve"
+    class="mx-auto w-full max-w-xl"
+    viewBox="0 0 480 258"
+    title="Average payoff rises then falls as the chance of continuing changes"
+    desc="The expected payoff is 4p minus 3p squared, where p is the chance of continuing at either exit. It starts at zero, reaches a maximum of four thirds at a continuing chance of two thirds, and ends at one. The slider moves a marker along this curve."
+  >
+    <g fill="currentColor" font-size="13">
+      <text x="48" y="25">
+        Average score
+      </text>
+      <text x="38" y="206" text-anchor="end">
+        0
+      </text>
+      <text x="38" y="106" text-anchor="end">
+        1
+      </text>
+      <text x="38" y="73" text-anchor="end">
+        1.33
+      </text>
+      <text x="48" y="228" text-anchor="middle">
+        0%
+      </text>
+      <text x="180" y="228" text-anchor="middle">
+        ⅓
+      </text>
+      <text x="312" y="228" text-anchor="middle">
+        ⅔
+      </text>
+      <text x="444" y="228" text-anchor="middle">
+        100%
+      </text>
+      <text x="246" y="252" text-anchor="middle">
+        Chance of continuing
+      </text>
+    </g>
+    <path d="M48 42 V202 H444" fill="none" stroke={stroke} stroke-width="1.5" />
+    <path
+      d="M48 68.6667 H312 V202"
+      fill="none"
+      stroke={series.gold}
+      stroke-width="1.5"
+      stroke-dasharray="4 5"
+    />
+    <path d={curve} fill="none" stroke={series.blue} stroke-width="3" />
+    <circle cx="312" cy="68.6667" r="5" fill={series.gold} />
+    <circle
+      id="driver-curve-marker"
+      cx="313.32"
+      cy="68.67"
+      r="7"
+      fill="var(--color-paper)"
+      stroke={series.red}
+      stroke-width="3"
+    />
+  </SvgFigure>
+  <p class="text-base leading-normal">
+    The best advance rule is to <strong>continue two times in three</strong> (leave one time in
+    three). It averages <strong>4/3 points</strong> per journey, more than either always leaving
+    or always continuing.
+  </p>
+
+  <div slot="after">
+    <Disclosure summary="Why does a calculation at an exit seem to favour a different rule?">
+      <div class="mt-3 flex flex-col gap-3">
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <Panel title="Before the journey">
+            <p class="mt-2 text-base leading-normal">
+              The same rule applies at both exits. Continuing with chance <strong>⅔</strong>
+              gives the best average score: <strong>4/3</strong>.
+            </p>
+          </Panel>
+          <Panel title="When she reaches an exit">
+            <p class="mt-2 text-base leading-normal">
+              Under that plan, <strong>3 in 5 exit encounters</strong> are at the first exit,
+              and 2 in 5 at the second.
+            </p>
+          </Panel>
+        </div>
+        <p class="text-base leading-normal">
+          If she holds those 3-in-5 odds fixed while recalculating a rule for both exits, it
+          appears better to <strong>leave two times in three</strong> instead. But those
+          encounter odds came from the original plan. The entry explains why this apparent
+          improvement is challenged, and why different accounts disagree about the diagnosis.
+        </p>
+      </div>
+    </Disclosure>
+  </div>
+  <Fragment slot="caption">
+    Scores of 0, 4 and 1 are the entry's example. The curve shows the expected score over many
+    journeys from the start, not the contested recalculation after reaching an exit.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("absent-minded-driver")
+  if (root) {
+    const input = find<HTMLInputElement>(root, "#driver-carry")
+    const continuing = find<HTMLElement>(root, "#driver-continue")
+    const leaving = find<HTMLElement>(root, "#driver-leave")
+    const payoffReadout = find<HTMLElement>(root, "#driver-payoff")
+    const marker = find<SVGCircleElement>(root, "#driver-curve-marker")
+
+    bindSlider(input, (percent) => {
+      const p = percent / 100
+      const average = 4 * p * (1 - p) + p * p
+      continuing.textContent = `${percent}%`
+      leaving.textContent = `${100 - percent}%`
+      payoffReadout.textContent = average.toFixed(2)
+      marker.setAttribute("cx", String(48 + 396 * p))
+      marker.setAttribute("cy", String(202 - 100 * average))
+      return `Continue ${percent} percent, leave ${100 - percent} percent, average payoff ${average.toFixed(2)} points`
+    })
+  }
+</script>
