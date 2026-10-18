@@ -11,7 +11,7 @@ problem: "Can the same experiment be statistically significant and still favour 
 claimA: "A conventionally significant result necessarily means the data favour an effect over no effect."
 claimB: "With some sample sizes and starting assumptions, the same significant data can support no effect in a Bayesian comparison."
 whatBreaks: "The assumption that a small p-value and evidence against a precise no-effect hypothesis measure the same thing."
-statusNote: "a significance test asks how surprising the data would be if there were no effect, while a Bayesian comparison weighs the rival explanations and depends on prior beliefs about effect sizes, so their answers can diverge. The disagreement can be derived without inconsistent arithmetic."
+statusNote: "a significance test asks how surprising the data would be if there were no effect, while a Bayesian comparison weighs rival explanations using prior beliefs about effect sizes, so their answers can diverge. Neither uses inconsistent arithmetic."
 setup: "A large study finds a tiny departure from an exact no-effect claim. A conventional significance test says the result would be rare under that exact claim."
 whyWrong: "A second calculation compares how well the data fit no effect against a range of possible effects. With a broad range, many alternatives predict the precise tiny result poorly."
 resolution:

@@ -12,7 +12,7 @@ problem: "Could a message that travels faster than light get a reply before it w
 claimA: "Allowing freely sent faster-than-light messages would leave the order of sending and receiving unchanged for everyone."
 claimB: "Under special relativity, suitable moving senders can exchange faster-than-light messages so a reply reaches the sender before the first message."
 whatBreaks: "The assumption that adding arbitrary faster-than-light signals leaves the ordinary order of cause and effect intact."
-statusNote: "with the stated assumptions, relativity allows the sequence to loop; no working faster-than-light signalling system is known."
+statusNote: "faster-than-light signals can form a loop in time, so a reply can arrive before the message was sent. No working system is known."
 setup: "Alice sends Bob a message faster than light. Bob is moving relative to Alice and sends a faster-than-light reply. Different observers disagree about the order of widely separated events."
 whyWrong: "By choosing their relative motion and the signal speeds, Bob’s reply can arrive before Alice sent the first message. Alice could then be warned not to send it."
 resolution:

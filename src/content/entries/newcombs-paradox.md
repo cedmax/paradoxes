@@ -11,7 +11,7 @@ problem: "Box A holds $1,000, and a near-perfect predictor has already decided w
 claimA: "A rational chooser takes both boxes, because the contents are already fixed."
 claimB: "A rational chooser takes one box, because one-boxers reliably end up richer."
 whatBreaks: "Experts split on which rule of rational choice to follow: look only at what your choice can cause, which says take both, or look at what your choice is evidence of, which says take one."
-statusNote: "the split lines up roughly with two theories of rational choice: causal decision theory says take both boxes and evidential decision theory says take one, though not every one-boxer relies on evidential decision theory. In the 2020 PhilPapers survey, 39.0 percent of philosophers favoured two boxes and 31.2 percent one box, a plurality but no majority."
+statusNote: "the camps follow two theories of rational choice: causal decision theory says take both boxes, evidential decision theory says take one. In the 2020 PhilPapers survey, 39.0 percent favoured two boxes and 31.2 percent one."
 setup: "A near-perfect predictor has already guessed what you will choose and filled Box B accordingly. You can take B alone or both boxes. Whatever is inside, the money is already in place."
 whyWrong: "The two arguments make different comparisons. One asks which choice pays more if Box B’s contents are held fixed. The other asks what people making each choice usually receive. Both seem sensible, but they point in opposite directions."
 resolution:

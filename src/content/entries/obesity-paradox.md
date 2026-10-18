@@ -20,7 +20,7 @@ problem: "Why do some studies find that heavier patients with certain diseases d
 claimA: "Among people who already have certain diseases, the extra weight itself helps them survive."
 claimB: "The weight does not help; the lower death rate comes from who is studied and how weight is measured."
 whatBreaks: "Experts split over whether the lower death rate of heavier patients reflects something the weight does, or biases in who gets studied and how weight is measured."
-statusNote: "the lower death rate is found in some studies of people who are already ill, but researchers disagree over how much of it, if any, is caused by the weight. Proposed explanations range from extra weight being protective to flaws in the studies, and no single bias has been shown to account for all of it."
+statusNote: "the camps are that some extra weight protects patients who are already ill, and that the comparison misleads through selection effects and crude measures of body size."
 setup: "Extra weight raises the risk of some diseases. Yet among patients who already have certain diseases, some studies find that heavier people die less often. Does their weight help them survive, or does the comparison make it look that way?"
 whyWrong: "A lower death rate does not by itself show that weight is protective. Illness can cause weight loss. Smoking can affect both weight and survival. And selecting only people who are already ill can change the relationship between weight and other dangers."
 resolution:

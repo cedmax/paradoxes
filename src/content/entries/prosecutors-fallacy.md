@@ -12,7 +12,7 @@ problem: "If the chance of an innocent person matching the evidence is tiny, is 
 claimA: "Only 1 in 1,000 innocent people would match this evidence, so a match means guilt is nearly certain."
 claimB: "In a big enough population, many innocent people match too."
 whatBreaks: "The assumption that a rare coincidence for an innocent person makes guilt almost certain."
-statusNote: "the first claim is wrong. It swaps one probability for another, and experts agree."
+statusNote: "how rare a match is for an innocent person differs from how likely a matching person is to be guilty: in a large city many innocent people match too. The match is still strong evidence."
 setup: "Police find a trace at a crime scene that matches only 1 in 1,000 people. They test a suspect and it matches. The prosecutor tells the jury: the chance of an innocent person matching is 1 in 1,000, so there is a 999 in 1,000 chance the suspect is guilty."
 whyWrong: "The prosecutor has answered the wrong question. The 1 in 1,000 tells you how often an innocent person would match. The jury needs to know how often a person who matches is innocent. These sound like the same thing, and they are not."
 resolution:

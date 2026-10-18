@@ -20,7 +20,7 @@ problem: "In an endless list where each sentence says that all the later ones ar
 claimA: "Every sentence on the list is either true or untrue."
 claimB: "A sentence on the list is true if what it says is right, and untrue if it isn’t."
 whatBreaks: "The ordinary rules for truth cannot all hold for this endless list. Whether to change those rules or the reasoning about infinity is contested."
-statusNote: "the contradiction has no agreed solution. There is also a separate debate over whether the list hides a form of self-reference."
+statusNote: "the answers are a hidden liar in the list’s description, questioning the step from separate sentences to the whole list, and changing the rules for truth."
 setup: "Write an endless list. The first sentence says every later sentence is untrue. The second says every sentence after it is untrue. Every sentence says the same about the ones after it. None mentions itself."
 whyWrong: "Suppose one sentence is true. Everything after it must be untrue. But the next sentence says just that, so it is true too, contradicting the first. Therefore none can be true. Yet if all are untrue, the first sentence says something correct and must be true."
 resolution:

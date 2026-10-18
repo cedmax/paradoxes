@@ -12,7 +12,7 @@ problem: "Why do your friends have more friends than you do?"
 claimA: "You and your friends are ordinary people, so you should have about as many friends as they do."
 claimB: "On average, your friends have more friends than you do."
 whatBreaks: "The assumption that a randomly picked friend is a typical person."
-statusNote: "the first claim is wrong. The effect follows from counting, and experts agree."
+statusNote: "popular people appear in many friend lists, so a friend picked at random is likely to be well connected. The result concerns averages, not every individual."
 setup: "Count your friends, then ask how many friends they have. Friends tend to look more connected than people chosen at random. A person with many friends appears on many lists; a person with few appears on few."
 whyWrong: "Your friends are not a random sample of people. A popular person has more routes into a friend list and is counted more often. That biases the average upwards."
 resolution:

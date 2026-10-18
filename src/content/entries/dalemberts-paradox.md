@@ -19,7 +19,7 @@ problem: "Why does the mathematics of flowing fluids say a moving body feels no 
 claimA: "A fluid with almost no friction can be treated as frictionless, so a body moving steadily through it feels no drag."
 claimB: "A body moving through real air or water feels drag, even when the fluid is thin and its friction is small."
 whatBreaks: "The assumption that a fluid with almost no friction can be treated as having none. A thin layer next to the surface decides the flow."
-statusNote: "friction, or viscosity, in a thin layer next to the body, together with the flow separating from the back of it, produces the drag that the frictionless calculation leaves out. Most scientists accept this, though a full mathematical proof is lacking."
+statusNote: "friction, or viscosity, in a thin layer next to the body, together with the flow separating from its back, produces the drag the frictionless calculation leaves out. Most scientists accept this, though a full proof is lacking."
 setup: "In 1752 the mathematician Jean le Rond d’Alembert proved that a body moving at a steady speed through an ideal fluid feels no drag. An ideal fluid, here, cannot be squeezed, has no internal friction, and flows smoothly without any spinning. In 1768 he wrote that the theory gave a strictly vanishing resistance, which he left to future mathematicians to explain. Real bodies obviously feel drag."
 whyWrong: "The mathematics is correct, and the surprise is in how it is applied. Water and air have very little friction, so it seems safe to ignore it. But the argument depends on all three assumptions at once: no squeezing, no friction and no spinning."
 resolution:

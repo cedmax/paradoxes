@@ -21,7 +21,7 @@ problem: "Turning part of a picture changes how many people it shows. Where does
 claimA: "Every figure in the picture is a whole, full-sized figure in both positions, so the count cannot change."
 claimB: "One position shows 13 boys and the other shows 12."
 whatBreaks: "The assumption that each figure stays whole and the same size when the pieces move."
-statusNote: "the idea that every figure stays whole and the same size is wrong. The pieces of one figure are spread among the rest, so each of the remaining figures is a little larger and none is lost."
+statusNote: "nothing vanishes: the same amount of drawing is shared among fewer figures, each a little larger."
 setup: "A picture is cut into parts. In one arrangement it shows a certain number of figures. Move the parts and it shows one fewer. In Sam Loyd’s Disappearing Bicyclist, turning a disc changes 13 boys into 12. No part of the card is taken away."
 whyWrong: "The eye counts complete figures and assumes they stay the same size. But the cut passes through them. Moving the parts joins each figure to a different neighbour’s piece, so the boundaries between figures change."
 resolution:

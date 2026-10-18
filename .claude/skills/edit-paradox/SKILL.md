@@ -118,14 +118,14 @@ enforces anchor integrity. Do not duplicate definitions here.
 - `statusNote` says why this entry has its status. A search hit can show it alone on the index
   card after “How it ends”, so it must make sense without the claims.
   - Start lowercase, so it completes "Explained: …". Use one or two sentences and at most 40
-    words.
+    words, with no semicolon chains.
   - **explained** and **defused**: say what settles it, such as which premise fails, what makes
     the answer checkable or accepted, and any condition it depends on.
   - **disputed**: name the main camps in a few words each. **unreconciled**: name the leading
     fixes the same way. Do not restate their costs; `positions` shows them.
-  - Never restate the status definition, write “the first claim” or “the second claim”, repeat
-    the wording of `whatBreaks` (naming the same failed premise is fine) or add a claim the
-    entry's `sources` do not support.
+  - Never restate the status definition (“experts disagree”, “the idea that … is wrong”), write
+    “the first claim” or “the second claim”, repeat the wording of `whatBreaks` (naming the same
+    failed premise is fine) or add a claim the entry's `sources` do not support.
 - When a body field (`setup`, `whyWrong`, `resolution`, `positions`, `finePrint`, `whatBreaks`,
   `statusNote`) mentions another entry, link it as `[shown text](entry-slug)`. The build fails on
   an unknown slug. A link to an entry that is not published yet shows as plain text until it is. Never put links in `title`, `problem`, `claimA` or `claimB`.

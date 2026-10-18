@@ -12,7 +12,7 @@ problem: "Why is your average wait for a bus longer than half the average gap be
 claimA: "Turn up at a random moment and, on average, you should wait half the average gap."
 claimB: "People who turn up at random wait longer than half the average gap."
 whatBreaks: "The assumption that turning up at a random moment samples every gap equally. A random moment lands in each gap in proportion to its length, so long gaps count for more."
-statusNote: "the first claim only holds when buses are evenly spaced. When gaps vary, the average wait is longer."
+statusNote: "a random arrival lands in long gaps more often, because they take up more of the clock, so the average wait is longer than half the average gap unless buses are evenly spaced."
 setup: "Buses on a route come every 10 minutes on average. You turn up at the stop without checking the timetable. It seems you should wait 5 minutes on average, half the gap. But when the buses run unevenly, the average wait comes out longer."
 whyWrong: "Half the average gap would be right if you were equally likely to land in any gap. But you do not pick a gap, you pick a moment. A long gap covers more moments than a short one, so it is more likely to be the one you walk into. The same over-counting makes students report bigger classes than their college does: see the [class size paradox](class-size-paradox)."
 resolution:

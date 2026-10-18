@@ -14,7 +14,7 @@ problem: "Three doors, one car. You pick one and the host opens a door with a go
 claimA: "Two doors left, so it's 50/50."
 claimB: "Switching wins 2 times in 3."
 whatBreaks: "Intuition about probability: new information changes the odds unevenly."
-statusNote: "switching wins exactly when your first pick was wrong, which happens 2 times in 3, because the host knows where the car is and leaves that door standing. This holds only if he always opens a losing door and always makes the offer."
+statusNote: "switching wins exactly when your first pick was wrong, which happens 2 times in 3, because the host knows where the car is and leaves that door standing. It holds only if he always opens a losing door."
 setup: "A game show has three doors. Behind one is a car, behind the other two are goats. You pick a door. The host, who knows where the car is, opens one of the other two doors and shows you a goat. He then offers you a deal, stick with your door, or switch to the one left closed."
 whyWrong: "Two closed doors look like a coin flip: 50/50, so why bother? But the two doors aren't equals. Yours was picked blind. The other one was left standing by a host who knew where the car was and avoided it."
 resolution:

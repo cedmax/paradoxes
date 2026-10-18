@@ -12,7 +12,7 @@ problem: "If a flying arrow is standing still at every instant, how can it ever 
 claimA: "At each instant the arrow moves no distance, so it is at rest at every instant, so it never moves."
 claimB: "The arrow's flight is made of nothing but instants, and yet the arrow clearly moves."
 whatBreaks: "The idea that motion is something an object does at a single instant."
-statusNote: "the first claim is wrong. At a single instant the arrow covers no distance, but that does not make it at rest."
+statusNote: "at a single instant the arrow covers no distance, but that does not make it at rest: moving means being in different places at different times. Not everyone accepts this at-at picture."
 setup: "Freeze time at one instant. The arrow is in one place, taking up a space exactly its own size. It covers no distance in that instant. The same is true at the next instant, and the one after. The flight is made of instants, and the arrow is still at every one of them. So when does it move? Aristotle reports the argument in his Physics: everything that takes up a space equal to itself is at rest, and the flying arrow takes up such a space at every instant, so the flying arrow is at rest. A later writer, Diogenes Laertius, gives a shorter version: what moves moves neither in the place where it is nor in a place where it is not."
 whyWrong: 'The argument slips from "covers no distance in an instant" to "is at rest at that instant", and then to "never moves". Those only match if motion is something that happens inside an instant. If it is not, the arrow covers no distance at each instant and still moves.'
 resolution:

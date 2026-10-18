@@ -12,7 +12,7 @@ problem: "Does disagreement about what is happening now mean tomorrow already ex
 claimA: "Special relativity shows that events which one observer calls future are already real."
 claimB: "Special relativity does not establish that future events already exist."
 whatBreaks: "The disputed step from different ways of dividing spacetime into present moments to a claim about what exists."
-statusNote: "physicists agree about relativity of simultaneity; philosophers disagree about whether it proves that all times are equally real."
+statusNote: "relativity of simultaneity is taken by Rietdijk and Putnam to show the future already exists, while critics such as Howard Stein deny that it settles what exists."
 setup: "Two observers moving relative to one another draw different lines across spacetime for events they call simultaneous. A faraway event on one person’s line of “now” may lie to the future of another person’s line."
 whyWrong: "If each whole line of “now” is just as real, an event not yet present for one observer is already present for another. The argument uses that to support a world where past, present and future all exist."
 resolution:

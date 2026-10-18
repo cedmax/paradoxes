@@ -11,7 +11,7 @@ problem: Can building a new road make everyone's journey slower?
 claimA: More road can only help drivers.
 claimB: When every driver picks their own fastest route, a new road can make all of them slower.
 whatBreaks: The idea that when each person chooses what is best for them, the group ends up as well off as it could be.
-statusNote: each driver picks the fastest route for themselves, which adds congestion to the roads the others use, so in the textbook example everyone’s trip rises from 65 to 80 minutes, and closing the new road restores the faster arrangement. Simple sums check this.
+statusNote: each driver picks the fastest route for themselves, which adds congestion to the roads the others use, so everyone’s trip gets slower, and closing the new road restores the faster arrangement. Simple sums check this.
 setup: "There are 4,000 drivers and two routes from Start to End. Each route has one road that always takes 45 minutes and one whose time is its car count divided by 100. Split evenly, each route takes 20 + 45 = 65 minutes. Then a free shortcut connects A to B, as shown below."
 whyWrong: "The shortcut lets drivers use both roads whose times depend on traffic. If everyone takes it, both carry 4,000 cars: 40 + 0 + 40 = 80 minutes. Switching alone to an old route would take 40 + 45 = 85 minutes, so nobody gains by leaving the slower arrangement."
 resolution:
