@@ -19,16 +19,46 @@ const positions = [1, 2, 3, 4, 5]
     desc="Day 1 is written up in year 1, day 2 in year 2, day 3 in year 3, and so on forever. The pairing never skips any specific day, even though far more days have passed than have been written about at any finite time."
   >
     <g fill="currentColor" font-size="15" font-weight="700">
-      <text x="12" y="20">Days of life</text>
-      <text x="12" y="137">Years of writing</text>
+      <text x="12" y="20">
+        Days of life
+      </text>
+      <text x="12" y="137">
+        Years of writing
+      </text>
     </g>
     {positions.map((n, i) => (
       <g>
-        <rect x={14 + i * 70} y="30" width="52" height="32" fill="none" stroke={stroke} stroke-width="1.5" />
-        <text x={40 + i * 70} y="51" font-size="17" text-anchor="middle" fill="currentColor">{n}</text>
-        <path d={"M" + (40 + i * 70) + " 65 V113 m-5 -7 5 7 5 -7"} fill="none" stroke={series.blue} stroke-width="2" />
-        <rect x={14 + i * 70} y="147" width="52" height="32" fill={series.blue} fill-opacity=".15" stroke={series.blue} stroke-width="1.5" />
-        <text x={40 + i * 70} y="168" font-size="17" text-anchor="middle" fill="currentColor">{n}</text>
+        <rect
+          x={14 + i * 70}
+          y="30"
+          width="52"
+          height="32"
+          fill="none"
+          stroke={stroke}
+          stroke-width="1.5"
+        />
+        <text x={40 + i * 70} y="51" font-size="17" text-anchor="middle" fill="currentColor">
+          {n}
+        </text>
+        <path
+          d={"M" + (40 + i * 70) + " 65 V113 m-5 -7 5 7 5 -7"}
+          fill="none"
+          stroke={series.blue}
+          stroke-width="2"
+        />
+        <rect
+          x={14 + i * 70}
+          y="147"
+          width="52"
+          height="32"
+          fill={series.blue}
+          fill-opacity=".15"
+          stroke={series.blue}
+          stroke-width="1.5"
+        />
+        <text x={40 + i * 70} y="168" font-size="17" text-anchor="middle" fill="currentColor">
+          {n}
+        </text>
       </g>
     ))}
     <text x="180" y="210" font-size="15" text-anchor="middle" fill="currentColor">
@@ -47,7 +77,7 @@ const positions = [1, 2, 3, 4, 5]
   />
   <Fragment slot="caption">
     The backlog gets larger at every stage. Nevertheless, day n is completed in year n.
-    <strong> No particular day</strong> is left unwritten forever, even though the book is
-    never finished at any moment.
+    <strong> No particular day</strong> is left unwritten forever, even though the book is never
+    finished at any moment.
   </Fragment>
 </IllustrationFigure>
