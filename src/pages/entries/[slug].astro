@@ -42,7 +42,10 @@ const isIllusion = d.format === "illusion"
   {!isIllusion && <ClaimsBand claimA={d.claimA} claimB={d.claimB} />}
 
   <div class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
-    <article class="flex w-full max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
+    <article
+      data-entry={entry.id}
+      class="flex w-full max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4"
+    >
       {isIllusion ? (
         <IllusionExperience slug={entry.id} why={d.why} finePrint={d.finePrint} />
       ) : (
@@ -56,3 +59,7 @@ const isIllusion = d.format === "illusion"
     </EntrySidebar>
   </div>
 </Base>
+
+<script>
+  import "~/scripts/track-illustrations"
+</script>
