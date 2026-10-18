@@ -1,0 +1,170 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+// One molecule passes at a time. Positions and paths are schematic, not gas dynamics.
+// The destinations leave the route to the shutter clear for later molecules.
+const molecules = [
+  { x: 42, y: 49, fast: true, step: 0, endX: 220, endY: 145 },
+  { x: 83, y: 98, fast: false },
+  { x: 49, y: 125, fast: false },
+  { x: 112, y: 128, fast: true, step: 2, endX: 330, endY: 64 },
+  { x: 146, y: 52, fast: true, step: 4, endX: 300, endY: 121 },
+  { x: 83, y: 150, fast: false },
+  { x: 238, y: 53, fast: false, step: 1, endX: 54, endY: 78 },
+  { x: 278, y: 100, fast: true },
+  { x: 333, y: 125, fast: true },
+  { x: 248, y: 150, fast: true },
+  { x: 320, y: 52, fast: false, step: 3, endX: 123, endY: 94 },
+  { x: 282, y: 143, fast: false, step: 5, endX: 146, endY: 144 },
+]
+---
+
+<IllustrationFigure
+  name="maxwells-demon"
+  lead="The demon briefly opens the shutter for selected molecules, sending fast ones right and slow ones left."
+>
+  <div class="grid grid-cols-2 gap-4 text-center text-base font-bold">
+    <span>Left chamber</span>
+    <span>Right chamber</span>
+  </div>
+  <SvgFigure
+    name="maxwells-demon-chambers"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 400 196"
+    title="A demon sorting fast and slow molecules through a selective shutter"
+    desc="Initially both chambers contain three fast red and three slow blue molecules. Move the slider to move one molecule at a time through the central shutter: fast red molecules travel right and slow blue molecules travel left. The shutter opens briefly for each crossing, closing between them. At the end the left chamber contains only slow blue molecules and the right contains only fast red molecules. All molecules are the same size."
+  >
+    <rect x="12" y="12" width="376" height="170" fill="none" stroke={stroke} stroke-width="2.5" />
+    <path d="M200 12 V80 M200 123 V182" stroke={stroke} stroke-width="3" />
+    <g id="maxwells-demon-shutter">
+      <rect
+        x="196"
+        y="80"
+        width="8"
+        height="43"
+        fill={series.gold}
+        stroke={stroke}
+        stroke-width="1"
+      />
+    </g>
+    {molecules.map((molecule, index) => (
+      <circle
+        id={`maxwells-demon-molecule-${index}`}
+        cx={molecule.x}
+        cy={molecule.y}
+        r="6.5"
+        fill={molecule.fast ? series.red : series.blue}
+        data-start-x={molecule.x}
+        data-start-y={molecule.y}
+        data-end-x={molecule.endX ?? molecule.x}
+        data-end-y={molecule.endY ?? molecule.y}
+        data-step={molecule.step ?? -1}
+        data-fast={String(molecule.fast)}
+      />
+    ))}
+  </SvgFigure>
+  <div class="flex flex-wrap gap-x-6 gap-y-2 text-base">
+    <p><strong class="text-series-red">● Fast</strong> molecules go right →</p>
+    <p><strong class="text-series-blue">● Slow</strong> molecules go left ←</p>
+  </div>
+  <Slider
+    id="maxwells-demon-slider"
+    label="Sort the molecules"
+    describedby="maxwells-demon-readout"
+    valuetext="Mixed: fast and slow molecules on both sides"
+    startLabel="Mixed"
+    endLabel="Sorted"
+  >
+    <p id="maxwells-demon-readout" class="text-base" aria-live="off">
+      Mixed: fast and slow molecules on both sides. The shutter is closed.
+    </p>
+  </Slider>
+  <Fragment slot="caption">
+    The tiny shutter opens selectively to send fast molecules one way and slow molecules the
+    other. The paths are schematic. Could this create a hot side and a cold side without
+    doing any work?
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("maxwells-demon")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#maxwells-demon-slider")
+    const shutter = find<SVGGElement>(root, "#maxwells-demon-shutter")
+    const readout = find<HTMLElement>(root, "#maxwells-demon-readout")
+    const dots = Array.from(root.querySelectorAll<SVGCircleElement>("[data-step]"))
+
+    const between = (start: number, end: number, fraction: number) =>
+      start + (end - start) * fraction
+
+    bindSlider(slider, (value) => {
+      // Six successive crossings, three in each direction.
+      const stage = (value / 100) * 6
+      let activeStep = -1
+      let passing = false
+      let activeFast = false
+
+      for (const dot of dots) {
+        const step = Number(dot.dataset.step)
+        if (step < 0) continue
+
+        const fraction = Math.max(0, Math.min(1, stage - step))
+        const fast = dot.dataset.fast === "true"
+        const startX = Number(dot.dataset.startX)
+        const startY = Number(dot.dataset.startY)
+        const endX = Number(dot.dataset.endX)
+        const endY = Number(dot.dataset.endY)
+        const waitingX = fast ? 182 : 218
+        const arrivalX = fast ? 218 : 182
+        const doorwayY = 101.5
+
+        // Approach a closed shutter, cross while it opens, then move away.
+        // The ball is fully clear of the shutter at either end of the opening.
+        let x: number
+        let y: number
+        if (fraction <= 0.35) {
+          const approach = fraction / 0.35
+          x = between(startX, waitingX, approach)
+          y = between(startY, doorwayY, approach)
+        } else if (fraction <= 0.65) {
+          x = between(waitingX, arrivalX, (fraction - 0.35) / 0.3)
+          y = doorwayY
+        } else {
+          const depart = (fraction - 0.65) / 0.35
+          x = between(arrivalX, endX, depart)
+          y = between(doorwayY, endY, depart)
+        }
+        dot.setAttribute("cx", String(x))
+        dot.setAttribute("cy", String(y))
+
+        if (fraction > 0 && fraction < 1) {
+          activeStep = step
+          activeFast = fast
+          passing = fraction > 0.35 && fraction < 0.65
+        }
+      }
+
+      // Only raise the shutter for the actual crossing, not the approach.
+      shutter.setAttribute("transform", passing ? "translate(0 -43)" : "translate(0 0)")
+
+      if (value === 0) {
+        readout.textContent = "Mixed: fast and slow molecules on both sides. The shutter is closed."
+      } else if (value === 100) {
+        readout.textContent =
+          "Sorted: slow molecules on the left, fast molecules on the right. The shutter is closed."
+      } else if (activeStep >= 0) {
+        const number = Math.floor(activeStep / 2) + 1
+        const kind = activeFast ? "fast" : "slow"
+        const direction = activeFast ? "right" : "left"
+        const state = passing ? "open" : "closed"
+        readout.textContent = `Molecule ${number} of 3 (${kind}) moving ${direction}. Shutter ${state}.`
+      }
+      return readout.textContent ?? ""
+    })
+  }
+</script>
