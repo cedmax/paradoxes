@@ -81,8 +81,8 @@ Routes (`/entries/<slug>/`) are stable: never rename an entry file without addin
 
 Every entry sets `format`: `illusion` for visual and auditory illusions, `argument` for the
 claim-based entries.
-Both formats share `problem` as the question-first catalogue hook, page heading, SEO
-description fallback and OG text. Illusions instead require `why`, which follows
+Both formats share `problem` as the question-first catalogue hook, prominent question
+beneath the title `<h1>` on entry pages, SEO description fallback and OG text. Illusions instead require `why`, which follows
 an original or appropriately licensed source image, vector or audio demonstration,
 loaded by `src/components/IllusionExperience.astro`
 from `src/components/illusions/<slug>.astro`. Each demonstration owns its initial and reveal states; no generic "what you see /

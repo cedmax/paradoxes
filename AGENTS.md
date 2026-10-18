@@ -1,4 +1,5 @@
 # AGENTS.md
 
-Repo-specific instructions for coding agents live in [`CLAUDE.md`](./CLAUDE.md): commands,
-architecture, the entry status definitions, writing rules, sourcing rules and editing rules.
+Repo-specific agent guidance starts in [`CLAUDE.md`](./CLAUDE.md). It links to the
+editing and source-verification skills, [`docs/architecture.md`](./docs/architecture.md),
+and authoritative implementation files such as `src/data/status.ts`.
