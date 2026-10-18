@@ -11,7 +11,7 @@ problem: "Are there as many square numbers as there are whole numbers?"
 claimA: "Squares are only some of the whole numbers, so there must be fewer of them."
 claimB: "Every whole number has exactly one square, so there must be exactly as many."
 whatBreaks: "The idea that a part is always smaller than the whole. Under the standard one-to-one measure of size this only holds for finite collections, though the theory of numerosities keeps it for infinite ones too."
-statusNote: "the first claim is wrong under the standard mathematical definition of size, which compares infinite collections by matching them one to one. That definition is a choice, not the only possible one."
+statusNote: "by the standard definition “as many” means matching one to one, and the squares match the whole numbers exactly, though by density they are sparser. That definition is a choice, and numerosity theory keeps the part smaller than the whole."
 setup: "The squares are 1, 4, 9, 16, 25 and so on. Most whole numbers are not squares: 2, 3, 5, 6, 7, 8 and so on. So the squares look like a thin slice of all the whole numbers, and there should be fewer of them. But pair them off. Each whole number has exactly one square, and each square has exactly one root. Nobody is left without a partner on either side. That suggests the two lists are the same size."
 whyWrong: "With finite collections, a part is always smaller than the whole, and matching up one for one always gives the same count. Both rules work every time. With an endless collection they pull in opposite directions."
 resolution:

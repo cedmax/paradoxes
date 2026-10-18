@@ -1,7 +1,8 @@
 ---
 title: "Parrondo's paradox"
 format: argument
-searchTerms: ["two losing games make a winning game", "Parrondo games", "Brownian ratchet"]
+searchTerms:
+  ["two losing games make a winning game", "Parrondo games", "Brownian ratchet", "mixing games"]
 chapter: probability
 order: 80
 status: explained
@@ -12,7 +13,7 @@ problem: "Can two games that each lose money, played one after the other, togeth
 claimA: "If each of two games loses money on average, any way of playing them together must lose money too."
 claimB: "Two games that each lose on average can be played in a pattern that wins."
 whatBreaks: "The assumption that games played one after another are independent bets. The second game’s odds depend on the player’s money, and the first game changes the money."
-statusNote: "the first claim is wrong. It treats the two games as independent, but the second game’s odds depend on the player’s capital and the first game shifts the capital. The effect is real and the arithmetic is not in dispute."
+statusNote: "the second game’s odds depend on your capital, which the first game shifts, so a pattern such as AABB can win while each game alone loses. The effect is real and the arithmetic is not in dispute."
 setup: "Game A: flip a coin that wins 49.5 percent of the time. Win a pound if it lands the right way, lose a pound if not. Game B: look at how many pounds you have. If the number is a multiple of three, flip a bad coin that wins only 9.5 percent of the time. Otherwise flip a good coin that wins 74.5 percent of the time. Each game, played on its own, slowly loses money. Yet playing two of game A, then two of game B, and repeating that pattern wins money, and so does playing ABBABB over and over. Playing ABAB over and over still loses."
 whyWrong: "Two losing bets seem to add up to a losing bet, and that is true when the bets do not affect each other. These two do. Game B is not one bet. Which coin it uses depends on your capital, and it is mostly a losing game because your capital lands on a multiple of three about 38 percent of the time, where the bad coin is used."
 resolution:

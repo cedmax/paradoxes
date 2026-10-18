@@ -1,6 +1,7 @@
 ---
 title: "Kant's antinomies"
 format: argument
+searchTerms: ["universe have a beginning"]
 chapter: belief
 status: "disputed"
 simplification: light

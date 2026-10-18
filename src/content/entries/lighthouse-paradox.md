@@ -1,6 +1,7 @@
 ---
 title: "Lighthouse paradox"
 format: argument
+searchTerms: ["photons"]
 chapter: identity
 status: "explained"
 simplification: light

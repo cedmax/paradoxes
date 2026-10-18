@@ -12,7 +12,7 @@ problem: "How can you search for something if you do not already know what it is
 claimA: "Searching can teach us what we do not yet know."
 claimB: "Searching is pointless: you either know what you seek, or would not recognise it."
 whatBreaks: "The assumption that you either know what you are looking for or you do not. It matters whether that means knowing the question or knowing the answer."
-statusNote: "the second claim is wrong. The argument switches between two meanings of “knowing what you are looking for”, and no one meaning makes both steps true. A deeper question about how inquiry gets started remains open."
+statusNote: "the argument uses “knowing what you are looking for” in two senses, and no single sense makes both steps true: knowing the answer makes searching pointless, but you can know the question without the answer. How any inquiry gets started remains an open question."
 setup: "In Plato’s dialogue Meno, Meno challenges Socrates. If you know something, he says, you have no need to look into it. If you do not know it, you cannot look into it, because you would not know what you were looking for. So inquiry is either needless or impossible. The puzzle is sometimes called the learner’s paradox."
 whyWrong: "Both steps sound reasonable, and the either-or at the start sounds like plain logic. It is plain logic only if “you know what you are looking for” means one thing in both halves. It does not. Knowing what you are looking for can mean knowing the question you want answered, or knowing the answer to it."
 resolution:

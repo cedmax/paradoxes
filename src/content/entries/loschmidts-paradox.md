@@ -13,7 +13,7 @@ problem: "If the laws of motion work the same forwards and backwards, why does t
 claimA: "If the laws of motion work the same forwards and backwards, entropy should have no preferred direction."
 claimB: "Entropy almost always rises towards the future."
 whatBreaks: "The contested choice is between treating the second law as only very likely, and explaining the one-way direction through the special state the universe began in."
-statusNote: "experts agree this is a real puzzle and disagree on which claim to give up. Each of the main approaches settles a part of it, and none is accepted as covering the whole."
+statusNote: "the time-symmetric laws alone do not explain the direction, and each approach covers only part of it: reversing molecules costs entropy elsewhere, a very low-entropy beginning still needs its own explanation, and the large-scale derivations work for a limited set of solvable models."
 setup: "Reverse every molecule’s motion in a gas. If the laws work equally well backwards, the gas can retrace a lawful history in which entropy falls. Entropy measures how many microscopic arrangements fit the large-scale state. Yet ordinary processes overwhelmingly run towards higher entropy."
 whyWrong: "The laws permit the reversed history. They do not by themselves say why ordinary histories go the other way. Probability assumptions about molecules and assumptions about the beginning matter too."
 resolution:

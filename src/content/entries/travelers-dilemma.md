@@ -14,7 +14,7 @@ problem: "Two travellers each name a value for identical lost luggage, and whoev
 claimA: "Rational players who know each other to be rational both write 2, the lowest number allowed."
 claimB: "Rational players can write a large number, expecting the other to do the same."
 whatBreaks: "Whether shared rationality requires undercutting down to $2, or can support expecting a high claim."
-statusNote: "the unique equilibrium is agreed. There is no agreed answer about whether ideal rational players can reasonably reject it."
+statusNote: "both claiming the minimum is the only outcome where neither player gains by changing alone, but ideal players who follow that argument to the end earn very little, while expecting a high claim has no settled formal replacement for it."
 setup: "An airline loses two identical antiques. Their owners separately claim a value from $2 to $100. Equal claims are paid in full. For unequal claims, both receive the lower amount, but the lower claimant gets a $2 bonus and the higher claimant loses $2."
 whyWrong: "If the other person claims $100, claiming $99 pays $101. So each has a reason to undercut $100. Once $100 is ruled out, the same argument rules out $99, then $98, and so on down to $2. Both end up with $2 even though matching claims of $100 would pay each $100."
 resolution:

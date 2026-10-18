@@ -20,7 +20,7 @@ problem: "Stir a cup of tea. Why do the leaves gather in the middle of the botto
 claimA: "The spin pushes water outwards at every depth, so the leaves should reach the edge."
 claimB: "The leaves gather in the middle of the bottom."
 whatBreaks: "The assumption that the outward push from the spin wins at every depth. In the thin layer slowed by friction at the bottom, the inward push from the water’s pressure is stronger."
-statusNote: "the first claim is wrong. Near the bottom, friction slows the water, so the pressure pushing towards the middle outweighs the outward push of the spin there, and the water along the bottom flows inwards, carrying the leaves."
+statusNote: "near the bottom, friction slows the water, so the inward push from pressure beats the outward push of the spin there, and a slow circulation along the bottom sweeps the leaves into a pile in the middle."
 setup: "Stir a cup of tea with loose leaves in it and let it spin. The leaves do not end up at the rim, as they would in a spinning drum that flings things outwards. Instead they collect in a little pile in the middle of the bottom of the cup."
 whyWrong: "Spinning water does push outwards. That is why the surface of stirred tea dips in the middle and rises at the rim. The water piled up at the rim presses back, so the pressure in the water rises from the middle to the edge. In the body of the tea the two pushes balance, and each bit of water keeps going round in a circle. But at the bottom, friction with the cup slows the water in a thin boundary layer, a layer next to a surface where friction matters. Water going round more slowly is pushed outwards less, while the pressure from the rim is the same. So in that layer the inward push wins."
 resolution:

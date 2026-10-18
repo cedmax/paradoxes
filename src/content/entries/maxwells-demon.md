@@ -1,7 +1,15 @@
 ---
 title: "Maxwell's demon"
 format: argument
-searchTerms: ["Landauer", "Bennett", "Szilard engine", "second law", "information and entropy"]
+searchTerms:
+  [
+    "Landauer",
+    "Bennett",
+    "Szilard engine",
+    "second law",
+    "information and entropy",
+    "memory reset",
+  ]
 chapter: models
 order: 100
 status: explained

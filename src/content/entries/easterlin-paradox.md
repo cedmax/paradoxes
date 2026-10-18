@@ -31,7 +31,7 @@ positions:
     body: "Stevenson and Wolfers (2008) found a significant positive link between average happiness and income over time, once surveys are made consistent. Diener and Veenhoven with collaborators also reported positive time-series links. Cost: Easterlin replied in 2017 that these studies use short series, or only two points, and that the positive link is between fluctuations, not long-run trends."
   - title: "Happiness levels off"
     body: "Happiness rises with income up to a point and then flattens, which would explain flat trends in rich countries. Some cross-sectional data from China and other Asian samples show a curved link. Cost: time series for China and Japan, which started from low incomes, show no such threshold."
-finePrint: "The paradox is an empirical generalisation, not a theorem, so it stands or falls on the data. The dispute is about what the long-run data show, not about whether richer people in a given year report being happier."
+finePrint: "The paradox is an empirical generalisation, not a theorem, so it stands or falls on the data. The dispute is about what the long-run data show, not about whether richer people in a given year report being happier. Easterlin updated the evidence in 2022 with O’Connor."
 sources:
   - title: "Wikipedia: Easterlin paradox"
     url: "https://en.wikipedia.org/wiki/Easterlin_paradox"

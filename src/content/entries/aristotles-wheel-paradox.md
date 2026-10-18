@@ -1,6 +1,7 @@
 ---
 title: "Aristotle's wheel paradox"
 format: argument
+searchTerms: ["inner and outer circle"]
 chapter: shapes
 status: "explained"
 relatedTo: "galileos-paradox"

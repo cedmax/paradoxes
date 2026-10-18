@@ -115,13 +115,21 @@ enforces anchor integrity. Do not duplicate definitions here.
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".
-- `statusNote` should make sense without the claims, because a search hit can show it alone on
-  the index card after “How it ends”. Never write “the first claim” or “the second claim” in it.
+- `statusNote` says why this entry has its status. A search hit can show it alone on the index
+  card after “How it ends”, so it must make sense without the claims.
+  - Start lowercase, so it completes "Explained: …". Use one or two sentences and at most 40
+    words.
+  - **explained** and **defused**: say what settles it, such as which premise fails, what makes
+    the answer checkable or accepted, and any condition it depends on.
+  - **disputed**: name the main camps and what each gives up. **unreconciled**: say what the
+    leading fixes cost.
+  - Never restate the status definition, write “the first claim” or “the second claim”, repeat
+    the wording of `whatBreaks` (naming the same failed premise is fine) or add a claim the
+    entry's `sources` do not support.
 - When a body field (`setup`, `whyWrong`, `resolution`, `positions`, `finePrint`, `whatBreaks`,
   `statusNote`) mentions another entry, link it as `[shown text](entry-slug)`. The build fails on
   an unknown slug. A link to an entry that is not published yet shows as plain text until it is. Never put links in `title`, `problem`, `claimA` or `claimB`.
-- `problem` is a question. `statusNote` starts lowercase, completes "Explained: …" etc., and is
-  specific to the entry.
+- `problem` is a question.
 - Political and religious entries take no side, including through word choice or which view
   gets the last word.
 - Wrap every free-text YAML value in double quotes (plain strings containing `: ` break the
@@ -135,8 +143,8 @@ enforces anchor integrity. Do not duplicate definitions here.
   assumption both sides share ("endless time", "the same lives saved"). Without them the claims stop
   clashing.
 - Write the pair in parallel: same subject, opposite predicate, so the clash shows in few words.
-- **explained** and **defused**: `claimA` states the wrong premise in the words `whatBreaks` and
-  `statusNote` use, and `claimB` states the fact that breaks it. **disputed** and **unreconciled**:
+- **explained** and **defused**: `claimA` states the wrong premise that `whatBreaks` names, and
+  `claimB` states the fact that breaks it. **disputed** and **unreconciled**:
   each claim is one camp's commitment; common ground goes in `setup`.
 - Before keeping a pair, check that the claims clash under the same assumptions (for a scientific
   paradox, a prediction against an observation counts), and that the premise `whatBreaks` calls

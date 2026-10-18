@@ -20,7 +20,7 @@ problem: "Most people take a sure million over a gamble with a bigger prize, yet
 claimA: "If two gambles share a chance of the same outcome, changing that shared outcome should not reverse a rational preference."
 claimB: "Changing an outcome shared by both gambles can rationally reverse which one you prefer."
 whatBreaks: "Whether to keep the rule about shared outcomes or accept the usual switch in preference as rational."
-statusNote: "the switch violates a rule of expected utility theory. Experts disagree about whether that makes the choices wrong or the rule too strict."
+statusNote: "the usual switch breaks a rule of expected utility theory: keeping the rule calls reasonable-seeming choices irrational, dropping it needs a different theory of rational choice, and describing the outcomes more richly risks excusing any preference."
 setup: "Choose between a sure $1 million and a gamble that might pay $5 million but has a small chance of paying nothing. Many people take the sure million. Now change an 89 percent chance shared by both options: instead of paying $1 million, it pays nothing. Both options become long shots, and many people switch to the bigger prize. The table gives the exact chances."
 whyWrong: "The part of the gamble that differs between the options is unchanged. Only an outcome shared by both has changed. A standard rule of rational choice says that shared part should not determine which option is preferred. Yet losing certainty changes many people’s minds."
 resolution:

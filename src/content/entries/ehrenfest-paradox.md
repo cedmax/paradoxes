@@ -1,6 +1,7 @@
 ---
 title: "Ehrenfest paradox"
 format: argument
+searchTerms: ["disc circumference"]
 chapter: models
 status: "explained"
 relatedTo: "ladder-paradox"

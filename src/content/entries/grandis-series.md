@@ -13,7 +13,7 @@ problem: "Does 1 − 1 + 1 − 1 + … add up to 0, to 1, or to one half?"
 claimA: "The sum 1 − 1 + 1 − 1 + … has a definite value that regrouping cannot change."
 claimB: "Regrouping the same terms gives 0 one way and 1 another."
 whatBreaks: "The assumption that the series has an ordinary sum which survives regrouping, as a finite sum would."
-statusNote: "the running totals never settle, so the series has no ordinary sum. The bracketed answers do not establish one."
+statusNote: "the running totals never settle, so there is no ordinary sum, and the bracketed answers establish none. One half is the value that special summation methods such as Cesàro summation assign, which changes what “sum” means."
 setup: "Add 1, then subtract 1, then add 1, for ever. Pair the terms as (1 − 1) + (1 − 1) + … and the answer looks like 0. Leave the first 1 outside the pairs, as 1 + (−1 + 1) + …, and the answer looks like 1."
 whyWrong: "The running total keeps switching between 1 and 0. It never settles. The usual meaning of an endless sum requires those totals to approach one value. Here there is no such value to preserve when brackets are moved."
 resolution:

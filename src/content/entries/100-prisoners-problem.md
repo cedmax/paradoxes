@@ -1,6 +1,7 @@
 ---
 title: "100 prisoners problem"
 format: argument
+searchTerms: ["loop strategy"]
 chapter: probability
 status: "explained"
 simplification: light

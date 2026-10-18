@@ -1,7 +1,15 @@
 ---
 title: "Dollar auction"
 format: argument
-searchTerms: ["Shubik", "escalation", "sunk cost", "war of attrition", "dollar auction game"]
+searchTerms:
+  [
+    "Shubik",
+    "escalation",
+    "sunk cost",
+    "war of attrition",
+    "dollar auction game",
+    "bidding war",
+  ]
 chapter: collective
 order: 90
 status: explained

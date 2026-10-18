@@ -12,7 +12,7 @@ problem: "Can a horn hold a finite amount of paint and still have a surface you 
 claimA: "A finite amount of ideal paint can fill the horn and touch its whole inner wall."
 claimB: "Touching an infinite inner surface requires infinite paint, even if the paint can become arbitrarily thin."
 whatBreaks: "The assumption that covering an infinite surface requires infinite paint even when the amount against the wall may shrink without limit."
-statusNote: "for idealised, mathematical paint that can be thinned without limit, the second claim is wrong. A limited amount of it can cover the endless surface, because the layer does not have to stay the same thickness. Wikipedia calls the puzzle “only an apparent paradox caused by an incomplete definition of ‘paint’, or by using contradictory definitions of paint for the actions of filling and painting”."
+statusNote: "for idealised paint that can be thinned without limit, a finite amount can touch the whole endless wall, because the layer need not keep the same thickness. A coat of equal thickness would need infinite paint, and real paint could not fill the narrowing tube."
 setup: "Imagine a horn that narrows without end. Its inner volume is finite, but its surface area is infinite. A finite amount of paint seems enough to fill it. Yet painting an infinite surface seems to require an infinite amount. How can filling fail to paint the wall?"
 whyWrong: "The two jobs quietly use different rules for paint. Filling lets the amount against the wall become smaller and smaller down the horn. Painting is usually imagined as laying down a coat of some fixed thickness."
 resolution:

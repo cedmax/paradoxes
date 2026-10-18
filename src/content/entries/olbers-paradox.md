@@ -12,7 +12,7 @@ problem: "If the universe is full of stars, why is the night sky dark?"
 claimA: "The universe has always existed, unchanging and full of stars, so every line of sight ends on a star."
 claimB: "The night sky is dark."
 whatBreaks: "The first claim: the picture of an unchanging universe, full of stars, that has always been there."
-statusNote: "the first claim is wrong. The universe is not unchanging and eternal, and cosmologists agree on this, though sources weigh the reasons differently."
+statusNote: "the universe has a finite age and its stars shine for limited times, so most lines of sight do not end on a star; expansion also stretches light, but finite age and stellar lifetimes are central. Cosmologists agree the universe is not unchanging and eternal."
 setup: "Look into a forest and you see trees in every direction, because the forest is thick enough that every line of sight hits a trunk. Now picture the universe as an endless forest of stars, spread evenly, unchanging, and always there. Every line of sight from Earth would end on the surface of a star. Far stars look fainter, but there would be more of them, and the effects cancel. The sky should be as bright as the surface of a star. It is not."
 whyWrong: "The bright-sky prediction assumes an unchanging universe that has always contained shining stars. That is the hidden premise, rather than a consequence of having many distant stars alone."
 resolution:

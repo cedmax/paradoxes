@@ -12,7 +12,7 @@ problem: "Why do students report bigger classes than their college does?"
 claimA: "The college says 31, the students say 56, so someone must have it wrong."
 claimB: "The college has the full list of classes, and every student knows how big their own class is."
 whatBreaks: "The assumption that two different averages of class size mean someone has it wrong. The college averages classes; the students’ answers average students, so big classes count once for every student in them."
-statusNote: "the first claim is wrong. The college averages classes and the survey averages students, and experts agree."
+statusNote: "asking each student about their class counts a big class once per student, so with four classes of 10 and one of 100 the average class has 28 students but the average answer is about 74. Both figures are correct, since they answer different questions."
 setup: "A college reports that its average class has 31 students. A survey asking students how big their classes are gets an average of 56. Both figures are correct. The numbers come from a Purdue University example, written up by the statistician Allen Downey."
 whyWrong: "The college counts classes. The survey counts students, and asks each of them about the class they are in. A class of 100 students gets asked about 100 times. A class of 10 gets asked about 10 times. Large classes appear in the survey far more often than they appear in the college's list."
 resolution:

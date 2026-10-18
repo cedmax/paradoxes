@@ -1,6 +1,7 @@
 ---
 title: "Two capacitor paradox"
 format: argument
+searchTerms: ["energy lost as heat or radiation"]
 chapter: models
 status: "explained"
 simplification: light

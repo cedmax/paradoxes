@@ -1,6 +1,7 @@
 ---
 title: "Paradox of toil"
 format: argument
+searchTerms: ["Eggertsson"]
 chapter: collective
 status: "disputed"
 relatedTo: "paradox-of-thrift"

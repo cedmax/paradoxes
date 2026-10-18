@@ -1,6 +1,7 @@
 ---
 title: "Norton's dome"
 format: argument
+searchTerms: ["determinism"]
 chapter: models
 status: "disputed"
 simplification: light

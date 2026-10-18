@@ -19,7 +19,7 @@ problem: "Can every piece of a sphere’s surface be given an area, so that piec
 claimA: "Every piece of a sphere’s surface, however ragged, has an area that adds up and survives turning."
 claimB: "Most of a sphere’s surface splits into three pieces, each of which can be turned to match the other two put together."
 whatBreaks: "The assumption that every piece of a sphere’s surface has an area, adding up correctly over separate pieces, that turning it cannot change."
-statusNote: "no area rule can cover every set of points on the sphere while adding up correctly and surviving rotations. The pieces expose that limit."
+statusNote: "the pieces are scattered sets of points built with the axiom of choice, not patches that could be cut out, so no area rule can cover every such set, add areas correctly and survive rotations."
 setup: "Take a sphere’s surface and remove a set of points that can be listed one by one. The remaining surface can be split into three scattered pieces. Each can be turned to match either of the others exactly. Stranger still, one can be turned to match the other two put together."
 whyWrong: "If each piece had an area, all three would have equal areas. But one piece would also have the area of two pieces. Ordinary area cannot behave that way while the pieces together cover almost the whole sphere."
 resolution:
