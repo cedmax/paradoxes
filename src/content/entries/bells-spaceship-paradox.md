@@ -14,8 +14,7 @@ aka:
 chapter: time-causation
 order: 60
 status: explained
-uniqueness: related
-anchor: ladder-paradox
+relatedTo: ladder-paradox
 simplification: light
 noMaths: true
 sourcesVerified: true

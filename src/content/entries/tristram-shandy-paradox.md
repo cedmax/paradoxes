@@ -7,8 +7,7 @@ aka:
 chapter: infinity
 order: 120
 status: explained
-uniqueness: related
-anchor: galileos-paradox
+relatedTo: galileos-paradox
 simplification: light
 noMaths: false
 sourcesVerified: true

@@ -14,7 +14,7 @@ Do not change any existing argument entry to the new format.
 - Add `src/content/entries/<recognised-full-name>.md` using the best-known complete title
   and matching slug (e.g. `ebbinghaus-illusion`, not `ebbinghaus`).
 - Set `format: illusion`; use the existing entry shell, chapters, title accent, aliases,
-  uniqueness and source/approval fields. `problem` is a standalone question-first hook
+  `relatedTo` or `variantOf` (neither for a canonical entry) and source/approval fields. `problem` is a standalone question-first hook
   understandable on a text-only home card without seeing the figure.
 - Incomplete entries stay on the PR branch, not `main`. Keep `sourcesVerified: false` and
   leave `reviewed` unset (it defaults to `false`) until the owner explicitly authorises

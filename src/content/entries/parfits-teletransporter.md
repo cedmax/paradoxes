@@ -4,8 +4,7 @@ format: argument
 titleAccent: teletransporter
 chapter: identity
 status: disputed
-uniqueness: related
-anchor: ship-of-theseus
+relatedTo: ship-of-theseus
 simplification: light
 order: 80
 sourcesVerified: true

@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: shapes
 status: "explained"
-uniqueness: "related"
-anchor: "galileos-paradox"
+relatedTo: "galileos-paradox"
 simplification: light
 noMaths: true
 order: 70

@@ -14,8 +14,7 @@ aka:
 chapter: statistics
 order: 100
 status: explained
-uniqueness: related
-anchor: inspection-paradox
+relatedTo: inspection-paradox
 simplification: light
 noMaths: false
 sourcesVerified: true

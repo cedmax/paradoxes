@@ -5,8 +5,7 @@ titleAccent: "problem"
 aka: ["three prisoners", "warden", "prisoner pardon", "Martin Gardner"]
 chapter: probability
 status: explained
-uniqueness: variant
-anchor: monty-hall-problem
+variantOf: monty-hall-problem
 simplification: light
 noMaths: false
 order: 100

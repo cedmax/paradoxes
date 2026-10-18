@@ -13,8 +13,7 @@ aka:
 chapter: belief
 order: 85
 status: unreconciled
-uniqueness: related
-anchor: raven-paradox
+relatedTo: raven-paradox
 simplification: light
 noMaths: true
 sourcesVerified: true

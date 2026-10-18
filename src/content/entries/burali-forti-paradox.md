@@ -11,8 +11,7 @@ aka:
   ]
 chapter: self-reference
 status: defused
-uniqueness: related
-anchor: russells-paradox
+relatedTo: russells-paradox
 simplification: heavy
 noMaths: false
 order: 80

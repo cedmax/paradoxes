@@ -2,7 +2,6 @@ import { defineCollection } from "astro:content"
 import { glob } from "astro/loaders"
 import { z } from "astro/zod"
 import { chapterIds } from "./data/chapters"
-import { uniquenessIds } from "./data/uniqueness"
 import { normaliseSearch } from "./data/search"
 
 // All entries share the shell, but only arguments have opposing claims and a paradox status.
@@ -17,12 +16,12 @@ const common = z.object({
   // Displayed search aliases; shorter variants may still appear in aka.
   alternativeNames: z.array(z.string().trim().min(1)).default([]),
   chapter: z.enum(chapterIds),
-  // Canonical and related entries always appear on the index; variants are hidden by default.
-  // A related entry shares an idea but adds a distinctive twist.
-  uniqueness: z.enum(uniquenessIds).default("canonical"),
-  // Slug of a canonical or related entry, never a variant. Required for related and variant;
-  // forbidden for canonical entries.
-  anchor: z.string().optional(),
+  // An entry with neither relatedTo nor variantOf is canonical. Canonical and related entries
+  // always appear on the index; variants are hidden by default. Set at most one of the two.
+  // Slug of a canonical or related entry that shares an idea but adds a distinctive twist.
+  relatedTo: z.string().optional(),
+  // Slug of a canonical or related entry that this is the same puzzle as, in a new setting.
+  variantOf: z.string().optional(),
   simplification: z.enum(["none", "light", "heavy"]).default("light"),
   noMaths: z.boolean().default(true),
   // Question-first hook shared by cards, entry headers and OG images.
@@ -84,11 +83,11 @@ const entries = defineCollection({
         path: ["aka"],
       })
     }
-    if ((d.uniqueness === "canonical") !== (d.anchor === undefined)) {
+    if (d.relatedTo !== undefined && d.variantOf !== undefined) {
       ctx.addIssue({
         code: "custom",
-        message: "anchor is required for related and variant entries, not canonical ones",
-        path: ["anchor"],
+        message: "set either relatedTo or variantOf, not both",
+        path: ["variantOf"],
       })
     }
     if (d.reviewed && !d.sourcesVerified) {

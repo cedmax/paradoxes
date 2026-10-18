@@ -13,8 +13,7 @@ aka:
   ]
 chapter: infinity
 status: explained
-uniqueness: related
-anchor: coastline-paradox
+relatedTo: coastline-paradox
 simplification: light
 noMaths: false
 order: 200

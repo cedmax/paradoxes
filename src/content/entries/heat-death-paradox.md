@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: models
 status: "defused"
-uniqueness: "related"
-anchor: "olbers-paradox"
+relatedTo: "olbers-paradox"
 simplification: light
 noMaths: true
 order: 170

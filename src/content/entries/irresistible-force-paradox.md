@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: identity
 status: "defused"
-uniqueness: "related"
-anchor: "omnipotence-paradox"
+relatedTo: "omnipotence-paradox"
 simplification: light
 noMaths: true
 order: 120

@@ -49,7 +49,8 @@ been shown wrong; the chapter never implies a status.
   is not enough. Identify the conflicting prediction or principles before assigning it.
 - Place an entry by its own `whatBreaks`, not by its anchor's chapter.
 - Chapter sizes are not a reason to move an entry. A small coherent chapter is fine.
-- An entry's `anchor` may sit in another chapter; do not change uniqueness to match chapters.
+- The entry named by `relatedTo` or `variantOf` may sit in another chapter; do not change
+  uniqueness to match chapters.
 - `order` sorts entries within a chapter.
 
 ## Status
@@ -82,12 +83,13 @@ How to apply them:
 ## Uniqueness
 
 Read `src/data/uniqueness.ts` for the canonical definitions of `canonical`, `related`, and
-`variant`; its `anchorOf` helper enforces anchor integrity. Do not duplicate definitions here.
+`variant`; its `uniquenessOf` helper derives an entry's kind from its fields and `anchorOf`
+enforces anchor integrity. Do not duplicate definitions here.
 
-- `related` and `variant` entries must set `anchor` to the slug of a canonical or related entry,
-  never a variant. `canonical` entries must not set `anchor`. Anchors must not form a loop. The
-  schema and `anchorOf` enforce all three. Publish an anchor before the entries anchored on it,
-  or the build fails.
+- A `related` entry sets `relatedTo` and a `variant` entry sets `variantOf`, each to the slug of
+  a canonical or related entry, never a variant. A `canonical` entry sets neither. Setting both
+  is a validation error, and `anchorOf` fails the build on an unknown anchor, a variant anchor or
+  a loop of anchors. Publish an anchor before the entries anchored on it, or the build fails.
 - Judge by mechanism, not by topic. Two entries are variants only if the same step in the
   reasoning fails in both. Pick the closest anchor: a related entry if it shares the mechanism
   more closely than its own canonical anchor. An entry's page lists the variants and related

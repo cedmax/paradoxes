@@ -12,8 +12,7 @@ aka:
   ]
 chapter: infinity
 status: explained
-uniqueness: variant
-anchor: banach-tarski-paradox
+variantOf: banach-tarski-paradox
 simplification: heavy
 noMaths: false
 order: 190

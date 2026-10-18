@@ -13,8 +13,7 @@ aka:
 chapter: collective
 order: 80
 status: disputed
-uniqueness: related
-anchor: unexpected-hanging-paradox
+relatedTo: unexpected-hanging-paradox
 simplification: light
 noMaths: false
 sourcesVerified: true

@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: self-reference
 status: "disputed"
-uniqueness: "related"
-anchor: "liar-paradox"
+relatedTo: "liar-paradox"
 simplification: light
 noMaths: true
 order: 150

@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: probability
 status: explained
-uniqueness: related
-anchor: st-petersburg-paradox
+relatedTo: st-petersburg-paradox
 simplification: light
 noMaths: true
 order: 30

@@ -4,8 +4,7 @@ format: argument
 titleAccent: fallacy
 chapter: statistics
 status: explained
-uniqueness: variant
-anchor: base-rate-fallacy
+variantOf: base-rate-fallacy
 simplification: light
 noMaths: true
 order: 30

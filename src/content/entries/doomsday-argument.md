@@ -15,8 +15,7 @@ aka:
 chapter: belief
 order: 20
 status: disputed
-uniqueness: related
-anchor: sleeping-beauty-problem
+relatedTo: sleeping-beauty-problem
 simplification: light
 noMaths: false
 sourcesVerified: true

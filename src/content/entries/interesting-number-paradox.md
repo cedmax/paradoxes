@@ -14,8 +14,7 @@ aka:
 chapter: identity
 order: 20
 status: defused
-uniqueness: related
-anchor: berry-paradox
+relatedTo: berry-paradox
 simplification: light
 noMaths: true
 sourcesVerified: true

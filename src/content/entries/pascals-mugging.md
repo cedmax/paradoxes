@@ -13,8 +13,7 @@ aka:
 chapter: individual
 order: 110
 status: unreconciled
-uniqueness: related
-anchor: pascals-wager
+relatedTo: pascals-wager
 simplification: light
 noMaths: false
 sourcesVerified: true

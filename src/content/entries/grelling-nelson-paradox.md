@@ -4,8 +4,7 @@ format: argument
 titleAccent: paradox
 chapter: self-reference
 status: unreconciled
-uniqueness: variant
-anchor: russells-paradox
+variantOf: russells-paradox
 simplification: light
 order: 40
 sourcesVerified: true

@@ -4,8 +4,7 @@ format: argument
 titleAccent: "argument"
 chapter: time-causation
 status: "disputed"
-uniqueness: "related"
-anchor: "ladder-paradox"
+relatedTo: "ladder-paradox"
 simplification: light
 noMaths: true
 order: 80

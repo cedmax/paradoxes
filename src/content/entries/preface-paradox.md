@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: belief
 status: disputed
-uniqueness: related
-anchor: lottery-paradox
+relatedTo: lottery-paradox
 simplification: light
 order: 50
 problem: "Can an author rightly believe every claim in a book and also that the book contains a mistake?"

@@ -6,8 +6,7 @@ titleAccent: "paradox"
 aka: ["Grand Hotel", "infinite hotel"]
 chapter: infinity
 status: explained
-uniqueness: related
-anchor: galileos-paradox
+relatedTo: galileos-paradox
 simplification: light
 order: 20
 sourcesVerified: true

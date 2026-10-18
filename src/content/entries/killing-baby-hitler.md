@@ -11,8 +11,7 @@ aka:
   ]
 chapter: time-causation
 status: disputed
-uniqueness: variant
-anchor: grandfather-paradox
+variantOf: grandfather-paradox
 simplification: light
 noMaths: true
 order: 50

@@ -4,8 +4,7 @@ format: argument
 titleAccent: dice
 chapter: probability
 status: explained
-uniqueness: related
-anchor: condorcet-paradox
+relatedTo: condorcet-paradox
 simplification: light
 noMaths: true
 order: 60

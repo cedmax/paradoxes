@@ -13,8 +13,7 @@ aka:
 chapter: infinity
 order: 100
 status: explained
-uniqueness: related
-anchor: thomsons-lamp
+relatedTo: thomsons-lamp
 simplification: light
 noMaths: false
 sourcesVerified: true

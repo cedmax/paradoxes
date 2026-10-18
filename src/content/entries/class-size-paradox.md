@@ -4,8 +4,7 @@ format: argument
 titleAccent: paradox
 chapter: statistics
 status: explained
-uniqueness: variant
-anchor: inspection-paradox
+variantOf: inspection-paradox
 simplification: light
 noMaths: true
 order: 60

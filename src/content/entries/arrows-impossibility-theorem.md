@@ -14,8 +14,7 @@ aka:
 chapter: collective
 order: 70
 status: unreconciled
-uniqueness: related
-anchor: condorcet-paradox
+relatedTo: condorcet-paradox
 simplification: "heavy"
 noMaths: true
 sourcesVerified: true

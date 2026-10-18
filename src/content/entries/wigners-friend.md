@@ -14,8 +14,7 @@ aka:
 chapter: models
 order: 110
 status: unreconciled
-uniqueness: related
-anchor: schrodingers-cat
+relatedTo: schrodingers-cat
 simplification: heavy
 noMaths: true
 sourcesVerified: true

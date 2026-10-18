@@ -6,8 +6,7 @@ aka: ["stage migration", "Okies joke", "moving a member between groups"]
 chapter: statistics
 order: 110
 status: explained
-uniqueness: related
-anchor: simpsons-paradox
+relatedTo: simpsons-paradox
 simplification: light
 noMaths: false
 sourcesVerified: true

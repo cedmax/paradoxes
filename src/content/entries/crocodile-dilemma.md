@@ -5,8 +5,7 @@ titleAccent: dilemma
 aka: ["crocodile paradox"]
 chapter: self-reference
 status: defused
-uniqueness: variant
-anchor: protagoras-and-euathlus
+variantOf: protagoras-and-euathlus
 simplification: light
 order: 50
 sourcesVerified: true

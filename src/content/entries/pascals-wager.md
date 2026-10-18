@@ -4,8 +4,7 @@ format: argument
 titleAccent: wager
 chapter: individual
 status: disputed
-uniqueness: related
-anchor: st-petersburg-paradox
+relatedTo: st-petersburg-paradox
 simplification: light
 order: 50
 sourcesVerified: true

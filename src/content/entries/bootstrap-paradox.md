@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: time-causation
 status: disputed
-uniqueness: related
-anchor: grandfather-paradox
+relatedTo: grandfather-paradox
 simplification: light
 noMaths: true
 order: 20

@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: belief
 status: "explained"
-uniqueness: "related"
-anchor: "paradoxes-of-material-implication"
+relatedTo: "paradoxes-of-material-implication"
 simplification: light
 noMaths: true
 order: 110

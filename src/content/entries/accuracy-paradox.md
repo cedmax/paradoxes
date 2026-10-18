@@ -6,8 +6,7 @@ aka:
   ["class imbalance", "99 percent accurate", "accuracy is misleading", "precision and recall"]
 chapter: statistics
 status: explained
-uniqueness: related
-anchor: base-rate-fallacy
+relatedTo: base-rate-fallacy
 simplification: light
 noMaths: false
 order: 120

@@ -11,8 +11,7 @@ aka:
   ]
 chapter: time-causation
 status: "explained"
-uniqueness: "related"
-anchor: "grandfather-paradox"
+relatedTo: "grandfather-paradox"
 simplification: light
 noMaths: true
 order: 70

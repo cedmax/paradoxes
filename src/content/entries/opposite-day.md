@@ -4,8 +4,7 @@ format: argument
 titleAccent: "Day"
 chapter: self-reference
 status: "explained"
-uniqueness: "related"
-anchor: "liar-paradox"
+relatedTo: "liar-paradox"
 simplification: light
 noMaths: true
 order: 160

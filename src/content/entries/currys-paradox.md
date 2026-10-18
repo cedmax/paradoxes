@@ -6,8 +6,7 @@ aka: ["Curry", "Löb's paradox", "if this sentence is true", "Haskell Curry", "p
 chapter: self-reference
 order: 90
 status: unreconciled
-uniqueness: related
-anchor: liar-paradox
+relatedTo: liar-paradox
 simplification: "heavy"
 noMaths: true
 sourcesVerified: true

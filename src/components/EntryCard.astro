@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content"
 import { statuses } from "~/data/status"
-import { uniqueness } from "~/data/uniqueness"
+import { uniqueness, uniquenessOf } from "~/data/uniqueness"
 import { normaliseSearch } from "~/data/search"
 
 interface Props {
@@ -15,7 +15,8 @@ const d = entry.data
 // `format` is required: an illusion has its own layout and everything else is an argument.
 const isIllusion = d.format === "illusion"
 const s = isIllusion ? undefined : statuses[d.status]
-const u = uniqueness[d.uniqueness]
+const kind = uniquenessOf(d)
+const u = uniqueness[kind]
 // Searching an anchor's title also finds its variants and related entries.
 const searchText = (...parts: (string | undefined)[]) =>
   normaliseSearch(parts.filter(Boolean).join(" "))
@@ -44,11 +45,11 @@ const haystack = searchText(shown, ...hits.map((h) => h.text))
   data-card
   data-status={isIllusion ? undefined : d.status}
   data-format={isIllusion ? "illusion" : "argument"}
-  data-variant={String(d.uniqueness === "variant")}
+  data-variant={String(kind === "variant")}
   data-reviewed={String(d.reviewed)}
   data-text={haystack}
   data-shown={shown}
-  hidden={d.uniqueness === "variant"}
+  hidden={kind === "variant"}
 >
   <div class="flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
     <div class="flex-1">

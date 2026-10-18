@@ -13,8 +13,7 @@ aka:
 chapter: self-reference
 order: 100
 status: unreconciled
-uniqueness: related
-anchor: liar-paradox
+relatedTo: liar-paradox
 simplification: light
 noMaths: true
 sourcesVerified: true

@@ -5,8 +5,7 @@ titleAccent: "3 − 4 + …"
 aka: ["alternating whole numbers", "equals one quarter", "Euler 1/4", "Abel sum", "1-2+3-4"]
 chapter: infinity
 status: explained
-uniqueness: variant
-anchor: sum-of-all-whole-numbers
+variantOf: sum-of-all-whole-numbers
 simplification: heavy
 noMaths: false
 order: 180

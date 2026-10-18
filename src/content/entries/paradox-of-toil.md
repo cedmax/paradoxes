@@ -4,8 +4,7 @@ format: argument
 titleAccent: "toil"
 chapter: collective
 status: "disputed"
-uniqueness: "related"
-anchor: "paradox-of-thrift"
+relatedTo: "paradox-of-thrift"
 simplification: light
 noMaths: true
 order: 190

@@ -5,8 +5,7 @@ titleAccent: "paradox"
 aka: ["supertask"]
 chapter: infinity
 status: explained
-uniqueness: related
-anchor: achilles-and-the-tortoise
+relatedTo: achilles-and-the-tortoise
 simplification: light
 order: 60
 sourcesVerified: true

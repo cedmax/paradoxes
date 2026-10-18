@@ -5,8 +5,7 @@ titleAccent: "paradox"
 aka: ["Zeno", "racecourse", "race course"]
 chapter: infinity
 status: explained
-uniqueness: variant
-anchor: achilles-and-the-tortoise
+variantOf: achilles-and-the-tortoise
 simplification: light
 order: 30
 sourcesVerified: true

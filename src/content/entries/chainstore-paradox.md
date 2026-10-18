@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: collective
 status: "disputed"
-uniqueness: "related"
-anchor: "unexpected-hanging-paradox"
+relatedTo: "unexpected-hanging-paradox"
 simplification: light
 noMaths: true
 order: 150

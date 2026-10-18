@@ -13,8 +13,7 @@ aka:
 chapter: individual
 order: 20
 status: explained
-uniqueness: related
-anchor: sleeping-beauty-problem
+relatedTo: sleeping-beauty-problem
 simplification: "heavy"
 noMaths: false
 sourcesVerified: true

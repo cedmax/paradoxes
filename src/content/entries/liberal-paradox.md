@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: collective
 status: "disputed"
-uniqueness: "related"
-anchor: "condorcet-paradox"
+relatedTo: "condorcet-paradox"
 simplification: light
 noMaths: true
 order: 170

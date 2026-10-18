@@ -12,8 +12,7 @@ aka:
   ]
 chapter: self-reference
 status: defused
-uniqueness: related
-anchor: berry-paradox
+relatedTo: berry-paradox
 simplification: "heavy"
 noMaths: false
 order: 120

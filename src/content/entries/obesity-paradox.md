@@ -13,8 +13,7 @@ aka:
 chapter: statistics
 order: 90
 status: disputed
-uniqueness: related
-anchor: berksons-paradox
+relatedTo: berksons-paradox
 simplification: light
 noMaths: true
 sourcesVerified: true

@@ -11,8 +11,7 @@ aka:
   ]
 chapter: self-reference
 status: unreconciled
-uniqueness: variant
-anchor: liar-paradox
+variantOf: liar-paradox
 simplification: light
 noMaths: true
 order: 110

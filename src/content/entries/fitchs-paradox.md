@@ -13,8 +13,7 @@ aka:
 chapter: belief
 order: 80
 status: disputed
-uniqueness: related
-anchor: moores-paradox
+relatedTo: moores-paradox
 simplification: light
 noMaths: true
 sourcesVerified: true

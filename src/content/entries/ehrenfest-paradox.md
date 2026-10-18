@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: models
 status: "explained"
-uniqueness: "related"
-anchor: "ladder-paradox"
+relatedTo: "ladder-paradox"
 simplification: light
 noMaths: true
 order: 160

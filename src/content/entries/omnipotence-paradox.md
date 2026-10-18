@@ -4,8 +4,7 @@ format: argument
 titleAccent: paradox
 chapter: identity
 status: defused
-uniqueness: related
-anchor: russells-paradox
+relatedTo: russells-paradox
 simplification: light
 order: 10
 sourcesVerified: true

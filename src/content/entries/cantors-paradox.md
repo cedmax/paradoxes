@@ -12,8 +12,7 @@ aka:
   ]
 chapter: infinity
 status: defused
-uniqueness: related
-anchor: russells-paradox
+relatedTo: russells-paradox
 simplification: heavy
 noMaths: false
 order: 130

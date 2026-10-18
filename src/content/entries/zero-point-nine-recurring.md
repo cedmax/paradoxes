@@ -13,8 +13,7 @@ aka:
 chapter: infinity
 order: 80
 status: explained
-uniqueness: related
-anchor: achilles-and-the-tortoise
+relatedTo: achilles-and-the-tortoise
 simplification: light
 noMaths: false
 sourcesVerified: true

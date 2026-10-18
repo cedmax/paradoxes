@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: statistics
 status: "explained"
-uniqueness: "related"
-anchor: "berksons-paradox"
+relatedTo: "berksons-paradox"
 simplification: light
 noMaths: true
 order: 180

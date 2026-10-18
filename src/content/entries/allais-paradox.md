@@ -13,8 +13,7 @@ aka:
 chapter: individual
 order: 70
 status: disputed
-uniqueness: related
-anchor: ellsberg-paradox
+relatedTo: ellsberg-paradox
 simplification: "heavy"
 noMaths: false
 sourcesVerified: true

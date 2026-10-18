@@ -13,8 +13,7 @@ aka:
   ]
 chapter: statistics
 status: explained
-uniqueness: related
-anchor: simpsons-paradox
+relatedTo: simpsons-paradox
 simplification: light
 noMaths: false
 order: 130

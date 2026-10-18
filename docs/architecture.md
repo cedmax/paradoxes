@@ -13,8 +13,10 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/data/chapters.ts` — chapter ids, titles and blurbs. An entry's `chapter` must be one of
   these ids.
 - `src/data/status.ts` — status and simplification labels and definitions (shown on the site).
-- `src/data/uniqueness.ts` — uniqueness labels and definitions, and `anchorOf`, which resolves
-  an entry's anchor and fails the build if it is unknown, a variant, or part of a loop.
+- `src/data/uniqueness.ts` — uniqueness labels and definitions. `uniquenessOf` derives an
+  entry's kind from `relatedTo` and `variantOf` (neither means canonical), `anchorSlug` returns
+  the slug it points to, and `anchorOf` resolves that anchor and fails the build if it is
+  unknown, a variant, or part of a loop.
 - `src/pages/index.astro` — index with search and status filter (client script). Search matches
   `title`, `aka`, `alternativeNames`, `problem`, `claimA`, `claimB`, `verdict`, plus the
   anchor's title for related and variant entries. Search matches the query as a contiguous

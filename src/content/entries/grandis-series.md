@@ -5,8 +5,7 @@ titleAccent: series
 aka: ["1-1+1-1", "1 − 1 + 1 − 1", "Grandi", "Cesàro sum", "Abel sum", "one half"]
 chapter: infinity
 status: explained
-uniqueness: related
-anchor: sum-of-all-whole-numbers
+relatedTo: sum-of-all-whole-numbers
 simplification: heavy
 noMaths: false
 order: 150

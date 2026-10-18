@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: belief
 status: "disputed"
-uniqueness: "variant"
-anchor: "problem-of-evil"
+variantOf: "problem-of-evil"
 simplification: light
 noMaths: true
 order: 140

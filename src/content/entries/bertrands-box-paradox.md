@@ -4,8 +4,7 @@ format: argument
 titleAccent: "paradox"
 chapter: probability
 status: explained
-uniqueness: variant
-anchor: monty-hall-problem
+variantOf: monty-hall-problem
 simplification: none
 noMaths: true
 order: 50

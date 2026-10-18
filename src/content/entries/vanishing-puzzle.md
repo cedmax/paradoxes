@@ -12,8 +12,7 @@ aka:
   ]
 chapter: shapes
 status: explained
-uniqueness: related
-anchor: missing-square-puzzle
+relatedTo: missing-square-puzzle
 simplification: light
 noMaths: true
 order: 40

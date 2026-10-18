@@ -5,8 +5,7 @@ format: illusion
 chapter: shapes
 description: "Can two parallel lines seem to bend towards each other?"
 problem: "Can two parallel lines seem to bend towards each other?"
-uniqueness: related
-anchor: hering-illusion
+relatedTo: hering-illusion
 simplification: light
 noMaths: true
 order: 310

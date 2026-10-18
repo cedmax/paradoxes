@@ -15,8 +15,7 @@ aka:
 chapter: individual
 order: 115
 status: disputed
-uniqueness: related
-anchor: prisoners-dilemma
+relatedTo: prisoners-dilemma
 simplification: light
 noMaths: false
 sourcesVerified: true

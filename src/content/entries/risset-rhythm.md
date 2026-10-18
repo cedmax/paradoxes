@@ -6,8 +6,7 @@ chapter: shapes
 aka:
   - "infinite acceleration rhythm"
   - "endless accelerando"
-uniqueness: related
-anchor: tritone-paradox
+relatedTo: tritone-paradox
 simplification: light
 noMaths: true
 order: 360

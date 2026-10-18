@@ -13,8 +13,7 @@ aka:
 chapter: probability
 order: 90
 status: explained
-uniqueness: related
-anchor: nontransitive-dice
+relatedTo: nontransitive-dice
 simplification: light
 noMaths: false
 sourcesVerified: true

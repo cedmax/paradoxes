@@ -12,8 +12,7 @@ aka:
   ]
 chapter: identity
 status: defused
-uniqueness: related
-anchor: sorites-paradox
+relatedTo: sorites-paradox
 simplification: light
 noMaths: true
 order: 50

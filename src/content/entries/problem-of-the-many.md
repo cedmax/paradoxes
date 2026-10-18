@@ -6,8 +6,7 @@ aka: ["many cats", "cloud problem", "Unger", "Tibbles"]
 chapter: identity
 order: 60
 status: disputed
-uniqueness: related
-anchor: sorites-paradox
+relatedTo: sorites-paradox
 simplification: light
 noMaths: true
 sourcesVerified: true

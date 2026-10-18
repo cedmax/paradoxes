@@ -12,8 +12,7 @@ aka:
   ]
 chapter: infinity
 status: disputed
-uniqueness: related
-anchor: thomsons-lamp
+relatedTo: thomsons-lamp
 simplification: light
 noMaths: false
 order: 170

@@ -6,8 +6,7 @@ aka: ["Traveller's dilemma", "Basu", "lost luggage game", "lost suitcase game", 
 chapter: collective
 order: 120
 status: disputed
-uniqueness: related
-anchor: unexpected-hanging-paradox
+relatedTo: unexpected-hanging-paradox
 simplification: light
 noMaths: false
 sourcesVerified: true
