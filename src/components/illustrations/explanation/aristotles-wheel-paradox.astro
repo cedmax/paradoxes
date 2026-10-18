@@ -11,8 +11,8 @@ import { series, stroke } from "~/data/palette"
 >
   <p class="text-base">
     The solid line is the ground touched by the outer wheel. The dashed line is an
-    <strong>imaginary track</strong> for the smaller wheel. Here the small wheel
-    has half the radius of the large one.
+    <strong>imaginary track</strong> for the smaller wheel. Here the small wheel has half the
+    radius of the large one.
   </p>
   <SvgFigure
     name="aristotles-wheel-motion"
@@ -33,13 +33,7 @@ import { series, stroke } from "~/data/palette"
 
     <!-- One wheel, not two snapshots. Its centre advances by 2 pi R per turn. -->
     <g id="aristotles-wheel-moving" transform="translate(70 105)">
-      <circle
-        r="52"
-        fill={series.gold}
-        fill-opacity=".2"
-        stroke={stroke}
-        stroke-width="2.5"
-      />
+      <circle r="52" fill={series.gold} fill-opacity=".2" stroke={stroke} stroke-width="2.5" />
       <circle
         r="26"
         fill={series.blue}
@@ -78,7 +72,13 @@ import { series, stroke } from "~/data/palette"
     />
 
     <!-- Both bars use the same scale: the small rim is half as long. -->
-    <path d="M70 219 H397 M70 247 H397" fill="none" stroke={stroke} stroke-opacity=".25" stroke-width="9" />
+    <path
+      d="M70 219 H397 M70 247 H397"
+      fill="none"
+      stroke={stroke}
+      stroke-opacity=".25"
+      stroke-width="9"
+    />
     <rect
       id="aristotles-wheel-forward-bar"
       x="70"
@@ -98,8 +98,14 @@ import { series, stroke } from "~/data/palette"
   </SvgFigure>
 
   <div class="flex flex-col gap-1 text-base">
-    <p><strong class="text-series-red">Red line and bar:</strong> distance travelled along the ground.</p>
-    <p><strong class="text-series-blue">Blue bar:</strong> length of the inner rim that turns past a point.</p>
+    <p>
+      <strong class="text-series-red">Red line and bar:</strong> distance travelled along the
+      ground.
+    </p>
+    <p>
+      <strong class="text-series-blue">Blue bar:</strong> length of the inner rim that turns
+      past a point.
+    </p>
   </div>
 
   <Slider
@@ -111,15 +117,18 @@ import { series, stroke } from "~/data/palette"
     endLabel="One full turn"
   >
     <p id="aristotles-wheel-readout" class="text-base" aria-live="off">
-      <strong><span id="aristotles-wheel-progress">0%</span> of a turn</strong>
+      <strong>
+        <span id="aristotles-wheel-progress">0%</span> of a turn
+      </strong>
       · The red distance grows twice as fast as the blue distance.
     </p>
   </Slider>
 
   <Fragment slot="caption">
     The smaller wheel turns exactly once with the larger wheel, yet the pair moves forward
-    <strong>twice the smaller wheel's circumference in this example</strong>. The small rim must therefore
-    slide relative to its imaginary track. Only the large wheel rolls without slipping.
+    <strong>twice the smaller wheel's circumference in this example</strong>. The small rim must
+    therefore slide relative to its imaginary track. Only the large wheel rolls without
+    slipping.
   </Fragment>
 </IllustrationFigure>
 
