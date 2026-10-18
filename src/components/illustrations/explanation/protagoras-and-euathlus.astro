@@ -1,0 +1,42 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+---
+
+<IllustrationFigure
+  name="protagoras-euathlus"
+  lead="The judgment and the contract seem to give opposite answers, whichever way the court rules."
+>
+  <ComparisonTable
+    caption="What each possible ruling seems to imply"
+    columns={["If the court…", "The judgment says", "The contract says"]}
+    rows={[
+      [
+        "Rules for Protagoras",
+        "Euathlus must pay now",
+        "No fee due under the contract: Euathlus has not won a case",
+      ],
+      [
+        "Rules for Euathlus",
+        "Euathlus need not pay in this suit",
+        "His first win means the fee is due",
+      ],
+    ]}
+  />
+  <Panel title="Keep the two lawsuits separate" accent="blue">
+    <p class="text-base">
+      <strong>First lawsuit:</strong> Euathlus has not yet won a case when Protagoras sues. The
+      fee is not due, so Euathlus wins.
+    </p>
+    <p class="mt-2 text-base">
+      <strong>Possible second lawsuit:</strong> After that first victory, the contract's
+      condition has been met. Protagoras can sue for the fee.
+    </p>
+  </Panel>
+  <Fragment slot="caption">
+    A later result cannot retroactively make the unpaid fee due at the start of the first case.
+    The ordinary answer distinguishes the contract's condition becoming true <em>after</em> a
+    ruling from what was owed <em>before</em> it.
+  </Fragment>
+</IllustrationFigure>
