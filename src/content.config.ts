@@ -60,8 +60,8 @@ const argument = common.extend({
   whatBreaks: z.string(),
   statusNote: z.string(),
   // Long-form argument body, written in plain paragraphs.
-  setup: z.string(),
-  whyWrong: z.string(),
+  setup: z.string().trim().min(1),
+  whyWrong: z.string().trim().min(1),
   resolution: z.array(z.string()).default([]),
   // Optional extra block after the resolution (e.g. Sorites positions).
   positions: z.array(z.object({ title: z.string(), body: z.string() })).default([]),

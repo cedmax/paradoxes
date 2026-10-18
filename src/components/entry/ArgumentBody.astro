@@ -14,10 +14,8 @@ interface Props {
 const { slug, data: d } = Astro.props
 ---
 
-{d.setup && (
-  <EntrySection heading="The setup" paragraphs={[d.setup]}>
-    <PuzzleIllustration slug={slug} placement="setup" />
-  </EntrySection>
-)}
-{d.whyWrong && <EntrySection heading="Why it feels wrong" paragraphs={[d.whyWrong]} />}
+<EntrySection heading="The setup" paragraphs={[d.setup]}>
+  <PuzzleIllustration slug={slug} placement="setup" />
+</EntrySection>
+<EntrySection heading="Why it feels wrong" paragraphs={[d.whyWrong]} />
 {(d.resolution.length > 0 || d.positions.length > 0) && <Resolution slug={slug} data={d} />}
