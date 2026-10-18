@@ -1,18 +1,17 @@
 ---
-import AccentTitle from "~/components/AccentTitle.astro"
-import Breadcrumb from "~/components/Breadcrumb.astro"
 import type { CollectionEntry } from "astro:content"
 import Base from "~/layouts/Base.astro"
-import FinePrint from "~/components/FinePrint.astro"
-import Linked from "~/components/Linked.astro"
-import PuzzleIllustration from "~/components/PuzzleIllustration.astro"
 import IllusionExperience from "~/components/IllusionExperience.astro"
+import ArgumentBody from "~/components/entry/ArgumentBody.astro"
+import ClaimsBand from "~/components/entry/ClaimsBand.astro"
+import EntryHeader from "~/components/entry/EntryHeader.astro"
+import EntrySidebar from "~/components/entry/EntrySidebar.astro"
+import Sources from "~/components/entry/Sources.astro"
+import WhatBreaks from "~/components/entry/WhatBreaks.astro"
 import { chapterById } from "~/data/chapters"
-import { byTitle, getPublishedEntries, isListed } from "~/data/entries"
-import { statuses, simplifications } from "~/data/status"
-import { anchorOf, uniqueness } from "~/data/uniqueness"
-import { breadcrumbData } from "~/data/seo"
-import { ogAlt, ogPath } from "~/og/meta"
+import { getPublishedEntries, relatedEntries } from "~/data/entries"
+import { entrySeo } from "~/data/seo"
+import { anchorOf } from "~/data/uniqueness"
 
 export async function getStaticPaths() {
   const entries = await getPublishedEntries()
@@ -25,284 +24,35 @@ interface Props {
 
 const { entry } = Astro.props
 const d = entry.data
-const chapter = chapterById(d.chapter)
+const all = await getPublishedEntries()
+const { echoes, siblings } = relatedEntries(entry, all)
+const seo = entrySeo(entry, chapterById(d.chapter), Astro.site)
 // Absent format is the existing argument type, not an illusion.
 const isIllusion = d.format === "illusion"
-const s = isIllusion ? undefined : statuses[d.status]
-const simp = simplifications[d.simplification]
-
-const all = await getPublishedEntries()
-const u = uniqueness[d.uniqueness]
-const anchor = anchorOf(entry, all)
-// Related and variant entries that point here, shown on this entry's page.
-const echoes = all.filter((e) => e.data.anchor === entry.id).sort(byTitle)
-
-// Variants are not listed as neighbours. They are reached through their anchor. Entries already
-// shown in the box above are not repeated.
-const siblings = all
-  .filter(
-    (e) =>
-      e.data.chapter === d.chapter &&
-      e.id !== entry.id &&
-      isListed(e) &&
-      !echoes.some((x) => x.id === e.id),
-  )
-  .sort((a, b) => a.data.order - b.data.order)
-
-const h2 = "display text-5xl"
-const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-sm font-bold"
-const description = d.description ?? d.problem
-const og = { title: d.title, titleAccent: d.titleAccent, problem: d.problem }
-const url = new URL(`/entries/${entry.id}/`, Astro.site).href
-const structuredData = [
-  breadcrumbData(
-    [
-      { name: "Index", path: "/" },
-      { name: chapter.title, path: `/chapters/${chapter.id}/` },
-      { name: d.title, path: `/entries/${entry.id}/` },
-    ],
-    Astro.site,
-  ),
-  ...(d.written
-    ? [
-        {
-          "@type": "Article",
-          "@id": `${url}#article`,
-          url,
-          headline: d.title,
-          description,
-          inLanguage: "en-GB",
-          mainEntityOfPage: url,
-          isPartOf: { "@id": new URL("/#website", Astro.site).href },
-          ...(d.alternativeNames.length > 0 ? { alternateName: d.alternativeNames } : {}),
-          citation: d.sources.filter((source) => source.url).map((source) => source.url),
-        },
-      ]
-    : []),
-]
 ---
 
 <Base
-  title={`${d.title}: ${d.written ? "explanation" : "the puzzle"} | Logic Benders`}
-  description={description}
-  structuredData={structuredData}
-  image={ogPath(entry.id, og)}
-  imageAlt={ogAlt(og)}
+  title={seo.title}
+  description={seo.description}
+  structuredData={seo.structuredData}
+  image={seo.image}
+  imageAlt={seo.imageAlt}
 >
-  <section class="px-gutter flex flex-col gap-6 pt-4 pb-12">
-    <Breadcrumb
-      items={[
-        { href: "/", label: "Index" },
-        { href: `/chapters/${chapter.id}/`, label: `${chapter.n} ${chapter.title}` },
-      ]}
-    />
-    <AccentTitle title={d.title} accent={d.titleAccent} />
-    {d.alternativeNames.length > 0 && (
-      <p class="max-w-190 text-lg">
-        <span class="font-bold">Also known as:</span> {d.alternativeNames.join(", ")}
-      </p>
-    )}
-    <div class="flex max-w-190 text-balance flex-col gap-2">
-      <div class="mono-label opacity-65">{!isIllusion ? "The problem" : "The question"}</div>
-      <p class="font-display text-[clamp(26px,3.2vw,40px)] leading-tight font-extrabold tracking-tight">
-        {d.problem}
-      </p>
-    </div>
-    <div class="flex flex-wrap items-center gap-2.5">
-      {s && <div class:list={[badge, s.bg]}>{s.label}</div>}
-      {anchor && <div class={badge}>{u.label}</div>}
-      {d.noMaths && <div class={badge}>No maths needed</div>}
-      <div class={badge}>{simp.label}</div>
-      {d.reviewed && <div class={badge}>Human reviewed</div>}
-    </div>
-    {anchor && (
-      <a
-        class="flex w-full max-w-190 flex-col gap-1.5 border-2 border-ink p-5 text-ink no-underline transition-colors duration-100 hover:bg-ink hover:text-paper focus-visible:-outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"
-        href={`/entries/${anchor.id}/`}
-      >
-        <span class="mono-label opacity-65">{u.relation}</span>
-        <span class="display text-[clamp(28px,3vw,40px)] leading-none tracking-tight">
-          {anchor.data.title} →
-        </span>
-        <span class="text-lg leading-snug">{u.definition}</span>
-      </a>
-    )}
-  </section>
-
-  {!isIllusion && (
-    <section
-      class="flex flex-col items-stretch min-[920px]:flex-row border-y-2 border-ink"
-      aria-label="The two claims"
-    >
-      <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
-        <div class="mono-label opacity-65">Seems true</div>
-        <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
-          {d.claimA}
-        </div>
-      </div>
-      <div
-        class="font-display flex-none self-center px-2 py-4 text-center text-4xl leading-none font-extrabold tracking-tight text-accent uppercase sm:text-6xl"
-        aria-hidden="true"
-      >
-        but
-      </div>
-      <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
-        <div class="mono-label opacity-65">Also seems true</div>
-        <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
-          {d.claimB}
-        </div>
-      </div>
-    </section>
-  )}
+  <EntryHeader entry={entry} anchor={anchorOf(entry, all)} />
+  {!isIllusion && <ClaimsBand claimA={d.claimA} claimB={d.claimB} />}
 
   <div class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
     <article class="flex w-full max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4">
-      {isIllusion && <IllusionExperience slug={entry.id} why={d.why} finePrint={d.finePrint} />}
-      {!isIllusion && !d.written && (
-        <div class="border-2 border-dashed border-ink px-6 py-5 text-lg">
-          <strong>Full write-up in progress.</strong> The problem, the two claims and the
-          verdict are final. The explanation and sources are not written yet.
-        </div>
+      {isIllusion ? (
+        <IllusionExperience slug={entry.id} why={d.why} finePrint={d.finePrint} />
+      ) : (
+        <ArgumentBody slug={entry.id} data={d} />
       )}
-
-      {!isIllusion && d.setup && (
-        <section>
-          <h2 class={h2}>The setup</h2>
-          <p>
-            <Linked text={d.setup} />
-          </p>
-          <PuzzleIllustration slug={entry.id} placement="setup" />
-        </section>
-      )}
-
-      {!isIllusion && d.whyWrong && (
-        <section>
-          <h2 class={h2}>Why it feels wrong</h2>
-          <p>
-            <Linked text={d.whyWrong} />
-          </p>
-        </section>
-      )}
-
-      {!isIllusion && (d.resolution.length > 0 || d.positions.length > 0) && (
-        <section>
-          <h2 class={h2}>
-            {d.status === "explained"
-              ? "The explanation"
-              : d.status === "defused"
-                ? "How it's defused"
-                : `Why it's ${statuses[d.status].label.toLowerCase()}`}
-          </h2>
-          {d.resolution.map((p) => (
-            <p>
-              <Linked text={p} />
-            </p>
-          ))}
-          <PuzzleIllustration slug={entry.id} placement="explanation" />
-          {d.positions.length > 0 && (
-            <div class="grid mt-6 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3.5 -mb-6">
-              {d.positions.map((p) => (
-                <div class="flex flex-col gap-2 border-2 border-ink px-5.5 py-4.5">
-                  <div class="display text-2xl leading-none tracking-tight">{p.title}</div>
-                  {p.body.split(/\s(?=Cost: )/).map((part) => (
-                    <p class="text-lg leading-normal">
-                      <Linked text={part} />
-                    </p>
-                  ))}
-                </div>
-              ))}
-            </div>
-          )}
-          {d.finePrint && <FinePrint text={d.finePrint} />}
-        </section>
-      )}
-
-      {d.written && !!d.sources.length && (
-        <section class="gap-2! border-t-2 border-ink pt-6 text-base">
-          <div class="mono-label">Sources</div>
-
-          <ul class="m-0 pl-5">
-            {d.sources.map((src) => (
-              <li>
-                {src.url ? (
-                  <a class="underline font-bold" target="_blank" href={src.url}>
-                    {src.title}
-                  </a>
-                ) : (
-                  src.title
-                )}
-                {src.note && (
-                  <>
-                    {" "}
-                    <span class="text-sm">{src.note}</span>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {d.written && !!d.sources.length && <Sources sources={d.sources} />}
     </article>
 
-    <aside class="flex grow basis-65 flex-col gap-6 lg:max-w-85" aria-label="About this entry">
-      <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] items-start gap-6">
-        {!isIllusion && (
-          <div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
-            <div class="mono-label text-accent">What breaks</div>
-            <div>
-              <Linked text={d.whatBreaks} />
-            </div>
-            <div class="mono-label text-accent">Status</div>
-            <div>
-              {s?.label}: <Linked text={d.statusNote} />
-            </div>
-          </div>
-        )}
-        {echoes.length > 0 && (
-          <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
-            <div class="mono-label mb-1.5 text-accent">Variants and related</div>
-            {echoes.map((e) => (
-              <a
-                class="flex min-h-11 items-center justify-between gap-x-3 font-bold no-underline hover:text-accent"
-                href={`/entries/${e.id}/`}
-              >
-                <span>{e.data.title}&nbsp;→</span>
-                <span class="mono-label shrink-0 font-medium opacity-65">
-                  {uniqueness[e.data.uniqueness].label}
-                </span>
-              </a>
-            ))}
-          </div>
-        )}
-        {siblings.length > 0 && (
-          <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
-            <div class="mono-label mb-1.5 text-accent">Same chapter</div>
-            {siblings.map((e) => (
-              <a
-                class="inline-flex min-h-11 items-center font-bold no-underline hover:text-accent"
-                href={`/entries/${e.id}/`}
-              >
-                {e.data.title} →
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
-      <div class="flex flex-col gap-2">
-        <a
-          class="inline-flex min-h-12 items-center font-bold underline hover:text-accent"
-          href={`/corrections/?entry=${encodeURIComponent(url)}`}
-          rel="nofollow"
-        >
-          Report a correction
-        </a>
-        <a
-          class="inline-flex min-h-12 items-center font-bold no-underline hover:text-accent"
-          href="/"
-        >
-          ← Back to the index
-        </a>
-      </div>
-    </aside>
+    <EntrySidebar echoes={echoes} siblings={siblings} url={seo.url}>
+      {!isIllusion && <WhatBreaks data={d} />}
+    </EntrySidebar>
   </div>
 </Base>

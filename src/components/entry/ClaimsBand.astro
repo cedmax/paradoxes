@@ -1,0 +1,36 @@
+---
+interface Props {
+  claimA: string
+  claimB: string
+}
+
+const { claimA, claimB } = Astro.props
+const claims = [
+  { label: "Seems true", text: claimA },
+  { label: "Also seems true", text: claimB },
+]
+---
+
+<section
+  class="flex flex-col items-stretch min-[920px]:flex-row border-y-2 border-ink"
+  aria-label="The two claims"
+>
+  {claims.map((claim, index) => (
+    <>
+      {index > 0 && (
+        <div
+          class="font-display flex-none self-center px-2 py-4 text-center text-4xl leading-none font-extrabold tracking-tight text-accent uppercase sm:text-6xl"
+          aria-hidden="true"
+        >
+          but
+        </div>
+      )}
+      <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">
+        <div class="mono-label opacity-65">{claim.label}</div>
+        <div class="display text-[clamp(28px,3.4vw,48px)] leading-none tracking-tight">
+          {claim.text}
+        </div>
+      </div>
+    </>
+  ))}
+</section>

@@ -41,3 +41,11 @@ export const simplifications: Record<Simplification, { label: string; definition
     definition: "Significant technical content is left out. Read the sources.",
   },
 }
+
+// The heading over the resolution of an argument, which depends on how it ends.
+export const resolutionHeading = (status: Status) =>
+  status === "explained"
+    ? "The explanation"
+    : status === "defused"
+      ? "How it's defused"
+      : `Why it's ${statuses[status].label.toLowerCase()}`

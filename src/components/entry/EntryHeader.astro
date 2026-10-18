@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from "astro:content"
+import AccentTitle from "~/components/AccentTitle.astro"
+import Breadcrumb from "~/components/Breadcrumb.astro"
+import { chapterById } from "~/data/chapters"
+import { simplifications, statuses } from "~/data/status"
+import { uniqueness } from "~/data/uniqueness"
+
+interface Props {
+  entry: CollectionEntry<"entries">
+  // The entry this one is related to or a variant of. Not set for canonical entries.
+  anchor?: CollectionEntry<"entries">
+}
+
+const { entry, anchor } = Astro.props
+const d = entry.data
+const chapter = chapterById(d.chapter)
+// Absent format is the existing argument type, not an illusion.
+const isIllusion = d.format === "illusion"
+const s = isIllusion ? undefined : statuses[d.status]
+const u = uniqueness[d.uniqueness]
+const simp = simplifications[d.simplification]
+const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-sm font-bold"
+---
+
+<section class="px-gutter flex flex-col gap-6 pt-4 pb-12">
+  <Breadcrumb
+    items={[
+      { href: "/", label: "Index" },
+      { href: `/chapters/${chapter.id}/`, label: `${chapter.n} ${chapter.title}` },
+    ]}
+  />
+  <AccentTitle title={d.title} accent={d.titleAccent} />
+  {d.alternativeNames.length > 0 && (
+    <p class="max-w-190 text-lg">
+      <span class="font-bold">Also known as:</span> {d.alternativeNames.join(", ")}
+    </p>
+  )}
+  <div class="flex max-w-190 text-balance flex-col gap-2">
+    <div class="mono-label opacity-65">{!isIllusion ? "The problem" : "The question"}</div>
+    <p class="font-display text-[clamp(26px,3.2vw,40px)] leading-tight font-extrabold tracking-tight">
+      {d.problem}
+    </p>
+  </div>
+  <div class="flex flex-wrap items-center gap-2.5">
+    {s && <div class:list={[badge, s.bg]}>{s.label}</div>}
+    {anchor && <div class={badge}>{u.label}</div>}
+    {d.noMaths && <div class={badge}>No maths needed</div>}
+    <div class={badge}>{simp.label}</div>
+    {d.reviewed && <div class={badge}>Human reviewed</div>}
+  </div>
+  {anchor && (
+    <a
+      class="flex w-full max-w-190 flex-col gap-1.5 border-2 border-ink p-5 text-ink no-underline transition-colors duration-100 hover:bg-ink hover:text-paper focus-visible:-outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"
+      href={`/entries/${anchor.id}/`}
+    >
+      <span class="mono-label opacity-65">{u.relation}</span>
+      <span class="display text-[clamp(28px,3vw,40px)] leading-none tracking-tight">
+        {anchor.data.title} →
+      </span>
+      <span class="text-lg leading-snug">{u.definition}</span>
+    </a>
+  )}
+</section>

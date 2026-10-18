@@ -1,0 +1,66 @@
+---
+import type { CollectionEntry } from "astro:content"
+import { uniqueness } from "~/data/uniqueness"
+
+interface Props {
+  // Related and variant entries that point at this one.
+  echoes: CollectionEntry<"entries">[]
+  // Other listed entries in the same chapter.
+  siblings: CollectionEntry<"entries">[]
+  // The absolute URL of this entry, for the correction form.
+  url: string
+}
+
+// The slot holds any card that comes before the lists (see WhatBreaks).
+const { echoes, siblings, url } = Astro.props
+---
+
+<aside class="flex grow basis-65 flex-col gap-6 lg:max-w-85" aria-label="About this entry">
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] items-start gap-6">
+    <slot />
+    {echoes.length > 0 && (
+      <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
+        <div class="mono-label mb-1.5 text-accent">Variants and related</div>
+        {echoes.map((e) => (
+          <a
+            class="flex min-h-11 items-center justify-between gap-x-3 font-bold no-underline hover:text-accent"
+            href={`/entries/${e.id}/`}
+          >
+            <span>{e.data.title}&nbsp;→</span>
+            <span class="mono-label shrink-0 font-medium opacity-65">
+              {uniqueness[e.data.uniqueness].label}
+            </span>
+          </a>
+        ))}
+      </div>
+    )}
+    {siblings.length > 0 && (
+      <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
+        <div class="mono-label mb-1.5 text-accent">Same chapter</div>
+        {siblings.map((e) => (
+          <a
+            class="inline-flex min-h-11 items-center font-bold no-underline hover:text-accent"
+            href={`/entries/${e.id}/`}
+          >
+            {e.data.title} →
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+  <div class="flex flex-col gap-2">
+    <a
+      class="inline-flex min-h-12 items-center font-bold underline hover:text-accent"
+      href={`/corrections/?entry=${encodeURIComponent(url)}`}
+      rel="nofollow"
+    >
+      Report a correction
+    </a>
+    <a
+      class="inline-flex min-h-12 items-center font-bold no-underline hover:text-accent"
+      href="/"
+    >
+      ← Back to the index
+    </a>
+  </div>
+</aside>

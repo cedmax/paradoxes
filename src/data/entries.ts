@@ -4,6 +4,9 @@ import { statusKeys } from "~/data/status"
 
 type Entry = CollectionEntry<"entries">
 
+// The frontmatter of an entry in the argument format (two claims and a status).
+export type ArgumentData = Extract<Entry["data"], { format: "argument" }>
+
 // Production never includes entries lacking human-approved source verification.
 // Explicit noindex PR previews can show new illusions for review without changing either flag.
 export function getPublishedEntries() {
@@ -48,4 +51,21 @@ export function countEntries(entries: Entry[]) {
     variants: entries.length - listed.length,
     reviewed: entries.filter((e) => e.data.reviewed).length,
   }
+}
+
+// Related and variant entries that point at this one, and its neighbours in the chapter.
+export function relatedEntries(entry: Entry, all: Entry[]) {
+  const echoes = all.filter((e) => e.data.anchor === entry.id).sort(byTitle)
+  // Variants are not listed as neighbours. They are reached through their anchor. Entries already
+  // shown in the box above are not repeated.
+  const siblings = all
+    .filter(
+      (e) =>
+        e.data.chapter === entry.data.chapter &&
+        e.id !== entry.id &&
+        isListed(e) &&
+        !echoes.some((x) => x.id === e.id),
+    )
+    .sort((a, b) => a.data.order - b.data.order)
+  return { echoes, siblings }
 }
