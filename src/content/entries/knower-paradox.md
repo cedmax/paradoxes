@@ -12,7 +12,7 @@ problem: "What happens to the sentence “This sentence is not known” if someo
 claimA: "Anything established by a valid proof can be known."
 claimB: "The sentence “This sentence is not known” can be proved but cannot consistently be known."
 whatBreaks: "Which unrestricted rule must change: that knowing makes something true, that proof gives knowledge, or that self-reference is allowed without limits."
-statusNote: "the unrestricted rules about self-referential knowledge cannot all survive. Limiting what a sentence can say about its own knowledge needs strict limits on everyday-sounding statements, and limiting the step from proof to knowledge weakens an attractive link between the two."
+statusNote: "the camps restrict what a sentence can say about its own knowledge, or restrict the step from proof to knowledge."
 setup: "David Kaplan and Richard Montague developed a paradox about knowledge in 1960. Consider the sentence “This sentence is not known”. If someone knows it, then what it says is true, so it is not known. That rules out knowing it. Yet this argument itself seems to prove the sentence."
 whyWrong: "If every proof gives knowledge, the proved sentence would be known after all. That conflicts with what it says. Kaplan and Montague showed why familiar assumptions about knowledge can turn against themselves."
 resolution:

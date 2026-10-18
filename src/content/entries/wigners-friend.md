@@ -21,7 +21,7 @@ problem: "When a friend in a sealed lab sees one quantum measurement result, how
 claimA: "Ordinary quantum rules completely describe the whole sealed lab, including the friend, as a superposition rather than one settled result."
 claimB: "The friend’s measurement has produced one settled result, so the whole lab is no longer in that superposition."
 whatBreaks: "How to combine quantum rules for the whole lab with the claim that the friend’s measurement has already ended its superposition."
-statusNote: "letting consciousness end the superposition gives minds a role outside quantum law, changing or supplementing the theory (collapse, Bohmian mechanics) faces problems such as relativity, letting every outcome happen makes probability and evidence hard to explain, and perspective-dependent facts make shared facts and testing harder."
+statusNote: "the interpretations are consciousness ending the superposition, changed or extra rules such as collapse or Bohmian mechanics, every outcome happening, and facts depending on perspective."
 setup: "A friend measures a particle inside a sealed lab and sees one result, either 0 or 1. An observer outside applies quantum theory to the whole lab. The theory gives a superposition: “the particle is 0 and the friend saw 0” together with “the particle is 1 and the friend saw 1”. A superposition is a quantum combination, not simply ignorance about a result already chosen."
 whyWrong: "The friend reports one definite result. The outside quantum description keeps both possibilities together. Does the friend’s measurement end that superposition, and if so, how? The [Schrödinger’s cat](schrodingers-cat) puzzle now includes someone inside who can reason and report a result."
 resolution:

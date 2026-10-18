@@ -11,7 +11,7 @@ problem: "A coin game has an infinite average prize. Why would nobody pay much t
 claimA: "Since the average prize is endless, you should be willing to pay any price to play."
 claimB: "No sensible person would pay more than a modest sum to play."
 whatBreaks: "The rule that a bet is worth its average payout. Each fix either changes the rule, changes the game, or drops it, and each pays a cost."
-statusNote: "counting what money is worth to you can be beaten by a game with bigger prizes, a limited bank leaves the idealised game untouched, ignoring tiny chances needs a principled threshold, and replacing the average means giving up expected value as the rule for decisions."
+statusNote: "the fixes are the diminishing value of money, a limited bank, ignoring tiny chances, and a rule other than the average."
 setup: "A casino tosses a fair coin until the first head. A head on toss one pays 2 pounds; on toss two, 4; on toss three, 8. The prize keeps doubling. How much is it worth paying to play?"
 whyWrong: "A one-half chance of 2 pounds contributes 1 pound to the average. A one-quarter chance of 4 contributes another 1. Every possible stopping round adds 1, so the average is infinite. Yet seven games in eight pay 8 pounds or less. Paying everything to play once seems unreasonable. Ian Hacking wrote in 1980 that “few of us would pay even $25 to enter such a game”. The 2004 Stanford Encyclopedia survey quotes this as an example of the modest prices commentators accept."
 resolution:

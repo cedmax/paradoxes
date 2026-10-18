@@ -21,7 +21,7 @@ problem: "Three judges each reason consistently, yet the majority on the reasons
 claimA: "The court should decide each reason by majority and let the verdict follow from those decisions."
 claimB: "The court should decide the verdict itself by majority, whatever the majorities on the reasons."
 whatBreaks: "The contested choice: follow the majority on each reason and give up the majority on the verdict, or follow the majority on the verdict and give up the majorities on the reasons."
-statusNote: "no rule meets every demand, and each gives something up: voting on the reasons overrides the majority that rejects the verdict, while voting on the verdict leaves the group without agreed reasons for it."
+statusNote: "voting on each reason and voting on the verdict give opposite results, and no rule meets every demand."
 setup: "The court’s rule is simple: a defendant is liable if the contract was both valid and broken, and not liable otherwise. Three judges agree on the rule, but disagree on the facts."
 whyWrong: "Two judges say the contract was valid. Two say it was broken. Voting on each reason therefore makes the defendant liable. But two judges say the defendant is not liable. Voting on the final verdict gives the opposite answer."
 resolution:

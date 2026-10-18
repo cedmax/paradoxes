@@ -20,7 +20,7 @@ problem: "If every truth could in principle be known, must every truth actually 
 claimA: "Every truth could be known by someone at some time."
 claimB: "Some truths are never known by anyone, at any time."
 whatBreaks: "Whether to give up unrestricted knowability or the ordinary logic that turns it into universal knowledge."
-statusNote: "the proof shows that unrestricted knowability would make every truth known, so something must go: rejecting it costs theories that tie truth to possible knowledge, restricting it is disputed as unprincipled, and changing the logic must still express ordinary ignorance."
+statusNote: "unrestricted knowability would make every truth known, so the camps reject it, restrict it to basic truths, or change the logic."
 setup: "“Every truth could be known” sounds much weaker than “every truth is actually known by someone at some time”. It seems to leave room for truths that nobody ever knows. Fitch’s puzzle shows that, under familiar rules of logic, the first claim unexpectedly leads to the second."
 whyWrong: "Suppose a true fact is never known by anyone. Then this whole statement is true: “That fact is true and nobody ever knows it.” If every truth could be known, someone could know that whole statement. They would then know the fact and also know that nobody ever knows it. What they know must be true, so the fact would be both known at some time and never known."
 resolution:

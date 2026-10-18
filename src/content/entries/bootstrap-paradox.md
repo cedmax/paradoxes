@@ -12,7 +12,7 @@ problem: "If a time traveller hands you a watch that you later carry back to giv
 claimA: "Everything that exists has to come from somewhere."
 claimB: "A time loop could contain an object or a piece of information that has no origin."
 whatBreaks: "The idea that everything must have a cause or a beginning."
-statusNote: "allowing a loop means accepting an event with no explanation, while rejecting loops needs a reason to rule out time travel that does not just assume the answer. No time machine is known to be possible."
+statusNote: "a loop with no origin is either accepted as an unexplained fact or taken as a reason to rule out time travel to the past."
 setup: "An old woman gives a young playwright a watch. Years later he travels back in time and gives the same watch to the same woman when she was young. She keeps it for life and hands it to him as an old woman. Nobody ever made the watch. It simply goes round the loop. The same can be told with information, such as a theory that a time traveller learns from a book and then passes on to its author."
 whyWrong: "The story does not undo itself like the [grandfather paradox](grandfather-paradox). Each handover has a cause, but the whole chain has no beginning. The question is whether that missing origin rules out the loop."
 resolution:

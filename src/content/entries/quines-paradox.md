@@ -19,7 +19,7 @@ problem: "Is a sentence that calls itself false, without ever saying “this sen
 claimA: "Every sentence is true or false, including one that never uses a word like “this”."
 claimB: "A sentence is true if what it says is right, and false if it isn’t."
 whatBreaks: "The contested combination is unrestricted truth and the assumption that every sentence is true or false. Indirect self-reference reaches the same trap as the liar."
-statusNote: "taking out “this” does not help, because the sentence reaches itself through quotation, so the liar’s responses and costs return: leaving it neither true nor false brings back the old objection, accepting both needs special logic, and levels clash with ordinary language."
+statusNote: "dropping “this” does not help, since the sentence reaches itself through quotation, so the liar’s fixes return: neither true nor false, both, or levels."
 setup: "Start with the phrase “yields falsehood when preceded by its quotation”. Put it after a quoted copy of itself: “yields falsehood when preceded by its quotation” yields falsehood when preceded by its quotation. The whole sentence says that putting this phrase after its own quotation makes a false sentence. That is exactly how the whole sentence was made."
 whyWrong: "The sentence therefore says it is false. If it is true, it is false. If it is false, it says something correct and is true. Removing the words “this sentence” has left the [liar paradox](liar-paradox) intact."
 resolution:

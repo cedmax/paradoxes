@@ -121,8 +121,8 @@ enforces anchor integrity. Do not duplicate definitions here.
     words.
   - **explained** and **defused**: say what settles it, such as which premise fails, what makes
     the answer checkable or accepted, and any condition it depends on.
-  - **disputed**: name the main camps and what each gives up. **unreconciled**: say what the
-    leading fixes cost.
+  - **disputed**: name the main camps in a few words each. **unreconciled**: name the leading
+    fixes the same way. Do not restate their costs; `positions` shows them.
   - Never restate the status definition, write “the first claim” or “the second claim”, repeat
     the wording of `whatBreaks` (naming the same failed premise is fine) or add a claim the
     entry's `sources` do not support.

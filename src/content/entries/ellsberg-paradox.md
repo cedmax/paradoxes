@@ -11,7 +11,7 @@ problem: Why do people prefer a bet with known odds over one with unknown odds, 
 claimA: A rational person acts as though each outcome has some definite probability.
 claimB: "A rational person can prefer bets whose odds are known, even when no single set of probabilities fits those choices."
 whatBreaks: "Either the demand that a rational person’s choices fit a single set of probabilities, or the view that preferring known odds in this way can be rational, has to go. Experts split on which."
-statusNote: "calling the usual choices inconsistent rejects choices many careful people find reasonable, treating a probability as a range needs contested rules for acting on it, and reading the choices as a taste for known odds risks explaining away any choice."
+statusNote: "the usual choices are called inconsistent, treated as rational with a range of probabilities, or read as a taste for known odds."
 setup: "An urn holds 90 balls: 30 red and 60 black or yellow in an unknown mix. A bet pays 100 pounds if its colour is drawn. First choose red or black. Then choose red-or-yellow or black-or-yellow. Many people choose red in the first pair and black-or-yellow in the second. The table shows what each bet pays."
 whyWrong: "The first choice fits red being more likely than black. The second fits black being more likely than red, because both bets also pay on yellow. No single set of colour probabilities supports both strict preferences under the usual rules."
 resolution:

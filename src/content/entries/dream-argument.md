@@ -11,7 +11,7 @@ problem: "Can what is happening right now prove that it is not a dream?"
 claimA: "Knowing that someone is awake requires ruling out the possibility that they are dreaming."
 claimB: "Knowing that someone is awake does not require ruling out the possibility that they are dreaming."
 whatBreaks: "Whether knowing that one is awake requires excluding every possible dream that feels the same."
-statusNote: "sceptics say a dream cannot be ruled out, which would threaten many ordinary claims to knowledge. Fallibilists allow knowing one is awake without ruling out every dream, but must explain why the leftover possibility of error does not defeat knowledge."
+statusNote: "sceptics say no experience rules out a dream, while fallibilists say one can know one is awake without ruling out every dream."
 setup: "Descartes noted that people sometimes dream they are sitting awake, looking at things and making ordinary judgements. Dreams can feel convincing at the time."
 whyWrong: "An experience offered as proof of being awake might itself occur inside a dream. But demanding proof against every possible dream may ask more of ordinary knowledge than it needs."
 resolution:
