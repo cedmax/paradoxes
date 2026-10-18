@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content"
 import { statuses } from "~/data/status"
-import { isListed } from "~/data/entries"
 import { uniqueness } from "~/data/uniqueness"
 import { normaliseSearch } from "~/data/search"
 
@@ -45,11 +44,11 @@ const haystack = searchText(shown, ...hits.map((h) => h.text))
   data-card
   data-status={isIllusion ? undefined : d.status}
   data-format={isIllusion ? "illusion" : "argument"}
-  data-variant={String(!isListed(entry))}
+  data-variant={String(d.uniqueness === "variant")}
   data-reviewed={String(d.reviewed)}
   data-text={haystack}
   data-shown={shown}
-  hidden={!isListed(entry)}
+  hidden={d.uniqueness === "variant"}
 >
   <div class="flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
     <div class="flex-1">
