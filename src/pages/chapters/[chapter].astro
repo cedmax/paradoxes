@@ -1,13 +1,12 @@
 ---
-import PageTitle from "~/components/PageTitle.astro"
+import AccentTitle from "~/components/AccentTitle.astro"
+import Breadcrumb from "~/components/Breadcrumb.astro"
 import type { Chapter } from "~/data/chapters"
 import Base from "~/layouts/Base.astro"
-import EntryCard from "~/components/EntryCard.astro"
+import EntryGrid from "~/components/EntryGrid.astro"
 import { chapters } from "~/data/chapters"
 import { byOrder, getPublishedEntries, isListed } from "~/data/entries"
-import { anchorOf } from "~/data/uniqueness"
 import { breadcrumbData } from "~/data/seo"
-import { splitTitle } from "~/data/title"
 
 export async function getStaticPaths() {
   const entries = await getPublishedEntries()
@@ -24,7 +23,6 @@ const { chapter } = Astro.props
 if (!chapter.title.endsWith(chapter.titleAccent)) {
   throw new Error(`Invalid title accent for chapter: ${chapter.id}`)
 }
-const { plain, accent, separator } = splitTitle(chapter.title, chapter.titleAccent)
 const all = await getPublishedEntries()
 const entries = all
   .filter((entry) => entry.data.chapter === chapter.id && isListed(entry))
@@ -69,37 +67,17 @@ const structuredData = [
 >
   <main class="px-gutter flex flex-col pb-20">
     <section class="flex flex-col gap-6 pt-4 pb-12">
-      <nav class="mono-label flex flex-wrap gap-x-2.5 gap-y-1" aria-label="Breadcrumb">
-        <a class="inline-flex min-h-11 items-center no-underline hover:text-accent" href="/">
-          Index
-        </a>
-        <span class="self-center" aria-hidden="true">
-          /
-        </span>
-        <span class="inline-flex min-h-11 items-center" aria-current="page">
-          {chapter.n} {chapter.title}
-        </span>
-      </nav>
-      <PageTitle size="entry">
-        {plain}
-        {accent && (
-          <>
-            {separator}
-            <span class="text-accent">{accent}</span>
-          </>
-        )}
-      </PageTitle>
+      <Breadcrumb
+        items={[{ href: "/", label: "Index" }, { label: `${chapter.n} ${chapter.title}` }]}
+      />
+      <AccentTitle title={chapter.title} accent={chapter.titleAccent} />
       <p class="max-w-190 text-xl leading-snug sm:text-2xl">{chapter.introduction}</p>
     </section>
     <section class="flex flex-col gap-5" aria-labelledby="chapter-entries">
       <h2 class="display text-3xl" id="chapter-entries">
         Explore the puzzles
       </h2>
-      <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,340px),1fr))] gap-5">
-        {entries.map((entry) => (
-          <EntryCard entry={entry} anchor={anchorOf(entry, all)} />
-        ))}
-      </div>
+      <EntryGrid entries={entries} all={all} />
     </section>
     <nav
       class="mt-10 flex flex-col gap-5 border-t-2 border-ink pt-6"

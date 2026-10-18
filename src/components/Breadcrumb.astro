@@ -1,0 +1,32 @@
+---
+interface Props {
+  // The last item is the current page when it has no href.
+  items: { href?: string; label: string }[]
+}
+
+const { items } = Astro.props
+---
+
+<nav class="mono-label flex flex-wrap gap-x-2.5 gap-y-1" aria-label="Breadcrumb">
+  {items.map((item, index) => (
+    <>
+      {index > 0 && (
+        <span class="self-center" aria-hidden="true">
+          /
+        </span>
+      )}
+      {item.href ? (
+        <a
+          class="inline-flex min-h-11 items-center no-underline hover:text-accent"
+          href={item.href}
+        >
+          {item.label}
+        </a>
+      ) : (
+        <span class="inline-flex min-h-11 items-center" aria-current="page">
+          {item.label}
+        </span>
+      )}
+    </>
+  ))}
+</nav>

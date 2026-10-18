@@ -1,5 +1,6 @@
 ---
-import PageTitle from "~/components/PageTitle.astro"
+import AccentTitle from "~/components/AccentTitle.astro"
+import Breadcrumb from "~/components/Breadcrumb.astro"
 import type { CollectionEntry } from "astro:content"
 import Base from "~/layouts/Base.astro"
 import FinePrint from "~/components/FinePrint.astro"
@@ -12,7 +13,6 @@ import { statuses, simplifications } from "~/data/status"
 import { anchorOf, uniqueness } from "~/data/uniqueness"
 import { breadcrumbData } from "~/data/seo"
 import { ogAlt, ogPath } from "~/og/meta"
-import { splitTitle } from "~/data/title"
 
 export async function getStaticPaths() {
   const entries = await getPublishedEntries()
@@ -48,8 +48,6 @@ const siblings = all
       !echoes.some((x) => x.id === e.id),
   )
   .sort((a, b) => a.data.order - b.data.order)
-
-const { plain, accent, separator } = splitTitle(d.title, d.titleAccent)
 
 const h2 = "display text-5xl"
 const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-sm font-bold"
@@ -92,29 +90,13 @@ const structuredData = [
   imageAlt={ogAlt(og)}
 >
   <section class="px-gutter flex flex-col gap-6 pt-4 pb-12">
-    <nav class="mono-label flex flex-wrap gap-x-2.5 gap-y-1" aria-label="Breadcrumb">
-      <a class="inline-flex min-h-11 items-center no-underline hover:text-accent" href="/">
-        Index
-      </a>
-      <span class="self-center" aria-hidden="true">
-        /
-      </span>
-      <a
-        class="inline-flex min-h-11 items-center no-underline hover:text-accent"
-        href={`/chapters/${chapter.id}/`}
-      >
-        {chapter.n} {chapter.title}
-      </a>
-    </nav>
-    <PageTitle size="entry">
-      {plain}
-      {accent && (
-        <>
-          {separator}
-          <span class="text-accent">{accent}</span>
-        </>
-      )}
-    </PageTitle>
+    <Breadcrumb
+      items={[
+        { href: "/", label: "Index" },
+        { href: `/chapters/${chapter.id}/`, label: `${chapter.n} ${chapter.title}` },
+      ]}
+    />
+    <AccentTitle title={d.title} accent={d.titleAccent} />
     {d.alternativeNames.length > 0 && (
       <p class="max-w-190 text-lg">
         <span class="font-bold">Also known as:</span> {d.alternativeNames.join(", ")}
