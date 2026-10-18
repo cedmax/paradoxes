@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content"
-import { chapters } from "~/data/chapters"
+import { chapters, type Chapter } from "~/data/chapters"
 import { statusKeys } from "~/data/status"
 
 type Entry = CollectionEntry<"entries">
@@ -69,3 +69,13 @@ export function relatedEntries(entry: Entry, all: Entry[]) {
     .sort((a, b) => a.data.order - b.data.order)
   return { echoes, siblings }
 }
+
+// The entries listed on a chapter page, in reading order. Variants are reached through their anchor.
+export const chapterEntries = (chapter: Chapter, all: Entry[]) =>
+  all.filter((entry) => entry.data.chapter === chapter.id && isListed(entry)).sort(byOrder)
+
+// The other chapters that have at least one published entry.
+export const otherChapters = (chapter: Chapter, all: Entry[]) =>
+  chapters.filter(
+    (other) => other.id !== chapter.id && all.some((entry) => entry.data.chapter === other.id),
+  )

@@ -61,3 +61,43 @@ export function entrySeo(
     ],
   }
 }
+
+// Everything Base needs for a chapter page. `entries` are the ones listed, in order.
+export function chapterSeo(
+  chapter: Chapter,
+  entries: CollectionEntry<"entries">[],
+  site: URL | undefined,
+) {
+  const url = new URL(`/chapters/${chapter.id}/`, site).href
+  return {
+    title: `${chapter.pageTitle} | Logic Benders`,
+    description: chapter.introduction,
+    structuredData: [
+      breadcrumbData(
+        [
+          { name: "Index", path: "/" },
+          { name: chapter.title, path: `/chapters/${chapter.id}/` },
+        ],
+        site,
+      ),
+      {
+        "@type": "CollectionPage",
+        "@id": url,
+        url,
+        name: chapter.pageTitle,
+        description: chapter.introduction,
+        inLanguage: "en-GB",
+        isPartOf: { "@id": new URL("/#website", site).href },
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: entries.map((entry, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: entry.data.title,
+            url: new URL(`/entries/${entry.id}/`, site).href,
+          })),
+        },
+      },
+    ],
+  }
+}

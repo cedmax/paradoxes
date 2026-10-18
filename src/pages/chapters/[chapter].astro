@@ -1,12 +1,11 @@
 ---
-import AccentTitle from "~/components/AccentTitle.astro"
-import Breadcrumb from "~/components/Breadcrumb.astro"
-import type { Chapter } from "~/data/chapters"
 import Base from "~/layouts/Base.astro"
 import EntryGrid from "~/components/EntryGrid.astro"
-import { chapters } from "~/data/chapters"
-import { byOrder, getPublishedEntries, isListed } from "~/data/entries"
-import { breadcrumbData } from "~/data/seo"
+import ChapterHeader from "~/components/chapter/ChapterHeader.astro"
+import OtherChapters from "~/components/chapter/OtherChapters.astro"
+import { chapters, type Chapter } from "~/data/chapters"
+import { chapterEntries, getPublishedEntries, otherChapters } from "~/data/entries"
+import { chapterSeo } from "~/data/seo"
 
 export async function getStaticPaths() {
   const entries = await getPublishedEntries()
@@ -20,82 +19,20 @@ interface Props {
 }
 
 const { chapter } = Astro.props
-if (!chapter.title.endsWith(chapter.titleAccent)) {
-  throw new Error(`Invalid title accent for chapter: ${chapter.id}`)
-}
 const all = await getPublishedEntries()
-const entries = all
-  .filter((entry) => entry.data.chapter === chapter.id && isListed(entry))
-  .sort(byOrder)
-const otherChapters = chapters.filter(
-  (other) => other.id !== chapter.id && all.some((entry) => entry.data.chapter === other.id),
-)
-const url = new URL(`/chapters/${chapter.id}/`, Astro.site).href
-const structuredData = [
-  breadcrumbData(
-    [
-      { name: "Index", path: "/" },
-      { name: chapter.title, path: `/chapters/${chapter.id}/` },
-    ],
-    Astro.site,
-  ),
-  {
-    "@type": "CollectionPage",
-    "@id": url,
-    url,
-    name: chapter.pageTitle,
-    description: chapter.introduction,
-    inLanguage: "en-GB",
-    isPartOf: { "@id": new URL("/#website", Astro.site).href },
-    mainEntity: {
-      "@type": "ItemList",
-      itemListElement: entries.map((entry, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: entry.data.title,
-        url: new URL(`/entries/${entry.id}/`, Astro.site).href,
-      })),
-    },
-  },
-]
+const entries = chapterEntries(chapter, all)
+const seo = chapterSeo(chapter, entries, Astro.site)
 ---
 
-<Base
-  title={`${chapter.pageTitle} | Logic Benders`}
-  description={chapter.introduction}
-  structuredData={structuredData}
->
+<Base title={seo.title} description={seo.description} structuredData={seo.structuredData}>
   <main class="px-gutter flex flex-col pb-20">
-    <section class="flex flex-col gap-6 pt-4 pb-12">
-      <Breadcrumb
-        items={[{ href: "/", label: "Index" }, { label: `${chapter.n} ${chapter.title}` }]}
-      />
-      <AccentTitle title={chapter.title} accent={chapter.titleAccent} />
-      <p class="max-w-190 text-xl leading-snug sm:text-2xl">{chapter.introduction}</p>
-    </section>
+    <ChapterHeader chapter={chapter} />
     <section class="flex flex-col gap-5" aria-labelledby="chapter-entries">
       <h2 class="display text-3xl" id="chapter-entries">
         Explore the puzzles
       </h2>
       <EntryGrid entries={entries} all={all} />
     </section>
-    <nav
-      class="mt-10 flex flex-col gap-5 border-t-2 border-ink pt-6"
-      aria-label="Other chapters"
-    >
-      <h2 class="display text-3xl">Other chapters</h2>
-      <ul class="grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
-        {otherChapters.map((other) => (
-          <li>
-            <a
-              class="inline-flex min-h-11 items-center font-bold underline hover:text-accent"
-              href={`/chapters/${other.id}/`}
-            >
-              {other.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <OtherChapters chapters={otherChapters(chapter, all)} />
   </main>
 </Base>
