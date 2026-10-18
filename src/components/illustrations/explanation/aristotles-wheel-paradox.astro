@@ -11,7 +11,8 @@ import { series, stroke } from "~/data/palette"
 >
   <p class="text-base">
     The solid line is the ground touched by the outer wheel. The dashed line is an
-    <strong>imaginary track</strong> for the smaller wheel.
+    <strong>imaginary track</strong> for the smaller wheel. Here the small wheel
+    has half the radius of the large one.
   </p>
   <SvgFigure
     name="aristotles-wheel-motion"
@@ -111,13 +112,13 @@ import { series, stroke } from "~/data/palette"
   >
     <p id="aristotles-wheel-readout" class="text-base" aria-live="off">
       <strong><span id="aristotles-wheel-progress">0%</span> of a turn</strong>
-      · The red distance is <span id="aristotles-wheel-ratio">twice</span> the blue distance.
+      · The red distance grows twice as fast as the blue distance.
     </p>
   </Slider>
 
   <Fragment slot="caption">
     The smaller wheel turns exactly once with the larger wheel, yet the pair moves forward
-    <strong>twice the smaller wheel's circumference</strong>. The small rim must therefore
+    <strong>twice the smaller wheel's circumference in this example</strong>. The small rim must therefore
     slide relative to its imaginary track. Only the large wheel rolls without slipping.
   </Fragment>
 </IllustrationFigure>
@@ -135,7 +136,6 @@ import { series, stroke } from "~/data/palette"
     const forwardBar = find<SVGRectElement>(root, "#aristotles-wheel-forward-bar")
     const innerBar = find<SVGRectElement>(root, "#aristotles-wheel-inner-bar")
     const progressLabel = find<HTMLElement>(root, "#aristotles-wheel-progress")
-    const ratioLabel = find<HTMLElement>(root, "#aristotles-wheel-ratio")
 
     // The outer radius is 52. A full, slip-free turn moves the centre 2 pi R.
     // The inner radius is 26, so its rim advances through half that arc length.
@@ -154,7 +154,6 @@ import { series, stroke } from "~/data/palette"
       innerBar.setAttribute("width", String((fullDistance * portion) / 2))
 
       progressLabel.textContent = `${value}%`
-      ratioLabel.textContent = value === 0 ? "eventually twice" : "twice"
 
       return `${value} percent of one turn; forward travel is twice the inner rim's rotational distance`
     })
