@@ -19,13 +19,17 @@ const track = (event: string, data: Record<string, string>) => window.umami?.tra
 const figureOf = (target: EventTarget | null) =>
   target instanceof Element ? target.closest<HTMLElement>("[data-illustration]") : null
 
+// "other" is anything that is not a control: lead text, captions, the picture itself.
 const controlOf = (target: Element): Control => {
-  if (target.closest("input[type=range]")) return "range"
+  // A label stands for the control it labels.
+  const element = target.closest("label")?.control ?? target
+  if (element.closest("input[type=range]")) return "range"
   // Checked before SVG: a native button can wrap an svg icon.
-  if (target.closest("button")) return "button"
-  if (target.closest("summary") || target instanceof HTMLDetailsElement) return "details"
-  if (target instanceof SVGElement) return "svg-node"
-  if (target.closest("[role=button]")) return "button"
+  if (element.closest("button, input[type=checkbox], input[type=radio]")) return "button"
+  if (element.closest("summary") || element instanceof HTMLDetailsElement) return "details"
+  // Only focusable or role=button nodes are controls, not the svg picture around them.
+  if (element.closest("svg [role=button], svg [tabindex]")) return "svg-node"
+  if (element.closest("[role=button]")) return "button"
   return "other"
 }
 
@@ -33,6 +37,12 @@ function init(entry: string) {
   const interacted = new Set<string>()
   const viewed = new Set<string>()
   const revealed = new Set<string>()
+  // The tritone effect depends on the starting note, so answers carry the pair last picked.
+  const pairs = new Map<string, string>()
+  const answered = (figure: string, answer: string) => {
+    const pair = pairs.get(figure)
+    track("illusion-answer", { entry, figure, answer, ...(pair ? { pair } : {}) })
+  }
 
   // Interaction: once per figure per page view. `toggle` does not bubble, so listen in capture.
   const onInteract = (event: Event) => {
@@ -44,10 +54,14 @@ function init(entry: string) {
     // A script can open a <details> (twin-paradox does when playback passes the turn), and the
     // browser then fires a trusted `toggle`. Count it only while the reader's gesture is fresh.
     if (event.type === "toggle" && navigator.userActivation?.isActive === false) return
+    // Not a control: leave the figure out of the set so a later real interaction still counts.
+    const control = controlOf(target)
+    if (control === "other") return
     interacted.add(name)
-    track("illustration-interact", { entry, figure: name, control: controlOf(target) })
+    track("illustration-interact", { entry, figure: name, control })
   }
-  for (const type of ["pointerdown", "input", "toggle"]) {
+  // `click`, not `pointerdown`: a finger that lands to scroll past a figure never clicks.
+  for (const type of ["click", "input", "toggle"]) {
     document.addEventListener(type, onInteract, true)
   }
   document.addEventListener(
@@ -68,10 +82,18 @@ function init(entry: string) {
       const name = figure?.dataset.illustration
       if (!event.isTrusted || !figure || !name || !(target instanceof Element)) return
 
+      const note = target.closest<HTMLElement>("button[data-label]")
+      if (note?.dataset.label && figure.contains(note)) pairs.set(name, note.dataset.label)
+
       const choice = target.closest<HTMLElement>("[data-choice], [data-answer]")
       if (choice && figure.contains(choice)) {
-        const answer = choice.dataset.choice ?? choice.dataset.answer ?? ""
-        track("illusion-answer", { entry, figure: name, answer })
+        answered(name, choice.dataset.choice ?? choice.dataset.answer ?? "")
+        return
+      }
+      // The tritone skip has no data-answer: its script collects button[data-answer] as answers.
+      const skip = target.closest<HTMLElement>("[id$='-skip']")
+      if (skip && figure.contains(skip)) {
+        answered(name, "skip")
         return
       }
 
