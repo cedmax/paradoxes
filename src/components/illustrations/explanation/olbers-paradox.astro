@@ -1,0 +1,101 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+const stars = [
+  { r: 32, count: 6 },
+  { r: 66, count: 24 },
+  { r: 100, count: 54 },
+]
+
+// Further shells grow faint to suggest that the sequence continues beyond those shown.
+const continuingShells = [
+  { r: 134, count: 96, ringOpacity: 0.34, dotOpacity: 0.55, dotRadius: 1.1 },
+  { r: 168, count: 150, ringOpacity: 0.17, dotOpacity: 0.5, dotRadius: 0.9 },
+]
+---
+
+<IllustrationFigure
+  name="olbers-paradox"
+  lead="Farther shells contain more stars, offsetting how much dimmer each star looks."
+>
+  <div class="grid gap-4 sm:grid-cols-2 sm:items-center">
+    <div>
+      <SvgFigure
+        name="olbers-shells"
+        class="mx-auto w-full max-w-sm"
+        viewBox="0 0 360 360"
+        title="Concentric shells of stars surrounding an observer"
+        desc="An observer sits at the centre of three shells of stars, followed by two fainter outer shells. The farther a shell is, the more stars it contains and the smaller each star looks. The complete outer circles grow faint to suggest shells continuing without end. In the imagined static, eternal universe, every equally thick shell contributes about the same total light."
+      >
+        <!-- Full, fading outer shells avoid implying an artificial edge of space. -->
+        {continuingShells.map(({ r, count, ringOpacity, dotOpacity, dotRadius }) => (
+          <g>
+            <circle
+              cx="180"
+              cy="180"
+              r={r}
+              fill="none"
+              stroke={stroke}
+              stroke-opacity={ringOpacity}
+            />
+            {Array.from({ length: count }, (_, i) => {
+              const angle = (2 * Math.PI * i) / count
+              return (
+                <circle
+                  cx={180 + r * Math.cos(angle)}
+                  cy={180 + r * Math.sin(angle)}
+                  r={dotRadius}
+                  fill={series.gold}
+                  fill-opacity={dotOpacity}
+                />
+              )
+            })}
+          </g>
+        ))}
+        <g fill="none" stroke={stroke} stroke-opacity=".45">
+          <circle cx="180" cy="180" r="32" />
+          <circle cx="180" cy="180" r="66" />
+          <circle cx="180" cy="180" r="100" />
+        </g>
+        {stars.map(({ r, count }, index) => (
+          <g>
+            {Array.from({ length: count }, (_, i) => {
+              const angle = (2 * Math.PI * i) / count
+              return (
+                <circle
+                  cx={180 + r * Math.cos(angle)}
+                  cy={180 + r * Math.sin(angle)}
+                  r={index === 0 ? 4.3 : index === 1 ? 2.2 : 1.3}
+                  fill={series.gold}
+                />
+              )
+            })}
+          </g>
+        ))}
+        <circle cx="180" cy="180" r="7" fill={series.blue} stroke={stroke} stroke-width="1.5" />
+      </SvgFigure>
+      <p class="text-center text-base">Observer at centre</p>
+    </div>
+    <div class="flex flex-col gap-3 text-base">
+      <p class="font-bold">Ideal eternal universe</p>
+      <p>Same total light from each shell:</p>
+      <ul class="flex flex-col gap-2">
+        {[1, 2, 3].map((i) => (
+          <li class="flex items-center gap-3">
+            <span class="w-16 shrink-0">Shell {i}</span>
+            <span class="h-4 w-24 bg-series-gold/70" aria-hidden="true" />
+          </li>
+        ))}
+      </ul>
+      <p>Shell 4, shell 5, … continue without end.</p>
+    </div>
+  </div>
+  <Fragment slot="caption">
+    In the imagined eternal, unchanging universe, each equally thick shell would add about the
+    same light. With shells extending without end, the whole sky would be bright. In reality,
+    light has had only finite time to reach us, stars have finite lifetimes, and expansion also
+    reduces observed light. Schematic, not to scale.
+  </Fragment>
+</IllustrationFigure>
