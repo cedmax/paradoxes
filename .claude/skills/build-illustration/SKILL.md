@@ -29,16 +29,16 @@ Illustrations must not change the look of the kit: if something is missing, add 
 
 Import with `~/components/illustration-kit/<Name>.astro`.
 
-| Component            | Use it for                                                                                                                                                                                                                                                                                                               |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `IllustrationFigure` | The outer `<figure>`. Props: `lead` (bold line above), `name` (sets `data-illustration`, needed by a script), `frame` (default on; turn off when the figure only holds tables). Slots: `lead`, default, `caption` (the `figcaption`, always after the default slot) and `after` (below the caption, for a `Disclosure`). |
-| `SvgFigure`          | Every `<svg>`. Props: `name` (unique on the page, builds the `<name>-title` and `<name>-desc` ids), `title`, `desc` (always give one for new pictures), `viewBox`. `class`, `id` and other attributes go to the `<svg>`.                                                                                                 |
-| `Slider`             | A range input with label. Props: `id`, `label`, `labelId` (only when a script rewrites the label), `min`, `max`, `step`, `value`, `startLabel`, `endLabel`, `valuetext`, `describedby`, `accent` (`ink` or `accent`). The default slot holds the readout, which `describedby` points to.                                 |
-| `ComparisonTable`    | Any table. Props: `caption`, `columns`, `rows` (first cell of each row is the row header), `highlight` (column indexes shaded), `align`, `dense` (tables with 4 or more columns).                                                                                                                                        |
-| `SideBySide`         | Two equal columns of `Panel`s.                                                                                                                                                                                                                                                                                           |
-| `Panel`              | A titled block. Without `accent` it is a boxed card. With `accent` (`red`, `blue`, `gold`, `green`) it is a bar down the left edge.                                                                                                                                                                                      |
-| `Callout`            | A short note with a bar on the left. `tone` is `ink` (default) or `accent`.                                                                                                                                                                                                                                              |
-| `Disclosure`         | A `<details>` for extra detail. Put it in the `after` slot of the figure unless it belongs above the caption.                                                                                                                                                                                                            |
+| Component            | Use it for                                                                                                                                                                                                                                                                                                                                    |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `IllustrationFigure` | The outer `<figure>`. Props: `lead` (bold line above), `name` (sets `data-illustration`; required on every figure, see Analytics), `frame` (default on; turn off when the figure only holds tables). Slots: `lead`, default, `caption` (the `figcaption`, always after the default slot) and `after` (below the caption, for a `Disclosure`). |
+| `SvgFigure`          | Every `<svg>`. Props: `name` (unique on the page, builds the `<name>-title` and `<name>-desc` ids), `title`, `desc` (always give one for new pictures), `viewBox`. `class`, `id` and other attributes go to the `<svg>`.                                                                                                                      |
+| `Slider`             | A range input with label. Props: `id`, `label`, `labelId` (only when a script rewrites the label), `min`, `max`, `step`, `value`, `startLabel`, `endLabel`, `valuetext`, `describedby`, `accent` (`ink` or `accent`). The default slot holds the readout, which `describedby` points to.                                                      |
+| `ComparisonTable`    | Any table. Props: `caption`, `columns`, `rows` (first cell of each row is the row header), `highlight` (column indexes shaded), `align`, `dense` (tables with 4 or more columns).                                                                                                                                                             |
+| `SideBySide`         | Two equal columns of `Panel`s.                                                                                                                                                                                                                                                                                                                |
+| `Panel`              | A titled block. Without `accent` it is a boxed card. With `accent` (`red`, `blue`, `gold`, `green`) it is a bar down the left edge.                                                                                                                                                                                                           |
+| `Callout`            | A short note with a bar on the left. `tone` is `ink` (default) or `accent`.                                                                                                                                                                                                                                                                   |
+| `Disclosure`         | A `<details>` for extra detail. Put it in the `after` slot of the figure unless it belongs above the caption.                                                                                                                                                                                                                                 |
 
 Skeleton:
 
@@ -115,6 +115,49 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 - Spacing between blocks inside a figure comes from `IllustrationFigure` (`gap-4`). Use `gap-4`
   between panels and `gap-3` only where a kit component already does.
 
+### Analytics
+
+Umami tracking for every illustration and illusion lives in one delegated script,
+`src/scripts/track-illustrations.ts`, loaded only by `src/pages/entries/[slug].astro`. Figures
+carry no tracking code: the script reads everything off the DOM. Do not add `umami.track`
+calls or `data-umami-event` attributes to illustrations. Follow these conventions so a new
+figure is tracked without touching the script:
+
+- **Name every figure.** Give each `IllustrationFigure` a `name`, static figures included, so
+  it gets `data-illustration`. Names must be unique across the site (setup and explanation
+  files for one entry need different names, e.g. `ladder-paradox-setup`). A figure without a
+  name is invisible to analytics. When auditing, check the `IllustrationFigure` tag itself:
+  `SvgFigure` also takes `name`, which hides misses from a plain grep.
+- **Events sent**, all with `entry` (the slug) and `figure` (the name):
+  - `illustration-view`: once per figure per page view, when half of it (or half the
+    viewport, for tall figures) is visible.
+  - `illustration-interact`: once per figure per page view, on the first trusted `click`,
+    `input`, `toggle` or Enter/Space on a real control, with `control` set to `range`,
+    `button`, `details` or `svg-node`. Presses on text, captions or the picture do not count.
+  - `illusion-answer`: every click on a `[data-choice]` or `[data-answer]` button, with
+    `answer` set to its value, and `pair` set to the `data-label` of the last
+    `button[data-label]` clicked in that figure, when there is one.
+  - `illusion-reveal`: once per figure per page view, when an `IllusionControls` proof
+    toggle (`<name>-guide-toggle`) is switched on.
+- **Controls must be real controls.** Use `<button>`, range inputs, checkboxes or radios, or
+  `<summary>` via `Disclosure`. Clickable SVG elements need `role="button"` and `tabindex="0"`
+  (as in `friendship-paradox`), which keyboard access requires anyway; without them clicks
+  are not tracked.
+- **Answers.** Mark judgement buttons with `data-answer="<value>"` or use `ListenerChoice`
+  (`data-choice`). A "can't play or hear this" button is tracked as `skip` either through
+  `data-choice="skip"` or an id ending in `-skip` (as in `tritone-paradox`, whose script
+  collects `button[data-answer]` and so must not see the skip button). Do not reuse the
+  `-skip` id suffix for anything that is not an answer skip. When an answer depends on which
+  stimulus was picked, put `data-label` on the picker buttons so answers carry `pair`.
+- **Reveals** use `IllusionControls` with `proof`, so the toggle id is
+  `<name>-guide-toggle`. A hand-made proof toggle with another id is not tracked.
+- **Never fake user events.** Only trusted events count, and `bindSliderPlayback` sets
+  values without dispatching events, so autoplay is not counted. Do not
+  `dispatchEvent(new Event("input"))` or call `.click()` to simulate the reader. A script
+  that opens a `<details>` without a recent gesture is ignored.
+- **Event names stay within 50 characters.** Add a new event type or payload field only in
+  `track-illustrations.ts`, and update this section with it.
+
 ### Checking an illustration
 
 Run `pnpm lint`, `pnpm check` and `pnpm build`. Then look at the page at a desktop width and a
@@ -125,3 +168,8 @@ Passing lint, `pnpm check` and the build is not enough. Before calling an intera
 illustration finished, check in a browser that moving each slider changes the figure, Play
 starts the animation, Pause stops it, each toggle changes its state, and the console reports
 no JavaScript errors. If this could not be done, say so.
+
+For analytics, stub `window.umami = { track: (n, d) => console.log(n, d) }` before the page
+scripts run and confirm the figure sends one `illustration-view` when scrolled into view, one
+`illustration-interact` on the first real control use and nothing on clicks on text or the
+picture. For illusions, also check `illusion-answer` (including skip) and `illusion-reveal`.
