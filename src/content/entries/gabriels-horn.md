@@ -2,7 +2,7 @@
 title: "Gabriel's horn paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["Torricelli's trumpet"]
+searchTerms: ["Torricelli's trumpet"]
 chapter: infinity
 status: explained
 simplification: light

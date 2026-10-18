@@ -2,7 +2,7 @@
 title: "Bertrand competition paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "Bertrand paradox",
     "Bertrand paradox (economics)",

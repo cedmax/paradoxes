@@ -2,7 +2,7 @@
 title: "Moral luck"
 format: argument
 titleAccent: "luck"
-aka: ["Nagel", "Williams", "control principle", "resultant luck", "constitutive luck"]
+searchTerms: ["Nagel", "Williams", "control principle", "resultant luck", "constitutive luck"]
 chapter: individual
 order: 100
 status: disputed

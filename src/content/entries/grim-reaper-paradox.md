@@ -2,7 +2,7 @@
 title: Grim Reaper paradox
 format: argument
 titleAccent: paradox
-aka:
+searchTerms:
   [
     "Benardete paradox",
     "infinite reapers",

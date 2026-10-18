@@ -2,7 +2,7 @@
 title: "Three prisoners problem"
 format: argument
 titleAccent: "problem"
-aka: ["three prisoners", "warden", "prisoner pardon", "Martin Gardner"]
+searchTerms: ["three prisoners", "warden", "prisoner pardon", "Martin Gardner"]
 chapter: probability
 status: explained
 variantOf: monty-hall-problem

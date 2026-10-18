@@ -2,7 +2,7 @@
 title: Staircase paradox
 format: argument
 titleAccent: paradox
-aka:
+searchTerms:
   [
     "Manhattan distance",
     "pixel diagonal",

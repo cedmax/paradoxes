@@ -2,7 +2,7 @@
 title: "Interesting number paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "smallest uninteresting number",
     "dull number",

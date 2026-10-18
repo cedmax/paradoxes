@@ -2,7 +2,7 @@
 title: "Banach–Tarski paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["doubling the ball", "pea and the Sun", "Banach Tarski"]
+searchTerms: ["doubling the ball", "pea and the Sun", "Banach Tarski"]
 chapter: infinity
 order: 90
 status: explained

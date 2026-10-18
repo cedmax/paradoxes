@@ -2,7 +2,7 @@
 title: "EPR paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "Einstein Podolsky Rosen",
     "spooky action at a distance",

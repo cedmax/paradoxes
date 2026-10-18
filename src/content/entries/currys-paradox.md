@@ -2,7 +2,8 @@
 title: "Curry's paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["Curry", "Löb's paradox", "if this sentence is true", "Haskell Curry", "proves anything"]
+searchTerms:
+  ["Curry", "Löb's paradox", "if this sentence is true", "Haskell Curry", "proves anything"]
 chapter: self-reference
 order: 90
 status: unreconciled

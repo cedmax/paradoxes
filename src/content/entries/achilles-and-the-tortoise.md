@@ -2,7 +2,7 @@
 title: "Achilles and the tortoise paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["Zeno", "Zeno's paradox"]
+searchTerms: ["Zeno", "Zeno's paradox"]
 chapter: infinity
 status: explained
 simplification: light

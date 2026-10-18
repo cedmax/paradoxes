@@ -2,7 +2,7 @@
 title: "Penney's game"
 format: argument
 titleAccent: "game"
-aka:
+searchTerms:
   [
     "coin race",
     "coin toss sequences",

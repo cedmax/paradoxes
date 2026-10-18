@@ -2,7 +2,7 @@
 title: "Paradox of the plankton"
 format: argument
 titleAccent: "plankton"
-aka:
+searchTerms:
   [
     "Hutchinson",
     "competitive exclusion",

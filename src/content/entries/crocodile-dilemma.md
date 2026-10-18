@@ -2,7 +2,7 @@
 title: "Crocodile dilemma"
 format: argument
 titleAccent: dilemma
-aka: ["crocodile paradox"]
+searchTerms: ["crocodile paradox"]
 chapter: self-reference
 status: defused
 variantOf: protagoras-and-euathlus

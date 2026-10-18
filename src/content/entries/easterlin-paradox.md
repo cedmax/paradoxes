@@ -2,7 +2,7 @@
 title: "Easterlin paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "money and happiness",
     "income and happiness",

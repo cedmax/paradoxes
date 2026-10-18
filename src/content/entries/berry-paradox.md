@@ -2,7 +2,8 @@
 title: "Berry paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["Berry's paradox", "smallest number not nameable", "definable numbers", "nameable number"]
+searchTerms:
+  ["Berry's paradox", "smallest number not nameable", "definable numbers", "nameable number"]
 chapter: self-reference
 order: 70
 status: defused

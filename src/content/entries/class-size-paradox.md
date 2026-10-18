@@ -8,7 +8,7 @@ variantOf: inspection-paradox
 simplification: light
 noMaths: true
 order: 60
-aka: ["class size"]
+searchTerms: ["class size"]
 problem: "Why do students report bigger classes than their college does?"
 claimA: "The college says 31, the students say 56, so someone must have it wrong."
 claimB: "The college has the full list of classes, and every student knows how big their own class is."

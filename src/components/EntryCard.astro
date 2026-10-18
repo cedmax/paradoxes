@@ -24,7 +24,7 @@ const searchText = (...parts: (string | undefined)[]) =>
 // that only matches claimA, claimB or verdict reveals that text on the card (see index.astro).
 const shown = searchText(
   d.title,
-  ...d.aka,
+  ...d.searchTerms,
   ...d.alternativeNames,
   anchor?.data.title,
   d.problem,

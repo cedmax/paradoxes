@@ -2,7 +2,7 @@
 title: "Maxwell's demon"
 format: argument
 titleAccent: "demon"
-aka: ["Landauer", "Bennett", "Szilard engine", "second law", "information and entropy"]
+searchTerms: ["Landauer", "Bennett", "Szilard engine", "second law", "information and entropy"]
 chapter: models
 order: 100
 status: explained

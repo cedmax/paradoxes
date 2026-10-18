@@ -8,7 +8,7 @@ variantOf: inspection-paradox
 simplification: light
 noMaths: true
 order: 40
-aka: ["why your friends have more friends", "Scott Feld", "social networks"]
+searchTerms: ["why your friends have more friends", "Scott Feld", "social networks"]
 problem: "Why do your friends have more friends than you do?"
 claimA: "You and your friends are ordinary people, so you should have about as many friends as they do."
 claimB: "On average, your friends have more friends than you do."

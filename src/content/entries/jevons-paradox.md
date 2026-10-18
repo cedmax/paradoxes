@@ -2,7 +2,7 @@
 title: "Jevons paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["rebound effect", "efficiency paradox", "The Coal Question", "Khazzoom-Brookes"]
+searchTerms: ["rebound effect", "efficiency paradox", "The Coal Question", "Khazzoom-Brookes"]
 chapter: collective
 order: 100
 status: explained

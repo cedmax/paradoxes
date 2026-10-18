@@ -2,7 +2,8 @@
 title: "Coin rotation paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["rolling coin", "two coins", "SAT coin question", "coin paradox", "rolling circles"]
+searchTerms:
+  ["rolling coin", "two coins", "SAT coin question", "coin paradox", "rolling circles"]
 chapter: shapes
 status: explained
 simplification: light

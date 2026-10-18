@@ -2,7 +2,7 @@
 title: "Richard's paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "definable real numbers",
     "Jules Richard",

@@ -2,7 +2,7 @@
 title: "Grue paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "new riddle of induction",
     "Goodman's paradox",

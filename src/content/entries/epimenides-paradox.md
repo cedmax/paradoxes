@@ -2,7 +2,7 @@
 title: Epimenides paradox
 format: argument
 titleAccent: paradox
-aka:
+searchTerms:
   [
     "all Cretans are liars",
     "Cretan liar",

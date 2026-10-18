@@ -2,7 +2,7 @@
 title: "D'Alembert's paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "zero drag",
     "d'Alembert",

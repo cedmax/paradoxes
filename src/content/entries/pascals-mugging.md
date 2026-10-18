@@ -2,7 +2,7 @@
 title: "Pascal's mugging"
 format: argument
 titleAccent: "mugging"
-aka:
+searchTerms:
   [
     "Pascal's mugger",
     "tiny probabilities of vast utilities",

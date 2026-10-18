@@ -3,7 +3,7 @@ title: "Auditory continuity illusion"
 titleAccent: "illusion"
 format: illusion
 chapter: shapes
-aka:
+searchTerms:
   - "auditory induction"
   - "illusory continuity"
 simplification: light

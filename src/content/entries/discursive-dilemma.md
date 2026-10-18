@@ -2,7 +2,7 @@
 title: Discursive dilemma
 format: argument
 titleAccent: dilemma
-aka:
+searchTerms:
   [
     "doctrinal paradox",
     "judgement aggregation",

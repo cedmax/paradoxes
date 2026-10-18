@@ -2,7 +2,7 @@
 title: Skolem's paradox
 format: argument
 titleAccent: paradox
-aka:
+searchTerms:
   [
     "Löwenheim–Skolem",
     "countable model of set theory",

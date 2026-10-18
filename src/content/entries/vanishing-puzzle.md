@@ -2,7 +2,7 @@
 title: "Vanishing puzzle"
 format: argument
 titleAccent: "puzzle"
-aka:
+searchTerms:
   [
     "disappearing bicyclist",
     "get off the earth",

@@ -2,7 +2,7 @@
 title: Cantor's paradox
 format: argument
 titleAccent: paradox
-aka:
+searchTerms:
   [
     "set of all cardinals",
     "largest infinity",

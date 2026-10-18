@@ -2,7 +2,7 @@
 title: "Novikov self-consistency principle"
 format: argument
 titleAccent: "principle"
-aka:
+searchTerms:
   [
     "Novikov self-consistency",
     "Novikov principle",

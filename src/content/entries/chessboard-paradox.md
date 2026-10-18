@@ -2,7 +2,7 @@
 title: "Chessboard paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "Loyd and Schlömilch",
     "64 equals 65",

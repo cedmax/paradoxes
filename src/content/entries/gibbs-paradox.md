@@ -2,7 +2,7 @@
 title: Gibbs paradox
 format: argument
 titleAccent: paradox
-aka:
+searchTerms:
   [
     "mixing paradox",
     "entropy of mixing",

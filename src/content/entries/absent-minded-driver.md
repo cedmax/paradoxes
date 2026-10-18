@@ -2,7 +2,7 @@
 title: "Absent-minded driver"
 format: argument
 titleAccent: "driver"
-aka:
+searchTerms:
   [
     "absentminded driver",
     "Piccione and Rubinstein",

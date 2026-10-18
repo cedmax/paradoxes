@@ -2,7 +2,7 @@
 title: "Fitch's paradox of knowability"
 format: argument
 titleAccent: "knowability"
-aka:
+searchTerms:
   [
     "knowability paradox",
     "Fitch's paradox",

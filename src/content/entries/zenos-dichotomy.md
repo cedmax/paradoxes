@@ -2,7 +2,7 @@
 title: "Zeno's dichotomy paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["Zeno", "racecourse", "race course"]
+searchTerms: ["Zeno", "racecourse", "race course"]
 chapter: infinity
 status: explained
 variantOf: achilles-and-the-tortoise

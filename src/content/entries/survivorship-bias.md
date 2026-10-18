@@ -2,7 +2,7 @@
 title: "Survivorship bias"
 format: argument
 titleAccent: "bias"
-aka:
+searchTerms:
   [
     "survivor bias",
     "Abraham Wald",

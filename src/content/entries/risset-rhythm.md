@@ -3,7 +3,7 @@ title: "Risset rhythm"
 titleAccent: "rhythm"
 format: illusion
 chapter: shapes
-aka:
+searchTerms:
   - "infinite acceleration rhythm"
   - "endless accelerando"
 relatedTo: tritone-paradox

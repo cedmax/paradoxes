@@ -99,10 +99,12 @@ enforces anchor integrity. Do not duplicate definitions here.
 
 - `description` is an optional question-first search summary that holds back the answer. Without
   it, metadata uses `problem`, never `verdict`. `alternativeNames` holds recognised names shown
-  on the entry page and included in search; `aka` contains additional search phrases and is not
-  shown. The schema rejects exact duplicates between these fields after normalising case,
-  apostrophe style and whitespace. Shorter phrases such as "surprise exam" alongside "Surprise
-  exam paradox" are allowed.
+  on the entry page and included in search; `searchTerms` contains additional search phrases and
+  is not shown. The schema rejects a `searchTerms` value that repeats `alternativeNames` or the
+  `title`, after normalising case, apostrophe style and whitespace. Shorter phrases such as
+  "surprise exam" alongside "Surprise exam paradox" are allowed, and so is a spelling that
+  differs from the title only in hyphens or punctuation ("absentminded driver"), because search
+  matches contiguous text.
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".

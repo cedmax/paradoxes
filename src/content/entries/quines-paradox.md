@@ -2,7 +2,7 @@
 title: "Quine's paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "yields falsehood when preceded by its quotation",
     "Quine sentence",

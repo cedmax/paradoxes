@@ -3,7 +3,7 @@ title: "Café wall illusion"
 titleAccent: "illusion"
 format: illusion
 chapter: shapes
-aka: ["Cafe wall illusion", "Münsterberg illusion"]
+searchTerms: ["Cafe wall illusion", "Münsterberg illusion"]
 description: "Why do straight, parallel lines between black and white tiles appear tilted?"
 problem: "Why do straight, parallel lines between black and white tiles appear tilted?"
 simplification: light

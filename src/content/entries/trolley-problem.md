@@ -2,7 +2,7 @@
 title: "Trolley problem"
 format: argument
 titleAccent: "problem"
-aka:
+searchTerms:
   [
     "trolley dilemma",
     "footbridge",

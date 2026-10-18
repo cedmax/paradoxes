@@ -3,7 +3,7 @@ title: "Müller-Lyer illusion"
 titleAccent: "illusion"
 format: illusion
 chapter: shapes
-aka: ["Muller Lyer", "arrowhead illusion"]
+searchTerms: ["Muller Lyer", "arrowhead illusion"]
 description: "Can arrowheads make two lines of equal length look unequal?"
 problem: "Can arrowheads make two lines of equal length look unequal?"
 simplification: light

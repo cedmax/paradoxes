@@ -2,7 +2,7 @@
 title: "Repugnant conclusion"
 format: argument
 titleAccent: "conclusion"
-aka: ["Parfit", "mere addition paradox", "population ethics", "Reasons and Persons"]
+searchTerms: ["Parfit", "mere addition paradox", "population ethics", "Reasons and Persons"]
 chapter: individual
 order: 120
 status: unreconciled

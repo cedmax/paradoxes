@@ -2,7 +2,7 @@
 title: "Bertrand's chord paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["Bertrand's paradox", "random chord", "Bertrand paradox"]
+searchTerms: ["Bertrand's paradox", "random chord", "Bertrand paradox"]
 chapter: probability
 order: 70
 status: explained

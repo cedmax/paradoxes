@@ -2,7 +2,7 @@
 title: "Allais paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "Allais",
     "certainty effect",

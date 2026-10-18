@@ -2,7 +2,7 @@
 title: "Tristram Shandy paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   ["Tristram Shandy", "Russell", "Sterne", "endless autobiography", "biography that never ends"]
 chapter: infinity
 order: 120

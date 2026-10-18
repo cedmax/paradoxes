@@ -2,7 +2,7 @@
 title: "Problem of the many"
 format: argument
 titleAccent: "the many"
-aka: ["many cats", "cloud problem", "Unger", "Tibbles"]
+searchTerms: ["many cats", "cloud problem", "Unger", "Tibbles"]
 chapter: identity
 order: 60
 status: disputed

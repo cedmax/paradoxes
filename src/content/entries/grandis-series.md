@@ -2,7 +2,7 @@
 title: "Grandi's series"
 format: argument
 titleAccent: series
-aka: ["1-1+1-1", "1 − 1 + 1 − 1", "Grandi", "Cesàro sum", "Abel sum", "one half"]
+searchTerms: ["1-1+1-1", "1 − 1 + 1 − 1", "Grandi", "Cesàro sum", "Abel sum", "one half"]
 chapter: infinity
 status: explained
 relatedTo: sum-of-all-whole-numbers

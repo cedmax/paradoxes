@@ -2,7 +2,8 @@
 title: "Peto's paradox"
 format: argument
 titleAccent: paradox
-aka: ["whales and cancer", "elephants and cancer", "body size and cancer", "TP53 elephants"]
+searchTerms:
+  ["whales and cancer", "elephants and cancer", "body size and cancer", "TP53 elephants"]
 chapter: models
 status: disputed
 simplification: light

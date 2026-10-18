@@ -2,7 +2,7 @@
 title: "Hausdorff paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "Hausdorff",
     "sphere measure",

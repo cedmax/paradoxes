@@ -2,7 +2,7 @@
 title: Archer's paradox
 format: argument
 titleAccent: paradox
-aka:
+searchTerms:
   [
     "arrow flex",
     "dynamic spine",

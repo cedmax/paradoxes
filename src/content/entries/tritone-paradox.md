@@ -3,7 +3,7 @@ title: "Tritone paradox"
 titleAccent: "paradox"
 format: illusion
 chapter: shapes
-aka:
+searchTerms:
   - "tritone illusion"
   - "Deutsch tritone paradox"
 simplification: light

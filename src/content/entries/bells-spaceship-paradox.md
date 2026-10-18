@@ -2,7 +2,7 @@
 title: "Bell's spaceship paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "spaceship paradox",
     "Dewan and Beran",

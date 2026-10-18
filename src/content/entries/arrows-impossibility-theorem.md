@@ -2,7 +2,7 @@
 title: "Arrow's impossibility theorem"
 format: argument
 titleAccent: "impossibility theorem"
-aka:
+searchTerms:
   [
     "Arrow's theorem",
     "Arrow's paradox",

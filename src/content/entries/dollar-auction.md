@@ -2,7 +2,7 @@
 title: "Dollar auction"
 format: argument
 titleAccent: "auction"
-aka: ["Shubik", "escalation", "sunk cost", "war of attrition", "dollar auction game"]
+searchTerms: ["Shubik", "escalation", "sunk cost", "war of attrition", "dollar auction game"]
 chapter: collective
 order: 90
 status: explained

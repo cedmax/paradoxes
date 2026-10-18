@@ -2,7 +2,7 @@
 title: Mpemba effect
 format: argument
 titleAccent: effect
-aka:
+searchTerms:
   [
     "hot water freezes faster",
     "Mpemba paradox",

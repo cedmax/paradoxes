@@ -2,7 +2,7 @@
 title: "Zeno's arrow paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["Zeno", "flying arrow"]
+searchTerms: ["Zeno", "flying arrow"]
 chapter: infinity
 status: explained
 simplification: light

@@ -11,9 +11,9 @@ const common = z.object({
   description: z.string().trim().min(1).optional(),
   // Title with its final word(s) highlighted on the page, e.g. "Sorites" + "paradox".
   titleAccent: z.string().optional(),
-  // Extra search phrases, excluding normalised duplicates of alternativeNames.
-  aka: z.array(z.string()).default([]),
-  // Displayed search aliases; shorter variants may still appear in aka.
+  // Extra search phrases, excluding normalised duplicates of alternativeNames and the title.
+  searchTerms: z.array(z.string()).default([]),
+  // Displayed search aliases; shorter variants may still appear in searchTerms.
   alternativeNames: z.array(z.string().trim().min(1)).default([]),
   chapter: z.enum(chapterIds),
   // An entry with neither relatedTo nor variantOf is canonical. Canonical and related entries
@@ -76,11 +76,19 @@ const entries = defineCollection({
   // Every entry sets `format`, which picks the variant.
   schema: z.discriminatedUnion("format", [argument, illusion]).superRefine((d, ctx) => {
     const shownNames = new Set(d.alternativeNames.map(normaliseSearch))
-    if (d.aka.some((name) => shownNames.has(normaliseSearch(name)))) {
+    if (d.searchTerms.some((term) => shownNames.has(normaliseSearch(term)))) {
       ctx.addIssue({
         code: "custom",
-        message: "aka must not repeat alternativeNames (ignoring case and apostrophe style)",
-        path: ["aka"],
+        message:
+          "searchTerms must not repeat alternativeNames (ignoring case and apostrophe style)",
+        path: ["searchTerms"],
+      })
+    }
+    if (d.searchTerms.some((term) => normaliseSearch(term) === normaliseSearch(d.title))) {
+      ctx.addIssue({
+        code: "custom",
+        message: "searchTerms must not repeat the title (ignoring case and apostrophe style)",
+        path: ["searchTerms"],
       })
     }
     if (d.relatedTo !== undefined && d.variantOf !== undefined) {

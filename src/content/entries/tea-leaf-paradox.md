@@ -2,7 +2,7 @@
 title: Tea leaf paradox
 format: argument
 titleAccent: paradox
-aka:
+searchTerms:
   [
     "tea leaves in the centre",
     "stirred tea",

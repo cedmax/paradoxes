@@ -18,7 +18,7 @@ in `src/styles/global.css`. `~` maps to `/src`.
   the slug it points to, and `anchorOf` resolves that anchor and fails the build if it is
   unknown, a variant, or part of a loop.
 - `src/pages/index.astro` — index with search and status filter (client script). Search matches
-  `title`, `aka`, `alternativeNames`, `problem`, `claimA`, `claimB`, `verdict`, plus the
+  `title`, `searchTerms`, `alternativeNames`, `problem`, `claimA`, `claimB`, `verdict`, plus the
   anchor's title for related and variant entries. Search matches the query as a contiguous
   phrase. Search ignores case and straight/curly apostrophe differences. The index lists
   canonical and related entries. Variants are hidden by the "Hide variants" switch in the

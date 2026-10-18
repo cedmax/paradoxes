@@ -3,7 +3,7 @@ title: "Auditory streaming"
 titleAccent: "streaming"
 format: illusion
 chapter: shapes
-aka:
+searchTerms:
   - "galloping rhythm"
   - "stream segregation"
 simplification: light

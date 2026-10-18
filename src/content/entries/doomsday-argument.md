@@ -2,7 +2,7 @@
 title: "Doomsday argument"
 format: argument
 titleAccent: "argument"
-aka:
+searchTerms:
   [
     "Carter catastrophe",
     "Carter-Leslie argument",

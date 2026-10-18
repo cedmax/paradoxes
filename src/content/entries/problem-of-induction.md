@@ -2,7 +2,8 @@
 title: "Problem of induction"
 format: argument
 titleAccent: "induction"
-aka: ["Hume's problem", "Hume's fork", "why will the sun rise tomorrow", "uniformity of nature"]
+searchTerms:
+  ["Hume's problem", "Hume's fork", "why will the sun rise tomorrow", "uniformity of nature"]
 chapter: belief
 order: 100
 status: unreconciled

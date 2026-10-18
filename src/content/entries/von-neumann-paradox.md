@@ -2,7 +2,7 @@
 title: "Von Neumann paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "two squares from one",
     "area-preserving paradox",

@@ -2,7 +2,7 @@
 title: "Centipede game"
 format: argument
 titleAccent: "game"
-aka:
+searchTerms:
   [
     "Rosenthal's centipede",
     "take or push",

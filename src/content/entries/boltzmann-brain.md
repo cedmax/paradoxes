@@ -2,7 +2,7 @@
 title: "Boltzmann brain"
 format: argument
 titleAccent: "brain"
-aka:
+searchTerms:
   [
     "Boltzmann's brain",
     "fluctuation hypothesis",

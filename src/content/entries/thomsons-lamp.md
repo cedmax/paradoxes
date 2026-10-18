@@ -2,7 +2,7 @@
 title: "Thomson's lamp paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["supertask"]
+searchTerms: ["supertask"]
 chapter: infinity
 status: explained
 relatedTo: achilles-and-the-tortoise

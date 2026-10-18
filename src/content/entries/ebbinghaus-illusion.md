@@ -3,7 +3,7 @@ title: "Ebbinghaus illusion"
 titleAccent: "illusion"
 format: illusion
 chapter: shapes
-aka: ["Titchener circles", "Ebbinghaus circles"]
+searchTerms: ["Titchener circles", "Ebbinghaus circles"]
 description: "Can two circles of exactly the same size look different?"
 problem: "Can two circles of exactly the same size look different?"
 simplification: light

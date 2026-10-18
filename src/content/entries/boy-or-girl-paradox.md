@@ -2,7 +2,7 @@
 title: "Boy or girl paradox"
 format: argument
 titleAccent: "paradox"
-aka: ["two child problem", "two children problem"]
+searchTerms: ["two child problem", "two children problem"]
 chapter: probability
 status: explained
 relatedTo: monty-hall-problem

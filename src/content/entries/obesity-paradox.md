@@ -2,7 +2,7 @@
 title: "Obesity paradox"
 format: argument
 titleAccent: "paradox"
-aka:
+searchTerms:
   [
     "reverse epidemiology",
     "overweight and survival",

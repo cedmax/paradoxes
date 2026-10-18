@@ -7,7 +7,7 @@ status: explained
 simplification: light
 noMaths: true
 order: 20
-aka: ["base rate fallacy", "medical test", "false positive"]
+searchTerms: ["base rate fallacy", "medical test", "false positive"]
 problem: "A test for a rare condition catches 90% of people who have it. You test positive. Are you probably ill?"
 claimA: "The test catches 90% of people who have the condition, so a positive result means you are probably ill."
 claimB: "Most people who test positive do not have the condition."

@@ -2,7 +2,7 @@
 title: Pinocchio paradox
 format: argument
 titleAccent: paradox
-aka:
+searchTerms:
   [
     "my nose will grow",
     "my nose grows now",

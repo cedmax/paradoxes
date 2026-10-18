@@ -2,7 +2,7 @@
 title: Burali-Forti paradox
 format: argument
 titleAccent: paradox
-aka:
+searchTerms:
   [
     "set of all ordinals",
     "largest ordinal number",

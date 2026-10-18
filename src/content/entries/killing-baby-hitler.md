@@ -2,7 +2,7 @@
 title: Killing baby Hitler
 format: argument
 titleAccent: baby Hitler
-aka:
+searchTerms:
   [
     "Hitler's murder paradox",
     "Hitler paradox",
