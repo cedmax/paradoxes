@@ -23,7 +23,7 @@ const curve = Array.from({ length: 101 }, (_, index) => {
 >
   <SvgFigure
     name="driver-exits"
-    class="mx-auto w-full max-w-xl"
+    class="mx-auto w-full max-w-md"
     viewBox="0 0 480 132"
     title="Two indistinguishable exits and three possible outcomes"
     desc="Along the road, taking the first exit leads to danger for 0 points. Passing the first and taking the second leads home for 4 points. Passing both leads to the motel for 1 point."
@@ -33,7 +33,7 @@ const curve = Array.from({ length: 101 }, (_, index) => {
     <path d="M142 40 L137 47 H147 Z M310 40 L305 47 H315 Z" fill={stroke} />
     <circle cx="142" cy="76" r="6" fill={series.blue} />
     <circle cx="310" cy="76" r="6" fill={series.blue} />
-    <g fill="currentColor" font-size="20" text-anchor="middle">
+    <g fill="currentColor" font-size="17" text-anchor="middle">
       <text x="142" y="22" font-weight="700">
         First exit
       </text>
@@ -75,12 +75,12 @@ const curve = Array.from({ length: 101 }, (_, index) => {
   </div>
   <SvgFigure
     name="driver-payoff-curve"
-    class="mx-auto w-full max-w-xl"
+    class="mx-auto w-full max-w-md"
     viewBox="0 0 480 258"
     title="Average score rises then falls as the chance of continuing changes"
     desc="The expected payoff is 4p minus 3p squared, where p is the chance of continuing at either exit. It starts at zero, reaches a maximum of four thirds at a continuing chance of two thirds, and ends at one. The slider moves a marker along this curve."
   >
-    <g fill="currentColor" font-size="20">
+    <g fill="currentColor" font-size="17">
       <text x="48" y="25">
         Average score
       </text>
@@ -163,7 +163,7 @@ const curve = Array.from({ length: 101 }, (_, index) => {
   </Slider>
   <p class="text-base leading-normal">
     The best advance plan is to <strong>leave one time in three</strong>. At an exit, a disputed
-    recalculation instead favours <strong>leaving two times in three</strong>.
+    recalculation instead seems to favour <strong>leaving two times in three</strong>.
   </p>
 
   <div slot="after">
