@@ -172,10 +172,13 @@ const molecules = [
           "Sorted: slow molecules on the left, fast molecules on the right. The shutter is closed."
       } else if (activeStep >= 0) {
         const number = Math.floor(activeStep / 2) + 1
-        const kind = activeFast ? "fast" : "slow"
+        const kind = activeFast ? "Fast" : "Slow"
         const direction = activeFast ? "right" : "left"
         const state = passing ? "open" : "closed"
-        readout.textContent = `Molecule ${number} of 3 (${kind}) moving ${direction}. Shutter ${state}.`
+        readout.textContent = `${kind} molecule ${number} of 3 moving ${direction}. Shutter ${state}.`
+      } else {
+        // At exact stage boundaries, no molecule is moving. Do not leave a stale readout.
+        readout.textContent = `${Math.floor(stage)} of 6 crossings complete. Shutter closed.`
       }
       return readout.textContent ?? ""
     })
