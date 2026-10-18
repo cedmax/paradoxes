@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from "astro:content"
+import FilterChip from "~/components/home/FilterChip.astro"
+import FilterSwitch from "~/components/home/FilterSwitch.astro"
+import { countEntries } from "~/data/entries"
+import { statuses, statusKeys } from "~/data/status"
+
+interface Props {
+  entries: CollectionEntry<"entries">[]
+}
+
+// The ids, data-attributes and button order here are what ~/scripts/home-filters looks up.
+const counts = countEntries(Astro.props.entries)
+---
+
+<section
+  class="px-gutter border-y-2 border-ink bg-accent py-10"
+  aria-label="Search and filter entries"
+>
+  <div class="flex flex-wrap items-end gap-x-8 gap-y-4">
+    <label class="flex max-w-115 min-w-0 grow basis-80 flex-col gap-2">
+      <span class="mono-label">Search</span>
+      <input
+        type="search"
+        id="q"
+        placeholder="sand, barber, doors"
+        aria-label="Search entries"
+        class="h-14 w-full rounded-none border-2 border-ink bg-paper px-4.5 text-lg text-ink"
+      />
+    </label>
+    <div class="flex flex-wrap gap-2" id="chips">
+      <FilterChip filter="all" label="All" count={counts.all} pressed />
+      {statusKeys.map((k) => (
+        <FilterChip filter={k} label={statuses[k].label} count={counts.status[k]} />
+      ))}
+      <FilterChip filter="illusions" label="Illusions" count={counts.illusions} />
+    </div>
+  </div>
+  <!-- The two switches change what is listed, not the kind of paradox, so they sit apart from the status chips. -->
+  <div class="mt-5 flex flex-wrap items-center gap-x-8 gap-y-1 border-t-2 border-ink pt-4">
+    <FilterSwitch
+      id="hide-variants"
+      label="Hide variants"
+      count={counts.variants}
+      title="Variants are the same puzzle as another entry, in a different setting. Searching always includes them."
+      checked
+      disableable
+    />
+    <FilterSwitch
+      id="only-reviewed"
+      label="Only reviewed"
+      count={counts.reviewed}
+      title="Show only entries that a person has also reviewed."
+    />
+  </div>
+</section>

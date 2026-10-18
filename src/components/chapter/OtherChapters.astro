@@ -1,0 +1,25 @@
+---
+import type { Chapter } from "~/data/chapters"
+
+interface Props {
+  chapters: Chapter[]
+}
+
+const { chapters } = Astro.props
+---
+
+<nav class="mt-10 flex flex-col gap-5 border-t-2 border-ink pt-6" aria-label="Other chapters">
+  <h2 class="display text-3xl">Other chapters</h2>
+  <ul class="grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
+    {chapters.map((other) => (
+      <li>
+        <a
+          class="inline-flex min-h-11 items-center font-bold underline hover:text-accent"
+          href={`/chapters/${other.id}/`}
+        >
+          {other.title}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

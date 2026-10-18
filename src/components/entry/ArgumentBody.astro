@@ -1,0 +1,29 @@
+---
+import PuzzleIllustration from "~/components/PuzzleIllustration.astro"
+import EntrySection from "~/components/entry/EntrySection.astro"
+import Resolution from "~/components/entry/Resolution.astro"
+import type { ArgumentData } from "~/data/entries"
+
+interface Props {
+  slug: string
+  data: ArgumentData
+}
+
+// The sections of an entry in the argument format. Illusions have their own body (see
+// IllusionExperience). The sections are direct children of the page's <article>.
+const { slug, data: d } = Astro.props
+---
+
+{!d.written && (
+  <div class="border-2 border-dashed border-ink px-6 py-5 text-lg">
+    <strong>Full write-up in progress.</strong> The problem, the two claims and the verdict are
+    final. The explanation and sources are not written yet.
+  </div>
+)}
+{d.setup && (
+  <EntrySection heading="The setup" paragraphs={[d.setup]}>
+    <PuzzleIllustration slug={slug} placement="setup" />
+  </EntrySection>
+)}
+{d.whyWrong && <EntrySection heading="Why it feels wrong" paragraphs={[d.whyWrong]} />}
+{(d.resolution.length > 0 || d.positions.length > 0) && <Resolution slug={slug} data={d} />}

@@ -1,0 +1,23 @@
+---
+import PageTitle from "~/components/PageTitle.astro"
+import { splitTitle } from "~/data/title"
+
+interface Props {
+  title: string
+  // Trailing word(s) of the title to highlight.
+  accent?: string
+}
+
+const { title, accent: titleAccent } = Astro.props
+const { plain, accent, separator } = splitTitle(title, titleAccent)
+---
+
+<PageTitle size="entry">
+  {plain}
+  {accent && (
+    <>
+      {separator}
+      <span class="text-accent">{accent}</span>
+    </>
+  )}
+</PageTitle>

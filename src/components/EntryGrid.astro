@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from "astro:content"
+import EntryCard from "~/components/EntryCard.astro"
+import { anchorOf } from "~/data/uniqueness"
+
+interface Props {
+  entries: CollectionEntry<"entries">[]
+  // Every published entry, so a card can find the entry it is related to or a variant of.
+  all: CollectionEntry<"entries">[]
+}
+
+const { entries, all } = Astro.props
+---
+
+<div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,340px),1fr))] gap-5">
+  {entries.map((entry) => (
+    <EntryCard entry={entry} anchor={anchorOf(entry, all)} />
+  ))}
+</div>

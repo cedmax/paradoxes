@@ -28,6 +28,8 @@ export const statuses: Record<Status, { label: string; bg: string; definition: s
   },
 }
 
+export const statusKeys = Object.keys(statuses) as Status[]
+
 export const simplifications: Record<Simplification, { label: string; definition: string }> = {
   none: { label: "Simplification: none", definition: "Nothing material is left out." },
   light: {
@@ -39,3 +41,11 @@ export const simplifications: Record<Simplification, { label: string; definition
     definition: "Significant technical content is left out. Read the sources.",
   },
 }
+
+// The heading over the resolution of an argument, which depends on how it ends.
+export const resolutionHeading = (status: Status) =>
+  status === "explained"
+    ? "The explanation"
+    : status === "defused"
+      ? "How it's defused"
+      : `Why it's ${statuses[status].label.toLowerCase()}`

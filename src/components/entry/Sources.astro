@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content"
+
+interface Props {
+  sources: CollectionEntry<"entries">["data"]["sources"]
+}
+
+const { sources } = Astro.props
+---
+
+<section class="gap-2! border-t-2 border-ink pt-6 text-base">
+  <div class="mono-label">Sources</div>
+
+  <ul class="m-0 pl-5">
+    {sources.map((src) => (
+      <li>
+        {src.url ? (
+          <a class="underline font-bold" target="_blank" href={src.url}>
+            {src.title}
+          </a>
+        ) : (
+          src.title
+        )}
+        {src.note && (
+          <>
+            {" "}
+            <span class="text-sm">{src.note}</span>
+          </>
+        )}
+      </li>
+    ))}
+  </ul>
+</section>

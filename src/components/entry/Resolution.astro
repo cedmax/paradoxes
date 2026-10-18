@@ -1,0 +1,34 @@
+---
+import FinePrint from "~/components/FinePrint.astro"
+import Linked from "~/components/Linked.astro"
+import PuzzleIllustration from "~/components/PuzzleIllustration.astro"
+import EntrySection from "~/components/entry/EntrySection.astro"
+import type { ArgumentData } from "~/data/entries"
+import { resolutionHeading } from "~/data/status"
+
+interface Props {
+  slug: string
+  data: ArgumentData
+}
+
+const { slug, data: d } = Astro.props
+---
+
+<EntrySection heading={resolutionHeading(d.status)} paragraphs={d.resolution}>
+  <PuzzleIllustration slug={slug} placement="explanation" />
+  {d.positions.length > 0 && (
+    <div class="grid mt-6 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3.5 -mb-6">
+      {d.positions.map((p) => (
+        <div class="flex flex-col gap-2 border-2 border-ink px-5.5 py-4.5">
+          <div class="display text-2xl leading-none tracking-tight">{p.title}</div>
+          {p.body.split(/\s(?=Cost: )/).map((part) => (
+            <p class="text-lg leading-normal">
+              <Linked text={part} />
+            </p>
+          ))}
+        </div>
+      ))}
+    </div>
+  )}
+  {d.finePrint && <FinePrint text={d.finePrint} />}
+</EntrySection>

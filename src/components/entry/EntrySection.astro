@@ -1,0 +1,21 @@
+---
+import Linked from "~/components/Linked.astro"
+
+interface Props {
+  heading: string
+  // Each paragraph may link to other entries (see Linked). Anything after them goes in the slot.
+  paragraphs: string[]
+}
+
+const { heading, paragraphs } = Astro.props
+---
+
+<section>
+  <h2 class="display text-5xl">{heading}</h2>
+  {paragraphs.map((text) => (
+    <p>
+      <Linked text={text} />
+    </p>
+  ))}
+  <slot />
+</section>

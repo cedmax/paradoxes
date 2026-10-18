@@ -144,6 +144,13 @@ export const chapters: Chapter[] = [
   },
 ]
 
+// The accent is the part of the title shown in the accent colour, so it must close the title.
+for (const c of chapters) {
+  if (!c.title.endsWith(c.titleAccent)) {
+    throw new Error(`Invalid title accent for chapter: ${c.id}`)
+  }
+}
+
 export const chapterById = (id: ChapterId): Chapter => {
   const c = chapters.find((x) => x.id === id)
   if (!c) throw new Error(`Unknown chapter: ${id}`)
