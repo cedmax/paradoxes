@@ -1,17 +1,11 @@
 // DOM wiring for the index page: search, status chips, the two switches and the chapter
-// accordion. The rules live in ./home-filter-rules. The ids and data-attributes come from
-// EntryFilters, ChapterGroup and EntryCard.
+// accordion. The ids and data-attributes come from EntryFilters, ChapterGroup and EntryCard.
 import { normaliseSearch } from "~/data/search"
-import {
-  initialOpenId,
-  isFiltering,
-  isHitShown,
-  isShownBySwitches,
-  matchesFilter,
-  matchesQuery,
-  revealsHits,
-  toggledOpenId,
-} from "./home-filter-rules"
+
+interface Switches {
+  hideVariants: boolean
+  onlyReviewed: boolean
+}
 
 const input = document.getElementById("q") as HTMLInputElement
 const chips = Array.from(document.querySelectorAll<HTMLButtonElement>("#chips button"))
@@ -28,10 +22,13 @@ let status = "all"
 // and disabled, and this is restored when the search is cleared.
 let hideChoice = input.value.trim() ? true : hideVariants.checked
 
-const switches = () => ({
-  hideVariants: hideVariants.checked,
-  onlyReviewed: onlyReviewed.checked,
-})
+const matchesFilter = (card: DOMStringMap, filter: string) =>
+  filter === "all" ||
+  (filter === "illusions" ? card.format === "illusion" : card.status === filter)
+
+// The two switches. "Only reviewed" is independent of the search: it applies to every result.
+const isShownBySwitches = (card: DOMStringMap, { hideVariants, onlyReviewed }: Switches) =>
+  !(hideVariants && card.variant === "true") && (!onlyReviewed || card.reviewed === "true")
 
 // Below md the chapters fold up and only one is open. A search or a filter opens every chapter
 // that has results, and the headings stop toggling until the filter is cleared.
@@ -49,10 +46,10 @@ const writeOpen = (id: string) => {
     // Storage can be blocked. The page still works without it.
   }
 }
-let openId = initialOpenId(
-  chapters.map((c) => c.dataset.chapter),
-  readOpen(),
-)
+// Below md only one chapter is open: the one remembered from last time, else the first.
+const chapterIds = chapters.map((c) => c.dataset.chapter)
+const storedId = readOpen()
+let openId = chapterIds.some((id) => id === storedId) ? storedId : (chapterIds[0] ?? null)
 let filtering = false
 
 function renderChapters() {
@@ -71,22 +68,31 @@ function renderChapters() {
 
 function apply() {
   const q = normaliseSearch(input.value)
-  filtering = isFiltering(q, status, switches())
   hideVariants.disabled = q !== ""
   hideVariants.checked = q === "" && hideChoice
+  // Read once, after the switch above has been set.
+  const switches: Switches = {
+    hideVariants: hideVariants.checked,
+    onlyReviewed: onlyReviewed.checked,
+  }
+  // A search, a status filter or "Only reviewed" opens every chapter that has results.
+  filtering = q !== "" || status !== "all" || switches.onlyReviewed
   let shown = 0
   for (const card of cards) {
+    const facts = card.dataset
     const ok =
-      matchesFilter(card.dataset, status) &&
-      matchesQuery(card.dataset, q) &&
-      isShownBySwitches(card.dataset, switches())
+      matchesFilter(facts, status) &&
+      (facts.text ?? "").includes(q) &&
+      isShownBySwitches(facts, switches)
     card.hidden = !ok
     if (ok) shown++
-    const revealed = revealsHits(card.dataset, q, ok)
+    // The card ends on the question. A search reveals the claim or verdict it matched, unless
+    // the match is already in what the card shows.
+    const revealed = ok && q !== "" && !(facts.shown ?? "").includes(q)
     const hits = card.querySelectorAll<HTMLElement>("[data-hit]")
     let any = false
     hits.forEach((hit) => {
-      const on = revealed && isHitShown(hit.dataset.text, q)
+      const on = revealed && (hit.dataset.text ?? "").includes(q)
       hit.hidden = !on
       any ||= on
     })
@@ -97,7 +103,7 @@ function apply() {
     const filter = chip.dataset.filter ?? "all"
     const count = cards.filter(
       (card) =>
-        matchesFilter(card.dataset, filter) && isShownBySwitches(card.dataset, switches()),
+        matchesFilter(card.dataset, filter) && isShownBySwitches(card.dataset, switches),
     ).length
     const label = chip.querySelector("[data-count]")
     if (label) label.textContent = String(count)
@@ -116,7 +122,7 @@ for (const chapter of chapters) {
   chapter.querySelector("[data-toggle]")?.addEventListener("click", () => {
     if (!mobile.matches || filtering) return
     const id = chapter.dataset.chapter ?? null
-    openId = toggledOpenId(openId, id)
+    openId = openId === id ? null : id
     if (id && openId) writeOpen(id)
     renderChapters()
     // Opening one closes the one above it, which would push the heading off screen.

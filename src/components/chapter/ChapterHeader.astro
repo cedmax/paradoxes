@@ -8,9 +8,6 @@ interface Props {
 }
 
 const { chapter } = Astro.props
-if (!chapter.title.endsWith(chapter.titleAccent)) {
-  throw new Error(`Invalid title accent for chapter: ${chapter.id}`)
-}
 ---
 
 <section class="flex flex-col gap-6 pt-4 pb-12">
