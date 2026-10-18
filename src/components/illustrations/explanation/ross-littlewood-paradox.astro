@@ -1,0 +1,29 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+---
+
+<IllustrationFigure
+  name="ross-littlewood"
+  lead="The vase gains nine balls at every step. Yet every numbered ball is removed before noon."
+  frame={false}
+>
+  <ComparisonTable
+    caption="Every ball leaves as the vase keeps filling"
+    columns={["Ball", "Goes in at step", "Comes out at step", "Balls inside then"]}
+    rows={[
+      ["1", "1", "<strong>1</strong>", "9"],
+      ["2", "1", "<strong>2</strong>", "18"],
+      ["10", "1", "<strong>10</strong>", "90"],
+      ["500", "50", "<strong>500</strong>", "4,500"],
+      ["n", "By step n", "<strong>n</strong>", "9n"],
+    ]}
+    highlight={[2]}
+    dense
+  />
+  <p class="text-base font-bold">At noon, with this removal rule: 0 balls remain.</p>
+  <Fragment slot="caption">
+    No particular ball survives the entire schedule: the increasing counts do not describe what
+    remains at noon.
+  </Fragment>
+</IllustrationFigure>
