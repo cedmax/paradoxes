@@ -128,12 +128,19 @@ figure is tracked without touching the script:
   files for one entry need different names, e.g. `ladder-paradox-setup`). A figure without a
   name is invisible to analytics. When auditing, check the `IllustrationFigure` tag itself:
   `SvgFigure` also takes `name`, which hides misses from a plain grep.
-- **Events sent**, all with `entry` (the slug) and `figure` (the name):
+- **Events sent**, all with `entry` (the slug) and `figure` (the name). The entry comes from
+  the `data-entry` attribute that `src/pages/entries/[slug].astro` renders on the `<article>`
+  holding every figure. The script does nothing on a page without it, so figures must stay
+  inside that `<article>`:
   - `illustration-view`: once per figure per page view, when half of it (or half the
     viewport, for tall figures) is visible.
   - `illustration-interact`: once per figure per page view, on the first trusted `click`,
-    `input`, `toggle` or Enter/Space on a real control, with `control` set to `range`,
-    `button`, `details` or `svg-node`. Presses on text, captions or the picture do not count.
+    `input` or Enter/Space on a real control, with `control` set to `range`, `button`,
+    `details` or `svg-node`. A `<summary>` counts as `details`, through a click or
+    Enter/Space. A range counts only on `input`, so clicking its `<label>` (which only moves
+    focus) or its thumb without moving it sends nothing. A label for a checkbox or radio does
+    count, because clicking it toggles the control. Presses on text, captions or the picture
+    do not count.
   - `illusion-answer`: every click on a `[data-choice]` or `[data-answer]` button, with
     `answer` set to its value, and `pair` set to the `data-label` of the last
     `button[data-label]` clicked in that figure, when there is one.
@@ -154,7 +161,8 @@ figure is tracked without touching the script:
 - **Never fake user events.** Only trusted events count, and `bindSliderPlayback` sets
   values without dispatching events, so autoplay is not counted. Do not
   `dispatchEvent(new Event("input"))` or call `.click()` to simulate the reader. A script
-  that opens a `<details>` without a recent gesture is ignored.
+  that opens a `<details>` is never counted: only a reader's click on its `<summary>` or
+  Enter/Space does.
 - **Event names stay within 50 characters.** Add a new event type or payload field only in
   `track-illustrations.ts`, and update this section with it.
 

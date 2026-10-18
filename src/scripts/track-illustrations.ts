@@ -26,7 +26,7 @@ const controlOf = (target: Element): Control => {
   if (element.closest("input[type=range]")) return "range"
   // Checked before SVG: a native button can wrap an svg icon.
   if (element.closest("button, input[type=checkbox], input[type=radio]")) return "button"
-  if (element.closest("summary") || element instanceof HTMLDetailsElement) return "details"
+  if (element.closest("summary")) return "details"
   // Only focusable or role=button nodes are controls, not the svg picture around them.
   if (element.closest("svg [role=button], svg [tabindex]")) return "svg-node"
   if (element.closest("[role=button]")) return "button"
@@ -44,24 +44,25 @@ function init(entry: string) {
     track("illusion-answer", { entry, figure, answer, ...(pair ? { pair } : {}) })
   }
 
-  // Interaction: once per figure per page view. `toggle` does not bubble, so listen in capture.
+  // Interaction: once per figure per page view. A <details> opened by a script (twin-paradox
+  // does when playback passes the turn) never counts: only a click on its <summary> does.
   const onInteract = (event: Event) => {
     const { target } = event
     const figure = figureOf(target)
     const name = figure?.dataset.illustration
     if (!event.isTrusted || !name || !(target instanceof Element) || interacted.has(name))
       return
-    // A script can open a <details> (twin-paradox does when playback passes the turn), and the
-    // browser then fires a trusted `toggle`. Count it only while the reader's gesture is fresh.
-    if (event.type === "toggle" && navigator.userActivation?.isActive === false) return
     // Not a control: leave the figure out of the set so a later real interaction still counts.
     const control = controlOf(target)
     if (control === "other") return
+    // A range counts only when its value changes. Clicking its label, or its thumb without
+    // dragging, only moves focus.
+    if (control === "range" && event.type !== "input") return
     interacted.add(name)
     track("illustration-interact", { entry, figure: name, control })
   }
   // `click`, not `pointerdown`: a finger that lands to scroll past a figure never clicks.
-  for (const type of ["click", "input", "toggle"]) {
+  for (const type of ["click", "input"]) {
     document.addEventListener(type, onInteract, true)
   }
   document.addEventListener(
@@ -126,7 +127,8 @@ function init(entry: string) {
     observer.observe(figure)
 }
 
-const entry = location.pathname.match(/^\/entries\/([^/]+)/)?.[1]
+// The entry page renders `data-entry` on the <article> that holds every figure.
+const entry = document.querySelector<HTMLElement>("[data-entry]")?.dataset.entry
 if (entry) init(entry)
 
 export {}
