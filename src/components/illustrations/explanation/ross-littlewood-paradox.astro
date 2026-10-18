@@ -2,7 +2,7 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
-import { series, stroke } from "~/data/palette"
+import { series } from "~/data/palette"
 
 const steps = [1, 2, 3, 4]
 ---
@@ -20,9 +20,28 @@ const steps = [1, 2, 3, 4]
   >
     {steps.map((step, index) => (
       <g>
-        <text x="12" y={29 + index * 41} fill="currentColor" font-size="15">Step {step}</text>
-        <rect x="78" y={13 + index * 41} width={step * 44} height="24" fill={series.blue} fill-opacity=".25" stroke={series.blue} stroke-width="1.5" />
-        <text x={88 + step * 44} y={30 + index * 41} fill="currentColor" font-size="15" font-weight="700">{step * 9} inside</text>
+        <text x="12" y={29 + index * 41} fill="currentColor" font-size="15">
+          Step {step}
+        </text>
+        <rect
+          x="78"
+          y={13 + index * 41}
+          width={step * 44}
+          height="24"
+          fill={series.blue}
+          fill-opacity=".25"
+          stroke={series.blue}
+          stroke-width="1.5"
+        />
+        <text
+          x={88 + step * 44}
+          y={30 + index * 41}
+          fill="currentColor"
+          font-size="15"
+          font-weight="700"
+        >
+          {step * 9} inside
+        </text>
       </g>
     ))}
   </SvgFigure>
@@ -41,7 +60,7 @@ const steps = [1, 2, 3, 4]
   <p class="text-base font-bold">At noon, with this removal rule: 0 balls remain.</p>
   <Fragment slot="caption">
     At every finite step the count has grown by nine. But each ball numbered n is removed at
-    step n, before noon. No particular ball survives the entire schedule: the increasing
-    counts do not describe what remains at noon.
+    step n, before noon. No particular ball survives the entire schedule: the increasing counts
+    do not describe what remains at noon.
   </Fragment>
 </IllustrationFigure>
