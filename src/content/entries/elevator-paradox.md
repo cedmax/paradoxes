@@ -1,20 +1,16 @@
 ---
 title: "Elevator paradox"
-titleAccent: "paradox"
+format: argument
 chapter: statistics
 status: "explained"
-uniqueness: "related"
-anchor: "inspection-paradox"
+relatedTo: "inspection-paradox"
 simplification: light
 noMaths: true
 order: 140
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "Why does the first lift to arrive so often seem to be going the wrong way?"
 claimA: "A lift passing a floor once going up and once going down should be equally likely to arrive next in either direction."
 claimB: "At a low floor, the next lift is more likely to arrive coming down than going up, even though it passes both ways."
-verdict: "Near the bottom of a building, the lift spends most of its route above the waiting floor, so its next arrival is usually downward."
 whatBreaks: "The assumption that equal numbers of up and down passes mean equal waits for the next pass."
 statusNote: "at a floor near the bottom, the long interval while the lift is above the floor is most often followed by a downward arrival."
 setup: "A worker near the bottom of a building notices that a lift coming to their floor often arrives travelling down. Someone near the top usually sees the reverse."

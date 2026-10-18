@@ -1,22 +1,18 @@
 ---
 title: "Grelling–Nelson paradox"
-titleAccent: paradox
+format: argument
 chapter: self-reference
 status: unreconciled
-uniqueness: variant
-anchor: russells-paradox
+variantOf: russells-paradox
 simplification: light
 order: 40
-written: true
 sourcesVerified: true
-reviewed: false
 noMaths: true
 problem: "Is the word “heterological” a heterological word?"
 claimA: "Every describing word either describes itself or does not."
 claimB: "“Heterological” is itself a describing word."
-verdict: "There is no agreed fix. Each proposal, such as levels of language, gaps or allowing some contradictions, has a big cost."
 whatBreaks: "How to keep the ordinary rules for describing words when a word’s definition includes its own case. The responses give up different parts of those rules."
-statusNote: "it is a version of the [liar paradox](liar-paradox) about words, and the Stanford Encyclopedia of Philosophy says “no commonly agreed upon solution to the paradoxes of self-reference exists”."
+statusNote: "as for the [liar paradox](liar-paradox), the fixes say a word may only describe words of a lower level, that such a word is neither self-describing nor not, or that it is both."
 setup: "“English” is an English word, so it describes itself. “Long” is a short word, so it does not. Call a word heterological if it does not describe itself. Now ask whether “heterological” is heterological."
 whyWrong: "If it is heterological, it does not describe itself. But saying it is heterological says that it does. If it is not heterological, it does not fit its own description, which makes it heterological after all. Neither answer fits the ordinary rules."
 resolution:

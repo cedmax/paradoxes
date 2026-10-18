@@ -1,20 +1,18 @@
 ---
 title: Liar paradox
+format: argument
 description: "Is “This sentence is false” true or false? The liar paradox asks how a statement can speak about its own truth, and what rules should apply."
-titleAccent: paradox
 chapter: self-reference
 status: unreconciled
 simplification: light
+noMaths: true
 order: 10
-written: true
 sourcesVerified: true
-reviewed: false
 problem: Is the sentence “This sentence is false” true or false?
 claimA: "Every sentence is true or false."
 claimB: "A sentence is true if what it says is right, and false if it isn't."
-verdict: "The liar sentence defeats the ordinary rules for assigning truth and falsehood. The main fixes change language or logic, and none is widely accepted."
 whatBreaks: "Whether to restrict self-applied truth, allow gaps or allow contradictions. The proposals give up different parts of the ordinary rules."
-statusNote: every known fix costs something big, and none is widely accepted.
+statusNote: the fixes say the sentence is neither true nor false, that it is both, or that a sentence may speak only of the truth of sentences one level below it.
 setup: "Consider “This statement is false”. If it is true, what it says holds, so it is false. If it is false, what it says holds, so it is true. Either answer leads to the other."
 whyWrong: "Ordinary truth rules let a statement say something about itself and let its truth follow what it says. They also seem to require one answer, true or false. For this statement those demands cannot all hold."
 resolution:

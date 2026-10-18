@@ -1,23 +1,21 @@
 ---
 title: "Hilbert's hotel paradox"
+format: argument
 alternativeNames: ["Hilbert’s paradox of the Grand Hotel"]
-titleAccent: "paradox"
-aka: ["Grand Hotel", "infinite hotel"]
+searchTerms: ["Grand Hotel", "infinite hotel"]
 chapter: infinity
 status: explained
-uniqueness: related
-anchor: galileos-paradox
+relatedTo: galileos-paradox
 simplification: light
+noMaths: true
 order: 20
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "A hotel has infinitely many rooms and every one is full. Can it take one more guest?"
 claimA: "Full means there is no room for a new guest."
 claimB: "Move every guest up one room and there is."
-verdict: "Infinite sets don't obey the 'full means no room' rule."
 whatBreaks: "The idea that a full container has no space, which only holds for finite ones."
-statusNote: "the first claim is wrong. Full means no room only for finite collections, and nobody disputes this."
+statusNote: "full means no room only for finite collections: an infinite collection can be matched one to one with a part of itself, so moving the guest in room n to room n + 1 frees room 1. Nobody disputes this."
 setup: "A hotel has rooms numbered 1, 2, 3 and so on, without end. Every room has a guest in it. A new traveller arrives and asks for a room. The manager says they are full, and the traveller says that should not be a problem."
 whyWrong: "For any ordinary hotel, full really does mean full. Count the guests, count the rooms, and there is no room left over. We carry that rule over to the infinite hotel without noticing that it was only ever tested on finite ones."
 resolution:

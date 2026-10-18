@@ -23,29 +23,46 @@ export const uniqueness: Record<
   },
 }
 
+interface Linked {
+  relatedTo?: string
+  variantOf?: string
+}
+
 interface Tagged {
   id: string
-  data: { uniqueness: Uniqueness; anchor?: string }
+  data: Linked
 }
+
+// The kind of an entry follows from its link: variantOf, relatedTo, or neither (canonical).
+export const uniquenessOf = (data: Linked): Uniqueness =>
+  data.variantOf !== undefined
+    ? "variant"
+    : data.relatedTo !== undefined
+      ? "related"
+      : "canonical"
+
+// The slug of the entry a related or variant entry points to.
+export const anchorSlug = (data: Linked) => data.relatedTo ?? data.variantOf
 
 // The canonical or related entry a related or variant entry points to. Throws on an unknown
 // anchor, a variant anchor or a loop of anchors, so the build fails.
 export function anchorOf<T extends Tagged>(entry: T, all: T[]): T | undefined {
-  if (entry.data.uniqueness === "canonical") return undefined
-  const anchor = all.find((e) => e.id === entry.data.anchor)
+  const slug = anchorSlug(entry.data)
+  if (slug === undefined) return undefined
+  const anchor = all.find((e) => e.id === slug)
   if (!anchor)
     throw new Error(
-      `Entry "${entry.id}" has anchor "${entry.data.anchor}", which is unknown or not published yet`,
+      `Entry "${entry.id}" has anchor "${slug}", which is unknown or not published yet`,
     )
-  if (anchor.data.uniqueness === "variant") {
+  if (uniquenessOf(anchor.data) === "variant") {
     throw new Error(`Entry "${entry.id}" cannot point to "${anchor.id}", which is a variant`)
   }
   // Follow the chain of anchors up to a canonical entry, so a loop cannot slip through.
   const seen = new Set([entry.id])
-  for (let e: T | undefined = anchor; e && e.data.uniqueness !== "canonical";) {
+  for (let e: T | undefined = anchor; e && uniquenessOf(e.data) !== "canonical";) {
     if (seen.has(e.id)) throw new Error(`Entry "${entry.id}" is part of a loop of anchors`)
     seen.add(e.id)
-    const next: string | undefined = e.data.anchor
+    const next = anchorSlug(e.data)
     e = all.find((x) => x.id === next)
   }
   return anchor

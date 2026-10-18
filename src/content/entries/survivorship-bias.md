@@ -1,7 +1,7 @@
 ---
 title: "Survivorship bias"
-titleAccent: "bias"
-aka:
+format: argument
+searchTerms:
   [
     "survivor bias",
     "Abraham Wald",
@@ -13,18 +13,15 @@ aka:
 chapter: statistics
 order: 100
 status: explained
-uniqueness: related
-anchor: inspection-paradox
+relatedTo: inspection-paradox
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "If the bombers that come back have bullet holes in some places and hardly any in others, where should the armour go?"
 claimA: "The damage on planes that came back showed where they needed protection."
 claimB: "Planes that didn’t come back were probably hit where the returning ones weren’t, and that’s where the protection should go."
-verdict: "Only the planes that survived were counted. Few holes in one part can mean that planes hit there were lost."
 whatBreaks: "The assumption that the planes that came back are a fair sample of all the planes that were hit."
-statusNote: "the first claim is wrong. It treats the survivors as a fair sample, when the missing planes are missing because of the very damage being studied. The reasoning is not in dispute, though the popular story told about it is partly legend."
+statusNote: "the returning planes are not a fair sample, because the ones lost were lost to the very damage being studied. The reasoning is not in dispute, though the popular story is partly legend."
 setup: "In the Second World War, bombers came back from missions with bullet holes. Suppose the holes cluster on the body and wings, and there are few on the engines. It seems natural to add armour where the holes are."
 whyWrong: "The holes were counted only on the planes that returned. A plane hit in a weak spot is less likely to return, so its holes are never counted. The planes in the hangar have all passed a test, and the test was surviving the very damage being studied. The numbers here are an illustration. Say 100 planes are each hit once, 50 in the engines and 50 in the body. A hit in the body never brings a plane down, but half the hits in the engines do. Then all 50 planes with body holes come back, and only 25 with engine holes. The returning planes show twice as many body holes as engine holes, although both parts were hit equally often, and every plane lost was hit in the engines."
 resolution:

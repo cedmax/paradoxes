@@ -1,20 +1,19 @@
 ---
 title: "Problem of induction"
-titleAccent: "induction"
-aka: ["Hume's problem", "Hume's fork", "why will the sun rise tomorrow", "uniformity of nature"]
+format: argument
+searchTerms:
+  ["Hume's problem", "Hume's fork", "why will the sun rise tomorrow", "uniformity of nature"]
 chapter: belief
 order: 100
 status: unreconciled
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "What justifies expecting the future to resemble the past?"
 claimA: "We are justified in expecting the unobserved to resemble the observed, as when we expect the sun to rise tomorrow."
 claimB: "No argument can justify that expectation: a logical proof is impossible, and an argument from experience assumes what it needs to prove."
-verdict: "Deduction cannot justify induction, and justifying it by experience risks going in a circle. Later replies either reject part of that argument or accept a significant cost."
 whatBreaks: "The idea that expecting the future to resemble the past can be backed by reason alone, without taking something on trust."
-statusNote: "the main responses each cost something big, and none is widely accepted. Many philosophers have accepted Hume’s conclusion that reason cannot justify induction, and the problem is still treated as live."
+statusNote: "the replies say induction can defend itself by its past success, that being justified just means following good inductive standards, that induction is the best method to try, or that we must simply assume nature is uniform."
 setup: "Every morning of your life, the sun has risen. You expect it to rise tomorrow. That is an inference from what has been seen to what has not. The philosopher David Hume asked in 1739, in A Treatise of Human Nature, and again in 1748 in An Enquiry concerning Human Understanding, what the inference rests on. His answer was a dilemma. A logical proof is out, because it is no contradiction to say the sun will not rise. An argument from experience is out too, because it would have to use the principle that the future will be like the past, and that principle is the very thing in question."
 whyWrong: "Nothing looks wrong with expecting the sun to rise, and nothing looks wrong with Hume’s two steps. That is the difficulty. Everyday and scientific reasoning rests on inferences from the observed to the unobserved, called induction. Hume concluded that reason cannot justify them, and that we make them because of custom or habit, which he treated as a natural instinct. If that is so, the confidence of science rests on something that argument cannot support."
 resolution:

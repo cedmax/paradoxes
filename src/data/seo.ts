@@ -29,7 +29,7 @@ export function entrySeo(
   const url = new URL(`/entries/${entry.id}/`, site).href
   return {
     url,
-    title: `${d.title}: ${d.written ? "explanation" : "the puzzle"} | Logic Benders`,
+    title: `${d.title}: explanation | Logic Benders`,
     description,
     image: ogPath(entry.id, og),
     imageAlt: ogAlt(og),
@@ -42,22 +42,18 @@ export function entrySeo(
         ],
         site,
       ),
-      ...(d.written
-        ? [
-            {
-              "@type": "Article",
-              "@id": `${url}#article`,
-              url,
-              headline: d.title,
-              description,
-              inLanguage: "en-GB",
-              mainEntityOfPage: url,
-              isPartOf: { "@id": new URL("/#website", site).href },
-              ...(d.alternativeNames.length > 0 ? { alternateName: d.alternativeNames } : {}),
-              citation: d.sources.filter((source) => source.url).map((source) => source.url),
-            },
-          ]
-        : []),
+      {
+        "@type": "Article",
+        "@id": `${url}#article`,
+        url,
+        headline: d.title,
+        description,
+        inLanguage: "en-GB",
+        mainEntityOfPage: url,
+        isPartOf: { "@id": new URL("/#website", site).href },
+        ...(d.alternativeNames.length > 0 ? { alternateName: d.alternativeNames } : {}),
+        citation: d.sources.filter((source) => source.url).map((source) => source.url),
+      },
     ],
   }
 }

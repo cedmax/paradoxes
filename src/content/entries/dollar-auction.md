@@ -1,18 +1,24 @@
 ---
 title: "Dollar auction"
-titleAccent: "auction"
-aka: ["Shubik", "escalation", "sunk cost", "war of attrition", "dollar auction game"]
+format: argument
+searchTerms:
+  [
+    "Shubik",
+    "escalation",
+    "sunk cost",
+    "war of attrition",
+    "dollar auction game",
+    "bidding war",
+  ]
 chapter: collective
 order: 90
 status: explained
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Why would careful bidders in an auction for one dollar end up paying more than a dollar for it?"
 claimA: "Rational bidders would never push the price of a dollar past a dollar."
 claimB: "Rational bidders can raise the price past a dollar, because losing bidders also pay and continuing can be a best reply."
-verdict: "A price above a dollar can follow from short-term rational replies because the runner-up also pays. The whole-game analysis allows rational strategies that sometimes continue and sometimes drop out, rather than requiring endless bidding."
 whatBreaks: "The assumption that rational bidders can never bid more than the dollar’s value. Each bid must be compared with paying the losing bid, not with getting the prize for free."
 statusNote: "rational play need not stop at the prize’s value. The standard analysis allows stable strategies with a chance of dropping out each round, independent of how high the bids have become."
 setup: "An auction offers a dollar bill. The highest bidder pays their bid and gets the dollar. The second-highest bidder also pays, but gets nothing. Suppose one person has bid a dollar and the runner-up has bid 95 cents."

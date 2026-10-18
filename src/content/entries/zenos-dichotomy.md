@@ -1,22 +1,20 @@
 ---
 title: "Zeno's dichotomy paradox"
-titleAccent: "paradox"
-aka: ["Zeno", "racecourse", "race course"]
+format: argument
+searchTerms: ["Zeno", "racecourse", "race course"]
 chapter: infinity
 status: explained
-uniqueness: variant
-anchor: achilles-and-the-tortoise
+variantOf: achilles-and-the-tortoise
 simplification: light
+noMaths: false
 order: 30
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Can you ever walk across a room?"
 claimA: "Endlessly many steps can never all be finished."
 claimB: "People cross rooms all the time."
-verdict: "Endless steps can add up to a finite distance and a finite time."
 whatBreaks: "The idea that endlessly many steps can never all be finished, because they must take endless time."
-statusNote: "the first claim is wrong. The endless half-steps add up to one finite trip in a finite time, so you do arrive."
+statusNote: "the endless half-steps add up to exactly one room, and take a finite total time at a steady pace. The sum is settled, though some philosophers say it does not fully reach what Zeno asked."
 setup: "You want to walk across a room. Before you get to the far wall, you have to get halfway. Before that, you have to get a quarter of the way. Before that, an eighth. You can keep halving forever, so there is no first step you could take. And to arrive, it seems you would have to finish endlessly many jobs. Zeno of Elea, who lived around 490 to 430 BC, is credited with this argument, and it comes to us through Aristotle."
 whyWrong: "It is the same trick as [Achilles and the tortoise](achilles-and-the-tortoise), run the other way. There the gaps shrink as he chases. Here they shrink as you divide the trip up. In both, every piece is real and there really is no last one. The mistake is to assume that endlessly many pieces must take endless time or cover endless distance."
 resolution:

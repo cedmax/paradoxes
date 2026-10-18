@@ -1,16 +1,13 @@
 ---
 title: "Ebbinghaus illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
-aka: ["Titchener circles", "Ebbinghaus circles"]
+searchTerms: ["Titchener circles", "Ebbinghaus circles"]
 description: "Can two circles of exactly the same size look different?"
 problem: "Can two circles of exactly the same size look different?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 210
-written: true
 why: "The circles around a circle change how big it looks: ringed by large circles it seems smaller, ringed by small ones it seems bigger. Not every combination of sizes and distances does this."
 finePrint: "Both the outlines of the surrounding circles and their overall context seem to play a part (Weintraub, 1979), and some arrangements of size and distance produce little or no illusion (Knol and colleagues, 2015). Thiéry published the figure in 1896, and Wundt reproduced it in 1898. Who first devised it is uncertain. Titchener later published it too, but did not invent it."
 sources:
@@ -33,5 +30,4 @@ sources:
     url: https://doi.org/10.1037/1093-4510.4.3.228
     note: "History of Psychology 4(3), pp. 228–244, on the attribution history. Bibliographic details and conclusion checked through the abstract; the full article was not inspected."
 sourcesVerified: true
-reviewed: false
 ---

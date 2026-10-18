@@ -1,20 +1,18 @@
 ---
 title: "Paradoxes of material implication"
+format: argument
 titleAccent: "material implication"
 chapter: belief
 status: "disputed"
 simplification: light
 noMaths: true
 order: 160
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "How can a false claim logically imply absolutely anything?"
 claimA: "The everyday word “if” means no more than the truth rule used by classical logic."
 claimB: "The everyday word “if” means more than that truth rule, so the rule alone does not capture what people say."
-verdict: "Classical logic treats a conditional with a false starting statement as true; whether this captures everyday “if” is disputed."
 whatBreaks: "Whether everyday “if” can be explained by the classical truth rule plus conversational context, or requires a different kind of conditional."
-statusNote: "the classical truth rule is agreed, but philosophers dispute how well it captures ordinary conditional statements."
+statusNote: "the camps are Grice’s view, which adds conversational expectations to the classical rule, and relevance logic, which demands a connection between the two parts."
 setup: "“If the moon is made of cheese, then two plus two is five” sounds absurd. Yet classical logic counts the complete conditional as true because its starting statement is false."
 whyWrong: "The classical rule for “if A, then B” only rules out A being true while B is false. It does not require any link between the topics. Ordinary “if” often suggests a link."
 resolution:

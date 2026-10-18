@@ -1,20 +1,17 @@
 ---
 title: "Ehrenfest paradox"
-titleAccent: "paradox"
+format: argument
+searchTerms: ["disc circumference"]
 chapter: models
 status: "explained"
-uniqueness: "related"
-anchor: "ladder-paradox"
+relatedTo: "ladder-paradox"
 simplification: light
 noMaths: true
 order: 160
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "Can a spinning disc keep the ordinary relation between its radius and its rim?"
 claimA: "A spinning disc can remain perfectly rigid and keep ordinary flat geometry for all its co-rotating measurements."
 claimB: "Special relativity makes rim and radial measurements behave differently, so that ordinary flat relation cannot hold for those measurements."
-verdict: "A rotating frame is not an ordinary rigid flat measuring grid; its circumference and radius cannot be treated as in a stationary disc."
 whatBreaks: "The assumption that a perfectly rigid rotating disc can be measured with everyday flat geometry."
 statusNote: "perfect rigidity is incompatible with relativity, and distances measured around a rotating disc require care."
 setup: "On a stationary disc, the circumference is about 6.28 times the radius. Now imagine spinning the disc very fast while insisting that it stays perfectly rigid."

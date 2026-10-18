@@ -1,21 +1,20 @@
 ---
 title: "Coin rotation paradox"
-titleAccent: "paradox"
-aka: ["rolling coin", "two coins", "SAT coin question", "coin paradox", "rolling circles"]
+format: argument
+searchTerms:
+  ["rolling coin", "two coins", "SAT coin question", "coin paradox", "rolling circles"]
 chapter: shapes
 status: explained
 simplification: light
 noMaths: false
 order: 20
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "A coin rolls once around the rim of an identical coin. How many times does it turn?"
 claimA: "A coin turns once per rim length it rolls over, and both rims are equal, so it turns once."
 claimB: "The rolling coin turns twice."
-verdict: "It turns twice. Rolling along the other coin’s rim gives one turn, and travelling all the way round that coin gives another."
 whatBreaks: "The assumption that the number of turns equals the length of rim rolled over, divided by the coin’s own rim."
-statusNote: "the idea that the turns equal the length of rim rolled over is wrong. That count leaves out the extra turn the coin makes by going once all the way round the fixed coin."
+statusNote: "the coin turns twice: once from rolling over a rim of its own length and once more from going all the way round the fixed coin. For radii r and R the number of turns is R/r + 1."
 setup: "Put two identical coins side by side on a table, heads up. Hold coin A still. Roll coin B round the rim of A without slipping until B is back where it began. Halfway round, B’s head is upright again, so it has already turned once. By the time it is home it has turned twice. Yet A’s rim is exactly as long as B’s, so B seems to have rolled over just one length of its own rim."
 whyWrong: "Counting rim lengths works when a coin rolls along a straight edge: each length of its own rim rolled over is one turn. Going round a curve adds something. Rolling round A, coin B also travels in a full circle about A, and that loop turns it once more, whether it rolls or not. Measuring only the contact between the two rims misses that turn."
 resolution:

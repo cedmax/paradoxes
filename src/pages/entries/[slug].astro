@@ -27,7 +27,7 @@ const d = entry.data
 const all = await getPublishedEntries()
 const { echoes, siblings } = relatedEntries(entry, all)
 const seo = entrySeo(entry, chapterById(d.chapter), Astro.site)
-// Absent format is the existing argument type, not an illusion.
+// `format` is required, so anything that is not an illusion is an argument.
 const isIllusion = d.format === "illusion"
 ---
 
@@ -51,7 +51,7 @@ const isIllusion = d.format === "illusion"
       ) : (
         <ArgumentBody slug={entry.id} data={d} />
       )}
-      {d.written && !!d.sources.length && <Sources sources={d.sources} />}
+      {d.sources.length > 0 && <Sources sources={d.sources} />}
     </article>
 
     <EntrySidebar echoes={echoes} siblings={siblings} url={seo.url}>

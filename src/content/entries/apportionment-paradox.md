@@ -1,20 +1,18 @@
 ---
 title: "Apportionment paradox"
-titleAccent: "paradox"
+format: argument
+searchTerms: ["rounding rule"]
 chapter: collective
 status: "explained"
 simplification: light
 noMaths: true
 order: 130
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "How can giving a parliament one more seat cause a state to lose a seat?"
 claimA: "Adding a seat to the total cannot reduce any state’s allocated number."
 claimB: "Under a largest-remainders rule, adding one seat can reduce a state’s allocation."
-verdict: "Rounding proportional shares can reshuffle the winners when the total number of seats changes."
 whatBreaks: "The assumption that increasing the total must give each state at least as many seats as before."
-statusNote: "the largest-remainder method can produce the Alabama paradox; the arithmetic is not disputed."
+statusNote: "with the largest-remainder rule, adding a seat can take one from a state, because the leftover seats go to the largest fractional remainders. The arithmetic is not disputed."
 setup: "Suppose a fixed number of seats is divided between states according to population. Every state gets its whole-number share first, then the leftover seats go to the largest fractional remainders."
 whyWrong: "When the total increases, all the fractional shares change. A state that won a leftover seat before may lose the race for one afterwards."
 resolution:

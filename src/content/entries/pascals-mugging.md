@@ -1,7 +1,7 @@
 ---
 title: "Pascal's mugging"
-titleAccent: "mugging"
-aka:
+format: argument
+searchTerms:
   [
     "Pascal's mugger",
     "tiny probabilities of vast utilities",
@@ -12,18 +12,15 @@ aka:
 chapter: individual
 order: 110
 status: unreconciled
-uniqueness: related
-anchor: pascals-wager
+relatedTo: pascals-wager
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "A stranger promises an enormous reward that is almost certainly a lie, and asks for your wallet. If the reward is big enough, should you hand it over?"
 claimA: "A rational person takes whichever option has the highest expected value, however small the probabilities involved."
 claimB: "A rational person does not hand over a wallet for a promise that is almost certainly false."
-verdict: "Expected value says pay when the promised reward is big enough, while common sense says do not pay. The main proposed ways out each face serious objections, and there is no agreed solution."
 whatBreaks: "The rule that a choice is worth its probability-weighted average payoff. Each fix either caps the payoffs, shrinks the probabilities, sets the calculation aside or accepts paying, and each pays a cost."
-statusNote: "each main answer faces a serious objection. Capping the value of rewards or setting the calculation aside means, on Hayden Wilkinson’s argument, turning down attractive trade-offs or ranking similar gambles inconsistently, scaling down the odds of grand claims can mean refusing to believe them even on strong evidence, and paying leaves a person open to being drained again and again. Views on which answer is right differ."
+statusNote: "the answers cap how much a reward can be worth, doubt grand claims in proportion to their size, set aside the weighing of odds against payoffs, or accept paying the mugger."
 setup: "In a short dialogue published in 2009, the philosopher Nick Bostrom imagines Blaise Pascal stopped in the street by a mugger who has forgotten his weapon. The mugger asks for Pascal’s wallet and promises to pay back far more tomorrow. Pascal says the mugger will almost certainly not keep the promise. So the mugger keeps raising the offer, until he promises magic that will give Pascal 1,000 quadrillion extra happy days of life. Pascal puts the chance that the mugger can and will deliver at one in 10 quadrillion. The wallet, they agree, is worth about one happy day to him."
 whyWrong: "The expected value of a choice is each possible payoff multiplied by its probability, all added up. Here it is 1,000 quadrillion happy days times one in 10 quadrillion, which is 100 happy days. Pascal gives up one day’s worth to buy an expected 100, a gain of about 99, and the mugger points out that this is “nearly 100”. Pascal admits, “I see no flaw in your mathematics”, and hands over the wallet. The trick works for any chance above zero, because the mugger can always name a reward that grows faster than the chance shrinks. Yet handing over a wallet on such a promise looks foolish, and a person who reasons this way can be drained of everything by anyone willing to make big enough promises."
 resolution:

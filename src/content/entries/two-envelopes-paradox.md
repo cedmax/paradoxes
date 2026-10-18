@@ -1,21 +1,18 @@
 ---
 title: "Two envelopes paradox"
-titleAccent: "paradox"
+format: argument
 chapter: probability
 status: explained
-uniqueness: related
-anchor: st-petersburg-paradox
+relatedTo: st-petersburg-paradox
 simplification: light
 noMaths: true
 order: 30
-written: true
 sourcesVerified: true
 problem: "Two envelopes hold money, one with double the other. Should you swap the one you picked?"
 claimA: "Whatever amount you hold, the other envelope is equally likely to hold double or half."
 claimB: "Both envelopes were filled and handed out the same way, so before you look, swapping can't help."
-verdict: "Swapping cannot help. No proper set of odds makes double or half equally likely for every amount you might hold, though writers still differ on exactly where the argument slips."
 whatBreaks: "The claim that, whatever you hold, the other envelope is equally likely to hold double or half. No set of odds whose chances add up to one can make that true for every amount."
-statusNote: "the first claim is wrong, because no proper set of odds makes double and half equally likely whatever you hold. Writers still differ on exactly where the swapping argument slips, and a further puzzle, where other odds make swapping look good whatever amount you see, is still argued over."
+statusNote: "no proper set of odds makes double and half equally likely for every amount you might hold: for a fixed pair, swapping gains and loses the same amount with equal chance. Writers differ on where the argument slips."
 setup: "Two envelopes hold money, one exactly twice the other. You pick one at random without opening it. Should you swap? Call the amount you hold 20 pounds. The other seems equally likely to hold 40 or 10."
 whyWrong: "That tempting calculation gives a gain of 20 or a loss of 10, each with chance one half: an average gain of 5. It seems to work for any amount. But after swapping the same reasoning says to swap back, although nothing has been learned."
 resolution:

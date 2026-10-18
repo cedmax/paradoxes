@@ -1,20 +1,20 @@
 ---
 title: "The sum of all whole numbers"
+format: argument
 titleAccent: "whole numbers"
-aka: ["1+2+3", "minus one twelfth", "-1/12", "Ramanujan summation", "zeta regularisation"]
+searchTerms:
+  ["1+2+3", "minus one twelfth", "-1/12", "Ramanujan summation", "zeta regularisation"]
 chapter: infinity
 order: 110
 status: explained
 simplification: heavy
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "How can 1 + 2 + 3 + 4 + … be said to equal −1/12, when adding positive numbers only makes the total bigger?"
 claimA: "Adding positive numbers only makes totals bigger, so 1 + 2 + 3 + … cannot be a negative fraction."
 claimB: "The sum of 1 + 2 + 3 + … is −1/12, a value mathematicians and physicists use."
-verdict: "The ordinary sum grows without limit and has no finite value. The −1/12 is what a different method assigns to the series, and the equals sign is shorthand for that."
 whatBreaks: "The assumption that the equals sign means the ordinary sum. Here it stands for a value given by a special method, because the ordinary sum has no finite value."
-statusNote: "the second claim is wrong if it is heard as an ordinary sum. The ordinary sum does not exist as a finite number, and −1/12 answers a different, precisely defined question."
+statusNote: "the ordinary sum grows without limit and has no finite value. The −1/12 is what methods such as zeta function regularisation and Ramanujan summation assign, which answers a different, precisely defined question."
 setup: "Add the whole numbers one after another: 1, then 1 + 2 = 3, then 6, 10, 15 and so on. The running total never stops growing. Yet it is often said that 1 + 2 + 3 + 4 + … = −1/12. The mathematician Srinivasa Ramanujan stated the value in a letter to G. H. Hardy dated 27 February 1913, and it still turns up in physics."
 whyWrong: "The ordinary meaning of an endless sum is: add the terms one at a time and see what the total settles towards. For 1 + 2 + 3 + … the totals are 1, 3, 6, 10, 15 and so on. They increase without bound, so the series has no sum in the ordinary sense. The terms never get small, which is the quick sign that an endless sum will not settle. The claim of −1/12 does not use the ordinary meaning, even though it is written with the same equals sign."
 resolution:

@@ -1,7 +1,7 @@
 ---
 title: "Novikov self-consistency principle"
-titleAccent: "principle"
-aka:
+format: argument
+searchTerms:
   [
     "Novikov self-consistency",
     "Novikov principle",
@@ -10,18 +10,14 @@ aka:
   ]
 chapter: time-causation
 status: "explained"
-uniqueness: "related"
-anchor: "grandfather-paradox"
+relatedTo: "grandfather-paradox"
 simplification: light
 noMaths: true
 order: 70
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "Can a billiard ball knock its younger self away from a time machine and still have made the trip?"
 claimA: "The ball’s starting path cannot end consistently: hitting its younger self prevents the trip."
 claimB: "The same starting path can end consistently: a glancing collision still sends the younger ball into the time machine."
-verdict: "A glancing collision can complete the time loop instead of stopping it. The model may allow several consistent paths."
 whatBreaks: "The assumption that the apparently self-defeating starting path has no possible consistent continuation."
 statusNote: "the apparently impossible starting path has consistent solutions in the studied billiard-ball model, although the model does not prove time travel is possible."
 setup: "The Novikov self-consistency principle, named after the physicist Igor Novikov, says that if travel into the past is possible, only histories that fit together can happen. Joseph Polchinski imagined a ball entering a wormhole, a hypothetical passage that sends it into the past. Its older self comes out just in time to hit the younger ball, seemingly knocking it away from the entrance."

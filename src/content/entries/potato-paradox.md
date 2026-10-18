@@ -1,21 +1,19 @@
 ---
 title: "Potato paradox"
-titleAccent: "paradox"
-aka: ["potatoes", "99 percent water", "dried potatoes", "porch potatoes"]
+format: argument
+searchTerms: ["potatoes", "99 percent water", "dried potatoes", "porch potatoes"]
 chapter: shapes
 status: explained
 simplification: light
 noMaths: false
 order: 10
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Potatoes that are 99% water dry out until they are 98% water. Do they lose much weight?"
 claimA: "Going from 99% water to 98% water is a tiny change, so the potatoes lose very little weight."
 claimB: "The potatoes end up weighing half as much as before."
-verdict: "Potatoes that dry from 99% water to 98% water lose half their weight, because the dry part stays fixed while its share of the total doubles."
 whatBreaks: "The idea that a one-point drop in the water percentage means only a small drop in weight."
-statusNote: "the idea that a one-point drop in the water percentage means only a small drop in weight is wrong. The dry part cannot change, and its share doubles from 1% to 2%, so the total must halve. The arithmetic is not in dispute."
+statusNote: "the dry matter cannot change, so when its share doubles from 1% to 2% the total must halve, taking 100 kg down to 50 kg. The arithmetic is not in dispute."
 setup: "Fred brings home 100 kg of potatoes. They are 99% water, and the rest is dry matter. He leaves them outside overnight, and they dry until they are 98% water. How much do they weigh now? The puzzle is stated this way in David Darling’s The Universal Book of Mathematics (2004). J. A. Paulos gave the same puzzle in pounds in A Mathematician Reads the Newspaper (1995). The answer, which many people find hard to believe, is 50 kg."
 whyWrong: "It is natural to watch the water percentage, which barely moves, and assume the weight barely moves either. But the water is not the part that stays fixed. The dry matter is. Only water evaporates, so the dry matter keeps exactly the same weight, and it is the dry matter’s share that tells the story. That share goes from 1% to 2%, which is double."
 resolution:

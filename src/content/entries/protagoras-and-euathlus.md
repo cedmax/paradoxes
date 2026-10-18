@@ -1,20 +1,18 @@
 ---
 title: "Protagoras and Euathlus"
-titleAccent: Euathlus
+format: argument
 chapter: self-reference
 status: defused
 simplification: light
 order: 60
-written: true
 sourcesVerified: true
 reviewed: true
 noMaths: true
 problem: "A teacher sues his student for unpaid fees. Who wins?"
 claimA: "If Protagoras wins, the court makes Euathlus pay; if Euathlus wins, the contract does."
 claimB: "Until Euathlus wins a case he owes nothing, so this court has nothing to make him pay."
-verdict: "Euathlus should win this case, since nothing is owed yet. Protagoras could then sue again and win. This is the usual answer in the literature."
 whatBreaks: "The assumption that winning this very case can make the fee due in this very case."
-statusNote: "when the suit is brought Euathlus has not yet won a case, so nothing is owed and he should win. Peter Suber reports that the small literature on the case all suggests Euathlus should have won, and that most commentators observe Protagoras could then sue a second time and win."
+statusNote: "when the suit is brought Euathlus has not yet won a case, so nothing is owed and he should win. Peter Suber reports that most commentators then observe Protagoras could sue again and win."
 setup: "Protagoras, a teacher of the ancient Greek world, agreed to teach a student named Euathlus the law. According to Gellius, Euathlus paid half the fee before the lessons began, and agreed to pay the rest on the day he first pleaded a case in court and won it. Euathlus then went into politics instead of the law. Protagoras sued him for the fee. Protagoras argued: if I win, the court orders you to pay. If you win, you have now won your first case, so the contract says you must pay. Euathlus replied: if I win, the court says I owe nothing. If you win, I still have not won a case, so the contract says I owe nothing."
 whyWrong: "Both arguments work from rules we normally trust: do what the court orders, and do what the contract says. The case is about whether Euathlus must pay on a contract that depends on the result of that very case, so the ruling and the contract each seem to claim the last word."
 resolution:

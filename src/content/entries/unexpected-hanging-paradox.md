@@ -1,19 +1,17 @@
 ---
 title: "Unexpected hanging paradox"
+format: argument
 description: "A prisoner is promised a hanging on a day they cannot predict. Can they rule out every day? The same puzzle can be told with a surprise exam."
 alternativeNames: ["Surprise exam paradox", "Surprise examination paradox"]
-titleAccent: "paradox"
 chapter: belief
 status: disputed
 simplification: light
 order: 70
-written: true
 problem: "A prisoner is told they will be hanged on a day they cannot predict. Can they rule out every day?"
 claimA: "The judge's announcement makes sense and can come true."
 claimB: "The prisoner's argument proves that it cannot come true."
-verdict: "Philosophers do not agree on what exactly goes wrong."
 whatBreaks: "Either the judge's announcement, which talks about what the prisoner can know, or the prisoner's assumption that they will still know it is true on each evening."
-statusNote: "experts agree the puzzle is real, but disagree on whether the fault lies in the prisoner's assumptions about what they will know or in the announcement itself."
+statusNote: "the diagnoses are that the prisoner cannot count on the announcement holding, that the announcement defeats itself, or that knowing something does not mean knowing that you know it."
 setup: "A judge tells a prisoner that they will be hanged at noon on one weekday of the coming week, and that the day will be a surprise: they will not know it the evening before. The prisoner reasons. It cannot be Friday, because if they are still alive on Thursday evening they will know it is Friday. So Friday is out. Then it cannot be Thursday, since with Friday gone, they would know on Wednesday evening. They go back through every day and rule out them all. They feel safe. On Wednesday morning the executioner arrives, and it is a complete surprise."
 whyWrong: "A Wednesday execution seems to fulfil the announcement, while the backward argument seems to rule out every day. The dispute is whether the announcement is coherent and which assumptions about knowledge the prisoner may use."
 resolution:

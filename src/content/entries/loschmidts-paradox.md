@@ -1,20 +1,19 @@
 ---
 title: "Loschmidt's paradox"
-titleAccent: "paradox"
-aka: ["reversibility paradox", "arrow of time", "second law", "Boltzmann", "time-reversal"]
+format: argument
+searchTerms:
+  ["reversibility paradox", "arrow of time", "second law", "Boltzmann", "time-reversal"]
 chapter: models
 order: 90
 status: disputed
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "If the laws of motion work the same forwards and backwards, why does time seem to run in only one direction?"
 claimA: "If the laws of motion work the same forwards and backwards, entropy should have no preferred direction."
 claimB: "Entropy almost always rises towards the future."
-verdict: "The time-symmetric laws alone do not explain why entropy rises towards the future. Proposed explanations appeal to probability, a very special beginning, or other assumptions."
 whatBreaks: "The contested choice is between treating the second law as only very likely, and explaining the one-way direction through the special state the universe began in."
-statusNote: "experts agree this is a real puzzle and disagree on which claim to give up. Each of the main approaches settles a part of it, and none is accepted as covering the whole."
+statusNote: "the time-symmetric laws do not explain the arrow of time on their own. Approaches say reversing molecules would raise entropy elsewhere, that the universe began in a very low-entropy state, or that large-scale dynamics produce irreversibility."
 setup: "Reverse every molecule’s motion in a gas. If the laws work equally well backwards, the gas can retrace a lawful history in which entropy falls. Entropy measures how many microscopic arrangements fit the large-scale state. Yet ordinary processes overwhelmingly run towards higher entropy."
 whyWrong: "The laws permit the reversed history. They do not by themselves say why ordinary histories go the other way. Probability assumptions about molecules and assumptions about the beginning matter too."
 resolution:

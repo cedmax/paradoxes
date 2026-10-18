@@ -1,21 +1,19 @@
 ---
 title: "Faint young Sun paradox"
-titleAccent: "paradox"
-aka: ["early Earth", "Sagan and Mullen", "young Sun", "early climate", "snowball Earth"]
+format: argument
+searchTerms: ["early Earth", "Sagan and Mullen", "young Sun", "early climate", "snowball Earth"]
 chapter: models
 order: 80
 status: disputed
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "If the young Sun was much dimmer than today, why was early Earth not frozen?"
 claimA: "Early Earth warmed itself much as it does now, so a Sun about 30 percent dimmer would have left it frozen."
 claimB: "Early Earth had liquid water, even though the Sun gave off much less heat."
-verdict: "Early Earth needed extra warming from somewhere, and scientists disagree about where it came from."
 whatBreaks: "The contested choice is which kind of extra warming early Earth had: more of some greenhouse gas, fewer clouds, or something else. Each explanation has its own problem."
-statusNote: "experts agree the puzzle is real and disagree on how it is solved. The leading explanation is that greenhouse gases, mainly carbon dioxide, warmed the planet, but how much is still debated."
+statusNote: "the leading explanation is extra greenhouse warming, mainly carbon dioxide. Rivals are an ammonia haze, less reflection of sunlight and a brighter young Sun."
 setup: "The young Sun gave off substantially less heat than today. If early Earth had warmed itself in much the same way as now, it should have been frozen. Yet geological evidence points to liquid water. What supplied the extra warmth?"
 whyWrong: "The freezing prediction assumes a surface and atmosphere like today’s. Different greenhouse gases, clouds or reflection could change the result. The disagreement is over which combination fits the early Earth."
 resolution:

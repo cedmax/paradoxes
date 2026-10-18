@@ -1,21 +1,20 @@
 ---
 title: "Monty Hall problem"
+format: argument
 description: "Three doors, one car. The host shows a goat behind a door you did not pick. Should you switch? The rules matter in the Monty Hall problem."
-titleAccent: "problem"
-aka: ["three doors", "game show"]
+searchTerms: ["three doors", "game show"]
 chapter: probability
 status: explained
 simplification: light
+noMaths: false
 order: 10
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Three doors, one car. You pick one and the host opens a door with a goat behind it. Should you switch?"
 claimA: "Two doors left, so it's 50/50."
 claimB: "Switching wins 2 times in 3."
-verdict: "The 50/50 intuition is wrong."
 whatBreaks: "Intuition about probability: new information changes the odds unevenly."
-statusNote: "the 50/50 intuition is wrong. The accepted explanation can be checked by listing every case."
+statusNote: "switching wins exactly when your first pick was wrong, which happens 2 times in 3, because the host knows where the car is and leaves that door standing. It holds only if he always opens a losing door."
 setup: "A game show has three doors. Behind one is a car, behind the other two are goats. You pick a door. The host, who knows where the car is, opens one of the other two doors and shows you a goat. He then offers you a deal, stick with your door, or switch to the one left closed."
 whyWrong: "Two closed doors look like a coin flip: 50/50, so why bother? But the two doors aren't equals. Yours was picked blind. The other one was left standing by a host who knew where the car was and avoided it."
 resolution:

@@ -1,22 +1,21 @@
 ---
 title: "1 − 2 + 3 − 4 + …"
+format: argument
 titleAccent: "3 − 4 + …"
-aka: ["alternating whole numbers", "equals one quarter", "Euler 1/4", "Abel sum", "1-2+3-4"]
+searchTerms:
+  ["alternating whole numbers", "equals one quarter", "Euler 1/4", "Abel sum", "1-2+3-4"]
 chapter: infinity
 status: explained
-uniqueness: variant
-anchor: sum-of-all-whole-numbers
+variantOf: sum-of-all-whole-numbers
 simplification: heavy
 noMaths: false
 order: 180
-written: true
 sourcesVerified: true
 problem: "How can 1 − 2 + 3 − 4 + … be said to equal one quarter, when its running totals swing wider and wider?"
 claimA: "The running totals swing ever wider, so 1 − 2 + 3 − 4 + … cannot add up to 1/4."
 claimB: "1 − 2 + 3 − 4 + … equals 1/4, as Euler found and summation methods still give."
-verdict: "The series has no ordinary sum, because its running totals never settle. The 1/4 is the value that special summation methods assign, and the equals sign is shorthand for that."
 whatBreaks: "The assumption that the equals sign means the ordinary sum. Here it stands for a value given by a summation method, because the ordinary sum does not exist."
-statusNote: "the series has no ordinary sum, so 1/4 is wrong if heard as one. It is the value that summation methods such as Abel summation assign, which answers a different, precisely defined question."
+statusNote: "its running totals never settle, so 1/4 is not an ordinary sum. It is the value Abel summation assigns, which answers a different, precisely defined question."
 setup: "The series 1 − 2 + 3 − 4 + … has the whole numbers as its terms, with signs that alternate. Its running totals go 1, −1, 2, −2, 3, and so on. Yet Leonhard Euler, in a paper written in 1749 and published in 1768, said its sum is 1/4. He knew how that sounded: “when it is said that the sum of this series 1-2+3-4+5-6 etc. is 1/4, that must appear paradoxical.”"
 whyWrong: "The ordinary meaning of an endless sum is: add the terms one at a time and see what the total settles towards. Here the totals swing further out each time. Euler himself pointed out that adding 100 terms gives −50 and adding 101 terms gives +51. The totals settle on nothing, so the series is divergent and has no sum in the ordinary sense. Euler’s answer was that “it is necessary to give to the word sum a more extended meaning”. The 1/4 belongs to that extended meaning, even though it is written with the same equals sign."
 resolution:

@@ -1,20 +1,17 @@
 ---
 title: "Problem of evil"
-titleAccent: "evil"
+format: argument
 chapter: belief
 status: "disputed"
 simplification: light
 noMaths: true
 order: 170
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "How can an all-powerful, perfectly good God exist when suffering exists?"
 claimA: "If an all-powerful, all-knowing and perfectly good God exists, suffering cannot exist."
 claimB: "Suffering exists and could coexist with a God who has all three qualities."
-verdict: "The argument turns on whether a perfectly good God could have sufficient reason to allow suffering; philosophers disagree."
 whatBreaks: "Whether the existence of suffering rules out a God who is all-powerful, all-knowing and perfectly good."
-statusNote: "philosophers disagree about the logical and evidential force of suffering against the existence of such a God."
+statusNote: "defenders such as Plantinga argue that God and suffering are logically compatible, while Rowe argues that apparently pointless suffering makes such a God less likely."
 setup: "The world contains terrible suffering, including suffering that appears undeserved. A perfectly good being would seem to want to prevent it, and an all-knowing, all-powerful being could seem able to do so."
 whyWrong: "Those claims look difficult to combine. One response says the suffering counts strongly against such a God. Another says goodness might permit some suffering for reasons people cannot fully see."
 resolution:

@@ -1,7 +1,7 @@
 ---
 title: "Richard's paradox"
-titleAccent: "paradox"
-aka:
+format: argument
+searchTerms:
   [
     "definable real numbers",
     "Jules Richard",
@@ -11,17 +11,14 @@ aka:
   ]
 chapter: self-reference
 status: defused
-uniqueness: related
-anchor: berry-paradox
+relatedTo: berry-paradox
 simplification: "heavy"
 noMaths: false
 order: 120
-written: true
 sourcesVerified: true
 problem: "If every number describable in English is on a list, can English describe a number missing from it?"
 claimA: "English gives a precise, fixed test for which phrases define a number, even phrases about that test itself."
 claimB: "Using that test, a short English recipe defines a number different from every number on the list."
-verdict: "“Definable in English” cannot be a precise test that English can freely apply to all its own definitions. The proposed list relies on that impossible assumption."
 whatBreaks: "The assumption that English can precisely identify all its own number definitions, including definitions about that very list."
 statusNote: "the contradiction rules out the assumed test for English definitions. The trick that makes a number differ from every listed number is sound."
 setup: "Some phrases define numbers exactly, such as “one divided by three”. List all finite English phrases, shortest first and alphabetically within each length. Keep only those that define a number. This seems to give a list of every number that English can describe."

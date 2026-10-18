@@ -1,22 +1,18 @@
 ---
 title: "Chainstore paradox"
-titleAccent: "paradox"
+format: argument
 chapter: collective
 status: "disputed"
-uniqueness: "related"
-anchor: "unexpected-hanging-paradox"
+relatedTo: "unexpected-hanging-paradox"
 simplification: light
 noMaths: true
 order: 150
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "Why does backward reasoning tell a large chain never to fight a new rival?"
 claimA: "A chain facing many entrants should fight early rivals to protect a reputation that deters later rivals."
 claimB: "A chain facing those entrants should never fight: backward reasoning shows it will always earn more by sharing the market after entry."
-verdict: "The simple game predicts no fighting, yet reputation and bounded reasoning can make fighting a plausible strategy."
 whatBreaks: "Whether a backward-induction recommendation or the long-term deterrent value of fighting should guide the chain."
-statusNote: "the mathematical result holds in Selten’s complete-information game, while Selten and later researchers questioned whether it captures sensible behaviour."
+statusNote: "backward reasoning in Selten’s original game says the chain should always accommodate, while later models show that fighting early can deter rivals when they are unsure how the chain will behave."
 setup: "A large chain meets a possible rival in one town after another. Once a rival enters, the chain can share the market or start a costly price war. A war may frighten later rivals."
 whyWrong: "At the last town, fighting loses money and has nobody left to deter. Backward reasoning then rules out fighting at the second-last town and repeats the step all the way to the first."
 resolution:

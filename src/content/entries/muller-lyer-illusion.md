@@ -1,16 +1,13 @@
 ---
 title: "Müller-Lyer illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
-aka: ["Muller Lyer", "arrowhead illusion"]
+searchTerms: ["Muller Lyer", "arrowhead illusion"]
 description: "Can arrowheads make two lines of equal length look unequal?"
 problem: "Can arrowheads make two lines of equal length look unequal?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 220
-written: true
 why: "Fins at the ends of a line change how long it looks, even when the lines match exactly. Why is not settled, and several explanations have been proposed."
 finePrint: "Franz Carl Müller-Lyer published the figure in 1889. One family of explanations holds that experience of real scenes shapes how size and distance are estimated from angles like these. Howe and Purves (2005) developed one such account, based on the statistics of natural images. It is not the only proposed explanation."
 sources:
@@ -24,5 +21,4 @@ sources:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC544622/
     note: "Develops one probabilistic explanation; not the only proposed account."
 sourcesVerified: true
-reviewed: false
 ---

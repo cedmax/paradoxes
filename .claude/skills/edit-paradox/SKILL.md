@@ -10,6 +10,12 @@ Treat "Paradoxes in plain words" as the editorial promise. Apply the global cons
 `CLAUDE.md`; do not modify approval flags. If a task includes source validation, also use the
 `verify-sources` skill.
 
+- Every entry sets `format`, placed directly after `title`. Entries edited here are arguments
+  (`format: argument`); illusions follow the `create-illusion` skill.
+- `noMaths` is required. Set it to `false` when the reader must follow a calculation,
+  probability, sum or geometry to reach the answer, and `true` when numbers only set the scene.
+  Judge the explanation, not the setup.
+
 Before finishing, verify that the two claims actually clash under the same assumptions, each
 required field agrees about the wrong or contested premise, status and uniqueness are defensible,
 and the prose remains understandable without specialist background.
@@ -46,7 +52,8 @@ been shown wrong; the chapter never implies a status.
   is not enough. Identify the conflicting prediction or principles before assigning it.
 - Place an entry by its own `whatBreaks`, not by its anchor's chapter.
 - Chapter sizes are not a reason to move an entry. A small coherent chapter is fine.
-- An entry's `anchor` may sit in another chapter; do not change uniqueness to match chapters.
+- The entry named by `relatedTo` or `variantOf` may sit in another chapter; do not change
+  uniqueness to match chapters.
 - `order` sorts entries within a chapter.
 
 ## Status
@@ -59,7 +66,7 @@ How to apply them:
 
 - `claimA` and `claimB` must genuinely conflict: they cannot both be true.
 - If the real wrong step is a hidden premise, make that premise one of the displayed claims.
-- **explained** and **defused**: `verdict`, `whatBreaks`, `statusNote` and `resolution` all
+- **explained** and **defused**: `whatBreaks`, `statusNote` and `resolution` all
   name the same wrong claim. The test between them: if the reasoning that produces the clash
   contains an error, it is explained; if the reasoning is sound and the clash knocks out a
   premise (barber, Russell, Olbers), it is defused. If experts agree the claim fails but disagree
@@ -68,7 +75,7 @@ How to apply them:
   `statusNote` or `finePrint`. If there is no agreed error to point to, and every candidate fix
   carries a big cost, the entry is unreconciled (St Petersburg).
 - **disputed**: the two claims are the positions expert camps actually hold; each camp gives up
-  a different one (`newcombs-paradox.md` is the model). `whatBreaks`, `verdict`, `whyWrong` and
+  a different one (`newcombs-paradox.md` is the model). `whatBreaks`, `statusNote`, `whyWrong` and
   `resolution` must not pick a side; phrase `whatBreaks` as the contested choice. Attribute
   arguments to the people who make them and include replies where sources give them.
 - **unreconciled**: every listed position carries a big, sourced cost. "None is widely accepted"
@@ -79,12 +86,13 @@ How to apply them:
 ## Uniqueness
 
 Read `src/data/uniqueness.ts` for the canonical definitions of `canonical`, `related`, and
-`variant`; its `anchorOf` helper enforces anchor integrity. Do not duplicate definitions here.
+`variant`; its `uniquenessOf` helper derives an entry's kind from its fields and `anchorOf`
+enforces anchor integrity. Do not duplicate definitions here.
 
-- `related` and `variant` entries must set `anchor` to the slug of a canonical or related entry,
-  never a variant. `canonical` entries must not set `anchor`. Anchors must not form a loop. The
-  schema and `anchorOf` enforce all three. Publish an anchor before the entries anchored on it,
-  or the build fails.
+- A `related` entry sets `relatedTo` and a `variant` entry sets `variantOf`, each to the slug of
+  a canonical or related entry, never a variant. A `canonical` entry sets neither. Setting both
+  is a validation error, and `anchorOf` fails the build on an unknown anchor, a variant anchor or
+  a loop of anchors. Publish an anchor before the entries anchored on it, or the build fails.
 - Judge by mechanism, not by topic. Two entries are variants only if the same step in the
   reasoning fails in both. Pick the closest anchor: a related entry if it shares the mechanism
   more closely than its own canonical anchor. An entry's page lists the variants and related
@@ -93,21 +101,36 @@ Read `src/data/uniqueness.ts` for the canonical definitions of `canonical`, `rel
 ## Writing rules
 
 - `description` is an optional question-first search summary that holds back the answer. Without
-  it, metadata uses `problem`, never `verdict`. `alternativeNames` holds recognised names shown
-  on the entry page and included in search; `aka` contains additional search phrases and is not
-  shown. The schema rejects exact duplicates between these fields after normalising case,
-  apostrophe style and whitespace. Shorter phrases such as "surprise exam" alongside "Surprise
-  exam paradox" are allowed.
+  it, metadata uses `problem`, never `statusNote`. `alternativeNames` holds recognised names shown
+  on the entry page and included in search; `searchTerms` contains additional search phrases and
+  is not shown. The schema rejects a `searchTerms` value that repeats `alternativeNames` or the
+  `title`, after normalising case, apostrophe style and whitespace. Shorter phrases such as
+  "surprise exam" alongside "Surprise exam paradox" are allowed, and so is a spelling that
+  differs from the title only in hyphens or punctuation ("absentminded driver"), because search
+  matches contiguous text.
+- `titleAccent` is the part of the title shown in the accent colour. Leave it out and it is the
+  last word of the title; set it only when the accent is longer ("toxin puzzle" in "Kavka's toxin
+  puzzle"). The schema fails the build if it does not end the title.
+- An argument requires `setup` and `whyWrong`. `finePrint` is optional on arguments and illusions.
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".
-- `verdict` should make sense without the claims, because a search hit can show it alone on the
-  index card. Never write “the first claim” or “the second claim” in it.
+- `statusNote` says why this entry has its status. A search hit can show it alone on the index
+  card after “How it ends”, so it must make sense without the claims.
+  - Start lowercase, so it completes "Explained: …". Use one or two sentences and at most 40
+    words, with no semicolons.
+  - **explained** and **defused**: say what settles it, such as which premise fails, what makes
+    the answer checkable or accepted, and any condition it depends on.
+  - **disputed**: say what each main camp holds, in a few words. **unreconciled**: do the same
+    for the leading fixes. Describe each camp or fix in plain words; a bare name of a theory is
+    not enough. Do not restate their costs; `positions` shows them.
+  - Never restate the status definition (“experts disagree”, “the idea that … is wrong”), write
+    “the first claim” or “the second claim”, repeat the wording of `whatBreaks` (naming the same
+    failed premise is fine) or add a claim the entry's `sources` do not support.
 - When a body field (`setup`, `whyWrong`, `resolution`, `positions`, `finePrint`, `whatBreaks`,
   `statusNote`) mentions another entry, link it as `[shown text](entry-slug)`. The build fails on
-  an unknown slug. A link to an entry that is not published yet shows as plain text until it is. Never put links in `title`, `problem`, `claimA`, `claimB` or `verdict`.
-- `problem` is a question. `statusNote` starts lowercase, completes "Explained: …" etc., and is
-  specific to the entry.
+  an unknown slug. A link to an entry that is not published yet shows as plain text until it is. Never put links in `title`, `problem`, `claimA` or `claimB`.
+- `problem` is a question.
 - Political and religious entries take no side, including through word choice or which view
   gets the last word.
 - Wrap every free-text YAML value in double quotes (plain strings containing `: ` break the
@@ -121,8 +144,8 @@ Read `src/data/uniqueness.ts` for the canonical definitions of `canonical`, `rel
   assumption both sides share ("endless time", "the same lives saved"). Without them the claims stop
   clashing.
 - Write the pair in parallel: same subject, opposite predicate, so the clash shows in few words.
-- **explained** and **defused**: `claimA` states the wrong premise in the words `whatBreaks` and
-  `statusNote` use, and `claimB` states the fact that breaks it. **disputed** and **unreconciled**:
+- **explained** and **defused**: `claimA` states the wrong premise that `whatBreaks` names, and
+  `claimB` states the fact that breaks it. **disputed** and **unreconciled**:
   each claim is one camp's commitment; common ground goes in `setup`.
 - Before keeping a pair, check that the claims clash under the same assumptions (for a scientific
   paradox, a prediction against an observation counts), and that the premise `whatBreaks` calls

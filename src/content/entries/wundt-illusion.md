@@ -1,16 +1,13 @@
 ---
 title: "Wundt illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Can two parallel lines seem to bend towards each other?"
 problem: "Can two parallel lines seem to bend towards each other?"
-uniqueness: related
-anchor: hering-illusion
+relatedTo: hering-illusion
 simplification: light
 noMaths: true
 order: 310
-written: true
 why: "Two straight, parallel lines can seem to bow inwards when angled strokes run behind them. The lines never bend: the background changes how their shape is judged."
 finePrint: "Wilhelm Wundt described the effect in 1898. It is the reverse of the [Hering illusion](hering-illusion), where a different background makes the same kind of lines seem to bow outwards."
 sources:
@@ -24,5 +21,4 @@ sources:
     url: https://en.wikipedia.org/wiki/Wundt_illusion
     note: "Background summary of Wundt's 1898 illusion and inward-bowing effect."
 sourcesVerified: true
-reviewed: false
 ---

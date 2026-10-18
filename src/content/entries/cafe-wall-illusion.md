@@ -1,16 +1,13 @@
 ---
 title: "Café wall illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
-aka: ["Cafe wall illusion", "Münsterberg illusion"]
+searchTerms: ["Cafe wall illusion", "Münsterberg illusion"]
 description: "Why do straight, parallel lines between black and white tiles appear tilted?"
 problem: "Why do straight, parallel lines between black and white tiles appear tilted?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 315
-written: true
 why: "Rows of black and white tiles shifted against each other make the straight grey lines between them seem to slope. The tilt depends on how the rows are shifted and on the grey lines themselves, so changing either can weaken it or remove it."
 finePrint: "Gregory and Heard (1979) found that the parallel mortar lines look wedge-shaped, and that the strength of the effect depends on the offset between rows, the width of the mortar and its brightness compared with the tiles."
 sources:
@@ -21,5 +18,4 @@ sources:
     url: https://www.richardgregory.org/papers/cafe_wall/cafe-wall_p1.htm
     note: "The authors' original paper and its explanation of the café wall illusion."
 sourcesVerified: true
-reviewed: false
 ---

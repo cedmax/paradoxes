@@ -1,20 +1,19 @@
 ---
 title: "Black hole information paradox"
-titleAccent: "paradox"
-aka: ["Hawking radiation", "information loss", "firewall paradox", "Page curve", "unitarity"]
+format: argument
+searchTerms:
+  ["Hawking radiation", "information loss", "firewall paradox", "Page curve", "unitarity"]
 chapter: models
 order: 40
 status: disputed
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "What happens to the information about what fell into a black hole once the black hole has evaporated?"
 claimA: "In ordinary quantum theory, the information about a system’s starting state is never lost as it changes."
 claimB: "A black hole that evaporates leaves only featureless heat radiation, which cannot carry information about what fell in."
-verdict: "Physicists disagree about what must change to reconcile black-hole evaporation with quantum information preservation. The proposed answers each have a cost."
 whatBreaks: "The contested choice is between giving up the rule that quantum physics never loses information, and giving up part of Hawking’s calculation of how a black hole radiates."
-statusNote: "experts agree the puzzle is real and disagree on which claim to give up or how the evaporation calculation should change."
+statusNote: "the predominant view is that information is preserved and Hawking’s calculation must be corrected. The rivals are that information is lost, that a leftover remnant stores it, and that a firewall changes what falling in is like."
 setup: "Throw something into a black hole. Hawking’s calculation says the hole slowly radiates and can eventually disappear. The radiation appears to be heat with no record of what fell in. Ordinary quantum evolution, however, preserves information about the starting state."
 whyWrong: "If the hole disappears and its radiation has no such record, information is lost. But preserving information is part of the ordinary quantum rules. The difficulty is making the evaporation calculation and those rules fit together."
 resolution:

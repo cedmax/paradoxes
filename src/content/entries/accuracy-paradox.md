@@ -1,23 +1,20 @@
 ---
 title: "Accuracy paradox"
-titleAccent: "paradox"
-aka:
+format: argument
+searchTerms:
   ["class imbalance", "99 percent accurate", "accuracy is misleading", "precision and recall"]
 chapter: statistics
 status: explained
-uniqueness: related
-anchor: base-rate-fallacy
+relatedTo: base-rate-fallacy
 simplification: light
 noMaths: false
 order: 120
-written: true
 sourcesVerified: true
 problem: "Can a predictor that is right 99% of the time be useless?"
 claimA: "A predictor with a higher accuracy score is always more useful."
 claimB: "A predictor with a lower accuracy score can be more useful."
-verdict: "When one outcome is very common, a high accuracy score mostly reflects how common it is, not how useful the predictor is."
 whatBreaks: "The idea that a higher accuracy score always means a more useful predictor."
-statusNote: "the idea that a higher accuracy score always means a more useful predictor is wrong. When one outcome is far more common than the other, guessing it every time earns a high score with no skill at all."
+statusNote: "when one outcome is far more common than the other, guessing it every time earns a high score with no skill at all, so accuracy alone cannot say how useful a predictor is."
 setup: "A classifier is a rule or program that sorts cases into groups, such as “fraud” and “not fraud”. Accuracy is the share of cases it gets right. A higher score sounds like a better classifier. But if nearly everything belongs to one group, does that score tell you whether it finds what matters?"
 whyWrong: "Accuracy counts every correct answer equally. When one answer is much more common, a classifier can score highly just by guessing it every time, even if it misses every rare case. This uneven split between groups is called class imbalance."
 resolution:

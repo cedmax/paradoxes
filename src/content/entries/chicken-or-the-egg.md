@@ -1,7 +1,7 @@
 ---
 title: "Chicken or the egg"
-titleAccent: "egg"
-aka:
+format: argument
+searchTerms:
   [
     "which came first",
     "chicken and egg",
@@ -11,19 +11,16 @@ aka:
   ]
 chapter: identity
 status: defused
-uniqueness: related
-anchor: sorites-paradox
+relatedTo: sorites-paradox
 simplification: light
 noMaths: true
 order: 50
-written: true
 sourcesVerified: true
 problem: "Which came first, the chicken or the egg?"
 claimA: "Every chicken hatched from an egg laid by a chicken, so the chain of chickens and eggs has no first link."
 claimB: "Chickens have not always existed, so the chain of chickens and eggs must have a first link."
-verdict: "Chickens evolved from birds that were not chickens, so the chain does have a start, and eggs existed long before any chicken."
 whatBreaks: "The rule that every chicken hatched from an egg laid by a chicken."
-statusNote: "the rule that every chicken hatched from a chicken’s egg is false. The earliest chickens hatched from eggs laid by birds that were not quite chickens. Exactly where to draw the line between the two is vague, as in the [sorites paradox](sorites-paradox), but that does not change which claim fails."
+statusNote: "evolution means the earliest chickens hatched from eggs laid by birds that were not quite chickens, so the rule that every chicken comes from a chicken’s egg fails. The line is vague, as in the [sorites paradox](sorites-paradox)."
 setup: "All chickens hatch from eggs, and all chicken eggs are laid by chickens. So which came first? Plutarch posed the question as a philosophical problem in his Symposiacs, in the 1st century CE. Aristotle, four centuries earlier, had concluded that the sequence goes back for ever, with no true beginning. The phrase “chicken and egg” is now also used for any case where it is unclear which of two things causes the other, or which of two jobs has to be done first."
 whyWrong: "Followed backwards, the rule that every chicken comes from a chicken’s egg never stops: behind each chicken there is an egg, and behind each egg another chicken. That reasoning is sound. If the rule held, chickens would have to go back for ever. They do not, so the rule must fail somewhere. The rule is believable because each step is tiny. A chick is almost exactly like its parents, so it seems no single generation could be the one where a non-chicken laid an egg that hatched into a chicken. That is the same pattern as the one-grain rule in the sorites paradox: a change too small to matter, repeated many times, adds up to a big one."
 resolution:

@@ -1,20 +1,18 @@
 ---
 title: "Problem of future contingents"
+format: argument
 titleAccent: "future contingents"
 chapter: belief
 status: "disputed"
 simplification: light
 noMaths: true
 order: 180
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "Is the sentence “There will be a sea battle tomorrow” already true or false today?"
 claimA: "Every definite statement about tomorrow is already either true or false today."
 claimB: "A genuinely open future has statements about tomorrow that are not yet settled as true or false."
-verdict: "Philosophers disagree about whether truth about the future requires the future to be settled."
 whatBreaks: "Whether statements about choices not yet made can already possess definite truth values."
-statusNote: "the truth of future-contingent statements is treated differently in competing accounts of time and logic."
+statusNote: "on Ockham’s view tomorrow’s battle is already true or false without being inevitable. On Thomason’s branching view a statement is true now only if it holds on every possible future."
 setup: "Suppose two fleets might fight tomorrow, but the decision has not yet been made. A sentence about the battle looks as though it must already be true or false."
 whyWrong: "If it is true today, perhaps the battle must happen. If it is false, perhaps it cannot happen. Either way, the decision begins to look fixed."
 resolution:

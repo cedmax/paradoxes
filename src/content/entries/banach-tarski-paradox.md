@@ -1,20 +1,18 @@
 ---
 title: "Banach–Tarski paradox"
-titleAccent: "paradox"
-aka: ["doubling the ball", "pea and the Sun", "Banach Tarski"]
+format: argument
+searchTerms: ["doubling the ball", "pea and the Sun", "Banach Tarski"]
 chapter: infinity
 order: 90
 status: explained
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Can a solid ball be cut into a few pieces and put back together as two balls, each as big as the first?"
 claimA: "Every piece of a ball has a volume, so rearranging the pieces cannot double the total."
 claimB: "Pieces of one ball can be rearranged into two balls, each as big as the first."
-verdict: "The pieces are not chunks of solid. They are scatterings of points, too ragged to have a volume, so the rule that volumes add up does not apply to them."
 whatBreaks: "The assumption that every piece of a ball has a volume. The pieces in the proof are too ragged to have one, so no volume goes missing or appears."
-statusNote: "the first claim is wrong. The proof relies on the axiom of choice, a rule of set theory that allows pieces with no volume at all, and nothing contradicts anything once such pieces are admitted. The cutting cannot be carried out in practice."
+statusNote: "the pieces are sets of scattered points whose volume cannot be defined, which the axiom of choice allows, so the rule that volumes add up does not apply to them. The cutting cannot be carried out in practice."
 setup: "A mathematical ball can be split into a few sets of points. Slide and turn those sets without stretching them, and they form two balls, each the size of the original. How can moves that preserve volume double the result?"
 whyWrong: "The argument that volume must stay fixed assumes every piece has a volume. The construction includes scattered sets of points to which ordinary volume cannot be assigned. They are not chunks a knife could cut out."
 resolution:

@@ -1,7 +1,7 @@
 ---
 title: "Penney's game"
-titleAccent: "game"
-aka:
+format: argument
+searchTerms:
   [
     "coin race",
     "coin toss sequences",
@@ -12,18 +12,15 @@ aka:
 chapter: probability
 order: 90
 status: explained
-uniqueness: related
-anchor: nontransitive-dice
+relatedTo: nontransitive-dice
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Two players pick different runs of three coin tosses, and the coin is tossed until one run appears. Can the second player always pick the likelier run?"
 claimA: "Every run of three tosses is equally likely, so no run can be more likely than another to turn up first."
 claimB: "Whatever run the first player picks, the second can pick one that turns up first at least two times in three."
-verdict: "Runs that are equally likely in any three tosses are not equally likely to turn up first, because runs overlap and one run often has to pass through another on its way."
 whatBreaks: "The assumption that runs which are equally likely in any three given tosses must also be equally likely to win a race to turn up first."
-statusNote: "the first claim is wrong. The odds for every pairing can be worked out exactly, and they agree with simulation."
+statusNote: "runs can overlap, which makes some likelier to appear first: THH beats HHH 7 times in 8."
 setup: "Walter Penney published this game in 1969. The first player picks a run of three coin tosses, for example heads, heads, heads, written HHH. The second player sees it and picks a different run, for example THH. A fair coin is then tossed again and again until one of the two runs appears as three tosses in a row. The player whose run appears first wins."
 whyWrong: "In any three tosses, each of the eight possible runs has the same chance, 1 in 8. So it seems that no choice of run can give an edge. But the game is a race, and runs overlap."
 resolution:

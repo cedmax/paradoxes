@@ -1,19 +1,16 @@
 ---
 title: "Preface paradox"
-titleAccent: "paradox"
+format: argument
 chapter: belief
 status: disputed
-uniqueness: related
-anchor: lottery-paradox
+relatedTo: lottery-paradox
 simplification: light
 order: 50
-written: true
 problem: "Can an author rightly believe every claim in a book and also that the book contains a mistake?"
 claimA: "It is reasonable for the author to fully believe each claim in their book, and also that one of them is wrong."
 claimB: "A reasonable person's beliefs must all be able to be true together."
-verdict: "Philosophers disagree on whether such a set of beliefs can be reasonable."
 whatBreaks: "Whether reasonable beliefs must all be consistent, or a careful author may reasonably believe each claim while expecting an error somewhere."
-statusNote: "experts agree the author's beliefs cannot all be true together, but split on whether that can be reasonable, or whether their beliefs should be recast as degrees of confidence."
+statusNote: "the author’s beliefs cannot all be true together, and the camps keep each belief without combining them, trade outright belief for degrees of confidence, or accept reasoning with inconsistent beliefs."
 setup: "An author checks every claim in a book and believes each one. In the preface they also say that at least one is wrong, and believe that too. Careful research and modesty both seem reasonable. Yet those beliefs cannot all be true."
 whyWrong: "Combine the beliefs about individual claims and the result is “every claim is true”. Combine that with the belief in an error and a contradiction follows. The author does not know which claim to withdraw."
 resolution:

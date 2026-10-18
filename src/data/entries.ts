@@ -1,6 +1,7 @@
 import { getCollection, type CollectionEntry } from "astro:content"
 import { chapters, type Chapter } from "~/data/chapters"
 import { statusKeys } from "~/data/status"
+import { anchorSlug, uniquenessOf } from "~/data/uniqueness"
 
 type Entry = CollectionEntry<"entries">
 
@@ -20,7 +21,7 @@ export function getPublishedEntries() {
 }
 
 // Variants are not listed on their own. They are reached through their anchor.
-export const isListed = (entry: Entry) => entry.data.uniqueness !== "variant"
+export const isListed = (entry: Entry) => uniquenessOf(entry.data) !== "variant"
 
 export const byTitle = (a: Entry, b: Entry) => a.data.title.localeCompare(b.data.title)
 
@@ -55,7 +56,7 @@ export function countEntries(entries: Entry[]) {
 
 // Related and variant entries that point at this one, and its neighbours in the chapter.
 export function relatedEntries(entry: Entry, all: Entry[]) {
-  const echoes = all.filter((e) => e.data.anchor === entry.id).sort(byTitle)
+  const echoes = all.filter((e) => anchorSlug(e.data) === entry.id).sort(byTitle)
   // Variants are not listed as neighbours. They are reached through their anchor. Entries already
   // shown in the box above are not repeated.
   const siblings = all

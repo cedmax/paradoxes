@@ -1,7 +1,7 @@
 ---
 title: "Trolley problem"
-titleAccent: "problem"
-aka:
+format: argument
+searchTerms:
   [
     "trolley dilemma",
     "footbridge",
@@ -15,14 +15,12 @@ order: 130
 status: disputed
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Why is diverting a runaway trolley to kill one and save five acceptable to most people, but pushing a stranger in its way not?"
 claimA: "If diverting the trolley is right, pushing someone to stop it is right too."
 claimB: "Diverting it is right, but pushing someone is wrong."
-verdict: "Experts disagree about whether the two cases really differ, and if they do, what the difference is."
 whatBreaks: "The contested choice is between judging the two cases by their results alone, and finding a morally relevant difference that most people feel but cannot easily state."
-statusNote: "experts agree the puzzle is real and disagree on which claim to give up. In a 2009 survey of professional philosophers, 68 percent said they would switch, 8 percent would not, and 24 percent gave another answer or none."
+statusNote: "the camps say only results count, that harm you intend as a means is worse than harm you merely foresee, or that switching is not permissible either. In a 2009 survey, 68 percent of professional philosophers would switch."
 setup: "A runaway trolley will kill five people on the track ahead unless it is diverted onto a side track, where it will kill one. Most people say it is acceptable to divert it. In a second case, the only way to stop the trolley is to push a large stranger off a bridge in front of it. He will die, and the five will be saved. Resistance to doing this seems strong. Philippa Foot introduced the core idea in 1967, and Judith Jarvis Thomson named it the trolley problem in 1976."
 whyWrong: "The numbers are the same in both cases, so if only the results mattered the answers would be the same. People still answer differently, and many surveys show about 90 percent choosing to kill one to save five in the switch case. The puzzle is whether the gap points to a real moral difference or to a feeling that does not deserve trust."
 resolution:

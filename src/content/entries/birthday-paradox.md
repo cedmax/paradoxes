@@ -1,21 +1,20 @@
 ---
 title: "Birthday paradox"
+format: argument
 description: "How many people need to share a room before a birthday match becomes likely? The birthday paradox asks whether any two people share a birthday."
 alternativeNames: ["Birthday problem"]
-titleAccent: "paradox"
 chapter: probability
 status: explained
 simplification: light
+noMaths: false
 order: 20
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "How many people need to be in a room before two probably share a birthday?"
 claimA: "There are 365 days, so you'd need far more than a few dozen people."
 claimB: "With just 23 people, it's more likely than not."
-verdict: "The odds depend on the number of pairs, not the number of people."
 whatBreaks: "Intuition about probability: we count people when we should count pairs."
-statusNote: "the intuition is wrong. The accepted explanation can be checked by counting pairs."
+statusNote: "the odds depend on the number of pairs, not people: 23 people make 253 pairs, which puts the chance of a match somewhere in the room just over one half, at about 50.7 percent."
 setup: "Imagine a room with 23 people in it. How likely is it that at least two of them have the same birthday? With 365 days to choose from and only 23 people, most of us would guess a small chance, perhaps one in ten."
 whyWrong: "The natural way to think about it is from your own point of view. Your birthday is one specific day, and there are 22 other people, so a match feels unlikely. But the question is not whether someone matches you. It is whether any two people in the room match, and that is a much bigger question."
 resolution:

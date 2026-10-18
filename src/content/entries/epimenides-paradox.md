@@ -1,7 +1,7 @@
 ---
 title: Epimenides paradox
-titleAccent: paradox
-aka:
+format: argument
+searchTerms:
   [
     "all Cretans are liars",
     "Cretan liar",
@@ -10,19 +10,16 @@ aka:
   ]
 chapter: self-reference
 status: explained
-uniqueness: related
-anchor: liar-paradox
+relatedTo: liar-paradox
 simplification: light
 noMaths: true
 order: 130
-written: true
 sourcesVerified: true
 problem: "A Cretan says that all Cretans are liars. Can that be true, and can it be false?"
 claimA: "The statement cannot be false without a contradiction, because if it is false, every Cretan, Epimenides included, is honest, and then what he said is true."
 claimB: "The statement can be false without any contradiction, because it only needs one honest Cretan, who need not be Epimenides."
-verdict: "Denying that all Cretans are liars only says that some Cretan is honest. So a Cretan who says it can simply be wrong, and there is no paradox."
 whatBreaks: "The assumption that the opposite of “all Cretans are liars” is “all Cretans are honest”."
-statusNote: "the belief that the statement cannot be false is wrong. Its opposite is only that some Cretan is honest, so it can be false with no contradiction."
+statusNote: "a lying Cretan can say it while another Cretan is honest, so the statement is simply false and the circle never starts."
 setup: "Epimenides was a Cretan who lived around 600 BC. A typical modern telling, in Douglas Hofstadter’s book Gödel, Escher, Bach, has him say: “All Cretans are liars.” That is not an exact quote. The line that has come down, through the Epistle to Titus in the New Testament, is “The Cretians are always liars, evil beasts, slow bellies”, and the epistle says it was spoken by a prophet of the Cretans themselves. It is often claimed that a paradox of self-reference arises when one asks whether Epimenides could have spoken the truth. Thomas Fowler set out the reasoning in 1869: Epimenides is himself a Cretan, so if what he says is untrue, the Cretans are truthful, and then what he says is true, and so on in a circle."
 whyWrong: "Fowler’s version contains a logic error. If what Epimenides said is untrue, it does not follow that all Cretans are truthful. The opposite of “all Cretans are liars” is not “all Cretans are honest” but “not all Cretans are liars”, which only means that at least one Cretan is honest. That honest Cretan need not be Epimenides. The slip feels natural because “all are liars” and “all are honest” sound like opposites, but they are not the only two options."
 resolution:

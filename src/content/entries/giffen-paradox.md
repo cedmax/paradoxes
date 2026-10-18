@@ -1,20 +1,18 @@
 ---
 title: "Giffen paradox"
-titleAccent: "paradox"
-aka: ["Giffen good", "law of demand", "Giffen goods", "rice Hunan", "Gray good"]
+format: argument
+searchTerms: ["Giffen good", "law of demand", "Giffen goods", "rice Hunan", "Gray good"]
 chapter: individual
 order: 80
 status: explained
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Can a rise in a price make people buy more of the thing that has become dearer?"
 claimA: "When the price of a good goes up, people buy less of it."
 claimB: "For some goods used by the very poor, a rise in price makes people buy more."
-verdict: "A price rise also makes people poorer, and for a basic food that can push them to buy more of it and give up the dearer treats."
 whatBreaks: "The assumption that a price rise only ever makes people want less of that good. It can also cut what people can afford, and that effect can win."
-statusNote: "the first claim is wrong for goods where the loss of buying power outweighs the pull towards substitutes. The mechanism is not in dispute. Clear real-world cases are rare."
+statusNote: "a price rise on a staple food can leave a person poorer, so they buy more of it and give up dearer treats. It needs an inferior good with no close substitutes, so clear real-world cases are rare."
 setup: "In ordinary markets, a higher price means lower demand. A Giffen good is a rare exception. Alfred Marshall credited the idea to Robert Giffen in his Principles of Economics (1890), based on the buying habits of the Victorian poor. George Stigler’s 1947 article corrected an error in Marshall’s attribution."
 whyWrong: "A price rise has two effects. People switch to cheaper alternatives, which lowers demand. But the rise also makes them poorer in real terms, and a poorer person may buy more of the cheap staple and less of everything dearer. For most goods the first effect dominates or the two point the same way. For a Giffen good the second effect is stronger."
 resolution:

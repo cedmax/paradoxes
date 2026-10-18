@@ -1,21 +1,19 @@
 ---
 title: "Missing square puzzle"
-titleAccent: "puzzle"
-aka: ["Curry triangle", "disappearing square", "dissection paradox", "13 by 5 triangle"]
+format: argument
+searchTerms: ["Curry triangle", "disappearing square", "dissection paradox", "13 by 5 triangle"]
 chapter: shapes
 status: explained
 simplification: light
 noMaths: false
 order: 30
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "The same four pieces seem to make two identical triangles, but one has a square-shaped hole. Where did the square come from?"
 claimA: "Both shapes are the same 13 by 5 triangle with a straight long edge, so they cover the same area."
 claimB: "The same pieces leave a 1 by 1 hole in the second outline, so the outlines enclose different areas."
-verdict: "Neither shape is a true triangle. The long edge has a tiny bend, and the two bends differ by exactly one square."
 whatBreaks: "The assumption that the long edge of each shape is a straight line."
-statusNote: "the idea that both shapes are the same straight-edged triangle is wrong. The long edge of each is slightly bent, one inwards and one outwards, and the difference between the two outlines is exactly one square."
+statusNote: "the long edge of each shape is slightly bent, one inwards and one outwards, so the two outlines differ in area by exactly one square."
 setup: "Four pieces on a square grid seem to make a triangle 13 squares wide and 5 tall. Rearrange the same pieces and the same triangle seems to appear, with a one-square hole. No piece has been added or removed."
 whyWrong: "The two small triangles have slightly different slopes. One rises 3 squares over a width of 8. The other rises 2 over a width of 5. Those edges are almost in line, but not quite. The apparent long edge has a tiny bend."
 resolution:

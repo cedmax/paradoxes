@@ -1,7 +1,7 @@
 ---
 title: "Fitch's paradox of knowability"
-titleAccent: "knowability"
-aka:
+format: argument
+searchTerms:
   [
     "knowability paradox",
     "Fitch's paradox",
@@ -12,18 +12,15 @@ aka:
 chapter: belief
 order: 80
 status: disputed
-uniqueness: related
-anchor: moores-paradox
+relatedTo: moores-paradox
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "If every truth could in principle be known, must every truth actually be known by someone at some time?"
 claimA: "Every truth could be known by someone at some time."
 claimB: "Some truths are never known by anyone, at any time."
-verdict: "Under familiar rules of logic, saying every truth could be known entails that every truth is actually known by someone at some time. There is no consensus on whether to reject the principle, restrict it or change the logic."
 whatBreaks: "Whether to give up unrestricted knowability or the ordinary logic that turns it into universal knowledge."
-statusNote: "the proof has no consensus diagnosis. Many reject unrestricted knowability; others try to restrict it or revise the logic."
+statusNote: "if every truth could be known, every truth would be known. The camps deny that all truths are knowable, limit the claim to basic truths, or change the logic used in the proof."
 setup: "“Every truth could be known” sounds much weaker than “every truth is actually known by someone at some time”. It seems to leave room for truths that nobody ever knows. Fitch’s puzzle shows that, under familiar rules of logic, the first claim unexpectedly leads to the second."
 whyWrong: "Suppose a true fact is never known by anyone. Then this whole statement is true: “That fact is true and nobody ever knows it.” If every truth could be known, someone could know that whole statement. They would then know the fact and also know that nobody ever knows it. What they know must be true, so the fact would be both known at some time and never known."
 resolution:

@@ -1,3 +1,6 @@
+// The default accent of an entry: the last word of its title.
+export const lastWord = (title: string) => title.trim().split(/\s+/).at(-1) ?? title
+
 // Split a title so the accent word(s) can be highlighted. Shared by entry and chapter H1s
 // and Open Graph images. Keep the original separator, including a hyphen in "Self-reference".
 export function splitTitle(title: string, accent?: string) {

@@ -1,20 +1,19 @@
 ---
 title: "Peto's paradox"
-titleAccent: paradox
-aka: ["whales and cancer", "elephants and cancer", "body size and cancer", "TP53 elephants"]
+format: argument
+searchTerms:
+  ["whales and cancer", "elephants and cancer", "body size and cancer", "TP53 elephants"]
 chapter: models
 status: disputed
 simplification: light
 noMaths: true
 order: 210
-written: true
 sourcesVerified: true
 problem: "Larger animals have more cells that could become cancerous. Do they actually get more cancer?"
 claimA: "Large animals do not have higher cancer prevalence than small animals, despite having many more cells."
 claimB: "Large animals have higher cancer prevalence than small animals, consistent with the number of cells contributing to cancer risk."
-verdict: "Studies disagree on how cancer varies with body size across species. Larger animals may have stronger defences, but newer data challenge the claim that cancer does not rise with size."
 whatBreaks: "Which claim to give up: that large animals get no more cancer than small ones, or that their extra cells show up as more cancer."
-statusNote: "earlier studies found no clear size link; larger recent analyses found one. Two recent analyses share a dataset, and animals in human care may not represent wild populations."
+statusNote: "elephants’ extra copies of a gene that responds to damaged DNA suggest evolved defences, which one camp says explains why big animals get no more cancer, while recent analyses find that larger species do get more."
 setup: "Cancer starts with harmful changes in cells. More cells seem to mean more opportunities for cancer, so large animals should face a much bigger risk if every cell has the same chance. Yet comparisons between species have often found much less extra cancer than that simple prediction suggests."
 whyWrong: "A whale has far more cells than a human. Why does it not suffer vastly more cancer? One answer is that evolution gave large species stronger defences. But newer analyses also challenge the original claim that cancer does not rise with body size at all."
 resolution:

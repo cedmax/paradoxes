@@ -1,20 +1,18 @@
 ---
 title: "Moral luck"
-titleAccent: "luck"
-aka: ["Nagel", "Williams", "control principle", "resultant luck", "constitutive luck"]
+format: argument
+searchTerms: ["Nagel", "Williams", "control principle", "resultant luck", "constitutive luck"]
 chapter: individual
 order: 100
 status: disputed
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Is it fair to judge people for things that turned out well or badly because of luck?"
 claimA: "People are fairly judged morally only for what is under their control."
 claimB: "People are rightly judged by results, circumstances and character that were partly or wholly outside their control."
-verdict: "Keeping the principle means giving up many of our ordinary moral judgements, and keeping the judgements means giving up the principle."
 whatBreaks: "The contested choice is between the principle that moral judgement must track control and the everyday judgements that seem to break it."
-statusNote: "experts agree the puzzle is real and disagree on which claim to give up. Some deny that luck affects moral standing, some accept that it does, and most take a middle route that has to draw a principled line."
+statusNote: "camps deny that luck affects moral standing, accept that it does, or accept some kinds of luck and reject others."
 setup: "Suppose two people drive home after drinking the same amount. One gets home safely. The other hits a child who steps out. Most people blame the second driver far more, even though the only difference was luck. The philosophers Bernard Williams (1976) and Thomas Nagel (1979) argued that ordinary moral judgement is full of cases like this. Nagel named four kinds: luck in how things turn out, luck in the circumstances one is in, luck in who one is, given genes and upbringing, and luck in how one is shaped by earlier events."
 whyWrong: "Both claims have a strong pull. The first, often called the control principle, seems almost a definition of fairness. The second describes how people really judge, and it is hard to dismiss every such judgement as mistaken. Nagel concluded that if the control principle is applied strictly, the area in which a person can be judged shrinks to almost nothing."
 resolution:

@@ -1,20 +1,18 @@
 ---
 title: "Repugnant conclusion"
-titleAccent: "conclusion"
-aka: ["Parfit", "mere addition paradox", "population ethics", "Reasons and Persons"]
+format: argument
+searchTerms: ["Parfit", "mere addition paradox", "population ethics", "Reasons and Persons"]
 chapter: individual
 order: 120
 status: unreconciled
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Can a huge population whose lives are barely worth living be better than a smaller population of very happy people?"
 claimA: "A smaller population of people with very good lives is better than a vast population whose lives are barely worth living."
 claimB: "Small steps, each seemingly acceptable, show that for any population of very good lives, a larger one with barely worthwhile lives is better."
-verdict: "Avoiding the conclusion has proved difficult: proposed theories often produce other counterintuitive results, and philosophers still disagree about which costs are acceptable."
 whatBreaks: "The assumption that there is a way of comparing populations that matches our judgments in every case. Theories that block the conclusion tend to give counterintuitive results in other cases."
-statusNote: "the main ways out each cost something big, and none is widely accepted. The Stanford Encyclopedia of Philosophy notes that it has been surprisingly hard to avoid the conclusion without other results that are just as counterintuitive, and that Parfit himself did not find the theory he was looking for."
+statusNote: "the ways out say to compare average welfare rather than total, to count only lives above a critical level, to deny that “better than” chains together, or to accept the conclusion, as Tännsjö, Holtug and Huemer do."
 setup: "The philosopher Derek Parfit set the problem out in Reasons and Persons (1984). Start with a population called A, whose members all have very good lives. Add some more people whose lives are worth living, though less good, and who do not affect anyone in A. The result, A+, does not look worse than A. Next compare A+ with a population B that has the same number of people, everyone equally well off, and a higher average than A+. B looks better than A+. Repeat the two steps again and again. The end of the chain is a population Z, enormously large, whose members have lives that are barely worth living, and by the steps it comes out better than A."
 whyWrong: "Each step looks safe, and each is a small move. The problem is where they end. A world of vast numbers of people with lives that are only just worth living seems clearly worse than a world of fewer, flourishing people. If total welfare is what counts, a large enough number of barely good lives always adds up to more than a smaller number of excellent ones. The conclusion has been called repugnant because it seems wrong, yet blocking it has proved hard."
 resolution:

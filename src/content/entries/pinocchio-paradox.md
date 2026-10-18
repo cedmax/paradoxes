@@ -1,7 +1,7 @@
 ---
 title: Pinocchio paradox
-titleAccent: paradox
-aka:
+format: argument
+searchTerms:
   [
     "my nose will grow",
     "my nose grows now",
@@ -11,19 +11,16 @@ aka:
   ]
 chapter: self-reference
 status: disputed
-uniqueness: related
-anchor: liar-paradox
+relatedTo: liar-paradox
 simplification: light
 noMaths: true
 order: 140
-written: true
 sourcesVerified: true
 problem: "Pinocchio’s nose grows exactly when he says something false. What happens when he says “My nose is growing”?"
 claimA: "Pinocchio’s contradictory nose is a problem about truth itself, like the liar paradox."
 claimB: "Pinocchio’s contradictory nose is only an impossible story, with no new problem about truth itself."
-verdict: "Logicians disagree on whether this is a real Liar paradox that needs no word like “true”, or just a story that cannot happen."
 whatBreaks: "The disagreement is over whether the story reveals a problem about truth or merely describes something impossible."
-statusNote: "the authors disagree over what the clash shows. Eldridge-Smith treats it as a liar paradox without a truth word in the sentence. Beall treats it as an impossible story like the [barber paradox](barber-paradox)."
+statusNote: "on Eldridge-Smith’s view his sentence is a liar paradox, since its truth decides whether his nose grows, on Beall’s an impossible story like the [barber paradox](barber-paradox)."
 setup: "In this version of the story, Pinocchio’s nose grows exactly when what he says is false. He says “My nose is growing”. If the nose grows, his statement is true, so the rule says it should not grow. If it does not grow, his statement is false, so it should grow."
 whyWrong: "Neither outcome fits the rule. The sentence never says “true” or “false”, yet the nose seems caught in the same trap as the [liar paradox](liar-paradox). Is that a new difficulty for theories of truth, or just a fictional rule that cannot work?"
 resolution:

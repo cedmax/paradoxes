@@ -1,18 +1,15 @@
 ---
 title: "Grossman–Stiglitz paradox"
-titleAccent: "paradox"
+format: argument
 chapter: collective
 status: "defused"
 simplification: light
 noMaths: true
 order: 160
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "If stock prices told everyone everything worth knowing, who would pay to discover new information?"
 claimA: "Prices can reveal all costly information while investors still have an incentive to pay for finding it."
 claimB: "If prices already reveal every useful finding, no investor gains by paying to uncover that information."
-verdict: "Perfectly informative prices leave no reward for the research that would make them informative."
 whatBreaks: "The premise that markets can fully reveal costly information while still rewarding its discovery."
 statusNote: "in the model, fully informative prices cannot be an equilibrium when gathering information costs money."
 setup: "Some investors pay researchers to learn what businesses are worth. Their trades help prices reflect that information. Other investors can read the prices without paying for the research."

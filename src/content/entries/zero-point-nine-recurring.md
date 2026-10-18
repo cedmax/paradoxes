@@ -1,7 +1,8 @@
 ---
 title: "0.999… equals 1"
+format: argument
 titleAccent: "equals 1"
-aka:
+searchTerms:
   [
     "0.999 recurring",
     "point nine recurring",
@@ -12,18 +13,15 @@ aka:
 chapter: infinity
 order: 80
 status: explained
-uniqueness: related
-anchor: achilles-and-the-tortoise
+relatedTo: achilles-and-the-tortoise
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Is 0.999…, with nines that never stop, a tiny bit less than 1, or exactly 1?"
 claimA: "0.999… is a tiny bit less than 1, because however many nines there are, a small gap to 1 is always left."
 claimB: "0.999… is exactly 1."
-verdict: "An endless decimal names the single number its cut-off versions close in on. Every cut-off version falls short of 1, but 0.999… is not one of them, and the number it names is exactly 1."
 whatBreaks: "The idea that 0.999… is some stage of a process that is still going on, so the gap left at every stage is still there at the end."
-statusNote: "the first claim is wrong. Every cut-off version such as 0.999 does fall short of 1, but 0.999… is defined as the number those versions close in on, and that number is 1. In the standard real numbers this is a theorem, not a matter of opinion."
+statusNote: "every cut-off version such as 0.999 falls short of 1, but 0.999… is defined as the number those versions close in on, and that number is 1. In the standard real numbers this is a theorem."
 setup: "Write 0.9, then 0.99, then 0.999, and keep going. Each one is closer to 1 than the last, and none of them reaches it: 0.9 is short by 0.1, 0.99 by 0.01, 0.999 by 0.001. Now imagine the nines never stop, and write the result as 0.999…, where the dots mean the nines go on for ever. It seems obvious that this is still a little short of 1. Yet the usual school arguments say it is exactly 1. One third is 0.333…, and three thirds make 1, so three times 0.333…, which is 0.999…, should be 1."
 whyWrong: "The feeling that a gap is left comes from picturing 0.999… as someone writing nines and never finishing. At every stage of that picture a gap remains, so it seems a gap remains at the end. But 0.999… is not any one of the stages. It is not 0.999 with a great many nines, nor with a trillion nines. There is no last nine, so there is no stage at which the last gap is left."
 resolution:

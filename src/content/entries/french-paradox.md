@@ -1,20 +1,17 @@
 ---
 title: "French paradox"
-titleAccent: "paradox"
+format: argument
 chapter: statistics
 status: "disputed"
 simplification: light
 noMaths: true
 order: 170
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "Why did France appear to have relatively little heart disease despite a diet high in saturated fat?"
 claimA: "High average saturated-fat consumption must produce a similarly high recorded rate of heart disease across countries."
 claimB: "French data have shown lower recorded heart-disease rates than that simple prediction, even with relatively high saturated-fat consumption."
-verdict: "Comparisons between countries mix diet with many other factors, and the size and meaning of the reported pattern remain debated."
 whatBreaks: "Whether the reported national comparison undermines the diet-risk relationship or reflects other factors in the data."
-statusNote: "the national pattern has several possible explanations; it does not show that saturated fat is harmless or that wine is protective."
+statusNote: "the camps credit other protective factors in French diet and lifestyle, or put the gap down partly to recording differences and the delay between diet and disease."
 setup: "France was reported to have lower rates of coronary heart disease than expected from its saturated-fat intake. This was dubbed the French paradox."
 whyWrong: "A population average seems to contradict a familiar link between diet and heart disease. But people in different countries differ in far more than one food."
 resolution:

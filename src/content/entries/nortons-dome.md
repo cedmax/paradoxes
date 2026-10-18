@@ -1,20 +1,18 @@
 ---
 title: "Norton's dome"
-titleAccent: "dome"
+format: argument
+searchTerms: ["determinism"]
 chapter: models
 status: "disputed"
 simplification: light
 noMaths: false
 order: 180
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "Can a ball that is perfectly still begin to move at an arbitrary time under Newton’s laws?"
 claimA: "Norton’s ideal dome is a legitimate Newtonian example in which a ball can start moving without a push."
 claimB: "Norton’s ideal dome is not a legitimate Newtonian example of spontaneous motion."
-verdict: "The equations allow spontaneous motion on the ideal dome, but whether that is a valid physical counterexample to determinism is disputed."
 whatBreaks: "Whether the unusual force and idealisations belong among legitimate Newtonian systems, or must be excluded."
-statusNote: "the dome’s admissibility as a Newtonian system is disputed: Norton defends it and critics challenge its physical or mathematical legitimacy."
+statusNote: "on Norton’s argument a ball can sit still and then move at an arbitrary time without breaking Newton’s equations, while critics reject the dome’s force and idealisations as legitimate Newtonian physics."
 setup: "A point-sized ball rests at the summit of a specially shaped, frictionless dome. Norton’s chosen shape gives a force equation with an unusual property near the top."
 whyWrong: "The equation allows the ball to stay still forever. It also allows the ball to wait and then slide, without a new push, at any chosen time. Whether this is a genuine Newtonian possibility is the dispute."
 resolution:

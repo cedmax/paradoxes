@@ -1,20 +1,18 @@
 ---
 title: "Meno's paradox"
-titleAccent: "paradox"
-aka: ["learner’s paradox", "paradox of inquiry", "Meno", "recollection", "slave boy"]
+format: argument
+searchTerms: ["learner’s paradox", "paradox of inquiry", "Meno", "recollection", "slave boy"]
 chapter: belief
 order: 90
 status: explained
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "How can you search for something if you do not already know what it is?"
 claimA: "Searching can teach us what we do not yet know."
 claimB: "Searching is pointless: you either know what you seek, or would not recognise it."
-verdict: "The argument uses “knowing what you are looking for” in two senses, and no single sense makes both of its steps true."
 whatBreaks: "The assumption that you either know what you are looking for or you do not. It matters whether that means knowing the question or knowing the answer."
-statusNote: "the second claim is wrong. The argument switches between two meanings of “knowing what you are looking for”, and no one meaning makes both steps true. A deeper question about how inquiry gets started remains open."
+statusNote: "the argument slides between knowing the question and knowing the answer, and neither reading makes both steps true. How inquiry gets started remains open."
 setup: "In Plato’s dialogue Meno, Meno challenges Socrates. If you know something, he says, you have no need to look into it. If you do not know it, you cannot look into it, because you would not know what you were looking for. So inquiry is either needless or impossible. The puzzle is sometimes called the learner’s paradox."
 whyWrong: "Both steps sound reasonable, and the either-or at the start sounds like plain logic. It is plain logic only if “you know what you are looking for” means one thing in both halves. It does not. Knowing what you are looking for can mean knowing the question you want answered, or knowing the answer to it."
 resolution:

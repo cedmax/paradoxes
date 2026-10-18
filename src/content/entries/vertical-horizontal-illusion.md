@@ -1,15 +1,12 @@
 ---
 title: "Vertical–horizontal illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Why can an upright line look longer than an equally long horizontal one?"
 problem: "Why can an upright line look longer than an equally long horizontal one?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 260
-written: true
 why: "An upright line can look longer than a flat line of exactly the same length. How strong this is depends on how the two lines are arranged and on what surrounds them."
 finePrint: "In the inverted T used here, the upright meets the middle of a horizontal line of equal length. Prinzmetal and Gettleman (1993) studied how the surrounding frame of reference affects the effect."
 sources:
@@ -20,5 +17,4 @@ sources:
     url: https://pubmed.ncbi.nlm.nih.gov/8433908/
     note: "Defines the equal-length vertical/horizontal effect and studies the viewing context."
 sourcesVerified: true
-reviewed: false
 ---

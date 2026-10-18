@@ -1,22 +1,18 @@
 ---
 title: "Low birth-weight paradox"
-titleAccent: "paradox"
+format: argument
 chapter: statistics
 status: "explained"
-uniqueness: "related"
-anchor: "berksons-paradox"
+relatedTo: "berksons-paradox"
 simplification: light
 noMaths: true
 order: 180
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "Why have low-weight babies of mothers who smoke sometimes shown lower death rates than other low-weight babies?"
 claimA: "A lower death rate within the low-weight group means smoking protects babies in that group."
 claimB: "Smoking is harmful, and selecting babies by low weight can create a misleading comparison that looks protective."
-verdict: "Restricting the comparison to low-weight babies can mix together different causes of low weight and hide the real risks."
 whatBreaks: "The assumption that a comparison within a group selected by birth weight measures the effect of smoking fairly."
-statusNote: "the seemingly protective result can arise from selection and confounding; it does not establish any benefit from smoking."
+statusNote: "the seemingly protective result can arise from selection and confounding, and it does not establish any benefit from smoking."
 setup: "Smoking raises the chance of a baby being born with low weight. Other serious causes also lead to low weight and may carry very high risk. Researchers once noticed a puzzling pattern inside the low-weight group."
 whyWrong: "Among babies already classified as low weight, those whose mothers smoked could show a lower death rate. That does not mean smoking improved their health."
 resolution:

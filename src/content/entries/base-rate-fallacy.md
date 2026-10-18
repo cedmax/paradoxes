@@ -1,19 +1,17 @@
 ---
 title: False positive paradox
-titleAccent: paradox
+format: argument
 chapter: statistics
 status: explained
 simplification: light
 noMaths: true
 order: 20
-written: true
-aka: ["base rate fallacy", "medical test", "false positive"]
+searchTerms: ["base rate fallacy", "medical test", "false positive"]
 problem: "A test for a rare condition catches 90% of people who have it. You test positive. Are you probably ill?"
 claimA: "The test catches 90% of people who have the condition, so a positive result means you are probably ill."
 claimB: "Most people who test positive do not have the condition."
-verdict: "When the condition is rare, false alarms outnumber true ones."
 whatBreaks: "The assumption that how often a test catches a condition tells you how likely a positive result is to be right."
-statusNote: "the first claim is wrong. Counting people settles it, and experts agree."
+statusNote: "in the worked example, the condition is rare enough that false alarms outnumber real cases: about 9 in 10 positive results are false. Counting people settles it."
 setup: "Take an invented condition called blue-ear. One person in 100 has it. A test for it catches 90% of people who have it, and wrongly flags 9% of people who do not. You test positive. What are the chances you have blue-ear?"
 whyWrong: "The test sounds very good, so a positive result sounds almost certain. But the 90% describes how the test behaves on people who are ill. You want the opposite: how many of the people who test positive are ill. Those are different questions, and the answer to the second depends on how rare the condition is."
 resolution:

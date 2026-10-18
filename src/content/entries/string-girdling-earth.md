@@ -1,7 +1,7 @@
 ---
 title: "String girdling Earth"
-titleAccent: "Earth"
-aka:
+format: argument
+searchTerms:
   [
     "rope around the Earth",
     "string around the equator",
@@ -13,15 +13,13 @@ status: explained
 simplification: light
 noMaths: false
 order: 50
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Add one metre to a string that fits tightly round the equator. How far off the ground does it lift?"
 claimA: "One metre is negligible next to the Earth’s circumference, so the string lifts by a fraction of a millimetre."
 claimB: "The string lifts about 16 cm all the way round, enough for a cat to walk under."
-verdict: "The string lifts about 16 cm. The lift depends only on the extra length, not on how big the Earth is."
 whatBreaks: "The assumption that the lift depends on the size of the Earth, so a tiny extra length spread over a huge circle has a tiny effect."
-statusNote: "the idea that the size of the Earth matters is wrong. The lift is the extra length divided by 2π, about 6.28, and the Earth’s size drops out of the sum."
+statusNote: "the circle’s radius cancels: the extra string equals 2π times the lift, so a ball and a planet give the same answer."
 setup: "A string is pulled tight round the equator of a perfectly round Earth, about 40,000 km. One metre of string is spliced in, and the longer string is held at the same height above the ground all the way round. Could a car pass under it? A cat? A thin knife blade? The puzzle also runs the other way: to raise the string 1 metre off the ground all the way round, how much longer must it be?"
 whyWrong: "It feels as if the answer should scale with the size of the Earth. One metre shared out over 40,000 km sounds like nothing, so the lift ought to be too small to measure. Run the other way, raising a string 1 metre along 40,000 km sounds as if it needs kilometres of extra string. Both guesses assume the Earth’s size matters. It does not."
 resolution:

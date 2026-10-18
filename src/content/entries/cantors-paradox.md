@@ -1,7 +1,7 @@
 ---
 title: Cantor's paradox
-titleAccent: paradox
-aka:
+format: argument
+searchTerms:
   [
     "set of all cardinals",
     "largest infinity",
@@ -11,17 +11,14 @@ aka:
   ]
 chapter: infinity
 status: defused
-uniqueness: related
-anchor: russells-paradox
+relatedTo: russells-paradox
 simplification: heavy
 noMaths: false
 order: 130
-written: true
 sourcesVerified: true
 problem: "Is there a biggest infinity, or a set that holds every possible size of a set?"
 claimA: "There is a set that contains every cardinal number, that is, every possible size of a set."
 claimB: "For any set of sizes, there is a size bigger than every size in it."
-verdict: "There is no set of all sizes. Any set of sizes leaves out a bigger one, so the sizes are too many to form a set."
 whatBreaks: "The idea that all the possible sizes of sets can be gathered into one set."
 statusNote: "the proof rules out a set of all sizes. Standard set theory accepts the proof and rejects that starting assumption."
 setup: "Infinite sets can have different sizes. Two sets have the same size if their members can be matched one to one. Cantor proved that collecting every subset of a set always gives something bigger than that set, even when the original is infinite. There is therefore no biggest size."

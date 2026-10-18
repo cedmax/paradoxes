@@ -1,20 +1,19 @@
 ---
 title: "Achilles and the tortoise paradox"
-titleAccent: "paradox"
-aka: ["Zeno", "Zeno's paradox"]
+format: argument
+searchTerms: ["Zeno", "Zeno's paradox"]
 chapter: infinity
 status: explained
 simplification: light
+noMaths: false
 order: 10
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Achilles gives a tortoise a head start. Can he ever catch it?"
 claimA: "An endless list of catch-up steps can never be finished."
 claimB: "A faster runner obviously overtakes a slower one."
-verdict: "Infinitely many steps can add up to a finite time."
 whatBreaks: "The idea that an endless list of steps can never be finished, because endless steps must take endless time."
-statusNote: "the first claim is wrong. The catch-up steps get shorter so fast that all of them are finished after about 11.11 seconds, so he does catch it."
+statusNote: "the catch-up steps shrink so fast that they add up to a fixed time, 100 divided by 9, about 11.11 seconds, after which Achilles is ahead."
 setup: "Achilles runs at 10 metres per second and the tortoise at 1 metre per second, so he is ten times faster. He gives it a 100 metre head start. To catch it, he first has to get to the spot where the tortoise started. By then the tortoise has crawled a bit further. So he has to get to that spot. By then it has moved again. Every time he arrives, there is a new gap, smaller than before, but never zero. So it seems he has an endless list of catch-up steps to finish before he can draw level."
 whyWrong: "Every round is real, and there really is no last one. If you only count rounds, he never catches up. The trick is that you were counting steps, not seconds."
 resolution:

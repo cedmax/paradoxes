@@ -1,20 +1,18 @@
 ---
 title: "Twin paradox"
+format: argument
 description: "If motion is relative, why do twins disagree about whose clock runs slowly? One stays home while the other travels to a star and returns."
-titleAccent: "paradox"
 chapter: time-causation
 status: explained
 simplification: light
 noMaths: true
 order: 30
-written: true
 sourcesVerified: true
 problem: "If one twin flies off at high speed and comes back, why is that twin younger than the one who stayed home?"
 claimA: "Motion is relative, so each twin can say the other one was moving, and each should find the other younger."
 claimB: "When they meet again, only one of them can be the younger."
-verdict: "The twins are not symmetric: only one of them switches from an outward motion to a homeward one."
 whatBreaks: "The assumption that the two twins' situations are mirror images."
-statusNote: "one claim is wrong. The twins are not equal, and special relativity says exactly why."
+statusNote: "only one twin turns round, so the twins are not mirror images: the traveller’s clock records less time along a different path, and the traveller’s own account agrees once the turn is counted."
 setup: "Einstein's special relativity says that a moving clock ticks more slowly than a stationary one, as measured by the stationary observer. Take twins, Stella and Terence. Stella flies to a star at high speed and returns. Terence stays on Earth. From Terence's view, Stella's clock runs slow. But from Stella's view, Terence was the one moving away and back, so his clock should run slow. Each should be the younger. That cannot be true when they meet."
 whyWrong: "The rule that each sees the other's clock run slow only applies between observers who each keep one steady speed in a straight line. Terence does that the whole time. Stella does not: she goes out in one steady motion and comes back in another. So her path through space and time is different from his, and her clock records less time along it. She would feel the turn, in the same way you feel a car braking, and that is how she can tell she is the one who switched. The feeling is not the cause. The age gap comes from the different paths."
 resolution:

@@ -1,20 +1,17 @@
 ---
 title: "Paradox of thrift"
-titleAccent: "thrift"
+format: argument
 chapter: collective
 status: "disputed"
 simplification: light
 noMaths: true
 order: 180
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "How can everybody trying to save more leave a country saving no more, or even less?"
 claimA: "Every household saving more during a slump must make the country save more in total."
 claimB: "Every household trying to save more during that same slump can leave the country saving no more."
-verdict: "Collective thrift can weaken demand and income enough to frustrate saving; how far that happens depends on the economy."
 whatBreaks: "Whether reduced spending mainly cuts incomes or releases resources for investment during a slump."
-statusNote: "the Keynesian account stresses falling income and demand; other accounts allow extra saving to fund investment, depending on conditions."
+statusNote: "the Keynesian account stresses falling income and demand, while other accounts allow extra saving to fund investment, depending on conditions."
 setup: "A family saves more by cutting restaurant visits and purchases. That helps its own budget. Now imagine every family doing the same in a recession, while businesses struggle to sell what they make."
 whyWrong: "Shops receive less money and may reduce jobs and hours. Workers then spend less. The income from which families hoped to save becomes smaller."
 resolution:

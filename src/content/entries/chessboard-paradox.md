@@ -1,7 +1,7 @@
 ---
 title: "Chessboard paradox"
-titleAccent: "paradox"
-aka:
+format: argument
+searchTerms:
   [
     "Loyd and Schlömilch",
     "64 equals 65",
@@ -11,20 +11,17 @@ aka:
   ]
 chapter: shapes
 status: explained
-uniqueness: variant
-anchor: missing-square-puzzle
+variantOf: missing-square-puzzle
 simplification: light
 noMaths: false
 order: 60
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "An 8 by 8 square is cut into four pieces that make a 13 by 5 rectangle. Where did the extra square come from?"
 claimA: "The four pieces fit together exactly into the 13 by 5 rectangle, with no gap."
 claimB: "The pieces cover 64 squares, but a 13 by 5 rectangle covers 65."
-verdict: "The pieces do not quite fill the rectangle. A thin, barely visible gap along its diagonal makes up the one extra square."
 whatBreaks: "The assumption that the pieces fit exactly into the rectangle, with the long diagonal a straight line."
-statusNote: "the idea that the pieces fit the rectangle exactly is wrong. Two edges that should line up have slightly different slopes, and they leave a thin gap of exactly one square along the diagonal."
+statusNote: "two edges that should line up have slightly different slopes, leaving a thin gap along the diagonal worth exactly one square."
 setup: "An 8 by 8 square covers 64 small squares. Cut it into two triangles and two sloping four-sided pieces. Rearrange them and they seem to fill a 13 by 5 rectangle, which covers 65. How could the same pieces gain a square?"
 whyWrong: "The long edges look as though they meet along one straight diagonal. They do not. Some rise 3 squares over a width of 8; others rise 2 over a width of 5. The mismatch leaves a very thin gap."
 resolution:

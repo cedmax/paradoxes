@@ -1,22 +1,19 @@
 ---
 title: "Three prisoners problem"
-titleAccent: "problem"
-aka: ["three prisoners", "warden", "prisoner pardon", "Martin Gardner"]
+format: argument
+searchTerms: ["three prisoners", "warden", "prisoner pardon", "Martin Gardner"]
 chapter: probability
 status: explained
-uniqueness: variant
-anchor: monty-hall-problem
+variantOf: monty-hall-problem
 simplification: light
 noMaths: false
 order: 100
-written: true
 sourcesVerified: true
 problem: "A prisoner asks the warden to name one of the other two who will be executed. Told “B”, has his own chance of a pardon gone up?"
 claimA: "With B ruled out, A and C are equally likely, so A’s chance of a pardon has risen to 1 in 2."
 claimB: "A’s chance of a pardon is still 1 in 3, and C’s has risen to 2 in 3."
-verdict: "The warden was always going to name someone other than the prisoner who asked, so the answer tells that prisoner nothing about himself."
 whatBreaks: "The idea that once B is ruled out, A and C are equally likely to be the one pardoned."
-statusNote: "the idea that A and C are now equally likely is wrong. The warden’s answer was bound to name someone other than A, so it carries no news about A, and listing the cases settles it."
+statusNote: "under the warden’s stated rule, hearing B does not change A’s one-in-three chance of a pardon. Listing the cases shows that C’s chance rises to two in three."
 setup: "Three prisoners, A, B and C, are in separate cells, sentenced to death. The governor has picked one of them at random to be pardoned. The warden knows which one, but is not allowed to say. Prisoner A asks the warden to name one of the other two who will be executed: “If B is to be pardoned, give me C’s name. If C is to be pardoned, give me B’s name. And if I am to be pardoned, secretly flip a coin to decide whether to name B or C.” The warden says B will be executed. A is pleased: he thinks his chance has gone up from 1 in 3 to 1 in 2. A secretly tells C, who reasons that A’s chance is still 1 in 3, but that his own has gone up to 2 in 3. Which of them is right? Martin Gardner set this puzzle in his Mathematical Games column in Scientific American in October 1959, and gave the answer in the next issue."
 whyWrong: "Once B is out, two prisoners are left, and it feels as if each must now have an even chance. But A and C are not in the same position. A already knew the warden would name someone other than him, whoever was pardoned, so hearing a name tells A nothing about himself. C’s name, though, could have been given and was not. That is real news about C."
 resolution:

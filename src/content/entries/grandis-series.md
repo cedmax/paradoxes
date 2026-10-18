@@ -1,22 +1,19 @@
 ---
 title: "Grandi's series"
-titleAccent: series
-aka: ["1-1+1-1", "1 − 1 + 1 − 1", "Grandi", "Cesàro sum", "Abel sum", "one half"]
+format: argument
+searchTerms: ["1-1+1-1", "1 − 1 + 1 − 1", "Grandi", "Cesàro sum", "Abel sum", "one half"]
 chapter: infinity
 status: explained
-uniqueness: related
-anchor: sum-of-all-whole-numbers
+relatedTo: sum-of-all-whole-numbers
 simplification: heavy
 noMaths: false
 order: 150
-written: true
 sourcesVerified: true
 problem: "Does 1 − 1 + 1 − 1 + … add up to 0, to 1, or to one half?"
 claimA: "The sum 1 − 1 + 1 − 1 + … has a definite value that regrouping cannot change."
 claimB: "Regrouping the same terms gives 0 one way and 1 another."
-verdict: "The running totals of 1 − 1 + 1 − 1 + … never settle, so the series has no ordinary sum, and regrouping it proves nothing. One half is the value that special summation methods assign to it."
 whatBreaks: "The assumption that the series has an ordinary sum which survives regrouping, as a finite sum would."
-statusNote: "the running totals never settle, so the series has no ordinary sum. The bracketed answers do not establish one."
+statusNote: "the running totals never settle, so there is no ordinary sum, and the bracketed answers establish none. One half is the value that special summation methods such as Cesàro summation assign, which changes what “sum” means."
 setup: "Add 1, then subtract 1, then add 1, for ever. Pair the terms as (1 − 1) + (1 − 1) + … and the answer looks like 0. Leave the first 1 outside the pairs, as 1 + (−1 + 1) + …, and the answer looks like 1."
 whyWrong: "The running total keeps switching between 1 and 0. It never settles. The usual meaning of an endless sum requires those totals to approach one value. Here there is no such value to preserve when brackets are moved."
 resolution:

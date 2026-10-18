@@ -1,22 +1,18 @@
 ---
 title: "Opposite Day"
-titleAccent: "Day"
+format: argument
 chapter: self-reference
 status: "explained"
-uniqueness: "related"
-anchor: "liar-paradox"
+relatedTo: "liar-paradox"
 simplification: light
 noMaths: true
 order: 160
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "Can someone truthfully announce “Today is Opposite Day” on Opposite Day?"
 claimA: "The announcement “Today is Opposite Day” correctly says what kind of day it is."
 claimB: "If every statement on Opposite Day means its opposite, that announcement says today is not Opposite Day."
-verdict: "A rule that reverses every statement cannot also give an ordinary self-confirming announcement of itself."
 whatBreaks: "The idea that a rule reversing every statement can be announced from within the rule without an exception."
-statusNote: "the unrestricted game rule undermines its own announcement; the difficulty disappears if the rule has a starting point or exempts its announcement."
+statusNote: "the rule undermines its own announcement only if it is unrestricted: with a starting point, or an exemption for the announcement, the loop disappears."
 setup: "Children sometimes play that every statement must be read as its opposite. Someone announces the start of the game with “Today is Opposite Day”."
 whyWrong: "If the rule already applies, the announcement means that it is not Opposite Day. If it does not apply, the announcement might bring the rule into play instead."
 resolution:

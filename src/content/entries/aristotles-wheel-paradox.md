@@ -1,20 +1,17 @@
 ---
 title: "Aristotle's wheel paradox"
-titleAccent: "paradox"
+format: argument
+searchTerms: ["inner and outer circle"]
 chapter: shapes
 status: "explained"
-uniqueness: "related"
-anchor: "galileos-paradox"
+relatedTo: "galileos-paradox"
 simplification: light
 noMaths: true
 order: 70
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "How do two fixed-together wheels of different sizes travel the same distance in one turn?"
 claimA: "The small and large wheels both roll without slipping across the same distance."
 claimB: "Wheels of different sizes cannot each roll without slipping the same distance in one turn."
-verdict: "Only the outer wheel rolls on the ground without slipping. The inner circle moves along without rolling on its own track."
 whatBreaks: "The assumption that a circle carried by a rolling wheel must itself roll without slipping."
 statusNote: "the smaller circle does not meet the ground as a rolling wheel, so its own circumference need not equal its distance travelled."
 setup: "Draw a small circle inside a large circle and fix them together. Roll the outer circle one complete turn. Both centres move forward the same distance, and both circles turn once."

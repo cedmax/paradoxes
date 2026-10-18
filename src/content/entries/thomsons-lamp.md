@@ -1,21 +1,19 @@
 ---
 title: "Thomson's lamp paradox"
-titleAccent: "paradox"
-aka: ["supertask"]
+format: argument
+searchTerms: ["supertask"]
 chapter: infinity
 status: explained
-uniqueness: related
-anchor: achilles-and-the-tortoise
+relatedTo: achilles-and-the-tortoise
 simplification: light
+noMaths: true
 order: 60
-written: true
 sourcesVerified: true
 problem: "A lamp is switched on and off faster and faster for two minutes. Is it on or off at the end?"
 claimA: "A lamp must be either on or off when the two minutes are up."
 claimB: "If every on is followed by an off and vice versa, there is no end state."
-verdict: "The pattern says nothing about the end, so there is no contradiction."
 whatBreaks: "The assumption that the switching story, told up to the end, also decides what happens at the end."
-statusNote: "the second claim is wrong. The switching only covers times before two minutes, so it rules nothing out at two minutes."
+statusNote: "the switching pattern describes only times before two minutes, so it rules nothing out at two minutes: adding “on” or “off” to the story contradicts nothing. Benacerraf made this point in 1962."
 setup: "A lamp starts off. Someone switches it on. After one minute they switch it off. After another half minute they switch it on. After a quarter of a minute, off again. Each wait is half the one before, so the waits shrink without end. They add up to exactly two minutes, so every switch happens before the two minutes are up. Now look at the lamp at two minutes. James F. Thomson posed this in 1954. His reasoning was that it cannot be on, because every time it was turned on it was at once turned off again, and it cannot be off, because it was first turned on and every time it was turned off it was at once turned on again. But a lamp has to be one or the other."
 whyWrong: "The story only tells us what happens before the two-minute mark. Each switch has a next switch, so there is no last switch to leave the lamp in a final state. It is natural to think the pattern must decide the answer, but nothing in it does."
 resolution:

@@ -1,22 +1,18 @@
 ---
 title: "Rietdijk–Putnam argument"
-titleAccent: "argument"
+format: argument
 chapter: time-causation
 status: "disputed"
-uniqueness: "related"
-anchor: "ladder-paradox"
+relatedTo: "ladder-paradox"
 simplification: light
 noMaths: true
 order: 80
-written: true
 sourcesVerified: true
-reviewed: false
 problem: "Does disagreement about what is happening now mean tomorrow already exists?"
 claimA: "Special relativity shows that events which one observer calls future are already real."
 claimB: "Special relativity does not establish that future events already exist."
-verdict: "Observers disagree about distant simultaneity; whether that makes the future already real remains disputed."
 whatBreaks: "The disputed step from different ways of dividing spacetime into present moments to a claim about what exists."
-statusNote: "physicists agree about relativity of simultaneity; philosophers disagree about whether it proves that all times are equally real."
+statusNote: "because observers moving differently disagree about what happens at the same time, Rietdijk and Putnam argue the future already exists, while critics such as Howard Stein deny that this settles what exists."
 setup: "Two observers moving relative to one another draw different lines across spacetime for events they call simultaneous. A faraway event on one person’s line of “now” may lie to the future of another person’s line."
 whyWrong: "If each whole line of “now” is just as real, an event not yet present for one observer is already present for another. The argument uses that to support a world where past, present and future all exist."
 resolution:

@@ -1,15 +1,12 @@
 ---
 title: "White's illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Can two identical grey bars look like different shades?"
 problem: "Can two identical grey bars look like different shades?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 300
-written: true
 why: "A grey patch can look lighter or darker depending on where it sits in a pattern of dark and light stripes. Researchers still disagree about a full explanation."
 sources:
   - title: "Michael Bach: Munker–White illusion"
@@ -19,5 +16,4 @@ sources:
     url: https://journals.sagepub.com/doi/10.1068/p080413
     note: "Original paper and attribution; examines perceived lightness in repeated light and dark patterns."
 sourcesVerified: true
-reviewed: false
 ---

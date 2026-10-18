@@ -1,7 +1,7 @@
 ---
 title: "EPR paradox"
-titleAccent: "paradox"
-aka:
+format: argument
+searchTerms:
   [
     "Einstein Podolsky Rosen",
     "spooky action at a distance",
@@ -14,14 +14,12 @@ order: 70
 status: disputed
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "If two particles are linked, can measuring one change the other instantly, however far apart they are?"
 claimA: "Nothing done to one particle can instantly change a distant one, so quantum mechanics must leave something about the particles out."
 claimB: "Quantum mechanics gives a complete description of the particles, and measuring one gives a definite result correlated with the other’s."
-verdict: "The dispute is how to account for distant correlations: whether quantum theory leaves properties out, whether locality must change, or whether another assumption should go. There is no agreed interpretation."
 whatBreaks: "The contested choice is between completeness of quantum mechanics, the idea that nothing acts instantly at a distance, and other assumptions the experiments also depend on."
-statusNote: "the original argument pits locality against completeness given EPR’s assumptions about definite properties. The proposed interpretations give up different assumptions, and there is no consensus on which account is right."
+statusNote: "the argument sets locality, nothing acting instantly at a distance, against completeness, quantum theory leaving nothing out. Replies keep EPR’s definite properties, allow distant influences, rethink what a result is, or question whether measurement choices are independent."
 setup: "Two particles interact, then move far apart. Their properties are linked so that measuring the position of one lets someone predict the other’s position. Measuring its momentum instead lets someone predict the other’s momentum, a measure of its motion. Quantum theory does not assign the distant particle definite values for both together."
 whyWrong: "Einstein, Podolsky and Rosen argued that a measurement here cannot disturb a particle far away. If either result can be predicted without disturbing it, they said, both properties must already be definite. Quantum theory would then leave something out. Other accounts challenge what counts as a definite property or a disturbance."
 resolution:

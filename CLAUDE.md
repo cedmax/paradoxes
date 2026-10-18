@@ -32,8 +32,8 @@ Keep the editorial promise: "Paradoxes in plain words."
 For architecture, routing, search, publishing, SEO, OG images and deployment details, consult
 `docs/architecture.md` and then the current implementation. The implementation is authoritative:
 `src/content.config.ts` for entry fields, `src/data/chapters.ts` for chapters,
-`src/data/status.ts` for status definitions and `src/data/uniqueness.ts` for uniqueness.
-Do not copy their tables into guidance files.
+`src/data/status.ts` for status definitions and `src/data/uniqueness.ts` for uniqueness
+(derived from `relatedTo` and `variantOf`). Do not copy their tables into guidance files.
 
 ## Commands
 

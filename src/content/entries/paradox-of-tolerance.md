@@ -1,19 +1,17 @@
 ---
 title: Paradox of tolerance
-titleAccent: tolerance
+format: argument
 chapter: collective
 status: disputed
 simplification: light
 noMaths: true
 order: 50
-written: true
 sourcesVerified: true
 problem: Should a tolerant society tolerate people who want to end tolerance?
 claimA: "The intolerant should be tolerated unless they pose a real danger or incite violence."
 claimB: "A tolerant society may claim the right to suppress movements that preach intolerance, by force if necessary."
-verdict: "Protecting tolerance may require limits, but philosophers disagree about when restricting an intolerant movement is justified."
 whatBreaks: "Whether tolerance should stop only at real danger and incitement, or earlier, at movements that preach intolerance. Experts split on which."
-statusNote: "the dispute concerns the threshold for restriction. The proposed limits differ, and deciding what counts as intolerant or dangerous can itself be abused."
+statusNote: "the camps restrict movements preaching intolerance, require a reasonable threat to liberty, or allow only narrow exceptions such as incitement."
 setup: "A society protects people’s freedom to hold and express views they oppose. Some movements use that freedom to argue that others should lose it. Allowing them to grow may threaten tolerance. Restricting them seems to deny the freedom the society protects."
 whyWrong: "Both aims matter: giving room to disagreement and preserving the conditions that make disagreement possible. Neither “tolerate everyone” nor “suppress the intolerant” settles where to draw a justified limit."
 resolution:

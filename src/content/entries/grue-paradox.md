@@ -1,7 +1,7 @@
 ---
 title: "Grue paradox"
-titleAccent: "paradox"
-aka:
+format: argument
+searchTerms:
   [
     "new riddle of induction",
     "Goodman's paradox",
@@ -12,18 +12,15 @@ aka:
 chapter: belief
 order: 85
 status: unreconciled
-uniqueness: related
-anchor: raven-paradox
+relatedTo: raven-paradox
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Every emerald seen so far is green. Why does that support “all emeralds are green” and not “all emeralds are grue”?"
 claimA: "The emeralds seen so far are good evidence that emeralds examined later will be green, and not that they will be blue."
 claimB: "The emeralds seen so far fit “all emeralds are grue” equally well, and neither evidence nor logic favours green."
-verdict: "The puzzle asks what justifies treating some patterns as fit for prediction and not others. Each main answer, from settled habits of language to natural kinds, faces serious objections, and none is agreed."
 whatBreaks: "The idea that a general claim is backed by its observed examples, whatever words it uses. Each main attempt to say which words are fit for prediction faces serious objections."
-statusNote: "each main answer faces a serious objection. Goodman’s own answer describes which words people habitually use rather than justifying the choice, the test of time-free words fails because green and grue are defined in terms of each other just as easily, and natural kinds have proved hard to define. The sources present the riddle as open."
+statusNote: "the answers say a word earns its place by past use, that only words naming no time or place can predict, that only natural kinds can, or that no general rule exists."
 setup: "Pick a future moment, call it t. Now invent a new colour word. Something is “grue” if it was examined before t and is green, or if it was not examined before t and is blue. Every emerald anyone has looked at so far was examined before t and was green, so every one of them was also grue. The same evidence therefore backs two general claims: “all emeralds are green” and “all emeralds are grue”. For any emerald first examined after t, these two claims disagree. One says it will be green, the other that it will be blue."
 whyWrong: "Ordinary reasoning from examples, called induction, seems to work like this: if every A seen so far has been B, that supports “all As are B”. The rule makes no mention of which words are used for A and B. Grue shows that the rule, applied evenly, backs incompatible predictions from the same evidence. Everyone expects green emeralds, not blue ones. The puzzle is to say what makes “green” fit for predicting and “grue” unfit, without simply assuming the answer."
 resolution:

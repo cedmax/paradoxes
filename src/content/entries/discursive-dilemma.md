@@ -1,7 +1,7 @@
 ---
 title: Discursive dilemma
-titleAccent: dilemma
-aka:
+format: argument
+searchTerms:
   [
     "doctrinal paradox",
     "judgement aggregation",
@@ -12,19 +12,16 @@ aka:
   ]
 chapter: collective
 status: disputed
-uniqueness: related
-anchor: condorcet-paradox
+relatedTo: condorcet-paradox
 simplification: light
 noMaths: false
 order: 60
-written: true
 sourcesVerified: true
 problem: "Three judges each reason consistently, yet the majority on the reasons and the majority on the verdict point opposite ways. Which should the court follow?"
 claimA: "The court should decide each reason by majority and let the verdict follow from those decisions."
 claimB: "The court should decide the verdict itself by majority, whatever the majorities on the reasons."
-verdict: "Majorities on the reasons and on the verdict can clash, and legal theorists and philosophers disagree on which one a group should follow."
 whatBreaks: "The contested choice: follow the majority on each reason and give up the majority on the verdict, or follow the majority on the verdict and give up the majorities on the reasons."
-statusNote: "the clash between majorities is established. Sources present different rules as trade-offs rather than one agreed solution."
+statusNote: "voting on each reason and voting on the verdict give opposite results, and no rule meets every demand."
 setup: "The court’s rule is simple: a defendant is liable if the contract was both valid and broken, and not liable otherwise. Three judges agree on the rule, but disagree on the facts."
 whyWrong: "Two judges say the contract was valid. Two say it was broken. Voting on each reason therefore makes the defendant liable. But two judges say the defendant is not liable. Voting on the final verdict gives the opposite answer."
 resolution:

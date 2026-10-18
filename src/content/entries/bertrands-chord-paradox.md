@@ -1,19 +1,18 @@
 ---
 title: "Bertrand's chord paradox"
-titleAccent: "paradox"
-aka: ["Bertrand's paradox", "random chord", "Bertrand paradox"]
+format: argument
+searchTerms: ["Bertrand's paradox", "random chord", "Bertrand paradox"]
 chapter: probability
 order: 70
 status: explained
 simplification: light
-written: true
+noMaths: false
 sourcesVerified: true
 problem: "If a straight line is drawn at random across a circle, how likely is it to be longer than a side of the triangle that fits inside?"
 claimA: "Picking a chord “at random” is one definite way of choosing, so the question has a single correct answer."
 claimB: "Three equally natural ways of picking a chord at random give three different answers: one third, one half and one quarter."
-verdict: "The phrase “at random” does not say how the chord is chosen. Each way of choosing is a different question, with its own correct answer."
 whatBreaks: "The assumption that “at random” names one way of choosing. A circle has endlessly many chords, and there is more than one fair way to spread the choice over them."
-statusNote: "the first claim is wrong. “At random” is not one rule, so the question has no single answer until the way of choosing is fixed. Whether some further principle can single out one rule is still argued over, but each of the three answers is correct for its own rule."
+statusNote: "each of the three ways of choosing a chord gives its own answer, one third, one half or one quarter, and each is correct for its rule. Jaynes and Drory dispute whether any further principle can single out one rule."
 setup: "A chord joins two points on a circle. Fit a triangle with three equal sides inside the circle. What is the chance that a randomly chosen chord is longer than one side? Three natural ways of choosing give one third, one half and one quarter."
 whyWrong: "“Random” does not specify what is chosen uniformly. Two random points on the edge, a random distance from the centre and a random midpoint inside the circle favour different chords."
 resolution:

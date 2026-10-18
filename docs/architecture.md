@@ -13,10 +13,12 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/data/chapters.ts` — chapter ids, titles and blurbs. An entry's `chapter` must be one of
   these ids.
 - `src/data/status.ts` — status and simplification labels and definitions (shown on the site).
-- `src/data/uniqueness.ts` — uniqueness labels and definitions, and `anchorOf`, which resolves
-  an entry's anchor and fails the build if it is unknown, a variant, or part of a loop.
+- `src/data/uniqueness.ts` — uniqueness labels and definitions. `uniquenessOf` derives an
+  entry's kind from `relatedTo` and `variantOf` (neither means canonical), `anchorSlug` returns
+  the slug it points to, and `anchorOf` resolves that anchor and fails the build if it is
+  unknown, a variant, or part of a loop.
 - `src/pages/index.astro` — index with search and status filter (client script). Search matches
-  `title`, `aka`, `alternativeNames`, `problem`, `claimA`, `claimB`, `verdict`, plus the
+  `title`, `searchTerms`, `alternativeNames`, `problem`, `claimA`, `claimB`, `statusNote`, plus the
   anchor's title for related and variant entries. Search matches the query as a contiguous
   phrase. Search ignores case and straight/curly apostrophe differences. The index lists
   canonical and related entries. Variants are hidden by the "Hide variants" switch in the
@@ -48,15 +50,15 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/components/PuzzleIllustration.astro` — loads `illustrations/setup/<slug>.astro` or
   `illustrations/explanation/<slug>.astro` based on placement. See the build-illustration skill.
 - `src/components/EntryCard.astro` — index card. It shows title, status, anchor link and
-  `problem` only, so the card ends on the question. `claimA`, `claimB` and `verdict` stay on
-  the entry page; the card carries them hidden and the index script reveals the ones a search
+  `problem` only, so the card ends on the question. `claimA`, `claimB` and `statusNote` (with its
+  status label) stay on the entry page; the card carries them hidden and the index script reveals the ones a search
   matched when the match is not in the shown text.
 - `src/pages/og/[file].png.ts` and `src/og/` — one 1200×630 Open Graph PNG per published entry
   at `/og/<slug>-<hash>.png`, drawn with `satori` + `@resvg/resvg-js`. Colours come from the
   `--color-*` tokens in `global.css`; fonts are the static `@fontsource/archivo` and
   `@fontsource/jetbrains-mono` files. It has the same icon and orange bar as `/og.png`, with the
-  title (split by `splitTitle` in `src/data/title.ts`, shared with the entry page) and `problem`
-  between them, never the claims or verdict. Font sizes come from length steps in
+  title (split by `splitTitle` in `src/data/title.ts`, shared with the entry page, using the
+  entry's `titleAccent`) and `problem` between them, never the claims or status note. Font sizes come from length steps in
   `src/og/template.ts`; the build fails if text leaves its area, so add a step if a new entry
   overflows. The hash covers the drawn text plus a template version (image code, colour tokens,
   font files), so a change to either changes the URL. Other pages keep `/og.png` (`Base.astro`
@@ -77,10 +79,10 @@ Routes (`/entries/<slug>/`) are stable: never rename an entry file without addin
 
 ## Illusions
 
-Entry frontmatter uses `format: illusion` for visual and auditory illusions. Legacy entries omit `format`
-and default to `argument`; their claim-based schema and layout are otherwise unchanged.
-Both formats share `problem` as the question-first catalogue hook, page heading, SEO
-description fallback and OG text. Illusions instead require `why`, which follows
+Every entry sets `format`: `illusion` for visual and auditory illusions, `argument` for the
+claim-based entries.
+Both formats share `problem` as the question-first catalogue hook, prominent question
+beneath the title `<h1>` on entry pages, SEO description fallback and OG text. Illusions instead require `why`, which follows
 an original or appropriately licensed source image, vector or audio demonstration,
 loaded by `src/components/IllusionExperience.astro`
 from `src/components/illusions/<slug>.astro`. Each demonstration owns its initial and reveal states; no generic "what you see /
@@ -113,8 +115,9 @@ on illusion cards, but adds an "Illusions" filter backed by the same `format` fi
 Argument status filters exclude illusions; the All filter includes both formats.
 Chapters and uniqueness rules continue to apply to both.
 
-New entries start with `sourcesVerified: false` and `reviewed: false` and are never
-included in a production build until the owner explicitly approves source verification.
+New entries start with `sourcesVerified: false` and leave `reviewed` unset (it defaults to
+`false`), and are never included in a production build until the owner explicitly approves
+source verification.
 For review, `PREVIEW_UNVERIFIED=true pnpm dev` includes unpublished illusions locally.
 A PR deployment with the opt-in `deploy-preview` label enables the same behaviour only
 for its noindex preview. `main` never enables this exception.

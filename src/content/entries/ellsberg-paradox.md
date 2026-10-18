@@ -1,18 +1,17 @@
 ---
 title: Ellsberg paradox
-titleAccent: paradox
+format: argument
 chapter: individual
 status: disputed
 simplification: light
+noMaths: false
 order: 60
-written: true
 sourcesVerified: true
 problem: Why do people prefer a bet with known odds over one with unknown odds, when no single set of odds fits all their choices?
 claimA: A rational person acts as though each outcome has some definite probability.
 claimB: "A rational person can prefer bets whose odds are known, even when no single set of probabilities fits those choices."
-verdict: Whether that preference is a mistake or a reasonable caution is still argued.
 whatBreaks: "Either the demand that a rational person’s choices fit a single set of probabilities, or the view that preferring known odds in this way can be rational, has to go. Experts split on which."
-statusNote: "how to read the usual choices is contested. The Stanford Encyclopedia of Philosophy shows they can be treated as rational by letting a probability be a range rather than a single number, notes this works only if the beliefs really are imprecise, and says this view “is not uncontroversial”, citing Al-Najjar and Weinstein's rival reading."
+statusNote: "the usual choices are called inconsistent, treated as rational with a range of probabilities, or read as a taste for known odds."
 setup: "An urn holds 90 balls: 30 red and 60 black or yellow in an unknown mix. A bet pays 100 pounds if its colour is drawn. First choose red or black. Then choose red-or-yellow or black-or-yellow. Many people choose red in the first pair and black-or-yellow in the second. The table shows what each bet pays."
 whyWrong: "The first choice fits red being more likely than black. The second fits black being more likely than red, because both bets also pay on yellow. No single set of colour probabilities supports both strict preferences under the usual rules."
 resolution:
@@ -25,7 +24,7 @@ positions:
     body: "Represent the unknown mix with a range and choose cautiously. Cost: this needs rules for acting on the range, and those rules remain contested."
   - title: "Treat caution as a preference"
     body: "Disliking unknown odds may be a taste rather than a belief about colours. Cost: redescribing the outcomes needs limits, or it risks explaining away any choice."
-finePrint: "Wikipedia notes that John Maynard Keynes published a version of the paradox in 1921, before Ellsberg popularised it. The numbers above are the standard 90-ball version, and the same logic holds with an urn of unknown mix compared with an urn known to be half red and half black. This entry simplifies the formal statement of the sure-thing principle. The Stanford Encyclopedia of Philosophy discusses the case in its entry on imprecise probabilities."
+finePrint: "Wikipedia notes that John Maynard Keynes published a version of the paradox in 1921, before Ellsberg popularised it. The numbers above are the standard 90-ball version, and the same logic holds with an urn of unknown mix compared with an urn known to be half red and half black. This entry simplifies the formal statement of the sure-thing principle. The Stanford Encyclopedia of Philosophy discusses the case in its entry on imprecise probabilities. It shows the usual choices can be treated as rational by letting a probability be a range, notes that this works only if the beliefs really are imprecise, and says the view “is not uncontroversial”, citing Al-Najjar and Weinstein’s rival reading."
 sources:
   - title: "Wikipedia: Ellsberg paradox"
     url: https://en.wikipedia.org/wiki/Ellsberg_paradox

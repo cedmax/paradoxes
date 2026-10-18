@@ -1,15 +1,12 @@
 ---
 title: "Checker shadow illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Two squares look like different shades of grey. Are they?"
 problem: "Two squares look like different shades of grey. Are they?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 200
-written: true
 why: "The eye does not judge each square on its own. It also uses the squares around it and clues about where the light falls. A looks like a dark square in the light, while B looks like a light square in shadow, so the same grey looks different. Normally this helps people see the real colour of a surface despite shadows."
 finePrint: "Edward Adelson made the image in 1995. The effect is usually explained by lightness constancy: judging how light or dark a surface is, rather than how much light reaches the eye from it, using contrast with neighbouring areas and the apparent shadow."
 sources:
@@ -26,5 +23,4 @@ sources:
     url: https://www.illusionsindex.org/i/adelson-s-checker-shadow-illusion
     note: "Explains the role of lightness constancy, shadow interpretation and contrast."
 sourcesVerified: true
-reviewed: false
 ---

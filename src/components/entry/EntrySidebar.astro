@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content"
-import { uniqueness } from "~/data/uniqueness"
+import { uniqueness, uniquenessOf } from "~/data/uniqueness"
 
 interface Props {
   // Related and variant entries that point at this one.
@@ -28,7 +28,7 @@ const { echoes, siblings, url } = Astro.props
           >
             <span>{e.data.title}&nbsp;→</span>
             <span class="mono-label shrink-0 font-medium opacity-65">
-              {uniqueness[e.data.uniqueness].label}
+              {uniqueness[uniquenessOf(e.data)].label}
             </span>
           </a>
         ))}

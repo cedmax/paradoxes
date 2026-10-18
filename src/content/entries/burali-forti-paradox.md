@@ -1,7 +1,7 @@
 ---
 title: Burali-Forti paradox
-titleAccent: paradox
-aka:
+format: argument
+searchTerms:
   [
     "set of all ordinals",
     "largest ordinal number",
@@ -10,17 +10,14 @@ aka:
   ]
 chapter: self-reference
 status: defused
-uniqueness: related
-anchor: russells-paradox
+relatedTo: russells-paradox
 simplification: heavy
 noMaths: false
 order: 80
-written: true
 sourcesVerified: true
 problem: "Can one set contain every number that marks a position in an ordered list, including positions beyond an infinite list?"
 claimA: "There is a set that contains every ordinal number."
 claimB: "Any proposed set of all these numbers would produce another one beyond everything it contains."
-verdict: "There is no set of all ordinal numbers. Treating them as one set would create a position beyond every position, including itself."
 whatBreaks: "The assumption that every ordinal number can be gathered into one set."
 statusNote: "the argument rules out a set of all ordinals. Standard set theory accepts the proof and rejects that starting assumption."
 setup: "First, second and third describe positions, rather than amounts. Ordinal numbers extend this idea to ordered lists that go on for ever, and to positions beyond those lists. Imagine gathering every ordinal into one set and lining them up in their order."

@@ -1,7 +1,7 @@
 ---
 title: "Boltzmann brain"
-titleAccent: "brain"
-aka:
+format: argument
+searchTerms:
   [
     "Boltzmann's brain",
     "fluctuation hypothesis",
@@ -12,18 +12,15 @@ aka:
 chapter: models
 order: 50
 status: unreconciled
-uniqueness: related
-anchor: loschmidts-paradox
+relatedTo: loschmidts-paradox
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "If a universe produces far more brief brains with false memories than people with real pasts, should an observer expect to be one of those brains?"
 claimA: "In some cosmological models, brief brains with false memories far outnumber evolved observers, so any observer should expect to be one."
 claimB: "Observers in an orderly universe can trust their memories and their view of cosmic history."
-verdict: "Some cosmological models, taken at face value, predict that most observers are chance fluctuations with false memories. Many cosmologists regard such a model as problematic. They disagree over which assumption or part of the model has to change, and each main proposed fix faces a serious objection and none is widely accepted."
 whatBreaks: "Whether to change the universe’s long-term behaviour, the production or counting of observers, or the assumption that an observer should be typical."
-statusNote: "models dominated by these observers undermine trust in the evidence used to support them. The main proposed fixes remain contested."
+statusNote: "one fix changes the universe’s long-term behaviour before such brains take over, another says quantum theory lets empty space make none, another counts observers differently, and another denies that anyone should expect to be a typical observer."
 setup: "Imagine a brain briefly forming by chance in otherwise empty space. It has memories of a life that never happened, then disappears. Some models of a universe lasting for ever predict so many such brains that they vastly outnumber observers who evolved on planets."
 whyWrong: "If an observer should expect to be typical, it should expect to be one of those brains. Its memories and observations would then be unreliable, including the evidence used to support the model. The theory seems to undermine the grounds for believing it."
 resolution:
