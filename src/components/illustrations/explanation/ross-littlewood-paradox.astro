@@ -1,0 +1,47 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+const steps = [1, 2, 3, 4]
+---
+
+<IllustrationFigure
+  name="ross-littlewood"
+  lead="The number in the vase grows. But every numbered ball has a removal step."
+>
+  <SvgFigure
+    name="ross-littlewood-count"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 360 184"
+    title="The vase contains nine more balls after each step"
+    desc="After step one the vase holds nine balls, after step two eighteen, after step three twenty-seven, and after step four thirty-six. The count rises steadily, even though every particular numbered ball will be taken out at a later step."
+  >
+    {steps.map((step, index) => (
+      <g>
+        <text x="12" y={29 + index * 41} fill="currentColor" font-size="15">Step {step}</text>
+        <rect x="78" y={13 + index * 41} width={step * 44} height="24" fill={series.blue} fill-opacity=".25" stroke={series.blue} stroke-width="1.5" />
+        <text x={88 + step * 44} y={30 + index * 41} fill="currentColor" font-size="15" font-weight="700">{step * 9} inside</text>
+      </g>
+    ))}
+  </SvgFigure>
+  <ComparisonTable
+    caption="Follow particular balls instead of the total"
+    columns={["Ball", "Goes in at step", "Comes out at step"]}
+    rows={[
+      ["1", "1", "<strong>1</strong>"],
+      ["2", "1", "<strong>2</strong>"],
+      ["10", "1", "<strong>10</strong>"],
+      ["500", "50", "<strong>500</strong>"],
+      ["n", "By step n", "<strong>n</strong>"],
+    ]}
+    highlight={[2]}
+  />
+  <p class="text-base font-bold">At noon, with this removal rule: 0 balls remain.</p>
+  <Fragment slot="caption">
+    At every finite step the count has grown by nine. But each ball numbered n is removed at
+    step n, before noon. No particular ball survives the entire schedule: the increasing
+    counts do not describe what remains at noon.
+  </Fragment>
+</IllustrationFigure>
