@@ -10,14 +10,14 @@ import { series, stroke } from "~/data/palette"
   lead="Both wheels make one turn, but only the large one rolls without slipping."
 >
   <p class="text-base">
-    The solid line is the ground touched by the outer wheel. The dashed line is an
+    The solid line is the ground touched by the outer wheel. The dashed line is an{" "}
     <strong>imaginary track</strong> for the smaller wheel. Here the small wheel has half the
     radius of the large one.
   </p>
   <SvgFigure
     name="aristotles-wheel-motion"
     class="mx-auto w-full max-w-lg"
-    viewBox="0 0 480 262"
+    viewBox="0 35 480 227"
     title="Concentric wheels rolling together, with their forward travel compared to the smaller wheel's circumference"
     desc="Move the slider to roll two fixed-together concentric wheels forward by one full turn. The outer wheel touches the solid ground line. The small wheel is half its diameter and turns with it, beside a dashed imaginary track. A red measuring line follows their forward travel. Beneath the wheel, the red bar shows forward travel and a shorter blue bar shows how much of the inner rim passes during the same rotation. By one full turn, the red bar is twice as long as the blue."
   >
@@ -119,13 +119,13 @@ import { series, stroke } from "~/data/palette"
     <p id="aristotles-wheel-readout" class="text-base" aria-live="off">
       <strong>
         <span id="aristotles-wheel-progress">0%</span> of a turn
-      </strong>
+      </strong>{" "}
       · The red distance grows twice as fast as the blue distance.
     </p>
   </Slider>
 
   <Fragment slot="caption">
-    The smaller wheel turns exactly once with the larger wheel, yet the pair moves forward
+    The smaller wheel turns exactly once with the larger wheel, yet the pair moves forward{" "}
     <strong>twice the smaller wheel's circumference in this example</strong>. The small rim must
     therefore slide relative to its imaginary track. Only the large wheel rolls without
     slipping.
