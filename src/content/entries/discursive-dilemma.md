@@ -1,7 +1,6 @@
 ---
 title: Discursive dilemma
 format: argument
-titleAccent: dilemma
 searchTerms:
   [
     "doctrinal paradox",

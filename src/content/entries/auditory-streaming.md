@@ -1,6 +1,5 @@
 ---
 title: "Auditory streaming"
-titleAccent: "streaming"
 format: illusion
 chapter: shapes
 searchTerms:

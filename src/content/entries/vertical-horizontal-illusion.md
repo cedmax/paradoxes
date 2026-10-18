@@ -1,6 +1,5 @@
 ---
 title: "Vertical–horizontal illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Why can an upright line look longer than an equally long horizontal one?"

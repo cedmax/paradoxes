@@ -1,7 +1,6 @@
 ---
 title: "Two capacitor paradox"
 format: argument
-titleAccent: "paradox"
 chapter: models
 status: "explained"
 simplification: light

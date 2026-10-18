@@ -1,7 +1,6 @@
 ---
 title: "Moral luck"
 format: argument
-titleAccent: "luck"
 searchTerms: ["Nagel", "Williams", "control principle", "resultant luck", "constitutive luck"]
 chapter: individual
 order: 100

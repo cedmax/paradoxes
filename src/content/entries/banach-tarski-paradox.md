@@ -1,7 +1,6 @@
 ---
 title: "Banach–Tarski paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["doubling the ball", "pea and the Sun", "Banach Tarski"]
 chapter: infinity
 order: 90

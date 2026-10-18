@@ -1,7 +1,6 @@
 ---
 title: Grim Reaper paradox
 format: argument
-titleAccent: paradox
 searchTerms:
   [
     "Benardete paradox",

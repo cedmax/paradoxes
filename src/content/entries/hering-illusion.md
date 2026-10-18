@@ -1,6 +1,5 @@
 ---
 title: "Hering illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Can two straight lines look bowed by the lines behind them?"

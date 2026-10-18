@@ -1,7 +1,6 @@
 ---
 title: "Will Rogers phenomenon"
 format: argument
-titleAccent: "phenomenon"
 searchTerms: ["stage migration", "Okies joke", "moving a member between groups"]
 chapter: statistics
 order: 110

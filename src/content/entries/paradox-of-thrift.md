@@ -1,7 +1,6 @@
 ---
 title: "Paradox of thrift"
 format: argument
-titleAccent: "thrift"
 chapter: collective
 status: "disputed"
 simplification: light

@@ -1,7 +1,6 @@
 ---
 title: "Grandfather paradox"
 format: argument
-titleAccent: "paradox"
 chapter: time-causation
 status: disputed
 simplification: light

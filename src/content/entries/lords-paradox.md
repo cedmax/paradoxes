@@ -1,7 +1,6 @@
 ---
 title: "Lord's paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "Lord’s",

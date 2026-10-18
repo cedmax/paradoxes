@@ -1,7 +1,6 @@
 ---
 title: "Paradox of hedonism"
 format: argument
-titleAccent: "hedonism"
 chapter: individual
 status: "explained"
 simplification: light

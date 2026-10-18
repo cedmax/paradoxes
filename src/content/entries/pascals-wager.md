@@ -1,7 +1,6 @@
 ---
 title: Pascal's wager
 format: argument
-titleAccent: wager
 chapter: individual
 status: disputed
 relatedTo: st-petersburg-paradox

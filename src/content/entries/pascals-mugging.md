@@ -1,7 +1,6 @@
 ---
 title: "Pascal's mugging"
 format: argument
-titleAccent: "mugging"
 searchTerms:
   [
     "Pascal's mugger",

@@ -1,6 +1,5 @@
 ---
 title: "Café wall illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 searchTerms: ["Cafe wall illusion", "Münsterberg illusion"]

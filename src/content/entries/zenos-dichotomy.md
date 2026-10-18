@@ -1,7 +1,6 @@
 ---
 title: "Zeno's dichotomy paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["Zeno", "racecourse", "race course"]
 chapter: infinity
 status: explained

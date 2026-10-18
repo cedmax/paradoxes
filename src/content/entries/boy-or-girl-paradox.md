@@ -1,7 +1,6 @@
 ---
 title: "Boy or girl paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["two child problem", "two children problem"]
 chapter: probability
 status: explained

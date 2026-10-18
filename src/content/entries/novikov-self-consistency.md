@@ -1,7 +1,6 @@
 ---
 title: "Novikov self-consistency principle"
 format: argument
-titleAccent: "principle"
 searchTerms:
   [
     "Novikov self-consistency",

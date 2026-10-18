@@ -1,7 +1,6 @@
 ---
 title: "Epicurean paradox"
 format: argument
-titleAccent: "paradox"
 chapter: belief
 status: "disputed"
 variantOf: "problem-of-evil"

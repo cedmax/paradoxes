@@ -1,7 +1,6 @@
 ---
 title: "Meno's paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["learner’s paradox", "paradox of inquiry", "Meno", "recollection", "slave boy"]
 chapter: belief
 order: 90

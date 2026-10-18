@@ -1,7 +1,6 @@
 ---
 title: "Norton's dome"
 format: argument
-titleAccent: "dome"
 chapter: models
 status: "disputed"
 simplification: light

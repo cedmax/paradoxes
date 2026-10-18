@@ -1,6 +1,5 @@
 ---
 title: "Auditory continuity illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 searchTerms:

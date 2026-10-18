@@ -1,7 +1,6 @@
 ---
 title: "Traveler's dilemma"
 format: argument
-titleAccent: "dilemma"
 searchTerms:
   ["Traveller's dilemma", "Basu", "lost luggage game", "lost suitcase game", "undercutting"]
 chapter: collective

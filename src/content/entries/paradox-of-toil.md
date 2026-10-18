@@ -1,7 +1,6 @@
 ---
 title: "Paradox of toil"
 format: argument
-titleAccent: "toil"
 chapter: collective
 status: "disputed"
 relatedTo: "paradox-of-thrift"

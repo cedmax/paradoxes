@@ -1,7 +1,6 @@
 ---
 title: "Ross–Littlewood paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "balls and vase",

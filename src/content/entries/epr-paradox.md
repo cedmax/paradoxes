@@ -1,7 +1,6 @@
 ---
 title: "EPR paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "Einstein Podolsky Rosen",

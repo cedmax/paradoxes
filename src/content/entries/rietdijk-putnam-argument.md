@@ -1,7 +1,6 @@
 ---
 title: "Rietdijk–Putnam argument"
 format: argument
-titleAccent: "argument"
 chapter: time-causation
 status: "disputed"
 relatedTo: "ladder-paradox"

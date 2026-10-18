@@ -1,7 +1,6 @@
 ---
 title: "Bootstrap paradox"
 format: argument
-titleAccent: "paradox"
 chapter: time-causation
 status: disputed
 relatedTo: grandfather-paradox

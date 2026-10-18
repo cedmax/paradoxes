@@ -1,7 +1,6 @@
 ---
 title: "Parrondo's paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["two losing games make a winning game", "Parrondo games", "Brownian ratchet"]
 chapter: probability
 order: 80

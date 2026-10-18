@@ -1,7 +1,6 @@
 ---
 title: Condorcet paradox
 format: argument
-titleAccent: paradox
 chapter: collective
 status: explained
 simplification: light

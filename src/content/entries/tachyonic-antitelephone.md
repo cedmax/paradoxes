@@ -1,7 +1,6 @@
 ---
 title: "Tachyonic antitelephone"
 format: argument
-titleAccent: "antitelephone"
 chapter: time-causation
 status: "explained"
 relatedTo: "grandfather-paradox"

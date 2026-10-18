@@ -1,7 +1,6 @@
 ---
 title: Burali-Forti paradox
 format: argument
-titleAccent: paradox
 searchTerms:
   [
     "set of all ordinals",

@@ -1,7 +1,6 @@
 ---
 title: "Galileo's paradox"
 format: argument
-titleAccent: "paradox"
 chapter: infinity
 status: explained
 simplification: light

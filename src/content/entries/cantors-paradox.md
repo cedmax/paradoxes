@@ -1,7 +1,6 @@
 ---
 title: Cantor's paradox
 format: argument
-titleAccent: paradox
 searchTerms:
   [
     "set of all cardinals",

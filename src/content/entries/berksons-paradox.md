@@ -1,7 +1,6 @@
 ---
 title: "Berkson's paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["Berkson's fallacy", "selection bias", "collider bias", "explaining away"]
 chapter: statistics
 order: 70

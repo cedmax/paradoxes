@@ -1,7 +1,6 @@
 ---
 title: "Paradox of the plankton"
 format: argument
-titleAccent: "plankton"
 searchTerms:
   [
     "Hutchinson",

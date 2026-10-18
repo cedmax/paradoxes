@@ -1,7 +1,6 @@
 ---
 title: Friendship paradox
 format: argument
-titleAccent: paradox
 chapter: statistics
 status: explained
 variantOf: inspection-paradox

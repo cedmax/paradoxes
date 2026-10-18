@@ -1,6 +1,5 @@
 ---
 title: "Zöllner illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Do parallel lines still look parallel when short strokes cross them?"

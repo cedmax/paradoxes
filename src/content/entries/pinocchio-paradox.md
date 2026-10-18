@@ -1,7 +1,6 @@
 ---
 title: Pinocchio paradox
 format: argument
-titleAccent: paradox
 searchTerms:
   [
     "my nose will grow",

@@ -1,6 +1,5 @@
 ---
 title: "Scintillating grid illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Are dark spots really flashing inside the white dots?"

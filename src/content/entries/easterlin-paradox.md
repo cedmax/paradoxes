@@ -1,7 +1,6 @@
 ---
 title: "Easterlin paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "money and happiness",

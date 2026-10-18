@@ -1,6 +1,5 @@
 ---
 title: "Tritone paradox"
-titleAccent: "paradox"
 format: illusion
 chapter: shapes
 searchTerms:

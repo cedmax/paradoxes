@@ -1,7 +1,6 @@
 ---
 title: "Aristotle's wheel paradox"
 format: argument
-titleAccent: "paradox"
 chapter: shapes
 status: "explained"
 relatedTo: "galileos-paradox"

@@ -1,7 +1,6 @@
 ---
 title: "Grossman–Stiglitz paradox"
 format: argument
-titleAccent: "paradox"
 chapter: collective
 status: "defused"
 simplification: light

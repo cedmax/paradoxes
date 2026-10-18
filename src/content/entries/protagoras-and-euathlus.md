@@ -1,7 +1,6 @@
 ---
 title: "Protagoras and Euathlus"
 format: argument
-titleAccent: Euathlus
 chapter: self-reference
 status: defused
 simplification: light

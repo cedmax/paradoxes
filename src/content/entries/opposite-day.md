@@ -1,7 +1,6 @@
 ---
 title: "Opposite Day"
 format: argument
-titleAccent: "Day"
 chapter: self-reference
 status: "explained"
 relatedTo: "liar-paradox"

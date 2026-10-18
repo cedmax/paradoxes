@@ -57,8 +57,8 @@ in `src/styles/global.css`. `~` maps to `/src`.
   at `/og/<slug>-<hash>.png`, drawn with `satori` + `@resvg/resvg-js`. Colours come from the
   `--color-*` tokens in `global.css`; fonts are the static `@fontsource/archivo` and
   `@fontsource/jetbrains-mono` files. It has the same icon and orange bar as `/og.png`, with the
-  title (split by `splitTitle` in `src/data/title.ts`, shared with the entry page) and `problem`
-  between them, never the claims or verdict. Font sizes come from length steps in
+  title (split by `splitTitle` in `src/data/title.ts`, shared with the entry page, using the
+  entry's `titleAccent`) and `problem` between them, never the claims or verdict. Font sizes come from length steps in
   `src/og/template.ts`; the build fails if text leaves its area, so add a step if a new entry
   overflows. The hash covers the drawn text plus a template version (image code, colour tokens,
   font files), so a change to either changes the URL. Other pages keep `/og.png` (`Base.astro`

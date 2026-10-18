@@ -1,7 +1,6 @@
 ---
 title: "Grue paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "new riddle of induction",

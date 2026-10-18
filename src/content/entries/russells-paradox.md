@@ -1,7 +1,6 @@
 ---
 title: "Russell's paradox"
 format: argument
-titleAccent: paradox
 chapter: self-reference
 status: defused
 simplification: light

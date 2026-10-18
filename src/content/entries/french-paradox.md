@@ -1,7 +1,6 @@
 ---
 title: "French paradox"
 format: argument
-titleAccent: "paradox"
 chapter: statistics
 status: "disputed"
 simplification: light

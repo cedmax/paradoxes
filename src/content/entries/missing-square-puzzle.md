@@ -1,7 +1,6 @@
 ---
 title: "Missing square puzzle"
 format: argument
-titleAccent: "puzzle"
 searchTerms: ["Curry triangle", "disappearing square", "dissection paradox", "13 by 5 triangle"]
 chapter: shapes
 status: explained

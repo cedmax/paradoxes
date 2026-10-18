@@ -1,7 +1,6 @@
 ---
 title: "Chicken or the egg"
 format: argument
-titleAccent: "egg"
 searchTerms:
   [
     "which came first",

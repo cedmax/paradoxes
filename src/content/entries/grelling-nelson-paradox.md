@@ -1,7 +1,6 @@
 ---
 title: "Grelling–Nelson paradox"
 format: argument
-titleAccent: paradox
 chapter: self-reference
 status: unreconciled
 variantOf: russells-paradox

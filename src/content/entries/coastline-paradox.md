@@ -1,7 +1,6 @@
 ---
 title: "Coastline paradox"
 format: argument
-titleAccent: "paradox"
 chapter: identity
 status: explained
 simplification: light

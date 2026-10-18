@@ -1,7 +1,6 @@
 ---
 title: "Low birth-weight paradox"
 format: argument
-titleAccent: "paradox"
 chapter: statistics
 status: "explained"
 relatedTo: "berksons-paradox"

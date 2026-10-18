@@ -1,7 +1,6 @@
 ---
 title: "Ship of Theseus paradox"
 format: argument
-titleAccent: "paradox"
 chapter: identity
 status: disputed
 simplification: light

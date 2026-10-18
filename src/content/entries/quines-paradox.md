@@ -1,7 +1,6 @@
 ---
 title: "Quine's paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "yields falsehood when preceded by its quotation",

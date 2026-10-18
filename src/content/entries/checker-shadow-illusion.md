@@ -1,6 +1,5 @@
 ---
 title: "Checker shadow illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Two squares look like different shades of grey. Are they?"

@@ -1,7 +1,6 @@
 ---
 title: "Giffen paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["Giffen good", "law of demand", "Giffen goods", "rice Hunan", "Gray good"]
 chapter: individual
 order: 80

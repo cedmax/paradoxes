@@ -1,7 +1,6 @@
 ---
 title: "Heat death paradox"
 format: argument
-titleAccent: "paradox"
 chapter: models
 status: "defused"
 relatedTo: "olbers-paradox"

@@ -1,7 +1,6 @@
 ---
 title: "Chainstore paradox"
 format: argument
-titleAccent: "paradox"
 chapter: collective
 status: "disputed"
 relatedTo: "unexpected-hanging-paradox"

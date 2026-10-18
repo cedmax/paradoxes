@@ -1,7 +1,6 @@
 ---
 title: "Drinker paradox"
 format: argument
-titleAccent: "paradox"
 chapter: belief
 status: "explained"
 relatedTo: "paradoxes-of-material-implication"

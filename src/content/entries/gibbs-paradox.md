@@ -1,7 +1,6 @@
 ---
 title: Gibbs paradox
 format: argument
-titleAccent: paradox
 searchTerms:
   [
     "mixing paradox",

@@ -1,7 +1,6 @@
 ---
 title: "Thomson's lamp paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["supertask"]
 chapter: infinity
 status: explained

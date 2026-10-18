@@ -1,7 +1,6 @@
 ---
 title: "100 prisoners problem"
 format: argument
-titleAccent: "problem"
 chapter: probability
 status: "explained"
 simplification: light

@@ -1,7 +1,6 @@
 ---
 title: "Accuracy paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   ["class imbalance", "99 percent accurate", "accuracy is misleading", "precision and recall"]
 chapter: statistics

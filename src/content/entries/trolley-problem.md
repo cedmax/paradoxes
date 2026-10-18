@@ -1,7 +1,6 @@
 ---
 title: "Trolley problem"
 format: argument
-titleAccent: "problem"
 searchTerms:
   [
     "trolley dilemma",

@@ -1,6 +1,5 @@
 ---
 title: "Müller-Lyer illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 searchTerms: ["Muller Lyer", "arrowhead illusion"]

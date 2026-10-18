@@ -1,7 +1,6 @@
 ---
 title: "Potato paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["potatoes", "99 percent water", "dried potatoes", "porch potatoes"]
 chapter: shapes
 status: explained

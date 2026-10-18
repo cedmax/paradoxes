@@ -1,7 +1,6 @@
 ---
 title: "Berry paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   ["Berry's paradox", "smallest number not nameable", "definable numbers", "nameable number"]
 chapter: self-reference

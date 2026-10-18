@@ -1,7 +1,6 @@
 ---
 title: Epimenides paradox
 format: argument
-titleAccent: paradox
 searchTerms:
   [
     "all Cretans are liars",

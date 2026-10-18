@@ -2,7 +2,6 @@
 title: "Hilbert's hotel paradox"
 format: argument
 alternativeNames: ["Hilbert’s paradox of the Grand Hotel"]
-titleAccent: "paradox"
 searchTerms: ["Grand Hotel", "infinite hotel"]
 chapter: infinity
 status: explained

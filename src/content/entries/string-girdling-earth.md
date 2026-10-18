@@ -1,7 +1,6 @@
 ---
 title: "String girdling Earth"
 format: argument
-titleAccent: "Earth"
 searchTerms:
   [
     "rope around the Earth",

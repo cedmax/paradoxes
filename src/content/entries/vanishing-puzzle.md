@@ -1,7 +1,6 @@
 ---
 title: "Vanishing puzzle"
 format: argument
-titleAccent: "puzzle"
 searchTerms:
   [
     "disappearing bicyclist",

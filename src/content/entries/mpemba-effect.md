@@ -1,7 +1,6 @@
 ---
 title: Mpemba effect
 format: argument
-titleAccent: effect
 searchTerms:
   [
     "hot water freezes faster",

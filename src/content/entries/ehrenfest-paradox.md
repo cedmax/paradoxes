@@ -1,7 +1,6 @@
 ---
 title: "Ehrenfest paradox"
 format: argument
-titleAccent: "paradox"
 chapter: models
 status: "explained"
 relatedTo: "ladder-paradox"

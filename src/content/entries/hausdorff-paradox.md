@@ -1,7 +1,6 @@
 ---
 title: "Hausdorff paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "Hausdorff",

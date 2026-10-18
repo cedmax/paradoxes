@@ -1,7 +1,6 @@
 ---
 title: Parfit's teletransporter
 format: argument
-titleAccent: teletransporter
 chapter: identity
 status: disputed
 relatedTo: ship-of-theseus

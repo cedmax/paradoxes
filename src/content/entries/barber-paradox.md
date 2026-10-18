@@ -1,7 +1,6 @@
 ---
 title: "Barber paradox"
 format: argument
-titleAccent: "paradox"
 chapter: self-reference
 status: defused
 variantOf: russells-paradox

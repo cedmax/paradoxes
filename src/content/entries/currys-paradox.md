@@ -1,7 +1,6 @@
 ---
 title: "Curry's paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   ["Curry", "Löb's paradox", "if this sentence is true", "Haskell Curry", "proves anything"]
 chapter: self-reference

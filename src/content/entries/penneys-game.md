@@ -1,7 +1,6 @@
 ---
 title: "Penney's game"
 format: argument
-titleAccent: "game"
 searchTerms:
   [
     "coin race",

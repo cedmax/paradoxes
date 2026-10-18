@@ -1,6 +1,5 @@
 ---
 title: "Ebbinghaus illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 searchTerms: ["Titchener circles", "Ebbinghaus circles"]

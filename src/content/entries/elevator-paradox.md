@@ -1,7 +1,6 @@
 ---
 title: "Elevator paradox"
 format: argument
-titleAccent: "paradox"
 chapter: statistics
 status: "explained"
 relatedTo: "inspection-paradox"

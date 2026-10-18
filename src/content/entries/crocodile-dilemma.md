@@ -1,7 +1,6 @@
 ---
 title: "Crocodile dilemma"
 format: argument
-titleAccent: dilemma
 searchTerms: ["crocodile paradox"]
 chapter: self-reference
 status: defused

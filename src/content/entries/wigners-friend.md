@@ -1,7 +1,6 @@
 ---
 title: "Wigner's friend"
 format: argument
-titleAccent: "friend"
 searchTerms:
   [
     "Wigner",

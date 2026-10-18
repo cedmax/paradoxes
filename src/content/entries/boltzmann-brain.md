@@ -1,7 +1,6 @@
 ---
 title: "Boltzmann brain"
 format: argument
-titleAccent: "brain"
 searchTerms:
   [
     "Boltzmann's brain",

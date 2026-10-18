@@ -1,7 +1,6 @@
 ---
 title: "Von Neumann paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "two squares from one",

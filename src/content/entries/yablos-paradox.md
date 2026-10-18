@@ -1,7 +1,6 @@
 ---
 title: "Yablo's paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "Yablo",

@@ -1,7 +1,6 @@
 ---
 title: "Schrödinger's cat"
 format: argument
-titleAccent: "cat"
 chapter: models
 status: unreconciled
 simplification: light

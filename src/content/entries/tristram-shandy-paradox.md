@@ -1,7 +1,6 @@
 ---
 title: "Tristram Shandy paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   ["Tristram Shandy", "Russell", "Sterne", "endless autobiography", "biography that never ends"]
 chapter: infinity

@@ -1,7 +1,6 @@
 ---
 title: "Preface paradox"
 format: argument
-titleAccent: "paradox"
 chapter: belief
 status: disputed
 relatedTo: lottery-paradox

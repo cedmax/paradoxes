@@ -1,6 +1,5 @@
 ---
 title: "Hermann grid illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Why can dark spots seem to appear at bright grid crossings?"

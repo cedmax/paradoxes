@@ -1,7 +1,6 @@
 ---
 title: "Kant's antinomies"
 format: argument
-titleAccent: "antinomies"
 chapter: belief
 status: "disputed"
 simplification: light

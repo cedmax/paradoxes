@@ -1,7 +1,6 @@
 ---
 title: "Problem of induction"
 format: argument
-titleAccent: "induction"
 searchTerms:
   ["Hume's problem", "Hume's fork", "why will the sun rise tomorrow", "uniformity of nature"]
 chapter: belief

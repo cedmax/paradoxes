@@ -1,7 +1,6 @@
 ---
 title: "St Petersburg paradox"
 format: argument
-titleAccent: "paradox"
 chapter: individual
 status: unreconciled
 simplification: light

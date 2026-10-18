@@ -1,6 +1,5 @@
 ---
 title: "Risset rhythm"
-titleAccent: "rhythm"
 format: illusion
 chapter: shapes
 searchTerms:

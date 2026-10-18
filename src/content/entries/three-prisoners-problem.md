@@ -1,7 +1,6 @@
 ---
 title: "Three prisoners problem"
 format: argument
-titleAccent: "problem"
 searchTerms: ["three prisoners", "warden", "prisoner pardon", "Martin Gardner"]
 chapter: probability
 status: explained

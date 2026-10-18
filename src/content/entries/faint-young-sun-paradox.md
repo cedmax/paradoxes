@@ -1,7 +1,6 @@
 ---
 title: "Faint young Sun paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["early Earth", "Sagan and Mullen", "young Sun", "early climate", "snowball Earth"]
 chapter: models
 order: 80

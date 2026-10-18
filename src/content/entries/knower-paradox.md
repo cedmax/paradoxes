@@ -1,7 +1,6 @@
 ---
 title: "Knower paradox"
 format: argument
-titleAccent: "paradox"
 chapter: self-reference
 status: "disputed"
 relatedTo: "liar-paradox"

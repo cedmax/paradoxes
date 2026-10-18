@@ -1,7 +1,6 @@
 ---
 title: Staircase paradox
 format: argument
-titleAccent: paradox
 searchTerms:
   [
     "Manhattan distance",

@@ -1,6 +1,5 @@
 ---
 title: "Lilac Chaser"
-titleAccent: "Chaser"
 format: illusion
 chapter: shapes
 description: "Can a green spot appear when the screen only shows lilac spots?"

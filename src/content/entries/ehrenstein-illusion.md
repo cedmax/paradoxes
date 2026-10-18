@@ -1,6 +1,5 @@
 ---
 title: "Ehrenstein illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Can an undrawn white disc appear where black lines stop?"

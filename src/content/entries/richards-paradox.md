@@ -1,7 +1,6 @@
 ---
 title: "Richard's paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "definable real numbers",

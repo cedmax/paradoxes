@@ -1,6 +1,5 @@
 ---
 title: "Wundt illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Can two parallel lines seem to bend towards each other?"

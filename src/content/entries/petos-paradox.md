@@ -1,7 +1,6 @@
 ---
 title: "Peto's paradox"
 format: argument
-titleAccent: paradox
 searchTerms:
   ["whales and cancer", "elephants and cancer", "body size and cancer", "TP53 elephants"]
 chapter: models

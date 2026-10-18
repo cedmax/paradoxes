@@ -1,7 +1,6 @@
 ---
 title: "Allais paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "Allais",

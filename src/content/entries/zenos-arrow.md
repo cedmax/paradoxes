@@ -1,7 +1,6 @@
 ---
 title: "Zeno's arrow paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["Zeno", "flying arrow"]
 chapter: infinity
 status: explained

@@ -1,7 +1,6 @@
 ---
 title: "What the Tortoise Said to Achilles"
 format: argument
-titleAccent: "Achilles"
 chapter: belief
 status: "explained"
 simplification: light

@@ -1,7 +1,6 @@
 ---
 title: Archer's paradox
 format: argument
-titleAccent: paradox
 searchTerms:
   [
     "arrow flex",

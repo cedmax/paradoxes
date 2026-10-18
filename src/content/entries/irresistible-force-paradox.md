@@ -1,7 +1,6 @@
 ---
 title: "Irresistible force paradox"
 format: argument
-titleAccent: "paradox"
 chapter: identity
 status: "defused"
 relatedTo: "omnipotence-paradox"

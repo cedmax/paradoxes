@@ -1,7 +1,6 @@
 ---
 title: "Achilles and the tortoise paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["Zeno", "Zeno's paradox"]
 chapter: infinity
 status: explained

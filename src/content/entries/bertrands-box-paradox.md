@@ -1,7 +1,6 @@
 ---
 title: "Bertrand's box paradox"
 format: argument
-titleAccent: "paradox"
 chapter: probability
 status: explained
 variantOf: monty-hall-problem

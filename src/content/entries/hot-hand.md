@@ -1,7 +1,6 @@
 ---
 title: "Hot hand"
 format: argument
-titleAccent: "hand"
 searchTerms:
   ["hot hand fallacy", "streak shooting", "Gilovich Vallone Tversky", "Miller Sanjurjo"]
 chapter: statistics

@@ -1,7 +1,6 @@
 ---
 title: "Diamond–water paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms: ["paradox of value", "water and diamonds", "Adam Smith", "marginal utility"]
 chapter: identity
 order: 90

@@ -1,7 +1,6 @@
 ---
 title: "Centipede game"
 format: argument
-titleAccent: "game"
 searchTerms:
   [
     "Rosenthal's centipede",

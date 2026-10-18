@@ -1,7 +1,6 @@
 ---
 title: "Problem of evil"
 format: argument
-titleAccent: "evil"
 chapter: belief
 status: "disputed"
 simplification: light

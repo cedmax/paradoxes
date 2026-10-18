@@ -1,7 +1,6 @@
 ---
 title: "Chessboard paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "Loyd and Schlömilch",

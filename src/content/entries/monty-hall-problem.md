@@ -2,7 +2,6 @@
 title: "Monty Hall problem"
 format: argument
 description: "Three doors, one car. The host shows a goat behind a door you did not pick. Should you switch? The rules matter in the Monty Hall problem."
-titleAccent: "problem"
 searchTerms: ["three doors", "game show"]
 chapter: probability
 status: explained

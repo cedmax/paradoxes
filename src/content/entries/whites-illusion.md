@@ -1,6 +1,5 @@
 ---
 title: "White's illusion"
-titleAccent: "illusion"
 format: illusion
 chapter: shapes
 description: "Can two identical grey bars look like different shades?"

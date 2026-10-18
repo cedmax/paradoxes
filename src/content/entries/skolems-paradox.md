@@ -1,7 +1,6 @@
 ---
 title: Skolem's paradox
 format: argument
-titleAccent: paradox
 searchTerms:
   [
     "Löwenheim–Skolem",

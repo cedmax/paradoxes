@@ -1,7 +1,6 @@
 ---
 title: "Interesting number paradox"
 format: argument
-titleAccent: "paradox"
 searchTerms:
   [
     "smallest uninteresting number",

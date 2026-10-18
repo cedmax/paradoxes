@@ -1,7 +1,6 @@
 ---
 title: "Ant on a rubber rope"
 format: argument
-titleAccent: "rope"
 chapter: infinity
 status: "explained"
 simplification: light

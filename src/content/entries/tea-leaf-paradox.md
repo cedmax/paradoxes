@@ -1,7 +1,6 @@
 ---
 title: Tea leaf paradox
 format: argument
-titleAccent: paradox
 searchTerms:
   [
     "tea leaves in the centre",

@@ -1,7 +1,6 @@
 ---
 title: "Simpson's paradox"
 format: argument
-titleAccent: "paradox"
 chapter: statistics
 status: explained
 simplification: light

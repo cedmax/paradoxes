@@ -105,6 +105,9 @@ enforces anchor integrity. Do not duplicate definitions here.
   "surprise exam" alongside "Surprise exam paradox" are allowed, and so is a spelling that
   differs from the title only in hyphens or punctuation ("absentminded driver"), because search
   matches contiguous text.
+- `titleAccent` is the part of the title shown in the accent colour. Leave it out and it is the
+  last word of the title; set it only when the accent is longer ("toxin puzzle" in "Kavka's toxin
+  puzzle"). The schema fails the build if it does not end the title.
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".

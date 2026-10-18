@@ -1,7 +1,6 @@
 ---
 title: "Hydra effect"
 format: argument
-titleAccent: "effect"
 chapter: models
 status: "explained"
 simplification: light

@@ -1,7 +1,6 @@
 ---
 title: "Paradox of voting"
 format: argument
-titleAccent: "voting"
 searchTerms:
   [
     "Downs paradox",

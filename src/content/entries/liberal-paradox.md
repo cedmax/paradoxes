@@ -1,7 +1,6 @@
 ---
 title: "Liberal paradox"
 format: argument
-titleAccent: "paradox"
 chapter: collective
 status: "disputed"
 relatedTo: "condorcet-paradox"
