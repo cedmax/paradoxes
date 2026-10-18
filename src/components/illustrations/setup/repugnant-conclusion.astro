@@ -16,10 +16,18 @@ import { series, stroke } from "~/data/palette"
     desc="The width of each bar represents how many people there are, and the height how good their lives are. A has a small population with very high wellbeing. A plus adds more people with less good but worthwhile lives without changing the original people's wellbeing. B has the same population as A plus, with everyone at a common level above A plus's average. Repeating similar comparisons leads toward Z, a vastly larger population with lives barely worth living. Widths are not to scale."
   >
     <g fill="currentColor" font-size="15" font-weight="700">
-      <text x="20" y="24">A</text>
-      <text x="104" y="24">A+</text>
-      <text x="195" y="24">B</text>
-      <text x="258" y="24">Z</text>
+      <text x="20" y="24">
+        A
+      </text>
+      <text x="104" y="24">
+        A+
+      </text>
+      <text x="195" y="24">
+        B
+      </text>
+      <text x="258" y="24">
+        Z
+      </text>
     </g>
     <path d="M12 222 H408" stroke={stroke} stroke-width="1.5" />
     <rect x="20" y="79" width="16" height="143" fill={series.blue} fill-opacity=".7" />
@@ -33,22 +41,36 @@ import { series, stroke } from "~/data/palette"
       <path d="M236 150 H251 m-6 -6 6 6 -6 6" />
     </g>
     <g fill="currentColor" font-size="14">
-      <text x="28" y="245" text-anchor="middle">Few</text>
-      <text x="120" y="245" text-anchor="middle">More</text>
-      <text x="211" y="245" text-anchor="middle">As many</text>
-      <text x="333" y="245" text-anchor="middle">Vastly more</text>
-      <text x="20" y="61">High wellbeing</text>
-      <text x="244" y="135" text-anchor="middle">…</text>
-      <text x="409" y="188" text-anchor="end">Barely positive</text>
+      <text x="28" y="245" text-anchor="middle">
+        Few
+      </text>
+      <text x="120" y="245" text-anchor="middle">
+        More
+      </text>
+      <text x="211" y="245" text-anchor="middle">
+        As many
+      </text>
+      <text x="333" y="245" text-anchor="middle">
+        Vastly more
+      </text>
+      <text x="20" y="61">
+        High wellbeing
+      </text>
+      <text x="244" y="135" text-anchor="middle">
+        …
+      </text>
+      <text x="409" y="188" text-anchor="end">
+        Barely positive
+      </text>
     </g>
   </SvgFigure>
   <p class="text-base">
-    <strong>Width</strong> shows population size; <strong>height</strong> shows wellbeing per person.
-    Schematic, not to scale.
+    <strong>Width</strong> shows population size; <strong>height</strong> shows wellbeing per
+    person. Schematic, not to scale.
   </p>
   <Fragment slot="caption">
-    A+ adds worthwhile lives to A. B has the same number of people as A+, all above A+'s
-    average wellbeing. Repeat these apparently acceptable steps and the argument reaches Z.
-    Whether those comparisons really make Z better than A is the dispute.
+    A+ adds worthwhile lives to A. B has the same number of people as A+, all above A+'s average
+    wellbeing. Repeat these apparently acceptable steps and the argument reaches Z. Whether
+    those comparisons really make Z better than A is the dispute.
   </Fragment>
 </IllustrationFigure>
