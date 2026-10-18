@@ -4,7 +4,10 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
 ---
 
-<IllustrationFigure name="dalemberts-paradox" lead="The ideal flow has no wake. The real flow does.">
+<IllustrationFigure
+  name="dalemberts-paradox"
+  lead="The ideal flow has no wake. The real flow does."
+>
   <SvgFigure
     name="dalembert-flows"
     class="mx-auto w-full max-w-lg"
@@ -13,11 +16,21 @@ import { series, stroke } from "~/data/palette"
     desc="Above, smooth streamlines bend equally around the front and back of a stationary round body in an ideal frictionless flow. Below, flow moving left to right separates around the body, leaving a softly shaded red wake region and a small eddy behind it. The figure is schematic, not a measured flow field."
   >
     <g fill="currentColor" font-size="17" font-weight="700">
-      <text x="12" y="21">Ideal flow: front and back match</text>
-      <text x="12" y="177">Real flow: separation and a wake</text>
+      <text x="12" y="21">
+        Ideal flow: front and back match
+      </text>
+      <text x="12" y="177">
+        Real flow: separation and a wake
+      </text>
     </g>
     <!-- Both panels have one unobtrusive left-to-right flow arrow. -->
-    <g fill="none" stroke={series.blue} stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <g
+      fill="none"
+      stroke={series.blue}
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
       <path d="M20 36 H62 m-6 -5 6 5 -6 5" />
       <path d="M20 193 H62 m-6 -5 6 5 -6 5" />
     </g>
