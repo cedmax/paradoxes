@@ -1,0 +1,35 @@
+---
+interface Props {
+  id: string
+  label: string
+  count: number
+  title: string
+  checked?: boolean
+  // Searching disables the switch (see home-filters), so it needs the disabled styles.
+  disableable?: boolean
+}
+
+const { id, label, count, title, checked = false, disableable = false } = Astro.props
+---
+
+<label
+  class={
+    disableable
+      ? "flex min-h-11 cursor-pointer items-center gap-3 font-bold text-ink has-disabled:cursor-not-allowed"
+      : "flex min-h-11 cursor-pointer items-center gap-3 font-bold text-ink"
+  }
+  title={title}
+>
+  <input type="checkbox" role="switch" id={id} class="peer sr-only" checked={checked} />
+  <span
+    aria-hidden="true"
+    class={
+      disableable
+        ? "relative h-7 w-12 shrink-0 border-2 border-ink bg-paper transition-colors after:absolute after:top-0.5 after:left-0.5 after:size-5 after:bg-ink after:transition-transform peer-checked:bg-ink peer-checked:after:translate-x-5 peer-checked:after:bg-paper peer-focus-visible:outline-4 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink peer-disabled:opacity-50 motion-reduce:transition-none motion-reduce:after:transition-none"
+        : "relative h-7 w-12 shrink-0 border-2 border-ink bg-paper transition-colors after:absolute after:top-0.5 after:left-0.5 after:size-5 after:bg-ink after:transition-transform peer-checked:bg-ink peer-checked:after:translate-x-5 peer-checked:after:bg-paper peer-focus-visible:outline-4 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink motion-reduce:transition-none motion-reduce:after:transition-none"
+    }
+  ></span>
+  <span class={disableable ? "peer-disabled:opacity-50" : undefined}>
+    {label} <span class="font-mono text-xs font-medium">{count}</span>
+  </span>
+</label>

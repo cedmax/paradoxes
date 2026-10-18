@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content"
+import ChapterGroup from "~/components/home/ChapterGroup.astro"
+import { groupByChapter } from "~/data/entries"
+
+interface Props {
+  entries: CollectionEntry<"entries">[]
+}
+
+// Every entry is in the page. Variants start hidden; turning the "Hide variants" switch off
+// shows them. The count chips follow the switch.
+const { entries } = Astro.props
+const groups = groupByChapter(entries)
+---
+
+<main class="px-gutter flex flex-col gap-8 pt-6 pb-20 md:gap-18">
+  {groups.map(({ chapter, items }, index) => (
+    <ChapterGroup chapter={chapter} items={items} all={entries} open={index === 0} />
+  ))}
+  <noscript>
+    <style>
+      [data-body] {
+        display: flex !important;
+      }
+    </style>
+  </noscript>
+  <p id="none" hidden class="font-display text-4xl font-extrabold tracking-tight">
+    Nothing matches. That's not a paradox, just a typo.
+  </p>
+</main>

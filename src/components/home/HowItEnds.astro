@@ -1,0 +1,22 @@
+---
+import { statuses, statusKeys } from "~/data/status"
+---
+
+<details class="group px-gutter pt-6">
+  <summary class="mono-label inline-flex min-h-11 cursor-pointer list-none items-center gap-2">
+    How a paradox ends
+    <span
+      aria-hidden="true"
+      class="transition-transform group-open:rotate-180 motion-reduce:transition-none"
+    >
+      ↓
+    </span>
+  </summary>
+  <div class="flex max-w-225 flex-col gap-1.5 pt-2 text-base">
+    {statusKeys.map((k) => (
+      <div>
+        <strong>{statuses[k].label}</strong>: {statuses[k].definition}
+      </div>
+    ))}
+  </div>
+</details>

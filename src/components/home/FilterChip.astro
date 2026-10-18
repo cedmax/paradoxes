@@ -1,0 +1,22 @@
+---
+interface Props {
+  filter: string
+  label: string
+  count: number
+  pressed?: boolean
+}
+
+const { filter, label, count, pressed = false } = Astro.props
+---
+
+<button
+  type="button"
+  class="min-h-14 cursor-pointer rounded-none border-2 border-ink bg-paper px-5.5 font-bold text-ink aria-pressed:bg-ink aria-pressed:text-paper"
+  data-filter={filter}
+  aria-pressed={pressed ? "true" : "false"}
+>
+  {label}{" "}
+  <span class="font-mono text-xs font-medium" data-count>
+    {count}
+  </span>
+</button>

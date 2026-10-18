@@ -1,4 +1,6 @@
 import { getCollection, type CollectionEntry } from "astro:content"
+import { chapters } from "~/data/chapters"
+import { statusKeys } from "~/data/status"
 
 type Entry = CollectionEntry<"entries">
 
@@ -20,3 +22,30 @@ export const isListed = (entry: Entry) => entry.data.uniqueness !== "variant"
 export const byTitle = (a: Entry, b: Entry) => a.data.title.localeCompare(b.data.title)
 
 export const byOrder = (a: Entry, b: Entry) => a.data.order - b.data.order || byTitle(a, b)
+
+// The chapters that have entries, each with its entries in the order given.
+export const groupByChapter = (entries: Entry[]) =>
+  chapters
+    .map((chapter) => ({
+      chapter,
+      items: entries.filter((e) => e.data.chapter === chapter.id),
+    }))
+    .filter((group) => group.items.length > 0)
+
+// The numbers on the index page. The filter chips count listed entries only; the two switches
+// show how many entries they hold back or keep.
+export function countEntries(entries: Entry[]) {
+  const listed = entries.filter(isListed)
+  return {
+    all: listed.length,
+    illusions: listed.filter((e) => e.data.format === "illusion").length,
+    status: Object.fromEntries(
+      statusKeys.map((k) => [
+        k,
+        listed.filter((e) => e.data.format === "argument" && e.data.status === k).length,
+      ]),
+    ),
+    variants: entries.length - listed.length,
+    reviewed: entries.filter((e) => e.data.reviewed).length,
+  }
+}

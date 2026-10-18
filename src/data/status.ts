@@ -28,6 +28,8 @@ export const statuses: Record<Status, { label: string; bg: string; definition: s
   },
 }
 
+export const statusKeys = Object.keys(statuses) as Status[]
+
 export const simplifications: Record<Simplification, { label: string; definition: string }> = {
   none: { label: "Simplification: none", definition: "Nothing material is left out." },
   light: {
