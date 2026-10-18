@@ -1,0 +1,20 @@
+---
+interface Props {
+  // prose: about and corrections. home: the front page. entry: entry and chapter pages.
+  size?: "prose" | "home" | "entry"
+}
+
+// Full class strings, so Tailwind sees every clamp() value.
+const sizes = {
+  prose:
+    "font-display text-[clamp(40px,6vw,80px)] leading-none font-extrabold tracking-tighter",
+  home: "font-display text-[clamp(44px,8.4vw,128px)] leading-none font-extrabold tracking-tighter",
+  entry:
+    "font-display text-[clamp(48px,9.4vw,148px)] leading-none font-extrabold tracking-tighter",
+}
+const { size = "prose" } = Astro.props
+---
+
+<h1 class={sizes[size]}>
+  <slot />
+</h1>

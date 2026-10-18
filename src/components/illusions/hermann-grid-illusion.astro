@@ -1,4 +1,5 @@
 ---
+import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { illusionSurface } from "~/data/palette"
@@ -31,14 +32,8 @@ const horizontals = Array.from({ length: 6 }, (_, index) => 48 + index * 61)
   <Fragment slot="caption">
     No dark dots are drawn: the crossing strips use the same solid white as the rest of the
     grid. Look slightly away from an intersection, then directly at it.{" "}
-    <a
-      href="https://michaelbach.de/ot/lum-herGrid/"
-      class="underline"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <ExternalLink href="https://michaelbach.de/ot/lum-herGrid/" after=".">
       Hermann grid demonstration
-    </a>
-    .
+    </ExternalLink>
   </Fragment>
 </IllustrationFigure>

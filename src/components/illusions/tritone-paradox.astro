@@ -1,4 +1,5 @@
 ---
+import ExternalLink from "~/components/ExternalLink.astro"
 import Disclosure from "~/components/illustration-kit/Disclosure.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
@@ -226,15 +227,9 @@ const ring = names.map((label, index) => {
   <Fragment slot="caption">
     Synthesised for this site following the published recipe in Deutsch (1986, 1987, 1990,
     1991), not a recording from her site or her CD. Listen to her original demonstration on her{" "}
-    <a
-      href="https://deutsch.ucsd.edu/psychology/play.php?i=6206"
-      class="underline"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <ExternalLink href="https://deutsch.ucsd.edu/psychology/play.php?i=6206" after=".">
       website
-    </a>
-    .
+    </ExternalLink>
   </Fragment>
 </IllustrationFigure>
 

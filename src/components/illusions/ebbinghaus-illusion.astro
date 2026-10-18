@@ -1,4 +1,5 @@
 ---
+import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
@@ -67,15 +68,9 @@ const neighbours = Array.from({ length: 7 }, (_, index) => {
   <Fragment slot="caption">
     Both red circles stay 50 units across while the surrounding circles change size. Redrawn
     after the circles reproduced by{" "}
-    <a
-      href="https://books.google.com/books?id=DSlWAAAAMAAJ"
-      class="underline"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <ExternalLink href="https://books.google.com/books?id=DSlWAAAAMAAJ" after=".">
       Wilhelm Wundt (1898)
-    </a>
-    .
+    </ExternalLink>
   </Fragment>
 </IllustrationFigure>
 

@@ -1,4 +1,5 @@
 ---
+import AudioControls from "~/components/illustration-kit/AudioControls.astro"
 import Disclosure from "~/components/illustration-kit/Disclosure.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
@@ -31,14 +32,10 @@ const axisY = 24 + RISSET.layers * 30
     A steady stream of pulses. Use headphones or speakers at a comfortable volume, and stop
     whenever you like.
   </p>
-  <div class="flex flex-wrap items-center gap-3">
-    <button id="risset-rhythm-play" type="button" class="btn-ghost" aria-pressed="false">
-      Play
-    </button>
-  </div>
-  <p id="risset-rhythm-unsupported" class="text-base" hidden>
-    This browser cannot play the sound. The picture below still shows how it is built.
-  </p>
+  <AudioControls
+    name="risset-rhythm"
+    unsupported="This browser cannot play the sound. The picture below still shows how it is built."
+  />
   <ListenerChoice
     name="risset-rhythm"
     question="What does the beat do?"
@@ -135,7 +132,7 @@ const axisY = 24 + RISSET.layers * 30
     find,
     illustrationRoot,
   } from "~/scripts/illustration"
-  import { audioAvailable, playSamples, stopAudio } from "~/scripts/audio"
+  import { bindLoopingAudio } from "~/scripts/audio"
   import {
     RISSET,
     RISSET_LOOP_SECONDS,
@@ -146,7 +143,6 @@ const axisY = 24 + RISSET.layers * 30
   const name = "risset-rhythm"
   const root = illustrationRoot(name)
   if (root) {
-    const play = find<HTMLButtonElement>(root, `#${name}-play`)
     const reveal = find<HTMLElement>(root, `#${name}-reveal`)
     const slider = find<HTMLInputElement>(root, `#${name}-layers`)
     const readout = find<HTMLElement>(root, `#${name}-readout`)
@@ -155,18 +151,6 @@ const axisY = 24 + RISSET.layers * 30
     const seconds = RISSET_LOOP_SECONDS.toFixed(1)
     const hz = (value: number) => String(Math.round(value * 100) / 100)
     const layerWord = ["", "one", "two", "three", "four", "five", "six"][RISSET.layers]
-
-    const setPlaying = (on: boolean) => {
-      play.textContent = on ? "Stop" : "Play"
-      play.setAttribute("aria-pressed", String(on))
-    }
-    const start = async () => {
-      const started = await playSamples((rate) => renderRisset(rate, solo), {
-        loop: true,
-        onStop: () => setPlaying(false),
-      })
-      if (started) setPlaying(true)
-    }
 
     const choices = bindListenerChoice(root, name, (value) => {
       reveal.hidden = false
@@ -178,19 +162,6 @@ const axisY = 24 + RISSET.layers * 30
         skip: "The picture and slider below still show how it is built.",
       }[value]
     })
-
-    if (audioAvailable()) {
-      play.addEventListener("click", () => {
-        if (play.getAttribute("aria-pressed") === "true") stopAudio()
-        else {
-          void start()
-          choices.enable()
-        }
-      })
-    } else {
-      play.disabled = true
-      find<HTMLElement>(root, `#${name}-unsupported`).hidden = false
-    }
 
     bindSlider(slider, (value) => {
       solo = value === 0 ? null : value - 1
@@ -207,8 +178,10 @@ const axisY = 24 + RISSET.layers * 30
       readout.textContent = text
       return solo === null ? `All ${layerWord} layers` : `Layer ${solo + 1} alone`
     })
-    slider.addEventListener("input", () => {
-      if (play.getAttribute("aria-pressed") === "true") void start()
+    bindLoopingAudio(root, name, {
+      render: (rate) => renderRisset(rate, solo),
+      choices,
+      slider,
     })
   }
 </script>

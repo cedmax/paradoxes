@@ -1,6 +1,8 @@
 // Shared playback for the audio illusions. One sound at a time, only ever started by a button
 // press, and always stoppable. Samples come from ~/scripts/audio-synth, never from a file.
 
+import { find } from "./illustration"
+
 interface Playing {
   source: AudioBufferSourceNode
   gain: GainNode
@@ -107,4 +109,50 @@ if (typeof document !== "undefined") {
     if (document.hidden) stopAudio()
   })
   window.addEventListener("pagehide", stopAudio)
+}
+
+/**
+ * Play/Stop button for an illusion that loops one sound until stopped (see AudioControls). Shows
+ * the unsupported note and disables the button when Web Audio is missing. The first play enables
+ * the listener's answers. Pass `slider` to restart the sound when its value changes mid-play;
+ * bind it after the slider's own `bindSlider`, so `render` sees the new value.
+ */
+export function bindLoopingAudio(
+  root: Element,
+  name: string,
+  options: {
+    render: (sampleRate: number) => Float32Array
+    choices: { enable: () => void }
+    slider?: HTMLInputElement
+  },
+) {
+  const play = find<HTMLButtonElement>(root, `#${name}-play`)
+  const isPlaying = () => play.getAttribute("aria-pressed") === "true"
+  const setPlaying = (on: boolean) => {
+    play.textContent = on ? "Stop" : "Play"
+    play.setAttribute("aria-pressed", String(on))
+  }
+  const start = async () => {
+    const started = await playSamples(options.render, {
+      loop: true,
+      onStop: () => setPlaying(false),
+    })
+    if (started) setPlaying(true)
+  }
+
+  if (audioAvailable()) {
+    play.addEventListener("click", () => {
+      if (isPlaying()) stopAudio()
+      else {
+        void start()
+        options.choices.enable()
+      }
+    })
+  } else {
+    play.disabled = true
+    find<HTMLElement>(root, `#${name}-unsupported`).hidden = false
+  }
+  options.slider?.addEventListener("input", () => {
+    if (isPlaying()) void start()
+  })
 }

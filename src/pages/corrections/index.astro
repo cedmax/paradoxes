@@ -1,87 +1,84 @@
 ---
-import Base from "~/layouts/Base.astro"
+import PageTitle from "~/components/PageTitle.astro"
+import ProsePage from "~/layouts/ProsePage.astro"
 ---
 
-<Base
+<ProsePage
   title="Report a correction | Logic Benders"
   description="Report an error in a Logic Benders explanation or suggest a better source. Include the page link and the wording that needs attention."
 >
-  <main class="px-gutter flex max-w-225 flex-col gap-7 pt-12 pb-24">
-    <h1 class="font-display text-[clamp(40px,6vw,80px)] leading-none font-extrabold tracking-tighter">
-      Report a correction
-    </h1>
-    <p>
-      Include the page link, the wording that needs attention and why it should change. A link
-      to a source that supports the correction is useful.
+  <PageTitle>Report a correction</PageTitle>
+  <p>
+    Include the page link, the wording that needs attention and why it should change. A link to
+    a source that supports the correction is useful.
+  </p>
+  <form
+    name="corrections"
+    method="POST"
+    action="/corrections/thanks/"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    class="flex flex-col gap-6"
+  >
+    <input type="hidden" name="form-name" value="corrections" />
+    <p hidden>
+      <label>
+        Leave this field empty
+        <input name="bot-field" tabindex="-1" autocomplete="off" />
+      </label>
     </p>
-    <form
-      name="corrections"
-      method="POST"
-      action="/corrections/thanks/"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      class="flex flex-col gap-6"
-    >
-      <input type="hidden" name="form-name" value="corrections" />
-      <p hidden>
-        <label>
-          Leave this field empty
-          <input name="bot-field" tabindex="-1" autocomplete="off" />
-        </label>
-      </p>
-      <label class="flex flex-col gap-2 font-bold">
-        Page link (required)
-        <input
-          id="correction-page"
-          type="url"
-          name="page"
-          required
-          maxlength="2000"
-          placeholder="https://logicbenders.com/entries/monty-hall-problem/"
-          class="min-h-14 w-full border-2 border-ink bg-paper px-4 py-3 text-base font-normal"
-        />
-      </label>
-      <label class="flex flex-col gap-2 font-bold">
-        What needs correcting? (required)
-        <textarea
-          name="correction"
-          required
-          minlength="10"
-          maxlength="10000"
-          rows="7"
-          class="w-full border-2 border-ink bg-paper px-4 py-3 text-base font-normal"
-        />
-      </label>
-      <label class="flex flex-col gap-2 font-bold">
-        Supporting source link (optional)
-        <input
-          type="url"
-          name="source"
-          maxlength="2000"
-          class="min-h-14 w-full border-2 border-ink bg-paper px-4 py-3 text-base font-normal"
-        />
-      </label>
-      <label class="flex flex-col gap-2 font-bold">
-        Email for a reply (optional)
-        <input
-          type="email"
-          name="email"
-          autocomplete="email"
-          maxlength="254"
-          aria-describedby="correction-privacy"
-          class="min-h-14 w-full border-2 border-ink bg-paper px-4 py-3 text-base font-normal"
-        />
-      </label>
-      <p id="correction-privacy" class="text-base">
-        The report is sent to the site owner and stored by Netlify. Email is optional and allows
-        a reply about the correction.
-      </p>
-      <button class="btn-ghost self-start" type="submit">
-        Send correction
-      </button>
-    </form>
-  </main>
-</Base>
+    <label class="flex flex-col gap-2 font-bold">
+      Page link (required)
+      <input
+        id="correction-page"
+        type="url"
+        name="page"
+        required
+        maxlength="2000"
+        placeholder="https://logicbenders.com/entries/monty-hall-problem/"
+        class="min-h-14 w-full border-2 border-ink bg-paper px-4 py-3 text-base font-normal"
+      />
+    </label>
+    <label class="flex flex-col gap-2 font-bold">
+      What needs correcting? (required)
+      <textarea
+        name="correction"
+        required
+        minlength="10"
+        maxlength="10000"
+        rows="7"
+        class="w-full border-2 border-ink bg-paper px-4 py-3 text-base font-normal"
+      />
+    </label>
+    <label class="flex flex-col gap-2 font-bold">
+      Supporting source link (optional)
+      <input
+        type="url"
+        name="source"
+        maxlength="2000"
+        class="min-h-14 w-full border-2 border-ink bg-paper px-4 py-3 text-base font-normal"
+      />
+    </label>
+    <label class="flex flex-col gap-2 font-bold">
+      Email for a reply (optional)
+      <input
+        type="email"
+        name="email"
+        autocomplete="email"
+        maxlength="254"
+        aria-describedby="correction-privacy"
+        class="min-h-14 w-full border-2 border-ink bg-paper px-4 py-3 text-base font-normal"
+      />
+    </label>
+    <p id="correction-privacy" class="text-base">
+      The report is sent to the site owner and stored by Netlify. Email is optional and allows a
+      reply about the correction.
+    </p>
+    <button class="btn-ghost self-start" type="submit">
+      Send correction
+    </button>
+  </form>
+</ProsePage>
 
 <script>
   const page = document.getElementById("correction-page") as HTMLInputElement

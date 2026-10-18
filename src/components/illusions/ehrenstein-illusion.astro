@@ -1,4 +1,5 @@
 ---
+import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { stroke } from "~/data/palette"
@@ -29,14 +30,8 @@ const spokes = Array.from({ length: 24 }, (_, index) => {
   <Fragment slot="caption">
     The centre is empty white background, not a drawn disc. The aligned ends of the black
     strokes suggest its outline.{" "}
-    <a
-      href="https://michaelbach.de/ot/lum-Ehrenstein/"
-      class="underline"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <ExternalLink href="https://michaelbach.de/ot/lum-Ehrenstein/" after=".">
       Ehrenstein illusion demonstration
-    </a>
-    .
+    </ExternalLink>
   </Fragment>
 </IllustrationFigure>
