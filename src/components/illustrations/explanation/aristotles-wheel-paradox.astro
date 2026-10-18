@@ -1,0 +1,48 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="aristotles-wheel"
+  lead="Both rims move forward together. Only the outer one rolls without slipping."
+>
+  <SvgFigure
+    name="aristotles-wheel-tracks"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 420 205"
+    title="Two concentric wheels travelling together above two parallel tracks"
+    desc="Two positions of the same pair of rigidly connected wheels are shown. Their centres move the same distance and each wheel turns once. The large rim touches its track and rolls without slipping; the smaller rim is carried past its imaginary track and therefore slides relative to it."
+  >
+    <g fill="none" stroke={stroke} stroke-width="1.5">
+      <path d="M8 138.2 H412" />
+      <path d="M8 120 H412" stroke-dasharray="5 5" stroke-opacity=".55" />
+      <path d="M75 40 H315" stroke-dasharray="3 5" stroke-opacity=".4" />
+    </g>
+    {[75, 315].map((x) => (
+      <g>
+        <circle cx={x} cy="100" r="38.2" fill={series.gold} fill-opacity=".12" stroke={stroke} stroke-width="2" />
+        <circle cx={x} cy="100" r="20" fill={series.blue} fill-opacity=".12" stroke={series.blue} stroke-width="2.5" />
+        <circle cx={x} cy="100" r="4" fill={stroke} />
+        <path d={"M" + x + " 100 v-36"} stroke={series.red} stroke-width="3" />
+      </g>
+    ))}
+    <g fill="none" stroke={series.red} stroke-width="2" stroke-linecap="round">
+      <path d="M110 19 H310 m-7 -5 l7 5 -7 5" />
+      <path d="M110 173 H310 m-7 -5 l7 5 -7 5" />
+    </g>
+    <g fill="currentColor" font-size="14">
+      <text x="210" y="14" text-anchor="middle">Same distance travelled</text>
+      <text x="10" y="112">Inner track</text>
+      <text x="10" y="145">Outer track</text>
+      <text x="75" y="194" text-anchor="middle">Start</text>
+      <text x="315" y="194" text-anchor="middle">One full turn later</text>
+    </g>
+  </SvgFigure>
+  <Fragment slot="caption">
+    The outer rim rolls on the solid track. The inner rim never rolls on the dotted track:
+    it is carried sideways while turning. One turn of the inner wheel therefore does
+    <strong> not</strong> measure the distance travelled.
+  </Fragment>
+</IllustrationFigure>
