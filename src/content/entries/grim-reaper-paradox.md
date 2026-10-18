@@ -21,7 +21,7 @@ claimA: "Something can have infinitely many causes, with no first cause among th
 claimB: "If endless chains of causes are possible, individually possible reapers can be combined into an endless line."
 whatBreaks: "Whether to rule out endless chains of causes, or reject the step from individually possible reapers to this impossible arrangement."
 statusNote: "the line is agreed to be impossible. Pruss and Koons conclude that endless chains of causes cannot exist, while Schmid and Malpass say parts that could each exist need not all exist together."
-setup: "A man is alive at noon. One reaper will check him at 1pm, another at 12:30pm, another at 12:15pm, and so on, always halving the wait. There is no earliest reaper after noon. Each kills him if he is still alive and does nothing otherwise."
+setup: "A man is alive at noon. Infinitely many reapers stand ready. Each checks at their own time and instantly kills him if he is still alive. Nothing else can kill him. The 1pm reaper is preceded by one at 12:30, who is preceded by one at 12:15, and so on, each halving the delay after noon. There is no earliest reaper: for any reaper you pick, another checks sooner."
 whyWrong: "He cannot survive, because a reaper would find him alive and kill him. But no reaper can kill him: there is always an earlier one that would already have done so. The conditions contradict each other."
 resolution:
   - "The arrangement cannot exist. What is disputed is the lesson to draw from that fact. Is infinity in a chain of causes the problem, or is this simply an impossible combination of otherwise possible parts?"
