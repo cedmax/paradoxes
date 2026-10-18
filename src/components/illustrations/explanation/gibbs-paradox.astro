@@ -1,0 +1,94 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+---
+
+<IllustrationFigure
+  name="gibbs-count"
+  lead="Swapping imaginary labels adds a count, not a new arrangement."
+>
+  <p class="text-base leading-normal">
+    Door closed: ① │ ② is the only possibility. Counted: 1.
+  </p>
+  <p class="text-base leading-normal">
+    With the door open, compare only arrangements with{" "}
+    <strong>one particle on each side</strong>.
+  </p>
+
+  <div class="flex flex-col gap-3 border-b border-ink/20 pb-4">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <p class="font-bold">Count with imaginary labels</p>
+      <p class="text-base">
+        Counted: <strong>2</strong>
+      </p>
+    </div>
+    <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-center">
+      <div
+        role="img"
+        aria-label="Particle 1 left, particle 2 right"
+        class="whitespace-nowrap text-2xl font-bold"
+      >
+        ①{" "}
+        <span class="text-ink/50" aria-hidden="true">
+          │
+        </span>{" "}
+        ②
+      </div>
+      <span class="text-sm" aria-hidden="true">
+        or
+      </span>
+      <div
+        role="img"
+        aria-label="Particle 2 left, particle 1 right"
+        class="whitespace-nowrap text-2xl font-bold"
+      >
+        ②{" "}
+        <span class="text-ink/50" aria-hidden="true">
+          │
+        </span>{" "}
+        ①
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-3">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <p class="font-bold">Ignore the labels</p>
+      <p class="text-base">
+        Counted for entropy: <strong>1</strong>
+      </p>
+    </div>
+    <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-center">
+      <div
+        role="img"
+        aria-label="One identical particle left, one right"
+        class="whitespace-nowrap text-2xl font-bold text-series-blue"
+      >
+        ●{" "}
+        <span class="text-ink/50" aria-hidden="true">
+          │
+        </span>{" "}
+        ●
+      </div>
+      <strong class="text-xl">
+        =
+      </strong>
+      <div
+        role="img"
+        aria-label="The same arrangement: one identical particle left, one right"
+        class="whitespace-nowrap text-2xl font-bold text-series-blue"
+      >
+        ●{" "}
+        <span class="text-ink/50" aria-hidden="true">
+          │
+        </span>{" "}
+        ●
+      </div>
+    </div>
+  </div>
+
+  <Fragment slot="caption">
+    Swapping the labels does not make a second state in the standard entropy count. Other
+    arrangements, such as both particles ending up on one side, are left out of this small
+    example.
+  </Fragment>
+</IllustrationFigure>
