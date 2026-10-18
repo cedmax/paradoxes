@@ -4,11 +4,11 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
 
 const marks = [
-  { x: 344, time: "1:00", top: true },
+  { x: 344 },
   { x: 185, time: "12:30", top: false },
   { x: 105.5, time: "12:15", top: true },
   { x: 65.75, time: "12:07:30", top: false },
-  { x: 45.87, time: "12:03:15", top: true },
+  { x: 45.87, time: "12:03:45", top: true },
   { x: 35.93 },
   { x: 30.96 },
   { x: 28.47 },
@@ -30,7 +30,7 @@ const marks = [
     <g fill="none" stroke={stroke} stroke-width="2">
       <path d="M26 96 H366 m-7 -5 7 5 -7 5" />
     </g>
-    <g fill="currentColor" font-size="15">
+    <g fill="currentColor" font-size="17">
       <text x="26" y="127" text-anchor="middle">
         Noon
       </text>
@@ -43,7 +43,7 @@ const marks = [
     </g>
     {marks.map(({ x, time, top }) => (
       <g>
-        <path d={"M" + x + " 90 V102"} stroke={series.red} stroke-width="1.3" />
+        <path d={`M${x} 90 V102`} stroke={series.red} stroke-width="1.3" />
         <circle cx={x} cy="96" r="3" fill={series.red} />
         {!!time && (
           <text
@@ -51,7 +51,7 @@ const marks = [
             y={top ? 72 : 147}
             text-anchor="middle"
             fill="currentColor"
-            font-size="14"
+            font-size="16"
           >
             {time}
           </text>
@@ -61,7 +61,7 @@ const marks = [
     <g fill="none" stroke={stroke} stroke-width="2.5">
       <path d="M25.5 86 V106" />
     </g>
-    <text x="42" y="49" fill="currentColor" font-size="15">
+    <text x="26" y="49" text-anchor="middle" fill="currentColor" font-size="16">
       …
     </text>
   </SvgFigure>
