@@ -9,7 +9,6 @@ uniqueness: related
 anchor: liar-paradox
 simplification: "heavy"
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Can the sentence “If this sentence is true, then Germany borders China” prove that Germany borders China?"
 claimA: "A sentence is true exactly when what it says is so, and the usual rules for “if … then” apply to it."

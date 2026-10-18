@@ -8,7 +8,6 @@ anchor: condorcet-paradox
 simplification: light
 noMaths: true
 order: 60
-written: true
 aka: ["Efron's dice", "intransitive dice", "Penney's game"]
 problem: "Can dice A beat B, B beat C, C beat D, and D beat A, each most of the time?"
 claimA: "If A usually beats B, and B usually beats C, then A should usually beat C."

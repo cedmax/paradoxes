@@ -14,7 +14,6 @@ order: 70
 status: disputed
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "If two particles are linked, can measuring one change the other instantly, however far apart they are?"
 claimA: "Nothing done to one particle can instantly change a distant one, so quantum mechanics must leave something about the particles out."

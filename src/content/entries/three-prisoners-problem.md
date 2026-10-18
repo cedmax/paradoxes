@@ -9,7 +9,6 @@ anchor: monty-hall-problem
 simplification: light
 noMaths: false
 order: 100
-written: true
 sourcesVerified: true
 problem: "A prisoner asks the warden to name one of the other two who will be executed. Told “B”, has his own chance of a pardon gone up?"
 claimA: "With B ruled out, A and C are equally likely, so A’s chance of a pardon has risen to 1 in 2."

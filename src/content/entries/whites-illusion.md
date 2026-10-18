@@ -9,7 +9,6 @@ uniqueness: canonical
 simplification: light
 noMaths: true
 order: 300
-written: true
 why: "A grey patch can look lighter or darker depending on where it sits in a pattern of dark and light stripes. Researchers still disagree about a full explanation."
 sources:
   - title: "Michael Bach: Munker–White illusion"

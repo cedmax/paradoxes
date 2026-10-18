@@ -16,7 +16,6 @@ uniqueness: related
 anchor: thomsons-lamp
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Ten balls go into a vase and one comes out, over and over, faster and faster until noon. How many balls are in the vase at noon?"
 claimA: "More balls enter than leave at every step, so the vase cannot be empty at noon."

@@ -7,7 +7,6 @@ status: explained
 simplification: light
 noMaths: false
 order: 20
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "A coin rolls once around the rim of an identical coin. How many times does it turn?"

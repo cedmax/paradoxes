@@ -9,7 +9,6 @@ uniqueness: related
 anchor: unexpected-hanging-paradox
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Two travellers each name a value for identical lost luggage, and whoever names less gets a small bonus. Why does strict logic push both down to the minimum?"
 claimA: "Rational players who know each other to be rational both write 2, the lowest number allowed."

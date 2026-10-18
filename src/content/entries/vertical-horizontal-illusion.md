@@ -9,7 +9,6 @@ uniqueness: canonical
 simplification: light
 noMaths: true
 order: 260
-written: true
 why: "An upright line can look longer than a flat line of exactly the same length. How strong this is depends on how the two lines are arranged and on what surrounds them."
 finePrint: "In the inverted T used here, the upright meets the middle of a horizontal line of equal length. Prinzmetal and Gettleman (1993) studied how the surrounding frame of reference affects the effect."
 sources:

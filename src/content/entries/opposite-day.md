@@ -8,7 +8,6 @@ anchor: "liar-paradox"
 simplification: light
 noMaths: true
 order: 160
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can someone truthfully announce “Today is Opposite Day” on Opposite Day?"

@@ -15,7 +15,6 @@ anchor: banach-tarski-paradox
 simplification: heavy
 noMaths: false
 order: 160
-written: true
 sourcesVerified: true
 problem: "Can every piece of a sphere’s surface be given an area, so that pieces of the same shape and size always have the same area?"
 claimA: "Every piece of a sphere’s surface, however ragged, has an area that adds up and survives turning."

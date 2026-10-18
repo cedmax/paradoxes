@@ -7,7 +7,6 @@ order: 100
 status: explained
 simplification: heavy
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Could a tiny being that only opens and closes a door sort fast molecules from slow ones, and so beat the second law of thermodynamics?"
 claimA: "A demon that only opens a door can sort a gas into hot and cold sides without doing any work."

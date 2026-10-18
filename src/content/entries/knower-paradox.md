@@ -8,7 +8,6 @@ anchor: "liar-paradox"
 simplification: light
 noMaths: true
 order: 150
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "What happens to the sentence “This sentence is not known” if someone proves it?"

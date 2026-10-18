@@ -16,7 +16,6 @@ uniqueness: related
 anchor: moores-paradox
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "If every truth could in principle be known, must every truth actually be known by someone at some time?"
 claimA: "Every truth could be known by someone at some time."

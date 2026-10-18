@@ -7,7 +7,6 @@ order: 90
 status: disputed
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "If the laws of motion work the same forwards and backwards, why does time seem to run in only one direction?"
 claimA: "If the laws of motion work the same forwards and backwards, entropy should have no preferred direction."

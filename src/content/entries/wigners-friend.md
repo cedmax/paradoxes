@@ -17,7 +17,6 @@ uniqueness: related
 anchor: schrodingers-cat
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "When a friend in a sealed lab sees one quantum measurement result, how can an observer outside describe the whole lab as a superposition?"
 claimA: "Ordinary quantum rules completely describe the whole sealed lab, including the friend, as a superposition rather than one settled result."

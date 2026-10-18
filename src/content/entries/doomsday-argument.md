@@ -18,7 +18,6 @@ uniqueness: related
 anchor: sleeping-beauty-problem
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Does being among the first 117 billion or so humans ever born make an early end for humanity more likely?"
 claimA: "An early birth rank is evidence that the total number of humans will be smaller."

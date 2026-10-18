@@ -7,7 +7,6 @@ order: 120
 status: unreconciled
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Can a huge population whose lives are barely worth living be better than a smaller population of very happy people?"
 claimA: "A smaller population of people with very good lives is better than a vast population whose lives are barely worth living."

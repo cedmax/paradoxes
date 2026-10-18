@@ -7,7 +7,6 @@ order: 90
 status: explained
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Can a solid ball be cut into a few pieces and put back together as two balls, each as big as the first?"
 claimA: "Every piece of a ball has a volume, so rearranging the pieces cannot double the total."

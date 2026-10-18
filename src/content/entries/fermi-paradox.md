@@ -6,7 +6,6 @@ status: disputed
 simplification: light
 noMaths: true
 order: 20
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "If the galaxy is so big and so old, where is everybody?"

@@ -8,7 +8,6 @@ anchor: "paradox-of-thrift"
 simplification: light
 noMaths: true
 order: 190
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can everyone becoming more willing to work make employment fall?"

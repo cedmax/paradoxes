@@ -6,7 +6,6 @@ status: "disputed"
 simplification: light
 noMaths: true
 order: 150
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can reason establish both that the world began and that it never began?"

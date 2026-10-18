@@ -6,7 +6,6 @@ status: "explained"
 simplification: light
 noMaths: true
 order: 140
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can trying too hard to feel happy make happiness harder to find?"

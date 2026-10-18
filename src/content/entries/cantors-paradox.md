@@ -16,7 +16,6 @@ anchor: russells-paradox
 simplification: heavy
 noMaths: false
 order: 130
-written: true
 sourcesVerified: true
 problem: "Is there a biggest infinity, or a set that holds every possible size of a set?"
 claimA: "There is a set that contains every cardinal number, that is, every possible size of a set."

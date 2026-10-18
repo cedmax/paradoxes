@@ -7,7 +7,6 @@ order: 80
 status: disputed
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "If the young Sun was much dimmer than today, why was early Earth not frozen?"

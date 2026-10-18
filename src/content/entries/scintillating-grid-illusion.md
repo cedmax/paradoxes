@@ -10,7 +10,6 @@ anchor: hermann-grid-illusion
 simplification: light
 noMaths: true
 order: 280
-written: true
 why: "White discs where grey paths cross can seem to flicker with dark spots as you look around the grid. The discs are plain white. The flicker needs some change, such as moving your eyes or the grid, and it fades if a still grid is watched with a perfectly steady gaze."
 finePrint: "Fast eye movements are not needed: Schrauf, Wist and Ehrenstein (2000) found that smoothly following a moving point, moving the grid, or showing it only briefly can also produce the dark spots. The effect is related to the [Hermann grid](hermann-grid-illusion), but more vivid."
 sources:

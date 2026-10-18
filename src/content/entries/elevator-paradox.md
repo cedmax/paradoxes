@@ -8,7 +8,6 @@ anchor: "inspection-paradox"
 simplification: light
 noMaths: true
 order: 140
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Why does the first lift to arrive so often seem to be going the wrong way?"

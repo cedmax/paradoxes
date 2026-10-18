@@ -17,7 +17,6 @@ uniqueness: related
 anchor: ladder-paradox
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Two spaceships joined by a string speed up in exactly the same way at the same moment. Does the string break?"
 claimA: "Keeping the ships the same distance apart means the string cannot stretch."

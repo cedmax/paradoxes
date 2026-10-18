@@ -7,7 +7,6 @@ uniqueness: related
 anchor: ship-of-theseus
 simplification: light
 order: 80
-written: true
 sourcesVerified: true
 problem: "A machine scans and destroys your body, then builds a body exactly like yours on Mars from the scan. Have you travelled, or died?"
 claimA: "The person on Mars has a body exactly like yours, with all your memories and character, so it is you."

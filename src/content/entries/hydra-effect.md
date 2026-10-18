@@ -6,7 +6,6 @@ status: "explained"
 simplification: light
 noMaths: true
 order: 220
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Can killing more members of a species actually leave a larger population?"

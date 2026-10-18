@@ -7,7 +7,6 @@ order: 80
 status: explained
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Why did a famous study find no streaks in basketball shooting, when shooters and fans are sure they exist?"
 claimA: "The 1985 study showed that shooting streaks are an illusion."

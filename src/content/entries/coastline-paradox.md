@@ -5,7 +5,6 @@ chapter: identity
 status: explained
 simplification: light
 order: 40
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "How long is the coast of Britain?"

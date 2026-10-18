@@ -16,7 +16,6 @@ anchor: sorites-paradox
 simplification: light
 noMaths: true
 order: 50
-written: true
 sourcesVerified: true
 problem: "Which came first, the chicken or the egg?"
 claimA: "Every chicken hatched from an egg laid by a chicken, so the chain of chickens and eggs has no first link."

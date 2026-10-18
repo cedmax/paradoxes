@@ -7,7 +7,6 @@ order: 80
 status: explained
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Can two games that each lose money, played one after the other, together win money?"
 claimA: "If each of two games loses money on average, any way of playing them together must lose money too."

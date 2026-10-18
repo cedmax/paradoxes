@@ -6,7 +6,6 @@ status: "disputed"
 simplification: light
 noMaths: false
 order: 180
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can a ball that is perfectly still begin to move at an arbitrary time under Newton’s laws?"

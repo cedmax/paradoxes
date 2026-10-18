@@ -6,7 +6,6 @@ status: disputed
 simplification: light
 noMaths: true
 order: 50
-written: true
 sourcesVerified: true
 problem: Should a tolerant society tolerate people who want to end tolerance?
 claimA: "The intolerant should be tolerated unless they pose a real danger or incite violence."

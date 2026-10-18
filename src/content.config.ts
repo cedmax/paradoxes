@@ -27,8 +27,6 @@ const common = z.object({
   noMaths: z.boolean().default(true),
   // Question-first hook shared by cards, entry headers and OG images.
   problem: z.string().trim().min(1),
-  // Whether the entry's body has been written. False while the body is still empty.
-  written: z.boolean().default(false),
   sources: z
     .array(
       z.object({

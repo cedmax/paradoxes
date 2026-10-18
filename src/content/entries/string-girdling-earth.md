@@ -13,7 +13,6 @@ status: explained
 simplification: light
 noMaths: false
 order: 50
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Add one metre to a string that fits tightly round the equator. How far off the ground does it lift?"

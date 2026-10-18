@@ -5,7 +5,6 @@ chapter: individual
 status: disputed
 simplification: light
 order: 60
-written: true
 sourcesVerified: true
 problem: Why do people prefer a bet with known odds over one with unknown odds, when no single set of odds fits all their choices?
 claimA: A rational person acts as though each outcome has some definite probability.

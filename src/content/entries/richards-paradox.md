@@ -16,7 +16,6 @@ anchor: berry-paradox
 simplification: "heavy"
 noMaths: false
 order: 120
-written: true
 sourcesVerified: true
 problem: "If every number describable in English is on a list, can English describe a number missing from it?"
 claimA: "English gives a precise, fixed test for which phrases define a number, even phrases about that test itself."

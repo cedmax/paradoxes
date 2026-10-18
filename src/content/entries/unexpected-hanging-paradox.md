@@ -7,7 +7,6 @@ chapter: belief
 status: disputed
 simplification: light
 order: 70
-written: true
 problem: "A prisoner is told they will be hanged on a day they cannot predict. Can they rule out every day?"
 claimA: "The judge's announcement makes sense and can come true."
 claimB: "The prisoner's argument proves that it cannot come true."

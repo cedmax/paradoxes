@@ -7,7 +7,6 @@ order: 90
 status: explained
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Why does water, which people cannot live without, cost so little, while diamonds, which they can easily live without, cost so much?"
 claimA: "The more useful something is, the more it should be worth."

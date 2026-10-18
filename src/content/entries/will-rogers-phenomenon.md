@@ -9,7 +9,6 @@ uniqueness: related
 anchor: simpsons-paradox
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Can moving one person from one group to another raise the average of both groups?"
 claimA: "Moving one member from group S to group R cannot raise both averages, because the combined average does not change."

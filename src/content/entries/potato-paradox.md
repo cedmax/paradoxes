@@ -7,7 +7,6 @@ status: explained
 simplification: light
 noMaths: false
 order: 10
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Potatoes that are 99% water dry out until they are 98% water. Do they lose much weight?"

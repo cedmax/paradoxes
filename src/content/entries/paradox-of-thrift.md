@@ -6,7 +6,6 @@ status: "disputed"
 simplification: light
 noMaths: true
 order: 180
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "How can everybody trying to save more leave a country saving no more, or even less?"

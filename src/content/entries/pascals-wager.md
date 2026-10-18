@@ -7,7 +7,6 @@ uniqueness: related
 anchor: st-petersburg-paradox
 simplification: light
 order: 50
-written: true
 sourcesVerified: true
 problem: "If reason cannot settle whether God exists, is believing in God the sensible bet?"
 claimA: "A chance of infinite reward makes wagering for God the rational choice."

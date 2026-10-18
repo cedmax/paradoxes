@@ -8,7 +8,6 @@ anchor: monty-hall-problem
 simplification: none
 noMaths: true
 order: 50
-written: true
 sourcesVerified: true
 problem: "You draw a gold coin from a box. What are the odds that the other coin in the box is gold too?"
 claimA: "The box is gold-gold or gold-silver, equally likely, so it is one half."

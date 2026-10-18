@@ -7,7 +7,6 @@ uniqueness: related
 anchor: russells-paradox
 simplification: light
 order: 10
-written: true
 sourcesVerified: true
 reviewed: true
 noMaths: true

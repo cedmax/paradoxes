@@ -8,7 +8,6 @@ anchor: "unexpected-hanging-paradox"
 simplification: light
 noMaths: true
 order: 150
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Why does backward reasoning tell a large chain never to fight a new rival?"

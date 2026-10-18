@@ -7,7 +7,6 @@ order: 40
 status: disputed
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "What happens to the information about what fell into a black hole once the black hole has evaporated?"
 claimA: "In ordinary quantum theory, the information about a system’s starting state is never lost as it changes."

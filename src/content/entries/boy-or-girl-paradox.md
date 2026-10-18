@@ -9,7 +9,6 @@ anchor: monty-hall-problem
 simplification: light
 noMaths: true
 order: 40
-written: true
 sourcesVerified: true
 problem: "A parent has two children and at least one is a boy. What are the odds that both are?"
 claimA: "As usually stated, the question has one right answer."

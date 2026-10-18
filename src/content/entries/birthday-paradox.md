@@ -7,7 +7,6 @@ chapter: probability
 status: explained
 simplification: light
 order: 20
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "How many people need to be in a room before two probably share a birthday?"

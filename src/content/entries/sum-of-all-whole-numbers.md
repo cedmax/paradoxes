@@ -7,7 +7,6 @@ order: 110
 status: explained
 simplification: heavy
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "How can 1 + 2 + 3 + 4 + … be said to equal −1/12, when adding positive numbers only makes the total bigger?"
 claimA: "Adding positive numbers only makes totals bigger, so 1 + 2 + 3 + … cannot be a negative fraction."

@@ -7,7 +7,6 @@ chapter: probability
 status: explained
 simplification: light
 order: 10
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Three doors, one car. You pick one and the host opens a door with a goat behind it. Should you switch?"

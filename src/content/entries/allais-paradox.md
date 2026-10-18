@@ -16,7 +16,6 @@ uniqueness: related
 anchor: ellsberg-paradox
 simplification: "heavy"
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Most people take a sure million over a gamble with a bigger prize, yet prefer the bigger prize when both options are long shots. Is that consistent?"
 claimA: "If two gambles share a chance of the same outcome, changing that shared outcome should not reverse a rational preference."

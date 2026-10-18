@@ -9,7 +9,6 @@ uniqueness: canonical
 simplification: light
 noMaths: true
 order: 270
-written: true
 why: "A background of lines spreading out from one point can make two straight, parallel lines seem to bow apart. The lines never bend: the background changes how their shape is judged."
 finePrint: "Ewald Hering described the effect in 1861. In the [Wundt illusion](wundt-illusion), a different background makes the same kind of lines seem to bow inwards."
 sources:

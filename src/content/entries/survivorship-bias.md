@@ -17,7 +17,6 @@ uniqueness: related
 anchor: inspection-paradox
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "If the bombers that come back have bullet holes in some places and hardly any in others, where should the armour go?"
 claimA: "The damage on planes that came back showed where they needed protection."

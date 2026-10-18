@@ -8,7 +8,6 @@ anchor: "ladder-paradox"
 simplification: light
 noMaths: true
 order: 80
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Does disagreement about what is happening now mean tomorrow already exists?"

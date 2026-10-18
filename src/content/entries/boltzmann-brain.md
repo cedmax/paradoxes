@@ -16,7 +16,6 @@ uniqueness: related
 anchor: loschmidts-paradox
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "If a universe produces far more brief brains with false memories than people with real pasts, should an observer expect to be one of those brains?"
 claimA: "In some cosmological models, brief brains with false memories far outnumber evolved observers, so any observer should expect to be one."

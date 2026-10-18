@@ -16,7 +16,6 @@ uniqueness: related
 anchor: unexpected-hanging-paradox
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Two players can keep doubling a pot by passing it back and forth. Why does strict logic say the first player should grab it at once?"
 claimA: "Players who are rational, and who know that about each other all the way down, take the money at the very first move."

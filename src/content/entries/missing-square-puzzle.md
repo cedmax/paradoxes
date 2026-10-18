@@ -7,7 +7,6 @@ status: explained
 simplification: light
 noMaths: false
 order: 30
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "The same four pieces seem to make two identical triangles, but one has a square-shaped hole. Where did the square come from?"

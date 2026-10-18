@@ -16,7 +16,6 @@ anchor: liar-paradox
 simplification: light
 noMaths: true
 order: 140
-written: true
 sourcesVerified: true
 problem: "Pinocchio’s nose grows exactly when he says something false. What happens when he says “My nose is growing”?"
 claimA: "Pinocchio’s contradictory nose is a problem about truth itself, like the liar paradox."

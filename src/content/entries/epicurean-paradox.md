@@ -8,7 +8,6 @@ anchor: "problem-of-evil"
 simplification: light
 noMaths: true
 order: 140
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "If God can stop suffering and wants to, why is suffering still here?"

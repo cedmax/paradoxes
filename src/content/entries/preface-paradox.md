@@ -7,7 +7,6 @@ uniqueness: related
 anchor: lottery-paradox
 simplification: light
 order: 50
-written: true
 problem: "Can an author rightly believe every claim in a book and also that the book contains a mistake?"
 claimA: "It is reasonable for the author to fully believe each claim in their book, and also that one of them is wrong."
 claimB: "A reasonable person's beliefs must all be able to be true together."

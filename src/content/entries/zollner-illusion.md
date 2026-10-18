@@ -9,7 +9,6 @@ uniqueness: canonical
 simplification: light
 noMaths: true
 order: 230
-written: true
 why: "Short strokes crossing long parallel lines at an angle can make the long lines seem to lean towards and away from one another."
 sources:
   - title: "Michael Bach: Tilted Table and Zöllner illusion"

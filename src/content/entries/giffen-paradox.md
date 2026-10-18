@@ -7,7 +7,6 @@ order: 80
 status: explained
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Can a rise in a price make people buy more of the thing that has become dearer?"
 claimA: "When the price of a good goes up, people buy less of it."

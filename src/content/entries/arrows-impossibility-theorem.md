@@ -17,7 +17,6 @@ uniqueness: related
 anchor: condorcet-paradox
 simplification: "heavy"
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Is there a fair way to turn everyone's rankings of three or more options into one ranking for the group?"
 claimA: "A voting rule that fairly combines rankings of three or more options must exist."

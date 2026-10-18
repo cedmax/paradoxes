@@ -17,7 +17,6 @@ anchor: simpsons-paradox
 simplification: light
 noMaths: false
 order: 130
-written: true
 sourcesVerified: true
 problem: "Two careful analyses of the same before and after weights give opposite answers about boys and girls. Can both be right?"
 claimA: "Two correct analyses of the same data must give the same answer about whether the diet affected boys and girls differently."

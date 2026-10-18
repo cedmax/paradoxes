@@ -7,7 +7,6 @@ uniqueness: variant
 anchor: russells-paradox
 simplification: light
 order: 40
-written: true
 sourcesVerified: true
 reviewed: false
 noMaths: true

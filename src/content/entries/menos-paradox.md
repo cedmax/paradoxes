@@ -7,7 +7,6 @@ order: 90
 status: explained
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "How can you search for something if you do not already know what it is?"
 claimA: "Searching can teach us what we do not yet know."

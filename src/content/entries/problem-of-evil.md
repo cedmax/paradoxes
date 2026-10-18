@@ -6,7 +6,6 @@ status: "disputed"
 simplification: light
 noMaths: true
 order: 170
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "How can an all-powerful, perfectly good God exist when suffering exists?"

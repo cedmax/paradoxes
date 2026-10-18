@@ -7,7 +7,6 @@ order: 100
 status: disputed
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Is it fair to judge people for things that turned out well or badly because of luck?"
 claimA: "People are fairly judged morally only for what is under their control."

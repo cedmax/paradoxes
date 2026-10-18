@@ -13,7 +13,6 @@ status: explained
 simplification: heavy
 noMaths: false
 order: 140
-written: true
 sourcesVerified: true
 problem: "How can a mathematical world with only enough objects to list still contain a set it calls impossible to list?"
 claimA: "If all the objects in a mathematical world can be listed from outside, that world must be able to list every set inside it."

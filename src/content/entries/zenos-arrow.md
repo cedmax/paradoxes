@@ -6,7 +6,6 @@ chapter: infinity
 status: explained
 simplification: light
 order: 40
-written: true
 sourcesVerified: true
 problem: "If a flying arrow is standing still at every instant, how can it ever move?"
 claimA: "At each instant the arrow moves no distance, so it is at rest at every instant, so it never moves."

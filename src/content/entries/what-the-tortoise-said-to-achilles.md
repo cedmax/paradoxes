@@ -6,7 +6,6 @@ status: "explained"
 simplification: light
 noMaths: true
 order: 190
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "If someone accepts every premise of an argument, can they still refuse its conclusion forever?"

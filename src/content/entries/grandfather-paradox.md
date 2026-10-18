@@ -6,7 +6,6 @@ status: disputed
 simplification: light
 noMaths: true
 order: 10
-written: true
 sourcesVerified: true
 problem: "If you travelled back in time and stopped your grandfather having children, how could you ever have been born?"
 claimA: "A time traveller is free to do anything any other person could do, including stopping their own grandfather becoming a father."

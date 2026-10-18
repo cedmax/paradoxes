@@ -5,7 +5,6 @@ chapter: identity
 status: disputed
 simplification: light
 order: 70
-written: true
 sourcesVerified: true
 reviewed: false
 problem: Replace every plank of a ship, one at a time. Is it still the same ship?

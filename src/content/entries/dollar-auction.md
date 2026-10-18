@@ -7,7 +7,6 @@ order: 90
 status: explained
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Why would careful bidders in an auction for one dollar end up paying more than a dollar for it?"
 claimA: "Rational bidders would never push the price of a dollar past a dollar."

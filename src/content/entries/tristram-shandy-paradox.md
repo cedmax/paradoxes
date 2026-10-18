@@ -10,7 +10,6 @@ uniqueness: related
 anchor: galileos-paradox
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "A man takes a year to write up each day of his life. If he lived for ever, would any day go unwritten?"
 claimA: "Even with endless time, a growing backlog leaves some days unwritten."

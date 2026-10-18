@@ -8,7 +8,6 @@ anchor: "condorcet-paradox"
 simplification: light
 noMaths: true
 order: 170
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can a voting rule respect everyone’s private choices and always follow unanimous preferences?"

@@ -14,12 +14,6 @@ interface Props {
 const { slug, data: d } = Astro.props
 ---
 
-{!d.written && (
-  <div class="border-2 border-dashed border-ink px-6 py-5 text-lg">
-    <strong>Full write-up in progress.</strong> The problem, the two claims and the verdict are
-    final. The explanation and sources are not written yet.
-  </div>
-)}
 {d.setup && (
   <EntrySection heading="The setup" paragraphs={[d.setup]}>
     <PuzzleIllustration slug={slug} placement="setup" />

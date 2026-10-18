@@ -7,7 +7,6 @@ order: 100
 status: explained
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "How can people be truly moved by characters they know do not exist?"
 claimA: "People feel real emotions for fictional characters and events that they know are made up."

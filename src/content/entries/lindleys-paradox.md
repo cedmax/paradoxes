@@ -6,7 +6,6 @@ status: "explained"
 simplification: light
 noMaths: false
 order: 150
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can the same experiment be statistically significant and still favour no effect?"

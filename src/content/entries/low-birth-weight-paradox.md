@@ -8,7 +8,6 @@ anchor: "berksons-paradox"
 simplification: light
 noMaths: true
 order: 180
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Why have low-weight babies of mothers who smoke sometimes shown lower death rates than other low-weight babies?"

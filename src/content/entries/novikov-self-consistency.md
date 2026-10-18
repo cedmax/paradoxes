@@ -15,7 +15,6 @@ anchor: "grandfather-paradox"
 simplification: light
 noMaths: true
 order: 70
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can a billiard ball knock its younger self away from a time machine and still have made the trip?"

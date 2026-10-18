@@ -17,7 +17,6 @@ anchor: condorcet-paradox
 simplification: light
 noMaths: false
 order: 60
-written: true
 sourcesVerified: true
 problem: "Three judges each reason consistently, yet the majority on the reasons and the majority on the verdict point opposite ways. Which should the court follow?"
 claimA: "The court should decide each reason by majority and let the verdict follow from those decisions."

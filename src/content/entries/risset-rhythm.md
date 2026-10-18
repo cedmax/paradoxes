@@ -11,7 +11,6 @@ anchor: tritone-paradox
 simplification: light
 noMaths: true
 order: 360
-written: true
 problem: "How can a beat seem to speed up for ever without ever getting faster?"
 why: "Several layers of pulses speed up together, each layer twice as fast as the one below. Each layer fades in while it is slow and fades out as it gets fast, and as one disappears, a slower one has grown to take its place at the same speed. As the layers fade in and out, the whole rhythm can seem to keep speeding up, even though the pattern repeats. How strongly listeners hear it varies."
 finePrint: "Layers twice as fast as each other are an octave apart in tempo, the rhythmic counterpart of the octave-spaced [Shepard tones](tritone-paradox). Every layer doubles its speed over one loop, so the same set of speeds returns each time. The loop on this page lasts about 28 seconds, a setting chosen for this site rather than a value from the sources."

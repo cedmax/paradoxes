@@ -16,7 +16,6 @@ anchor: thomsons-lamp
 simplification: light
 noMaths: false
 order: 170
-written: true
 sourcesVerified: true
 problem: "An endless line of reapers, each killing a man only if no earlier reaper has, cannot exist. What does that show?"
 claimA: "Something can have infinitely many causes, with no first cause among them."

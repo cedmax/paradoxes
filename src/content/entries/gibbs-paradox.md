@@ -15,7 +15,6 @@ status: explained
 simplification: heavy
 noMaths: false
 order: 130
-written: true
 sourcesVerified: true
 problem: "Why does a calculation say that opening a door between two boxes of identical gas raises entropy, when the gas looks and behaves just as before?"
 claimA: "Opening and closing a door between identical gases at the same temperature and pressure leaves their total entropy unchanged."

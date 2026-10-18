@@ -8,7 +8,6 @@ anchor: "paradoxes-of-material-implication"
 simplification: light
 noMaths: true
 order: 130
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Must there always be a person in a pub whose drinking means everyone is drinking?"

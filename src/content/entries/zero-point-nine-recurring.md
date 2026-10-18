@@ -16,7 +16,6 @@ uniqueness: related
 anchor: achilles-and-the-tortoise
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Is 0.999…, with nines that never stop, a tiny bit less than 1, or exactly 1?"
 claimA: "0.999… is a tiny bit less than 1, because however many nines there are, a small gap to 1 is always left."

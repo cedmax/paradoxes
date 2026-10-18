@@ -16,7 +16,6 @@ anchor: missing-square-puzzle
 simplification: light
 noMaths: true
 order: 40
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Turning part of a picture changes how many people it shows. Where does the missing one go?"

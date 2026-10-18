@@ -9,7 +9,6 @@ uniqueness: related
 anchor: liar-paradox
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Can a short phrase name the smallest number that cannot be named in so few words?"
 claimA: "“Definable in under sixty letters” means one fixed thing, so some whole number is the smallest that has no such definition."

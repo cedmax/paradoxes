@@ -5,7 +5,6 @@ chapter: belief
 status: disputed
 simplification: light
 order: 40
-written: true
 problem: "If you believe every ticket will lose, do you believe that no ticket will win?"
 claimA: "It is reasonable to believe each ticket will lose, since each almost certainly will."
 claimB: "If it is reasonable to believe each of several things, it is reasonable to believe them all together."

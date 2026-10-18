@@ -9,7 +9,6 @@ anchor: sum-of-all-whole-numbers
 simplification: heavy
 noMaths: false
 order: 150
-written: true
 sourcesVerified: true
 problem: "Does 1 − 1 + 1 − 1 + … add up to 0, to 1, or to one half?"
 claimA: "The sum 1 − 1 + 1 − 1 + … has a definite value that regrouping cannot change."

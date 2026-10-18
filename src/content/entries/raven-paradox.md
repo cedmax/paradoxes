@@ -5,7 +5,6 @@ chapter: belief
 status: disputed
 simplification: light
 order: 30
-written: true
 problem: "Can a green apple be evidence that all ravens are black?"
 claimA: "A green apple gives no evidence that all ravens are black."
 claimB: "A green apple does count as evidence that all ravens are black."

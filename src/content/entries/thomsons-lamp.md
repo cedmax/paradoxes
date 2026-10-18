@@ -8,7 +8,6 @@ uniqueness: related
 anchor: achilles-and-the-tortoise
 simplification: light
 order: 60
-written: true
 sourcesVerified: true
 problem: "A lamp is switched on and off faster and faster for two minutes. Is it on or off at the end?"
 claimA: "A lamp must be either on or off when the two minutes are up."

@@ -9,7 +9,6 @@ uniqueness: related
 anchor: galileos-paradox
 simplification: light
 order: 20
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "A hotel has infinitely many rooms and every one is full. Can it take one more guest?"

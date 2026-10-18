@@ -7,7 +7,6 @@ order: 70
 status: explained
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "How can two traits that have nothing to do with each other look linked in the things you can see?"
 claimA: "If two traits are unrelated across a whole collection, they must look unrelated in any large group taken from it."

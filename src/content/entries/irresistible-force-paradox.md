@@ -8,7 +8,6 @@ anchor: "omnipotence-paradox"
 simplification: light
 noMaths: true
 order: 120
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "What happens when an unstoppable force meets an immovable object?"

@@ -8,7 +8,6 @@ uniqueness: variant
 anchor: protagoras-and-euathlus
 simplification: light
 order: 50
-written: true
 sourcesVerified: true
 reviewed: false
 noMaths: true

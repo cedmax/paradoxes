@@ -6,7 +6,6 @@ status: "disputed"
 simplification: light
 noMaths: true
 order: 160
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "How can a false claim logically imply absolutely anything?"

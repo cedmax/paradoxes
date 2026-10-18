@@ -6,7 +6,6 @@ status: "disputed"
 simplification: light
 noMaths: true
 order: 170
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Why did France appear to have relatively little heart disease despite a diet high in saturated fat?"

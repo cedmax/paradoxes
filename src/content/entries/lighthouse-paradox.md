@@ -6,7 +6,6 @@ status: "explained"
 simplification: light
 noMaths: true
 order: 130
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can the bright spot from a turning lighthouse cross a distant wall faster than light?"

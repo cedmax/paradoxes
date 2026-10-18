@@ -16,7 +16,6 @@ anchor: missing-square-puzzle
 simplification: light
 noMaths: false
 order: 60
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "An 8 by 8 square is cut into four pieces that make a 13 by 5 rectangle. Where did the extra square come from?"

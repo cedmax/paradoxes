@@ -6,7 +6,6 @@ status: "explained"
 simplification: light
 noMaths: false
 order: 190
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Where does half the stored electrical energy go when a charged capacitor shares its charge?"

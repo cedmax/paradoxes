@@ -8,7 +8,6 @@ anchor: "paradoxes-of-material-implication"
 simplification: light
 noMaths: true
 order: 110
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Do Lewis Carroll’s rules about a barbershop prove that one barber must always be in?"

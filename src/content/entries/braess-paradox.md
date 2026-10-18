@@ -6,7 +6,6 @@ status: explained
 simplification: light
 noMaths: true
 order: 30
-written: true
 sourcesVerified: true
 problem: Can building a new road make everyone's journey slower?
 claimA: More road can only help drivers.

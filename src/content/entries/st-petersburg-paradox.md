@@ -6,7 +6,6 @@ status: unreconciled
 simplification: light
 noMaths: true
 order: 10
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "A coin game has an infinite average prize. Why would nobody pay much to play it?"

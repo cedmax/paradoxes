@@ -5,7 +5,6 @@ chapter: statistics
 status: explained
 simplification: light
 order: 10
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Can one treatment beat another in every group of patients and still lose overall?"

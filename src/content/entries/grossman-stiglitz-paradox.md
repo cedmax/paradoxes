@@ -6,7 +6,6 @@ status: "defused"
 simplification: light
 noMaths: true
 order: 160
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "If stock prices told everyone everything worth knowing, who would pay to discover new information?"

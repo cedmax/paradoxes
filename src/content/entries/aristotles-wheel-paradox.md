@@ -8,7 +8,6 @@ anchor: "galileos-paradox"
 simplification: light
 noMaths: true
 order: 70
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "How do two fixed-together wheels of different sizes travel the same distance in one turn?"

@@ -51,7 +51,7 @@ const isIllusion = d.format === "illusion"
       ) : (
         <ArgumentBody slug={entry.id} data={d} />
       )}
-      {d.written && !!d.sources.length && <Sources sources={d.sources} />}
+      {d.sources.length > 0 && <Sources sources={d.sources} />}
     </article>
 
     <EntrySidebar echoes={echoes} siblings={siblings} url={seo.url}>

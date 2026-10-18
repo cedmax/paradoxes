@@ -9,7 +9,6 @@ uniqueness: canonical
 simplification: light
 noMaths: true
 order: 250
-written: true
 why: "Dark smudges can seem to appear where the white streets cross, mostly away from the spot you look at directly. The crossings are the same white as the rest of the streets. Why this happens is still debated."
 finePrint: "Bending or distorting the streets slightly can weaken the smudges or remove them (Geier and colleagues, 2008), which suggests that the straightness of the streets matters. The [scintillating grid](scintillating-grid-illusion) is a related, more vivid effect."
 sources:

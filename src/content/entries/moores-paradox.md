@@ -5,7 +5,6 @@ chapter: belief
 status: disputed
 simplification: light
 order: 60
-written: true
 problem: "Why does “It's raining, but I don't believe it” sound absurd, when it could be true?"
 claimA: "The sentence could be true, so saying it contradicts nothing."
 claimB: "A sentence that sounds absurd to say must contain some contradiction."

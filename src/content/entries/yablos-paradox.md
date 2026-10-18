@@ -16,7 +16,6 @@ uniqueness: related
 anchor: liar-paradox
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "In an endless list where each sentence says that all the later ones are untrue, is any sentence true?"
 claimA: "Every sentence on the list is either true or untrue."

@@ -8,7 +8,6 @@ anchor: base-rate-fallacy
 simplification: light
 noMaths: true
 order: 30
-written: true
 aka: ["defence attorney's fallacy", "Sally Clark", "forensic evidence"]
 problem: "If the chance of an innocent person matching the evidence is tiny, is the person who matches almost certainly guilty?"
 claimA: "Only 1 in 1,000 innocent people would match this evidence, so a match means guilt is nearly certain."

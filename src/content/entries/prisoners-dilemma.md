@@ -5,7 +5,6 @@ chapter: collective
 status: disputed
 simplification: light
 order: 10
-written: true
 sourcesVerified: true
 problem: If each of two people does best by betraying the other, why do both end up worse off than if they had trusted each other?
 claimA: "Rational players testify, because it is better for each whatever the other does."

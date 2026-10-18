@@ -5,7 +5,6 @@ chapter: infinity
 status: explained
 simplification: light
 order: 50
-written: true
 sourcesVerified: true
 problem: "Are there as many square numbers as there are whole numbers?"
 claimA: "Squares are only some of the whole numbers, so there must be fewer of them."

@@ -6,7 +6,6 @@ status: "explained"
 simplification: light
 noMaths: false
 order: 110
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "How can 100 prisoners find their numbers with about a 31 percent chance that every one succeeds?"

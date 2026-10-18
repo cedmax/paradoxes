@@ -6,7 +6,6 @@ chapter: identity
 status: disputed
 simplification: light
 order: 30
-written: true
 sourcesVerified: true
 reviewed: true
 problem: If you remove grains from a heap of sand one at a time, when does it stop being a heap?

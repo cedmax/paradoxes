@@ -15,7 +15,6 @@ order: 130
 status: disputed
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Why is diverting a runaway trolley to kill one and save five acceptable to most people, but pushing a stranger in its way not?"
 claimA: "If diverting the trolley is right, pushing someone to stop it is right too."

@@ -7,7 +7,6 @@ status: explained
 simplification: light
 noMaths: true
 order: 50
-written: true
 aka: ["waiting time paradox", "bus", "bus paradox", "why is my bus always late"]
 problem: "Why is your average wait for a bus longer than half the average gap between buses?"
 claimA: "Turn up at a random moment and, on average, you should wait half the average gap."

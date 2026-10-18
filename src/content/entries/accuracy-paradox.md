@@ -10,7 +10,6 @@ anchor: base-rate-fallacy
 simplification: light
 noMaths: false
 order: 120
-written: true
 sourcesVerified: true
 problem: "Can a predictor that is right 99% of the time be useless?"
 claimA: "A predictor with a higher accuracy score is always more useful."

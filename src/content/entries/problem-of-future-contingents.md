@@ -6,7 +6,6 @@ status: "disputed"
 simplification: light
 noMaths: true
 order: 180
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Is the sentence “There will be a sea battle tomorrow” already true or false today?"

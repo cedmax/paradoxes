@@ -7,7 +7,6 @@ uniqueness: variant
 anchor: russells-paradox
 simplification: light
 order: 20
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "A barber shaves everyone who doesn't shave themselves, and nobody else. Who shaves the barber?"

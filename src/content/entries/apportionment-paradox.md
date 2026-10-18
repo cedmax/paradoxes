@@ -6,7 +6,6 @@ status: "explained"
 simplification: light
 noMaths: true
 order: 130
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "How can giving a parliament one more seat cause a state to lose a seat?"

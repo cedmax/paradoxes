@@ -16,7 +16,6 @@ uniqueness: related
 anchor: berksons-paradox
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Why do some studies find that heavier patients with certain diseases die less often than patients of normal weight?"
 claimA: "Among people who already have certain diseases, the extra weight itself helps them survive."

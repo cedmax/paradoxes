@@ -15,7 +15,6 @@ anchor: grandfather-paradox
 simplification: light
 noMaths: true
 order: 50
-written: true
 sourcesVerified: true
 problem: "If a time traveller killed Hitler as a baby, what would later send the traveller back to do it?"
 claimA: "The past can be changed: a traveller could kill the infant Hitler, and history would then run differently."

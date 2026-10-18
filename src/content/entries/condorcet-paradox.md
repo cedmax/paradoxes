@@ -6,7 +6,6 @@ status: explained
 simplification: light
 noMaths: true
 order: 20
-written: true
 sourcesVerified: true
 problem: Can three sensible voters, choosing by majority, end up preferring A to B, B to C and C to A?
 claimA: "If every voter has a consistent ranking, majority voting gives a consistent group ranking."

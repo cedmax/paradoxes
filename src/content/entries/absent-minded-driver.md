@@ -16,7 +16,6 @@ uniqueness: related
 anchor: sleeping-beauty-problem
 simplification: "heavy"
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "A driver cannot tell two exits apart or remember passing one. Why does her best plan seem worse when she reaches an exit?"
 claimA: "Recalculating at an exit gives her a better plan, even though she has learned nothing new."

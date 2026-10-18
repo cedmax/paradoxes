@@ -6,7 +6,6 @@ status: defused
 simplification: light
 noMaths: true
 order: 10
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "If the universe is full of stars, why is the night sky dark?"

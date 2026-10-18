@@ -16,9 +16,8 @@ Do not change any existing argument entry to the new format.
 - Set `format: illusion`; use the existing entry shell, chapters, title accent, aliases,
   uniqueness and source/approval fields. `problem` is a standalone question-first hook
   understandable on a text-only home card without seeing the figure.
-- Set `written: true` for completed PR entries. Incomplete entries stay on the PR branch,
-  not `main`. Keep `sourcesVerified: false` and `reviewed: false` until the owner
-  explicitly authorises changing them.
+- Incomplete entries stay on the PR branch, not `main`. Keep `sourcesVerified: false` and
+  `reviewed: false` until the owner explicitly authorises changing them.
 - Do not add `claimA`, `claimB`, `verdict`, `status` or artificial
   "looks / really is" frontmatter.
 - `why` is a short factual explanation in plain British English. Distinguish what the

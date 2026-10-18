@@ -7,7 +7,6 @@ status: explained
 simplification: light
 noMaths: false
 order: 70
-written: true
 sourcesVerified: true
 problem: "Can a horn hold a finite amount of paint and still have a surface you could never finish painting?"
 claimA: "A finite amount of ideal paint can fill the horn and touch its whole inner wall."

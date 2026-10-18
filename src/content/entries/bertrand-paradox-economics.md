@@ -13,7 +13,6 @@ status: "explained"
 simplification: light
 noMaths: false
 order: 140
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Why do two shops selling the same product end up pricing almost as if there were countless competitors?"

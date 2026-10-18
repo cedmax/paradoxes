@@ -8,7 +8,6 @@ uniqueness: variant
 anchor: achilles-and-the-tortoise
 simplification: light
 order: 30
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Can you ever walk across a room?"

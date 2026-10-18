@@ -16,7 +16,6 @@ uniqueness: related
 anchor: pascals-wager
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "A stranger promises an enormous reward that is almost certainly a lie, and asks for your wallet. If the reward is big enough, should you hand it over?"
 claimA: "A rational person takes whichever option has the highest expected value, however small the probabilities involved."

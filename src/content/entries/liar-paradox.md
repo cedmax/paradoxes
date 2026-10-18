@@ -6,7 +6,6 @@ chapter: self-reference
 status: unreconciled
 simplification: light
 order: 10
-written: true
 sourcesVerified: true
 reviewed: false
 problem: Is the sentence “This sentence is false” true or false?

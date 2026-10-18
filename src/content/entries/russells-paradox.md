@@ -5,7 +5,6 @@ chapter: self-reference
 status: defused
 simplification: light
 order: 30
-written: true
 sourcesVerified: true
 reviewed: true
 noMaths: true

@@ -17,7 +17,6 @@ anchor: coastline-paradox
 simplification: light
 noMaths: false
 order: 200
-written: true
 sourcesVerified: true
 problem: "A staircase with ever smaller steps hugs a diagonal, but is always longer. Why does its length not shrink to the diagonal’s?"
 claimA: "As the steps get smaller, the staircase gets closer to the diagonal, so its length gets closer to the diagonal’s length."

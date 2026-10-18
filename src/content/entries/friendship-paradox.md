@@ -8,7 +8,6 @@ anchor: inspection-paradox
 simplification: light
 noMaths: true
 order: 40
-written: true
 aka: ["why your friends have more friends", "Scott Feld", "social networks"]
 problem: "Why do your friends have more friends than you do?"
 claimA: "You and your friends are ordinary people, so you should have about as many friends as they do."

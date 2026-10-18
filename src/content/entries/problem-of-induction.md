@@ -7,7 +7,6 @@ order: 100
 status: unreconciled
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "What justifies expecting the future to resemble the past?"
 claimA: "We are justified in expecting the unobserved to resemble the observed, as when we expect the sun to rise tomorrow."

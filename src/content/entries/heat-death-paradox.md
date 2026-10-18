@@ -8,7 +8,6 @@ anchor: "olbers-paradox"
 simplification: light
 noMaths: true
 order: 170
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "If the universe had already existed forever, why had it not run out of usable energy?"

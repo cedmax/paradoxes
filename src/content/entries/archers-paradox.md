@@ -14,7 +14,6 @@ status: explained
 simplification: light
 noMaths: true
 order: 150
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "On a traditional bow the arrow rests against the side of the bow and points a little off the target. Why does it still fly to the target?"

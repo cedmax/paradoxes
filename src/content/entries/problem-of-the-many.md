@@ -9,7 +9,6 @@ uniqueness: related
 anchor: sorites-paradox
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "How many clouds are in the sky when the edge of the cloud is a haze of droplets with no clear boundary?"
 claimA: "There is exactly one cloud in the sky."

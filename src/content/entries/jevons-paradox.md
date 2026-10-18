@@ -7,7 +7,6 @@ order: 100
 status: explained
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Can making a resource cheaper to use per job cause people to use more of it overall?"
 claimA: "If a machine gets more efficient at using a resource, total use of that resource must fall."

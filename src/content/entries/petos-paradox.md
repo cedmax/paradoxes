@@ -7,7 +7,6 @@ status: disputed
 simplification: light
 noMaths: true
 order: 210
-written: true
 sourcesVerified: true
 problem: "Larger animals have more cells that could become cancerous. Do they actually get more cancer?"
 claimA: "Large animals do not have higher cancer prevalence than small animals, despite having many more cells."

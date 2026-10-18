@@ -8,7 +8,6 @@ anchor: "ladder-paradox"
 simplification: light
 noMaths: true
 order: 160
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can a spinning disc keep the ordinary relation between its radius and its rim?"

@@ -6,7 +6,6 @@ status: explained
 simplification: light
 noMaths: true
 order: 40
-written: true
 sourcesVerified: true
 problem: How can a whole group agree to do something that not one of them wants?
 claimA: If a group does something, at least some of its members must want it.

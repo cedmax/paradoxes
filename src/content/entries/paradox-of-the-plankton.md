@@ -14,7 +14,6 @@ order: 200
 status: defused
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Dozens of kinds of phytoplankton share the same water and compete for the same few nutrients. Why has one not driven out the rest?"
 claimA: "The water stays uniform and steady until competition settles, so no more plankton species can survive than there are scarce resources they need."

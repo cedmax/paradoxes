@@ -14,7 +14,6 @@ order: 60
 status: explained
 simplification: heavy
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "Why does the mathematics of flowing fluids say a moving body feels no drag, when every real body does?"
 claimA: "A fluid with almost no friction can be treated as frictionless, so a body moving steadily through it feels no drag."

@@ -6,7 +6,6 @@ status: explained
 simplification: light
 noMaths: true
 order: 40
-written: true
 sourcesVerified: true
 problem: "Can a ladder too long for a barn fit inside it, if it runs through fast enough?"
 claimA: "Seen from the barn, the squashed ladder is inside with both doors shut at the same moment."

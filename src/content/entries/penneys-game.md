@@ -16,7 +16,6 @@ uniqueness: related
 anchor: nontransitive-dice
 simplification: light
 noMaths: false
-written: true
 sourcesVerified: true
 problem: "Two players pick different runs of three coin tosses, and the coin is tossed until one run appears. Can the second player always pick the likelier run?"
 claimA: "Every run of three tosses is equally likely, so no run can be more likely than another to turn up first."

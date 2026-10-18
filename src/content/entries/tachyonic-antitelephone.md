@@ -8,7 +8,6 @@ anchor: "grandfather-paradox"
 simplification: light
 noMaths: true
 order: 90
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Could a message that travels faster than light get a reply before it was sent?"

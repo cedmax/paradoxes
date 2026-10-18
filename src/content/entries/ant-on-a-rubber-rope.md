@@ -6,7 +6,6 @@ status: "explained"
 simplification: light
 noMaths: true
 order: 210
-written: true
 sourcesVerified: true
 reviewed: false
 problem: "Can an ant ever reach the end of a rope that keeps stretching faster than it walks?"

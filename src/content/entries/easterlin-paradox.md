@@ -14,7 +14,6 @@ order: 160
 status: disputed
 simplification: light
 noMaths: true
-written: true
 sourcesVerified: true
 problem: "If richer people are happier, why have countries that grew richer over time not become happier?"
 claimA: "If richer people are happier, a country whose people all grow richer over time must become happier."

@@ -15,7 +15,6 @@ status: disputed
 simplification: light
 noMaths: true
 order: 120
-written: true
 sourcesVerified: true
 problem: "Can hot water freeze sooner than cooler water put in the same freezer?"
 claimA: "Under the same conditions, water that starts out hotter does not freeze first in any meaningful, reproducible way."

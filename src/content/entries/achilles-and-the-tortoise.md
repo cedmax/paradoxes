@@ -6,7 +6,6 @@ chapter: infinity
 status: explained
 simplification: light
 order: 10
-written: true
 sourcesVerified: true
 reviewed: true
 problem: "Achilles gives a tortoise a head start. Can he ever catch it?"

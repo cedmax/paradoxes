@@ -9,7 +9,6 @@ anchor: sum-of-all-whole-numbers
 simplification: heavy
 noMaths: false
 order: 180
-written: true
 sourcesVerified: true
 problem: "How can 1 − 2 + 3 − 4 + … be said to equal one quarter, when its running totals swing wider and wider?"
 claimA: "The running totals swing ever wider, so 1 − 2 + 3 − 4 + … cannot add up to 1/4."
