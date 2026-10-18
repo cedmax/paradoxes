@@ -39,6 +39,9 @@ const gemPoints = (x: number, y: number) =>
         />
       ))}
     </SvgFigure>
+    <p class="text-center text-sm leading-normal">
+      <strong>Grue:</strong> green if examined before t, blue if not.
+    </p>
     <p class="text-center text-base leading-normal">
       All four are <strong>green</strong> and <strong>grue</strong>.
     </p>
@@ -47,8 +50,8 @@ const gemPoints = (x: number, y: number) =>
       name="grue-branches"
       class="w-full"
       viewBox="0 0 400 54"
-      title="The observations support two competing predictions"
-      desc="One set of observations leads to two predictions: all emeralds are green, and all emeralds are grue."
+      title="Fork from the observations to two predictions"
+      aria-hidden="true"
     >
       <path
         d="M200 2 V15 H100 V46 M200 15 H300 V46 M94 40 L100 47 L106 40 M294 40 L300 47 L306 40"
@@ -62,8 +65,10 @@ const gemPoints = (x: number, y: number) =>
 
     <p class="text-center font-bold">For an emerald first examined after t</p>
     <div class="grid grid-cols-2 gap-3">
-      <Panel title="All emeralds are green" class="flex flex-col items-center gap-3 text-center">
-        <SvgFigure
+      <Panel>
+        <div class="flex flex-col items-center gap-3 text-center">
+          <strong>All emeralds are green</strong>
+          <SvgFigure
           name="grue-predict-green"
           class="h-16 w-20"
           viewBox="0 0 80 80"
@@ -77,10 +82,13 @@ const gemPoints = (x: number, y: number) =>
             stroke-width="1.5"
           />
         </SvgFigure>
-        <p class="text-base">Predict <strong>green</strong></p>
+          <p class="text-base">Predict <strong>green</strong></p>
+        </div>
       </Panel>
-      <Panel title="All emeralds are grue" class="flex flex-col items-center gap-3 text-center">
-        <SvgFigure
+      <Panel>
+        <div class="flex flex-col items-center gap-3 text-center">
+          <strong>All emeralds are grue</strong>
+          <SvgFigure
           name="grue-predict-blue"
           class="h-16 w-20"
           viewBox="0 0 80 80"
@@ -94,7 +102,8 @@ const gemPoints = (x: number, y: number) =>
             stroke-width="1.5"
           />
         </SvgFigure>
-        <p class="text-base">Predict <strong>blue</strong></p>
+          <p class="text-base">Predict <strong>blue</strong></p>
+        </div>
       </Panel>
     </div>
   </div>
