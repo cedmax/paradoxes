@@ -1,5 +1,6 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
 
@@ -18,97 +19,87 @@ const gemPoints = (x: number, y: number) =>
 
 <IllustrationFigure
   name="grue-predictions"
-  lead="The same observations support two incompatible predictions"
+  lead="The same observations support two incompatible predictions."
 >
-  <SvgFigure
-    name="grue-predictions-chart"
-    class="mx-auto w-full max-w-xl"
-    viewBox="0 0 480 300"
-    title="Green and grue agree on past observations but disagree on future examinations"
-    desc="Four emeralds examined before time t are green, so they also count as grue. For emeralds first examined after t, the claim all emeralds are green predicts green, while the claim all emeralds are grue predicts blue. These are rival predictions, not colour changes in an emerald."
-  >
-    <text
-      x="240"
-      y="25"
-      text-anchor="middle"
-      fill="currentColor"
-      font-size="17"
-      font-weight="700"
+  <div class="mx-auto flex w-full max-w-md flex-col gap-3">
+    <p class="text-center font-bold">Examined before t</p>
+    <SvgFigure
+      name="grue-observed"
+      class="w-full"
+      viewBox="0 0 400 72"
+      title="Four green emeralds examined before t"
+      desc="Four emeralds were examined before t. They were green, so all four also satisfy the definition of grue."
     >
-      Examined before t
-    </text>
-    {[80, 180, 300, 400].map((x) => (
-      <polygon
-        points={gemPoints(x, 70)}
-        fill={series.green}
-        stroke={stroke}
-        stroke-width="1.5"
-      />
-    ))}
-    <text x="240" y="119" text-anchor="middle" fill="currentColor" font-size="15">
-      Every observed emerald is both green and grue.
-    </text>
-    <path d="M30 138 H450" stroke={stroke} stroke-width="1" opacity=".45" />
+      {[68, 156, 244, 332].map((x) => (
+        <polygon
+          points={gemPoints(x, 36)}
+          fill={series.green}
+          stroke={stroke}
+          stroke-width="1.5"
+        />
+      ))}
+    </SvgFigure>
+    <p class="text-center text-base leading-normal">
+      All four are <strong>green</strong> and <strong>grue</strong>.
+    </p>
 
-    <text
-      x="240"
-      y="165"
-      text-anchor="middle"
-      fill="currentColor"
-      font-size="16"
-      font-weight="700"
+    <SvgFigure
+      name="grue-branches"
+      class="w-full"
+      viewBox="0 0 400 54"
+      title="The observations support two competing predictions"
+      desc="One set of observations leads to two predictions: all emeralds are green, and all emeralds are grue."
     >
-      First examined after t
-    </text>
-    <text
-      x="120"
-      y="197"
-      text-anchor="middle"
-      fill="currentColor"
-      font-size="15"
-      font-weight="700"
-    >
-      If all are green
-    </text>
-    <text
-      x="360"
-      y="197"
-      text-anchor="middle"
-      fill="currentColor"
-      font-size="15"
-      font-weight="700"
-    >
-      If all are grue
-    </text>
-    <path
-      d="M240 182 V282"
-      stroke={stroke}
-      stroke-width="1"
-      stroke-dasharray="4 5"
-      opacity=".3"
-    />
-    <polygon
-      points={gemPoints(120, 237)}
-      fill={series.green}
-      stroke={stroke}
-      stroke-width="1.5"
-    />
-    <polygon
-      points={gemPoints(360, 237)}
-      fill={series.blue}
-      stroke={stroke}
-      stroke-width="1.5"
-    />
-    <text x="120" y="277" text-anchor="middle" fill="currentColor" font-size="15">
-      Predict green
-    </text>
-    <text x="360" y="277" text-anchor="middle" fill="currentColor" font-size="15">
-      Predict blue
-    </text>
-  </SvgFigure>
+      <path
+        d="M200 2 V15 H100 V46 M200 15 H300 V46 M94 40 L100 47 L106 40 M294 40 L300 47 L306 40"
+        fill="none"
+        stroke={stroke}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </SvgFigure>
+
+    <p class="text-center font-bold">For an emerald first examined after t</p>
+    <div class="grid grid-cols-2 gap-3">
+      <Panel title="All emeralds are green" class="flex flex-col items-center gap-3 text-center">
+        <SvgFigure
+          name="grue-predict-green"
+          class="h-16 w-20"
+          viewBox="0 0 80 80"
+          title="Predicted green emerald"
+          desc="The claim all emeralds are green predicts that an emerald first examined after t is green."
+        >
+          <polygon
+            points={gemPoints(40, 40)}
+            fill={series.green}
+            stroke={stroke}
+            stroke-width="1.5"
+          />
+        </SvgFigure>
+        <p class="text-base">Predict <strong>green</strong></p>
+      </Panel>
+      <Panel title="All emeralds are grue" class="flex flex-col items-center gap-3 text-center">
+        <SvgFigure
+          name="grue-predict-blue"
+          class="h-16 w-20"
+          viewBox="0 0 80 80"
+          title="Predicted blue emerald"
+          desc="The claim all emeralds are grue predicts that an emerald first examined after t is blue."
+        >
+          <polygon
+            points={gemPoints(40, 40)}
+            fill={series.blue}
+            stroke={stroke}
+            stroke-width="1.5"
+          />
+        </SvgFigure>
+        <p class="text-base">Predict <strong>blue</strong></p>
+      </Panel>
+    </div>
+  </div>
   <Fragment slot="caption">
-    “Grue” means green if examined before t, or blue if not examined before t. The two claims
-    fit every emerald examined so far, but disagree about emeralds first examined after t. The
-    lower diamonds show predictions, not emeralds changing colour.
+    Both claims fit the observations. The lower emeralds show rival predictions, not an
+    emerald changing colour.
   </Fragment>
 </IllustrationFigure>
