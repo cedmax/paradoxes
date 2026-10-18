@@ -6,6 +6,7 @@ chapter: probability
 order: 70
 status: explained
 simplification: light
+noMaths: false
 sourcesVerified: true
 problem: "If a straight line is drawn at random across a circle, how likely is it to be longer than a side of the triangle that fits inside?"
 claimA: "Picking a chord “at random” is one definite way of choosing, so the question has a single correct answer."

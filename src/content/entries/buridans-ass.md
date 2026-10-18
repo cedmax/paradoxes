@@ -4,6 +4,7 @@ format: argument
 chapter: individual
 status: disputed
 simplification: light
+noMaths: true
 order: 40
 sourcesVerified: true
 problem: A hungry donkey stands exactly halfway between two identical piles of hay. What should it do?

@@ -4,6 +4,7 @@ format: argument
 chapter: infinity
 status: explained
 simplification: light
+noMaths: true
 order: 50
 sourcesVerified: true
 problem: "Are there as many square numbers as there are whole numbers?"

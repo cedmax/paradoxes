@@ -4,6 +4,7 @@ format: argument
 chapter: identity
 status: disputed
 simplification: light
+noMaths: true
 order: 70
 sourcesVerified: true
 problem: Replace every plank of a ship, one at a time. Is it still the same ship?

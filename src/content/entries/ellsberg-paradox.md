@@ -4,6 +4,7 @@ format: argument
 chapter: individual
 status: disputed
 simplification: light
+noMaths: false
 order: 60
 sourcesVerified: true
 problem: Why do people prefer a bet with known odds over one with unknown odds, when no single set of odds fits all their choices?

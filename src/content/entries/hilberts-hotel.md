@@ -7,6 +7,7 @@ chapter: infinity
 status: explained
 relatedTo: galileos-paradox
 simplification: light
+noMaths: true
 order: 20
 sourcesVerified: true
 reviewed: true

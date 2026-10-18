@@ -5,6 +5,7 @@ description: "Take grains from a heap of sand one at a time. When does it stop b
 chapter: identity
 status: disputed
 simplification: light
+noMaths: true
 order: 30
 sourcesVerified: true
 reviewed: true

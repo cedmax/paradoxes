@@ -6,6 +6,7 @@ searchTerms: ["three doors", "game show"]
 chapter: probability
 status: explained
 simplification: light
+noMaths: false
 order: 10
 sourcesVerified: true
 reviewed: true

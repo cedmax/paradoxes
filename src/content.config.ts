@@ -26,7 +26,7 @@ const common = z.object({
   // Slug of a canonical or related entry that this is the same puzzle as, in a new setting.
   variantOf: z.string().optional(),
   simplification: z.enum(["none", "light", "heavy"]).default("light"),
-  noMaths: z.boolean().default(true),
+  noMaths: z.boolean(),
   // Question-first hook shared by cards, entry headers and OG images.
   problem: z.string().trim().min(1),
   sources: z

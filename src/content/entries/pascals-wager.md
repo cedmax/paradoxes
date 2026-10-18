@@ -5,6 +5,7 @@ chapter: individual
 status: disputed
 relatedTo: st-petersburg-paradox
 simplification: light
+noMaths: true
 order: 50
 sourcesVerified: true
 problem: "If reason cannot settle whether God exists, is believing in God the sensible bet?"

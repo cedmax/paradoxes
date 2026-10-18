@@ -5,6 +5,7 @@ description: "Is “This sentence is false” true or false? The liar paradox as
 chapter: self-reference
 status: unreconciled
 simplification: light
+noMaths: true
 order: 10
 sourcesVerified: true
 problem: Is the sentence “This sentence is false” true or false?

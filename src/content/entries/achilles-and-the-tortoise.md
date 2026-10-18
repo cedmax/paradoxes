@@ -5,6 +5,7 @@ searchTerms: ["Zeno", "Zeno's paradox"]
 chapter: infinity
 status: explained
 simplification: light
+noMaths: false
 order: 10
 sourcesVerified: true
 reviewed: true

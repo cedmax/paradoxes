@@ -4,6 +4,7 @@ format: argument
 chapter: collective
 status: disputed
 simplification: light
+noMaths: true
 order: 10
 sourcesVerified: true
 problem: If each of two people does best by betraying the other, why do both end up worse off than if they had trusted each other?

@@ -5,6 +5,7 @@ chapter: self-reference
 status: defused
 variantOf: russells-paradox
 simplification: light
+noMaths: true
 order: 20
 sourcesVerified: true
 reviewed: true

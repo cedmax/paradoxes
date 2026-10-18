@@ -4,6 +4,7 @@ format: argument
 chapter: individual
 status: disputed
 simplification: light
+noMaths: true
 order: 30
 sourcesVerified: true
 problem: "Box A holds $1,000, and a near-perfect predictor has already decided whether Box B holds $1,000,000. Do you take Box B alone, or both?"

@@ -6,6 +6,7 @@ chapter: infinity
 status: explained
 relatedTo: achilles-and-the-tortoise
 simplification: light
+noMaths: true
 order: 60
 sourcesVerified: true
 problem: "A lamp is switched on and off faster and faster for two minutes. Is it on or off at the end?"

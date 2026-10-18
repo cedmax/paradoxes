@@ -4,6 +4,7 @@ format: argument
 chapter: statistics
 status: explained
 simplification: light
+noMaths: false
 order: 10
 sourcesVerified: true
 reviewed: true

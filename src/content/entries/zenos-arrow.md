@@ -5,6 +5,7 @@ searchTerms: ["Zeno", "flying arrow"]
 chapter: infinity
 status: explained
 simplification: light
+noMaths: true
 order: 40
 sourcesVerified: true
 problem: "If a flying arrow is standing still at every instant, how can it ever move?"

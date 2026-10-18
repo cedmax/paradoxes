@@ -6,6 +6,7 @@ alternativeNames: ["Birthday problem"]
 chapter: probability
 status: explained
 simplification: light
+noMaths: false
 order: 20
 sourcesVerified: true
 reviewed: true

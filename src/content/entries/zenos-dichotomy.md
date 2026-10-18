@@ -6,6 +6,7 @@ chapter: infinity
 status: explained
 variantOf: achilles-and-the-tortoise
 simplification: light
+noMaths: false
 order: 30
 sourcesVerified: true
 reviewed: true

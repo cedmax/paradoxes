@@ -5,6 +5,7 @@ chapter: identity
 status: disputed
 relatedTo: ship-of-theseus
 simplification: light
+noMaths: true
 order: 80
 sourcesVerified: true
 problem: "A machine scans and destroys your body, then builds a body exactly like yours on Mars from the scan. Have you travelled, or died?"

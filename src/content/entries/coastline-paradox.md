@@ -4,6 +4,7 @@ format: argument
 chapter: identity
 status: explained
 simplification: light
+noMaths: true
 order: 40
 sourcesVerified: true
 problem: "How long is the coast of Britain?"
