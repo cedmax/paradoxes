@@ -9,21 +9,21 @@ import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro
   frame={false}
 >
   <ComparisonTable
-    caption="Follow particular balls instead of the total"
-    columns={["Ball", "Goes in at step", "Comes out at step"]}
+    caption="Every ball leaves as the vase keeps filling"
+    columns={["Ball", "Goes in at step", "Comes out at step", "Balls inside then"]}
     rows={[
-      ["1", "1", "<strong>1</strong>"],
-      ["2", "1", "<strong>2</strong>"],
-      ["10", "1", "<strong>10</strong>"],
-      ["500", "50", "<strong>500</strong>"],
-      ["n", "By step n", "<strong>n</strong>"],
+      ["1", "1", "<strong>1</strong>", "9"],
+      ["2", "1", "<strong>2</strong>", "18"],
+      ["10", "1", "<strong>10</strong>", "90"],
+      ["500", "50", "<strong>500</strong>", "4,500"],
+      ["n", "By step n", "<strong>n</strong>", "9n"],
     ]}
     highlight={[2]}
+    dense
   />
   <p class="text-base font-bold">At noon, with this removal rule: 0 balls remain.</p>
   <Fragment slot="caption">
-    At every finite step the count has grown by nine. But each ball numbered n is removed at
-    step n, before noon. No particular ball survives the entire schedule: the increasing counts
-    do not describe what remains at noon.
+    No particular ball survives the entire schedule: the increasing counts do not describe what
+    remains at noon.
   </Fragment>
 </IllustrationFigure>
