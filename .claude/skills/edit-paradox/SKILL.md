@@ -108,6 +108,7 @@ enforces anchor integrity. Do not duplicate definitions here.
 - `titleAccent` is the part of the title shown in the accent colour. Leave it out and it is the
   last word of the title; set it only when the accent is longer ("toxin puzzle" in "Kavka's toxin
   puzzle"). The schema fails the build if it does not end the title.
+- An argument requires `setup` and `whyWrong`. `finePrint` is optional on arguments and illusions.
 - Plain words, short sentences, British spelling. Explain any technical term.
 - No em or en dashes (except inside a proper name such as "Grelling–Nelson"), no emojis, no
   hype, no first person and no inclusive "we".

@@ -45,6 +45,8 @@ const common = z.object({
   reviewed: z.boolean().default(false),
   // Display order within the chapter.
   order: z.number().default(100),
+  // Caveats, research detail and competing accounts kept out of the plain-words body.
+  finePrint: z.string().optional(),
 })
 
 const argument = common.extend({
@@ -58,10 +60,9 @@ const argument = common.extend({
   whatBreaks: z.string(),
   statusNote: z.string(),
   // Long-form argument body, written in plain paragraphs.
-  setup: z.string().optional(),
-  whyWrong: z.string().optional(),
+  setup: z.string(),
+  whyWrong: z.string(),
   resolution: z.array(z.string()).default([]),
-  finePrint: z.string().optional(),
   // Optional extra block after the resolution (e.g. Sorites positions).
   positions: z.array(z.object({ title: z.string(), body: z.string() })).default([]),
 })
@@ -70,8 +71,6 @@ const illusion = common.extend({
   format: z.literal("illusion"),
   // The figure owns setup and proof; this is the short, evidence-based explanation.
   why: z.string().trim().min(1),
-  // Caveats, research detail and competing accounts kept out of the plain-words `why`.
-  finePrint: z.string().optional(),
 })
 
 const entries = defineCollection({
