@@ -1,0 +1,97 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+const sentences = [1, 2, 3, 4, 5]
+---
+
+<IllustrationFigure
+  name="yablos-paradox"
+  lead="Each sentence says that every sentence after it is untrue."
+>
+  <SvgFigure
+    name="yablo-forward"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 375 260"
+    title="A never-ending list whose sentences refer only forward"
+    desc="Sentence one refers to sentences two, three, four, five and every later sentence. Sentence two refers to sentences three, four, five and every later one. The grid shows arrows only above its diagonal: none of the sentences refers directly to itself or to an earlier one. The list continues without end."
+  >
+    <g fill="currentColor" font-size="14" font-weight="700">
+      <text x="12" y="19">
+        Says these later sentences are untrue →
+      </text>
+      {sentences.map((n, j) => (
+        <text x={120 + j * 46} y="47" text-anchor="middle">
+          S{n}
+        </text>
+      ))}
+      <text x="350" y="47" text-anchor="middle">
+        …
+      </text>
+      {sentences.map((n, i) => (
+        <text x="12" y={83 + i * 34}>
+          Sentence {n}
+        </text>
+      ))}
+    </g>
+    {sentences.map((_, i) => (
+      <g>
+        {sentences.map((__, j) => (
+          <g>
+            <rect
+              x={99 + j * 46}
+              y={61 + i * 34}
+              width="42"
+              height="30"
+              fill={j > i ? series.blue : series.gold}
+              fill-opacity={j > i ? ".17" : ".08"}
+              stroke={stroke}
+              stroke-opacity=".3"
+            />
+            <text
+              x={120 + j * 46}
+              y={82 + i * 34}
+              text-anchor="middle"
+              fill={j > i ? series.blue : stroke}
+              font-size="17"
+              font-weight={j > i ? "700" : "400"}
+            >
+              {j > i ? "→" : j === i ? "—" : ""}
+            </text>
+          </g>
+        ))}
+        <rect
+          x="329"
+          y={61 + i * 34}
+          width="42"
+          height="30"
+          fill={series.blue}
+          fill-opacity=".17"
+          stroke={stroke}
+          stroke-opacity=".3"
+        />
+        <text
+          x="350"
+          y={82 + i * 34}
+          text-anchor="middle"
+          fill={series.blue}
+          font-size="17"
+          font-weight="700"
+        >
+          →
+        </text>
+      </g>
+    ))}
+    <g fill="currentColor" font-size="14">
+      <text x="12" y="251">
+        The arrows keep pointing forward forever…
+      </text>
+    </g>
+  </SvgFigure>
+  <Fragment slot="caption">
+    Every row points to <strong>all</strong> later sentences, including infinitely many not
+    shown. None points directly to itself. Nevertheless, assuming that one sentence is true, or
+    that all are untrue, leads to a contradiction.
+  </Fragment>
+</IllustrationFigure>
