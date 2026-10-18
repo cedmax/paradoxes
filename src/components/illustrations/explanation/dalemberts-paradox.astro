@@ -1,0 +1,46 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure name="dalemberts-paradox" lead="The ideal flow has no wake. The real flow does.">
+  <SvgFigure
+    name="dalembert-flows"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 400 310"
+    title="Symmetric ideal flow compared with separated real flow"
+    desc="Above, smooth streamlines bend equally around the front and back of a stationary round body in an ideal frictionless flow. Below, real flow separates from the body and leaves a disturbed low-pressure wake behind it. The figure is schematic, not a measured flow field."
+  >
+    <g fill="currentColor" font-size="17" font-weight="700">
+      <text x="12" y="21">Ideal flow: front and back match</text>
+      <text x="12" y="177">Real flow: separation and a wake</text>
+    </g>
+    <g fill="none" stroke={series.blue} stroke-width="2">
+      <path d="M12 48 H388" />
+      <path d="M12 79 C106 79 123 61 200 61 S294 79 388 79" />
+      <path d="M12 127 C106 127 123 145 200 145 S294 127 388 127" />
+      <path d="M12 158 H388" />
+      <path d="M12 224 C120 224 141 208 191 207 C227 205 238 215 255 221 C301 212 335 220 388 230" />
+      <path d="M12 282 C120 282 141 298 191 299 C227 301 238 291 255 285 C301 294 335 286 388 276" />
+    </g>
+    <g fill={series.gold} fill-opacity=".25" stroke={stroke} stroke-width="2">
+      <circle cx="200" cy="103" r="30" />
+      <circle cx="200" cy="253" r="30" />
+    </g>
+    <g fill="none" stroke={series.red} stroke-width="2" stroke-dasharray="4 4">
+      <path d="M226 230 Q275 203 345 231 T388 230" />
+      <path d="M226 276 Q275 303 345 275 T388 276" />
+    </g>
+    <g fill="none" stroke={series.red} stroke-width="2">
+      <path d="M268 252 C286 233 309 237 310 252 C311 270 285 270 287 253" />
+      <path d="M320 253 C341 234 363 239 363 254 C363 269 343 270 341 255" />
+    </g>
+    <text x="325" y="222" text-anchor="middle" font-size="15" fill="currentColor">Wake</text>
+  </SvgFigure>
+  <Fragment slot="caption">
+    Without viscosity the idealised steady flow has front-back symmetry and predicts zero drag.
+    In real fluids, viscosity matters near the surface and the flow can separate, leaving a
+    low-pressure wake that creates drag. Schematic, not to scale.
+  </Fragment>
+</IllustrationFigure>
