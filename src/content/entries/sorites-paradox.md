@@ -13,7 +13,7 @@ problem: If you remove grains from a heap of sand one at a time, when does it st
 claimA: "Taking away one grain never turns a heap into a non-heap."
 claimB: "A million grains of sand make a heap, and a single grain does not."
 whatBreaks: "Either the rule that one grain never makes the difference or the claim that a million grains make a heap has to go, and experts split on which, and on how."
-statusNote: "the camps are a sharp edge nobody can know, truth that comes in degrees, a cut-off at no particular grain, and, among the nihilists, no heaps at all."
+statusNote: "the camps say one grain really does end the heap but nobody can know which, that being a heap comes in degrees, that “heap” can be sharpened in many acceptable ways, or that there are no heaps at all."
 setup: A million grains of sand piled up are a heap. One grain on its own is not. Take a single grain away from a heap and it is still a heap, because nobody can see the difference. But keep doing that, and the heap shrinks to one grain, which is not a heap. Somewhere a heap became not a heap. Where?
 whyWrong: "Words like “heap”, “tall”, “bald” and “rich” have no sharp edge. They work fine for clear cases and fall apart in between. The paradox takes that blur and chains it step by step, using the rule that a tiny change can never matter, until the blur swallows the whole pile. If one grain never makes the difference, then a million grains and one grain must both be heaps, or both not be."
 resolution:

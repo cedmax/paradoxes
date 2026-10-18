@@ -11,7 +11,7 @@ problem: "If you travelled back in time and stopped your grandfather having chil
 claimA: "A time traveller is free to do anything any other person could do, including stopping their own grandfather becoming a father."
 claimB: "The past is fixed: you can only be there if you were born, so you cannot stop your own birth."
 whatBreaks: "The idea that a person can both visit the past and be free to change it."
-statusNote: "the ways out are consistent histories only, branching worlds, or no time travel to the past, and none can be tested."
+statusNote: "the ways out say whatever you do was always part of history, that you arrive in a different branch of history, or that travel to the past is impossible, and none can be tested."
 setup: "Suppose a time machine exists. You travel back to before your parent was born, find your grandfather as a young man, and set out to kill him. If you succeed, your parent is never born, so you are never born, so you never travel back, so you never kill him. The story undoes itself."
 whyWrong: "The trouble is two ideas that each sound sensible. One says you are free to act in the past like anyone else. The other says that what happened, happened, and you are part of it. Put together, they say you both can and cannot do it. Philosophers treat this as a test of what it would even mean for time travel to be possible."
 resolution:

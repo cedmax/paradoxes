@@ -13,7 +13,7 @@ problem: "Can an all-powerful being make a stone so heavy that it cannot lift it
 claimA: "An all-powerful being has no limits."
 claimB: "Some tasks are impossible for anyone, because they contradict themselves."
 whatBreaks: "The idea that all-powerful means able to do absolutely anything, even what contradicts itself."
-statusNote: "all-powerful does not mean able to do the logically impossible, and the Stanford Encyclopedia of Philosophy gives two routes that need no such power. For a being that is all-powerful by its very nature, a stone it cannot lift is impossible, so making one is no real task. A being that is all-powerful but could stop being so can make the stone, lift it, and then give up its power."
+statusNote: "all-powerful does not cover the logically impossible: a being all-powerful by nature cannot make a stone it cannot lift, while one that could stop being so can make it, lift it, then give up its power."
 setup: "Suppose there is a being with unlimited power. Ask it to make a stone so heavy that it cannot lift it. If it can make such a stone, there is something it cannot lift, so its power has a limit. If it cannot make the stone, there is something it cannot make, so its power has a limit. Either way, it seems not to be all-powerful."
 whyWrong: "All-powerful is usually taken to mean able to do anything. The stone puzzle turns that against itself, because the task asks the being to be both able to lift anything and unable to lift one particular thing. It looks like a fair question about power, and no answer feels free."
 resolution:

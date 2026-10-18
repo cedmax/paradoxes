@@ -14,7 +14,7 @@ problem: "How many clouds are in the sky when the edge of the cloud is a haze of
 claimA: "There is exactly one cloud in the sky."
 claimB: "Many slightly different collections of droplets are equally good candidates for being that cloud, and each of them is one."
 whatBreaks: "Philosophers split over what to give up: that there is only one cloud, that any of the candidates is a cloud, or the ordinary idea of counting."
-statusNote: "the ways out are nihilism, overpopulation, Lewis’s almost-identity view and supervaluationism."
+statusNote: "the ways out say there are no clouds, that many overlapping clouds exist, that nearly identical ones count as one, or that “one cloud” is true however the vague edge is drawn."
 setup: "From the ground a cloud looks like one thing with a clear outline. Up close, the edge is a haze. Some droplets are neither clearly part of the cloud nor clearly outside it. Pick any collection of droplets that stretches a little further, or stops a little sooner, and it looks just as good a candidate for being the cloud as the next one. If each candidate is a cloud, the sky holds millions of clouds. If only one is, nothing explains why that one. The philosopher Peter Unger set out the problem in 1980, and Peter Geach raised a similar one at the same time. David Lewis gave an influential treatment in 1993."
 whyWrong: "The problem has the same root as the [sorites paradox](sorites-paradox): a word with no sharp edge. There the question is whether a heap is still a heap after you take a grain away. Here the question is how many things there are, which is harder to dodge. Counting seems to need a sharp answer, and the vague edge seems to forbid one."
 resolution:

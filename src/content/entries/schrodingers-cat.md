@@ -11,7 +11,7 @@ problem: "If quantum rules say an atom can be in two states at once, what does t
 claimA: "Quantum theory applies to anything made of atoms, so in principle a cat can be in a mix of alive and dead."
 claimB: "A cat must be either alive or dead."
 whatBreaks: "How to combine a complete quantum description of the box with one definite outcome. The interpretations change different assumptions."
-statusNote: "the answers are Bohr’s classical description of measurement, many-worlds, Bohmian mechanics, and collapse theories."
+statusNote: "the answers are that measuring needs everyday classical language, that every outcome happens in a separate branch, that particles have definite hidden positions, or that the quantum rules change so one outcome is picked."
 setup: "A cat is sealed in a box. A radioactive atom has a one-half chance of decaying within an hour. If it decays, a detector releases poison and the cat dies. Quantum theory links the atom’s alternatives to the cat: atom not decayed and cat alive, together with atom decayed and cat dead."
 whyWrong: "A superposition is a quantum combination, not merely ignorance about which result is already settled. Applying it to the whole box seems to conflict with the definite cat that an observer finds. Schrödinger used the story to challenge how the theory was being interpreted, not to claim that a cat is literally half dead."
 resolution:

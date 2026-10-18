@@ -9,7 +9,7 @@ problem: "Can a green apple be evidence that all ravens are black?"
 claimA: "A green apple gives no evidence that all ravens are black."
 claimB: "A green apple does count as evidence that all ravens are black."
 whatBreaks: "Whether to accept the apple as evidence or revise a rule about matching instances and equivalent claims."
-statusNote: "on the popular Bayesian answer the apple counts, by a tiny amount. Others let evidence support one wording of the rule but not its logical twin, or limit what counts as an instance."
+statusNote: "the popular answer, which weighs evidence by probability, says the apple counts, by a tiny amount. Others let evidence support one wording of the rule but not its logical twin, or limit what counts as an instance."
 setup: "“All ravens are black” means the same as “Everything that is not black is not a raven”. A green apple matches the second rule: it is not black and not a raven. If a matching instance supports a rule, and equivalent rules share their evidence, the apple supports the claim about ravens."
 whyWrong: "Seeing a black raven seems to support a rule about ravens. Apply that same idea to non-black things and the apple counts too. The reasoning also needs the rule that equivalent claims have the same evidence. Neither rule alone gives the surprising conclusion."
 resolution:
