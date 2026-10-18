@@ -37,7 +37,15 @@ const molecules = [
     title="A demon sorting fast and slow molecules through a selective shutter"
     desc="Initially both chambers contain three fast red and three slow blue molecules. Move the slider to move one molecule at a time through the central shutter: fast red molecules travel right and slow blue molecules travel left. The shutter opens briefly for each crossing, closing between them. At the end the left chamber contains only slow blue molecules and the right contains only fast red molecules. All molecules are the same size."
   >
-    <rect x="12" y="12" width="376" height="170" fill="none" stroke={stroke} stroke-width="2.5" />
+    <rect
+      x="12"
+      y="12"
+      width="376"
+      height="170"
+      fill="none"
+      stroke={stroke}
+      stroke-width="2.5"
+    />
     <path d="M200 12 V80 M200 123 V182" stroke={stroke} stroke-width="3" />
     <g id="maxwells-demon-shutter">
       <rect
@@ -67,8 +75,12 @@ const molecules = [
     ))}
   </SvgFigure>
   <div class="flex flex-wrap gap-x-6 gap-y-2 text-base">
-    <p><strong class="text-series-red">● Fast</strong> molecules go right →</p>
-    <p><strong class="text-series-blue">● Slow</strong> molecules go left ←</p>
+    <p>
+      <strong class="text-series-red">● Fast</strong> molecules go right →
+    </p>
+    <p>
+      <strong class="text-series-blue">● Slow</strong> molecules go left ←
+    </p>
   </div>
   <Slider
     id="maxwells-demon-slider"
@@ -84,8 +96,8 @@ const molecules = [
   </Slider>
   <Fragment slot="caption">
     The tiny shutter opens selectively to send fast molecules one way and slow molecules the
-    other. The paths are schematic. Could this create a hot side and a cold side without
-    doing any work?
+    other. The paths are schematic. Could this create a hot side and a cold side without doing
+    any work?
   </Fragment>
 </IllustrationFigure>
 
@@ -153,7 +165,8 @@ const molecules = [
       shutter.setAttribute("transform", passing ? "translate(0 -43)" : "translate(0 0)")
 
       if (value === 0) {
-        readout.textContent = "Mixed: fast and slow molecules on both sides. The shutter is closed."
+        readout.textContent =
+          "Mixed: fast and slow molecules on both sides. The shutter is closed."
       } else if (value === 100) {
         readout.textContent =
           "Sorted: slow molecules on the left, fast molecules on the right. The shutter is closed."
