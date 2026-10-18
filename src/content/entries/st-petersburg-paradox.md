@@ -1,5 +1,6 @@
 ---
 title: "St Petersburg paradox"
+format: argument
 titleAccent: "paradox"
 chapter: individual
 status: unreconciled
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 10
 sourcesVerified: true
-reviewed: false
 problem: "A coin game has an infinite average prize. Why would nobody pay much to play it?"
 claimA: "Since the average prize is endless, you should be willing to pay any price to play."
 claimB: "No sensible person would pay more than a modest sum to play."

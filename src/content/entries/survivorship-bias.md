@@ -1,5 +1,6 @@
 ---
 title: "Survivorship bias"
+format: argument
 titleAccent: "bias"
 aka:
   [

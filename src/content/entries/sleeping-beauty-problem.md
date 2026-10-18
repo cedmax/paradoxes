@@ -1,5 +1,6 @@
 ---
 title: "Sleeping Beauty problem"
+format: argument
 titleAccent: "problem"
 chapter: belief
 status: disputed

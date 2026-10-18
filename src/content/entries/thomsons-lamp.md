@@ -1,5 +1,6 @@
 ---
 title: "Thomson's lamp paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["supertask"]
 chapter: infinity

@@ -17,7 +17,8 @@ Do not change any existing argument entry to the new format.
   uniqueness and source/approval fields. `problem` is a standalone question-first hook
   understandable on a text-only home card without seeing the figure.
 - Incomplete entries stay on the PR branch, not `main`. Keep `sourcesVerified: false` and
-  `reviewed: false` until the owner explicitly authorises changing them.
+  leave `reviewed` unset (it defaults to `false`) until the owner explicitly authorises
+  changing them.
 - Do not add `claimA`, `claimB`, `verdict`, `status` or artificial
   "looks / really is" frontmatter.
 - `why` is a short factual explanation in plain British English. Distinguish what the

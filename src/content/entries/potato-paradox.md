@@ -1,5 +1,6 @@
 ---
 title: "Potato paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["potatoes", "99 percent water", "dried potatoes", "porch potatoes"]
 chapter: shapes

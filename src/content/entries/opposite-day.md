@@ -1,5 +1,6 @@
 ---
 title: "Opposite Day"
+format: argument
 titleAccent: "Day"
 chapter: self-reference
 status: "explained"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 160
 sourcesVerified: true
-reviewed: false
 problem: "Can someone truthfully announce “Today is Opposite Day” on Opposite Day?"
 claimA: "The announcement “Today is Opposite Day” correctly says what kind of day it is."
 claimB: "If every statement on Opposite Day means its opposite, that announcement says today is not Opposite Day."

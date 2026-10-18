@@ -1,5 +1,6 @@
 ---
 title: Discursive dilemma
+format: argument
 titleAccent: dilemma
 aka:
   [

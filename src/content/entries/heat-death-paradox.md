@@ -1,5 +1,6 @@
 ---
 title: "Heat death paradox"
+format: argument
 titleAccent: "paradox"
 chapter: models
 status: "defused"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 170
 sourcesVerified: true
-reviewed: false
 problem: "If the universe had already existed forever, why had it not run out of usable energy?"
 claimA: "Our universe has existed forever as a closed, unchanging system with a finite supply of usable energy."
 claimB: "The universe still contains usable energy, even though an eternally unchanged closed system should already have run down."

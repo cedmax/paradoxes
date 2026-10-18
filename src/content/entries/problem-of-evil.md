@@ -1,5 +1,6 @@
 ---
 title: "Problem of evil"
+format: argument
 titleAccent: "evil"
 chapter: belief
 status: "disputed"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 170
 sourcesVerified: true
-reviewed: false
 problem: "How can an all-powerful, perfectly good God exist when suffering exists?"
 claimA: "If an all-powerful, all-knowing and perfectly good God exists, suffering cannot exist."
 claimB: "Suffering exists and could coexist with a God who has all three qualities."

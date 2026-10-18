@@ -1,5 +1,6 @@
 ---
 title: "Boltzmann brain"
+format: argument
 titleAccent: "brain"
 aka:
   [

@@ -1,5 +1,6 @@
 ---
 title: "Von Neumann paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   [

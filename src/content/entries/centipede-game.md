@@ -1,5 +1,6 @@
 ---
 title: "Centipede game"
+format: argument
 titleAccent: "game"
 aka:
   [

@@ -1,5 +1,6 @@
 ---
 title: "Absent-minded driver"
+format: argument
 titleAccent: "driver"
 aka:
   [

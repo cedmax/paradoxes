@@ -5,7 +5,6 @@ format: illusion
 chapter: shapes
 description: "Can a green spot appear when the screen only shows lilac spots?"
 problem: "Can a green spot appear when the screen only shows lilac spots?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 240
@@ -16,5 +15,4 @@ sources:
     url: https://michaelbach.de/ot/col-lilacChaser/
     note: "Interactive demonstration, adaptation explanation and attribution to Jeremy Hinton (2005)."
 sourcesVerified: true
-reviewed: false
 ---

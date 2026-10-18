@@ -1,5 +1,6 @@
 ---
 title: Burali-Forti paradox
+format: argument
 titleAccent: paradox
 aka:
   [

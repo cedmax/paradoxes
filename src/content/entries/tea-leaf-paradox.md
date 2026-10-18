@@ -1,5 +1,6 @@
 ---
 title: Tea leaf paradox
+format: argument
 titleAccent: paradox
 aka:
   [

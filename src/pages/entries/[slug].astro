@@ -27,7 +27,7 @@ const d = entry.data
 const all = await getPublishedEntries()
 const { echoes, siblings } = relatedEntries(entry, all)
 const seo = entrySeo(entry, chapterById(d.chapter), Astro.site)
-// Absent format is the existing argument type, not an illusion.
+// `format` is required, so anything that is not an illusion is an argument.
 const isIllusion = d.format === "illusion"
 ---
 

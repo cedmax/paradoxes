@@ -1,5 +1,6 @@
 ---
 title: "Elevator paradox"
+format: argument
 titleAccent: "paradox"
 chapter: statistics
 status: "explained"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 140
 sourcesVerified: true
-reviewed: false
 problem: "Why does the first lift to arrive so often seem to be going the wrong way?"
 claimA: "A lift passing a floor once going up and once going down should be equally likely to arrive next in either direction."
 claimB: "At a low floor, the next lift is more likely to arrive coming down than going up, even though it passes both ways."

@@ -1,5 +1,6 @@
 ---
 title: Liar paradox
+format: argument
 description: "Is “This sentence is false” true or false? The liar paradox asks how a statement can speak about its own truth, and what rules should apply."
 titleAccent: paradox
 chapter: self-reference
@@ -7,7 +8,6 @@ status: unreconciled
 simplification: light
 order: 10
 sourcesVerified: true
-reviewed: false
 problem: Is the sentence “This sentence is false” true or false?
 claimA: "Every sentence is true or false."
 claimB: "A sentence is true if what it says is right, and false if it isn't."

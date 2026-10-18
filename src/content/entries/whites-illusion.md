@@ -5,7 +5,6 @@ format: illusion
 chapter: shapes
 description: "Can two identical grey bars look like different shades?"
 problem: "Can two identical grey bars look like different shades?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 300
@@ -18,5 +17,4 @@ sources:
     url: https://journals.sagepub.com/doi/10.1068/p080413
     note: "Original paper and attribution; examines perceived lightness in repeated light and dark patterns."
 sourcesVerified: true
-reviewed: false
 ---

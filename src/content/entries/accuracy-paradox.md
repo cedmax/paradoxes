@@ -1,5 +1,6 @@
 ---
 title: "Accuracy paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   ["class imbalance", "99 percent accurate", "accuracy is misleading", "precision and recall"]

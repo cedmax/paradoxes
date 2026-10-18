@@ -1,5 +1,6 @@
 ---
 title: "Two envelopes paradox"
+format: argument
 titleAccent: "paradox"
 chapter: probability
 status: explained

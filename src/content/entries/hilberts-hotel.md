@@ -1,5 +1,6 @@
 ---
 title: "Hilbert's hotel paradox"
+format: argument
 alternativeNames: ["Hilbert’s paradox of the Grand Hotel"]
 titleAccent: "paradox"
 aka: ["Grand Hotel", "infinite hotel"]

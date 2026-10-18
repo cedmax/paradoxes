@@ -1,5 +1,6 @@
 ---
 title: Abilene paradox
+format: argument
 titleAccent: paradox
 chapter: collective
 status: explained

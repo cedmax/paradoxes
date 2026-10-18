@@ -1,5 +1,6 @@
 ---
 title: "Will Rogers phenomenon"
+format: argument
 titleAccent: "phenomenon"
 aka: ["stage migration", "Okies joke", "moving a member between groups"]
 chapter: statistics

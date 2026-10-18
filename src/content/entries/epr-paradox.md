@@ -1,5 +1,6 @@
 ---
 title: "EPR paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   [

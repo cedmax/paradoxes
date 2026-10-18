@@ -6,7 +6,6 @@ chapter: shapes
 aka:
   - "galloping rhythm"
   - "stream segregation"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 340
@@ -24,5 +23,4 @@ sources:
     url: "https://doi.org/10.1371/journal.pone.0144788"
     note: "The introduction reviews evidence that build-up of stream segregation is most evident at intermediate pitch separations: very small gaps often stay one stream, while large gaps can split immediately. The paper also analyses perceptual switching and proposes an evidence-accumulation model."
 sourcesVerified: true
-reviewed: false
 ---

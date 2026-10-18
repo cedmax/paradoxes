@@ -1,5 +1,6 @@
 ---
 title: "Faint young Sun paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["early Earth", "Sagan and Mullen", "young Sun", "early climate", "snowball Earth"]
 chapter: models

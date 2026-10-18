@@ -1,5 +1,6 @@
 ---
 title: "Black hole information paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["Hawking radiation", "information loss", "firewall paradox", "Page curve", "unitarity"]
 chapter: models

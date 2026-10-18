@@ -1,5 +1,6 @@
 ---
 title: "Apportionment paradox"
+format: argument
 titleAccent: "paradox"
 chapter: collective
 status: "explained"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 130
 sourcesVerified: true
-reviewed: false
 problem: "How can giving a parliament one more seat cause a state to lose a seat?"
 claimA: "Adding a seat to the total cannot reduce any state’s allocated number."
 claimB: "Under a largest-remainders rule, adding one seat can reduce a state’s allocation."

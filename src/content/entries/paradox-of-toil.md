@@ -1,5 +1,6 @@
 ---
 title: "Paradox of toil"
+format: argument
 titleAccent: "toil"
 chapter: collective
 status: "disputed"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 190
 sourcesVerified: true
-reviewed: false
 problem: "Can everyone becoming more willing to work make employment fall?"
 claimA: "When everyone offers more work during a severe slump, employment must rise."
 claimB: "During that same slump, increased willingness to work can reduce employment."

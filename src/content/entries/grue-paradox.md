@@ -1,5 +1,6 @@
 ---
 title: "Grue paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   [

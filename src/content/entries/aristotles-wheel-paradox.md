@@ -1,5 +1,6 @@
 ---
 title: "Aristotle's wheel paradox"
+format: argument
 titleAccent: "paradox"
 chapter: shapes
 status: "explained"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 70
 sourcesVerified: true
-reviewed: false
 problem: "How do two fixed-together wheels of different sizes travel the same distance in one turn?"
 claimA: "The small and large wheels both roll without slipping across the same distance."
 claimB: "Wheels of different sizes cannot each roll without slipping the same distance in one turn."

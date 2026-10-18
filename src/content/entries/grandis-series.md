@@ -1,5 +1,6 @@
 ---
 title: "Grandi's series"
+format: argument
 titleAccent: series
 aka: ["1-1+1-1", "1 − 1 + 1 − 1", "Grandi", "Cesàro sum", "Abel sum", "one half"]
 chapter: infinity

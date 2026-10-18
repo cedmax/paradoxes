@@ -1,5 +1,6 @@
 ---
 title: Prosecutor's fallacy
+format: argument
 titleAccent: fallacy
 chapter: statistics
 status: explained

@@ -1,5 +1,6 @@
 ---
 title: "Doomsday argument"
+format: argument
 titleAccent: "argument"
 aka:
   [

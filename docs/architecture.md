@@ -77,8 +77,8 @@ Routes (`/entries/<slug>/`) are stable: never rename an entry file without addin
 
 ## Illusions
 
-Entry frontmatter uses `format: illusion` for visual and auditory illusions. Legacy entries omit `format`
-and default to `argument`; their claim-based schema and layout are otherwise unchanged.
+Every entry sets `format`: `illusion` for visual and auditory illusions, `argument` for the
+claim-based entries.
 Both formats share `problem` as the question-first catalogue hook, page heading, SEO
 description fallback and OG text. Illusions instead require `why`, which follows
 an original or appropriately licensed source image, vector or audio demonstration,
@@ -113,8 +113,9 @@ on illusion cards, but adds an "Illusions" filter backed by the same `format` fi
 Argument status filters exclude illusions; the All filter includes both formats.
 Chapters and uniqueness rules continue to apply to both.
 
-New entries start with `sourcesVerified: false` and `reviewed: false` and are never
-included in a production build until the owner explicitly approves source verification.
+New entries start with `sourcesVerified: false` and leave `reviewed` unset (it defaults to
+`false`), and are never included in a production build until the owner explicitly approves
+source verification.
 For review, `PREVIEW_UNVERIFIED=true pnpm dev` includes unpublished illusions locally.
 A PR deployment with the opt-in `deploy-preview` label enables the same behaviour only
 for its noindex preview. `main` never enables this exception.

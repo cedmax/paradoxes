@@ -1,5 +1,6 @@
 ---
 title: "Giffen paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["Giffen good", "law of demand", "Giffen goods", "rice Hunan", "Gray good"]
 chapter: individual

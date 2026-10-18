@@ -6,7 +6,6 @@ chapter: shapes
 aka:
   - "auditory induction"
   - "illusory continuity"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 350
@@ -27,5 +26,4 @@ sources:
     url: "https://web.mit.edu/9.35/www/archives/2020/auditory/papers/Warren_PhonemicRestoration.pdf"
     note: "Science 167(3917). With the first “s” in “legislatures” replaced by a cough, 19 of 20 listeners reported that all speech sounds were present; with a tone in its place, all 20 did."
 sourcesVerified: true
-reviewed: false
 ---

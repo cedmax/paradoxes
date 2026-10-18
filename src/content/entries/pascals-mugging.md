@@ -1,5 +1,6 @@
 ---
 title: "Pascal's mugging"
+format: argument
 titleAccent: "mugging"
 aka:
   [

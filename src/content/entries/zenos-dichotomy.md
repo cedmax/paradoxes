@@ -1,5 +1,6 @@
 ---
 title: "Zeno's dichotomy paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["Zeno", "racecourse", "race course"]
 chapter: infinity

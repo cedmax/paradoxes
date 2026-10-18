@@ -1,5 +1,6 @@
 ---
 title: "Olbers' paradox"
+format: argument
 titleAccent: "paradox"
 chapter: models
 status: defused

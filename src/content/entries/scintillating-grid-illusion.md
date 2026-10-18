@@ -20,5 +20,4 @@ sources:
     url: https://www.sciencedirect.com/science/article/pii/S030439400000999X
     note: "Shows that saccadic eye movements are not necessary: smooth pursuit, moving the stimulus, or brief exposure can produce the effect. The publisher abstract was checked; the full paper was not inspected."
 sourcesVerified: true
-reviewed: false
 ---

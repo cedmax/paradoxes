@@ -1,5 +1,6 @@
 ---
 title: "Lottery paradox"
+format: argument
 titleAccent: "paradox"
 chapter: belief
 status: disputed
@@ -32,6 +33,5 @@ sources:
   - title: "Stanford Encyclopedia of Philosophy: Formal Representations of Belief"
     url: https://plato.stanford.edu/entries/formal-belief/
 sourcesVerified: true
-reviewed: false
 noMaths: true
 ---

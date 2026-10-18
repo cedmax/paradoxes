@@ -1,5 +1,6 @@
 ---
 title: "Grelling–Nelson paradox"
+format: argument
 titleAccent: paradox
 chapter: self-reference
 status: unreconciled
@@ -8,7 +9,6 @@ anchor: russells-paradox
 simplification: light
 order: 40
 sourcesVerified: true
-reviewed: false
 noMaths: true
 problem: "Is the word “heterological” a heterological word?"
 claimA: "Every describing word either describes itself or does not."

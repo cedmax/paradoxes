@@ -1,5 +1,6 @@
 ---
 title: "Drinker paradox"
+format: argument
 titleAccent: "paradox"
 chapter: belief
 status: "explained"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 130
 sourcesVerified: true
-reviewed: false
 problem: "Must there always be a person in a pub whose drinking means everyone is drinking?"
 claimA: "The drinker’s theorem needs one person whose choice controls the whole pub."
 claimB: "The theorem holds even when nobody controls anyone else’s drinking."

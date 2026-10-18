@@ -1,5 +1,6 @@
 ---
 title: "Fitch's paradox of knowability"
+format: argument
 titleAccent: "knowability"
 aka:
   [

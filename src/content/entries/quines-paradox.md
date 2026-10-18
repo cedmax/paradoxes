@@ -1,5 +1,6 @@
 ---
 title: "Quine's paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   [

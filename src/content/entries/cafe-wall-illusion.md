@@ -6,7 +6,6 @@ chapter: shapes
 aka: ["Cafe wall illusion", "Münsterberg illusion"]
 description: "Why do straight, parallel lines between black and white tiles appear tilted?"
 problem: "Why do straight, parallel lines between black and white tiles appear tilted?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 315
@@ -20,5 +19,4 @@ sources:
     url: https://www.richardgregory.org/papers/cafe_wall/cafe-wall_p1.htm
     note: "The authors' original paper and its explanation of the café wall illusion."
 sourcesVerified: true
-reviewed: false
 ---

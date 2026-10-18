@@ -1,5 +1,6 @@
 ---
 title: "Diamond–water paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["paradox of value", "water and diamonds", "Adam Smith", "marginal utility"]
 chapter: identity

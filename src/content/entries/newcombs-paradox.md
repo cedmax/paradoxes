@@ -1,5 +1,6 @@
 ---
 title: Newcomb's paradox
+format: argument
 titleAccent: paradox
 chapter: individual
 status: disputed

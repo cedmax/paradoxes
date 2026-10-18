@@ -1,5 +1,6 @@
 ---
 title: "French paradox"
+format: argument
 titleAccent: "paradox"
 chapter: statistics
 status: "disputed"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 170
 sourcesVerified: true
-reviewed: false
 problem: "Why did France appear to have relatively little heart disease despite a diet high in saturated fat?"
 claimA: "High average saturated-fat consumption must produce a similarly high recorded rate of heart disease across countries."
 claimB: "French data have shown lower recorded heart-disease rates than that simple prediction, even with relatively high saturated-fat consumption."

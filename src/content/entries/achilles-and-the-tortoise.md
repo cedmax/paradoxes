@@ -1,5 +1,6 @@
 ---
 title: "Achilles and the tortoise paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["Zeno", "Zeno's paradox"]
 chapter: infinity

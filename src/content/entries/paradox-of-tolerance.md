@@ -1,5 +1,6 @@
 ---
 title: Paradox of tolerance
+format: argument
 titleAccent: tolerance
 chapter: collective
 status: disputed

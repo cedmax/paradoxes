@@ -1,5 +1,6 @@
 ---
 title: Cantor's paradox
+format: argument
 titleAccent: paradox
 aka:
   [

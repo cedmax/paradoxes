@@ -1,5 +1,6 @@
 ---
 title: Staircase paradox
+format: argument
 titleAccent: paradox
 aka:
   [

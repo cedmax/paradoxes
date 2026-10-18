@@ -1,5 +1,6 @@
 ---
 title: "Zeno's arrow paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["Zeno", "flying arrow"]
 chapter: infinity

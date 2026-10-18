@@ -1,5 +1,6 @@
 ---
 title: "Moore's paradox"
+format: argument
 titleAccent: "paradox"
 chapter: belief
 status: disputed
@@ -30,6 +31,5 @@ sources:
   - title: "Stanford Encyclopedia of Philosophy: Epistemic Paradoxes"
     url: https://plato.stanford.edu/entries/epistemic-paradoxes/
 sourcesVerified: true
-reviewed: false
 noMaths: true
 ---

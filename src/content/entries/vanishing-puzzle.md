@@ -1,5 +1,6 @@
 ---
 title: "Vanishing puzzle"
+format: argument
 titleAccent: "puzzle"
 aka:
   [

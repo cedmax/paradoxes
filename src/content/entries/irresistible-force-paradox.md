@@ -1,5 +1,6 @@
 ---
 title: "Irresistible force paradox"
+format: argument
 titleAccent: "paradox"
 chapter: identity
 status: "defused"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 120
 sourcesVerified: true
-reviewed: false
 problem: "What happens when an unstoppable force meets an immovable object?"
 claimA: "An unstoppable force and an immovable object can both exist in the same world."
 claimB: "If the force truly cannot be stopped, then no object can be immovable against it."

@@ -1,5 +1,6 @@
 ---
 title: "Paradox of thrift"
+format: argument
 titleAccent: "thrift"
 chapter: collective
 status: "disputed"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 180
 sourcesVerified: true
-reviewed: false
 problem: "How can everybody trying to save more leave a country saving no more, or even less?"
 claimA: "Every household saving more during a slump must make the country save more in total."
 claimB: "Every household trying to save more during that same slump can leave the country saving no more."

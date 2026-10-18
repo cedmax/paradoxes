@@ -1,5 +1,6 @@
 ---
 title: "Raven paradox"
+format: argument
 titleAccent: "paradox"
 chapter: belief
 status: disputed

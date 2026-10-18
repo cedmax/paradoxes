@@ -10,6 +10,9 @@ Treat "Paradoxes in plain words" as the editorial promise. Apply the global cons
 `CLAUDE.md`; do not modify approval flags. If a task includes source validation, also use the
 `verify-sources` skill.
 
+Every entry sets `format`, placed directly after `title`. Entries edited here are arguments
+(`format: argument`); illusions follow the `create-illusion` skill.
+
 Before finishing, verify that the two claims actually clash under the same assumptions, each
 required field agrees about the wrong or contested premise, status and uniqueness are defensible,
 and the prose remains understandable without specialist background.

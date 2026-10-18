@@ -5,7 +5,6 @@ format: illusion
 chapter: shapes
 description: "Can two straight lines look bowed by the lines behind them?"
 problem: "Can two straight lines look bowed by the lines behind them?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 270
@@ -19,5 +18,4 @@ sources:
     url: https://michaelbach.de/ot/ang-hering/
     note: "Demonstration with straight bars and removable radiating lines; historical attribution to Hering (1861)."
 sourcesVerified: true
-reviewed: false
 ---

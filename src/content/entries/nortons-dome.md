@@ -1,5 +1,6 @@
 ---
 title: "Norton's dome"
+format: argument
 titleAccent: "dome"
 chapter: models
 status: "disputed"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: false
 order: 180
 sourcesVerified: true
-reviewed: false
 problem: "Can a ball that is perfectly still begin to move at an arbitrary time under Newton’s laws?"
 claimA: "Norton’s ideal dome is a legitimate Newtonian example in which a ball can start moving without a push."
 claimB: "Norton’s ideal dome is not a legitimate Newtonian example of spontaneous motion."

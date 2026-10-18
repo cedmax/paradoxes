@@ -1,5 +1,6 @@
 ---
 title: "Rietdijk–Putnam argument"
+format: argument
 titleAccent: "argument"
 chapter: time-causation
 status: "disputed"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 80
 sourcesVerified: true
-reviewed: false
 problem: "Does disagreement about what is happening now mean tomorrow already exists?"
 claimA: "Special relativity shows that events which one observer calls future are already real."
 claimB: "Special relativity does not establish that future events already exist."

@@ -1,5 +1,6 @@
 ---
 title: "Ladder paradox"
+format: argument
 titleAccent: "paradox"
 chapter: time-causation
 status: explained

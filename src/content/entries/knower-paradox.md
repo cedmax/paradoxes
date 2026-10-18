@@ -1,5 +1,6 @@
 ---
 title: "Knower paradox"
+format: argument
 titleAccent: "paradox"
 chapter: self-reference
 status: "disputed"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 150
 sourcesVerified: true
-reviewed: false
 problem: "What happens to the sentence “This sentence is not known” if someone proves it?"
 claimA: "Anything established by a valid proof can be known."
 claimB: "The sentence “This sentence is not known” can be proved but cannot consistently be known."

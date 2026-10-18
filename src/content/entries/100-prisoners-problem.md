@@ -1,5 +1,6 @@
 ---
 title: "100 prisoners problem"
+format: argument
 titleAccent: "problem"
 chapter: probability
 status: "explained"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: false
 order: 110
 sourcesVerified: true
-reviewed: false
 problem: "How can 100 prisoners find their numbers with about a 31 percent chance that every one succeeds?"
 claimA: "No plan gives prisoners who open 50 boxes each more than a tiny chance of all succeeding."
 claimB: "Following the numbers in the boxes gives them about a 31 percent chance of all succeeding."

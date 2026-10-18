@@ -6,7 +6,6 @@ chapter: shapes
 aka: ["Titchener circles", "Ebbinghaus circles"]
 description: "Can two circles of exactly the same size look different?"
 problem: "Can two circles of exactly the same size look different?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 210
@@ -32,5 +31,4 @@ sources:
     url: https://doi.org/10.1037/1093-4510.4.3.228
     note: "History of Psychology 4(3), pp. 228–244, on the attribution history. Bibliographic details and conclusion checked through the abstract; the full article was not inspected."
 sourcesVerified: true
-reviewed: false
 ---

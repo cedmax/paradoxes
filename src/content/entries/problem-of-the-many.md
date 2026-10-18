@@ -1,5 +1,6 @@
 ---
 title: "Problem of the many"
+format: argument
 titleAccent: "the many"
 aka: ["many cats", "cloud problem", "Unger", "Tibbles"]
 chapter: identity

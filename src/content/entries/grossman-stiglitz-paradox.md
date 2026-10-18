@@ -1,5 +1,6 @@
 ---
 title: "Grossman–Stiglitz paradox"
+format: argument
 titleAccent: "paradox"
 chapter: collective
 status: "defused"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 160
 sourcesVerified: true
-reviewed: false
 problem: "If stock prices told everyone everything worth knowing, who would pay to discover new information?"
 claimA: "Prices can reveal all costly information while investors still have an incentive to pay for finding it."
 claimB: "If prices already reveal every useful finding, no investor gains by paying to uncover that information."

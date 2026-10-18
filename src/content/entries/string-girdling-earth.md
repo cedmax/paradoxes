@@ -1,5 +1,6 @@
 ---
 title: "String girdling Earth"
+format: argument
 titleAccent: "Earth"
 aka:
   [

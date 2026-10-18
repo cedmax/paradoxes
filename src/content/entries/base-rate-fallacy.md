@@ -1,5 +1,6 @@
 ---
 title: False positive paradox
+format: argument
 titleAccent: paradox
 chapter: statistics
 status: explained

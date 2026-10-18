@@ -1,5 +1,6 @@
 ---
 title: Gibbs paradox
+format: argument
 titleAccent: paradox
 aka:
   [

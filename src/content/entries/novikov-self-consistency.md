@@ -1,5 +1,6 @@
 ---
 title: "Novikov self-consistency principle"
+format: argument
 titleAccent: "principle"
 aka:
   [
@@ -16,7 +17,6 @@ simplification: light
 noMaths: true
 order: 70
 sourcesVerified: true
-reviewed: false
 problem: "Can a billiard ball knock its younger self away from a time machine and still have made the trip?"
 claimA: "The ball’s starting path cannot end consistently: hitting its younger self prevents the trip."
 claimB: "The same starting path can end consistently: a glancing collision still sends the younger ball into the time machine."

@@ -1,5 +1,6 @@
 ---
 title: "Liberal paradox"
+format: argument
 titleAccent: "paradox"
 chapter: collective
 status: "disputed"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 170
 sourcesVerified: true
-reviewed: false
 problem: "Can a voting rule respect everyone’s private choices and always follow unanimous preferences?"
 claimA: "A person’s private right should prevail even when everyone prefers a different complete outcome."
 claimB: "An outcome everyone prefers should prevail even when that overrides someone’s private right."

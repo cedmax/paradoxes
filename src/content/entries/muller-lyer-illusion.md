@@ -6,7 +6,6 @@ chapter: shapes
 aka: ["Muller Lyer", "arrowhead illusion"]
 description: "Can arrowheads make two lines of equal length look unequal?"
 problem: "Can arrowheads make two lines of equal length look unequal?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 220
@@ -23,5 +22,4 @@ sources:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC544622/
     note: "Develops one probabilistic explanation; not the only proposed account."
 sourcesVerified: true
-reviewed: false
 ---

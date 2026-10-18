@@ -1,12 +1,12 @@
 ---
 title: "Coastline paradox"
+format: argument
 titleAccent: "paradox"
 chapter: identity
 status: explained
 simplification: light
 order: 40
 sourcesVerified: true
-reviewed: false
 problem: "How long is the coast of Britain?"
 claimA: "Even an ideal coastline must have a fixed, finite length."
 claimB: "Some ideal coastlines have no finite length."

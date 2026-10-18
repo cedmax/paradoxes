@@ -1,5 +1,6 @@
 ---
 title: "Problem of future contingents"
+format: argument
 titleAccent: "future contingents"
 chapter: belief
 status: "disputed"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 180
 sourcesVerified: true
-reviewed: false
 problem: "Is the sentence “There will be a sea battle tomorrow” already true or false today?"
 claimA: "Every definite statement about tomorrow is already either true or false today."
 claimB: "A genuinely open future has statements about tomorrow that are not yet settled as true or false."

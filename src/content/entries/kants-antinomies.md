@@ -1,5 +1,6 @@
 ---
 title: "Kant's antinomies"
+format: argument
 titleAccent: "antinomies"
 chapter: belief
 status: "disputed"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 150
 sourcesVerified: true
-reviewed: false
 problem: "Can reason establish both that the world began and that it never began?"
 claimA: "Reason alone can settle whether the world as a whole had a first moment."
 claimB: "Reason alone cannot settle whether the world as a whole had a first moment."

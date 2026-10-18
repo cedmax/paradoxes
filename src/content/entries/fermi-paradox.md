@@ -1,5 +1,6 @@
 ---
 title: "Fermi paradox"
+format: argument
 titleAccent: "paradox"
 chapter: models
 status: disputed

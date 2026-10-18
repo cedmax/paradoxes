@@ -15,7 +15,7 @@ interface Props {
 const { entry, anchor } = Astro.props
 const d = entry.data
 const chapter = chapterById(d.chapter)
-// Absent format is the existing argument type, not an illusion.
+// `format` is required, so anything that is not an illusion is an argument.
 const isIllusion = d.format === "illusion"
 const s = isIllusion ? undefined : statuses[d.status]
 const u = uniqueness[d.uniqueness]

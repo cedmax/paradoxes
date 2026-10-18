@@ -1,5 +1,6 @@
 ---
 title: "Chessboard paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   [

@@ -1,5 +1,6 @@
 ---
 title: "1 − 2 + 3 − 4 + …"
+format: argument
 titleAccent: "3 − 4 + …"
 aka: ["alternating whole numbers", "equals one quarter", "Euler 1/4", "Abel sum", "1-2+3-4"]
 chapter: infinity

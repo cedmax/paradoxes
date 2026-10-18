@@ -1,5 +1,6 @@
 ---
 title: "Repugnant conclusion"
+format: argument
 titleAccent: "conclusion"
 aka: ["Parfit", "mere addition paradox", "population ethics", "Reasons and Persons"]
 chapter: individual

@@ -1,5 +1,6 @@
 ---
 title: "Ross–Littlewood paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   [

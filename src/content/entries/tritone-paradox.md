@@ -6,7 +6,6 @@ chapter: shapes
 aka:
   - "tritone illusion"
   - "Deutsch tritone paradox"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 330
@@ -32,5 +31,4 @@ sources:
     url: "https://doi.org/10.1068/p260645"
     note: "Perception 26(5), pp. 645–665. Found that shifting the spectral envelope changed many listeners’ judgements, that listeners ranged from fully envelope-dependent to mainly pitch-class-based, and that preceding context could sway judgements."
 sourcesVerified: true
-reviewed: false
 ---

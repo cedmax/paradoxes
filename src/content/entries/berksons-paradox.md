@@ -1,5 +1,6 @@
 ---
 title: "Berkson's paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["Berkson's fallacy", "selection bias", "collider bias", "explaining away"]
 chapter: statistics

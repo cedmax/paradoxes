@@ -1,5 +1,6 @@
 ---
 title: Prisoner's dilemma
+format: argument
 titleAccent: dilemma
 chapter: collective
 status: disputed

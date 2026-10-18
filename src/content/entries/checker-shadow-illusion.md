@@ -5,7 +5,6 @@ format: illusion
 chapter: shapes
 description: "Two squares look like different shades of grey. Are they?"
 problem: "Two squares look like different shades of grey. Are they?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 200
@@ -25,5 +24,4 @@ sources:
     url: https://www.illusionsindex.org/i/adelson-s-checker-shadow-illusion
     note: "Explains the role of lightness constancy, shadow interpretation and contrast."
 sourcesVerified: true
-reviewed: false
 ---

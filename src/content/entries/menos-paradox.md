@@ -1,5 +1,6 @@
 ---
 title: "Meno's paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["learner’s paradox", "paradox of inquiry", "Meno", "recollection", "slave boy"]
 chapter: belief

@@ -1,5 +1,6 @@
 ---
 title: "Hausdorff paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   [

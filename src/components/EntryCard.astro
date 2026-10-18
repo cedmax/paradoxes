@@ -12,7 +12,7 @@ interface Props {
 
 const { entry, anchor } = Astro.props
 const d = entry.data
-// Only an explicitly marked illusion uses the new layout. Legacy entries remain arguments.
+// `format` is required: an illusion has its own layout and everything else is an argument.
 const isIllusion = d.format === "illusion"
 const s = isIllusion ? undefined : statuses[d.status]
 const u = uniqueness[d.uniqueness]

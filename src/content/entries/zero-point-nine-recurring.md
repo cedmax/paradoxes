@@ -1,5 +1,6 @@
 ---
 title: "0.999… equals 1"
+format: argument
 titleAccent: "equals 1"
 aka:
   [

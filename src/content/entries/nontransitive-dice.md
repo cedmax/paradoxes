@@ -1,5 +1,6 @@
 ---
 title: Nontransitive dice
+format: argument
 titleAccent: dice
 chapter: probability
 status: explained

@@ -1,5 +1,6 @@
 ---
 title: "Chicken or the egg"
+format: argument
 titleAccent: "egg"
 aka:
   [

@@ -5,7 +5,6 @@ format: illusion
 chapter: shapes
 description: "Why can an upright line look longer than an equally long horizontal one?"
 problem: "Why can an upright line look longer than an equally long horizontal one?"
-uniqueness: canonical
 simplification: light
 noMaths: true
 order: 260
@@ -19,5 +18,4 @@ sources:
     url: https://pubmed.ncbi.nlm.nih.gov/8433908/
     note: "Defines the equal-length vertical/horizontal effect and studies the viewing context."
 sourcesVerified: true
-reviewed: false
 ---

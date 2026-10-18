@@ -1,5 +1,6 @@
 ---
 title: Epimenides paradox
+format: argument
 titleAccent: paradox
 aka:
   [

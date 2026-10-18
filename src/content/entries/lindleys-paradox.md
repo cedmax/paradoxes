@@ -1,5 +1,6 @@
 ---
 title: "Lindley's paradox"
+format: argument
 titleAccent: "paradox"
 chapter: statistics
 status: "explained"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: false
 order: 150
 sourcesVerified: true
-reviewed: false
 problem: "Can the same experiment be statistically significant and still favour no effect?"
 claimA: "A conventionally significant result necessarily means the data favour an effect over no effect."
 claimB: "With some sample sizes and starting assumptions, the same significant data can support no effect in a Bayesian comparison."

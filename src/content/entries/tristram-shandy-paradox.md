@@ -1,5 +1,6 @@
 ---
 title: "Tristram Shandy paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   ["Tristram Shandy", "Russell", "Sterne", "endless autobiography", "biography that never ends"]

@@ -1,5 +1,6 @@
 ---
 title: Buridan's ass
+format: argument
 titleAccent: ass
 chapter: individual
 status: disputed

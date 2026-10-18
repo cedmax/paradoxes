@@ -1,5 +1,6 @@
 ---
 title: Pinocchio paradox
+format: argument
 titleAccent: paradox
 aka:
   [

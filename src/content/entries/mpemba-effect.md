@@ -1,5 +1,6 @@
 ---
 title: Mpemba effect
+format: argument
 titleAccent: effect
 aka:
   [

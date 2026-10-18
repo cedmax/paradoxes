@@ -1,5 +1,6 @@
 ---
 title: Archer's paradox
+format: argument
 titleAccent: paradox
 aka:
   [

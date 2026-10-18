@@ -1,5 +1,6 @@
 ---
 title: "Ant on a rubber rope"
+format: argument
 titleAccent: "rope"
 chapter: infinity
 status: "explained"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 210
 sourcesVerified: true
-reviewed: false
 problem: "Can an ant ever reach the end of a rope that keeps stretching faster than it walks?"
 claimA: "If the far end moves away faster than the ant walks, the ant never reaches it."
 claimB: "When the whole rope stretches uniformly at a constant rate, a steadily walking ant eventually reaches the end."

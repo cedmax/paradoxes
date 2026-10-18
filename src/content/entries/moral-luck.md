@@ -1,5 +1,6 @@
 ---
 title: "Moral luck"
+format: argument
 titleAccent: "luck"
 aka: ["Nagel", "Williams", "control principle", "resultant luck", "constitutive luck"]
 chapter: individual

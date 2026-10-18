@@ -1,5 +1,6 @@
 ---
 title: "Paradox of fiction"
+format: argument
 titleAccent: "fiction"
 aka: ["Radford", "emotions toward fiction", "why we cry at films", "suspension of disbelief"]
 chapter: identity

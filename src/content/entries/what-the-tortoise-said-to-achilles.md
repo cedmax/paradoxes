@@ -1,5 +1,6 @@
 ---
 title: "What the Tortoise Said to Achilles"
+format: argument
 titleAccent: "Achilles"
 chapter: belief
 status: "explained"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 190
 sourcesVerified: true
-reviewed: false
 problem: "If someone accepts every premise of an argument, can they still refuse its conclusion forever?"
 claimA: "Writing down enough extra premises must eventually force the tortoise to accept the conclusion."
 claimB: "Adding another premise can never replace applying the rule that takes one from premises to a conclusion."

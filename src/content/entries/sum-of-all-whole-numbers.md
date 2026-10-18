@@ -1,5 +1,6 @@
 ---
 title: "The sum of all whole numbers"
+format: argument
 titleAccent: "whole numbers"
 aka: ["1+2+3", "minus one twelfth", "-1/12", "Ramanujan summation", "zeta regularisation"]
 chapter: infinity

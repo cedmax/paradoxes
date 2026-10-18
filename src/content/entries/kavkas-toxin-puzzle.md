@@ -1,5 +1,6 @@
 ---
 title: "Kavka's toxin puzzle"
+format: argument
 titleAccent: "toxin puzzle"
 aka:
   [

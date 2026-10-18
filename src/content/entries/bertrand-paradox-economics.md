@@ -1,5 +1,6 @@
 ---
 title: "Bertrand competition paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   [
@@ -14,7 +15,6 @@ simplification: light
 noMaths: false
 order: 140
 sourcesVerified: true
-reviewed: false
 problem: "Why do two shops selling the same product end up pricing almost as if there were countless competitors?"
 claimA: "Two competing shops can both keep prices above cost even when buyers always choose the cheaper identical product."
 claimB: "With equal costs and easy switching, either shop can take the entire market by undercutting, until both charge cost."

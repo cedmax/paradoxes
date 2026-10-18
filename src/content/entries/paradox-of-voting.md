@@ -1,5 +1,6 @@
 ---
 title: "Paradox of voting"
+format: argument
 titleAccent: "voting"
 aka:
   [

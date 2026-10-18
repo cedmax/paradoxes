@@ -1,5 +1,6 @@
 ---
 title: "Interesting number paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   [

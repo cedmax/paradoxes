@@ -1,5 +1,6 @@
 ---
 title: "Paradox of hedonism"
+format: argument
 titleAccent: "hedonism"
 chapter: individual
 status: "explained"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 140
 sourcesVerified: true
-reviewed: false
 problem: "Can trying too hard to feel happy make happiness harder to find?"
 claimA: "Deliberately chasing pleasure always increases the pleasure obtained."
 claimB: "Deliberately chasing pleasure can spoil the very experiences that would have been pleasant."

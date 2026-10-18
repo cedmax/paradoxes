@@ -1,5 +1,6 @@
 ---
 title: "D'Alembert's paradox"
+format: argument
 titleAccent: "paradox"
 aka:
   [

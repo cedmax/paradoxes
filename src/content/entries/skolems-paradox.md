@@ -1,5 +1,6 @@
 ---
 title: Skolem's paradox
+format: argument
 titleAccent: paradox
 aka:
   [

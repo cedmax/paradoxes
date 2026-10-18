@@ -1,5 +1,6 @@
 ---
 title: "Barbershop paradox"
+format: argument
 titleAccent: "paradox"
 chapter: belief
 status: "explained"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 110
 sourcesVerified: true
-reviewed: false
 problem: "Do Lewis Carroll’s rules about a barbershop prove that one barber must always be in?"
 claimA: "If Carr is out, the rules force Allen to be both in and out, so Carr cannot be out."
 claimB: "Carr can be out without breaking the rules, provided Allen is in."

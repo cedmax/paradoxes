@@ -74,37 +74,31 @@ const illusion = common.extend({
 
 const entries = defineCollection({
   loader: glob({ pattern: "*.md", base: "./src/content/entries" }),
-  schema: z.preprocess(
-    // Preserve every existing argument file; new files explicitly choose their format.
-    (value) =>
-      value && typeof value === "object" && !Array.isArray(value) && !("format" in value)
-        ? { ...value, format: "argument" }
-        : value,
-    z.discriminatedUnion("format", [argument, illusion]).superRefine((d, ctx) => {
-      const shownNames = new Set(d.alternativeNames.map(normaliseSearch))
-      if (d.aka.some((name) => shownNames.has(normaliseSearch(name)))) {
-        ctx.addIssue({
-          code: "custom",
-          message: "aka must not repeat alternativeNames (ignoring case and apostrophe style)",
-          path: ["aka"],
-        })
-      }
-      if ((d.uniqueness === "canonical") !== (d.anchor === undefined)) {
-        ctx.addIssue({
-          code: "custom",
-          message: "anchor is required for related and variant entries, not canonical ones",
-          path: ["anchor"],
-        })
-      }
-      if (d.reviewed && !d.sourcesVerified) {
-        ctx.addIssue({
-          code: "custom",
-          message: "reviewed requires sourcesVerified",
-          path: ["reviewed"],
-        })
-      }
-    }),
-  ),
+  // Every entry sets `format`, which picks the variant.
+  schema: z.discriminatedUnion("format", [argument, illusion]).superRefine((d, ctx) => {
+    const shownNames = new Set(d.alternativeNames.map(normaliseSearch))
+    if (d.aka.some((name) => shownNames.has(normaliseSearch(name)))) {
+      ctx.addIssue({
+        code: "custom",
+        message: "aka must not repeat alternativeNames (ignoring case and apostrophe style)",
+        path: ["aka"],
+      })
+    }
+    if ((d.uniqueness === "canonical") !== (d.anchor === undefined)) {
+      ctx.addIssue({
+        code: "custom",
+        message: "anchor is required for related and variant entries, not canonical ones",
+        path: ["anchor"],
+      })
+    }
+    if (d.reviewed && !d.sourcesVerified) {
+      ctx.addIssue({
+        code: "custom",
+        message: "reviewed requires sourcesVerified",
+        path: ["reviewed"],
+      })
+    }
+  }),
 })
 
 export const collections = { entries }

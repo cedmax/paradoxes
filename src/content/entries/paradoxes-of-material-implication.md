@@ -1,5 +1,6 @@
 ---
 title: "Paradoxes of material implication"
+format: argument
 titleAccent: "material implication"
 chapter: belief
 status: "disputed"
@@ -7,7 +8,6 @@ simplification: light
 noMaths: true
 order: 160
 sourcesVerified: true
-reviewed: false
 problem: "How can a false claim logically imply absolutely anything?"
 claimA: "The everyday word “if” means no more than the truth rule used by classical logic."
 claimB: "The everyday word “if” means more than that truth rule, so the rule alone does not capture what people say."

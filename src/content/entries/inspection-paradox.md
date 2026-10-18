@@ -1,5 +1,6 @@
 ---
 title: "Inspection paradox"
+format: argument
 alternativeNames: ["Bus waiting time paradox"]
 titleAccent: "paradox"
 chapter: statistics

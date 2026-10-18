@@ -1,5 +1,6 @@
 ---
 title: "Loschmidt's paradox"
+format: argument
 titleAccent: "paradox"
 aka: ["reversibility paradox", "arrow of time", "second law", "Boltzmann", "time-reversal"]
 chapter: models

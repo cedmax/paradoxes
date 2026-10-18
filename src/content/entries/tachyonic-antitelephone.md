@@ -1,5 +1,6 @@
 ---
 title: "Tachyonic antitelephone"
+format: argument
 titleAccent: "antitelephone"
 chapter: time-causation
 status: "explained"
@@ -9,7 +10,6 @@ simplification: light
 noMaths: true
 order: 90
 sourcesVerified: true
-reviewed: false
 problem: "Could a message that travels faster than light get a reply before it was sent?"
 claimA: "Allowing freely sent faster-than-light messages would leave the order of sending and receiving unchanged for everyone."
 claimB: "Under special relativity, suitable moving senders can exchange faster-than-light messages so a reply reaches the sender before the first message."
