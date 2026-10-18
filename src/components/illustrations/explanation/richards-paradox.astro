@@ -1,0 +1,111 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+const rows = [
+  [1, 1, 1, 1, 1],
+  [2, 1, 2, 1, 2],
+  [1, 1, 2, 2, 1],
+  [2, 2, 1, 1, 2],
+  [1, 2, 2, 1, 1],
+]
+const newDigits = rows.map((digits, i) => (digits[i] === 1 ? 2 : 1))
+---
+
+<IllustrationFigure
+  name="richards-paradox"
+  lead="Build a new decimal by changing the diagonal digit of every listed number."
+>
+  <SvgFigure
+    name="richards-diagonal"
+    class="mx-auto w-full max-w-md"
+    viewBox="0 0 335 260"
+    title="Diagonal digits changed to construct a decimal missing from a list"
+    desc="Five example decimals are arranged in rows. The first digit of the first, second digit of the second, and so on are highlighted. Replacing a 1 with a 2 and any other digit with a 1 produces 0.22122 and so on, which differs from each row in its own diagonal place. The process extends to infinitely many rows."
+  >
+    <g fill="currentColor" font-size="15">
+      <text x="12" y="19" font-weight="700">
+        Numbers defined in English
+      </text>
+      <text x="26" y="46">
+        0.
+      </text>
+      <text x="26" y="80">
+        0.
+      </text>
+      <text x="26" y="114">
+        0.
+      </text>
+      <text x="26" y="148">
+        0.
+      </text>
+      <text x="26" y="182">
+        0.
+      </text>
+    </g>
+    {rows.map((digits, i) => (
+      <g>
+        <text x="8" y={46 + i * 34} fill="currentColor" font-size="12">
+          {i + 1}.
+        </text>
+        {digits.map((digit, j) => (
+          <g>
+            {i === j && (
+              <rect
+                x={89 + j * 36}
+                y={27 + i * 34}
+                width="30"
+                height="27"
+                fill={series.gold}
+                fill-opacity=".4"
+                stroke={series.red}
+                stroke-width="1.5"
+              />
+            )}
+            <text
+              x={104 + j * 36}
+              y={47 + i * 34}
+              text-anchor="middle"
+              fill="currentColor"
+              font-size="19"
+              font-weight={i === j ? "700" : "400"}
+            >
+              {digit}
+            </text>
+          </g>
+        ))}
+        <text x="285" y={47 + i * 34} fill="currentColor" font-size="19">
+          …
+        </text>
+      </g>
+    ))}
+    <path d="M92 201 H270" stroke={stroke} stroke-opacity=".35" stroke-width="1.5" />
+    <text x="12" y="228" fill="currentColor" font-size="16" font-weight="700">
+      New: 0.
+    </text>
+    {newDigits.map((digit, j) => (
+      <text
+        x={104 + j * 36}
+        y="228"
+        text-anchor="middle"
+        font-size="19"
+        font-weight="700"
+        fill={series.blue}
+      >
+        {digit}
+      </text>
+    ))}
+    <text x="285" y="228" fill="currentColor" font-size="19">
+      …
+    </text>
+    <text x="12" y="251" fill="currentColor" font-size="13">
+      Example digits; the rows continue forever.
+    </text>
+  </SvgFigure>
+  <Fragment slot="caption">
+    The new number disagrees with row 1 at digit 1, row 2 at digit 2, and so on. The diagonal
+    trick is sound. Richard's contradiction comes from assuming English can precisely select{" "}
+    <em>every</em> number description, including this one about the list.
+  </Fragment>
+</IllustrationFigure>
