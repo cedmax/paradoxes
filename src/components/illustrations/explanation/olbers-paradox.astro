@@ -73,26 +73,47 @@ const continuingShells = [
     ))}
     <circle cx="132" cy="143" r="7" fill={series.blue} stroke={stroke} stroke-width="1.5" />
     <g fill="currentColor" font-size="14">
-      <text x="132" y="22" text-anchor="middle">Observer at centre</text>
-      <text x="265" y="31" font-weight="700">Ideal eternal universe</text>
-      <text x="265" y="57">Same total light from</text>
-      <text x="265" y="75">each shell</text>
+      <text x="132" y="22" text-anchor="middle">
+        Observer at centre
+      </text>
+      <text x="265" y="31" font-weight="700">
+        Ideal eternal universe
+      </text>
+      <text x="265" y="57">
+        Same total light from
+      </text>
+      <text x="265" y="75">
+        each shell
+      </text>
     </g>
     {[0, 1, 2].map((i) => (
       <g>
-        <text x="265" y={115 + i * 35} fill="currentColor" font-size="14">Shell {i + 1}</text>
-        <rect x="336" y={101 + i * 35} width="90" height="16" fill={series.gold} fill-opacity=".7" />
+        <text x="265" y={115 + i * 35} fill="currentColor" font-size="14">
+          Shell {i + 1}
+        </text>
+        <rect
+          x="336"
+          y={101 + i * 35}
+          width="90"
+          height="16"
+          fill={series.gold}
+          fill-opacity=".7"
+        />
       </g>
     ))}
     <g fill="currentColor" font-size="14">
-      <text x="265" y="227">Shell 4, shell 5, …</text>
-      <text x="265" y="246">continue without end</text>
+      <text x="265" y="227">
+        Shell 4, shell 5, …
+      </text>
+      <text x="265" y="246">
+        continue without end
+      </text>
     </g>
   </SvgFigure>
   <Fragment slot="caption">
-    In the imagined eternal, unchanging universe, each equally thick shell would add
-    about the same light. With shells extending without end, the whole sky would be bright.
-    In reality, light has had only finite time to reach us, stars have finite lifetimes,
-    and expansion also reduces observed light. Schematic, not to scale.
+    In the imagined eternal, unchanging universe, each equally thick shell would add about the
+    same light. With shells extending without end, the whole sky would be bright. In reality,
+    light has had only finite time to reach us, stars have finite lifetimes, and expansion also
+    reduces observed light. Schematic, not to scale.
   </Fragment>
 </IllustrationFigure>
