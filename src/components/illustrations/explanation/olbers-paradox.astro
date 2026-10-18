@@ -11,8 +11,8 @@ const stars = [
 
 // Further shells grow faint to suggest that the sequence continues beyond those shown.
 const continuingShells = [
-  { r: 134, count: 96, opacity: 0.34, dotRadius: 1 },
-  { r: 168, count: 150, opacity: 0.17, dotRadius: 0.8 },
+  { r: 134, count: 96, ringOpacity: 0.34, dotOpacity: 0.55, dotRadius: 1.6 },
+  { r: 168, count: 150, ringOpacity: 0.17, dotOpacity: 0.5, dotRadius: 1.4 },
 ]
 ---
 
@@ -30,9 +30,16 @@ const continuingShells = [
         desc="An observer sits at the centre of three shells of stars, followed by two fainter outer shells. The farther a shell is, the more stars it contains and the smaller each star looks. The complete outer circles grow faint to suggest shells continuing without end. In the imagined static, eternal universe, every equally thick shell contributes about the same total light."
       >
         <!-- Full, fading outer shells avoid implying an artificial edge of space. -->
-        {continuingShells.map(({ r, count, opacity, dotRadius }) => (
-          <g opacity={opacity}>
-            <circle cx="180" cy="180" r={r} fill="none" stroke={stroke} />
+        {continuingShells.map(({ r, count, ringOpacity, dotOpacity, dotRadius }) => (
+          <g>
+            <circle
+              cx="180"
+              cy="180"
+              r={r}
+              fill="none"
+              stroke={stroke}
+              stroke-opacity={ringOpacity}
+            />
             {Array.from({ length: count }, (_, i) => {
               const angle = (2 * Math.PI * i) / count
               return (
@@ -41,6 +48,7 @@ const continuingShells = [
                   cy={180 + r * Math.sin(angle)}
                   r={dotRadius}
                   fill={series.gold}
+                  fill-opacity={dotOpacity}
                 />
               )
             })}
