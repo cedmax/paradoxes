@@ -59,14 +59,14 @@ import { series, stroke } from "~/data/palette"
 
       <!-- The shaded wake stays at least as wide as the body downstream. -->
       <path
-        d="M230 227 C276 213 330 214 388 216 L388 294 C330 294 276 293 230 279 Z"
+        d="M230 226 C276 217 330 218 388 220 L388 286 C330 288 276 287 230 280 Z"
         fill={series.red}
         fill-opacity=".15"
       />
       <!-- The outer streamlines do not close back together behind the body. -->
       <g fill="none" stroke={series.blue} stroke-width="2">
-        <path d="M12 224 C105 224 140 210 182 210 C202 210 218 217 232 227 C281 218 335 218 388 218" />
-        <path d="M12 282 C105 282 140 296 182 296 C202 296 218 289 232 279 C281 288 335 288 388 288" />
+        <path d="M12 232 C112 232 143 218 185 216 C205 214 218 217 234 221 C271 225 324 217 388 217" />
+        <path d="M12 274 C112 274 143 288 185 290 C205 292 218 289 234 285 C271 281 324 289 388 289" />
       </g>
       <circle
         cx="200"
