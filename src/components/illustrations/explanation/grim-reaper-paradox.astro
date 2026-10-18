@@ -1,0 +1,73 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+const marks = [
+  { x: 344 },
+  { x: 185, time: "12:30", top: false },
+  { x: 105.5, time: "12:15", top: true },
+  { x: 65.75, time: "12:07:30", top: false },
+  { x: 45.87, time: "12:03:45", top: true },
+  { x: 35.93 },
+  { x: 30.96 },
+  { x: 28.47 },
+  { x: 27.22 },
+]
+---
+
+<IllustrationFigure
+  name="grim-reaper"
+  lead="There are reapers after noon, but no earliest one."
+>
+  <SvgFigure
+    name="grim-reaper-timeline"
+    class="mx-auto w-full max-w-lg"
+    viewBox="0 0 390 166"
+    title="An endless series of reaper times accumulating immediately after noon"
+    desc="Time moves right from noon to 1pm. Reapers act at 1pm, 12:30pm, 12:15pm, 12:07:30pm and repeatedly halfway closer to noon. Many earlier times are marked near noon; every reaper time has another reaper time even closer to noon. There is no first reaper after noon."
+  >
+    <g fill="none" stroke={stroke} stroke-width="2">
+      <path d="M26 96 H366 m-7 -5 7 5 -7 5" />
+    </g>
+    <g fill="currentColor" font-size="17">
+      <text x="26" y="127" text-anchor="middle">
+        Noon
+      </text>
+      <text x="344" y="127" text-anchor="middle">
+        1pm
+      </text>
+      <text x="196" y="18" text-anchor="middle" font-weight="700">
+        Later →
+      </text>
+    </g>
+    {marks.map(({ x, time, top }) => (
+      <g>
+        <path d={`M${x} 90 V102`} stroke={series.red} stroke-width="1.3" />
+        <circle cx={x} cy="96" r="3" fill={series.red} />
+        {!!time && (
+          <text
+            x={x}
+            y={top ? 72 : 147}
+            text-anchor="middle"
+            fill="currentColor"
+            font-size="16"
+          >
+            {time}
+          </text>
+        )}
+      </g>
+    ))}
+    <g fill="none" stroke={stroke} stroke-width="2.5">
+      <path d="M25.5 86 V106" />
+    </g>
+    <text x="26" y="49" text-anchor="middle" fill="currentColor" font-size="16">
+      …
+    </text>
+  </SvgFigure>
+  <Fragment slot="caption">
+    If the man lives past noon, some reaper should kill him. Yet no reaper can be the first to
+    do so: another is always scheduled earlier. The arrangement is inconsistent. Whether that
+    rules out endless causal chains generally remains disputed.
+  </Fragment>
+</IllustrationFigure>
