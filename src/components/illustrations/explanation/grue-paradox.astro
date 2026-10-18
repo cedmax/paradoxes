@@ -1,0 +1,114 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+const gemPoints = (x: number, y: number) =>
+  [
+    [x, y - 20],
+    [x + 16, y - 8],
+    [x + 12, y + 14],
+    [x, y + 20],
+    [x - 12, y + 14],
+    [x - 16, y - 8],
+  ]
+    .map((point) => point.join(","))
+    .join(" ")
+---
+
+<IllustrationFigure
+  name="grue-predictions"
+  lead="The same observations support two incompatible predictions"
+>
+  <SvgFigure
+    name="grue-predictions-chart"
+    class="mx-auto w-full max-w-xl"
+    viewBox="0 0 480 300"
+    title="Green and grue agree on past observations but disagree on future examinations"
+    desc="Four emeralds examined before time t are green, so they also count as grue. For emeralds first examined after t, the claim all emeralds are green predicts green, while the claim all emeralds are grue predicts blue. These are rival predictions, not colour changes in an emerald."
+  >
+    <text
+      x="240"
+      y="25"
+      text-anchor="middle"
+      fill="currentColor"
+      font-size="17"
+      font-weight="700"
+    >
+      Examined before t
+    </text>
+    {[80, 180, 300, 400].map((x) => (
+      <polygon
+        points={gemPoints(x, 70)}
+        fill={series.green}
+        stroke={stroke}
+        stroke-width="1.5"
+      />
+    ))}
+    <text x="240" y="119" text-anchor="middle" fill="currentColor" font-size="15">
+      Every observed emerald is both green and grue.
+    </text>
+    <path d="M30 138 H450" stroke={stroke} stroke-width="1" opacity=".45" />
+
+    <text
+      x="240"
+      y="165"
+      text-anchor="middle"
+      fill="currentColor"
+      font-size="16"
+      font-weight="700"
+    >
+      First examined after t
+    </text>
+    <text
+      x="120"
+      y="197"
+      text-anchor="middle"
+      fill="currentColor"
+      font-size="15"
+      font-weight="700"
+    >
+      If all are green
+    </text>
+    <text
+      x="360"
+      y="197"
+      text-anchor="middle"
+      fill="currentColor"
+      font-size="15"
+      font-weight="700"
+    >
+      If all are grue
+    </text>
+    <path
+      d="M240 182 V282"
+      stroke={stroke}
+      stroke-width="1"
+      stroke-dasharray="4 5"
+      opacity=".3"
+    />
+    <polygon
+      points={gemPoints(120, 237)}
+      fill={series.green}
+      stroke={stroke}
+      stroke-width="1.5"
+    />
+    <polygon
+      points={gemPoints(360, 237)}
+      fill={series.blue}
+      stroke={stroke}
+      stroke-width="1.5"
+    />
+    <text x="120" y="277" text-anchor="middle" fill="currentColor" font-size="15">
+      Predict green
+    </text>
+    <text x="360" y="277" text-anchor="middle" fill="currentColor" font-size="15">
+      Predict blue
+    </text>
+  </SvgFigure>
+  <Fragment slot="caption">
+    “Grue” means green if examined before t, or blue if not examined before t. The two claims
+    fit every emerald examined so far, but disagree about emeralds first examined after t. The
+    lower diamonds show predictions, not emeralds changing colour.
+  </Fragment>
+</IllustrationFigure>
