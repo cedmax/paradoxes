@@ -1,50 +1,13 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import ComparisonTable from "~/components/illustration-kit/ComparisonTable.astro"
-import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
-import { series } from "~/data/palette"
-
-const steps = [1, 2, 3, 4]
 ---
 
 <IllustrationFigure
   name="ross-littlewood"
-  lead="The number in the vase grows. But every numbered ball has a removal step."
+  lead="The vase gains nine balls at every step. Yet every numbered ball is removed before noon."
+  frame={false}
 >
-  <SvgFigure
-    name="ross-littlewood-count"
-    class="mx-auto w-full max-w-lg"
-    viewBox="0 0 360 184"
-    title="The vase contains nine more balls after each step"
-    desc="After step one the vase holds nine balls, after step two eighteen, after step three twenty-seven, and after step four thirty-six. The count rises steadily, even though every particular numbered ball will be taken out at a later step."
-  >
-    {steps.map((step, index) => (
-      <g>
-        <text x="12" y={29 + index * 41} fill="currentColor" font-size="15">
-          Step {step}
-        </text>
-        <rect
-          x="78"
-          y={13 + index * 41}
-          width={step * 44}
-          height="24"
-          fill={series.blue}
-          fill-opacity=".25"
-          stroke={series.blue}
-          stroke-width="1.5"
-        />
-        <text
-          x={88 + step * 44}
-          y={30 + index * 41}
-          fill="currentColor"
-          font-size="15"
-          font-weight="700"
-        >
-          {step * 9} inside
-        </text>
-      </g>
-    ))}
-  </SvgFigure>
   <ComparisonTable
     caption="Follow particular balls instead of the total"
     columns={["Ball", "Goes in at step", "Comes out at step"]}
