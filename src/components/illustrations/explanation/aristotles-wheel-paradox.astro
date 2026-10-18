@@ -1,48 +1,162 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
 ---
 
 <IllustrationFigure
   name="aristotles-wheel"
-  lead="Both rims move forward together. Only the outer one rolls without slipping."
+  lead="Both wheels make one turn, but only the large one rolls without slipping."
 >
+  <p class="text-base">
+    The solid line is the ground touched by the outer wheel. The dashed line is an
+    <strong>imaginary track</strong> for the smaller wheel.
+  </p>
   <SvgFigure
-    name="aristotles-wheel-tracks"
+    name="aristotles-wheel-motion"
     class="mx-auto w-full max-w-lg"
-    viewBox="0 0 420 205"
-    title="Two concentric wheels travelling together above two parallel tracks"
-    desc="Two positions of the same pair of rigidly connected wheels are shown. Their centres move the same distance and each wheel turns once. The large rim touches its track and rolls without slipping; the smaller rim is carried past its imaginary track and therefore slides relative to it."
+    viewBox="0 0 480 262"
+    title="Concentric wheels rolling together, with their forward travel compared to the smaller wheel's circumference"
+    desc="Move the slider to roll two fixed-together concentric wheels forward by one full turn. The outer wheel touches the solid ground line. The small wheel is half its diameter and turns with it, beside a dashed imaginary track. A red measuring line follows their forward travel. Beneath the wheel, the red bar shows forward travel and a shorter blue bar shows how much of the inner rim passes during the same rotation. By one full turn, the red bar is twice as long as the blue."
   >
-    <g fill="none" stroke={stroke} stroke-width="1.5">
-      <path d="M8 138.2 H412" />
-      <path d="M8 120 H412" stroke-dasharray="5 5" stroke-opacity=".55" />
-      <path d="M75 40 H315" stroke-dasharray="3 5" stroke-opacity=".4" />
-    </g>
-    {[75, 315].map((x) => (
-      <g>
-        <circle cx={x} cy="100" r="38.2" fill={series.gold} fill-opacity=".12" stroke={stroke} stroke-width="2" />
-        <circle cx={x} cy="100" r="20" fill={series.blue} fill-opacity=".12" stroke={series.blue} stroke-width="2.5" />
-        <circle cx={x} cy="100" r="4" fill={stroke} />
-        <path d={"M" + x + " 100 v-36"} stroke={series.red} stroke-width="3" />
+    <!-- Tracks appear behind the wheel. The dotted upper track is imaginary. -->
+    <path d="M8 157 H472" fill="none" stroke={stroke} stroke-width="2" />
+    <path
+      d="M8 131 H472"
+      fill="none"
+      stroke={series.blue}
+      stroke-width="1.5"
+      stroke-dasharray="6 6"
+    />
+
+    <!-- One wheel, not two snapshots. Its centre advances by 2 pi R per turn. -->
+    <g id="aristotles-wheel-moving" transform="translate(70 105)">
+      <circle
+        r="52"
+        fill={series.gold}
+        fill-opacity=".2"
+        stroke={stroke}
+        stroke-width="2.5"
+      />
+      <circle
+        r="26"
+        fill={series.blue}
+        fill-opacity=".15"
+        stroke={series.blue}
+        stroke-width="2.5"
+      />
+      <g id="aristotles-wheel-spoke">
+        <path d="M0 0 V-48" fill="none" stroke={series.red} stroke-width="3" />
+        <circle cy="-52" r="4" fill={series.red} />
+        <circle cy="-26" r="4" fill={series.blue} />
       </g>
-    ))}
-    <g fill="none" stroke={series.red} stroke-width="2" stroke-linecap="round">
-      <path d="M110 19 H310 m-7 -5 l7 5 -7 5" />
-      <path d="M110 173 H310 m-7 -5 l7 5 -7 5" />
+      <circle r="4" fill={stroke} />
     </g>
-    <g fill="currentColor" font-size="14">
-      <text x="210" y="14" text-anchor="middle">Same distance travelled</text>
-      <text x="10" y="112">Inner track</text>
-      <text x="10" y="145">Outer track</text>
-      <text x="75" y="194" text-anchor="middle">Start</text>
-      <text x="315" y="194" text-anchor="middle">One full turn later</text>
-    </g>
+
+    <!-- Travel is a separate guide, so it cannot be mistaken for a track. -->
+    <path d="M70 171 V192" fill="none" stroke={series.red} stroke-width="1.5" />
+    <line
+      id="aristotles-wheel-travel"
+      x1="70"
+      x2="70"
+      y1="181"
+      y2="181"
+      stroke={series.red}
+      stroke-width="3"
+      stroke-linecap="round"
+    />
+    <line
+      id="aristotles-wheel-travel-end"
+      x1="70"
+      x2="70"
+      y1="171"
+      y2="192"
+      stroke={series.red}
+      stroke-width="1.5"
+    />
+
+    <!-- Both bars use the same scale: the small rim is half as long. -->
+    <path d="M70 219 H397 M70 247 H397" fill="none" stroke={stroke} stroke-opacity=".25" stroke-width="9" />
+    <rect
+      id="aristotles-wheel-forward-bar"
+      x="70"
+      y="214"
+      width="0"
+      height="10"
+      fill={series.red}
+    />
+    <rect
+      id="aristotles-wheel-inner-bar"
+      x="70"
+      y="242"
+      width="0"
+      height="10"
+      fill={series.blue}
+    />
   </SvgFigure>
+
+  <div class="flex flex-col gap-1 text-base">
+    <p><strong class="text-series-red">Red line and bar:</strong> distance travelled along the ground.</p>
+    <p><strong class="text-series-blue">Blue bar:</strong> length of the inner rim that turns past a point.</p>
+  </div>
+
+  <Slider
+    id="aristotles-wheel-slider"
+    label="Roll the wheel"
+    describedby="aristotles-wheel-readout"
+    valuetext="0 percent of one turn"
+    startLabel="Start"
+    endLabel="One full turn"
+  >
+    <p id="aristotles-wheel-readout" class="text-base" aria-live="off">
+      <strong><span id="aristotles-wheel-progress">0%</span> of a turn</strong>
+      · The red distance is <span id="aristotles-wheel-ratio">twice</span> the blue distance.
+    </p>
+  </Slider>
+
   <Fragment slot="caption">
-    The outer rim rolls on the solid track. The inner rim never rolls on the dotted track:
-    it is carried sideways while turning. One turn of the inner wheel therefore does
-    <strong> not</strong> measure the distance travelled.
+    The smaller wheel turns exactly once with the larger wheel, yet the pair moves forward
+    <strong>twice the smaller wheel's circumference</strong>. The small rim must therefore
+    slide relative to its imaginary track. Only the large wheel rolls without slipping.
   </Fragment>
 </IllustrationFigure>
+
+<script>
+  import { bindSlider, find, illustrationRoot } from "~/scripts/illustration"
+
+  const root = illustrationRoot("aristotles-wheel")
+  if (root) {
+    const slider = find<HTMLInputElement>(root, "#aristotles-wheel-slider")
+    const wheel = find<SVGGElement>(root, "#aristotles-wheel-moving")
+    const spoke = find<SVGGElement>(root, "#aristotles-wheel-spoke")
+    const travel = find<SVGLineElement>(root, "#aristotles-wheel-travel")
+    const end = find<SVGLineElement>(root, "#aristotles-wheel-travel-end")
+    const forwardBar = find<SVGRectElement>(root, "#aristotles-wheel-forward-bar")
+    const innerBar = find<SVGRectElement>(root, "#aristotles-wheel-inner-bar")
+    const progressLabel = find<HTMLElement>(root, "#aristotles-wheel-progress")
+    const ratioLabel = find<HTMLElement>(root, "#aristotles-wheel-ratio")
+
+    // The outer radius is 52. A full, slip-free turn moves the centre 2 pi R.
+    // The inner radius is 26, so its rim advances through half that arc length.
+    const fullDistance = 2 * Math.PI * 52
+
+    bindSlider(slider, (value) => {
+      const portion = value / 100
+      const x = 70 + fullDistance * portion
+
+      wheel.setAttribute("transform", `translate(${x} 105)`)
+      spoke.setAttribute("transform", `rotate(${360 * portion})`)
+      travel.setAttribute("x2", String(x))
+      end.setAttribute("x1", String(x))
+      end.setAttribute("x2", String(x))
+      forwardBar.setAttribute("width", String(fullDistance * portion))
+      innerBar.setAttribute("width", String((fullDistance * portion) / 2))
+
+      progressLabel.textContent = `${value}%`
+      ratioLabel.textContent = value === 0 ? "eventually twice" : "twice"
+
+      return `${value} percent of one turn; forward travel is twice the inner rim's rotational distance`
+    })
+  }
+</script>
