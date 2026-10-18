@@ -8,6 +8,11 @@ const marks = [
   { x: 185, time: "12:30", top: false },
   { x: 105.5, time: "12:15", top: true },
   { x: 65.75, time: "12:07:30", top: false },
+  { x: 45.87, time: "12:03:15", top: true },
+  { x: 35.93 },
+  { x: 30.96 },
+  { x: 28.47 },
+  { x: 27.22 },
 ]
 ---
 
@@ -24,38 +29,45 @@ const marks = [
   >
     <g fill="none" stroke={stroke} stroke-width="2">
       <path d="M26 96 H366 m-7 -5 7 5 -7 5" />
-      <path d="M26 86 V106" />
     </g>
     <g fill="currentColor" font-size="15">
-      <text x="26" y="127" text-anchor="middle">Noon</text>
-      <text x="344" y="127" text-anchor="middle">1pm</text>
-      <text x="196" y="18" text-anchor="middle" font-weight="700">Later →</text>
+      <text x="26" y="127" text-anchor="middle">
+        Noon
+      </text>
+      <text x="344" y="127" text-anchor="middle">
+        1pm
+      </text>
+      <text x="196" y="18" text-anchor="middle" font-weight="700">
+        Later →
+      </text>
     </g>
-    <!-- 12:03:45 is still a separate dot. From 12:01:52.5 onward,
-         the gaps fall below the six-pixel dot diameter. Show these
-         ever-closer marks as a short band reaching their limit at noon. -->
-    <circle cx="45.875" cy="96" r="3" fill={series.red} />
-    <path d="M26 96 H35.9375" fill="none" stroke={series.red} stroke-width="6" />
     {marks.map(({ x, time, top }) => (
       <g>
-        <path d={"M" + x + " 82 V111"} stroke={series.red} stroke-width="2.5" />
-        <circle cx={x} cy="96" r="5" fill={series.red} />
-        <text
-          x={x}
-          y={top ? 72 : 147}
-          text-anchor="middle"
-          fill="currentColor"
-          font-size="14"
-        >
-          {time}
-        </text>
+        <path d={"M" + x + " 90 V102"} stroke={series.red} stroke-width="1.3" />
+        <circle cx={x} cy="96" r="3" fill={series.red} />
+        {!!time && (
+          <text
+            x={x}
+            y={top ? 72 : 147}
+            text-anchor="middle"
+            fill="currentColor"
+            font-size="14"
+          >
+            {time}
+          </text>
+        )}
       </g>
     ))}
-    <text x="42" y="49" fill="currentColor" font-size="15">…</text>
+    <g fill="none" stroke={stroke} stroke-width="2.5">
+      <path d="M25.5 86 V106" />
+    </g>
+    <text x="42" y="49" fill="currentColor" font-size="15">
+      …
+    </text>
   </SvgFigure>
   <Fragment slot="caption">
-    If the man lives past noon, some reaper should kill him. Yet no reaper can be the
-    first to do so: another is always scheduled earlier. The arrangement is inconsistent.
-    Whether that rules out endless causal chains generally remains disputed.
+    If the man lives past noon, some reaper should kill him. Yet no reaper can be the first to
+    do so: another is always scheduled earlier. The arrangement is inconsistent. Whether that
+    rules out endless causal chains generally remains disputed.
   </Fragment>
 </IllustrationFigure>
