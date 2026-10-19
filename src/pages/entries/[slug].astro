@@ -41,7 +41,7 @@ const isIllusion = d.format === "illusion"
   <EntryHeader entry={entry} anchor={anchorOf(entry, all)} />
   {!isIllusion && <ClaimsBand claimA={d.claimA} claimB={d.claimB} />}
 
-  <div class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
+  <main class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
     <article
       data-entry={entry.id}
       class="flex w-full max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4"
@@ -57,7 +57,7 @@ const isIllusion = d.format === "illusion"
     <EntrySidebar echoes={echoes} siblings={siblings} url={seo.url}>
       {!isIllusion && <WhatBreaks data={d} />}
     </EntrySidebar>
-  </div>
+  </main>
 </Base>
 
 <script>
