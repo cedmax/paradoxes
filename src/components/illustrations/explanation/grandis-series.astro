@@ -1,0 +1,90 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+// The nth partial sum is 1 for odd n, 0 for even n.
+// Its Cesàro average is the mean of the first n partial sums.
+const points = Array.from({ length: 14 }, (_, index) => {
+  const n = index + 1
+  return {
+    n,
+    x: 52 + index * 30,
+    sum: n % 2,
+    average: Math.ceil(n / 2) / n,
+  }
+})
+const y = (value: number) => 188 - value * 122
+const labelledTerms = [1, 4, 7, 10, 13]
+const pathFor = (key: "sum" | "average") =>
+  points
+    .map((point, index) => `${index === 0 ? "M" : "L"}${point.x} ${y(point[key])}`)
+    .join(" ")
+---
+
+<IllustrationFigure
+  name="grandis-series"
+  lead="The totals keep jumping. Their averages approach one half."
+>
+  <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+    <span class="flex items-center gap-2">
+      <span class="h-1 w-6 bg-series-blue" aria-hidden="true"></span>
+      Running total
+    </span>
+    <span class="flex items-center gap-2">
+      <span class="h-1 w-6 bg-series-gold" aria-hidden="true"></span>
+      Average of running totals
+    </span>
+  </div>
+  <SvgFigure
+    name="grandis-series-chart"
+    class="mx-auto w-full max-w-xl"
+    viewBox="0 0 480 255"
+    title="Grandi's series: alternating totals and averages that settle near one half"
+    desc="For terms 1 through 14, the blue running total alternates between 1 and 0 without settling. The gold average of the running totals is 1, one half, two thirds, one half, three fifths, one half, and so on. It approaches one half."
+  >
+    <g fill="currentColor" font-size="20">
+      <text x="43" y="71" text-anchor="end">
+        1
+      </text>
+      <text x="43" y="132" text-anchor="end">
+        ½
+      </text>
+      <text x="43" y="193" text-anchor="end">
+        0
+      </text>
+      <text x="245" y="247" text-anchor="middle">
+        Number of terms added
+      </text>
+    </g>
+    <path d="M52 66 V188 H442" fill="none" stroke={stroke} stroke-width="1.5" />
+    <path
+      d="M52 127 H442"
+      fill="none"
+      stroke={stroke}
+      stroke-width="1"
+      stroke-dasharray="4 5"
+      opacity=".5"
+    />
+    <path d={pathFor("sum")} fill="none" stroke={series.blue} stroke-width="2.5" />
+    <path d={pathFor("average")} fill="none" stroke={series.gold} stroke-width="3" />
+    {points.map((point) => (
+      <g>
+        <circle cx={point.x} cy={y(point.sum)} r="4" fill={series.blue} />
+        <circle cx={point.x} cy={y(point.average)} r="4" fill={series.gold} />
+        {labelledTerms.includes(point.n) && (
+          <text x={point.x} y="214" fill="currentColor" font-size="20" text-anchor="middle">
+            {point.n}
+          </text>
+        )}
+      </g>
+    ))}
+  </SvgFigure>
+  <p class="text-base leading-normal">
+    After three terms, the running totals are 1, 0 and 1. Their average is ⅔.
+  </p>
+  <Fragment slot="caption">
+    The blue totals never settle at one value. The gold averages approach ½, but averaging is a
+    different rule (Cesàro summation), not the ordinary sum of the series.
+  </Fragment>
+</IllustrationFigure>
