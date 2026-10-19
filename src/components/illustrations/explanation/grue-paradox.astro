@@ -1,0 +1,118 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import Panel from "~/components/illustration-kit/Panel.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+
+const gemPoints = (x: number, y: number) =>
+  [
+    [x, y - 28],
+    [x + 22, y - 11],
+    [x + 17, y + 20],
+    [x, y + 28],
+    [x - 17, y + 20],
+    [x - 22, y - 11],
+  ]
+    .map((point) => point.join(","))
+    .join(" ")
+---
+
+<IllustrationFigure
+  name="grue-predictions"
+  lead="The same observations support two incompatible predictions."
+>
+  <div class="mx-auto flex w-full max-w-md flex-col gap-3">
+    <p class="text-center font-bold">Examined before t</p>
+    <SvgFigure
+      name="grue-observed"
+      class="mx-auto w-full max-w-72"
+      viewBox="0 0 288 84"
+      title="Four green emeralds examined before t"
+      desc="Four emeralds were examined before t. They were green, so all four also satisfy the definition of grue."
+    >
+      {[40, 108, 180, 248].map((x) => (
+        <polygon
+          points={gemPoints(x, 42)}
+          fill={series.green}
+          stroke={stroke}
+          stroke-width="1.5"
+        />
+      ))}
+    </SvgFigure>
+    <p class="text-center text-sm text-balance leading-normal">
+      <strong>Grue:</strong> green if examined before t, blue if not.
+    </p>
+    <p class="text-center text-base leading-normal">
+      All four are <strong>green</strong> and <strong>grue</strong>.
+    </p>
+
+    <SvgFigure
+      name="grue-branches"
+      class="w-full"
+      viewBox="0 0 400 54"
+      title="Fork from the observations to two predictions"
+      aria-hidden="true"
+    >
+      <path
+        d="M200 2 V15 H100 V46 M200 15 H300 V46 M94 40 L100 47 L106 40 M294 40 L300 47 L306 40"
+        fill="none"
+        stroke={stroke}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </SvgFigure>
+
+    <p class="text-center font-bold">For an emerald first examined after t</p>
+    <div class="grid grid-cols-2 gap-3">
+      <Panel>
+        <div class="flex flex-col items-center gap-3 text-center">
+          <strong>All emeralds are green</strong>
+          <SvgFigure
+            name="grue-predict-green"
+            class="h-20 w-20"
+            viewBox="0 0 80 80"
+            title="Predicted green emerald"
+            desc="The claim all emeralds are green predicts that an emerald first examined after t is green."
+          >
+            <polygon
+              points={gemPoints(40, 40)}
+              fill={series.green}
+              stroke={stroke}
+              stroke-width="1.5"
+            />
+          </SvgFigure>
+          <p class="text-base">
+            Predict <strong>green</strong>
+          </p>
+        </div>
+      </Panel>
+      <Panel>
+        <div class="flex flex-col items-center gap-3 text-center">
+          <strong>All emeralds are grue</strong>
+          <SvgFigure
+            name="grue-predict-blue"
+            class="h-20 w-20"
+            viewBox="0 0 80 80"
+            title="Predicted blue emerald"
+            desc="The claim all emeralds are grue predicts that an emerald first examined after t is blue."
+          >
+            <polygon
+              points={gemPoints(40, 40)}
+              fill={series.blue}
+              stroke={stroke}
+              stroke-width="1.5"
+            />
+          </SvgFigure>
+          <p class="text-base">
+            Predict <strong>blue</strong>
+          </p>
+        </div>
+      </Panel>
+    </div>
+  </div>
+  <Fragment slot="caption">
+    Both claims fit the observations. The lower emeralds show rival predictions, not an emerald
+    changing colour.
+  </Fragment>
+</IllustrationFigure>
