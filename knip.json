@@ -5,5 +5,9 @@
     "config": ["astro.config.{js,cjs,mjs,ts,mts}"],
     "entry": ["src/content.config.ts", "src/**/*.{astro,js,ts}"]
   },
-  "ignoreDependencies": ["@fontsource/archivo", "@fontsource/jetbrains-mono"]
+  "ignoreDependencies": [
+    "@fontsource/archivo",
+    "@fontsource/jetbrains-mono",
+    "@fontsource-variable/jetbrains-mono"
+  ]
 }

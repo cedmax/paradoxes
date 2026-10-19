@@ -9,6 +9,8 @@ export default defineConfig({
   site: SITE_URL,
   output: "static",
   devToolbar: { enabled: false },
+  // The stylesheet is small; inlining it saves a render-blocking request on every page.
+  build: { inlineStylesheets: "always" },
   vite: {
     resolve: { alias: { "~": "/src" } },
     plugins: [tailwindcss()],
