@@ -30,7 +30,7 @@ const { chapter, items, all, open = false } = Astro.props
       data-toggle
     >
       <span class="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-6 gap-y-2 max-md:flex-col max-md:items-start max-md:gap-1">
-        <span class="mono-label text-sm text-accent">{chapter.n}</span>
+        <span class="mono-label text-sm text-accent-deep">{chapter.n}</span>
         <span class="display text-[clamp(30px,4vw,52px)]">{chapter.title}</span>
       </span>
       <span class="mono-label flex shrink-0 items-center gap-3 md:hidden" aria-hidden="true">
@@ -45,7 +45,7 @@ const { chapter, items, all, open = false } = Astro.props
       class="flex flex-wrap items-baseline gap-x-6 gap-y-2 self-start no-underline hover:text-accent max-md:hidden"
       href={`/chapters/${chapter.id}/`}
     >
-      <span class="mono-label text-sm text-accent">{chapter.n}</span>
+      <span class="mono-label text-sm text-accent-deep">{chapter.n}</span>
       <span class="display text-[clamp(30px,4vw,52px)]">{chapter.title}</span>
     </a>
   </h2>
