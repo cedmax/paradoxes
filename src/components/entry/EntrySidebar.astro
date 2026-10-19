@@ -20,7 +20,7 @@ const { echoes, siblings, url } = Astro.props
     <slot />
     {echoes.length > 0 && (
       <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
-        <div class="mono-label mb-1.5 text-accent">Variants and related</div>
+        <div class="mono-label mb-1.5 text-accent-deep">Variants and related</div>
         {echoes.map((e) => (
           <a
             class="flex min-h-11 items-center justify-between gap-x-3 font-bold no-underline hover:text-accent"
@@ -36,7 +36,7 @@ const { echoes, siblings, url } = Astro.props
     )}
     {siblings.length > 0 && (
       <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
-        <div class="mono-label mb-1.5 text-accent">Same chapter</div>
+        <div class="mono-label mb-1.5 text-accent-deep">Same chapter</div>
         {siblings.map((e) => (
           <a
             class="inline-flex text-balance min-h-11 items-center font-bold no-underline hover:text-accent"

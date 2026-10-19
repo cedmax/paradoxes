@@ -12,11 +12,11 @@ const s = statuses[d.status]
 ---
 
 <div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
-  <div class="mono-label text-accent">What breaks</div>
+  <div class="mono-label text-accent-deep">What breaks</div>
   <div>
     <Linked text={d.whatBreaks} />
   </div>
-  <div class="mono-label text-accent">Status</div>
+  <div class="mono-label text-accent-deep">Status</div>
   <div>
     {s.label}: <Linked text={d.statusNote} />
   </div>
