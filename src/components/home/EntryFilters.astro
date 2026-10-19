@@ -18,16 +18,35 @@ const counts = countEntries(Astro.props.entries)
   aria-label="Search and filter entries"
 >
   <div class="flex flex-wrap items-end gap-x-8 gap-y-4">
-    <label class="flex max-w-115 min-w-0 grow basis-80 flex-col gap-2">
-      <span class="mono-label">Search</span>
+    <!-- The input is a combobox: ~/scripts/home-suggest fills the list with matching titles. -->
+    <div class="relative flex max-w-115 min-w-0 grow basis-80 flex-col gap-2">
+      <div class="flex items-baseline justify-between gap-4">
+        <label for="q" class="mono-label">
+          Search
+        </label>
+        <span id="q-count" class="mono-label" aria-hidden="true"></span>
+      </div>
       <input
         type="search"
         id="q"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="q-list"
+        aria-autocomplete="list"
+        autocomplete="off"
         placeholder="sand, barber, doors"
         aria-label="Search entries"
         class="h-14 w-full rounded-none border-2 border-ink bg-paper px-4.5 text-lg text-ink"
       />
-    </label>
+      <ul
+        id="q-list"
+        role="listbox"
+        aria-label="Matching entries"
+        hidden
+        class="absolute top-full right-0 left-0 z-20 max-h-[60vh] overflow-y-auto border-2 border-t-0 border-ink bg-paper text-ink"
+      ></ul>
+      <p id="q-live" class="sr-only" role="status"></p>
+    </div>
     <div class="flex flex-wrap gap-2" id="chips">
       <FilterChip filter="all" label="All" count={counts.all} pressed />
       {statusKeys.map((k) => (

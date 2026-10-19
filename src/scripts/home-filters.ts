@@ -1,6 +1,7 @@
 // DOM wiring for the index page: search, status chips, the two switches and the chapter
 // accordion. The ids and data-attributes come from EntryFilters, ChapterGroup and EntryCard.
 import { normaliseSearch } from "~/data/search"
+import { createSuggest } from "~/scripts/home-suggest"
 
 interface Switches {
   hideVariants: boolean
@@ -51,6 +52,9 @@ const chapterIds = chapters.map((c) => c.dataset.chapter)
 const storedId = readOpen()
 let openId = chapterIds.some((id) => id === storedId) ? storedId : (chapterIds[0] ?? null)
 let filtering = false
+// True only for a pass caused by typing, so a restored search box does not open the list.
+let typing = false
+const updateSuggest = createSuggest({ input, cards, chapters, reducedMotion })
 
 function renderChapters() {
   for (const chapter of chapters) {
@@ -116,6 +120,8 @@ function apply() {
   }
   none.hidden = shown !== 0
   renderChapters()
+  updateSuggest(q, shown, filtering, typing)
+  typing = false
 }
 
 for (const chapter of chapters) {
@@ -136,7 +142,10 @@ for (const chapter of chapters) {
 }
 mobile.addEventListener("change", renderChapters)
 
-input.addEventListener("input", apply)
+input.addEventListener("input", () => {
+  typing = true
+  apply()
+})
 hideVariants.addEventListener("change", () => {
   hideChoice = hideVariants.checked
   apply()
