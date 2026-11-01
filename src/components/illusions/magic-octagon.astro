@@ -11,7 +11,7 @@ const cx = 240
 const cy = 157
 const radius = 106
 const corners = Array.from({ length: 8 }, (_, index) => {
-  const angle = (-Math.PI / 2 + (index * Math.PI) / 4)
+  const angle = -Math.PI / 2 + (index * Math.PI) / 4
   return `${(cx + radius * Math.cos(angle)).toFixed(2)},${(cy + radius * Math.sin(angle)).toFixed(2)}`
 }).join(" ")
 ---
@@ -38,7 +38,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       font-size="17"
       fill={stroke}
       text-anchor="middle"
-    >Front</text>
+    >
+      Front
+    </text>
     <g id="magic-octagon-flip">
       <g id="magic-octagon-turn">
         <polygon
@@ -48,7 +50,14 @@ const corners = Array.from({ length: 8 }, (_, index) => {
           stroke-width="3"
           stroke-linejoin="round"
         />
-        <g id="magic-octagon-front" fill="none" stroke={series.blue} stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+        <g
+          id="magic-octagon-front"
+          fill="none"
+          stroke={series.blue}
+          stroke-width="8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <path d="M240 200 V107 M219 128 L240 107 L261 128" />
           <circle cx="240" cy="57" r="5" fill={series.blue} stroke="none" />
         </g>
@@ -66,7 +75,14 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       </g>
     </g>
     <MeasurementGuides name="magic-octagon" d="M240 35 V280" />
-    <text id="magic-octagon-turn-label" x="240" y="304" font-size="16" fill={stroke} text-anchor="middle">
+    <text
+      id="magic-octagon-turn-label"
+      x="240"
+      y="304"
+      font-size="16"
+      fill={stroke}
+      text-anchor="middle"
+    >
       Starting position
     </text>
   </SvgFigure>
@@ -89,12 +105,22 @@ const corners = Array.from({ length: 8 }, (_, index) => {
   </div>
 
   <div id="magic-octagon-prediction" class="flex flex-col gap-3" hidden>
-    <p class="font-bold">After flipping about the vertical axis, where will the back arrow point?</p>
+    <p class="font-bold">
+      After flipping about the vertical axis, where will the back arrow point?
+    </p>
     <div role="group" aria-label="Predict the back arrow's direction" class="flex flex-wrap gap-3">
-      <button class="btn-toggle" type="button" data-answer="up-left" aria-pressed="false">Up-left</button>
-      <button class="btn-toggle" type="button" data-answer="up-right" aria-pressed="false">Up-right</button>
-      <button class="btn-toggle" type="button" data-answer="down-left" aria-pressed="false">Down-left</button>
-      <button class="btn-toggle" type="button" data-answer="down-right" aria-pressed="false">Down-right</button>
+      <button class="btn-toggle" type="button" data-answer="up-left" aria-pressed="false">
+        Up-left
+      </button>
+      <button class="btn-toggle" type="button" data-answer="up-right" aria-pressed="false">
+        Up-right
+      </button>
+      <button class="btn-toggle" type="button" data-answer="down-left" aria-pressed="false">
+        Down-left
+      </button>
+      <button class="btn-toggle" type="button" data-answer="down-right" aria-pressed="false">
+        Down-right
+      </button>
     </div>
   </div>
 
@@ -126,7 +152,8 @@ const corners = Array.from({ length: 8 }, (_, index) => {
   <Fragment slot="caption">
     A new, two-sided SVG reconstruction of the arrow puzzle. The arrows do not move
     independently: the whole coin turns and flips. Based on the Magic Octagon demonstrated by
-    David Masunaga in a <ExternalLink href="https://blog.mrmeyer.com/2013/the-magic-octagon/" after=".">
+    David Masunaga in a{" "}
+    <ExternalLink href="https://blog.mrmeyer.com/2013/the-magic-octagon/" after=".">
       2013 video
     </ExternalLink>
   </Fragment>
@@ -186,7 +213,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         const frontDirection = angle === 45 ? "up-right" : "up-left"
         const relation = angle === 45 ? "opposite" : "the same"
         result.textContent =
-          `You chose ${guess}. The back arrow points ${direction}, ${guess === direction ? "so your prediction was right" : "not as you predicted"}. The front points ${frontDirection}: the two visible directions are ${relation} after the flip.`
+          `You chose ${guess}. The back arrow points ${direction}, ${guess === direction ? "so your prediction was right" : "not as you predicted"}. The front points ${frontDirection}: the two arrows point in ${relation} direction when viewed in turn.`
       }
     }
 
