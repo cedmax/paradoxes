@@ -211,9 +211,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       result.hidden = angle === 0 || progress !== 100
       if (progress === 100) {
         const frontDirection = angle === 45 ? "up-right" : "up-left"
-        const relation = angle === 45 ? "opposite" : "the same"
+        const relation = angle === 45 ? "in opposite directions" : "in the same direction"
         result.textContent =
-          `You chose ${guess}. The back arrow points ${direction}, ${guess === direction ? "so your prediction was right" : "not as you predicted"}. The front points ${frontDirection}: the two arrows point in ${relation} direction when viewed in turn.`
+          `You chose ${guess}. The back arrow points ${direction}, ${guess === direction ? "so your prediction was right" : "not as you predicted"}. The front points ${frontDirection}: the two arrows point ${relation} when viewed in turn.`
       }
     }
 
