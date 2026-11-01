@@ -70,6 +70,14 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       Starting position
     </text>
   </SvgFigure>
+  <div id="magic-octagon-start" class="flex flex-wrap items-center gap-3">
+    <button id="magic-octagon-start-flip" type="button" class="btn-ghost" aria-pressed="false">
+      Check the starting back
+    </button>
+    <p id="magic-octagon-start-note" class="text-base" aria-live="polite">
+      Start with the front arrow pointing up.
+    </p>
+  </div>
 
   <div role="group" aria-label="Choose the direction of the 45-degree turn" class="flex flex-wrap gap-3">
     <button type="button" class="btn-toggle" data-turn="45" aria-pressed="false">
@@ -131,6 +139,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
   if (root) {
     const turnButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("button[data-turn]"))
     const answers = Array.from(root.querySelectorAll<HTMLButtonElement>("button[data-answer]"))
+    const start = find<HTMLElement>(root, "#magic-octagon-start")
+    const startFlip = find<HTMLButtonElement>(root, "#magic-octagon-start-flip")
+    const startNote = find<HTMLElement>(root, "#magic-octagon-start-note")
     const prediction = find<HTMLElement>(root, "#magic-octagon-prediction")
     const reveal = find<HTMLElement>(root, "#magic-octagon-reveal")
     const slider = find<HTMLInputElement>(root, "#magic-octagon-flip-slider")
@@ -147,9 +158,10 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     const axisProof = find<HTMLElement>(root, "#magic-octagon-proof")
     let angle = 0
     let guess = ""
+    let startingBack = false
 
     const render = () => {
-      const progress = Number(slider.value)
+      const progress = angle === 0 && startingBack ? 100 : Number(slider.value)
       const onBack = progress >= 50
       // Rotate in the plane first, then reflect in a fixed vertical axis. The outer
       // horizontal scaling projects a rigid flip around that axis onto the screen.
@@ -160,7 +172,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       back.setAttribute("visibility", onBack ? "visible" : "hidden")
       faceLabel.textContent = onBack ? "Back" : "Front"
 
-      const direction = angle === 45 ? "down-left" : "up-left"
+      const direction = angle === 45 ? "down-left" : angle === -45 ? "up-left" : "left"
       const message =
         progress === 0
           ? "Front face. Move the slider to flip around the vertical axis."
@@ -169,7 +181,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
             : `Coin ${progress}% of the way through its vertical flip.`
       readout.textContent = message
       slider.setAttribute("aria-valuetext", message)
-      result.hidden = progress !== 100
+      result.hidden = angle === 0 || progress !== 100
       if (progress === 100) {
         const frontDirection = angle === 45 ? "up-right" : "up-left"
         const relation = angle === 45 ? "opposite" : "the same"
@@ -185,9 +197,21 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       axisProof.hidden = true
     }
 
+    startFlip.addEventListener("click", () => {
+      startingBack = !startingBack
+      startFlip.setAttribute("aria-pressed", String(startingBack))
+      startFlip.textContent = startingBack ? "Return to the front" : "Check the starting back"
+      startNote.textContent = startingBack
+        ? "The starting back arrow points left. Return to the front or choose a 45° turn."
+        : "The front arrow points up."
+      render()
+    })
+
     for (const button of turnButtons) {
       button.addEventListener("click", () => {
         angle = Number(button.dataset.turn)
+        startingBack = false
+        start.hidden = true
         guess = ""
         slider.value = "0"
         for (const other of turnButtons)
