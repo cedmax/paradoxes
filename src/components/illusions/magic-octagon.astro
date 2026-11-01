@@ -103,7 +103,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       </SvgFigure>
     </button>
     <p id="magic-octagon-hint" class="text-base text-center">
-      Select the coin to flip it. The dot marks the same corner throughout.
+      Click, tap or press Enter to flip the coin. The dot marks the same corner throughout.
     </p>
   </div>
 
@@ -177,7 +177,16 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     const ghostFront = find<SVGGElement>(root, "#magic-octagon-ghost-front")
     const ghostBack = find<SVGGElement>(root, "#magic-octagon-ghost-back")
 
-    const directions = ["up", "up-right", "right", "down-right", "down", "down-left", "left", "up-left"]
+    const directions = [
+      "up",
+      "up-right",
+      "right",
+      "down-right",
+      "down",
+      "down-left",
+      "left",
+      "up-left",
+    ]
     const arrows = ["↑", "↗", "→", "↘", "↓", "↙", "←", "↖"]
     const wrap = (index: number) => ((index % 8) + 8) % 8
 
@@ -219,7 +228,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
             ? "Both arrows now point the same way."
             : difference === 4
               ? "They now point in opposite directions."
-              : "They point in different directions."
+              : difference === 2 || difference === 6
+                ? "They are at right angles."
+                : "They point in different directions."
         status.textContent =
           "The front pointed " +
           frontDirection +
