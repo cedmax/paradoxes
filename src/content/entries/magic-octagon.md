@@ -17,5 +17,5 @@ sources:
   - title: "Dan Meyer (2013): The Magic Octagon"
     url: "https://blog.mrmeyer.com/2013/the-magic-octagon/"
     note: "Introduces David Masunaga's demonstration of the octagon at NCTM. The comments discuss how the arrow in the flipped view changes apparent direction; the post does not establish who invented the original trick."
-sourcesVerified: false
+sourcesVerified: true
 ---
