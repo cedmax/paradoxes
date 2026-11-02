@@ -66,7 +66,7 @@ const faceTransform = (turn: number, flip: number, z: number) => {
   const d = cosTurn
   const e = 180 - a * 180 - c * 145 + z * Math.sin(aboutY)
   const f = 145 - b * 180 - d * 145
-  return "matrix(" + [a, b, c, d, e, f].join(" ") + ")"
+  return `matrix(${[a, b, c, d, e, f].join(" ")})`
 }
 
 export const drawCoin = (svg: SVGSVGElement, turn: number, flip: number) => {
@@ -101,7 +101,7 @@ export const drawCoin = (svg: SVGSVGElement, turn: number, flip: number) => {
     ]
     facet.setAttribute(
       "points",
-      quad.map((point) => point.x.toFixed(3) + "," + point.y.toFixed(3)).join(" "),
+      quad.map((point) => `${point.x.toFixed(3)},${point.y.toFixed(3)}`).join(" "),
     )
   }
 }
