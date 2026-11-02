@@ -6,21 +6,26 @@ import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { illusionSurface, stroke } from "~/data/palette"
 
-// Fixed-seed, softly clustered points inside a spherical volume. Sampling its surface
-// instead produces an obvious circular rim before the dots move. These 3D coordinates are
-// serialised into the SVG and reused in every frame.
+// Fixed-seed dots distributed through a thick spherical shell. The varied radii
+// soften the hard circular rim of a sphere's surface while keeping a spherical shape
+// as the points rotate. SVG and playback reuse precisely the same 3D coordinates.
 let seed = 0x51a7
 const random = () => {
   seed = (1664525 * seed + 1013904223) >>> 0
   return seed / 4294967296
 }
-const gaussian = () => Math.sqrt(-2 * Math.log(1 - random())) * Math.cos(2 * Math.PI * random())
 const points: { x: number; y: number; z: number }[] = []
 while (points.length < 108) {
-  const candidate = { x: 65 * gaussian(), y: 65 * gaussian(), z: 65 * gaussian() }
-  // Keep the cloud within the drawing, without putting every dot on its perimeter.
-  if (candidate.x ** 2 + candidate.y ** 2 + candidate.z ** 2 >= 160 ** 2) continue
-  // Avoid overlapping dots in the opening view, without adding latitude rows.
+  const vertical = 2 * random() - 1
+  const longitude = 2 * Math.PI * random()
+  const radius = 126 * (0.75 + 0.25 * random())
+  const horizontal = radius * Math.sqrt(1 - vertical * vertical)
+  const candidate = {
+    x: horizontal * Math.cos(longitude),
+    y: radius * vertical,
+    z: horizontal * Math.sin(longitude),
+  }
+  // Prevent coincident dots in the opening projection, without creating regular rows.
   const overlaps = points.some(({ x, y }) => {
     const dx = candidate.x - x
     const dy = candidate.y - y
@@ -40,7 +45,7 @@ while (points.length < 108) {
     viewBox="0 0 600 380"
     class="mx-auto w-full max-w-xl"
     title="A scattered cloud of fixed dots rotating together in three dimensions"
-    desc="There are 108 dots scattered inside a three-dimensional spherical volume. At rest they form an irregular two-dimensional cloud. When they rotate together, their motion can suggest a sphere. Colour cues can identify nearer and farther dots after a judgement."
+    desc="There are 108 dots scattered at different depths through a thick spherical shell, without a solid circular outline. At rest they form an irregular two-dimensional cloud. Rotating together, they can suggest a three-dimensional sphere. Colour cues reveal relative depth after a judgement."
   >
     <rect x="30" y="15" width="540" height="350" fill={illusionSurface.neutral} />
     <g id="kinetic-depth-effect-dots">
@@ -89,7 +94,7 @@ while (points.length < 108) {
   />
   <IllusionControls
     name="kinetic-depth-effect"
-    proof="The dots have fixed positions inside a spherical volume. Red marks the nearer half of this model and blue the farther half, but this is only one possible interpretation of the uncoloured motion. Without depth cues, the perceived rotation can go either way and may reverse. The dot paths never change."
+    proof="The dots have fixed positions through a thick spherical shell. Red marks the nearer half of this model and blue the farther half, but this is only one possible interpretation of the uncoloured motion. Without depth cues, the perceived rotation can go either way and may reverse. The dot paths never change."
     proofLabel="Show depth cues"
   />
   <Fragment slot="caption">
