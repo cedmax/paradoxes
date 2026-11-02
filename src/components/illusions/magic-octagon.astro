@@ -453,6 +453,7 @@ const selectorOutline = corners
     }
 
     const chooseTurn = (degrees: number) => {
+      cancelAnimationFrame(frame)
       puzzleAngle = degrees
       guess = ""
       puzzleLeft.setAttribute("aria-pressed", String(degrees === -45))
@@ -488,6 +489,7 @@ const selectorOutline = corners
 
     reveal.addEventListener("click", () => {
       if (!guess || !puzzleAngle) return
+      cancelAnimationFrame(frame)
       proofAngle = puzzleAngle
       proofFlip = 0
       shownAngle = proofAngle
