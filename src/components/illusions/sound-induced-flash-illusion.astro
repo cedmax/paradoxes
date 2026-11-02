@@ -104,14 +104,17 @@ import { illusionSurface, series, stroke } from "~/data/palette"
     // processing and output latency. Neither can calibrate the actual screen or headset.
     const outputTime = (audio: AudioContext, contextTime: number) => {
       const timestamp = audio.getOutputTimestamp?.()
+      const outputContextTime = timestamp?.contextTime
+      const outputPerformanceTime = timestamp?.performanceTime
       if (
-        timestamp &&
-        Number.isFinite(timestamp.contextTime) &&
-        timestamp.contextTime > 0 &&
-        Number.isFinite(timestamp.performanceTime) &&
-        timestamp.performanceTime > 0
+        typeof outputContextTime === "number" &&
+        Number.isFinite(outputContextTime) &&
+        outputContextTime > 0 &&
+        typeof outputPerformanceTime === "number" &&
+        Number.isFinite(outputPerformanceTime) &&
+        outputPerformanceTime > 0
       ) {
-        return timestamp.performanceTime + (contextTime - timestamp.contextTime) * 1000
+        return outputPerformanceTime + (contextTime - outputContextTime) * 1000
       }
       const latency = Math.max(0, audio.baseLatency || 0) + Math.max(0, audio.outputLatency || 0)
       return performance.now() + (contextTime - audio.currentTime + latency) * 1000
