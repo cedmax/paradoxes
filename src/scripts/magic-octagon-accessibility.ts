@@ -58,11 +58,6 @@ const updateCoinDescription = (id: string, turn: number, flip: number, marked: b
     coinDescriptions.get(desc) + " Current view: " + describe(turn, flip, marked)
 }
 
-const gallerySummary = (degrees: number, marked: boolean) =>
-  angles
-    .map((angle) => angle + "° rotation: " + describe(angle, degrees, marked))
-    .join(" ")
-
 const update = (slider: HTMLInputElement, updateGraphicDescription: boolean) => {
   const id = slider.id
   const degrees = Number(slider.value)
@@ -85,15 +80,13 @@ const update = (slider: HTMLInputElement, updateGraphicDescription: boolean) => 
       ["proof-front", 45, degrees, true],
       ["proof-flipped", 45, 180 - degrees, true],
     ]
-  } else if (id === "magic-octagon-variants-shared" ||
-             id === "magic-octagon-proof-variants-shared") {
+  } else if (
+    id === "magic-octagon-variants-shared" ||
+    id === "magic-octagon-proof-variants-shared"
+  ) {
     const marked = id === "magic-octagon-proof-variants-shared"
-    spoken = "All eight coins. " + describe(45, degrees, marked)
-    const summaryId = marked
-      ? "magic-octagon-proof-variants-description"
-      : "magic-octagon-variants-description"
-    const summary = document.getElementById(summaryId)
-    if (summary) summary.textContent = gallerySummary(degrees, marked)
+    const face = degrees === 90 ? "Edge-on" : degrees < 90 ? "Front faces" : "Flipped faces"
+    spoken = degrees + " degrees. " + face + "; all eight coins turn together."
     descriptions = angles.map((angle) => [
       (marked ? "proof-variant-" : "variant-") + angle,
       angle,
