@@ -2,24 +2,13 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Coin from "../magic-octagon/Coin.astro"
 
-const angles = [0, 45, 90, 135, 180, 225, 270, 315]
-const arrows = ["up", "up-right", "right", "down-right", "down", "down-left", "left", "up-left"]
-const corners = [
-  "top",
-  "upper-right",
-  "right",
-  "lower-right",
-  "bottom",
-  "lower-left",
-  "left",
-  "upper-left",
-]
+import { angles, labels, cornerNames, directionIndexes } from "~/scripts/magic-octagon-coin"
 const outcomes = angles.map((angle, index) => ({
   angle,
-  frontArrow: arrows[index],
-  flippedArrow: arrows[(6 - index + 8) % 8],
-  frontCorner: corners[index],
-  flippedCorner: corners[(8 - index) % 8],
+  frontArrow: labels[index],
+  flippedArrow: labels[directionIndexes(angle).flipped],
+  frontCorner: cornerNames[index],
+  flippedCorner: cornerNames[(8 - index) % 8],
 }))
 ---
 
@@ -85,7 +74,6 @@ const outcomes = angles.map((angle, index) => ({
       Front · 0°
     </p>
   </div>
-  <p id="magic-octagon-state" class="sr-only"></p>
 
   <div class="flex flex-col gap-4 border-t-2 border-ink pt-6">
     <h3 class="text-xl font-bold">The eight rotations, with the corner marked</h3>
@@ -118,7 +106,6 @@ const outcomes = angles.map((angle, index) => ({
               <p
                 id="magic-octagon-proof-variants-shared-state"
                 class="text-center text-sm"
-                aria-live="polite"
               >
                 Front · 0°
               </p>
@@ -221,6 +208,7 @@ const outcomes = angles.map((angle, index) => ({
     directionIndexes,
     drawCoin,
     inspectionLabel,
+    isEdgeOn,
     labels,
     symbols,
   } from "~/scripts/magic-octagon-coin"
@@ -238,7 +226,6 @@ const outcomes = angles.map((angle, index) => ({
     const proofFlippedFace = find<HTMLElement>(root, "#magic-octagon-proof-flipped-face")
     const proofSlider = find<HTMLInputElement>(root, "#magic-octagon-proof-slider")
     const proofSliderState = find<HTMLElement>(root, "#magic-octagon-proof-slider-state")
-    const status = find<HTMLElement>(root, "#magic-octagon-state")
     const variantSliders = Array.from(
       root.querySelectorAll<HTMLInputElement>("[data-magic-proof-variant]"),
     )
@@ -260,7 +247,7 @@ const outcomes = angles.map((angle, index) => ({
       const degrees = Number(proofSlider.value)
       drawCoin(proofFront, proofAngle, degrees)
       drawCoin(proofFlipped, proofAngle, 180 - degrees)
-      const edgeOn = degrees >= 89 && degrees <= 91
+      const edgeOn = isEdgeOn(degrees)
       const swapped = degrees > 90
       const main = swapped ? directions.flipped : directions.front
       const other = swapped ? directions.front : directions.flipped
@@ -272,9 +259,6 @@ const outcomes = angles.map((angle, index) => ({
       const progress = inspectionLabel(degrees)
       proofSliderState.textContent = progress
       proofSlider.setAttribute("aria-valuetext", progress)
-      status.textContent = edgeOn
-        ? "Both coins are edge-on."
-        : "Front: " + labels[main] + ". Flipped: " + labels[other] + "."
     }
     proofSlider.addEventListener("input", updateProof)
 
