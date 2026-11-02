@@ -249,7 +249,7 @@ async def run(pr):
                     viewport={"width": width, "height": 900 if width == 1280 else 780},
                     device_scale_factor=1
                 )
-                await compensated.add_init_script("""() => {
+                await compensated.add_init_script("""(() => {
                   const actual = AudioBufferSourceNode.prototype.start
                   AudioBufferSourceNode.prototype.start = function (...args) {
                     if (this.buffer && this.buffer.length > 1000) window.__audioStartedAt = performance.now()
@@ -258,7 +258,7 @@ async def run(pr):
                   AudioContext.prototype.getOutputTimestamp = function () {
                     return { contextTime: this.currentTime, performanceTime: performance.now() + 180 }
                   }
-                }""")
+                })()""")
                 response = await compensated.goto(f"{BASE}/entries/{slug}/", wait_until="networkidle", timeout=45000)
                 require(response is not None and response.status == 200, "Latency test page failed to load")
                 await compensated_flash_interaction(compensated)
