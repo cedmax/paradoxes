@@ -28,16 +28,7 @@ positions:
     body: "Mathematical approaches seek irreversible behaviour from the motion equations and their statistical description. Cost: the cited approach works for only a limited set of exactly solvable models."
 finePrint: "Denis Evans and Debra Searles derived a fluctuation theorem that gives the odds of entropy running backwards in small systems. Thomas Gold once proposed a model in which the arrow of time reverses if the universe contracts. Both are mentioned without detail in the main source."
 sources:
-  - title: "Stanford Encyclopedia of Philosophy, The Thermodynamic Asymmetry in Time"
-    url: "https://plato.stanford.edu/entries/time-thermo/"
-    note: "Full article, sections on reversibility and the Past Hypothesis: reversible microscopic laws, entropy increase, probability and a low-entropy early universe."
-  - title: "Binder (2023), The Reversibility Paradox: Role of the Velocity Reversal Step"
-    url: "https://link.springer.com/article/10.1007/s10773-023-05458-x"
-    note: "Full paper, sections 2-4: measuring and physically implementing a velocity reversal introduces further entropy costs. Supports Binder's particular account, not a proof of every approach to the arrow of time."
-  - title: "Stanford Encyclopedia of Philosophy, Philosophy of Statistical Mechanics"
-    url: "https://plato.stanford.edu/entries/statphys-statmech/"
-    note: "Full article, historical and statistical sections: Loschmidt's challenge, Boltzmann's response and the role of statistical assumptions."
   - title: "Wikipedia: Loschmidt's paradox"
     url: "https://en.wikipedia.org/wiki/Loschmidt%27s_paradox"
-    note: "Background for Evans and Searles, Gold's cosmological proposal and the dynamical-systems approach; their particular historical and model details remain to be independently checked."
+    note: "Source for the 1876 objection, Thomson’s 1874 defence, the fluctuation theorem (its date is inconsistent within the page), the low-entropy boundary condition, the dynamical-systems approach, and Binder (2023). The page does not describe Boltzmann’s own reply, and some of its claims are tagged as needing a citation."
 ---

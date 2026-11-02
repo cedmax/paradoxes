@@ -19,10 +19,6 @@ resolution:
   - "A real shore stops being a clean line at sufficiently small scales. The idealisation explains why its measurements grow across many scales without claiming that physical detail continues for ever. In practice, “how long is the coast?” needs a stated ruler size and method."
 finePrint: "The idea that length grows forever assumes space can be cut into smaller and smaller pieces without end. A real coast stops being a clean line well before that, so this is a mathematical idealisation. In practice a stated ruler size gives a usable measurement. The figures for Britain and for the Portugal and Spain border are the ones usually given, and exact numbers depend on the ruler and the method."
 sources:
-  - title: "Wolfram MathWorld, Coastline Paradox"
-    url: "https://mathworld.wolfram.com/CoastlineParadox.html"
-    note: "Mathematical reference on Richardson's ruler-length effect, Mandelbrot's treatment and scale dependence of measured coastlines. Does not establish the entry's particular 2,800 km and 3,400 km British coastline figures."
   - title: "Wikipedia: Coastline paradox"
     url: https://en.wikipedia.org/wiki/Coastline_paradox
-    note: "The specific Britain examples of about 2,800 km with a 100 km ruler and about 3,400 km with a 50 km ruler remain to be checked against an original measurement; the scale-dependence principle has independent mathematical support."
 ---

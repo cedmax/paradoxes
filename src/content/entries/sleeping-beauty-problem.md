@@ -26,13 +26,6 @@ positions:
     body: "Distinguish the probability for an experiment from the share of wakings following heads. Cost: critics say this does not settle the requested belief at this particular waking."
 finePrint: "Elga defended one third in 2000 and Lewis one half in 2001, following earlier work by Zuboff. Over many trials, about half the coin tosses are heads but only a third of the wakings follow heads. Lewis’s and double-halfer accounts differ in what happens when Monday is announced. Betting arguments also depend on when bets are offered and whether commitments carry across wakings."
 sources:
-  - title: "Elga (2000), Self-Locating Belief and the Sleeping Beauty Problem"
-    url: "https://www.princeton.edu/~adame/papers/sleeping/sleeping.pdf"
-    note: "Full Analysis paper, pp. 143-147: thirder argument, Monday and Tuesday symmetry, and the three waking possibilities. Notes earlier work by Zuboff."
-  - title: "Lewis (2001), Sleeping Beauty: Reply to Elga"
-    url: "https://joelvelasco.net/teaching/3865/lewis%20-%20sleeping%20beauty%20reply%20to%20elga.pdf"
-    note: "Full Analysis reply, pp. 171-176: halfer position and Lewis's two-thirds answer when told it is Monday."
   - title: "Wikipedia: Sleeping Beauty problem"
     url: "https://en.wikipedia.org/wiki/Sleeping_Beauty_problem"
-    note: "Context for the distinct two-questions position, double-halfer alternatives and conditions on betting arguments not established by these two original papers."
 ---

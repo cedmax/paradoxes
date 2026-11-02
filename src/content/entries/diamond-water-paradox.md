@@ -20,13 +20,7 @@ resolution:
   - "So the first claim is false and the second is true, and they do not conflict. A thing can be vital in total and cheap at the margin."
 finePrint: "Total usefulness still matters when water is truly scarce. Someone in a desert would pay far more for a drink than for a diamond, because there one more unit is worth a great deal."
 sources:
-  - title: "Adam Smith (1776), The Wealth of Nations, Book I, Chapter IV"
-    url: "https://en.wikisource.org/wiki/The_Wealth_of_Nations/Book_I/Chapter_4"
-    note: "Full original passage contrasting the usefulness and exchange value of water and diamonds. Supports Smith's 1776 attribution and the contrast in the setup."
-  - title: "Adam Smith Works, Guidebook to The Wealth of Nations, Book I, Chapters 4-7"
-    url: "https://www7.adamsmithworks.org/documents/guidebook-to-the-wealth-of-nations-ch-3-book-i-4-7"
-    note: "Explanatory commentary on Smith's value distinction and later marginal analysis, supporting the difference between total usefulness and the value of an additional unit."
   - title: "Wikipedia: Paradox of value"
     url: "https://en.wikipedia.org/wiki/Paradox_of_value"
-    note: "Earlier historical appearances involving Plato, Copernicus, Locke and Law remain Wikipedia-supported; the new sources directly support Smith's 1776 discussion and the modern explanation."
+    note: "Source for Smith (1776), the earlier appearances, and the marginal-utility explanation. The desert example is an illustration written for this entry. The page is flagged as needing additional citations."
 ---

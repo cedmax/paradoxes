@@ -28,16 +28,7 @@ resolution:
   - "The chance of dropping out in the symmetric strategy does not depend on the bids already made. Rational bidding can therefore continue past a dollar. This defeats the claim that rational bidders never cross that price, without saying that every further bid is compulsory or that a short-term reply is the best plan for the whole game."
 finePrint: "Martin Shubik described the game in 1971. Formal analyses consider stable strategies, including strategies that drop out with some probability. An immediate saving if the opponent stops is not a guarantee about the eventual result. Related penny auctions also differ in their rules. The game illustrates escalation, rather than proving that rational players must bid without limit."
 sources:
-  - title: "Shubik (1971), The Dollar Auction Game: A Paradox in Noncooperative Behavior and Escalation"
-    url: "https://pnp.mathematik.uni-stuttgart.de/igt/eiserm/lehre/2018/Spieltheorie/Shubik%20-%20The%20Dollar%20Auction%20Game%20%281971%29.pdf"
-    note: "Full original Journal of Conflict Resolution paper, pp. 109-111: both bidders pay, losing bidders can rationalise bidding higher to reduce their immediate loss, and escalation past the prize value can occur. Does not prove the claimed stationary mixed equilibrium."
-  - title: "Waniek and colleagues (2015), Spiteful Bidding in the Dollar Auction"
-    url: "https://ijcai.org/proceedings/2015/100"
-    note: "Full proceedings paper and formal game description, sections 1-3: Shubik auction rules, equilibria and the distinction between rational strategic solutions and observed escalation. Does not establish the stationary mixed strategy claimed for this exact format."
-  - title: "Eyster (2002), Rationalizing the Past: A Taste for Consistency"
-    url: "https://www.nuffield.ox.ac.uk/Users/Eyster/papers/rationalize.pdf"
-    note: "Full working paper, discussion of the dollar auction and formal section on a simplified war of attrition: symmetric stationary randomised exit and asymmetric equilibria. This is a related model, not a proof for the exact sequential auction described here."
   - title: "Wikipedia: Dollar auction"
     url: "https://en.wikipedia.org/wiki/Dollar_auction"
-    note: "The particular stationary symmetric mixed strategy and constant dropout probability asserted in statusNote and resolution still require a full formal source for exactly the model used; these remain a documented verification gap."
+    note: "Source for the rules, Shubik (1971, Journal of Conflict Resolution 15(1)), the escalation example, the equilibria, the sunk-cost explanation, and Augenblick (2016). Some of the page’s claims are tagged as needing a citation."
 ---

@@ -20,10 +20,6 @@ resolution:
   - "A coat with the same positive thickness everywhere would need infinite paint. Real paint cannot fill the ideal horn either: eventually the tube is too narrow for its molecules. The apparent clash mixes these different assumptions."
 finePrint: "The horn comes from rotating y = 1/x for x ≥ 1 around the x-axis. Its volume is pi cubic units and its surface area is infinite. Torricelli studied it in 1643. A mathematical filling also idealises the time needed for paint to reach an endless tube. The result concerns area and volume, not a practical painting task."
 sources:
-  - title: "Wolfram MathWorld, Gabriel's Horn"
-    url: "https://mathworld.wolfram.com/GabrielsHorn.html"
-    note: "Mathematical exposition of Torricelli's trumpet formed by rotating y=1/x, with finite volume pi and divergent surface area. Supports the idealised paint paradox and its mathematical limitations."
   - title: "Wikipedia: Gabriel's Horn"
     url: https://en.wikipedia.org/wiki/Gabriel%27s_Horn
-    note: "Original historical attribution to Torricelli in 1643 and the claim about molecular limitations of paint remain to be checked against original or specialist histories."
 ---

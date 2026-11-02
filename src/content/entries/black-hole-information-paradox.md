@@ -29,13 +29,7 @@ positions:
     body: "A firewall proposal changes the smooth picture of falling through the boundary. Cost: it conflicts with the expectation that crossing it need not involve anything locally special."
 finePrint: "Hawking’s calculation dates from the 1970s. Preserving information here means reversible quantum evolution, called unitarity, not simply keeping a readable message. Gravity–quantum duality proposals and calculations of radiation entropy in certain models support preservation. They do not by themselves identify every physical step in evaporation. A firewall is a response to a further clash among assumptions about the boundary and quantum correlations, not a complete standalone account of evaporation. Other proposals include fuzzballs, soft hair and baby universes."
 sources:
-  - title: "Polchinski (2016), The Black Hole Information Problem"
-    url: "https://arxiv.org/pdf/1609.04036"
-    note: "Full review, sections 1-4: Hawking radiation, unitarity, information loss, remnants, holography and the firewall problem. Supports setup, claims, positions and qualifications."
-  - title: "Almheiri, Engelhardt, Marolf and Maxfield (2019), The entropy of bulk quantum fields and the entanglement wedge of an evaporating black hole"
-    url: "https://arxiv.org/pdf/1905.08762"
-    note: "Full paper, sections 2-5: radiation entropy in an evaporating-black-hole model. Supports evidence for information-preserving behaviour in some models, not a complete physical solution."
   - title: "Wikipedia: Black hole information paradox"
     url: "https://en.wikipedia.org/wiki/Black_hole_information_paradox"
-    note: "Context for soft hair and baby-universe proposals only; the reviewed papers support the central claims and better-studied responses."
+    note: "Source for Hawking’s 1973-1975 work, the proposals and their problems, the 2019 result, and the statement that it is now generally believed that information is preserved. The page calls the paradox an unsolved problem in physics. The page presents holography as leading some physicists to the preservation view, not as a proof."
 ---

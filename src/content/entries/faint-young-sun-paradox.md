@@ -30,16 +30,7 @@ positions:
     body: "A young Sun that began heavier and later lost mass could have supplied more heat. Cost: the required history faces constraints from lunar and meteorite evidence."
 finePrint: "Other suggestions include tidal heating, which Heller and colleagues (2021) estimated could raise the temperature by up to five degrees Celsius, which is not enough alone. A role for cosmic rays, proposed by Nir Shaviv, is a minority view, and the mechanism it relies on is reported not to work."
 sources:
-  - title: "Sagan and Mullen (1972), Earth and Mars: Evolution of Atmospheres and Surface Temperatures"
-    url: "https://courses.seas.harvard.edu/climate/eli/Courses/EPS281r/Sources/Faint-young-sun-paradox/Segan-Mullen-1972.pdf"
-    note: "Full original Science paper, pp. 52-56: a weaker young Sun, liquid-water evidence and ammonia greenhouse proposal. This is the original 1972 publication, not necessarily the first recognition of the discrepancy."
-  - title: "Feulner (2012), The faint young Sun problem"
-    url: "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2011RG000375"
-    note: "Full Reviews of Geophysics review, sections 2-8: solar luminosity estimates, greenhouse gases, clouds, albedo, a heavier young Sun and constraints on the proposed remedies."
-  - title: "Heller and colleagues (2021), Tidal heating and the faint young Sun"
-    url: "https://link.springer.com/article/10.1007/s12542-021-00582-7"
-    note: "Full paper, conclusions: modelled tidal heating could add up to about 5 degrees Celsius but would not resolve the warming deficit alone."
   - title: "Wikipedia: Faint young Sun paradox"
     url: "https://en.wikipedia.org/wiki/Faint_young_Sun_paradox"
-    note: "Context for the Shaviv cosmic-ray proposal and its criticism; the original paper and reviews support the main climate claims. The cosmic-ray criticism still needs a specialist citation."
+    note: "Source for the 1972 statement (the 1.4 factor is cited to a paper on low-mass stars, so its basis is unclear), the 70 and 30 percent figures, the 1.4 factor, the proposed solutions and their problems, and the statement that the problem is unsolved. Not checked against the original papers."
 ---

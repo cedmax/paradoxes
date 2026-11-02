@@ -20,16 +20,7 @@ resolution:
   - "So the first claim is false in some conditions and the second is true. It needs three things: a technology that makes use more efficient, a lower price as a result, and a big rise in demand when the price falls. Farming is a case where it does not hold. Productivity gains lowered food prices without a large rise in food demand, and farm work fell from 40 percent of Americans in 1900 to under 2 percent in 2024."
 finePrint: "In the 1980s Daniel Khazzoom and Leonard Brookes revived the idea for society’s total energy use, and Harry Saunders named it the Khazzoom-Brookes postulate in 1992. In a single market the rebound is usually below 100 percent, so efficiency usually does reduce use there. At the level of a whole economy, cheaper energy can speed growth and raise total use. Gillingham and colleagues (2013) argue the rebound effect is overplayed, and the debate is open. Common policy responses pair efficiency with measures that keep the cost of use from falling."
 sources:
-  - title: "Jevons (1865), The Coal Question, Chapter 7"
-    url: "https://www.econlib.org/library/YPDBooks/Jevons/jvnCQ.html?chapter_num=9"
-    note: "Full original text on increasing efficiency in coal use and the subsequent expansion of coal demand, especially improvements associated with steam power."
-  - title: "USDA Economic Research Service, Farm Labor"
-    url: "https://www.ers.usda.gov/topics/farm-economy/farm-labor"
-    note: "Official statistics on the modern United States farm workforce and employment through 2024. Documents that hired farmworkers form less than one percent of wage and salary workers, but does not by itself verify the entry's exact combined share of all farm workers."
-  - title: "White House Council of Economic Advisers, The Current State of Rural America"
-    url: "https://obamawhitehouse.archives.gov/administration/eop/cea/factsheets-reports/strengthening-the-rural-economy/the-current-state-of-rural-america"
-    note: "Archived official account reporting about 41 percent of U.S. employment in agriculture around 1900 and around 2 percent in 2000. Supports the broad historical decline, not the exact 2024 figure."
   - title: "Wikipedia: Jevons paradox"
     url: "https://en.wikipedia.org/wiki/Jevons_paradox"
-    note: "Background for the Khazzoom-Brookes history and the Gillingham 2013 debate. The exact 'under 2 percent in 2024' total farm employment figure still requires a directly matching series."
+    note: "Source for Jevons’s 1865 book, the Watt and Newcomen example, the rebound mechanism, the three conditions, the farming example, and the later debate. The page gives no figures for coal use."
 ---

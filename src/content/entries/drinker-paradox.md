@@ -20,7 +20,6 @@ resolution:
   - "The same unusual meaning of “if” drives the [paradoxes of material implication](paradoxes-of-material-implication)."
 finePrint: "The pub must be non-empty. The theorem asserts that such a person exists at a given moment, not that a fixed person has special powers all evening."
 sources:
-  - title: "Herbrand schemes for first-order logic, Archive for Mathematical Logic, section 6.1"
-    url: "https://link.springer.com/article/10.1007/s00153-024-00959-w"
-    note: "Full peer-reviewed article, section 6.1, explicitly presents and proves the Drinker paradox as a classical logical validity. Supports the existence claim, non-empty domain assumption and truth-conditional explanation."
+  - title: "Wikipedia: Drinker paradox"
+    url: "https://en.wikipedia.org/wiki/Drinker_paradox"
 ---

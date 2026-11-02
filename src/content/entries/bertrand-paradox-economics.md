@@ -26,7 +26,6 @@ resolution:
   - "This is not the [Bertrand chord paradox](bertrands-chord-paradox), which is about choosing random lines across a circle."
 finePrint: "The result assumes identical goods, identical unit costs, buyers who can compare and switch freely, and sellers who can serve the whole market. Actual shops may not meet these conditions."
 sources:
-  - title: "MIT OpenCourseWare (2014), Economics and E-Commerce, Lecture 2"
-    url: "https://ocw.mit.edu/courses/14-27-economics-and-e-commerce-fall-2014/2f20996b64453df386f313b1e240ccef_MIT14_27F14_Lec2.pdf"
-    note: "Full lecture on Bertrand competition: simultaneous prices for identical goods, equal marginal costs and cost-level equilibrium when either seller can serve the market. Supports the limits of the simplified model."
+  - title: "Wikipedia: Bertrand paradox (economics)"
+    url: "https://en.wikipedia.org/wiki/Bertrand_paradox_(economics)"
 ---

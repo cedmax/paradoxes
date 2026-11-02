@@ -20,11 +20,6 @@ resolution:
   - "This is a word-level impossibility, like the [omnipotence paradox](omnipotence-paradox), not a physics experiment involving very strong forces and sturdy walls."
 finePrint: "The puzzle is related to the [omnipotence paradox](omnipotence-paradox) because both ask what absolute powers or properties mean. They are not identical puzzles: one involves incompatible descriptions of two things, the other a task assigned to an all-powerful being."
 sources:
-  - title: "Shackel (2018), The Infinity from Nothing paradox and the Immovable Object meets the Irresistible Force"
-    url: "https://link.springer.com/article/10.1007/s13194-017-0192-2"
-    note: "Full European Journal for Philosophy of Science paper, concluding sections: discusses the classic apparent clash and explores an unusual infinite-particle idealisation. It does not prove every mathematical model of such a pairing impossible."
-
   - title: "Wikipedia: Irresistible force paradox"
     url: "https://en.wikipedia.org/wiki/Irresistible_force_paradox"
-    note: "Background for the traditional folk formulation; Shackel provides a scholarly discussion but explores a more elaborate model."
 ---

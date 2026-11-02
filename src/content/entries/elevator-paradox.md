@@ -20,7 +20,6 @@ resolution:
   - "Near the top, the long interval is spent below the floor and is followed by an upward pass. This is related to the [inspection paradox](inspection-paradox): random moments favour longer intervals, but the lift-direction effect adds the geometry of the route."
 finePrint: "The classic version is associated with physicists George Gamow and Marvin Stern. The pattern assumes a lift moving through a repeated route. Stops, dispatch systems and multiple lifts change the probabilities."
 sources:
-  - title: "Wolfram MathWorld, Elevator Paradox"
-    url: "https://mathworld.wolfram.com/ElevatorParadox.html"
-    note: "Mathematical exposition of directional lift arrivals: a person arriving at a random time is more likely to wait through the longer interval, whose end depends on the floor's position; discusses Gamow and Stern."
+  - title: "Wikipedia: Elevator paradox"
+    url: "https://en.wikipedia.org/wiki/Elevator_paradox"
 ---

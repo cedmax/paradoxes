@@ -21,7 +21,6 @@ resolution:
   - "Making the wire perfectly resistance-free does not justify assuming the same simple final static state while ignoring the dynamics of the connection."
 finePrint: "The familiar half-energy result assumes identical capacitors and charge sharing until they reach equal voltage. An ideal lossless circuit requires inductance and time-dependent motion to be considered."
 sources:
-  - title: "Kirk T. McDonald (2003), A Capacitor Paradox"
-    url: "https://arxiv.org/pdf/physics/0312031"
-    note: "Full Princeton University calculation, problem and solution: two equal capacitors share charge, leaving half the initial energy in their electric fields; resistive losses or transient radiation account for energy not stored at the end, and a lossless idealisation requires dynamics."
+  - title: "Wikipedia: Two capacitor paradox"
+    url: "https://en.wikipedia.org/wiki/Two_capacitor_paradox"
 ---
