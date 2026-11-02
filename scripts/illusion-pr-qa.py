@@ -55,6 +55,9 @@ async def interaction(page, pr):
         paused_path = await outline.get_attribute("d")
         await page.wait_for_timeout(180)
         require(await outline.get_attribute("d") == paused_path, "Ames window continued after Pause")
+        await play.click()
+        await page.locator('#ames-window-choices [data-choice="skip"]').click()
+        require(await play.inner_text() == "Play", "Motion opt-out must stop animation")
     elif pr == 138:
         await page.locator('#sound-induced-flash-illusion-choices [data-choice="skip"]').click()
         require(await page.locator("#sound-induced-flash-illusion-reveal").is_visible(), "Flash text reveal unavailable")
