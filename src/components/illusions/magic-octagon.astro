@@ -25,7 +25,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     class="mx-auto flex w-full max-w-sm items-start justify-center gap-2 sm:gap-5"
   >
     <div class="min-w-0 flex-1">
-      <p id="magic-octagon-face" class="text-center text-base font-bold">Front ↑</p>
+      <p class="text-center text-base font-bold">
+        Front <span id="magic-octagon-face">↑</span>
+      </p>
       <SvgFigure
         name="magic-octagon-main"
         viewBox="0 0 360 290"
@@ -70,7 +72,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     </div>
 
     <div id="magic-octagon-other" class="min-w-0 flex-1" hidden>
-      <p id="magic-octagon-other-face" class="text-center text-base font-bold">Flipped ←</p>
+      <p class="text-center text-base font-bold">
+        Flipped <span id="magic-octagon-other-face">←</span>
+      </p>
       <SvgFigure
         name="magic-octagon-other-svg"
         viewBox="0 0 360 290"
@@ -164,9 +168,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     Front arrow: up. Turn, predict, then flip the coin.
   </p>
   <p id="magic-octagon-compare-note" class="text-base" hidden>
-    Two views of the same coin: front and flipped. Turn the front clockwise and
-    the flipped view appears to turn anticlockwise, because you are looking from
-    the opposite side. Flip the coin to exchange the views.
+    Front and Flipped name two opposite viewpoints of the same coin, not the
+    colour of the arrow currently visible. Turn clockwise in Front and it looks
+    anticlockwise in Flipped. Flip the coin to exchange which arrow each view sees.
   </p>
 
   <Fragment slot="caption">
@@ -258,22 +262,21 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 
     const describe = () => {
       const main = directions(angle)
-      const mainFace = flipped ? "Flipped" : "Front"
-      const otherFace = flipped ? "Front" : "Flipped"
       const mainIndex = flipped ? main.backIndex : main.frontIndex
       const otherIndex = flipped ? main.frontIndex : main.backIndex
 
-      faceLabel.textContent = mainFace + " " + symbols[mainIndex]
-      otherFaceLabel.textContent = otherFace + " " + symbols[otherIndex]
+      // Front and Flipped are fixed viewpoint labels, not face names.
+      // Only the arrow direction changes when the physical coin flips.
+      faceLabel.textContent = symbols[mainIndex]
+      otherFaceLabel.textContent = symbols[otherIndex]
       flipButton.setAttribute("aria-pressed", String(flipped))
       flipButton.textContent = "Flip the coin"
       flipButton.setAttribute("aria-label", "Flip the coin to show the other view")
 
       if (comparing) {
         status.textContent =
-          "Left view: " + mainFace.toLowerCase() + " points " + directionsList[mainIndex] +
-          ". Right view: " + otherFace.toLowerCase() + " points " +
-          directionsList[otherIndex] +
+          "Front view: arrow points " + directionsList[mainIndex] +
+          ". Flipped view: arrow points " + directionsList[otherIndex] +
           ". Both views show the same coin from opposite sides."
       } else if (flipped) {
         const difference = wrap(main.backIndex - main.frontIndex)
@@ -286,12 +289,12 @@ const corners = Array.from({ length: 8 }, (_, index) => {
                 ? "The two directions are at right angles."
                 : "The two directions are different."
         status.textContent =
-          "Flipped arrow: " + directionsList[main.backIndex] +
-          ". The front pointed " + directionsList[main.frontIndex] + ". " + relation
+          "Front view after flipping: the arrow points " + directionsList[main.backIndex] +
+          ". Before flipping it pointed " + directionsList[main.frontIndex] + ". " + relation
       } else {
         status.textContent =
-          "Front arrow: " + directionsList[main.frontIndex] +
-          ". Predict the flipped view, then flip the coin."
+          "Front view: arrow points " + directionsList[main.frontIndex] +
+          ". Predict its direction after flipping, then flip the coin."
       }
     }
 
