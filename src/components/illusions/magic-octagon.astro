@@ -25,8 +25,9 @@ const corners = labels.map((label, index) => {
   }
 })
 const selectorOutline = corners
-  .map(({ left, top }) =>
-    (Number(left) * 2.4).toFixed(2) + "," + (Number(top) * 2.4).toFixed(2),
+  .map(
+    ({ left, top }) =>
+      (Number(left) * 2.4).toFixed(2) + "," + (Number(top) * 2.4).toFixed(2),
   )
   .join(" ")
 ---
@@ -89,7 +90,11 @@ const selectorOutline = corners
         desc="The blue front arrow can turn 45 degrees clockwise or anticlockwise. A fixed red dashed Y axis shows how the coin would flip. The hidden arrow is not shown until after the prediction."
       />
     </div>
-    <div class="flex flex-wrap items-center justify-center gap-3" role="group" aria-label="Choose a 45-degree turn">
+    <div
+      class="flex flex-wrap items-center justify-center gap-3"
+      role="group"
+      aria-label="Choose a 45-degree turn"
+    >
       <button
         type="button"
         class="btn-toggle"
@@ -279,7 +284,10 @@ const selectorOutline = corners
     const proofViews = find<HTMLElement>(root, "#magic-octagon-proof-views")
     const proofOther = find<HTMLElement>(root, "#magic-octagon-proof-other")
     const proofFrontDirection = find<HTMLElement>(root, "#magic-octagon-proof-front-direction")
-    const proofFlippedDirection = find<HTMLElement>(root, "#magic-octagon-proof-flipped-direction")
+    const proofFlippedDirection = find<HTMLElement>(
+      root,
+      "#magic-octagon-proof-flipped-direction",
+    )
     const left = find<HTMLButtonElement>(root, "#magic-octagon-left")
     const right = find<HTMLButtonElement>(root, "#magic-octagon-right")
     const flipButton = find<HTMLButtonElement>(root, "#magic-octagon-flip-button")
