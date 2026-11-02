@@ -1,7 +1,9 @@
 ---
+import Disclosure from "~/components/illustration-kit/Disclosure.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
 import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { illusionSurface, stroke } from "~/data/palette"
 
@@ -36,6 +38,42 @@ const dots = Array.from({ length: count }, (_, index) => {
     </g>
     <path d="M270 190 H290 M280 180 V200" stroke={stroke} stroke-width="3" />
   </SvgFigure>
+  <Disclosure summary="Test stimulus speeds (temporary)">
+    <div class="grid gap-4 pt-3 sm:grid-cols-2">
+      <Slider
+        id="motion-silencing-illusion-hue-speed"
+        label="Colour-change speed"
+        min={40}
+        max={400}
+        step={20}
+        value={240}
+        valuetext="240 degrees of hue per second"
+        describedby="motion-silencing-illusion-hue-readout"
+      >
+        <p id="motion-silencing-illusion-hue-readout" class="text-base">
+          240° of hue per second
+        </p>
+      </Slider>
+      <Slider
+        id="motion-silencing-illusion-rotation-speed"
+        label="Ring rotation speed"
+        min={60}
+        max={240}
+        step={20}
+        value={120}
+        valuetext="120 degrees of rotation per second"
+        describedby="motion-silencing-illusion-rotation-readout"
+      >
+        <p id="motion-silencing-illusion-rotation-readout" class="text-base">
+          120° of rotation per second
+        </p>
+      </Slider>
+    </div>
+    <p class="text-base">
+      Experimental controls, not part of the finished illusion. Changing either speed
+      clears the previous judgement; watch again before answering.
+    </p>
+  </Disclosure>
   <div class="flex flex-wrap gap-3">
     <button
       id="motion-silencing-illusion-play"
@@ -70,8 +108,8 @@ const dots = Array.from({ length: count }, (_, index) => {
   />
   <div id="motion-silencing-illusion-reveal" class="space-y-3" hidden>
     <p class="text-base">
-      While the animation runs, the dots keep changing hue even when the ring turns. Motion
-      can make those changes seem to stop.
+      While the animation runs, the dots keep changing hue even when the ring turns.
+      Motion can make those changes seem to stop.
     </p>
     <IllusionControls
       name="motion-silencing-illusion"
@@ -100,6 +138,10 @@ const dots = Array.from({ length: count }, (_, index) => {
     const proofText = find<HTMLElement>(root, `#${name}-proof`)
     const reveal = find<HTMLElement>(root, `#${name}-reveal`)
     const status = find<HTMLElement>(root, `#${name}-status`)
+    const hueSpeed = find<HTMLInputElement>(root, `#${name}-hue-speed`)
+    const rotationSpeed = find<HTMLInputElement>(root, `#${name}-rotation-speed`)
+    const hueReadout = find<HTMLElement>(root, `#${name}-hue-readout`)
+    const rotationReadout = find<HTMLElement>(root, `#${name}-rotation-readout`)
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
     const answers = Array.from(
       root.querySelectorAll<HTMLButtonElement>(
@@ -111,8 +153,10 @@ const dots = Array.from({ length: count }, (_, index) => {
     let turning = false
     let frame = 0
     let last: number | undefined
-    let elapsed = 0
+    let huePhase = 0
     let rotation = 0
+    let hueDegreesPerSecond = Number(hueSpeed.value)
+    let rotationDegreesPerSecond = Number(rotationSpeed.value)
     let turningElapsed = 0
     let canAnswer = false
     let turningBeforeProof = false
@@ -120,7 +164,8 @@ const dots = Array.from({ length: count }, (_, index) => {
     const updateTurn = () => {
       turn.textContent = turning ? "Stop turning the ring" : "Start turning the ring"
       turn.setAttribute("aria-pressed", String(turning))
-      turn.disabled = !running || reduced.matches || proof.getAttribute("aria-pressed") === "true"
+      turn.disabled =
+        !running || reduced.matches || proof.getAttribute("aria-pressed") === "true"
     }
     const updateProof = () => {
       const showing = proof.getAttribute("aria-pressed") === "true"
@@ -168,7 +213,10 @@ const dots = Array.from({ length: count }, (_, index) => {
             ? "The explanation is below. Freeze rotation to compare."
             : "The explanation is below. Turn the ring again to use the rotation check."
     })
-    const resetAttempt = () => {
+    const resetJudgement = () => {
+      if (proof.getAttribute("aria-pressed") === "true") {
+        turning = turningBeforeProof
+      }
       reveal.hidden = true
       choices.reset()
       for (const button of answers) button.disabled = true
@@ -178,13 +226,16 @@ const dots = Array.from({ length: count }, (_, index) => {
       turningBeforeProof = false
       turningElapsed = 0
       canAnswer = false
-      turning = false
       updateTurn()
       updateProof()
     }
+    const resetAttempt = () => {
+      turning = false
+      resetJudgement()
+    }
     const render = () => {
       dots.forEach((dot, index) => {
-        const hue = (index * 137.5 + elapsed / 25) % 360
+        const hue = (index * 137.5 + huePhase) % 360
         dot.setAttribute("fill", `hsl(${hue.toFixed(1)} 65% 55%)`)
       })
       ring.setAttribute("transform", `rotate(${rotation.toFixed(2)} 280 190)`)
@@ -193,9 +244,9 @@ const dots = Array.from({ length: count }, (_, index) => {
       if (!running) return
       const delta = last === undefined ? 0 : Math.min(70, Math.max(0, now - last))
       last = now
-      elapsed += delta
+      huePhase = (huePhase + (delta * hueDegreesPerSecond) / 1000) % 360
       if (turning) {
-        rotation += delta * 0.12
+        rotation += (delta * rotationDegreesPerSecond) / 1000
         turningElapsed += delta
         if (!canAnswer && turningElapsed >= answerAfterMs) {
           canAnswer = true
@@ -206,6 +257,29 @@ const dots = Array.from({ length: count }, (_, index) => {
       render()
       frame = requestAnimationFrame(tick)
     }
+    const changeSpeed = (slider: HTMLInputElement, readout: HTMLElement, type: "hue" | "rotation") => {
+      const speed = Number(slider.value)
+      if (type === "hue") {
+        hueDegreesPerSecond = speed
+      } else {
+        rotationDegreesPerSecond = speed
+      }
+      const description = `${speed} degrees of ${type === "hue" ? "hue" : "rotation"} per second`
+      slider.setAttribute("aria-valuetext", description)
+      readout.textContent = `${speed}° of ${type === "hue" ? "hue" : "rotation"} per second`
+      resetJudgement()
+      status.textContent = reduced.matches
+        ? "Motion is disabled in your settings. Choose the opt-out to read the explanation."
+        : running
+          ? turning
+            ? "Speed changed. Watch the ring turn before answering again."
+            : "Speed changed. Start turning the ring to judge the new setting."
+          : "Speed changed. Start the colour changes to try this setting."
+    }
+    hueSpeed.addEventListener("input", () => changeSpeed(hueSpeed, hueReadout, "hue"))
+    rotationSpeed.addEventListener("input", () =>
+      changeSpeed(rotationSpeed, rotationReadout, "rotation"),
+    )
     play.addEventListener("click", () => {
       if (running) {
         stop()
@@ -270,6 +344,8 @@ const dots = Array.from({ length: count }, (_, index) => {
         for (const button of answers) button.disabled = true
       }
       play.disabled = reduced.matches
+      hueSpeed.disabled = reduced.matches
+      rotationSpeed.disabled = reduced.matches
       play.title = reduced.matches
         ? "Moving patterns are disabled; choose the opt-out for the explanation"
         : ""
