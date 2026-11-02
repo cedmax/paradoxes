@@ -25,7 +25,7 @@ const corners = labels.map((label, index) => {
     top: (((145 + 112 * Math.sin(direction)) / 310) * 100).toFixed(3),
   }
 })
-const previewAngles = [0, 45, 90, 135]
+const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
 ---
 
 <IllustrationFigure name="magic-octagon" lead="Where will the arrow point when flipped?">
@@ -113,7 +113,7 @@ const previewAngles = [0, 45, 90, 135]
     <button
       id="magic-octagon-reveal"
       type="button"
-      aria-controls="magic-octagon-puzzle-scrub magic-octagon-variations magic-octagon-explanation"
+      aria-controls="magic-octagon-puzzle-scrub magic-octagon-variations"
       class="btn self-center disabled:cursor-not-allowed disabled:opacity-50"
       disabled
     >
@@ -151,6 +151,9 @@ const previewAngles = [0, 45, 90, 135]
         </p>
       </div>
       <p id="magic-octagon-answer" class="text-base" aria-live="polite"></p>
+      <button type="button" class="btn-link self-start" id="magic-octagon-reset">
+        Try again
+      </button>
     </div>
   </section>
 
@@ -164,16 +167,17 @@ const previewAngles = [0, 45, 90, 135]
       Turn it at different angles
     </h2>
     <p class="text-base">
-      Each coin starts at a different rotation. Slide each one around the same
-      fixed red Y axis to compare how its outline changes as it turns edge-on.
+      All eight starting rotations, 45° apart. On a phone, flip each coin using
+      its own slider. On a wider screen, flip them together to compare their
+      shapes around the fixed red Y axis.
     </p>
     <div class="flex flex-col gap-6">
-      {[previewAngles.slice(0, 2), previewAngles.slice(2)].map((angles, rowIndex) => (
+      {[previewAngles.slice(0, 4), previewAngles.slice(4)].map((angles, rowIndex) => (
         <Fragment>
           {rowIndex === 1 && (
             <div class="hidden w-full flex-col items-center gap-2 md:flex">
               <label for="magic-octagon-variants-shared" class="text-base font-bold">
-                Flip all four coins
+                Flip all eight coins
               </label>
               <input
                 id="magic-octagon-variants-shared"
@@ -199,7 +203,13 @@ const previewAngles = [0, 45, 90, 135]
               </p>
             </div>
           )}
-          <div class="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-8">
+          <div
+            id={rowIndex === 1 ? "magic-octagon-more-rotations" : undefined}
+            class:list={[
+              "grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-4 md:grid-cols-4",
+              rowIndex === 1 ? "hidden md:grid" : "grid",
+            ]}
+          >
             {angles.map((angle) => (
               <div class="flex min-w-0 flex-col gap-2">
                 <p class="text-center text-base font-bold">{angle}° rotation</p>
@@ -240,93 +250,18 @@ const previewAngles = [0, 45, 90, 135]
           </div>
         </Fragment>
       ))}
-    </div>
-  </section>
-
-  <section
-    id="magic-octagon-explanation"
-    class="flex flex-col gap-4 border-t-2 border-ink pt-6"
-    aria-labelledby="magic-octagon-explanation-heading"
-    hidden
-  >
-    <h2 id="magic-octagon-explanation-heading" tabindex="-1" class="text-xl font-bold">
-      What happens
-    </h2>
-    <p class="text-base">
-      The black dots now reveal the same physical corner on each face.
-      Watch the shaded edge while the coin turns slowly around the fixed red Y axis.
-      The two views rotate in opposite apparent directions because they show one coin
-      from opposite sides.
-    </p>
-
-    <div
-      id="magic-octagon-proof-views"
-      class="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-2 md:flex-row md:items-start md:gap-5"
-    >
-      <div class="w-full max-w-xs md:min-w-0 md:flex-1">
-        <p class="text-center text-base font-bold">
-          Front <span id="magic-octagon-proof-front-direction">↗</span>
-        </p>
-        <Coin
-          id="proof-front"
-          title="Front view of the physically linked coin, with its marked corner"
-          desc="The front-facing view of the solid coin, with a black dot on one corner and a fixed red Y-axis. Both faces and the shaded edge move together when the coin is flipped."
-          showMarker
-        />
-      </div>
-      <div id="magic-octagon-proof-other" class="w-full max-w-xs md:min-w-0 md:flex-1">
-        <p class="text-center text-base font-bold">
-          Flipped <span id="magic-octagon-proof-flipped-direction">↙</span>
-        </p>
-        <Coin
-          id="proof-flipped"
-          title="Flipped view of the same coin, with the same marked corner"
-          desc="The opposite view of the same solid octagonal coin, showing its marked corner, gold arrow, shaded thickness and fixed Y-axis. Rotation appears reversed relative to the front."
-          flipped
-          showMarker
-        />
-      </div>
-    </div>
-
-    <div
-      class="mx-auto grid w-full max-w-lg grid-cols-[1fr_1.5fr_1fr] gap-2 sm:gap-3"
-      role="group"
-      aria-label="Rotate or flip the coin during the explanation"
-    >
       <button
+        id="magic-octagon-show-more"
         type="button"
-        class="btn-ghost min-w-0 px-2 text-sm sm:px-5 sm:text-base"
-        id="magic-octagon-left"
-        aria-label="Turn the visible front view 45 degrees anticlockwise"
-      >↶ 45°</button>
-      <button
-        type="button"
-        class="btn min-w-0 px-2 text-sm sm:px-5 sm:text-base"
-        id="magic-octagon-flip-button"
-        aria-label="Flip the coin about the Y axis"
-        aria-pressed="false"
-      >Flip the coin</button>
-      <button
-        type="button"
-        class="btn-ghost min-w-0 px-2 text-sm sm:px-5 sm:text-base"
-        id="magic-octagon-right"
-        aria-label="Turn the visible front view 45 degrees clockwise"
-      >45° ↷</button>
-    </div>
-    <div class="flex flex-wrap items-center gap-3">
-      <button
-        type="button"
-        class="btn-toggle"
-        id="magic-octagon-compare"
-        aria-controls="magic-octagon-proof-other"
-        aria-pressed="true"
+        class="btn-ghost self-center md:hidden"
+        aria-controls="magic-octagon-more-rotations"
+        aria-expanded="false"
       >
-        Hide comparison
+        Show four more rotations
       </button>
-      <button type="button" class="btn-link" id="magic-octagon-reset">Try again</button>
     </div>
-    <p id="magic-octagon-state" class="text-base" aria-live="polite"></p>
   </section>
+
 
   <Fragment slot="caption">
     Redrawn for this site after the Magic Octagon demonstrated by David Masunaga in
@@ -339,13 +274,12 @@ const previewAngles = [0, 45, 90, 135]
 
 <script>
   import { find, illustrationRoot } from "~/scripts/illustration"
+  import { directionIndexes, drawCoin, inspectionLabel, labels } from "~/scripts/magic-octagon-coin"
 
   const root = illustrationRoot("magic-octagon")
   if (root) {
     const inspect = find<SVGSVGElement>(root, '[data-magic-coin="inspect"]')
     const puzzle = find<SVGSVGElement>(root, '[data-magic-coin="puzzle"]')
-    const proofFront = find<SVGSVGElement>(root, '[data-magic-coin="proof-front"]')
-    const proofFlipped = find<SVGSVGElement>(root, '[data-magic-coin="proof-flipped"]')
     const inspectSlider = find<HTMLInputElement>(root, "#magic-octagon-inspect-slider")
     const inspectState = find<HTMLElement>(root, "#magic-octagon-inspect-state")
     const guesses = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-magic-guess]"))
@@ -368,115 +302,13 @@ const previewAngles = [0, 45, 90, 135]
       "#magic-octagon-variants-shared-state",
     )
     const reveal = find<HTMLButtonElement>(root, "#magic-octagon-reveal")
-    const explanation = find<HTMLElement>(root, "#magic-octagon-explanation")
     const answer = find<HTMLElement>(root, "#magic-octagon-answer")
-    const proofViews = find<HTMLElement>(root, "#magic-octagon-proof-views")
-    const proofOther = find<HTMLElement>(root, "#magic-octagon-proof-other")
-    const proofFrontDirection = find<HTMLElement>(root, "#magic-octagon-proof-front-direction")
-    const proofFlippedDirection = find<HTMLElement>(
-      root,
-      "#magic-octagon-proof-flipped-direction",
-    )
-    const left = find<HTMLButtonElement>(root, "#magic-octagon-left")
-    const right = find<HTMLButtonElement>(root, "#magic-octagon-right")
-    const flipButton = find<HTMLButtonElement>(root, "#magic-octagon-flip-button")
-    const compareButton = find<HTMLButtonElement>(root, "#magic-octagon-compare")
+    const showMore = find<HTMLButtonElement>(root, "#magic-octagon-show-more")
+    const moreRotations = find<HTMLElement>(root, "#magic-octagon-more-rotations")
     const resetButton = find<HTMLButtonElement>(root, "#magic-octagon-reset")
 
-    const labels = [
-      "up",
-      "up-right",
-      "right",
-      "down-right",
-      "down",
-      "down-left",
-      "left",
-      "up-left",
-    ]
-    const symbols = ["↑", "↗", "→", "↘", "↓", "↙", "←", "↖"]
-    const wrap = (value: number) => ((value % 8) + 8) % 8
-    const vertices = Array.from({ length: 8 }, (_, index) => {
-      const angle = -Math.PI / 2 + (index * Math.PI) / 4
-      return { x: 180 + 112 * Math.cos(angle), y: 145 + 112 * Math.sin(angle) }
-    })
-    const halfThickness = 16
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
-    // Rotate the octagon in its own plane first, then turn the entire object
-    // about the *fixed picture-space Y axis*. Both surfaces and all eight edge
-    // facets share exactly these rotations.
-    const projection = (x: number, y: number, z: number, turn: number, flip: number) => {
-      const inPlane = (turn * Math.PI) / 180
-      const aboutY = (flip * Math.PI) / 180
-      const dx = x - 180
-      const dy = y - 145
-      const localX = dx * Math.cos(inPlane) - dy * Math.sin(inPlane)
-      const localY = dx * Math.sin(inPlane) + dy * Math.cos(inPlane)
-      return {
-        x: 180 + localX * Math.cos(aboutY) + z * Math.sin(aboutY),
-        y: 145 + localY,
-      }
-    }
-
-    const faceTransform = (turn: number, flip: number, z: number) => {
-      const inPlane = (turn * Math.PI) / 180
-      const aboutY = (flip * Math.PI) / 180
-      const cosTurn = Math.cos(inPlane)
-      const sinTurn = Math.sin(inPlane)
-      const cosFlip = Math.cos(aboutY)
-      const a = cosFlip * cosTurn
-      const b = sinTurn
-      const c = -cosFlip * sinTurn
-      const d = cosTurn
-      const e = 180 - a * 180 - c * 145 + z * Math.sin(aboutY)
-      const f = 145 - b * 180 - d * 145
-      return "matrix(" + [a, b, c, d, e, f].join(" ") + ")"
-    }
-
-    const drawCoin = (svg: SVGSVGElement, turn: number, flip: number) => {
-      const front = svg.querySelector<SVGGElement>("[data-coin-front]")
-      const flipped = svg.querySelector<SVGGElement>("[data-coin-flipped]")
-      const facets = Array.from(svg.querySelectorAll<SVGPolygonElement>("[data-coin-side]"))
-      if (!front || !flipped || facets.length !== 8) return
-
-      front.setAttribute("transform", faceTransform(turn, flip, halfThickness))
-      flipped.setAttribute("transform", faceTransform(turn, flip, -halfThickness))
-
-      const faceWidth = Math.cos((flip * Math.PI) / 180)
-      front.setAttribute("visibility", faceWidth > 0.015 ? "visible" : "hidden")
-      flipped.setAttribute("visibility", faceWidth < -0.015 ? "visible" : "hidden")
-
-      const spin = (turn * Math.PI) / 180
-      const flipSin = Math.sin((flip * Math.PI) / 180)
-      for (const [index, facet] of facets.entries()) {
-        const a = vertices[index]
-        const b = vertices[(index + 1) % 8]
-        const midX = (a.x + b.x) / 2 - 180
-        const midY = (a.y + b.y) / 2 - 145
-        const outwardX = midX * Math.cos(spin) - midY * Math.sin(spin)
-        // A facet is visible only when its outward normal faces the viewer.
-        const visible = outwardX * flipSin < -0.01
-        facet.setAttribute("visibility", visible ? "visible" : "hidden")
-        if (!visible) continue
-        const quad = [
-          projection(a.x, a.y, halfThickness, turn, flip),
-          projection(b.x, b.y, halfThickness, turn, flip),
-          projection(b.x, b.y, -halfThickness, turn, flip),
-          projection(a.x, a.y, -halfThickness, turn, flip),
-        ]
-        facet.setAttribute(
-          "points",
-          quad.map((point) => point.x.toFixed(3) + "," + point.y.toFixed(3)).join(" "),
-        )
-      }
-    }
-
-    const inspectionLabel = (degrees: number) => {
-      if (degrees === 0) return "Front · 0°"
-      if (degrees === 180) return "Flipped · 180°"
-      if (degrees >= 85 && degrees <= 95) return "Edge-on · " + degrees + "°"
-      return "Turning over · " + degrees + "°"
-    }
     const updateInspection = () => {
       const degrees = Number(inspectSlider.value)
       drawCoin(inspect, 0, degrees)
@@ -486,69 +318,7 @@ const previewAngles = [0, 45, 90, 135]
 
     const puzzleAngle = 45
     let guess = ""
-    let proofAngle = 0
-    let proofFlip = 0
-    let shownAngle = 0
-    let shownFlip = 0
-    let comparing = true
-    let frame = 0
     let puzzleFrame = 0
-
-    const directionIndexes = (angle: number) => {
-      const steps = Math.round(angle / 45)
-      return { front: wrap(steps), flipped: wrap(6 - steps) }
-    }
-
-    const drawProof = () => {
-      drawCoin(proofFront, shownAngle, shownFlip)
-      drawCoin(proofFlipped, shownAngle, 180 - shownFlip)
-    }
-
-    const describeProof = () => {
-      const result = directionIndexes(proofAngle)
-      const main = proofFlip === 180 ? result.flipped : result.front
-      const opposite = proofFlip === 180 ? result.front : result.flipped
-      proofFrontDirection.textContent = symbols[main]
-      proofFlippedDirection.textContent = symbols[opposite]
-      flipButton.setAttribute("aria-pressed", String(proofFlip === 180))
-      compareButton.setAttribute("aria-pressed", String(comparing))
-      compareButton.textContent = comparing ? "Hide comparison" : "Compare both sides"
-      proofOther.hidden = !comparing
-      proofViews.classList.toggle("max-w-2xl", comparing)
-      proofViews.classList.toggle("max-w-xs", !comparing)
-      const frontDirection = labels[main]
-      const otherDirection = labels[opposite]
-      find<HTMLElement>(root, "#magic-octagon-state").textContent =
-        comparing
-          ? "Front: " + frontDirection + ". Flipped: " + otherDirection +
-            ". The two views rotate in opposite apparent directions."
-          : "Visible arrow: " + frontDirection + ". Flip or compare to inspect the other side."
-    }
-
-    const animateProof = () => {
-      cancelAnimationFrame(frame)
-      const startAngle = shownAngle
-      const startFlip = shownFlip
-      const duration = startFlip !== proofFlip ? 1800 : 320
-      describeProof()
-      if (reducedMotion.matches) {
-        shownAngle = proofAngle
-        shownFlip = proofFlip
-        drawProof()
-        return
-      }
-      let started = -1
-      const tick = (now: number) => {
-        if (started < 0) started = now
-        const progress = Math.min(1, (now - started) / duration)
-        const eased = progress * progress * (3 - 2 * progress)
-        shownAngle = startAngle + (proofAngle - startAngle) * eased
-        shownFlip = startFlip + (proofFlip - startFlip) * eased
-        drawProof()
-        if (progress < 1) frame = requestAnimationFrame(tick)
-      }
-      frame = requestAnimationFrame(tick)
-    }
 
     for (const option of guesses) {
       option.addEventListener("click", () => {
@@ -639,6 +409,19 @@ const previewAngles = [0, 45, 90, 135]
     })
     updateSharedVariants(0)
 
+    let moreExpanded = false
+    const updateMore = () => {
+      moreRotations.classList.toggle("hidden", !moreExpanded)
+      moreRotations.classList.toggle("grid", moreExpanded)
+      showMore.setAttribute("aria-expanded", String(moreExpanded))
+      showMore.textContent = moreExpanded ? "Show fewer rotations" : "Show four more rotations"
+    }
+    showMore.addEventListener("click", () => {
+      moreExpanded = !moreExpanded
+      updateMore()
+    })
+    updateMore()
+
     puzzleSlider.addEventListener("input", () => {
       cancelAnimationFrame(puzzleFrame)
       updatePuzzleFlip(Number(puzzleSlider.value))
@@ -646,12 +429,6 @@ const previewAngles = [0, 45, 90, 135]
 
     reveal.addEventListener("click", () => {
       if (!guess) return
-      cancelAnimationFrame(frame)
-      proofAngle = puzzleAngle
-      proofFlip = 0
-      shownAngle = proofAngle
-      shownFlip = 0
-      comparing = true
       const expected = labels[directionIndexes(puzzleAngle).flipped]
       answer.textContent =
         "You chose " + guess + ". When flipped, the hidden arrow points " +
@@ -661,33 +438,12 @@ const previewAngles = [0, 45, 90, 135]
       reveal.hidden = true
       puzzleScrub.hidden = false
       variations.hidden = false
-      explanation.hidden = false
-      drawProof()
-      describeProof()
       puzzleHeading.focus()
       animatePuzzleReveal()
     })
 
-    const turnProof = (amount: number) => {
-      answer.hidden = true
-      proofAngle += proofFlip === 180 ? -amount : amount
-      animateProof()
-    }
-    left.addEventListener("click", () => turnProof(-45))
-    right.addEventListener("click", () => turnProof(45))
-    flipButton.addEventListener("click", () => {
-      answer.hidden = true
-      proofFlip = proofFlip === 180 ? 0 : 180
-      animateProof()
-    })
-    compareButton.addEventListener("click", () => {
-      comparing = !comparing
-      describeProof()
-    })
     resetButton.addEventListener("click", () => {
-      cancelAnimationFrame(frame)
       cancelAnimationFrame(puzzleFrame)
-      explanation.hidden = true
       variations.hidden = true
       puzzleScrub.hidden = true
       selectors.hidden = false
@@ -703,13 +459,13 @@ const previewAngles = [0, 45, 90, 135]
       reveal.disabled = true
       updatePuzzleFlip(0)
       updateSharedVariants(0)
+      moreExpanded = false
+      updateMore()
       guesses[0]?.focus()
     })
 
     inspectSlider.addEventListener("input", updateInspection)
     updateInspection()
     drawCoin(puzzle, puzzleAngle, 0)
-    drawProof()
-    describeProof()
   }
 </script>
