@@ -40,6 +40,7 @@ jobs:
         working-directory: site
         run: pnpm install --frozen-lockfile
       - name: Capture exact formatting for stream-bounce
+        if: matrix.pr == 139
         working-directory: site
         run: |
           pnpm exec prettier src/components/illusions/stream-bounce-illusion.astro > /tmp/stream-bounce-prettier.astro
@@ -99,4 +100,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Check shared audio refactor (#138) and stream-bounce output sync (#139)
+# Recheck sound-flash after extracting shared output clock; test stream-bounce alignment
