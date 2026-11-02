@@ -91,7 +91,7 @@ import { series, stroke } from "~/data/palette"
     <IllusionControls
       name="ames-window"
       play={false}
-      proof="Both red dots mark the same end of the window: one on its upper corner, the other in the top view. Replay the movement, or use the angle slider in reduced-motion mode, to follow their matching positions."
+      proof="Both red dots mark the same end of the window: one on its upper corner, the other in the top view. Watch them move together, or use the angle slider in reduced-motion mode, to follow their matching positions."
       proofLabel="Show the top view"
     />
   </div>
@@ -156,7 +156,7 @@ import { series, stroke } from "~/data/palette"
       near.setAttribute("cx", String(530 + dx))
       near.setAttribute("cy", String(70 + dy))
     }
-    // Just under five seconds per turn, continuously, until Pause or a judgement.
+    // Just under five seconds per turn; a judgement reveals the proof without pausing.
     // Use elapsed time so speed is consistent across displays.
     const degreesPerSecond = 75
     let angle = 0
@@ -181,13 +181,12 @@ import { series, stroke } from "~/data/palette"
       frame = requestAnimationFrame(tick)
     }
     const choices = bindListenerChoice(root, name, (value) => {
-      stop()
       reveal.hidden = false
       return value === "skip"
         ? "The top view can be inspected without watching the rotation."
         : reducedMotion.matches
           ? "Show the top view, then move the slider to check the window's orientation."
-          : "Show the top view, then press Play again to check the continuous rotation."
+          : "Show the top view while the window continues rotating."
     })
     play.addEventListener("click", () => {
       if (playing) return stop()
