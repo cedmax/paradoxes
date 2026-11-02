@@ -8,7 +8,7 @@ problem: "The front arrow points up; the flipped view shows an arrow pointing le
 simplification: light
 noMaths: false
 order: 370
-why: "The arrows are fixed at right angles on opposite faces of the coin, but flipping it about a vertical axis reverses the horizontal direction in the view. After a 45° clockwise turn, the front arrow points up-right and the arrow in the flipped view points down-left. After an anticlockwise turn, they both appear to point up-left. The puzzle is keeping track of the turn and the flip together. The black dots in the explanation mark one physical corner on both faces: after a 45° clockwise turn, that corner appears upper-right before the flip and upper-left after it."
+why: "The two arrows are fixed at right angles on opposite faces of one coin. Turn it 45° clockwise: the front arrow points up-right. Flip it about the fixed vertical axis, and left and right reverse in the view: from the back, that turn appears anticlockwise, so the other arrow points down-left. The black dots mark one physical corner on both faces; it appears upper-right before the flip and upper-left afterwards."
 finePrint: "The result depends on the flip axis. Here the coin flips about the picture’s vertical axis, even after a 45° turn. Shire Post Mint traces the trick to the 1946 Screwy Square and Willane’s 1947 octagon version. Magician and historian Judge Gary R. Brown describes a related effect by Val Evans from 1945, so the earliest origin is uncertain. Shire Post Mint credits Raymond Hall as a collaborator on its modern copper coin."
 sources:
   - title: "Shire Post Mint: Magic Octagon Brain Teaser Coin"
