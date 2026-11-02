@@ -17,7 +17,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 <IllustrationFigure name="magic-octagon" lead="Where will the arrow on the back point?">
   <p class="text-base">
     The front starts pointing up. Turn the octagon 45°, predict the back, then
-    flip to check. Compare both sides to try the same moves on two copies of the coin.
+    flip to check. Compare both sides to see the front and back of the same coin.
   </p>
 
   <div
@@ -75,8 +75,8 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         name="magic-octagon-other-svg"
         viewBox="0 0 360 290"
         class="w-full"
-        title="A second octagonal coin, initially showing the other face"
-        desc="A second copy of the octagon, initially showing the reverse face. Both coins rotate in the chosen on-screen direction and flip through the same animation when the central button is pressed."
+        title="The opposite face of the same octagonal coin"
+        desc="The other face of the same octagon. It faces the viewer from the opposite side, so it rotates in the opposite apparent direction. Both views flip together when Flip the coin is pressed."
       >
         <g id="magic-octagon-other-mirror">
           <g id="magic-octagon-other-turn">
@@ -164,9 +164,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     Front arrow: up. Turn, predict, then flip the coin.
   </p>
   <p id="magic-octagon-compare-note" class="text-base" hidden>
-    These are two copies of the coin, initially showing opposite faces. Both turn
-    in the direction you choose and flip together. After turning, they are no longer
-    two views of the same physical orientation.
+    Two views of the same coin: front and back. Turn one side clockwise and the
+    other appears to turn anticlockwise, because you are looking from the opposite
+    side. Flip the coin to exchange which face each view shows.
   </p>
 
   <Fragment slot="caption">
@@ -174,7 +174,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     <ExternalLink href="https://blog.mrmeyer.com/2013/the-magic-octagon/" after=".">
       Dan Meyer's 2013 account
     </ExternalLink>
-    Each coin has the same two arrows fixed on opposite faces.
+    The two arrows are fixed on opposite faces of one coin.
   </Fragment>
 </IllustrationFigure>
 
@@ -225,13 +225,6 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     let comparing = false
     let displayedAngle = 0
     let displayedFlip = 0
-    // The comparison shows a second, independent coin. Starting from opposite
-    // faces, a clockwise turn *as seen by the viewer* changes the underlying
-    // front-plane angle in opposite ways.
-    let otherAngle = 0
-    let otherFlipped = true
-    let displayedOtherAngle = 0
-    let displayedOtherFlip = 180
     let frame = 0
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
@@ -243,12 +236,14 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       front.setAttribute("visibility", showingBack ? "hidden" : "visible")
       back.setAttribute("visibility", showingBack ? "visible" : "hidden")
 
-      // Each copy is flipped about its own fixed vertical axis. The comparison
-      // coin animates, rather than swapping visible faces instantaneously.
-      const otherWidth = Math.cos((displayedOtherFlip * Math.PI) / 180)
-      const otherShowingBack = displayedOtherFlip > 90
+      // The second view shows the other face of the SAME physical coin.
+      // Its flip angle is complementary, so the two drawings animate
+      // simultaneously while showing opposite faces throughout the turn.
+      const otherFlip = 180 - displayedFlip
+      const otherWidth = Math.cos((otherFlip * Math.PI) / 180)
+      const otherShowingBack = otherFlip > 90
       otherMirror.setAttribute("transform", scaleAroundCentre(otherWidth))
-      otherTurn.setAttribute("transform", "rotate(" + displayedOtherAngle + " 180 145)")
+      otherTurn.setAttribute("transform", "rotate(" + displayedAngle + " 180 145)")
       otherFront.setAttribute("visibility", otherShowingBack ? "hidden" : "visible")
       otherBack.setAttribute("visibility", otherShowingBack ? "visible" : "hidden")
     }
@@ -263,26 +258,23 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 
     const describe = () => {
       const main = directions(angle)
-      const secondary = directions(otherAngle)
       const mainFace = flipped ? "Back" : "Front"
-      const otherFace = otherFlipped ? "Back" : "Front"
+      const otherFace = flipped ? "Front" : "Back"
       const mainIndex = flipped ? main.backIndex : main.frontIndex
-      const otherIndex = otherFlipped ? secondary.backIndex : secondary.frontIndex
+      const otherIndex = flipped ? main.frontIndex : main.backIndex
 
       faceLabel.textContent = mainFace + " " + symbols[mainIndex]
       otherFaceLabel.textContent = otherFace + " " + symbols[otherIndex]
       flipButton.setAttribute("aria-pressed", String(flipped))
-      flipButton.textContent = comparing ? "Flip both coins" : "Flip the coin"
-      flipButton.setAttribute(
-        "aria-label",
-        comparing ? "Flip both coins" : "Flip the coin to the other face",
-      )
+      flipButton.textContent = "Flip the coin"
+      flipButton.setAttribute("aria-label", "Flip the coin to the other face")
 
       if (comparing) {
         status.textContent =
           "Left coin: " + mainFace.toLowerCase() + " points " + directionsList[mainIndex] +
           ". Right coin: " + otherFace.toLowerCase() + " points " +
-          directionsList[otherIndex] + ". Both coins respond to the same controls."
+          directionsList[otherIndex] +
+          ". Both views show the same coin from opposite sides."
       } else if (flipped) {
         const difference = wrap(main.backIndex - main.frontIndex)
         const relation =
@@ -306,26 +298,18 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     const animate = () => {
       cancelAnimationFrame(frame)
       const targetFlip = flipped ? 180 : 0
-      const targetOtherFlip = otherFlipped ? 180 : 0
       const initialAngle = displayedAngle
       const initialFlip = displayedFlip
-      const initialOtherAngle = displayedOtherAngle
-      const initialOtherFlip = displayedOtherFlip
 
       describe()
       if (reducedMotion.matches) {
         displayedAngle = angle
         displayedFlip = targetFlip
-        displayedOtherAngle = otherAngle
-        displayedOtherFlip = targetOtherFlip
         draw()
         return
       }
 
-      const duration =
-        initialFlip !== targetFlip || (comparing && initialOtherFlip !== targetOtherFlip)
-          ? 500
-          : 250
+      const duration = initialFlip !== targetFlip ? 500 : 250
       let started = -1
       const tick = (now: number) => {
         if (started < 0) started = now
@@ -333,8 +317,6 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         const eased = progress * progress * (3 - 2 * progress)
         displayedAngle = initialAngle + (angle - initialAngle) * eased
         displayedFlip = initialFlip + (targetFlip - initialFlip) * eased
-        displayedOtherAngle = initialOtherAngle + (otherAngle - initialOtherAngle) * eased
-        displayedOtherFlip = initialOtherFlip + (targetOtherFlip - initialOtherFlip) * eased
         draw()
         if (progress < 1) frame = requestAnimationFrame(tick)
       }
@@ -342,10 +324,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     }
 
     const turn = (amount: number) => {
-      // The direction buttons refer to the visible front/back image, not a
-      // hidden reference angle. So both drawings visibly turn the SAME way.
+      // The direction refers to the left, primary face. The opposite
+      // face necessarily turns in the opposite apparent direction.
       angle += flipped ? -amount : amount
-      if (comparing) otherAngle += otherFlipped ? -amount : amount
       animate()
     }
 
@@ -353,20 +334,10 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     right.addEventListener("click", () => turn(45))
     flipButton.addEventListener("click", () => {
       flipped = !flipped
-      if (comparing) otherFlipped = !otherFlipped
       animate()
     })
     compareButton.addEventListener("click", () => {
       comparing = !comparing
-      if (comparing) {
-        // Opening the comparison starts with two copies in matching physical
-        // orientations, viewed from opposite faces. Subsequent turns are
-        // independent to preserve the on-screen direction of each button.
-        otherAngle = angle
-        otherFlipped = !flipped
-        displayedOtherAngle = displayedAngle
-        displayedOtherFlip = 180 - displayedFlip
-      }
       other.hidden = !comparing
       compareNote.hidden = !comparing
       views.classList.toggle("max-w-sm", !comparing)
@@ -380,8 +351,6 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       angle = 0
       flipped = false
       comparing = false
-      otherAngle = 0
-      otherFlipped = true
       other.hidden = true
       compareNote.hidden = true
       views.classList.add("max-w-sm")
