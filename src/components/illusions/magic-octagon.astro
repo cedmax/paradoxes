@@ -13,14 +13,15 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 ---
 
 <IllustrationFigure name="magic-octagon" lead="Where will the arrow point when flipped?">
-  <p class="text-base">
-    The front starts pointing up. Turn the octagon 45°, predict what the flipped view will show,
-    then flip to check. Compare both views of the same coin.
+  <p id="magic-octagon-setup-note" class="text-base">
+    First, study both views of the coin. The black dot marks the top on each side.
+    The front arrow points up; the flipped arrow points left. Remember both before
+    trying the puzzle.
   </p>
 
   <div
     id="magic-octagon-views"
-    class="mx-auto flex w-full max-w-xs flex-col items-center justify-center gap-2 md:flex-row md:items-start md:gap-5"
+    class="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-2 md:flex-row md:items-start md:gap-5"
   >
     <div class="w-full max-w-xs md:min-w-0 md:flex-1">
       <p class="text-center text-base font-bold">
@@ -69,7 +70,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       </SvgFigure>
     </div>
 
-    <div id="magic-octagon-other" class="w-full max-w-xs md:min-w-0 md:flex-1" hidden>
+    <div id="magic-octagon-other" class="w-full max-w-xs md:min-w-0 md:flex-1">
       <p class="text-center text-base font-bold">
         Flipped <span id="magic-octagon-other-face">←</span>
       </p>
@@ -80,7 +81,10 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         title="The flipped view of the same octagonal coin"
         desc="The flipped view of the same octagon. Because it faces the viewer from the opposite side, its rotation appears reversed. Both views animate together when the coin is flipped."
       >
-        <g id="magic-octagon-other-mirror">
+        <g
+          id="magic-octagon-other-mirror"
+          transform="translate(180 145) scale(-1 1) translate(-180 -145)"
+        >
           <g id="magic-octagon-other-turn">
             <polygon
               points={corners}
@@ -117,6 +121,81 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     </div>
   </div>
 
+  <div id="magic-octagon-start-controls" class="flex flex-wrap items-center gap-3">
+    <button id="magic-octagon-start" type="button" class="btn">
+      Try the puzzle
+    </button>
+  </div>
+
+  <div id="magic-octagon-challenge" class="flex flex-col gap-4" hidden>
+    <p class="text-base">
+      Now only the front is visible. Turn it 45° in either direction. If the coin
+      is then flipped left-to-right about the vertical (Y) axis, which way will
+      the hidden arrow point?
+    </p>
+    <div
+      class="flex flex-wrap gap-3"
+      role="group"
+      aria-label="Choose a 45-degree turn"
+    >
+      <button
+        type="button"
+        class="btn-toggle"
+        id="magic-octagon-puzzle-left"
+        aria-pressed="false"
+      >
+        ↶ 45° anticlockwise
+      </button>
+      <button
+        type="button"
+        class="btn-toggle"
+        id="magic-octagon-puzzle-right"
+        aria-pressed="false"
+      >
+        45° clockwise ↷
+      </button>
+    </div>
+    <div id="magic-octagon-prediction" class="flex flex-col gap-3" hidden>
+      <p class="font-bold">
+        After the flip, where will the arrow point?
+      </p>
+      <div class="flex flex-wrap gap-2" role="group" aria-label="Predict the arrow direction">
+        <button type="button" class="btn-toggle" data-magic-guess="up-left" aria-pressed="false">
+          ↖ Up-left
+        </button>
+        <button type="button" class="btn-toggle" data-magic-guess="up-right" aria-pressed="false">
+          ↗ Up-right
+        </button>
+        <button type="button" class="btn-toggle" data-magic-guess="down-left" aria-pressed="false">
+          ↙ Down-left
+        </button>
+        <button type="button" class="btn-toggle" data-magic-guess="down-right" aria-pressed="false">
+          ↘ Down-right
+        </button>
+      </div>
+      <button
+        id="magic-octagon-reveal"
+        type="button"
+        class="btn self-start disabled:cursor-not-allowed disabled:opacity-50"
+        disabled
+      >
+        Show answer and explanation
+      </button>
+    </div>
+    <button id="magic-octagon-challenge-reset" type="button" class="btn-link self-start">
+      Start again
+    </button>
+  </div>
+
+  <div id="magic-octagon-explanation" class="flex flex-col gap-4" hidden>
+    <h3 id="magic-octagon-explanation-heading" tabindex="-1" class="font-bold">
+      What happens
+    </h3>
+    <p id="magic-octagon-answer" class="text-base" aria-live="polite"></p>
+    <p class="text-base">
+      Both views now show the same turned coin. Use the controls to turn or flip
+      it, or hide the comparison to study one view at a time.
+    </p>
   <div
     class="mx-auto grid w-full max-w-lg grid-cols-[1fr_1.5fr_1fr] gap-2 sm:gap-3"
     role="group"
@@ -173,6 +252,8 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     coin to exchange which arrow each view sees.
   </p>
 
+  </div>
+
   <Fragment slot="caption">
     Redrawn for this site after the Magic Octagon demonstrated by David Masunaga in
     <ExternalLink href="https://blog.mrmeyer.com/2013/the-magic-octagon/" after=".">
@@ -189,6 +270,21 @@ const corners = Array.from({ length: 8 }, (_, index) => {
   if (root) {
     const views = find<HTMLElement>(root, "#magic-octagon-views")
     const other = find<HTMLElement>(root, "#magic-octagon-other")
+    const setupNote = find<HTMLElement>(root, "#magic-octagon-setup-note")
+    const startControls = find<HTMLElement>(root, "#magic-octagon-start-controls")
+    const startButton = find<HTMLButtonElement>(root, "#magic-octagon-start")
+    const challenge = find<HTMLElement>(root, "#magic-octagon-challenge")
+    const puzzleLeft = find<HTMLButtonElement>(root, "#magic-octagon-puzzle-left")
+    const puzzleRight = find<HTMLButtonElement>(root, "#magic-octagon-puzzle-right")
+    const prediction = find<HTMLElement>(root, "#magic-octagon-prediction")
+    const guesses = Array.from(
+      root.querySelectorAll<HTMLButtonElement>("button[data-magic-guess]"),
+    )
+    const revealButton = find<HTMLButtonElement>(root, "#magic-octagon-reveal")
+    const challengeReset = find<HTMLButtonElement>(root, "#magic-octagon-challenge-reset")
+    const explanation = find<HTMLElement>(root, "#magic-octagon-explanation")
+    const explanationHeading = find<HTMLElement>(root, "#magic-octagon-explanation-heading")
+    const answer = find<HTMLElement>(root, "#magic-octagon-answer")
     const left = find<HTMLButtonElement>(root, "#magic-octagon-left")
     const right = find<HTMLButtonElement>(root, "#magic-octagon-right")
     const flipButton = find<HTMLButtonElement>(root, "#magic-octagon-flip-button")
@@ -207,7 +303,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     const otherFront = find<SVGGElement>(root, "#magic-octagon-other-front")
     const otherBack = find<SVGGElement>(root, "#magic-octagon-other-back")
 
-    const directionsList = [
+    const directions = [
       "up",
       "up-right",
       "right",
@@ -222,15 +318,34 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     const scaleAroundCentre = (factor: number) =>
       "translate(180 145) scale(" + factor + " 1) translate(-180 -145)"
 
-    // Angle is measured on the original front. The back view is its reflection
-    // about the fixed vertical axis, not a separately rotated illustration.
+    type Stage = "setup" | "challenge" | "explanation"
+    let stage: Stage = "setup"
     let angle = 0
     let flipped = false
     let comparing = false
+    let guess = ""
     let displayedAngle = 0
     let displayedFlip = 0
     let frame = 0
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+
+    const faces = () => {
+      const steps = Math.round(angle / 45)
+      return { front: wrap(steps), flipped: wrap(6 - steps) }
+    }
+
+    const showStage = () => {
+      setupNote.hidden = stage !== "setup"
+      startControls.hidden = stage !== "setup"
+      challenge.hidden = stage !== "challenge"
+      explanation.hidden = stage !== "explanation"
+      // The initial pair is only a reference. Hide the answer in the puzzle.
+      const showOther = stage === "setup" || (stage === "explanation" && comparing)
+      other.hidden = !showOther
+      views.classList.toggle("max-w-xs", !showOther)
+      views.classList.toggle("max-w-2xl", showOther)
+      compareNote.hidden = !(stage === "explanation" && comparing)
+    }
 
     const draw = () => {
       const width = Math.cos((displayedFlip * Math.PI) / 180)
@@ -240,9 +355,8 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       front.setAttribute("visibility", showingBack ? "hidden" : "visible")
       back.setAttribute("visibility", showingBack ? "visible" : "hidden")
 
-      // The second view shows the other face of the SAME physical coin.
-      // Its flip angle is complementary, so the two drawings animate
-      // simultaneously while showing opposite faces throughout the turn.
+      // The second view is the SAME physical coin, seen from the other side.
+      // Its complementary flip angle makes both drawings animate together.
       const otherFlip = 180 - displayedFlip
       const otherWidth = Math.cos((otherFlip * Math.PI) / 180)
       const otherShowingBack = otherFlip > 90
@@ -252,56 +366,36 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       otherBack.setAttribute("visibility", otherShowingBack ? "visible" : "hidden")
     }
 
-    const directions = (turn: number) => {
-      const steps = Math.round(turn / 45)
-      return {
-        frontIndex: wrap(steps),
-        backIndex: wrap(6 - steps),
-      }
-    }
-
     const describe = () => {
-      const main = directions(angle)
-      const mainIndex = flipped ? main.backIndex : main.frontIndex
-      const otherIndex = flipped ? main.frontIndex : main.backIndex
-
-      // Front and Flipped are fixed viewpoint labels, not face names.
-      // Only the arrow direction changes when the physical coin flips.
+      const result = faces()
+      const mainIndex = flipped ? result.flipped : result.front
+      const otherIndex = flipped ? result.front : result.flipped
+      // These headings refer to viewpoints and never swap their names.
       faceLabel.textContent = symbols[mainIndex]
       otherFaceLabel.textContent = symbols[otherIndex]
-      flipButton.setAttribute("aria-pressed", String(flipped))
-      flipButton.textContent = "Flip the coin"
-      flipButton.setAttribute("aria-label", "Flip the coin to show the other view")
 
+      if (stage !== "explanation") return
+      flipButton.setAttribute("aria-pressed", String(flipped))
+      compareButton.setAttribute("aria-pressed", String(comparing))
+      compareButton.textContent = comparing ? "Hide comparison" : "Compare both sides"
+
+      const difference = wrap(result.flipped - result.front)
+      const relation =
+        difference === 0
+          ? "The two arrows appear aligned."
+          : difference === 4
+            ? "The arrows appear to point in opposite directions."
+            : difference === 2 || difference === 6
+              ? "The arrows appear at right angles."
+              : "The arrows point in different directions."
       if (comparing) {
         status.textContent =
-          "Front view: arrow points " +
-          directionsList[mainIndex] +
-          ". Flipped view: arrow points " +
-          directionsList[otherIndex] +
-          ". Both views show the same coin from opposite sides."
-      } else if (flipped) {
-        const difference = wrap(main.backIndex - main.frontIndex)
-        const relation =
-          difference === 0
-            ? "Both arrows point the same way when viewed in turn."
-            : difference === 4
-              ? "The arrows point in opposite directions when viewed in turn."
-              : difference === 2 || difference === 6
-                ? "The two directions are at right angles."
-                : "The two directions are different."
-        status.textContent =
-          "Front view after flipping: the arrow points " +
-          directionsList[main.backIndex] +
-          ". Before flipping it pointed " +
-          directionsList[main.frontIndex] +
-          ". " +
-          relation
+          "Front view: " + directions[mainIndex] +
+          ". Flipped view: " + directions[otherIndex] + ". " + relation
       } else {
         status.textContent =
-          "Front view: arrow points " +
-          directionsList[main.frontIndex] +
-          ". Predict its direction after flipping, then flip the coin."
+          "Visible arrow: " + directions[mainIndex] +
+          ". Flip the coin or compare both sides to check the other arrow."
       }
     }
 
@@ -310,7 +404,6 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       const targetFlip = flipped ? 180 : 0
       const initialAngle = displayedAngle
       const initialFlip = displayedFlip
-
       describe()
       if (reducedMotion.matches) {
         displayedAngle = angle
@@ -318,28 +411,87 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         draw()
         return
       }
-
       const duration = initialFlip !== targetFlip ? 500 : 250
       let started = -1
       const tick = (now: number) => {
         if (started < 0) started = now
-        const progress = Math.min(1, (now - started) / duration)
-        const eased = progress * progress * (3 - 2 * progress)
+        const t = Math.min(1, (now - started) / duration)
+        const eased = t * t * (3 - 2 * t)
         displayedAngle = initialAngle + (angle - initialAngle) * eased
         displayedFlip = initialFlip + (targetFlip - initialFlip) * eased
         draw()
-        if (progress < 1) frame = requestAnimationFrame(tick)
+        if (t < 1) frame = requestAnimationFrame(tick)
       }
       frame = requestAnimationFrame(tick)
     }
 
-    const turn = (amount: number) => {
-      // The direction refers to the left, primary face. The opposite
-      // face necessarily turns in the opposite apparent direction.
-      angle += flipped ? -amount : amount
+    const chooseTurn = (nextAngle: number) => {
+      angle = nextAngle
+      flipped = false
+      guess = ""
+      for (const button of guesses) button.setAttribute("aria-pressed", "false")
+      puzzleLeft.setAttribute("aria-pressed", String(nextAngle === -45))
+      puzzleRight.setAttribute("aria-pressed", String(nextAngle === 45))
+      prediction.hidden = false
+      revealButton.disabled = true
       animate()
     }
 
+    const startOver = () => {
+      cancelAnimationFrame(frame)
+      stage = "setup"
+      angle = 0
+      flipped = false
+      comparing = false
+      guess = ""
+      displayedAngle = 0
+      displayedFlip = 0
+      puzzleLeft.setAttribute("aria-pressed", "false")
+      puzzleRight.setAttribute("aria-pressed", "false")
+      for (const button of guesses) button.setAttribute("aria-pressed", "false")
+      prediction.hidden = true
+      revealButton.disabled = true
+      showStage()
+      draw()
+      describe()
+      startButton.focus()
+    }
+
+    startButton.addEventListener("click", () => {
+      stage = "challenge"
+      showStage()
+      puzzleLeft.focus()
+    })
+    puzzleLeft.addEventListener("click", () => chooseTurn(-45))
+    puzzleRight.addEventListener("click", () => chooseTurn(45))
+    for (const button of guesses) {
+      button.addEventListener("click", () => {
+        guess = button.dataset.magicGuess ?? ""
+        for (const option of guesses)
+          option.setAttribute("aria-pressed", String(option === button))
+        revealButton.disabled = false
+      })
+    }
+    revealButton.addEventListener("click", () => {
+      if (!guess) return
+      stage = "explanation"
+      comparing = true
+      flipped = false
+      const result = faces()
+      const expected = directions[result.flipped]
+      answer.textContent =
+        "You predicted " + guess + ". After the vertical flip, the arrow points " +
+        expected + (guess === expected ? " — correct." : ". The prediction was different.")
+      showStage()
+      describe()
+      explanationHeading.focus()
+    })
+
+    // The explanation keeps the existing linked front/flipped interaction.
+    const turn = (amount: number) => {
+      angle += flipped ? -amount : amount
+      animate()
+    }
     left.addEventListener("click", () => turn(-45))
     right.addEventListener("click", () => turn(45))
     flipButton.addEventListener("click", () => {
@@ -348,27 +500,12 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     })
     compareButton.addEventListener("click", () => {
       comparing = !comparing
-      other.hidden = !comparing
-      compareNote.hidden = !comparing
-      views.classList.toggle("max-w-xs", !comparing)
-      views.classList.toggle("max-w-2xl", comparing)
-      compareButton.setAttribute("aria-pressed", String(comparing))
-      compareButton.textContent = comparing ? "Hide comparison" : "Compare both sides"
-      draw()
+      showStage()
       describe()
     })
-    resetButton.addEventListener("click", () => {
-      angle = 0
-      flipped = false
-      comparing = false
-      other.hidden = true
-      compareNote.hidden = true
-      views.classList.add("max-w-xs")
-      views.classList.remove("max-w-2xl")
-      compareButton.setAttribute("aria-pressed", "false")
-      compareButton.textContent = "Compare both sides"
-      animate()
-    })
+    resetButton.addEventListener("click", startOver)
+    challengeReset.addEventListener("click", startOver)
+    showStage()
     draw()
     describe()
   }
