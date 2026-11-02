@@ -163,6 +163,12 @@ async def interaction(page, pr):
         require(await dots.count() == 108, "Kinetic depth must have 108 seeded dots")
         ys = await dots.evaluate_all("(els) => new Set(els.map(e => Number(e.getAttribute('cy')).toFixed(2))).size")
         require(ys > 75, f"Kinetic depth looks row-structured: {ys} distinct y levels")
+        rim = await dots.evaluate_all("""(els) => els.filter(e => {
+            const x = Number(e.getAttribute('cx')) - 300
+            const y = Number(e.getAttribute('cy')) - 190
+            return Math.hypot(x, y) > 120
+        }).length""")
+        require(rim < 20, f"Too many dots still make a circular rim: {rim} of 108")
         require(await answer.is_disabled(), "Kinetic answer must wait for movement")
         require(await proof.is_disabled(), "Depth cues must wait for a judgement")
         require(await readout.get_attribute("aria-live") != "polite",

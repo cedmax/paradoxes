@@ -101,4 +101,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Verify kinetic-depth keeps rotating through judgement and colour reveal on 140–142
+# Validate soft-edged volumetric scattering and retained kinetic-depth behaviour
