@@ -57,11 +57,11 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
       <span>Front</span>
       <span>Flipped</span>
     </div>
-    <p id="magic-octagon-proof-slider-state" class="text-center text-base" aria-live="polite">
+    <p id="magic-octagon-proof-slider-state" class="text-center text-base">
       Front · 0°
     </p>
   </div>
-  <p id="magic-octagon-state" class="sr-only" aria-live="polite"></p>
+  <p id="magic-octagon-state" class="sr-only"></p>
 
   <div class="flex flex-col gap-4 border-t-2 border-ink pt-6">
     <h3 class="text-xl font-bold">The eight rotations, with the corner marked</h3>
@@ -81,7 +81,7 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
                 max="180"
                 step="1"
                 value="0"
-                aria-describedby="magic-octagon-proof-variants-shared-state"
+                aria-describedby="magic-octagon-proof-variants-shared-state magic-octagon-proof-variants-description"
                 aria-valuetext="Front · 0°"
               />
               <div class="flex w-full max-w-md justify-between text-sm">
@@ -91,10 +91,10 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
               <p
                 id="magic-octagon-proof-variants-shared-state"
                 class="text-center text-sm"
-                aria-live="polite"
               >
                 Front · 0°
               </p>
+              <p id="magic-octagon-proof-variants-description" class="sr-only"></p>
             </div>
           )}
           <div
@@ -162,6 +162,8 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
 <script>
   import { find, illustrationRoot } from "~/scripts/illustration"
   import {
+    describeCoin,
+    describeGallery,
     directionIndexes,
     drawCoin,
     inspectionLabel,
@@ -198,6 +200,10 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
       root,
       "#magic-octagon-proof-variants-shared-state",
     )
+    const sharedVariantsDescription = find<HTMLElement>(
+      root,
+      "#magic-octagon-proof-variants-description",
+    )
     const showMore = find<HTMLButtonElement>(root, "#magic-octagon-proof-show-more")
     const moreRotations = find<HTMLElement>(root, "#magic-octagon-proof-more-rotations")
 
@@ -217,7 +223,11 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
 
       const progress = inspectionLabel(degrees)
       proofSliderState.textContent = progress
-      proofSlider.setAttribute("aria-valuetext", progress)
+      proofSlider.setAttribute(
+        "aria-valuetext",
+        "First view: " + describeCoin(proofAngle, degrees, true) +
+          " Opposite view: " + describeCoin(proofAngle, 180 - degrees, true),
+      )
       status.textContent = edgeOn
         ? "Both coins are edge-on."
         : "Front: " + labels[main] + ". Flipped: " + labels[other] + "."
@@ -240,7 +250,7 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
         drawCoin(svg, angle, degrees)
         const progress = inspectionLabel(degrees)
         state.textContent = progress
-        slider.setAttribute("aria-valuetext", progress)
+        slider.setAttribute("aria-valuetext", describeCoin(angle, degrees, true))
       }
       slider.addEventListener("input", () => update(Number(slider.value)))
       variantUpdates.push(update)
@@ -250,7 +260,11 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
       sharedVariantsSlider.value = String(degrees)
       const progress = inspectionLabel(degrees)
       sharedVariantsState.textContent = progress
-      sharedVariantsSlider.setAttribute("aria-valuetext", progress)
+      sharedVariantsSlider.setAttribute(
+        "aria-valuetext",
+        "All eight marked coins. " + describeCoin(45, degrees, true),
+      )
+      sharedVariantsDescription.textContent = describeGallery(angles, degrees, true)
       for (const update of variantUpdates) update(degrees)
     }
     sharedVariantsSlider.addEventListener("input", () => {
