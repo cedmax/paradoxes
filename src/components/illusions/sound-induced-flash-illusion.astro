@@ -1,0 +1,137 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { illusionSurface, series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="sound-induced-flash-illusion"
+  lead="Look at the dot. Play each version, then say how many flashes you saw."
+>
+  <p class="text-base">
+    Turn your volume down first. Each version shows one brief colour change. One has one beep;
+    the other has two. The effect can vary across screens and listeners.
+  </p>
+  <SvgFigure
+    name="sound-induced-flash-illusion"
+    viewBox="0 0 560 230"
+    class="mx-auto w-full max-w-md"
+    title="A single round disc in a neutral field, ready to flash once"
+    desc="The centre disc briefly changes colour exactly once per trial. Pressing a button also plays either one or two short beeps. The flash never repeats."
+  >
+    <rect x="10" y="10" width="540" height="210" fill={illusionSurface.neutral} />
+    <circle
+      id="sound-induced-flash-illusion-disc"
+      cx="280"
+      cy="115"
+      r="44"
+      fill={series.blue}
+    />
+    <path
+      d="M280 46 V56 M280 174 V184 M211 115 H221 M339 115 H349"
+      stroke={stroke}
+      stroke-width="2"
+    />
+  </SvgFigure>
+  <div class="flex flex-wrap gap-3">
+    <button id="sound-induced-flash-illusion-one" type="button" class="btn-ghost">
+      Play with one beep
+    </button>
+    <button id="sound-induced-flash-illusion-two" type="button" class="btn-ghost">
+      Play with two beeps
+    </button>
+  </div>
+  <p id="sound-induced-flash-illusion-status" class="text-base" aria-live="polite">
+    Nothing has played yet.
+  </p>
+  <ListenerChoice
+    name="sound-induced-flash-illusion"
+    question="How many flashes did you see in the last version?"
+    options={[
+      { value: "one", label: "One" },
+      { value: "two", label: "Two" },
+      { value: "unsure", label: "Not sure" },
+    ]}
+  />
+  <div id="sound-induced-flash-illusion-reveal" class="flex flex-col gap-3" hidden>
+    <p class="font-bold">Only one flash is ever displayed.</p>
+    <p class="text-base">
+      The colour changes once for 30 milliseconds. The two-beep version adds a second sound, but
+      no second flash. Hearing two beeps can make one flash look like two. Seeing only one is
+      also a valid result.
+    </p>
+  </div>
+  <Fragment slot="caption">
+    Synthesised for this site after Shams, Kamitani and Shimojo (2000, 2002). No original
+    recordings or images are used.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { audioAvailable, playSamples, stopAudio } from "~/scripts/audio"
+  import { bindListenerChoice, find, illustrationRoot } from "~/scripts/illustration"
+
+  const name = "sound-induced-flash-illusion"
+  const root = illustrationRoot(name)
+  if (root) {
+    const one = find<HTMLButtonElement>(root, `#${name}-one`)
+    const two = find<HTMLButtonElement>(root, `#${name}-two`)
+    const disc = find<SVGCircleElement>(root, `#${name}-disc`)
+    const status = find<HTMLElement>(root, `#${name}-status`)
+    const reveal = find<HTMLElement>(root, `#${name}-reveal`)
+    const choices = bindListenerChoice(root, name, (value) => {
+      reveal.hidden = false
+      return value === "skip"
+        ? "The text below describes the stimulus, without claiming to recreate the experience."
+        : "The flash occurred once, regardless of how many you saw."
+    })
+    let timer: ReturnType<typeof setTimeout> | undefined
+    let reset: ReturnType<typeof setTimeout> | undefined
+    const neutral = disc.getAttribute("fill") ?? ""
+    const flash = () => {
+      disc.setAttribute("fill", "var(--color-series-gold)")
+      reset = setTimeout(() => disc.setAttribute("fill", neutral), 30)
+    }
+    const sound = (beeps: number, rate: number) => {
+      const samples = new Float32Array(Math.round(0.36 * rate))
+      const starts = beeps === 1 ? [0.16] : [0.115, 0.205]
+      for (const start of starts) {
+        const count = Math.round(0.014 * rate)
+        const offset = Math.round(start * rate)
+        for (let i = 0; i < count; i++) {
+          const edge = Math.min(1, i / (rate * 0.003), (count - i) / (rate * 0.003))
+          samples[offset + i] += 0.09 * edge * Math.sin((2 * Math.PI * 750 * i) / rate)
+        }
+      }
+      return samples
+    }
+    const play = async (beeps: number) => {
+      if (!audioAvailable()) return
+      clearTimeout(timer)
+      clearTimeout(reset)
+      disc.setAttribute("fill", neutral)
+      stopAudio()
+      const played = await playSamples((rate) => sound(beeps, rate))
+      if (!played) return
+      status.textContent = `Playing one flash with ${beeps} ${beeps === 1 ? "beep" : "beeps"}.`
+      choices.enable()
+      timer = setTimeout(flash, 160)
+    }
+    if (audioAvailable()) {
+      one.addEventListener("click", () => void play(1))
+      two.addEventListener("click", () => void play(2))
+    } else {
+      one.disabled = true
+      two.disabled = true
+      status.textContent = "Web Audio is unavailable. The text description remains available."
+    }
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        clearTimeout(timer)
+        clearTimeout(reset)
+        disc.setAttribute("fill", neutral)
+      }
+    })
+  }
+</script>
