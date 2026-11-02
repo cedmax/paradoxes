@@ -150,7 +150,8 @@ const arms = Array.from({ length: 7 }, (_, index) => {
         ? "Moving patterns are disabled; use the opt-out to read the explanation"
         : ""
       if (reduced.matches) {
-        status.textContent = "Motion is disabled in your settings. Choose the opt-out to read the explanation."
+        status.textContent =
+          "Motion is disabled in your settings. Choose the opt-out to read the explanation."
       }
     }
     reduced.addEventListener("change", updateMotionPreference)
