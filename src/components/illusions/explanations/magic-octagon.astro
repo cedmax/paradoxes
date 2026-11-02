@@ -4,7 +4,16 @@ import Coin from "../magic-octagon/Coin.astro"
 
 const angles = [0, 45, 90, 135, 180, 225, 270, 315]
 const arrows = ["up", "up-right", "right", "down-right", "down", "down-left", "left", "up-left"]
-const corners = ["top", "upper-right", "right", "lower-right", "bottom", "lower-left", "left", "upper-left"]
+const corners = [
+  "top",
+  "upper-right",
+  "right",
+  "lower-right",
+  "bottom",
+  "lower-left",
+  "left",
+  "upper-left",
+]
 const outcomes = angles.map((angle, index) => ({
   angle,
   frontArrow: arrows[index],
@@ -23,7 +32,9 @@ const outcomes = angles.map((angle, index) => ({
     <div class="w-full max-w-xs md:min-w-0 md:flex-1">
       <p class="text-center text-base font-bold">
         <span id="magic-octagon-proof-front-face">Front</span>
-        <span id="magic-octagon-proof-front-direction" aria-hidden="true">↗</span>
+        <span id="magic-octagon-proof-front-direction" aria-hidden="true">
+          ↗
+        </span>
       </p>
       <Coin
         id="proof-front"
@@ -36,7 +47,9 @@ const outcomes = angles.map((angle, index) => ({
     <div class="w-full max-w-xs md:min-w-0 md:flex-1">
       <p class="text-center text-base font-bold">
         <span id="magic-octagon-proof-flipped-face">Flipped</span>
-        <span id="magic-octagon-proof-flipped-direction" aria-hidden="true">↙</span>
+        <span id="magic-octagon-proof-flipped-direction" aria-hidden="true">
+          ↙
+        </span>
       </p>
       <Coin
         id="proof-flipped"
@@ -76,7 +89,9 @@ const outcomes = angles.map((angle, index) => ({
 
   <div class="flex flex-col gap-4 border-t-2 border-ink pt-6">
     <h3 class="text-xl font-bold">The eight rotations, with the corner marked</h3>
-    <p class="text-base">The same eight rotations, now following one corner through the flip.</p>
+    <p class="text-base">
+      The same eight rotations, now following one corner through the flip.
+    </p>
     <div class="flex flex-col gap-6">
       {[angles.slice(0, 4), angles.slice(4)].map((rowAngles, rowIndex) => (
         <Fragment>
@@ -123,15 +138,16 @@ const outcomes = angles.map((angle, index) => ({
                   id={"proof-variant-" + angle}
                   initialTurn={angle}
                   title={"Marked octagonal coin rotated " + angle + " degrees"}
-                  desc={"Coin pre-rotated " + angle + " degrees with a black corner dot; flip it about the fixed red Y axis to follow the dot."}
+                  desc={
+                    "Coin pre-rotated " +
+                    angle +
+                    " degrees with a black corner dot; flip it about the fixed red Y axis to follow the dot."
+                  }
                   showMarker
                   oversized
                 />
                 <div class="flex flex-col gap-2 md:hidden">
-                  <label
-                    for={"magic-octagon-proof-variant-" + angle}
-                    class="text-sm font-bold"
-                  >
+                  <label for={"magic-octagon-proof-variant-" + angle} class="text-sm font-bold">
                     Flip this coin
                   </label>
                   <input
@@ -170,7 +186,8 @@ const outcomes = angles.map((angle, index) => ({
     </div>
     <table class="sr-only">
       <caption>
-        Eight octagon rotations. Arrow and marked-corner positions before and after the vertical flip.
+        Eight octagon rotations. Arrow and marked-corner positions before and after the vertical
+        flip.
       </caption>
       <thead>
         <tr>
@@ -210,10 +227,7 @@ const outcomes = angles.map((angle, index) => ({
   if (root) {
     const proofFront = find<SVGSVGElement>(root, '[data-magic-coin="proof-front"]')
     const proofFlipped = find<SVGSVGElement>(root, '[data-magic-coin="proof-flipped"]')
-    const proofFrontDirection = find<HTMLElement>(
-      root,
-      "#magic-octagon-proof-front-direction",
-    )
+    const proofFrontDirection = find<HTMLElement>(root, "#magic-octagon-proof-front-direction")
     const proofFrontFace = find<HTMLElement>(root, "#magic-octagon-proof-front-face")
     const proofFlippedDirection = find<HTMLElement>(
       root,
@@ -221,10 +235,7 @@ const outcomes = angles.map((angle, index) => ({
     )
     const proofFlippedFace = find<HTMLElement>(root, "#magic-octagon-proof-flipped-face")
     const proofSlider = find<HTMLInputElement>(root, "#magic-octagon-proof-slider")
-    const proofSliderState = find<HTMLElement>(
-      root,
-      "#magic-octagon-proof-slider-state",
-    )
+    const proofSliderState = find<HTMLElement>(root, "#magic-octagon-proof-slider-state")
     const status = find<HTMLElement>(root, "#magic-octagon-state")
     const variantSliders = Array.from(
       root.querySelectorAll<HTMLInputElement>("[data-magic-proof-variant]"),
@@ -268,14 +279,8 @@ const outcomes = angles.map((angle, index) => ({
     const variantUpdates: Array<(degrees: number) => void> = []
     for (const slider of variantSliders) {
       const angle = Number(slider.dataset.magicProofVariant)
-      const svg = find<SVGSVGElement>(
-        root,
-        '[data-magic-coin="proof-variant-' + angle + '"]',
-      )
-      const state = find<HTMLElement>(
-        root,
-        "#magic-octagon-proof-variant-state-" + angle,
-      )
+      const svg = find<SVGSVGElement>(root, '[data-magic-coin="proof-variant-' + angle + '"]')
+      const state = find<HTMLElement>(root, "#magic-octagon-proof-variant-state-" + angle)
       const update = (degrees: number) => {
         slider.value = String(degrees)
         drawCoin(svg, angle, degrees)
