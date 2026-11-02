@@ -45,13 +45,6 @@ jobs:
         run: pnpm exec prettier --check .
         continue-on-error: true
 
-      # Temporary formatter diagnostic: removed after capturing the exact output.
-      - name: Capture formatted table source
-        if: always()
-        run: |
-          pnpm exec prettier --write src/components/illusions/explanations/magic-octagon.astro
-          node -e 'const fs=require("node:fs");console.log("FORMAT_TABLE_SOURCE::"+JSON.stringify(fs.readFileSync("src/components/illusions/explanations/magic-octagon.astro","utf8")));'
-
       - name: Unused code
         id: knip
         run: pnpm knip
