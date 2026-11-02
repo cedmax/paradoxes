@@ -20,11 +20,7 @@ import { series, stroke } from "~/data/palette"
     desc="An upside-down T has a 300-unit upright and a 300-unit horizontal line. Compare lengths reveals a translucent gold quarter-circle centred at the horizontal line’s left endpoint and a red copy of the full horizontal line. The slider rotates this copy around its fixed left endpoint from horizontal to vertical. Its right endpoint follows the gold arc, reaching the same height as the black upright at 90 degrees."
   >
     <g id="vertical-horizontal-sector" visibility="hidden" aria-hidden="true">
-      <path
-        d="M150 345 H450 A300 300 0 0 0 150 45 Z"
-        fill={series.gold}
-        fill-opacity="0.24"
-      />
+      <path d="M150 345 H450 A300 300 0 0 0 150 45 Z" fill={series.gold} fill-opacity="0.24" />
       <path
         d="M450 345 A300 300 0 0 0 150 45"
         fill="none"
@@ -60,7 +56,8 @@ import { series, stroke } from "~/data/palette"
       valuetext="Red 300-unit copy lies over the horizontal line with its left endpoint fixed"
     >
       <p id="vertical-horizontal-note" class="text-base">
-        Only the red copy rotates around the left endpoint. The black inverted T does not change.
+        Only the red copy rotates around the left endpoint. The black inverted T does not
+        change.
       </p>
     </Slider>
   </div>
