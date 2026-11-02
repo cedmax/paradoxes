@@ -24,9 +24,19 @@ const previewAngles = angles
      before parsing the figure so the answer cannot flash on interactive pages. -->
 <script is:inline>
   document.documentElement.classList.add("magic-octagon-interactive")
+  // A failed or missing figure module must not leave the explanation inaccessible.
+  window.addEventListener(
+    "load",
+    () => {
+      if (!document.querySelector('[data-magic-ready="true"]')) {
+        document.documentElement.classList.remove("magic-octagon-interactive")
+      }
+    },
+    { once: true },
+  )
 </script>
 
-<style is:global>
+<style is:inline>
   html.magic-octagon-interactive [data-illusion-explanation]:not([data-revealed]) {
     display: none !important;
   }
@@ -471,5 +481,6 @@ const previewAngles = angles
     inspectSlider.addEventListener("input", updateInspection)
     updateInspection()
     drawCoin(puzzle, puzzleAngle, 0)
+    root.dataset.magicReady = "true"
   }
 </script>
