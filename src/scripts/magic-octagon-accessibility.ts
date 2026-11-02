@@ -42,9 +42,13 @@ const describe = (turn: number, flip: number, marked: boolean) => {
   const markerX = Math.sin(radians) * cosFlip
   const markerY = -Math.cos(radians)
   return (
-    degrees + " degrees. " + (front ? "Front" : "Flipped") +
-    " face; arrow points " + arrow +
-    (marked ? "; marked corner at " + corners[position(markerX, markerY)] : "") + "."
+    degrees +
+    " degrees. " +
+    (front ? "Front" : "Flipped") +
+    " face; arrow points " +
+    arrow +
+    (marked ? "; marked corner at " + corners[position(markerX, markerY)] : "") +
+    "."
   )
 }
 
@@ -74,8 +78,10 @@ const update = (slider: HTMLInputElement, updateGraphicDescription: boolean) => 
     descriptions = [["puzzle", 45, degrees, false]]
   } else if (id === "magic-octagon-proof-slider") {
     spoken =
-      "First view: " + describe(45, degrees, true) +
-      " Second view: " + describe(45, 180 - degrees, true)
+      "First view: " +
+      describe(45, degrees, true) +
+      " Second view: " +
+      describe(45, 180 - degrees, true)
     descriptions = [
       ["proof-front", 45, degrees, true],
       ["proof-flipped", 45, 180 - degrees, true],
