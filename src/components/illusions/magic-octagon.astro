@@ -19,12 +19,13 @@ const corners = labels.map((label, index) => {
   return {
     label,
     symbol: symbols[index],
-    // Put the targets just beyond the coin's eight vertices (radius 112).
+    // The targets sit precisely on the octagon's eight vertices (radius 112).
     // Coordinates correspond to the coin's 360 × 310 SVG viewBox.
-    left: (((180 + 125 * Math.cos(direction)) / 360) * 100).toFixed(3),
-    top: (((145 + 125 * Math.sin(direction)) / 310) * 100).toFixed(3),
+    left: (((180 + 112 * Math.cos(direction)) / 360) * 100).toFixed(3),
+    top: (((145 + 112 * Math.sin(direction)) / 310) * 100).toFixed(3),
   }
 })
+const previewAngles = [0, 45, 90, 135]
 ---
 
 <IllustrationFigure name="magic-octagon" lead="Where will the arrow point when flipped?">
@@ -78,30 +79,33 @@ const corners = labels.map((label, index) => {
       Imagine flipping the coin about the fixed red Y axis. Which corner
       will the hidden arrow point to? Choose your answer on the coin.
     </p>
-    <div
-      class="relative mx-auto w-full max-w-xs"
-      role="group"
-      aria-label="Predict the hidden arrow by choosing one of the eight corners of the coin"
-    >
+    <div class="relative mx-auto w-full max-w-xs">
       <Coin
         id="puzzle"
         title="Octagonal coin turned 45 degrees clockwise"
-        desc="The blue arrow is already pointing up-right, after a 45-degree clockwise turn. A fixed red dashed Y axis marks how the coin will flip. Choose one of the eight corners around the coin to predict the direction of the hidden arrow."
+        desc="The blue arrow is already pointing up-right, after a 45-degree clockwise turn. A fixed red dashed Y axis marks how the coin will flip. Choose one of the eight corners to predict the hidden arrow."
         initialTurn={45}
       />
-      {corners.map(({ label, symbol, left, top }) => (
-        <button
-          type="button"
-          data-magic-guess={label}
-          data-selected="false"
-          aria-pressed="false"
-          aria-label={"Choose the " + label + " corner"}
-          class="absolute z-10 grid size-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-ink bg-paper font-bold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink data-[selected=true]:bg-ink data-[selected=true]:text-paper"
-          style={"left:" + left + "%;top:" + top + "%"}
-        >
-          <span aria-hidden="true">{symbol}</span>
-        </button>
-      ))}
+      <div
+        id="magic-octagon-selectors"
+        class="absolute inset-0"
+        role="group"
+        aria-label="Predict the hidden arrow by choosing a corner of the coin"
+      >
+        {corners.map(({ label, symbol, left, top }) => (
+          <button
+            type="button"
+            data-magic-guess={label}
+            data-selected="false"
+            aria-pressed="false"
+            aria-label={"Choose the " + label + " corner"}
+            class="absolute z-10 grid size-8 -translate-x-1/2 -translate-y-1/2 cursor-pointer place-items-center rounded-full border-2 border-ink bg-paper text-sm font-bold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink data-[selected=true]:bg-ink data-[selected=true]:text-paper"
+            style={"left:" + left + "%;top:" + top + "%"}
+          >
+            <span aria-hidden="true">{symbol}</span>
+          </button>
+        ))}
+      </div>
     </div>
     <p id="magic-octagon-choice" class="text-center text-base" aria-live="polite">
       Select a corner of the coin to predict where the arrow will point.
@@ -114,6 +118,91 @@ const corners = labels.map((label, index) => {
     >
       Show answer and explanation
     </button>
+    <div id="magic-octagon-puzzle-scrub" class="flex flex-col gap-3" hidden>
+      <h3 id="magic-octagon-scrub-heading" tabindex="-1" class="text-center font-bold">
+        Turn the coin over to check
+      </h3>
+      <div class="mx-auto flex w-full max-w-sm flex-col gap-2">
+        <label for="magic-octagon-puzzle-slider" class="text-base font-bold">
+          Flip the rotated coin
+        </label>
+        <input
+          id="magic-octagon-puzzle-slider"
+          class="w-full accent-current"
+          type="range"
+          min="0"
+          max="180"
+          step="1"
+          value="0"
+          aria-describedby="magic-octagon-puzzle-slider-state"
+          disabled
+        />
+        <div class="flex justify-between text-sm">
+          <span>Front</span>
+          <span>Flipped</span>
+        </div>
+        <p
+          id="magic-octagon-puzzle-slider-state"
+          class="text-center text-base"
+          aria-live="polite"
+        >
+          Front · 0°
+        </p>
+      </div>
+      <p id="magic-octagon-answer" class="text-base" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section
+    id="magic-octagon-variations"
+    class="flex flex-col gap-4 border-t-2 border-ink pt-6"
+    aria-labelledby="magic-octagon-variations-heading"
+    hidden
+  >
+    <h2 id="magic-octagon-variations-heading" class="text-xl font-bold">
+      Turn it at different angles
+    </h2>
+    <p class="text-base">
+      Each coin starts at a different rotation. Slide each one around the same
+      fixed red Y axis to compare how its outline changes as it turns edge-on.
+    </p>
+    <div class="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-8">
+      {previewAngles.map((angle) => (
+        <div class="flex min-w-0 flex-col gap-2">
+          <p class="text-center text-base font-bold">{angle}° rotation</p>
+          <Coin
+            id={"variant-" + angle}
+            title={"Octagonal coin rotated " + angle + " degrees, with adjustable flip"}
+            desc={"A solid octagonal coin pre-rotated " + angle + " degrees. Drag its slider to turn it around the fixed red Y axis and see the changing outline and thickness."}
+            initialTurn={angle}
+          />
+          <label
+            for={"magic-octagon-variant-" + angle}
+            class="text-sm font-bold"
+          >
+            Flip this coin
+          </label>
+          <input
+            id={"magic-octagon-variant-" + angle}
+            data-magic-variant={angle}
+            class="w-full accent-current"
+            type="range"
+            min="0"
+            max="180"
+            step="1"
+            value="0"
+            aria-describedby={"magic-octagon-variant-state-" + angle}
+            aria-valuetext="Front · 0°"
+          />
+          <p
+            id={"magic-octagon-variant-state-" + angle}
+            class="text-center text-sm"
+          >
+            Front · 0°
+          </p>
+        </div>
+      ))}
+    </div>
   </section>
 
   <section
@@ -125,7 +214,6 @@ const corners = labels.map((label, index) => {
     <h2 id="magic-octagon-explanation-heading" tabindex="-1" class="text-xl font-bold">
       What happens
     </h2>
-    <p id="magic-octagon-answer" class="text-base" aria-live="polite"></p>
     <p class="text-base">
       The black dots now reveal the same physical corner on each face.
       Watch the shaded edge while the coin turns slowly around the fixed red Y axis.
@@ -224,6 +312,15 @@ const corners = labels.map((label, index) => {
     const inspectState = find<HTMLElement>(root, "#magic-octagon-inspect-state")
     const guesses = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-magic-guess]"))
     const choice = find<HTMLElement>(root, "#magic-octagon-choice")
+    const selectors = find<HTMLElement>(root, "#magic-octagon-selectors")
+    const puzzleScrub = find<HTMLElement>(root, "#magic-octagon-puzzle-scrub")
+    const puzzleSlider = find<HTMLInputElement>(root, "#magic-octagon-puzzle-slider")
+    const puzzleSliderState = find<HTMLElement>(root, "#magic-octagon-puzzle-slider-state")
+    const scrubHeading = find<HTMLElement>(root, "#magic-octagon-scrub-heading")
+    const variations = find<HTMLElement>(root, "#magic-octagon-variations")
+    const variantSliders = Array.from(
+      root.querySelectorAll<HTMLInputElement>("[data-magic-variant]"),
+    )
     const reveal = find<HTMLButtonElement>(root, "#magic-octagon-reveal")
     const explanation = find<HTMLElement>(root, "#magic-octagon-explanation")
     const explanationHeading = find<HTMLElement>(root, "#magic-octagon-explanation-heading")
@@ -350,6 +447,7 @@ const corners = labels.map((label, index) => {
     let shownFlip = 0
     let comparing = true
     let frame = 0
+    let puzzleFrame = 0
 
     const directionIndexes = (angle: number) => {
       const steps = Math.round(angle / 45)
@@ -420,6 +518,66 @@ const corners = labels.map((label, index) => {
       })
     }
 
+    const updatePuzzleFlip = (degrees: number) => {
+      drawCoin(puzzle, puzzleAngle, degrees)
+      const rounded = Math.round(degrees)
+      puzzleSlider.value = String(rounded)
+      const label = inspectionLabel(rounded)
+      puzzleSliderState.textContent = label
+      puzzleSlider.setAttribute("aria-valuetext", label)
+    }
+
+    // The answer animation flips the SAME puzzle coin, then leaves the slider
+    // available for direct inspection; it does not switch to a different image.
+    const animatePuzzleReveal = () => {
+      cancelAnimationFrame(puzzleFrame)
+      puzzleSlider.disabled = true
+      if (reducedMotion.matches) {
+        updatePuzzleFlip(180)
+        puzzleSlider.disabled = false
+        return
+      }
+      let started = -1
+      const tick = (now: number) => {
+        if (started < 0) started = now
+        const progress = Math.min(1, (now - started) / 1800)
+        const eased = progress * progress * (3 - 2 * progress)
+        updatePuzzleFlip(180 * eased)
+        if (progress < 1) {
+          puzzleFrame = requestAnimationFrame(tick)
+        } else {
+          puzzleSlider.disabled = false
+        }
+      }
+      puzzleFrame = requestAnimationFrame(tick)
+    }
+
+    for (const slider of variantSliders) {
+      const turn = Number(slider.dataset.magicVariant)
+      const svg = find<SVGSVGElement>(
+        root,
+        '[data-magic-coin="variant-' + turn + '"]',
+      )
+      const state = find<HTMLElement>(
+        root,
+        "#magic-octagon-variant-state-" + turn,
+      )
+      const update = () => {
+        const degrees = Number(slider.value)
+        drawCoin(svg, turn, degrees)
+        const label = inspectionLabel(degrees)
+        state.textContent = label
+        slider.setAttribute("aria-valuetext", label)
+      }
+      slider.addEventListener("input", update)
+      update()
+    }
+
+    puzzleSlider.addEventListener("input", () => {
+      cancelAnimationFrame(puzzleFrame)
+      updatePuzzleFlip(Number(puzzleSlider.value))
+    })
+
     reveal.addEventListener("click", () => {
       if (!guess) return
       cancelAnimationFrame(frame)
@@ -429,13 +587,19 @@ const corners = labels.map((label, index) => {
       shownFlip = 0
       comparing = true
       const expected = labels[directionIndexes(puzzleAngle).flipped]
-      answer.hidden = false
-      answer.textContent = "You chose " + guess + ". When flipped, the hidden arrow points " +
+      answer.textContent =
+        "You chose " + guess + ". When flipped, the hidden arrow points " +
         expected + (guess === expected ? " — correct." : ".")
+      selectors.hidden = true
+      choice.hidden = true
+      reveal.hidden = true
+      puzzleScrub.hidden = false
+      variations.hidden = false
       explanation.hidden = false
       drawProof()
       describeProof()
-      explanationHeading.focus()
+      scrubHeading.focus()
+      animatePuzzleReveal()
     })
 
     const turnProof = (amount: number) => {
@@ -456,7 +620,14 @@ const corners = labels.map((label, index) => {
     })
     resetButton.addEventListener("click", () => {
       cancelAnimationFrame(frame)
+      cancelAnimationFrame(puzzleFrame)
       explanation.hidden = true
+      variations.hidden = true
+      puzzleScrub.hidden = true
+      selectors.hidden = false
+      choice.hidden = false
+      reveal.hidden = false
+      puzzleSlider.disabled = true
       guess = ""
       for (const option of guesses) {
         option.dataset.selected = "false"
@@ -464,7 +635,7 @@ const corners = labels.map((label, index) => {
       }
       choice.textContent = "Select a corner of the coin to predict where the arrow will point."
       reveal.disabled = true
-      drawCoin(puzzle, puzzleAngle, 0)
+      updatePuzzleFlip(0)
       guesses[0]?.focus()
     })
 
