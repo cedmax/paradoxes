@@ -68,10 +68,10 @@ const dots = Array.from({ length: count }, (_, index) => {
     ]}
     skipLabel="I cannot watch the motion"
   />
-  <div id="motion-silencing-illusion-reveal" class="flex flex-col gap-3" hidden>
+  <div id="motion-silencing-illusion-reveal" class="space-y-3" hidden>
     <p class="text-base">
-      The dots keep changing hue even when the ring turns. Motion can make those changes seem
-      to stop, but the animation never pauses them.
+      While the animation runs, the dots keep changing hue even when the ring turns. Motion
+      can make those changes seem to stop.
     </p>
     <IllusionControls
       name="motion-silencing-illusion"
@@ -93,17 +93,17 @@ const dots = Array.from({ length: count }, (_, index) => {
   const root = illustrationRoot(name)
   if (root) {
     const dots = Array.from(root.querySelectorAll<SVGCircleElement>("[data-dot]"))
-    const ring = find<SVGGElement>(root, `#${name}-ring»)
-    const play = find<HTMLButtonElement>(root, `#${name}-play»)
-    const turn = find<HTMLButtonElement>(root, `#${name}-turn»)
-    const proof = find<HTMLButtonElement>(root, `#${name}-guide-toggle»)
-    const proofText = find<HTMLElement>(root, `#${name}-proof»)
-    const reveal = find<HTMLElement>(root, `#${name}-reveal»)
-    const status = find<HTMLElement>(root, `#${name}-status»)
+    const ring = find<SVGGElement>(root, `#${name}-ring`)
+    const play = find<HTMLButtonElement>(root, `#${name}-play`)
+    const turn = find<HTMLButtonElement>(root, `#${name}-turn`)
+    const proof = find<HTMLButtonElement>(root, `#${name}-guide-toggle`)
+    const proofText = find<HTMLElement>(root, `#${name}-proof`)
+    const reveal = find<HTMLElement>(root, `#${name}-reveal`)
+    const status = find<HTMLElement>(root, `#${name}-status`)
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
     const answers = Array.from(
       root.querySelectorAll<HTMLButtonElement>(
-        `#${name}-choices button[data-choice]:not([data-choice="skip"])»,
+        `#${name}-choices button[data-choice]:not([data-choice="skip"])`,
       ),
     )
     const answerAfterMs = 2000
@@ -135,7 +135,14 @@ const dots = Array.from({ length: count }, (_, index) => {
     const choices = bindListenerChoice(root, name, (value) => {
       if (value === "skip") {
         stop()
+        choices.reset()
+        for (const button of answers) button.disabled = true
+        canAnswer = false
+        turningElapsed = 0
+        turningBeforeProof = false
         proof.hidden = true
+        proof.setAttribute("aria-pressed", "false")
+        proof.textContent = "Freeze rotation to check"
         proofText.hidden = true
         status.textContent = "Moving patterns skipped. The explanation is below."
       } else {
@@ -155,7 +162,7 @@ const dots = Array.from({ length: count }, (_, index) => {
       choices.reset()
       for (const button of answers) button.disabled = true
       proof.hidden = false
-      proof.disabled = false
+      proof.disabled = true
       proof.setAttribute("aria-pressed", "false")
       proof.textContent = "Freeze rotation to check"
       proofText.hidden = true
@@ -168,9 +175,9 @@ const dots = Array.from({ length: count }, (_, index) => {
     const render = () => {
       dots.forEach((dot, index) => {
         const hue = (index * 137.5 + elapsed / 25) % 360
-        dot.setAttribute("fill", `hsl(${hue.toFixed(1)} 65% 55%)»)
+        dot.setAttribute("fill", `hsl(${hue.toFixed(1)} 65% 55%)`)
       })
-      ring.setAttribute("transform", `rotate(${rotation.toFixed(2)} 280 190)»)
+      ring.setAttribute("transform", `rotate(${rotation.toFixed(2)} 280 190)`)
     }
     const tick = (now: number) => {
       if (!running) return
