@@ -16,8 +16,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { pr: 138, branch: video/flash-beep }
-          - { pr: 139, branch: video/stream-bounce }
+          - { pr: 140, branch: video/kinetic-depth }
+          - { pr: 141, branch: video/motion-aftereffect }
+          - { pr: 142, branch: video/motion-silencing }
     steps:
       - uses: actions/checkout@v4
         with:
@@ -100,4 +101,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Recheck sound-flash after extracting shared output clock; test stream-bounce alignment
+# Validate rebase heads 140–142 and browser interactions
