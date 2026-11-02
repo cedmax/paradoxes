@@ -4,7 +4,7 @@ import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure
 import Coin from "./magic-octagon/Coin.astro"
 import Narration from "./magic-octagon/Narration.astro"
 
-import { angles, labels, symbols } from "~/scripts/magic-octagon-coin"
+import { labels, symbols } from "~/scripts/magic-octagon-coin"
 
 const corners = labels.map((label, index) => {
   const direction = -Math.PI / 2 + (index * Math.PI) / 4
@@ -17,7 +17,6 @@ const corners = labels.map((label, index) => {
     top: (((145 + 112 * Math.sin(direction)) / 310) * 100).toFixed(3),
   }
 })
-const previewAngles = angles
 ---
 
 <!-- The explanation is visible without JavaScript. Activate the prediction gate
@@ -133,7 +132,7 @@ const previewAngles = angles
     <button
       id="magic-octagon-reveal"
       type="button"
-      aria-controls="magic-octagon-puzzle-scrub magic-octagon-variations magic-octagon-why"
+      aria-controls="magic-octagon-puzzle-scrub"
       class="btn self-center disabled:cursor-not-allowed disabled:opacity-50"
       disabled
     >
@@ -170,97 +169,6 @@ const previewAngles = angles
     </div>
   </section>
 
-  <section
-    id="magic-octagon-variations"
-    class="flex flex-col gap-4 border-t-2 border-ink pt-6"
-    aria-labelledby="magic-octagon-variations-heading"
-    hidden
-  >
-    <h2 id="magic-octagon-variations-heading" class="text-xl font-bold">
-      Turn it at different angles
-    </h2>
-    <div class="flex flex-col gap-6">
-      {[previewAngles.slice(0, 4), previewAngles.slice(4)].map((angles, rowIndex) => (
-        <Fragment>
-          {rowIndex === 1 && (
-            <div class="hidden w-full flex-col items-center gap-2 md:flex">
-              <label for="magic-octagon-variants-shared" class="text-base font-bold">
-                Flip all eight coins
-              </label>
-              <input
-                id="magic-octagon-variants-shared"
-                class="w-full max-w-md accent-current"
-                type="range"
-                min="0"
-                max="180"
-                step="1"
-                value="0"
-                aria-describedby="magic-octagon-variants-shared-state"
-                aria-valuetext="Front · 0°"
-              />
-              <div class="flex w-full max-w-md justify-between text-sm">
-                <span>Front</span>
-                <span>Flipped</span>
-              </div>
-              <p id="magic-octagon-variants-shared-state" class="text-center text-sm">
-                Front · 0°
-              </p>
-            </div>
-          )}
-          <div
-            id={rowIndex === 1 ? "magic-octagon-more-rotations" : undefined}
-            class:list={[
-              "grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-4 md:grid-cols-4",
-              rowIndex === 1 ? "hidden md:grid" : "grid",
-            ]}
-          >
-            {angles.map((angle) => (
-              <div class="flex min-w-0 flex-col gap-2">
-                <p class="text-center text-base font-bold">{angle}° rotation</p>
-                <Coin
-                  id={`variant-${angle}`}
-                  title={`Octagonal coin rotated ${angle} degrees, with adjustable flip`}
-                  desc={`A solid octagonal coin rotated ${angle} degrees around its centre, with a fixed red Y flip axis.`}
-                  initialTurn={angle}
-                  oversized
-                />
-                <div class="flex flex-col gap-2 md:hidden">
-                  <label for={`magic-octagon-variant-${angle}`} class="text-sm font-bold">
-                    Flip this coin
-                  </label>
-                  <input
-                    id={`magic-octagon-variant-${angle}`}
-                    data-magic-variant={angle}
-                    class="w-full accent-current"
-                    type="range"
-                    min="0"
-                    max="180"
-                    step="1"
-                    value="0"
-                    aria-describedby={`magic-octagon-variant-state-${angle}`}
-                    aria-valuetext="Front · 0°"
-                  />
-                  <p id={`magic-octagon-variant-state-${angle}`} class="text-center text-sm">
-                    Front · 0°
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Fragment>
-      ))}
-      <button
-        id="magic-octagon-show-more"
-        type="button"
-        class="btn-ghost self-center md:hidden"
-        aria-controls="magic-octagon-more-rotations"
-        aria-expanded="false"
-      >
-        Show four more rotations
-      </button>
-    </div>
-  </section>
-
   <Fragment slot="caption">
     Redrawn for this site after David Masunaga’s Magic Octagon demonstration, documented in{" "}
     <ExternalLink href="https://blog.mrmeyer.com/2013/the-magic-octagon/" after=".">
@@ -291,16 +199,8 @@ const previewAngles = angles
     const puzzleSlider = find<HTMLInputElement>(root, "#magic-octagon-puzzle-slider")
     const puzzleSliderState = find<HTMLElement>(root, "#magic-octagon-puzzle-slider-state")
     const why = find<HTMLElement>(document.documentElement, "[data-illusion-explanation]")
-    const variations = find<HTMLElement>(root, "#magic-octagon-variations")
-    const variantSliders = Array.from(
-      root.querySelectorAll<HTMLInputElement>("[data-magic-variant]"),
-    )
-    const sharedVariantsSlider = find<HTMLInputElement>(root, "#magic-octagon-variants-shared")
-    const sharedVariantsState = find<HTMLElement>(root, "#magic-octagon-variants-shared-state")
     const reveal = find<HTMLButtonElement>(root, "#magic-octagon-reveal")
     const answer = find<HTMLElement>(root, "#magic-octagon-answer")
-    const showMore = find<HTMLButtonElement>(root, "#magic-octagon-show-more")
-    const moreRotations = find<HTMLElement>(root, "#magic-octagon-more-rotations")
     const resetButton = find<HTMLButtonElement>(root, "#magic-octagon-reset")
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -387,54 +287,6 @@ const previewAngles = angles
       puzzleFrame = requestAnimationFrame(tick)
     }
 
-    const variantUpdates: Array<(degrees: number) => void> = []
-    for (const slider of variantSliders) {
-      const turn = Number(slider.dataset.magicVariant)
-      const svg = find<SVGSVGElement>(root, `[data-magic-coin="variant-${turn}"]`)
-      const state = find<HTMLElement>(root, `#magic-octagon-variant-state-${turn}`)
-      const update = (degrees: number) => {
-        slider.value = String(degrees)
-        drawCoin(svg, turn, degrees)
-        const label = inspectionLabel(degrees)
-        state.textContent = label
-        slider.setAttribute("aria-valuetext", label)
-      }
-      slider.addEventListener("input", () => update(Number(slider.value)))
-      variantUpdates.push(update)
-      update(0)
-    }
-
-    const updateSharedVariants = (degrees: number) => {
-      sharedVariantsSlider.value = String(degrees)
-      const label = inspectionLabel(degrees)
-      sharedVariantsState.textContent = label
-      sharedVariantsSlider.setAttribute("aria-valuetext", label)
-      for (const update of variantUpdates) update(degrees)
-    }
-    sharedVariantsSlider.addEventListener("input", () => {
-      updateSharedVariants(Number(sharedVariantsSlider.value))
-    })
-
-    // Switching from mobile to desktop synchronises the eight views.
-    const desktopVariants = window.matchMedia("(min-width: 48rem)")
-    desktopVariants.addEventListener("change", (event) => {
-      if (event.matches) updateSharedVariants(Number(sharedVariantsSlider.value))
-    })
-    updateSharedVariants(0)
-
-    let moreExpanded = false
-    const updateMore = () => {
-      moreRotations.classList.toggle("hidden", !moreExpanded)
-      moreRotations.classList.toggle("grid", moreExpanded)
-      showMore.setAttribute("aria-expanded", String(moreExpanded))
-      showMore.textContent = moreExpanded ? "Show fewer rotations" : "Show four more rotations"
-    }
-    showMore.addEventListener("click", () => {
-      moreExpanded = !moreExpanded
-      updateMore()
-    })
-    updateMore()
-
     puzzleSlider.addEventListener("input", () => {
       cancelAnimationFrame(puzzleFrame)
       updatePuzzleFlip(Number(puzzleSlider.value))
@@ -448,7 +300,6 @@ const previewAngles = angles
       choice.hidden = true
       reveal.hidden = true
       puzzleScrub.hidden = false
-      variations.hidden = false
       why.dataset.revealed = "true"
       answer.focus()
       animatePuzzleReveal()
@@ -456,7 +307,6 @@ const previewAngles = angles
 
     resetButton.addEventListener("click", () => {
       cancelAnimationFrame(puzzleFrame)
-      variations.hidden = true
       puzzleScrub.hidden = true
       delete why.dataset.revealed
       selectors.hidden = false
@@ -472,9 +322,6 @@ const previewAngles = angles
       choice.textContent = "No corner selected."
       reveal.disabled = true
       updatePuzzleFlip(0)
-      updateSharedVariants(0)
-      moreExpanded = false
-      updateMore()
       guesses[0]?.focus()
     })
 
