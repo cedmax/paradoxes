@@ -101,4 +101,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Validate rebase heads 140–142 and browser interactions
+# Validate gated kinetic-depth reveal and elapsed-time animation on current 140–142 heads

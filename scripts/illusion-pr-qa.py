@@ -153,15 +153,41 @@ async def interaction(page, pr):
                 "Stream/bounce paths not revealed")
         print(f"PASS stream/bounce level peak={sample['peak']:.3f}; click onset={sample['firstNonzero'] / sample['rate']:.3f}s; paired answers reset", flush=True)
     elif pr == 140:
-        dots = page.locator("#kinetic-depth-effect-dots circle[data-index]")
+        prefix = "kinetic-depth-effect"
+        dots = page.locator(f"#{prefix}-dots circle[data-index]")
+        slider = page.locator(f"#{prefix}-angle")
+        play = page.locator(f"#{prefix}-play")
+        proof = page.locator(f"#{prefix}-guide-toggle")
+        answer = page.locator(f'#{prefix}-choices [data-choice="sphere"]')
+        readout = page.locator(f"#{prefix}-readout")
         require(await dots.count() == 108, "Kinetic depth must have 108 seeded dots")
         ys = await dots.evaluate_all("(els) => new Set(els.map(e => Number(e.getAttribute('cy')).toFixed(2))).size")
         require(ys > 75, f"Kinetic depth looks row-structured: {ys} distinct y levels")
+        require(await answer.is_disabled(), "Kinetic answer must wait for movement")
+        require(await proof.is_disabled(), "Depth cues must wait for a judgement")
+        require(await readout.get_attribute("aria-live") != "polite",
+                "Angle readout must not announce every animation frame")
         first = await dots.first.get_attribute("cx")
-        await page.locator("#kinetic-depth-effect-angle").evaluate("(el) => { el.value = '75'; el.dispatchEvent(new Event('input', { bubbles: true })) }")
+        await play.click()
+        await page.wait_for_timeout(1000)
+        require(await answer.is_disabled(), "Kinetic judgement unlocked before a meaningful rotation")
+        require(await proof.is_disabled(), "Kinetic proof unlocked before an answer")
+        await page.wait_for_timeout(2400)
+        require(await answer.is_enabled(), "Kinetic judgement did not unlock after 90 degrees")
+        rotation = float(await slider.input_value())
+        require(88 <= rotation <= 125, f"Kinetic playback speed drifted from 30 degrees/s: {rotation}")
         require(await dots.first.get_attribute("cx") != first, "Kinetic dot did not move")
-        await page.locator("#kinetic-depth-effect-guide-toggle").click()
-        require(await dots.first.get_attribute("fill") != "var(--color-stroke)", "Depth proof did not recolour dots")
+        await answer.click()
+        require(await play.inner_text() == "Play", "Answer must stop kinetic motion")
+        require(await proof.is_enabled(), "Kinetic judgement did not unlock the depth proof")
+        await proof.click()
+        require(await dots.first.get_attribute("fill") != "var(--color-stroke)",
+                "Depth proof did not recolour dots")
+        require("may reverse" in await page.locator(f"#{prefix}-proof").inner_text(),
+                "Depth proof does not acknowledge rotation ambiguity")
+        await slider.evaluate("(el) => { el.value = '180'; el.dispatchEvent(new Event('input', { bubbles: true })) }")
+        require(await slider.get_attribute("aria-valuetext") == "Rotation 180 degrees",
+                "Manual slider angle is not accessible")
     elif pr == 141:
         skip = page.locator('#motion-aftereffect-choices [data-choice="skip"]')
         require(await skip.is_visible() and await skip.is_enabled(), "Motion aftereffect opt-out unavailable before Start")
@@ -355,6 +381,30 @@ async def run(pr):
                 require(response is not None and response.status == 200, "Latency test page failed to load")
                 await compensated_flash_interaction(compensated)
                 await compensated.close()
+            if pr == 140:
+                reduced_page = await browser.new_page(
+                    viewport={"width": width, "height": 900 if width == 1280 else 780},
+                    device_scale_factor=1,
+                    reduced_motion="reduce",
+                )
+                response = await reduced_page.goto(f"{BASE}/entries/{slug}/", wait_until="networkidle", timeout=45000)
+                require(response is not None and response.status == 200, "Reduced-motion kinetic page failed")
+                slider = reduced_page.locator("#kinetic-depth-effect-angle")
+                play = reduced_page.locator("#kinetic-depth-effect-play")
+                answer = reduced_page.locator('#kinetic-depth-effect-choices [data-choice="sphere"]')
+                proof = reduced_page.locator("#kinetic-depth-effect-guide-toggle")
+                require(await play.is_disabled(), "Kinetic autoplay available under reduced motion")
+                require(await answer.is_disabled(), "Kinetic answer enabled without a manual rotation")
+                await slider.focus()
+                await slider.press("ArrowRight")
+                require(await slider.get_attribute("aria-valuetext") == "Rotation 1 degrees",
+                        "Kinetic keyboard slider readout was not updated")
+                await slider.evaluate("(el) => { el.value = '100'; el.dispatchEvent(new Event('input', { bubbles: true })) }")
+                require(await answer.is_enabled(), "Manual kinetic rotation did not unlock answers")
+                await answer.click()
+                require(await proof.is_enabled(), "Manual kinetic judgement did not unlock proof")
+                print(f"PASS kinetic reduced motion at {width}px; keyboard slider and gated reveal", flush=True)
+                await reduced_page.close()
             if pr == 137:
                 reduced_page = await browser.new_page(
                     viewport={"width": width, "height": 900 if width == 1280 else 780},
