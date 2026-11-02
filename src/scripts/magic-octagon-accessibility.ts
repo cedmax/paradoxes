@@ -18,7 +18,7 @@ const describe = (turn: number, flip: number, marked: boolean) => {
   const cosFlip = Math.cos((flip * Math.PI) / 180)
   const degrees = Math.round(flip)
   if (isEdgeOn(flip)) {
-    return degrees + " degrees. Edge-on; neither face is visible."
+    return `${degrees} degrees. Edge-on; neither face is visible.`
   }
 
   const front = cosFlip > 0
@@ -27,25 +27,18 @@ const describe = (turn: number, flip: number, marked: boolean) => {
   const arrow = directions[position(arrowX, arrowY)]
   const markerX = Math.sin(radians) * cosFlip
   const markerY = -Math.cos(radians)
-  return (
-    degrees +
-    " degrees. " +
-    (front ? "Front" : "Flipped") +
-    " face; arrow points " +
-    arrow +
-    (marked ? "; marked corner at " + corners[position(markerX, markerY)] : "") +
-    "."
-  )
+  const markedCorner = marked ? `; marked corner at ${corners[position(markerX, markerY)]}` : ""
+  return `${degrees} degrees. ${front ? "Front" : "Flipped"} face; arrow points ${arrow}${markedCorner}.`
+
 }
 
 const coinDescriptions = new WeakMap<Element, string>()
 const updateCoinDescription = (id: string, turn: number, flip: number, marked: boolean) => {
-  const svg = document.querySelector<SVGSVGElement>('[data-magic-coin="' + id + '"]')
+  const svg = document.querySelector<SVGSVGElement>(`[data-magic-coin="${id}"]`)
   const desc = svg?.querySelector("desc")
   if (!desc) return
   if (!coinDescriptions.has(desc)) coinDescriptions.set(desc, desc.textContent?.trim() ?? "")
-  desc.textContent =
-    coinDescriptions.get(desc) + " Current view: " + describe(turn, flip, marked)
+  desc.textContent = `${coinDescriptions.get(desc)} Current view: ${describe(turn, flip, marked)}`
 }
 
 const update = (slider: HTMLInputElement, updateGraphicDescription: boolean) => {
@@ -63,11 +56,7 @@ const update = (slider: HTMLInputElement, updateGraphicDescription: boolean) => 
     spoken = describe(45, degrees, false)
     descriptions = [["puzzle", 45, degrees, false]]
   } else if (id === "magic-octagon-proof-slider") {
-    spoken =
-      "First view: " +
-      describe(45, degrees, true) +
-      " Second view: " +
-      describe(45, 180 - degrees, true)
+    spoken = `First view: ${describe(45, degrees, true)} Second view: ${describe(45, 180 - degrees, true)}`
     descriptions = [
       ["proof-front", 45, degrees, true],
       ["proof-flipped", 45, 180 - degrees, true],
@@ -78,9 +67,9 @@ const update = (slider: HTMLInputElement, updateGraphicDescription: boolean) => 
   ) {
     const marked = id === "magic-octagon-proof-variants-shared"
     const face = isEdgeOn(degrees) ? "Edge-on" : degrees < 90 ? "Front faces" : "Flipped faces"
-    spoken = degrees + " degrees. " + face + "; all eight coins turn together."
+    spoken = `${degrees} degrees. ${face}; all eight coins turn together.`
     descriptions = angles.map((angle) => [
-      (marked ? "proof-variant-" : "variant-") + angle,
+      `${marked ? "proof-variant-" : "variant-"}${angle}`,
       angle,
       degrees,
       marked,
@@ -93,7 +82,7 @@ const update = (slider: HTMLInputElement, updateGraphicDescription: boolean) => 
     const turn = Number(match[1])
     const marked = Boolean(proofMatch)
     spoken = describe(turn, degrees, marked)
-    descriptions = [[(marked ? "proof-variant-" : "variant-") + turn, turn, degrees, marked]]
+    descriptions = [[`${marked ? "proof-variant-" : "variant-"}${turn}`, turn, degrees, marked]]
   }
 
   slider.setAttribute("aria-valuetext", spoken)
