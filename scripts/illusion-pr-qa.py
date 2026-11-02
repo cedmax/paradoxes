@@ -99,10 +99,40 @@ async def interaction(page, pr):
         flashes = len([c for c in changes if c["colour"] == "var(--color-series-gold)"])
         require(flashes == previous + 1, f"Rapid replay produced spurious flashes: {changes}")
     elif pr == 139:
+        # Inspect the actual synthesised PCM handed to Web Audio. Keep this
+        # independent from subjective listening or a physical-device claim.
+        await page.evaluate("""() => {
+          window.__bounceSound = null
+          const copy = AudioBuffer.prototype.copyToChannel
+          AudioBuffer.prototype.copyToChannel = function (samples, ...rest) {
+            if (samples.length > 50000) {
+              let peak = 0
+              let firstNonzero = -1
+              for (let i = 0; i < samples.length; i++) {
+                const abs = Math.abs(samples[i])
+                if (abs > peak) peak = abs
+                if (firstNonzero === -1 && abs > 0.0001) firstNonzero = i
+              }
+              window.__bounceSound = {
+                peak, firstNonzero, rate: this.sampleRate,
+                count: samples.length
+              }
+            }
+            return copy.call(this, samples, ...rest)
+          }
+        }""")
+        await page.locator("#stream-bounce-illusion-sound").click()
+        sample = await page.evaluate("window.__bounceSound")
+        require(sample is not None, "No stream/bounce PCM created by click playback")
+        require(0.25 <= sample["peak"] < 0.31, f"Click peak should be louder and unclipped: {sample}")
+        require(abs(sample["firstNonzero"] / sample["rate"] - 0.85) < 0.005,
+                f"Click onset should remain at centre crossing: {sample}")
+        await page.wait_for_timeout(1800)
         await page.locator('#stream-bounce-illusion-choices [data-choice="skip"]').click()
         require(await page.locator("#stream-bounce-illusion-reveal").is_visible(), "Stream/bounce proof unavailable")
         await page.locator("#stream-bounce-illusion-guide-toggle").click()
         require(await page.locator("#stream-bounce-illusion-guides").get_attribute("visibility") == "visible", "Stream/bounce paths not revealed")
+        print(f"PASS click PCM peak {sample['peak']:.3f}, onset {sample['firstNonzero'] / sample['rate']:.3f}s", flush=True)
     elif pr == 140:
         dots = page.locator("#kinetic-depth-effect-dots circle[data-index]")
         require(await dots.count() == 108, "Kinetic depth must have 108 seeded dots")
