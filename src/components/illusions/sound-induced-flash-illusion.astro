@@ -10,8 +10,8 @@ import { illusionSurface, series, stroke } from "~/data/palette"
   lead="Look at the dot. Play each version, then say how many flashes you saw."
 >
   <p class="text-base">
-    Turn your volume down first. Each version shows one brief colour change. One has one beep;
-    the other has two. The effect can vary across screens and listeners.
+    Turn your volume down first. Look at the disc while playing both versions, first with one
+    beep, then with two. The effect can vary across screens and listeners.
   </p>
   <SvgFigure
     name="sound-induced-flash-illusion"
@@ -47,7 +47,7 @@ import { illusionSurface, series, stroke } from "~/data/palette"
   </p>
   <ListenerChoice
     name="sound-induced-flash-illusion"
-    question="How many flashes did you see in the last version?"
+    question="How many flashes did you see with two beeps?"
     options={[
       { value: "one", label: "One" },
       { value: "two", label: "Two" },
@@ -86,16 +86,60 @@ import { illusionSurface, series, stroke } from "~/data/palette"
         ? "The text below describes the stimulus, without claiming to recreate the experience."
         : "The flash occurred once, regardless of how many you saw."
     })
-    let timer: ReturnType<typeof setTimeout> | undefined
-    let reset: ReturnType<typeof setTimeout> | undefined
     const neutral = disc.getAttribute("fill") ?? ""
-    const flash = () => {
-      disc.setAttribute("fill", "var(--color-series-gold)")
-      reset = setTimeout(() => disc.setAttribute("fill", neutral), 30)
+    const flashOffset = 0.16 // seconds from audio start
+    const flashDurationMs = 30 // target visible duration, rounded to display frames
+    let frame = 0
+    let trial = 0
+    let playedOne = false
+    let playedTwo = false
+
+    const resetFlash = () => {
+      cancelAnimationFrame(frame)
+      disc.setAttribute("fill", neutral)
     }
+
+    // Map an AudioContext clock position to the estimated time at the output device.
+    // getOutputTimestamp includes output-device timing; the fallback uses reported
+    // processing and output latency. Neither can calibrate the actual screen or headset.
+    const outputTime = (audio: AudioContext, contextTime: number) => {
+      const timestamp = audio.getOutputTimestamp?.()
+      if (
+        timestamp &&
+        Number.isFinite(timestamp.contextTime) &&
+        timestamp.contextTime > 0 &&
+        Number.isFinite(timestamp.performanceTime) &&
+        timestamp.performanceTime > 0
+      ) {
+        return timestamp.performanceTime + (contextTime - timestamp.contextTime) * 1000
+      }
+      const latency = Math.max(0, audio.baseLatency || 0) + Math.max(0, audio.outputLatency || 0)
+      return performance.now() + (contextTime - audio.currentTime + latency) * 1000
+    }
+
+    const scheduleFlash = (audio: AudioContext, startedAt: number, currentTrial: number) => {
+      const audioFlashTime = startedAt + flashOffset
+      let firstVisibleFrame: number | undefined
+      const step = (now: number) => {
+        if (currentTrial !== trial) return
+        if (firstVisibleFrame === undefined) {
+          if (now >= outputTime(audio, audioFlashTime)) {
+            disc.setAttribute("fill", "var(--color-series-gold)")
+            firstVisibleFrame = now
+          }
+        } else if (now - firstVisibleFrame >= flashDurationMs) {
+          disc.setAttribute("fill", neutral)
+          return
+        }
+        frame = requestAnimationFrame(step)
+      }
+      frame = requestAnimationFrame(step)
+    }
+
     const sound = (beeps: number, rate: number) => {
       const samples = new Float32Array(Math.round(0.36 * rate))
-      const starts = beeps === 1 ? [0.16] : [0.115, 0.205]
+      // Each 14 ms beep is centred at 115/205 ms (or 160 ms for the baseline).
+      const starts = beeps === 1 ? [0.153] : [0.108, 0.198]
       for (const start of starts) {
         const count = Math.round(0.014 * rate)
         const offset = Math.round(start * rate)
@@ -108,15 +152,20 @@ import { illusionSurface, series, stroke } from "~/data/palette"
     }
     const play = async (beeps: number) => {
       if (!audioAvailable()) return
-      clearTimeout(timer)
-      clearTimeout(reset)
-      disc.setAttribute("fill", neutral)
+      trial++
+      const currentTrial = trial
+      resetFlash()
       stopAudio()
-      const played = await playSamples((rate) => sound(beeps, rate))
-      if (!played) return
-      status.textContent = `Playing one flash with ${beeps} ${beeps === 1 ? "beep" : "beeps"}.`
-      choices.enable()
-      timer = setTimeout(flash, 160)
+      const played = await playSamples((rate) => sound(beeps, rate), {
+        onStart: (audio, startedAt) => scheduleFlash(audio, startedAt, currentTrial),
+      })
+      if (!played || currentTrial !== trial) return
+      if (beeps === 1) playedOne = true
+      else playedTwo = true
+      status.textContent = playedOne && playedTwo
+        ? "Both versions played. Choose how many flashes you saw with two beeps."
+        : `Started the ${beeps === 1 ? "one-beep" : "two-beep"} version. Try the other one too.`
+      if (playedOne && playedTwo) choices.enable()
     }
     if (audioAvailable()) {
       one.addEventListener("click", () => void play(1))
@@ -128,9 +177,8 @@ import { illusionSurface, series, stroke } from "~/data/palette"
     }
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
-        clearTimeout(timer)
-        clearTimeout(reset)
-        disc.setAttribute("fill", neutral)
+        trial++
+        resetFlash()
       }
     })
   }
