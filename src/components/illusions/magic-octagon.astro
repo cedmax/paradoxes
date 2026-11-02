@@ -113,6 +113,7 @@ const corners = labels.map((label, index) => {
           <button
             type="button"
             data-magic-guess={label}
+            data-answer={label}
             data-selected="false"
             role="radio"
             aria-checked="false"
@@ -130,7 +131,8 @@ const corners = labels.map((label, index) => {
       No corner selected.
     </p>
     <button
-      id="magic-octagon-reveal"
+      id="magic-octagon-guide-toggle"
+      aria-pressed="false"
       type="button"
       aria-controls="magic-octagon-puzzle-scrub"
       class="btn self-center disabled:cursor-not-allowed disabled:opacity-50"
@@ -199,7 +201,7 @@ const corners = labels.map((label, index) => {
     const puzzleSlider = find<HTMLInputElement>(root, "#magic-octagon-puzzle-slider")
     const puzzleSliderState = find<HTMLElement>(root, "#magic-octagon-puzzle-slider-state")
     const why = find<HTMLElement>(document.documentElement, "[data-illusion-explanation]")
-    const reveal = find<HTMLButtonElement>(root, "#magic-octagon-reveal")
+    const reveal = find<HTMLButtonElement>(root, "#magic-octagon-guide-toggle")
     const answer = find<HTMLElement>(root, "#magic-octagon-answer")
     const resetButton = find<HTMLButtonElement>(root, "#magic-octagon-reset")
 
@@ -299,6 +301,7 @@ const corners = labels.map((label, index) => {
       selectors.hidden = true
       choice.hidden = true
       reveal.hidden = true
+      reveal.setAttribute("aria-pressed", "true")
       puzzleScrub.hidden = false
       why.dataset.revealed = "true"
       answer.focus()
@@ -312,6 +315,7 @@ const corners = labels.map((label, index) => {
       selectors.hidden = false
       choice.hidden = false
       reveal.hidden = false
+      reveal.setAttribute("aria-pressed", "false")
       puzzleSlider.disabled = true
       guess = ""
       for (const option of guesses) {
