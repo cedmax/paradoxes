@@ -44,14 +44,36 @@ Do not change any existing argument entry to the new format.
 1. Prefer the **original figure or recording**, when its actual reuse licence permits
    the intended site use and it still supports a faithful demonstration or reveal.
    Read the rights statement, choose a lossless or unaltered source where possible,
-   credit its creator and link to the original and licence. **Every media asset
-   used by the site must be self-hosted and stored in the repository**: no remote
-   images, audio, videos, iframes or hotlinked proof media, even on PR previews.
-   Source and licence links are ordinary citations and may point elsewhere.
-   If the original bytes cannot be obtained, do not silently hotlink or replace
-   them with an approximation; leave the entry pending. Do not infer permission
-   merely because an asset is visible online. When reuse is not permitted, or a redraw materially
-   improves the demonstration, create our own and still credit the originator.
+   credit its creator and link to the original and licence. Images, audio and
+   animations must be stored in the repository and served locally; never hotlink
+   them or their proof media, even in PR previews. Video embeds are the only
+   exception, subject to every condition below. Source and licence links may
+   point elsewhere. If original media cannot be used legitimately, leave the
+   entry pending or make an original redraw or synthesis, crediting the originator.
+   Do not infer permission merely because an asset is visible online.
+
+   A video may be embedded only when **all** of these conditions hold:
+
+   (a) It shows a physical object, real demonstration or live action that cannot be
+   faithfully redrawn or synthesised.
+   (b) The upload is the rights holder's own (creator, publisher or institution), not
+   a re-upload. Confirm the uploader with YouTube or Vimeo oEmbed and document the
+   rights basis.
+   (c) No third-party request occurs before the visitor clicks a locally hosted poster.
+   After the click, playback uses `youtube-nocookie.com` or Vimeo with `dnt=1`,
+   without autoplay.
+   (d) The poster does not reveal the effect. When a prediction or judgement is requested,
+   the revealing part of the video must come after the visitor makes it.
+   (e) The figure contains a text description of what the video shows and a plain
+   link to the original video as a fallback.
+   (f) The provider makes the video available at 720p or higher from an HD source,
+   not an upscaled standard-definition original. The locally hosted poster must
+   be at least 1280×720 and preserve the effect without cropping.
+
+   Verify the highest available video resolution in the provider's player or API (not
+   from a thumbnail), and record it, the oEmbed uploader and the rights basis in the PR.
+   Do not download or self-host video unless its licence explicitly permits reuse.
+
 2. Keep each implementation in `src/components/illusions/<slug>.astro`, using the
    existing illustration kit for figures and controls. The initial presentation
    should communicate the effect without repeating the same visible setup in prose.
@@ -103,10 +125,12 @@ Do not change any existing argument entry to the new format.
 
 ## Review process
 
-- Check all rendered media sources for remote runtime dependencies. External
-  links are allowed only as references, citations or intentional navigation.
-  Vendor the exact binary assets and commit them before merge. A vendor tool
-  should validate provenance and dimensions and not redownload existing assets.
+- Check all rendered media sources for remote runtime dependencies. Images, audio,
+  animations and video posters must be locally hosted and committed before merge.
+  Only a video meeting every condition in step 1 may request third-party resources,
+  and only after a click. Confirm zero pre-click requests in the browser network
+  log. Vendor tools should validate provenance and dimensions without redownloading
+  existing assets. External source and licence links remain ordinary links.
 - Prototype one figure, inspect illusion strength on desktop and ~350px mobile **before
   triggering any reveal**, try every control with mouse and keyboard, and check the
   nonvisual proof before generalising. Compare the result with the original illusion
