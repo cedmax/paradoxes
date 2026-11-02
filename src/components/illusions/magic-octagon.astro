@@ -30,10 +30,12 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
 
 <IllustrationFigure name="magic-octagon" lead="Where will the arrow point when flipped?">
   <section class="flex flex-col gap-3" aria-labelledby="magic-octagon-coin-heading">
-    <h2 id="magic-octagon-coin-heading" class="text-xl font-bold">The coin</h2>
+    <h2 id="magic-octagon-coin-heading" class="text-xl font-bold">
+      The coin
+    </h2>
     <p class="text-base">
-      One face has an up arrow; the other has a left arrow. The dashed red line
-      marks the vertical flip axis.
+      One face has an up arrow; the other has a left arrow. The dashed red line marks the
+      vertical flip axis.
     </p>
 
     <div class="mx-auto w-full max-w-xs">
@@ -72,10 +74,12 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
     class="flex flex-col gap-4 border-t-2 border-ink pt-6"
     aria-labelledby="magic-octagon-puzzle-heading"
   >
-    <h2 id="magic-octagon-puzzle-heading" tabindex="-1" class="text-xl font-bold">Try the puzzle</h2>
+    <h2 id="magic-octagon-puzzle-heading" tabindex="-1" class="text-xl font-bold">
+      Try the puzzle
+    </h2>
     <p class="text-base">
-      The front is turned <strong>45° clockwise</strong>. After a flip about
-      the red Y axis, which corner will the arrow on the other face point to?
+      The front is turned <strong>45° clockwise</strong>. After a flip about the red Y axis,
+      which corner will the arrow on the other face point to?
     </p>
     <div class="relative mx-auto w-full max-w-xs">
       <Coin
@@ -137,10 +141,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
           <span>Front</span>
           <span>Flipped</span>
         </div>
-        <p
-          id="magic-octagon-puzzle-slider-state"
-          class="text-center text-base"
-        >
+        <p id="magic-octagon-puzzle-slider-state" class="text-center text-base">
           Front · 0°
         </p>
       </div>
@@ -183,10 +184,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
                 <span>Front</span>
                 <span>Flipped</span>
               </div>
-              <p
-                id="magic-octagon-variants-shared-state"
-                class="text-center text-sm"
-              >
+              <p id="magic-octagon-variants-shared-state" class="text-center text-sm">
                 Front · 0°
               </p>
             </div>
@@ -204,15 +202,16 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
                 <Coin
                   id={"variant-" + angle}
                   title={"Octagonal coin rotated " + angle + " degrees, with adjustable flip"}
-                  desc={"A solid octagonal coin rotated " + angle + " degrees around its centre, with a fixed red Y flip axis."}
+                  desc={
+                    "A solid octagonal coin rotated " +
+                    angle +
+                    " degrees around its centre, with a fixed red Y flip axis."
+                  }
                   initialTurn={angle}
                   oversized
                 />
                 <div class="flex flex-col gap-2 md:hidden">
-                  <label
-                    for={"magic-octagon-variant-" + angle}
-                    class="text-sm font-bold"
-                  >
+                  <label for={"magic-octagon-variant-" + angle} class="text-sm font-bold">
                     Flip this coin
                   </label>
                   <input
@@ -227,10 +226,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
                     aria-describedby={"magic-octagon-variant-state-" + angle}
                     aria-valuetext="Front · 0°"
                   />
-                  <p
-                    id={"magic-octagon-variant-state-" + angle}
-                    class="text-center text-sm"
-                  >
+                  <p id={"magic-octagon-variant-state-" + angle} class="text-center text-sm">
                     Front · 0°
                   </p>
                 </div>
@@ -251,7 +247,6 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
     </div>
   </section>
 
-
   <Fragment slot="caption">
     Redrawn for this site after the Magic Octagon demonstrated by David Masunaga in
     <ExternalLink href="https://blog.mrmeyer.com/2013/the-magic-octagon/" after=".">
@@ -263,7 +258,12 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
 
 <script>
   import { find, illustrationRoot } from "~/scripts/illustration"
-  import { directionIndexes, drawCoin, inspectionLabel, labels } from "~/scripts/magic-octagon-coin"
+  import {
+    directionIndexes,
+    drawCoin,
+    inspectionLabel,
+    labels,
+  } from "~/scripts/magic-octagon-coin"
 
   const root = illustrationRoot("magic-octagon")
   if (root) {
@@ -282,14 +282,8 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
     const variantSliders = Array.from(
       root.querySelectorAll<HTMLInputElement>("[data-magic-variant]"),
     )
-    const sharedVariantsSlider = find<HTMLInputElement>(
-      root,
-      "#magic-octagon-variants-shared",
-    )
-    const sharedVariantsState = find<HTMLElement>(
-      root,
-      "#magic-octagon-variants-shared-state",
-    )
+    const sharedVariantsSlider = find<HTMLInputElement>(root, "#magic-octagon-variants-shared")
+    const sharedVariantsState = find<HTMLElement>(root, "#magic-octagon-variants-shared-state")
     const reveal = find<HTMLButtonElement>(root, "#magic-octagon-reveal")
     const answer = find<HTMLElement>(root, "#magic-octagon-answer")
     const showMore = find<HTMLButtonElement>(root, "#magic-octagon-show-more")
@@ -359,14 +353,8 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
     const variantUpdates: Array<(degrees: number) => void> = []
     for (const slider of variantSliders) {
       const turn = Number(slider.dataset.magicVariant)
-      const svg = find<SVGSVGElement>(
-        root,
-        '[data-magic-coin="variant-' + turn + '"]',
-      )
-      const state = find<HTMLElement>(
-        root,
-        "#magic-octagon-variant-state-" + turn,
-      )
+      const svg = find<SVGSVGElement>(root, '[data-magic-coin="variant-' + turn + '"]')
+      const state = find<HTMLElement>(root, "#magic-octagon-variant-state-" + turn)
       const update = (degrees: number) => {
         slider.value = String(degrees)
         drawCoin(svg, turn, degrees)
@@ -420,8 +408,11 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
       if (!guess) return
       const expected = labels[directionIndexes(puzzleAngle).flipped]
       answer.textContent =
-        "You chose " + guess + ". When flipped, the hidden arrow points " +
-        expected + (guess === expected ? " — correct." : ".")
+        "You chose " +
+        guess +
+        ". When flipped, the hidden arrow points " +
+        expected +
+        (guess === expected ? " — correct." : ".")
       selectors.hidden = true
       choice.hidden = true
       reveal.hidden = true
