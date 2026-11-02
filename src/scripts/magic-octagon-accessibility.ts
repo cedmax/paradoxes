@@ -60,28 +60,16 @@ const update = (slider: HTMLInputElement, updateGraphicDescription: boolean) => 
       ["proof-front", 45, degrees, true],
       ["proof-flipped", 45, 180 - degrees, true],
     ]
-  } else if (
-    id === "magic-octagon-variants-shared" ||
-    id === "magic-octagon-proof-variants-shared"
-  ) {
-    const marked = id === "magic-octagon-proof-variants-shared"
+  } else if (id === "magic-octagon-proof-variants-shared") {
     const face = isEdgeOn(degrees) ? "Edge-on" : degrees < 90 ? "Front faces" : "Flipped faces"
-    spoken = `${degrees} degrees. ${face}; all eight coins turn together.`
-    descriptions = angles.map((angle) => [
-      `${marked ? "proof-variant-" : "variant-"}${angle}`,
-      angle,
-      degrees,
-      marked,
-    ])
+    spoken = `${degrees} degrees. ${face}; all eight marked coins turn together.`
+    descriptions = angles.map((angle) => [`proof-variant-${angle}`, angle, degrees, true])
   } else {
-    const proofMatch = /^magic-octagon-proof-variant-(\d+)$/.exec(id)
-    const puzzleMatch = /^magic-octagon-variant-(\d+)$/.exec(id)
-    const match = proofMatch ?? puzzleMatch
+    const match = /^magic-octagon-proof-variant-(\d+)$/.exec(id)
     if (!match) return
     const turn = Number(match[1])
-    const marked = Boolean(proofMatch)
-    spoken = describe(turn, degrees, marked)
-    descriptions = [[`${marked ? "proof-variant-" : "variant-"}${turn}`, turn, degrees, marked]]
+    spoken = describe(turn, degrees, true)
+    descriptions = [[`proof-variant-${turn}`, turn, degrees, true]]
   }
 
   slider.setAttribute("aria-valuetext", spoken)
