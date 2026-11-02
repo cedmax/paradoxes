@@ -1,0 +1,56 @@
+name: Validate individual video stack branch
+
+on:
+  push:
+    branches:
+      - checks/**
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Lint
+        id: lint
+        run: pnpm lint
+        continue-on-error: true
+      - name: Astro check
+        id: astro
+        run: pnpm check
+        continue-on-error: true
+      - name: Prettier
+        id: format
+        run: pnpm exec prettier --check .
+        continue-on-error: true
+      - name: Knip
+        id: knip
+        run: pnpm knip
+        continue-on-error: true
+      - name: Build
+        id: build
+        run: pnpm build
+        continue-on-error: true
+      - name: SEO
+        id: seo
+        run: pnpm check:seo
+        continue-on-error: true
+      - name: Fail if any of six checks failed
+        if: always()
+        run: |
+          if [[ "${{ steps.lint.outcome }}" != "success" ||
+                "${{ steps.astro.outcome }}" != "success" ||
+                "${{ steps.format.outcome }}" != "success" ||
+                "${{ steps.knip.outcome }}" != "success" ||
+                "${{ steps.build.outcome }}" != "success" ||
+                "${{ steps.seo.outcome }}" != "success" ]]; then
+            exit 1
+          fi
