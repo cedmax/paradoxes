@@ -2,7 +2,6 @@
 import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Coin from "./magic-octagon/Coin.astro"
-import { illusionSurface, stroke } from "~/data/palette"
 
 const labels = [
   "up",
@@ -20,16 +19,12 @@ const corners = labels.map((label, index) => {
   return {
     label,
     symbol: symbols[index],
-    left: (50 + (88 / 240) * 100 * Math.cos(direction)).toFixed(3),
-    top: (50 + (88 / 240) * 100 * Math.sin(direction)).toFixed(3),
+    // Put the targets just beyond the coin's eight vertices (radius 112).
+    // Coordinates correspond to the coin's 360 × 310 SVG viewBox.
+    left: (((180 + 125 * Math.cos(direction)) / 360) * 100).toFixed(3),
+    top: (((145 + 125 * Math.sin(direction)) / 310) * 100).toFixed(3),
   }
 })
-const selectorOutline = corners
-  .map(
-    ({ left, top }) =>
-      (Number(left) * 2.4).toFixed(2) + "," + (Number(top) * 2.4).toFixed(2),
-  )
-  .join(" ")
 ---
 
 <IllustrationFigure name="magic-octagon" lead="Where will the arrow point when flipped?">
@@ -79,90 +74,46 @@ const selectorOutline = corners
   >
     <h2 id="magic-octagon-puzzle-heading" class="text-xl font-bold">Try the puzzle</h2>
     <p class="text-base">
-      Start with the front showing. Turn it 45° in either direction, then imagine
-      flipping it around the <strong>fixed red Y axis</strong>. Which corner
-      would the hidden arrow point to?
+      The front has already been turned <strong>45° clockwise</strong>.
+      Imagine flipping the coin about the fixed red Y axis. Which corner
+      will the hidden arrow point to? Choose your answer on the coin.
     </p>
-    <div class="mx-auto w-full max-w-xs">
+    <div
+      class="relative mx-auto w-full max-w-xs"
+      role="group"
+      aria-label="Predict the hidden arrow by choosing one of the eight corners of the coin"
+    >
       <Coin
         id="puzzle"
-        title="Turn the front of the octagonal coin before making a prediction"
-        desc="The blue front arrow can turn 45 degrees clockwise or anticlockwise. A fixed red dashed Y axis shows how the coin would flip. The hidden arrow is not shown until after the prediction."
+        title="Octagonal coin turned 45 degrees clockwise"
+        desc="The blue arrow is already pointing up-right, after a 45-degree clockwise turn. A fixed red dashed Y axis marks how the coin will flip. Choose one of the eight corners around the coin to predict the direction of the hidden arrow."
+        initialTurn={45}
       />
-    </div>
-    <div
-      class="flex flex-wrap items-center justify-center gap-3"
-      role="group"
-      aria-label="Choose a 45-degree turn"
-    >
-      <button
-        type="button"
-        class="btn-toggle"
-        id="magic-octagon-puzzle-left"
-        aria-pressed="false"
-      >
-        ↶ 45° anticlockwise
-      </button>
-      <button
-        type="button"
-        class="btn-toggle"
-        id="magic-octagon-puzzle-right"
-        aria-pressed="false"
-      >
-        45° clockwise ↷
-      </button>
-    </div>
-    <p id="magic-octagon-puzzle-status" class="text-center text-base" aria-live="polite">
-      Choose a turn to begin.
-    </p>
-
-    <div id="magic-octagon-prediction" class="flex flex-col gap-4" hidden>
-      <p class="text-center font-bold">
-        After the flip, which corner will the hidden arrow point to?
-      </p>
-      <div
-        class="relative mx-auto size-60"
-        role="group"
-        aria-label="Choose one of eight corners for your prediction"
-      >
-        <svg
-          viewBox="0 0 240 240"
-          class="size-full"
-          aria-hidden="true"
+      {corners.map(({ label, symbol, left, top }) => (
+        <button
+          type="button"
+          data-magic-guess={label}
+          data-selected="false"
+          aria-pressed="false"
+          aria-label={"Choose the " + label + " corner"}
+          class="absolute z-10 grid size-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-ink bg-paper font-bold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink data-[selected=true]:bg-ink data-[selected=true]:text-paper"
+          style={"left:" + left + "%;top:" + top + "%"}
         >
-          <polygon
-            points={selectorOutline}
-            fill={illusionSurface.paper}
-            stroke={stroke}
-            stroke-width="2.5"
-          />
-        </svg>
-        {corners.map(({ label, symbol, left, top }) => (
-          <button
-            type="button"
-            data-magic-guess={label}
-            data-selected="false"
-            aria-pressed="false"
-            aria-label={"Choose the " + label + " corner"}
-            class="absolute grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-ink bg-paper font-bold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink data-[selected=true]:bg-ink data-[selected=true]:text-paper"
-            style={"left:" + left + "%;top:" + top + "%"}
-          >
-            <span aria-hidden="true">{symbol}</span>
-          </button>
-        ))}
-      </div>
-      <p id="magic-octagon-choice" class="text-center text-base" aria-live="polite">
-        Select a corner of the octagon.
-      </p>
-      <button
-        id="magic-octagon-reveal"
-        type="button"
-        class="btn self-center disabled:cursor-not-allowed disabled:opacity-50"
-        disabled
-      >
-        Show answer and explanation
-      </button>
+          <span aria-hidden="true">{symbol}</span>
+        </button>
+      ))}
     </div>
+    <p id="magic-octagon-choice" class="text-center text-base" aria-live="polite">
+      Select a corner of the coin to predict where the arrow will point.
+    </p>
+    <button
+      id="magic-octagon-reveal"
+      type="button"
+      class="btn self-center disabled:cursor-not-allowed disabled:opacity-50"
+      disabled
+    >
+      Show answer and explanation
+    </button>
   </section>
 
   <section
@@ -271,10 +222,6 @@ const selectorOutline = corners
     const proofFlipped = find<SVGSVGElement>(root, '[data-magic-coin="proof-flipped"]')
     const inspectSlider = find<HTMLInputElement>(root, "#magic-octagon-inspect-slider")
     const inspectState = find<HTMLElement>(root, "#magic-octagon-inspect-state")
-    const puzzleLeft = find<HTMLButtonElement>(root, "#magic-octagon-puzzle-left")
-    const puzzleRight = find<HTMLButtonElement>(root, "#magic-octagon-puzzle-right")
-    const puzzleStatus = find<HTMLElement>(root, "#magic-octagon-puzzle-status")
-    const prediction = find<HTMLElement>(root, "#magic-octagon-prediction")
     const guesses = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-magic-guess]"))
     const choice = find<HTMLElement>(root, "#magic-octagon-choice")
     const reveal = find<HTMLButtonElement>(root, "#magic-octagon-reveal")
@@ -395,7 +342,7 @@ const selectorOutline = corners
       inspectSlider.setAttribute("aria-valuetext", inspectionLabel(degrees))
     }
 
-    let puzzleAngle = 0
+    const puzzleAngle = 45
     let guess = ""
     let proofAngle = 0
     let proofFlip = 0
@@ -460,28 +407,6 @@ const selectorOutline = corners
       frame = requestAnimationFrame(tick)
     }
 
-    const chooseTurn = (degrees: number) => {
-      cancelAnimationFrame(frame)
-      puzzleAngle = degrees
-      guess = ""
-      puzzleLeft.setAttribute("aria-pressed", String(degrees === -45))
-      puzzleRight.setAttribute("aria-pressed", String(degrees === 45))
-      drawCoin(puzzle, puzzleAngle, 0)
-      prediction.hidden = false
-      explanation.hidden = true
-      for (const option of guesses) {
-        option.dataset.selected = "false"
-        option.setAttribute("aria-pressed", "false")
-      }
-      choice.textContent = "Select a corner of the octagon."
-      reveal.disabled = true
-      puzzleStatus.textContent =
-        "The front arrow points " + labels[directionIndexes(degrees).front] +
-        ". Choose where the hidden arrow will point after flipping."
-    }
-
-    puzzleLeft.addEventListener("click", () => chooseTurn(-45))
-    puzzleRight.addEventListener("click", () => chooseTurn(45))
     for (const option of guesses) {
       option.addEventListener("click", () => {
         guess = option.dataset.magicGuess ?? ""
@@ -496,7 +421,7 @@ const selectorOutline = corners
     }
 
     reveal.addEventListener("click", () => {
-      if (!guess || !puzzleAngle) return
+      if (!guess) return
       cancelAnimationFrame(frame)
       proofAngle = puzzleAngle
       proofFlip = 0
@@ -532,25 +457,20 @@ const selectorOutline = corners
     resetButton.addEventListener("click", () => {
       cancelAnimationFrame(frame)
       explanation.hidden = true
-      prediction.hidden = true
-      puzzleAngle = 0
       guess = ""
-      puzzleLeft.setAttribute("aria-pressed", "false")
-      puzzleRight.setAttribute("aria-pressed", "false")
       for (const option of guesses) {
         option.dataset.selected = "false"
         option.setAttribute("aria-pressed", "false")
       }
-      choice.textContent = "Select a corner of the octagon."
+      choice.textContent = "Select a corner of the coin to predict where the arrow will point."
       reveal.disabled = true
-      puzzleStatus.textContent = "Choose a turn to begin."
-      drawCoin(puzzle, 0, 0)
-      puzzleLeft.focus()
+      drawCoin(puzzle, puzzleAngle, 0)
+      guesses[0]?.focus()
     })
 
     inspectSlider.addEventListener("input", updateInspection)
     updateInspection()
-    drawCoin(puzzle, 0, 0)
+    drawCoin(puzzle, puzzleAngle, 0)
     drawProof()
     describeProof()
   }
