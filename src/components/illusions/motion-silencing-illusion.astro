@@ -108,8 +108,10 @@ const dots = Array.from({ length: count }, (_, index) => {
   />
   <div id="motion-silencing-illusion-reveal" class="space-y-3" hidden>
     <p class="text-base">
-      While the animation runs, the dots keep changing hue even when the ring turns.
-      Motion can make those changes seem to stop.
+      During playback, each dot keeps changing hue whether the ring turns or not.
+    </p>
+    <p class="text-base">
+      Turning the ring can make those changes seem to stop.
     </p>
     <IllusionControls
       name="motion-silencing-illusion"
@@ -257,16 +259,20 @@ const dots = Array.from({ length: count }, (_, index) => {
       render()
       frame = requestAnimationFrame(tick)
     }
-    const changeSpeed = (slider: HTMLInputElement, readout: HTMLElement, type: "hue" | "rotation") => {
+    const changeSpeed = (
+      slider: HTMLInputElement,
+      readout: HTMLElement,
+      type: "hue" | "rotation",
+    ) => {
       const speed = Number(slider.value)
       if (type === "hue") {
         hueDegreesPerSecond = speed
       } else {
         rotationDegreesPerSecond = speed
       }
-      const description = `${speed} degrees of ${type === "hue" ? "hue" : "rotation"} per second`
-      slider.setAttribute("aria-valuetext", description)
-      readout.textContent = `${speed}° of ${type === "hue" ? "hue" : "rotation"} per second`
+      const kind = type === "hue" ? "hue" : "rotation"
+      slider.setAttribute("aria-valuetext", `${speed} degrees of ${kind} per second`)
+      readout.textContent = `${speed}° of ${kind} per second`
       resetJudgement()
       status.textContent = reduced.matches
         ? "Motion is disabled in your settings. Choose the opt-out to read the explanation."
