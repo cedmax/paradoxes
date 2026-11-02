@@ -1,0 +1,20 @@
+---
+import ClickToLoadVideo from "~/components/illustration-kit/ClickToLoadVideo.astro"
+import poster from "~/assets/video-fixture.svg"
+import "~/styles/global.css"
+---
+
+<html lang="en">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+  <body>
+    <ClickToLoadVideo
+      name="video-fixture"
+      provider="youtube"
+      id="hoLg23xn3HM"
+      poster={poster}
+      title="Test video"
+      description="This is a locally hosted test poster with a visible description."
+      linkLabel="Open the original video instead"
+    />
+  </body>
+</html>
