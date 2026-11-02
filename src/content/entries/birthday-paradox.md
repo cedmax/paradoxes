@@ -24,4 +24,10 @@ finePrint: "The usual calculation assumes every day of the year is equally likel
 sources:
   - title: "Wikipedia: Birthday problem"
     url: "https://en.wikipedia.org/wiki/Birthday_problem"
+  - title: "Wolfram MathWorld: Birthday Problem"
+    url: "https://mathworld.wolfram.com/BirthdayProblem.html"
+    note: "Source for about 50.7 percent with 23 people, assuming 365 equally likely days. The 70-person figure and the pair counts were recomputed: 1 − (365 × 364 × … × 296)/365^70 is about 99.92 percent."
+  - title: "Aldous: Coincidences, near misses and one-in-a-million chances (Berkeley Statistics 150 course chapter)"
+    url: "https://www.stat.berkeley.edu/~aldous/150/Lectures/coincidence_chapter.pdf"
+    note: "Source for uneven birthdays making a shared birthday slightly more likely."
 ---

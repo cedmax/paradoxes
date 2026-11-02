@@ -23,4 +23,8 @@ finePrint: "A proper probability distribution has total probability one. Equal p
 sources:
   - title: "Wikipedia: Two envelopes problem"
     url: "https://en.wikipedia.org/wiki/Two_envelopes_problem"
+    note: "Still the only source for the proper-distribution argument, the coin-toss set-up, and Kraitchik and Gardner."
+  - title: "Chalmers (2002): The St. Petersburg Two-Envelope Paradox"
+    url: "https://doi.org/10.1093/analys/62.2.155"
+    note: "Analysis 62, pp. 155-157, full text read in the author’s copy. Source for the tempting argument assuming double or half are equally likely for every amount, and for distributions with infinite average amounts that make switching look favourable for every observed amount."
 ---

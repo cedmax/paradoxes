@@ -27,7 +27,19 @@ sources:
     note: "covers the prosecutor's and defence attorney's fallacies and the 1987 naming"
   - title: "Wikipedia: Sally Clark"
     url: https://en.wikipedia.org/wiki/Sally_Clark
-    note: "dates and the 1 in 73 million figure. The 4.5 to 9 times figure is attributed there to a calculation by Ray Hill."
+    note: "Still the only source for the 4.5 to 9 times figure, attributed there to a calculation by Ray Hill."
+  - title: "Thompson and Schumann (1987): Interpretation of Statistical Evidence in Criminal Trials: The Prosecutor’s Fallacy and the Defense Attorney’s Fallacy"
+    url: https://doi.org/10.1007/BF01044641
+    note: "Law and Human Behavior 11, pp. 167-187, full text read. Source for the naming and definitions of both fallacies."
+  - title: "Royal Statistical Society (2002): letter to the Lord Chancellor on the Sally Clark case"
+    url: https://www.rss.org.uk/RSS/media/File-library/Membership/Sections/2020/Sally-Clark-RSS-letter-2002.pdf
+    note: "Source for the squared figure being statistically invalid, the doubtful independence assumption, and the need to compare the likelihood of the deaths under each explanation."
+  - title: "R v Clark [2003] EWCA Crim 1020"
+    url: https://caselaw.nationalarchives.gov.uk/ewca/crim/2003/1020
+    note: "Court of Appeal judgment. Source for the 1999 conviction, the 1 in 73 million figure given to the jury, the undisclosed microbiology results, and the convictions being quashed in 2003."
+  - title: "Sesardic (2007): Sudden Infant Death or Murder? A Royal Confusion About Probabilities"
+    url: https://doi.org/10.1093/bjps/axm015
+    note: "British Journal for the Philosophy of Science 58, pp. 299-329, full text read. Source for 1 in 73 million being 1 in 8,543 squared."
 sourcesVerified: true
 reviewed: true
 ---

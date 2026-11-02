@@ -28,5 +28,14 @@ sources:
   - title: "Wikipedia: Bradley Efron"
     url: https://en.wikipedia.org/wiki/Bradley_Efron
     note: "describes Efron as an American statistician who created Efron's dice"
+  - title: "Scientific American: How Warren Buffett Rigged a Dice Game with Bill Gates"
+    url: https://www.scientificamerican.com/article/how-warren-buffett-rigged-a-dice-game-with-bill-gates/
+    note: "Source for Bradley Efron’s four dice, each beating another two thirds of the time. Faces, pairings and averages recomputed: each pairing wins 24 of 36."
+  - title: "Nishiyama and Humble (2010): Winning odds"
+    url: https://plus.maths.org/content/os/issue55/features/nishiyama/index
+    note: "Plus Magazine. Source for Walter Penney publishing the coin game in 1969."
+  - title: "Felix (2006): Optimal Penney Ante Strategy via Correlation Polynomial Identities"
+    url: https://www.combinatorics.org/ojs/index.php/eljc/article/view/v13i1r35
+    note: "Electronic Journal of Combinatorics 13, R35, open access. Source for the second player always doing better for sequences of three or more."
 sourcesVerified: true
 ---

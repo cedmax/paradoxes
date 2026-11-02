@@ -23,6 +23,9 @@ sources:
   - title: "Wikipedia: Base rate fallacy"
     url: https://en.wikipedia.org/wiki/Base_rate_fallacy
     note: "the example here uses different numbers, worked out separately"
+  - title: "Gigerenzer and Hoffrage (1995): How to Improve Bayesian Reasoning Without Instruction: Frequency Formats"
+    url: https://doi.org/10.1037/0033-295X.102.4.684
+    note: "Psychological Review 102, pp. 684-704, full text read. Source for people reasoning better when the problem is given as counts rather than percentages."
 sourcesVerified: true
 reviewed: true
 ---

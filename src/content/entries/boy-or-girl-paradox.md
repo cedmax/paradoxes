@@ -24,4 +24,8 @@ finePrint: "Martin Gardner posed the puzzle in his Mathematical Games column in 
 sources:
   - title: "Wikipedia: Boy or girl paradox"
     url: "https://en.wikipedia.org/wiki/Boy_or_girl_paradox"
+    note: "Still the only source for the May 1959 date and for more details about the boy pushing the answer towards one half."
+  - title: "Khovanova (2011): Martin Gardner’s Mistake"
+    url: "https://arxiv.org/abs/1102.0173"
+    note: "Source for Gardner posing the puzzle in his Scientific American column in 1959 with the answer one third, later saying the answer depends on how the information was obtained, and 13 in 27 for the Tuesday version, recomputed."
 ---

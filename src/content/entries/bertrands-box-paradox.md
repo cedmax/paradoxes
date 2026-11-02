@@ -23,4 +23,8 @@ finePrint: "The puzzle is mathematically the same as the [Monty Hall problem](mo
 sources:
   - title: "Wikipedia: Bertrand's box paradox"
     url: "https://en.wikipedia.org/wiki/Bertrand%27s_box_paradox"
+    note: "Still the only source for the link to the Monty Hall and three prisoners problems."
+  - title: "Joseph Bertrand (1889): Calcul des probabilités"
+    url: "https://archive.org/details/calculdesprobab00bertgoog"
+    note: "Original treatise, pp. 2-3, in French. Source for the three boxes and Bertrand’s point that the two remaining cases are not equally likely, so a gold coin favours the gold pair. His version asks about the mixed box."
 ---

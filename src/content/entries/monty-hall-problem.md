@@ -24,4 +24,8 @@ finePrint: "This only holds if the host knows where the car is, always opens a l
 sources:
   - title: "Wikipedia: Monty Hall problem"
     url: "https://en.wikipedia.org/wiki/Monty_Hall_problem"
+    note: "Still the only source for the host who favours one door."
+  - title: "Siegrist: Probability, Mathematical Statistics, and Stochastic Processes, 13.6 The Monty Hall Problem"
+    url: "https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/13%3A_Games_of_Chance/13.06%3A_The_Monty_Hall_Problem"
+    note: "University textbook. Source for switching winning 2 times in 3 with a host who knows where the car is, and one half with a host who opens a door blindly."
 ---

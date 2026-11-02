@@ -22,5 +22,8 @@ finePrint: "The paradox is named after Joseph Berkson, who described it in 1946 
 sources:
   - title: "Wikipedia: Berkson's paradox"
     url: "https://en.wikipedia.org/wiki/Berkson%27s_paradox"
-    note: "Source for the statement, the 1946 origin, the hospital example and the stamp example. Stamp figures recomputed by hand: 300 + 100 − 30 = 370 displayed, 100 of 370 is 27 percent, 30 of 300 is 10 percent, and the 70 plain displayed stamps are all rare."
+    note: "Still the only source for the 1949 miscitation. Source for the stamp example. Stamp figures recomputed by hand: 300 + 100 − 30 = 370 displayed, 100 of 370 is 27 percent, 30 of 300 is 10 percent, and the 70 plain displayed stamps are all rare."
+  - title: "Snoep, Morabia, Hernández-Díaz, Hernán and Vandenbroucke (2014): A structural approach to Berkson’s fallacy and a guide to a history of opinions about it"
+    url: "https://doi.org/10.1093/ije/dyu026"
+    note: "International Journal of Epidemiology 43, pp. 515-521, full text read. Source for Berkson’s 1946 paper on hospital data, unrelated diseases appearing linked among hospital patients, and the collider explanation."
 ---
