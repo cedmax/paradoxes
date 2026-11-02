@@ -87,3 +87,5 @@ jobs:
           name: illusion-${{ matrix.pr }}-screenshots
           path: site/screenshots/*.png
           if-no-files-found: ignore
+
+# Rerun against formatted draft heads
