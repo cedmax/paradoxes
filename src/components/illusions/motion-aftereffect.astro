@@ -6,11 +6,11 @@ import { illusionSurface, series, stroke } from "~/data/palette"
 
 const arms = Array.from({ length: 7 }, (_, index) => {
   const shift = (2 * Math.PI * index) / 7
-  const points = Array.from({ length: 150 }, (_, step) => {
-    const r = 17 + step * 1.6
-    const angle = shift + step * 0.03
+  const points = Array.from({ length: 75 }, (_, step) => {
+    const r = 17 + step * 1.95
+    const angle = shift + step * 0.06
     const x = 280 + r * Math.cos(angle)
-    const y = 280 + r * Math.sin(angle)
+    const y = 185 + r * Math.sin(angle)
     return `${step === 0 ? "M" : "L"}${x.toFixed(2)} ${y.toFixed(2)}`
   })
   return points.join(" ")
@@ -27,12 +27,13 @@ const arms = Array.from({ length: 7 }, (_, index) => {
   </p>
   <SvgFigure
     name="motion-aftereffect"
-    viewBox="0 0 560 560"
-    class="w-full"
+    viewBox="0 0 560 370"
+    preserveAspectRatio="xMidYMid slice"
+    class="h-[220px] w-full sm:h-[320px]"
     title="A spiral pattern that can rotate for twelve seconds and then stop completely"
     desc="Seven blue spiral arms surround a small centre cross. After twelve seconds of rotation the same static SVG paths remain in exactly one fixed position. Any movement perceived after they stop is not drawn."
   >
-    <rect x="0" y="0" width="560" height="560" fill={illusionSurface.neutral} />
+    <rect x="0" y="0" width="560" height="370" fill={illusionSurface.neutral} />
     <g
       id="motion-aftereffect-spirals"
       fill="none"
@@ -44,7 +45,7 @@ const arms = Array.from({ length: 7 }, (_, index) => {
         <path d={path} />
       ))}
     </g>
-    <path d="M274 280 H286 M280 274 V286" stroke={stroke} stroke-width="2" />
+    <path d="M274 185 H286 M280 179 V191" stroke={stroke} stroke-width="2" />
   </SvgFigure>
   <button
     id="motion-aftereffect-play"
@@ -118,7 +119,7 @@ const arms = Array.from({ length: 7 }, (_, index) => {
       const elapsed = now - started
       if (elapsed >= 12000) return finish()
       angle = (startAngle + (elapsed / 1000) * 115) % 360
-      spiral.setAttribute("transform", `rotate(${angle} 280 280)`)
+      spiral.setAttribute("transform", `rotate(${angle} 280 185)`)
       frame = requestAnimationFrame(tick)
     }
     play.addEventListener("click", () => {
