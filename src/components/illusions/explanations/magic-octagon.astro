@@ -1,12 +1,14 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Coin from "../magic-octagon/Coin.astro"
+
+const angles = [0, 45, 90, 135, 180, 225, 270, 315]
 ---
 
 <IllustrationFigure name="magic-octagon-proof" frame={false}>
   <p class="text-base">
-    The black dots mark the same physical corner on both faces.
-    Turn or flip the coin to follow it.
+    The black dots mark the same physical corner on both faces. Follow the dot
+    as the coin turns about the fixed red axis.
   </p>
   <div
     id="magic-octagon-proof-views"
@@ -19,8 +21,8 @@ import Coin from "../magic-octagon/Coin.astro"
       <Coin
         id="proof-front"
         initialTurn={45}
-        title="Front view of the physically linked coin, with its marked corner"
-        desc="The front-facing view of the solid coin, with a black dot on one corner and a fixed red Y-axis. Both faces and the shaded edge move together when the coin is flipped."
+        title="Front view of the marked coin, turned 45 degrees clockwise"
+        desc="A black dot marks the corner of this solid octagon. Its face turns around the fixed red Y axis as the slider moves."
         showMarker
       />
     </div>
@@ -31,57 +33,157 @@ import Coin from "../magic-octagon/Coin.astro"
       <Coin
         id="proof-flipped"
         initialTurn={45}
-        title="Flipped view of the same coin, with the same marked corner"
-        desc="The opposite view of the same solid octagonal coin, showing its marked corner, gold arrow, shaded thickness and fixed Y-axis. Rotation appears reversed relative to the front."
+        title="Opposite view of the same marked coin"
+        desc="The opposite viewpoint of the same physical octagon, with its marked corner. Both views move together with the flip slider."
         flipped
         showMarker
       />
     </div>
   </div>
 
-  <div
-    class="mx-auto grid w-full max-w-lg grid-cols-[1fr_1.5fr_1fr] gap-2 sm:gap-3"
-    role="group"
-    aria-label="Rotate or flip the coin during the explanation"
+  <div class="mx-auto flex w-full max-w-sm flex-col gap-2">
+    <label for="magic-octagon-proof-slider" class="text-base font-bold">
+      Flip the coin
+    </label>
+    <input
+      id="magic-octagon-proof-slider"
+      class="w-full accent-current"
+      type="range"
+      min="0"
+      max="180"
+      step="1"
+      value="0"
+      aria-describedby="magic-octagon-proof-slider-state"
+      aria-valuetext="Front · 0°"
+    />
+    <div class="flex justify-between text-sm">
+      <span>Front</span>
+      <span>Flipped</span>
+    </div>
+    <p id="magic-octagon-proof-slider-state" class="text-center text-base" aria-live="polite">
+      Front · 0°
+    </p>
+  </div>
+  <button
+    type="button"
+    class="btn-toggle self-start"
+    id="magic-octagon-compare"
+    aria-controls="magic-octagon-proof-other"
+    aria-pressed="true"
   >
-    <button
-      type="button"
-      class="btn-ghost min-w-0 px-2 text-sm sm:px-5 sm:text-base"
-      id="magic-octagon-left"
-      aria-label="Turn the visible front view 45 degrees anticlockwise"
-    >↶ 45°</button>
-    <button
-      type="button"
-      class="btn min-w-0 px-2 text-sm sm:px-5 sm:text-base"
-      id="magic-octagon-flip-button"
-      aria-label="Flip the coin about the Y axis"
-      aria-pressed="false"
-    >Flip the coin</button>
-    <button
-      type="button"
-      class="btn-ghost min-w-0 px-2 text-sm sm:px-5 sm:text-base"
-      id="magic-octagon-right"
-      aria-label="Turn the visible front view 45 degrees clockwise"
-    >45° ↷</button>
-  </div>
-  <div class="flex flex-wrap items-center gap-3">
-    <button
-      type="button"
-      class="btn-toggle"
-      id="magic-octagon-compare"
-      aria-controls="magic-octagon-proof-other"
-      aria-pressed="true"
-    >
-      Hide comparison
-    </button>
-  </div>
+    Hide comparison
+  </button>
   <p id="magic-octagon-state" class="text-base" aria-live="polite"></p>
 
+  <div class="flex flex-col gap-4 border-t-2 border-ink pt-6">
+    <h3 class="text-xl font-bold">The eight rotations, with the corner marked</h3>
+    <p class="text-base">
+      Try flipping each starting rotation. The dot makes it possible to track
+      the same corner throughout the turn.
+    </p>
+    <div class="flex flex-col gap-6">
+      {[angles.slice(0, 4), angles.slice(4)].map((rowAngles, rowIndex) => (
+        <Fragment>
+          {rowIndex === 1 && (
+            <div class="hidden w-full flex-col items-center gap-2 md:flex">
+              <label for="magic-octagon-proof-variants-shared" class="text-base font-bold">
+                Flip all eight coins
+              </label>
+              <input
+                id="magic-octagon-proof-variants-shared"
+                class="w-full max-w-md accent-current"
+                type="range"
+                min="0"
+                max="180"
+                step="1"
+                value="0"
+                aria-describedby="magic-octagon-proof-variants-shared-state"
+                aria-valuetext="Front · 0°"
+              />
+              <div class="flex w-full max-w-md justify-between text-sm">
+                <span>Front</span>
+                <span>Flipped</span>
+              </div>
+              <p
+                id="magic-octagon-proof-variants-shared-state"
+                class="text-center text-sm"
+                aria-live="polite"
+              >
+                Front · 0°
+              </p>
+            </div>
+          )}
+          <div
+            id={rowIndex === 1 ? "magic-octagon-proof-more-rotations" : undefined}
+            class:list={[
+              "grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-4 md:grid-cols-4",
+              rowIndex === 1 ? "hidden md:grid" : "grid",
+            ]}
+          >
+            {rowAngles.map((angle) => (
+              <div class="flex min-w-0 flex-col gap-2">
+                <p class="text-center text-base font-bold">{angle}° rotation</p>
+                <Coin
+                  id={"proof-variant-" + angle}
+                  initialTurn={angle}
+                  title={"Marked octagonal coin rotated " + angle + " degrees"}
+                  desc={"Coin pre-rotated " + angle + " degrees with a black corner dot; flip it about the fixed red Y axis to follow the dot."}
+                  showMarker
+                  oversized
+                />
+                <div class="flex flex-col gap-2 md:hidden">
+                  <label
+                    for={"magic-octagon-proof-variant-" + angle}
+                    class="text-sm font-bold"
+                  >
+                    Flip this coin
+                  </label>
+                  <input
+                    id={"magic-octagon-proof-variant-" + angle}
+                    data-magic-proof-variant={angle}
+                    class="w-full accent-current"
+                    type="range"
+                    min="0"
+                    max="180"
+                    step="1"
+                    value="0"
+                    aria-describedby={"magic-octagon-proof-variant-state-" + angle}
+                    aria-valuetext="Front · 0°"
+                  />
+                  <p
+                    id={"magic-octagon-proof-variant-state-" + angle}
+                    class="text-center text-sm"
+                  >
+                    Front · 0°
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Fragment>
+      ))}
+      <button
+        id="magic-octagon-proof-show-more"
+        type="button"
+        class="btn-ghost self-center md:hidden"
+        aria-controls="magic-octagon-proof-more-rotations"
+        aria-expanded="false"
+      >
+        Show four more rotations
+      </button>
+    </div>
+  </div>
 </IllustrationFigure>
 
 <script>
   import { find, illustrationRoot } from "~/scripts/illustration"
-  import { directionIndexes, drawCoin, labels, symbols } from "~/scripts/magic-octagon-coin"
+  import {
+    directionIndexes,
+    drawCoin,
+    inspectionLabel,
+    labels,
+    symbols,
+  } from "~/scripts/magic-octagon-coin"
 
   const root = illustrationRoot("magic-octagon-proof")
   if (root) {
@@ -97,84 +199,113 @@ import Coin from "../magic-octagon/Coin.astro"
       root,
       "#magic-octagon-proof-flipped-direction",
     )
-    const left = find<HTMLButtonElement>(root, "#magic-octagon-left")
-    const right = find<HTMLButtonElement>(root, "#magic-octagon-right")
-    const flipButton = find<HTMLButtonElement>(root, "#magic-octagon-flip-button")
+    const proofSlider = find<HTMLInputElement>(root, "#magic-octagon-proof-slider")
+    const proofSliderState = find<HTMLElement>(
+      root,
+      "#magic-octagon-proof-slider-state",
+    )
     const compareButton = find<HTMLButtonElement>(root, "#magic-octagon-compare")
     const status = find<HTMLElement>(root, "#magic-octagon-state")
+    const variantSliders = Array.from(
+      root.querySelectorAll<HTMLInputElement>("[data-magic-proof-variant]"),
+    )
+    const sharedVariantsSlider = find<HTMLInputElement>(
+      root,
+      "#magic-octagon-proof-variants-shared",
+    )
+    const sharedVariantsState = find<HTMLElement>(
+      root,
+      "#magic-octagon-proof-variants-shared-state",
+    )
+    const showMore = find<HTMLButtonElement>(root, "#magic-octagon-proof-show-more")
+    const moreRotations = find<HTMLElement>(root, "#magic-octagon-proof-more-rotations")
 
-    let proofAngle = 45
-    let proofFlip = 0
-    let shownAngle = proofAngle
-    let shownFlip = proofFlip
+    const proofAngle = 45
+    const directions = directionIndexes(proofAngle)
     let comparing = true
-    let frame = 0
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
-    const drawProof = () => {
-      drawCoin(proofFront, shownAngle, shownFlip)
-      drawCoin(proofFlipped, shownAngle, 180 - shownFlip)
+    const updateProof = () => {
+      const degrees = Number(proofSlider.value)
+      drawCoin(proofFront, proofAngle, degrees)
+      drawCoin(proofFlipped, proofAngle, 180 - degrees)
+      const edgeOn = degrees >= 89 && degrees <= 91
+      const swapped = degrees > 90
+      const main = swapped ? directions.flipped : directions.front
+      const other = swapped ? directions.front : directions.flipped
+      proofFrontDirection.textContent = edgeOn ? "—" : symbols[main]
+      proofFlippedDirection.textContent = edgeOn ? "—" : symbols[other]
+
+      const progress = inspectionLabel(degrees)
+      proofSliderState.textContent = progress
+      proofSlider.setAttribute("aria-valuetext", progress)
+      status.textContent = edgeOn
+        ? "Both views are edge-on. The shaded sides show the thickness of the coin."
+        : comparing
+          ? "Front view: " + labels[main] + ". Flipped view: " + labels[other] + "."
+          : "Visible arrow: " + labels[main] + "."
     }
-
-    const describeProof = () => {
-      const result = directionIndexes(proofAngle)
-      const main = proofFlip === 180 ? result.flipped : result.front
-      const opposite = proofFlip === 180 ? result.front : result.flipped
-      proofFrontDirection.textContent = symbols[main]
-      proofFlippedDirection.textContent = symbols[opposite]
-      flipButton.setAttribute("aria-pressed", String(proofFlip === 180))
-      compareButton.setAttribute("aria-pressed", String(comparing))
-      compareButton.textContent = comparing ? "Hide comparison" : "Compare both sides"
+    proofSlider.addEventListener("input", updateProof)
+    compareButton.addEventListener("click", () => {
+      comparing = !comparing
       proofOther.hidden = !comparing
       proofViews.classList.toggle("max-w-2xl", comparing)
       proofViews.classList.toggle("max-w-xs", !comparing)
-      status.textContent = comparing
-        ? "Front: " + labels[main] + ". Flipped: " + labels[opposite] +
-          ". The two views rotate in opposite apparent directions."
-        : "Visible arrow: " + labels[main] + ". Flip or compare to inspect the other side."
-    }
-
-    const animateProof = () => {
-      cancelAnimationFrame(frame)
-      const startAngle = shownAngle
-      const startFlip = shownFlip
-      const duration = startFlip !== proofFlip ? 1800 : 320
-      describeProof()
-      if (reducedMotion.matches) {
-        shownAngle = proofAngle
-        shownFlip = proofFlip
-        drawProof()
-        return
-      }
-      let started = -1
-      const tick = (now: number) => {
-        if (started < 0) started = now
-        const progress = Math.min(1, (now - started) / duration)
-        const eased = progress * progress * (3 - 2 * progress)
-        shownAngle = startAngle + (proofAngle - startAngle) * eased
-        shownFlip = startFlip + (proofFlip - startFlip) * eased
-        drawProof()
-        if (progress < 1) frame = requestAnimationFrame(tick)
-      }
-      frame = requestAnimationFrame(tick)
-    }
-
-    const turn = (degrees: number) => {
-      proofAngle += proofFlip === 180 ? -degrees : degrees
-      animateProof()
-    }
-    left.addEventListener("click", () => turn(-45))
-    right.addEventListener("click", () => turn(45))
-    flipButton.addEventListener("click", () => {
-      proofFlip = proofFlip === 180 ? 0 : 180
-      animateProof()
-    })
-    compareButton.addEventListener("click", () => {
-      comparing = !comparing
-      describeProof()
+      compareButton.setAttribute("aria-pressed", String(comparing))
+      compareButton.textContent = comparing ? "Hide comparison" : "Compare both sides"
+      updateProof()
     })
 
-    drawProof()
-    describeProof()
+    const variantUpdates: Array<(degrees: number) => void> = []
+    for (const slider of variantSliders) {
+      const angle = Number(slider.dataset.magicProofVariant)
+      const svg = find<SVGSVGElement>(
+        root,
+        '[data-magic-coin="proof-variant-' + angle + '"]',
+      )
+      const state = find<HTMLElement>(
+        root,
+        "#magic-octagon-proof-variant-state-" + angle,
+      )
+      const update = (degrees: number) => {
+        slider.value = String(degrees)
+        drawCoin(svg, angle, degrees)
+        const progress = inspectionLabel(degrees)
+        state.textContent = progress
+        slider.setAttribute("aria-valuetext", progress)
+      }
+      slider.addEventListener("input", () => update(Number(slider.value)))
+      variantUpdates.push(update)
+      update(0)
+    }
+    const updateShared = (degrees: number) => {
+      sharedVariantsSlider.value = String(degrees)
+      const progress = inspectionLabel(degrees)
+      sharedVariantsState.textContent = progress
+      sharedVariantsSlider.setAttribute("aria-valuetext", progress)
+      for (const update of variantUpdates) update(degrees)
+    }
+    sharedVariantsSlider.addEventListener("input", () => {
+      updateShared(Number(sharedVariantsSlider.value))
+    })
+    const desktopVariants = window.matchMedia("(min-width: 48rem)")
+    desktopVariants.addEventListener("change", (event) => {
+      if (event.matches) updateShared(Number(sharedVariantsSlider.value))
+    })
+
+    let moreExpanded = false
+    const updateMore = () => {
+      moreRotations.classList.toggle("hidden", !moreExpanded)
+      moreRotations.classList.toggle("grid", moreExpanded)
+      showMore.setAttribute("aria-expanded", String(moreExpanded))
+      showMore.textContent = moreExpanded ? "Show fewer rotations" : "Show four more rotations"
+    }
+    showMore.addEventListener("click", () => {
+      moreExpanded = !moreExpanded
+      updateMore()
+    })
+
+    updateProof()
+    updateShared(0)
+    updateMore()
   }
 </script>
