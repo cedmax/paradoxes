@@ -73,10 +73,16 @@ export function stopAudio() {
  * sound. Replaces anything already playing. `onStop` runs when it ends or is stopped.
  * Resolves to true only if the sound started; false if it was stopped or replaced while the
  * browser was still waking the audio, or the context never began running.
+ * onStart exposes the actual audio clock for synchronising a visual stimulus without
+ * changing the timing or return value of existing callers.
  */
 export async function playSamples(
   render: (sampleRate: number) => Float32Array,
-  options: { loop?: boolean; onStop?: () => void } = {},
+  options: {
+    loop?: boolean
+    onStop?: () => void
+    onStart?: (audio: AudioContext, startedAt: number) => void
+  } = {},
 ) {
   stopAudio()
   const request = generation
@@ -99,7 +105,9 @@ export async function playSamples(
       entry.onStop?.()
     }
   }
-  source.start()
+  const startedAt = audio.currentTime
+  source.start(startedAt)
+  options.onStart?.(audio, startedAt)
   return true
 }
 
