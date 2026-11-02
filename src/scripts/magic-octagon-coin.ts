@@ -24,7 +24,7 @@ const vertices = Array.from({ length: 8 }, (_, index) => {
   const angle = -Math.PI / 2 + (index * Math.PI) / 4
   return { x: 180 + 112 * Math.cos(angle), y: 145 + 112 * Math.sin(angle) }
 })
-const halfThickness = 16
+const halfThickness = 12
 
 const projection = (x: number, y: number, z: number, turn: number, flip: number) => {
   const inPlane = (turn * Math.PI) / 180
