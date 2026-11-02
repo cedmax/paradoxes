@@ -47,7 +47,7 @@ sources:
     note: "Source for Bostrom finding the argument inconclusive, and his replies to Olum, Sowers, and Korb and Oliver."
   - title: "Leslie (1994), Testing the Doomsday Argument"
     url: "https://doi.org/10.1111/j.1468-5930.1994.tb00088.x"
-    note: "Leslie’s defence of the argument. No figure or quotation here rests on it."
+    note: "Leslie’s own defence of the argument, cited for reference."
   - title: "Gott (1993), Implications of the Copernican principle for our future prospects, Nature 363, 315-319"
     url: "https://www.nature.com/articles/363315a0"
     note: "Source for Gott’s version: 0.2 to 8 million years for our species at 95 percent confidence."

@@ -27,7 +27,7 @@ sources:
     note: "covers the prosecutor's and defence attorney's fallacies and the 1987 naming"
   - title: "Wikipedia: Sally Clark"
     url: https://en.wikipedia.org/wiki/Sally_Clark
-    note: "dates and the 1 in 73 million figure."
+    note: "Source for the dates and the 1 in 73 million figure."
   - title: "Ray Hill (2005): Reflections on the Cot Death Cases"
     url: https://doi.org/10.1111/j.1740-9713.2005.00077.x
     note: "Significance 2, pp. 13-16. Source for Hill’s rough estimate of about nine double cot deaths for each double murder."

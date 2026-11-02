@@ -43,8 +43,8 @@ sources:
     note: "Source for the 2025 study using zoo and aquarium necropsies, with cancer rising less than expected."
   - title: "Compton et al. (2025), Cancer prevalence across vertebrates, Cancer Discovery 15(1), 227-244"
     url: "https://doi.org/10.1158/2159-8290.CD-24-0573"
-    note: "Source for the 2024 study: 16,049 necropsies from 292 species, with cancer rising with mass and falling with gestation time."
+    note: "The study reported in 2024: 16,049 necropsies from 292 species, with cancer rising with mass and falling with gestation time."
   - title: "Butler, Baker, Amend, Pienta and Venditti (2025), No evidence for Peto's paradox in terrestrial vertebrates, PNAS 122(9), e2422861122"
     url: "https://doi.org/10.1073/pnas.2422861122"
-    note: "Source for larger species having more cancer, using data from Compton et al., without gestation time."
+    note: "Source for larger species having more cancer, using Compton et al.’s data."
 ---

@@ -47,7 +47,7 @@ sources:
     note: "Source for the reply that the effect concerns freezing, not cooling, and may occur only in hard water."
   - title: "Teza, Bechhoefer, Lasanta, Raz and Vucelja (2026), Speedups in nonequilibrium thermal relaxation: Mpemba and related effects, Physics Reports 1164, 1-97"
     url: https://doi.org/10.1016/j.physrep.2025.10.009
-    note: "Source for the controversy over water continuing, evidence linked to evaporation and frost, and the broader effect in other systems."
+    note: "Source for the controversy over water still continuing, evidence linked to evaporation and frost, and the broader effect in other systems."
   - title: "Janni, Botero Ampudia and Dahlberg (2026), An experimental investigation of the Mpemba effect, RSC Applied Interfaces 3, 442-449"
     url: https://pubs.rsc.org/en/content/articlehtml/2026/lf/d5lf00296f
     note: "Source for the 2026 experiment: 176 samples, hot water reaching 0 °C first 46 times and starting to freeze first 58 times."
