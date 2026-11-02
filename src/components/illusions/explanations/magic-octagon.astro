@@ -3,6 +3,15 @@ import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure
 import Coin from "../magic-octagon/Coin.astro"
 
 const angles = [0, 45, 90, 135, 180, 225, 270, 315]
+const arrows = ["up", "up-right", "right", "down-right", "down", "down-left", "left", "up-left"]
+const corners = ["top", "upper-right", "right", "lower-right", "bottom", "lower-left", "left", "upper-left"]
+const outcomes = angles.map((angle, index) => ({
+  angle,
+  frontArrow: arrows[index],
+  flippedArrow: arrows[(6 - index + 8) % 8],
+  frontCorner: corners[index],
+  flippedCorner: corners[(8 - index) % 8],
+}))
 ---
 
 <IllustrationFigure name="magic-octagon-proof" frame={false}>
@@ -13,24 +22,26 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
   >
     <div class="w-full max-w-xs md:min-w-0 md:flex-1">
       <p class="text-center text-base font-bold">
-        Front <span id="magic-octagon-proof-front-direction">↗</span>
+        <span id="magic-octagon-proof-front-face">Front</span>
+        <span id="magic-octagon-proof-front-direction" aria-hidden="true">↗</span>
       </p>
       <Coin
         id="proof-front"
         initialTurn={45}
-        title="Front view of the marked coin, turned 45 degrees clockwise"
+        title="First view of the marked coin, initially showing the front"
         desc="A black dot marks the corner of this solid octagon. Its face turns around the fixed red Y axis as the slider moves."
         showMarker
       />
     </div>
     <div class="w-full max-w-xs md:min-w-0 md:flex-1">
       <p class="text-center text-base font-bold">
-        Flipped <span id="magic-octagon-proof-flipped-direction">↙</span>
+        <span id="magic-octagon-proof-flipped-face">Flipped</span>
+        <span id="magic-octagon-proof-flipped-direction" aria-hidden="true">↙</span>
       </p>
       <Coin
         id="proof-flipped"
         initialTurn={45}
-        title="Opposite view of the same marked coin"
+        title="Opposite view of the same marked coin, initially showing the back"
         desc="The opposite viewpoint of the same physical octagon, with its marked corner. Both views move together with the flip slider."
         flipped
         showMarker
@@ -57,14 +68,15 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
       <span>Front</span>
       <span>Flipped</span>
     </div>
-    <p id="magic-octagon-proof-slider-state" class="text-center text-base" aria-live="polite">
+    <p id="magic-octagon-proof-slider-state" class="text-center text-base">
       Front · 0°
     </p>
   </div>
-  <p id="magic-octagon-state" class="sr-only" aria-live="polite"></p>
+  <p id="magic-octagon-state" class="sr-only"></p>
 
   <div class="flex flex-col gap-4 border-t-2 border-ink pt-6">
     <h3 class="text-xl font-bold">The eight rotations, with the corner marked</h3>
+    <p class="text-base">The same eight rotations, now following one corner through the flip.</p>
     <div class="flex flex-col gap-6">
       {[angles.slice(0, 4), angles.slice(4)].map((rowAngles, rowIndex) => (
         <Fragment>
@@ -81,7 +93,7 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
                 max="180"
                 step="1"
                 value="0"
-                aria-describedby="magic-octagon-proof-variants-shared-state magic-octagon-proof-variants-description"
+                aria-describedby="magic-octagon-proof-variants-shared-state"
                 aria-valuetext="Front · 0°"
               />
               <div class="flex w-full max-w-md justify-between text-sm">
@@ -95,7 +107,6 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
               >
                 Front · 0°
               </p>
-              <p id="magic-octagon-proof-variants-description" class="sr-only"></p>
             </div>
           )}
           <div
@@ -157,6 +168,31 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
         Show four more rotations
       </button>
     </div>
+    <table class="sr-only">
+      <caption>
+        Eight octagon rotations. Arrow and marked-corner positions before and after the vertical flip.
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Clockwise turn</th>
+          <th scope="col">Front arrow</th>
+          <th scope="col">Flipped arrow</th>
+          <th scope="col">Marked corner before flip</th>
+          <th scope="col">Marked corner after flip</th>
+        </tr>
+      </thead>
+      <tbody>
+        {outcomes.map(({ angle, frontArrow, flippedArrow, frontCorner, flippedCorner }) => (
+          <tr>
+            <th scope="row">{angle}°</th>
+            <td>{frontArrow}</td>
+            <td>{flippedArrow}</td>
+            <td>{frontCorner}</td>
+            <td>{flippedCorner}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   </div>
 </IllustrationFigure>
 
@@ -178,10 +214,12 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
       root,
       "#magic-octagon-proof-front-direction",
     )
+    const proofFrontFace = find<HTMLElement>(root, "#magic-octagon-proof-front-face")
     const proofFlippedDirection = find<HTMLElement>(
       root,
       "#magic-octagon-proof-flipped-direction",
     )
+    const proofFlippedFace = find<HTMLElement>(root, "#magic-octagon-proof-flipped-face")
     const proofSlider = find<HTMLInputElement>(root, "#magic-octagon-proof-slider")
     const proofSliderState = find<HTMLElement>(
       root,
@@ -213,8 +251,10 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
       const swapped = degrees > 90
       const main = swapped ? directions.flipped : directions.front
       const other = swapped ? directions.front : directions.flipped
-      proofFrontDirection.textContent = edgeOn ? "—" : symbols[main]
-      proofFlippedDirection.textContent = edgeOn ? "—" : symbols[other]
+      proofFrontFace.textContent = edgeOn ? "Edge-on" : swapped ? "Flipped" : "Front"
+      proofFlippedFace.textContent = edgeOn ? "Edge-on" : swapped ? "Front" : "Flipped"
+      proofFrontDirection.textContent = edgeOn ? "" : symbols[main]
+      proofFlippedDirection.textContent = edgeOn ? "" : symbols[other]
 
       const progress = inspectionLabel(degrees)
       proofSliderState.textContent = progress
