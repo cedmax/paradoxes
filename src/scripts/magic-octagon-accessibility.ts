@@ -68,8 +68,8 @@ const update = (slider: HTMLInputElement, updateGraphicDescription: boolean) => 
   const degrees = Number(slider.value)
   if (!Number.isFinite(degrees)) return
 
-  let spoken = ""
-  let descriptions: Array<[string, number, number, boolean]> = []
+  let spoken: string
+  let descriptions: Array<[string, number, number, boolean]>
 
   if (id === "magic-octagon-inspect-slider") {
     spoken = describe(0, degrees, false)
