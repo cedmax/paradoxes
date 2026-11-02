@@ -45,6 +45,41 @@ jobs:
         run: pnpm exec prettier --check .
         continue-on-error: true
 
+      # Temporary check for the local-only octagon stylesheet; remove afterwards.
+      - name: Validate built octagon CSS isolation and fallback
+        if: always()
+        run: |
+          pnpm build
+          pnpm check:seo
+          node <<'NODE'
+          const fs = require("node:fs")
+          const path = require("node:path")
+          const pages = []
+          const walk = (dir) => {
+            for (const f of fs.readdirSync(dir, { withFileTypes: true })) {
+              const full = path.join(dir, f.name)
+              if (f.isDirectory()) walk(full)
+              else if (full.endsWith(".html")) pages.push(full)
+            }
+          }
+          walk("dist")
+          const read = (slug) => {
+            const file = pages.find((p) => fs.readFileSync(p, "utf8").includes(`data-entry="${slug}"`))
+            if (!file) throw Error("Missing built page " + slug)
+            return fs.readFileSync(file, "utf8")
+          }
+          const octagon = read("magic-octagon")
+          const monty = read("monty-hall-problem")
+          const marker = "html.magic-octagon-interactive [data-illusion-explanation]"
+          if (!octagon.includes("magic-octagon-interactive")) throw Error("Octagon interactive gate missing")
+          if (!octagon.includes("data-magic-ready")) throw Error("Script failure fallback missing")
+          if (monty.includes("magic-octagon-interactive")) throw Error("Octagon CSS or script leaked into Monty Hall")
+          if (!octagon.includes("data-illusion-explanation")) throw Error("SSR explanation marker missing")
+          const start = octagon.match(/<section[^>]*data-illusion-explanation[^>]*>/)
+          if (!start || start[0].includes(" hidden")) throw Error("Explanation not available without JS")
+          console.log("GATE_BUILD_OK", "pages="+pages.length, "octagon=true", "other_pages_clean=true", "fallback=true")
+          NODE
+
       - name: Unused code
         id: knip
         run: pnpm knip
