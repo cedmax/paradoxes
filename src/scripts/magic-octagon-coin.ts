@@ -13,6 +13,17 @@ export const labels = [
 ]
 
 export const symbols = ["↑", "↗", "→", "↘", "↓", "↙", "←", "↖"]
+export const cornerNames = [
+  "top",
+  "upper-right",
+  "right",
+  "lower-right",
+  "bottom",
+  "lower-left",
+  "left",
+  "upper-left",
+]
+export const angles = [0, 45, 90, 135, 180, 225, 270, 315]
 
 const wrap = (value: number) => ((value % 8) + 8) % 8
 export const directionIndexes = (angle: number) => {
@@ -25,6 +36,10 @@ const vertices = Array.from({ length: 8 }, (_, index) => {
   return { x: 180 + 112 * Math.cos(angle), y: 145 + 112 * Math.sin(angle) }
 })
 const halfThickness = 12
+
+// Keep the visual face, screen-reader description, and control text in sync.
+export const isEdgeOn = (degrees: number) =>
+  Math.abs(Math.cos((degrees * Math.PI) / 180)) <= 0.015
 
 const projection = (x: number, y: number, z: number, turn: number, flip: number) => {
   const inPlane = (turn * Math.PI) / 180
@@ -94,6 +109,6 @@ export const drawCoin = (svg: SVGSVGElement, turn: number, flip: number) => {
 export const inspectionLabel = (degrees: number) => {
   if (degrees === 0) return "Front · 0°"
   if (degrees === 180) return "Flipped · 180°"
-  if (degrees >= 85 && degrees <= 95) return "Edge-on · " + degrees + "°"
+  if (isEdgeOn(degrees)) return `Edge-on · ${degrees}°`
   return "Turning over · " + degrees + "°"
 }
