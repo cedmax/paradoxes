@@ -32,9 +32,8 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
   <section class="flex flex-col gap-3" aria-labelledby="magic-octagon-coin-heading">
     <h2 id="magic-octagon-coin-heading" class="text-xl font-bold">The coin</h2>
     <p class="text-base">
-      One arrow points up, the other points left. Move the slider to inspect
-      both sides of the coin. The red dashed line is the fixed vertical (Y) axis:
-      the coin turns over around it, like a page.
+      One face has an up arrow; the other has a left arrow. The dashed red line
+      marks the vertical flip axis.
     </p>
 
     <div class="mx-auto w-full max-w-xs">
@@ -75,9 +74,8 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
   >
     <h2 id="magic-octagon-puzzle-heading" tabindex="-1" class="text-xl font-bold">Try the puzzle</h2>
     <p class="text-base">
-      The front has already been turned <strong>45° clockwise</strong>.
-      Imagine flipping the coin about the fixed red Y axis. Which corner
-      will the hidden arrow point to? Choose your answer on the coin.
+      The front is turned <strong>45° clockwise</strong>. After a flip about
+      the red Y axis, which corner will the arrow on the other face point to?
     </p>
     <div class="relative mx-auto w-full max-w-xs">
       <Coin
@@ -108,7 +106,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
       </div>
     </div>
     <p id="magic-octagon-choice" class="text-center text-base" aria-live="polite">
-      Select a corner of the coin to predict where the arrow will point.
+      No corner selected.
     </p>
     <button
       id="magic-octagon-reveal"
@@ -120,9 +118,6 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
       Show answer and explanation
     </button>
     <div id="magic-octagon-puzzle-scrub" class="flex flex-col gap-3" hidden>
-      <h3 id="magic-octagon-scrub-heading" tabindex="-1" class="text-center font-bold">
-        Turn the coin over to check
-      </h3>
       <div class="mx-auto flex w-full max-w-sm flex-col gap-2">
         <label for="magic-octagon-puzzle-slider" class="text-base font-bold">
           Flip the rotated coin
@@ -166,11 +161,6 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
     <h2 id="magic-octagon-variations-heading" class="text-xl font-bold">
       Turn it at different angles
     </h2>
-    <p class="text-base">
-      All eight starting rotations, 45° apart. On a phone, flip each coin using
-      its own slider. On a wider screen, flip them together to compare their
-      shapes around the fixed red Y axis.
-    </p>
     <div class="flex flex-col gap-6">
       {[previewAngles.slice(0, 4), previewAngles.slice(4)].map((angles, rowIndex) => (
         <Fragment>
@@ -216,7 +206,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
                 <Coin
                   id={"variant-" + angle}
                   title={"Octagonal coin rotated " + angle + " degrees, with adjustable flip"}
-                  desc={"A solid octagonal coin pre-rotated " + angle + " degrees. Drag its slider to turn it around the fixed red Y axis and see the changing outline and thickness."}
+                  desc={"A solid octagonal coin rotated " + angle + " degrees around its centre, with a fixed red Y flip axis."}
                   initialTurn={angle}
                   oversized
                 />
@@ -456,7 +446,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
         option.dataset.selected = "false"
         option.setAttribute("aria-pressed", "false")
       }
-      choice.textContent = "Select a corner of the coin to predict where the arrow will point."
+      choice.textContent = "No corner selected."
       reveal.disabled = true
       updatePuzzleFlip(0)
       updateSharedVariants(0)
