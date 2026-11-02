@@ -157,9 +157,9 @@ const points = Array.from({ length: 108 }, () => {
     }
 
     const choices = bindListenerChoice(root, name, (value) => {
-      stop()
       proof.disabled = false
       if (value === "skip") {
+        stop()
         showDepth(true)
         status.textContent = "The mathematical explanation is shown below."
         return "The text explains the dot paths without recreating the visual experience."
