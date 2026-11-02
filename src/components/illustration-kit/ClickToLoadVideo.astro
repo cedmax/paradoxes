@@ -61,7 +61,7 @@ const videoUrl =
       type="button"
       data-load-video
       hidden
-      class="absolute inset-0 w-full cursor-pointer text-center focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-accent"
+      class="absolute inset-0 w-full cursor-pointer text-center focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-accent"
       aria-label={`Load video: ${title}`}
     >
       <span
@@ -113,8 +113,8 @@ const videoUrl =
         frame.allow = "encrypted-media; picture-in-picture; fullscreen"
         frame.referrerPolicy = "strict-origin-when-cross-origin"
         frame.allowFullscreen = true
-        frame.addEventListener("load", () => frame.focus(), { once: true })
         container.replaceChildren(frame)
+        frame.focus()
       },
       { once: true },
     )
