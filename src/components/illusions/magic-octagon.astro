@@ -93,9 +93,9 @@ const previewAngles = angles
             role="radio"
             aria-checked="false"
             tabindex={index === 0 ? 0 : -1}
-            aria-label={label + " corner"}
+            aria-label={`${label} corner`}
             class="absolute z-10 grid size-8 -translate-x-1/2 -translate-y-1/2 cursor-pointer place-items-center rounded-full border-2 border-ink bg-paper text-sm font-bold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink data-[selected=true]:bg-ink data-[selected=true]:text-paper"
-            style={"left:" + left + "%;top:" + top + "%"}
+            style={`left:${left}%;top:${top}%`}
           >
             <span aria-hidden="true">{symbol}</span>
           </button>
@@ -193,22 +193,18 @@ const previewAngles = angles
               <div class="flex min-w-0 flex-col gap-2">
                 <p class="text-center text-base font-bold">{angle}° rotation</p>
                 <Coin
-                  id={"variant-" + angle}
-                  title={"Octagonal coin rotated " + angle + " degrees, with adjustable flip"}
-                  desc={
-                    "A solid octagonal coin rotated " +
-                    angle +
-                    " degrees around its centre, with a fixed red Y flip axis."
-                  }
+                  id={`variant-${angle}`}
+                  title={`Octagonal coin rotated ${angle} degrees, with adjustable flip`}
+                  desc={`A solid octagonal coin rotated ${angle} degrees around its centre, with a fixed red Y flip axis.`}
                   initialTurn={angle}
                   oversized
                 />
                 <div class="flex flex-col gap-2 md:hidden">
-                  <label for={"magic-octagon-variant-" + angle} class="text-sm font-bold">
+                  <label for={`magic-octagon-variant-${angle}`} class="text-sm font-bold">
                     Flip this coin
                   </label>
                   <input
-                    id={"magic-octagon-variant-" + angle}
+                    id={`magic-octagon-variant-${angle}`}
                     data-magic-variant={angle}
                     class="w-full accent-current"
                     type="range"
@@ -216,10 +212,10 @@ const previewAngles = angles
                     max="180"
                     step="1"
                     value="0"
-                    aria-describedby={"magic-octagon-variant-state-" + angle}
+                    aria-describedby={`magic-octagon-variant-state-${angle}`}
                     aria-valuetext="Front · 0°"
                   />
-                  <p id={"magic-octagon-variant-state-" + angle} class="text-center text-sm">
+                  <p id={`magic-octagon-variant-state-${angle}`} class="text-center text-sm">
                     Front · 0°
                   </p>
                 </div>
@@ -368,8 +364,8 @@ const previewAngles = angles
     const variantUpdates: Array<(degrees: number) => void> = []
     for (const slider of variantSliders) {
       const turn = Number(slider.dataset.magicVariant)
-      const svg = find<SVGSVGElement>(root, '[data-magic-coin="variant-' + turn + '"]')
-      const state = find<HTMLElement>(root, "#magic-octagon-variant-state-" + turn)
+      const svg = find<SVGSVGElement>(root, `[data-magic-coin="variant-${turn}"]`)
+      const state = find<HTMLElement>(root, `#magic-octagon-variant-state-${turn}`)
       const update = (degrees: number) => {
         slider.value = String(degrees)
         drawCoin(svg, turn, degrees)
@@ -393,8 +389,7 @@ const previewAngles = angles
       updateSharedVariants(Number(sharedVariantsSlider.value))
     })
 
-    // When switching from independently adjusted mobile coins to desktop,
-    // synchronise all four with the visible shared control.
+    // Switching from mobile to desktop synchronises the eight views.
     const desktopVariants = window.matchMedia("(min-width: 48rem)")
     desktopVariants.addEventListener("change", (event) => {
       if (event.matches) updateSharedVariants(Number(sharedVariantsSlider.value))
@@ -422,12 +417,7 @@ const previewAngles = angles
     reveal.addEventListener("click", () => {
       if (!guess) return
       const expected = labels[directionIndexes(puzzleAngle).flipped]
-      answer.textContent =
-        "You chose " +
-        guess +
-        ". When flipped, the hidden arrow points " +
-        expected +
-        (guess === expected ? " — correct." : ".")
+      answer.textContent = `You chose ${guess}. When flipped, the hidden arrow points ${expected}${guess === expected ? " — correct." : "."}`
       selectors.hidden = true
       choice.hidden = true
       reveal.hidden = true
