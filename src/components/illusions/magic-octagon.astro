@@ -272,6 +272,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       faceLabel.textContent = mainFace + " " + symbols[mainIndex]
       otherFaceLabel.textContent = otherFace + " " + symbols[otherIndex]
       flipButton.setAttribute("aria-pressed", String(flipped))
+      flipButton.textContent = comparing ? "Flip both coins" : "Flip the coin"
       flipButton.setAttribute(
         "aria-label",
         comparing ? "Flip both coins" : "Flip the coin to the other face",
