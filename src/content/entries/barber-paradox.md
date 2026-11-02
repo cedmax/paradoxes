@@ -12,7 +12,7 @@ reviewed: true
 problem: "A barber shaves everyone who doesn't shave themselves, and nobody else. Who shaves the barber?"
 claimA: "A barber can shave exactly those who don’t shave themselves."
 claimB: "Such a barber breaks that rule whether or not they shave themselves."
-whatBreaks: "The assumption that any rule about who to shave is one a barber could follow."
+whatBreaks: "The assumption that a barber could follow this rule."
 statusNote: "either answer breaks the barber’s rule, so no barber can follow it. Nobody disputes this, and giving up the idea that any rule can be followed costs nothing."
 setup: "In a village there is one barber. Their rule is that they shave everyone in the village who does not shave themselves, and nobody else. It sounds like a tidy arrangement. Then someone asks the obvious question, does the barber shave themselves?"
 whyWrong: "The puzzle is told as if the rule is one the barber can follow, and the only question is what they do about their own beard. The rule was stated in one sentence, so it seems a barber could keep it. Stating a rule does not guarantee that."
