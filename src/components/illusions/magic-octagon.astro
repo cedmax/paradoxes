@@ -3,17 +3,8 @@ import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Coin from "./magic-octagon/Coin.astro"
 
-const labels = [
-  "up",
-  "up-right",
-  "right",
-  "down-right",
-  "down",
-  "down-left",
-  "left",
-  "up-left",
-] as const
-const symbols = ["↑", "↗", "→", "↘", "↓", "↙", "←", "↖"] as const
+import { angles, labels, symbols } from "~/scripts/magic-octagon-coin"
+
 const corners = labels.map((label, index) => {
   const direction = -Math.PI / 2 + (index * Math.PI) / 4
   return {
@@ -25,7 +16,7 @@ const corners = labels.map((label, index) => {
     top: (((145 + 112 * Math.sin(direction)) / 310) * 100).toFixed(3),
   }
 })
-const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
+const previewAngles = angles
 ---
 
 <IllustrationFigure name="magic-octagon" lead="Where will the arrow point when flipped?">
@@ -91,16 +82,18 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
       <div
         id="magic-octagon-selectors"
         class="absolute inset-0"
-        role="group"
-        aria-label="Predict the hidden arrow by choosing a corner of the coin"
+        role="radiogroup"
+        aria-label="Where will the hidden arrow point?"
       >
-        {corners.map(({ label, symbol, left, top }) => (
+        {corners.map(({ label, symbol, left, top }, index) => (
           <button
             type="button"
             data-magic-guess={label}
             data-selected="false"
-            aria-pressed="false"
-            aria-label={"Choose the " + label + " corner"}
+            role="radio"
+            aria-checked="false"
+            tabindex={index === 0 ? 0 : -1}
+            aria-label={label + " corner"}
             class="absolute z-10 grid size-8 -translate-x-1/2 -translate-y-1/2 cursor-pointer place-items-center rounded-full border-2 border-ink bg-paper text-sm font-bold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink data-[selected=true]:bg-ink data-[selected=true]:text-paper"
             style={"left:" + left + "%;top:" + top + "%"}
           >
@@ -115,7 +108,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
     <button
       id="magic-octagon-reveal"
       type="button"
-      aria-controls="magic-octagon-puzzle-scrub magic-octagon-variations"
+      aria-controls="magic-octagon-puzzle-scrub magic-octagon-variations magic-octagon-why"
       class="btn self-center disabled:cursor-not-allowed disabled:opacity-50"
       disabled
     >
@@ -145,7 +138,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
           Front · 0°
         </p>
       </div>
-      <p id="magic-octagon-answer" class="text-base" aria-live="polite"></p>
+      <p id="magic-octagon-answer" tabindex="-1" class="text-base"></p>
       <button type="button" class="btn-link self-start" id="magic-octagon-reset">
         Try again
       </button>
@@ -248,15 +241,13 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
   </section>
 
   <Fragment slot="caption">
-    Redrawn for this site after the Magic Octagon demonstrated by David Masunaga in
-    <ExternalLink href="https://blog.mrmeyer.com/2013/the-magic-octagon/" after=".">
-      Dan Meyer's 2013 account
-    </ExternalLink>
-    The two arrows are fixed on opposite faces of one coin.
+    Redrawn for this site after David Masunaga’s Magic Octagon demonstration,
+    documented in <ExternalLink href="https://blog.mrmeyer.com/2013/the-magic-octagon/" after=".">Dan Meyer’s 2013 account</ExternalLink>
   </Fragment>
 </IllustrationFigure>
 
 <script>
+  import "~/scripts/magic-octagon-accessibility"
   import { find, illustrationRoot } from "~/scripts/illustration"
   import {
     directionIndexes,
@@ -277,7 +268,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
     const puzzleScrub = find<HTMLElement>(root, "#magic-octagon-puzzle-scrub")
     const puzzleSlider = find<HTMLInputElement>(root, "#magic-octagon-puzzle-slider")
     const puzzleSliderState = find<HTMLElement>(root, "#magic-octagon-puzzle-slider-state")
-    const puzzleHeading = find<HTMLElement>(root, "#magic-octagon-puzzle-heading")
+    const why = find<HTMLElement>(document, "#magic-octagon-why")
     const variations = find<HTMLElement>(root, "#magic-octagon-variations")
     const variantSliders = Array.from(
       root.querySelectorAll<HTMLInputElement>("[data-magic-variant]"),
@@ -303,16 +294,40 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
     let guess = ""
     let puzzleFrame = 0
 
-    for (const option of guesses) {
-      option.addEventListener("click", () => {
-        guess = option.dataset.magicGuess ?? ""
-        for (const button of guesses) {
-          const selected = button === option
-          button.dataset.selected = String(selected)
-          button.setAttribute("aria-pressed", String(selected))
-        }
-        choice.textContent = "Selected: " + guess + "."
-        reveal.disabled = false
+    const choose = (option: HTMLButtonElement) => {
+      guess = option.dataset.magicGuess ?? ""
+      for (const button of guesses) {
+        const selected = button === option
+        button.dataset.selected = String(selected)
+        button.setAttribute("aria-checked", String(selected))
+        button.tabIndex = selected ? 0 : -1
+      }
+      choice.textContent = `Selected: ${guess}.`
+      reveal.disabled = false
+    }
+
+    for (const [index, option] of guesses.entries()) {
+      option.addEventListener("click", () => choose(option))
+      option.addEventListener("keydown", (event) => {
+        const direction =
+          event.key === "ArrowRight" || event.key === "ArrowDown"
+            ? 1
+            : event.key === "ArrowLeft" || event.key === "ArrowUp"
+              ? -1
+              : 0
+        const next =
+          event.key === "Home"
+            ? 0
+            : event.key === "End"
+              ? guesses.length - 1
+              : direction
+                ? (index + direction + guesses.length) % guesses.length
+                : -1
+        if (next < 0) return
+        event.preventDefault()
+        const target = guesses[next]
+        choose(target)
+        target.focus()
       })
     }
 
@@ -418,7 +433,8 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
       reveal.hidden = true
       puzzleScrub.hidden = false
       variations.hidden = false
-      puzzleHeading.focus()
+      why.hidden = false
+      answer.focus()
       animatePuzzleReveal()
     })
 
@@ -426,6 +442,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
       cancelAnimationFrame(puzzleFrame)
       variations.hidden = true
       puzzleScrub.hidden = true
+      why.hidden = true
       selectors.hidden = false
       choice.hidden = false
       reveal.hidden = false
@@ -433,7 +450,8 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
       guess = ""
       for (const option of guesses) {
         option.dataset.selected = "false"
-        option.setAttribute("aria-pressed", "false")
+        option.setAttribute("aria-checked", "false")
+        option.tabIndex = option === guesses[0] ? 0 : -1
       }
       choice.textContent = "No corner selected."
       reveal.disabled = true
