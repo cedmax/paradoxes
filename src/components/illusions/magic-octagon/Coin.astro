@@ -119,8 +119,10 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       stroke-width="2.5"
       stroke-dasharray="7 6"
     />
-    <text x="191" y="299" fill={series.red} font-size="15" font-weight="600">
-      Y · flip axis
-    </text>
+    {!oversized && (
+      <text x="191" y="299" fill={series.red} font-size="15" font-weight="600">
+        Y · flip axis
+      </text>
+    )}
   </g>
 </SvgFigure>
