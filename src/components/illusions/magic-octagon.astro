@@ -73,7 +73,7 @@ const previewAngles = [0, 45, 90, 135]
     class="flex flex-col gap-4 border-t-2 border-ink pt-6"
     aria-labelledby="magic-octagon-puzzle-heading"
   >
-    <h2 id="magic-octagon-puzzle-heading" class="text-xl font-bold">Try the puzzle</h2>
+    <h2 id="magic-octagon-puzzle-heading" tabindex="-1" class="text-xl font-bold">Try the puzzle</h2>
     <p class="text-base">
       The front has already been turned <strong>45° clockwise</strong>.
       Imagine flipping the coin about the fixed red Y axis. Which corner
@@ -113,6 +113,7 @@ const previewAngles = [0, 45, 90, 135]
     <button
       id="magic-octagon-reveal"
       type="button"
+      aria-controls="magic-octagon-puzzle-scrub magic-octagon-variations magic-octagon-explanation"
       class="btn self-center disabled:cursor-not-allowed disabled:opacity-50"
       disabled
     >
@@ -316,7 +317,7 @@ const previewAngles = [0, 45, 90, 135]
     const puzzleScrub = find<HTMLElement>(root, "#magic-octagon-puzzle-scrub")
     const puzzleSlider = find<HTMLInputElement>(root, "#magic-octagon-puzzle-slider")
     const puzzleSliderState = find<HTMLElement>(root, "#magic-octagon-puzzle-slider-state")
-    const scrubHeading = find<HTMLElement>(root, "#magic-octagon-scrub-heading")
+    const puzzleHeading = find<HTMLElement>(root, "#magic-octagon-puzzle-heading")
     const variations = find<HTMLElement>(root, "#magic-octagon-variations")
     const variantSliders = Array.from(
       root.querySelectorAll<HTMLInputElement>("[data-magic-variant]"),
@@ -551,6 +552,7 @@ const previewAngles = [0, 45, 90, 135]
       puzzleFrame = requestAnimationFrame(tick)
     }
 
+    const resetVariants: Array<() => void> = []
     for (const slider of variantSliders) {
       const turn = Number(slider.dataset.magicVariant)
       const svg = find<SVGSVGElement>(
@@ -569,6 +571,10 @@ const previewAngles = [0, 45, 90, 135]
         slider.setAttribute("aria-valuetext", label)
       }
       slider.addEventListener("input", update)
+      resetVariants.push(() => {
+        slider.value = "0"
+        update()
+      })
       update()
     }
 
@@ -597,7 +603,7 @@ const previewAngles = [0, 45, 90, 135]
       explanation.hidden = false
       drawProof()
       describeProof()
-      scrubHeading.focus()
+      puzzleHeading.focus()
       animatePuzzleReveal()
     })
 
@@ -635,6 +641,7 @@ const previewAngles = [0, 45, 90, 135]
       choice.textContent = "Select a corner of the coin to predict where the arrow will point."
       reveal.disabled = true
       updatePuzzleFlip(0)
+      for (const resetVariant of resetVariants) resetVariant()
       guesses[0]?.focus()
     })
 
