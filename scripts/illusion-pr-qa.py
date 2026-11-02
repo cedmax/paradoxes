@@ -227,8 +227,10 @@ async def interaction(page, pr):
         require(await answer.is_disabled(), "Motion aftereffect answer available before adaptation")
         require(not await reveal.is_visible(), "Explanation visible before any judgement")
         require(await svg.get_attribute("viewBox") == "0 0 560 370", "Spiral needs landscape proportions")
-        require(await svg.get_attribute("preserveAspectRatio") == "xMidYMid slice",
-                "Spiral should fill the landscape frame without distortion")
+        require(await svg.get_attribute("preserveAspectRatio") == "xMidYMid meet",
+                "Spiral should fit in the frame, without clipping its moving arms")
+        bg = await svg.evaluate("(e) => getComputedStyle(e).backgroundColor")
+        require(bg == "rgb(188, 188, 188)", f"Unfilled sides should retain neutral background: {bg}")
         height = await svg.evaluate("(e) => e.getBoundingClientRect().height")
         target_height = 320 if page.viewport_size["width"] == 1280 else 220
         require(abs(height - target_height) < 3,
@@ -247,14 +249,16 @@ async def interaction(page, pr):
         require(await reveal.is_visible(), "Skipping did not unlock explanation")
         await play.click()
         require(not await reveal.is_visible(), "New adaptation did not hide previous reveal")
-        await page.wait_for_timeout(250)
+        require(await answer.is_disabled(), "Starting must lock the motion answers")
+        await page.wait_for_timeout(1050)
         before_stop = await spiral.get_attribute("transform")
         require("rotate(" in before_stop, "Spiral did not animate after Start")
         await play.click()
-        require(await answer.is_enabled(), "Stopped adaptation should allow judgement")
+        require(await answer.is_disabled(), "Stopping after one second must not unlock judgement")
+        require("stopped early" in await page.locator(f"#{prefix}-status").inner_text(),
+                "Early cancellation should invite a full retry")
         after_stop = await spiral.get_attribute("transform")
         require("rotate(" in after_stop, "Stopped spiral snapped back to its starting angle")
-        # One animation frame may render between the measurement and the Stop click.
         before_angle = float(before_stop.split("(")[1].split()[0])
         after_angle = float(after_stop.split("(")[1].split()[0])
         change = abs(((after_angle - before_angle + 180) % 360) - 180)
@@ -262,6 +266,24 @@ async def interaction(page, pr):
         await page.wait_for_timeout(180)
         require(await spiral.get_attribute("transform") == after_stop,
                 "Spiral continued rotating after Stop")
+        await play.click()
+        require(await answer.is_disabled(), "Retry must keep answers locked")
+        await page.wait_for_timeout(150)
+        await page.evaluate("""() => {
+            Object.defineProperty(document, "hidden", { configurable: true, value: true })
+            document.dispatchEvent(new Event("visibilitychange"))
+            delete document.hidden
+        }""")
+        require(await play.inner_text() == "Try again", "Hidden tab must cancel the run")
+        require(await answer.is_disabled(), "Hiding the tab must not unlock judgement")
+        await play.click()
+        require(await answer.is_disabled(), "New retry must start with answers locked")
+        await page.wait_for_timeout(12250)
+        require(await play.inner_text() == "Try again", "Full 12-second adaptation should finish")
+        require(await answer.is_enabled(), "Full adaptation must unlock judgement")
+        require("Does it seem to move?" in await page.locator(f"#{prefix}-status").inner_text(),
+                "Finished status should ask about all apparent movement")
+        require(not await reveal.is_visible(), "Explanation shown before a judgement")
         await answer.click()
         require(await reveal.is_visible(), "Motion judgement did not reveal explanation")
         require("expand" in await reveal.inner_text(),

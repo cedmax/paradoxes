@@ -101,4 +101,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Verify full-width, compact-height spiral and preserved motion controls on latest #141 and #142
+# Verify 12s judgement gate, early-stop and tab-hide cancellations, no crop and source addition
