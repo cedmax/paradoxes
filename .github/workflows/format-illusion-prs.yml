@@ -1,0 +1,92 @@
+name: Format and propagate native illusion draft files
+on:
+  push:
+    branches:
+      - checks/illusion-pr-qa-20261102
+    paths:
+      - .github/workflows/format-illusion-prs.yml
+permissions:
+  contents: write
+jobs:
+  format-and-rebase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: video/motion-silencing
+          path: site
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.9.1
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: site/.nvmrc
+          cache: pnpm
+          cache-dependency-path: site/pnpm-lock.yaml
+      - name: Install and format changed files
+        working-directory: site
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm exec prettier --write \
+            src/components/illusions/ames-window-illusion.astro \
+            src/content/entries/ames-window-illusion.md \
+            src/components/illusions/sound-induced-flash-illusion.astro \
+            src/content/entries/sound-induced-flash-illusion.md \
+            src/components/illusions/stream-bounce-illusion.astro \
+            src/content/entries/stream-bounce-illusion.md \
+            src/components/illusions/kinetic-depth-effect.astro \
+            src/content/entries/kinetic-depth-effect.md \
+            src/components/illusions/motion-aftereffect.astro \
+            src/content/entries/motion-aftereffect.md \
+            src/components/illusions/motion-silencing-illusion.astro \
+            src/content/entries/motion-silencing-illusion.md
+      - name: Restack as six single-file-pair commits using force-with-lease
+        working-directory: site
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "Logic Benders QA"
+          git config user.email "actions@users.noreply.github.com"
+          mkdir -p /tmp/formatted
+          for path in \
+            src/components/illusions/ames-window-illusion.astro \
+            src/content/entries/ames-window-illusion.md \
+            src/components/illusions/sound-induced-flash-illusion.astro \
+            src/content/entries/sound-induced-flash-illusion.md \
+            src/components/illusions/stream-bounce-illusion.astro \
+            src/content/entries/stream-bounce-illusion.md \
+            src/components/illusions/kinetic-depth-effect.astro \
+            src/content/entries/kinetic-depth-effect.md \
+            src/components/illusions/motion-aftereffect.astro \
+            src/content/entries/motion-aftereffect.md \
+            src/components/illusions/motion-silencing-illusion.astro \
+            src/content/entries/motion-silencing-illusion.md; do
+            mkdir -p "/tmp/formatted/$(dirname "$path")"
+            cp "$path" "/tmp/formatted/$path"
+          done
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "344ec6542a3ed8f7d55ef831c91c20191e49bd90"
+          git reset --hard HEAD
+          git switch --detach origin/main
+          while IFS='|' read -r name expected component entry; do
+            actual=$(git ls-remote origin "refs/heads/$name" | cut -f1)
+            if [[ "$actual" != "$expected" ]]; then
+              echo "Ref changed for $name: expected $expected, found $actual" >&2
+              exit 1
+            fi
+            cp "/tmp/formatted/$component" "$component"
+            cp "/tmp/formatted/$entry" "$entry"
+            git add "$component" "$entry"
+            git commit -m "Refine $name native illusion for review"
+            git push --force-with-lease="refs/heads/$name:$expected" origin HEAD:"refs/heads/$name"
+            echo "Updated $name at $(git rev-parse HEAD)"
+          done <<'BRANCHES'
+          video/ames-window|47f467c81fd307ef7941eecec0de75e664621261|src/components/illusions/ames-window-illusion.astro|src/content/entries/ames-window-illusion.md
+          video/flash-beep|c69bc4851956aaaa8989cff605c564a640908901|src/components/illusions/sound-induced-flash-illusion.astro|src/content/entries/sound-induced-flash-illusion.md
+          video/stream-bounce|bac364d98445d70020820ab4d3f64bcb2e073f33|src/components/illusions/stream-bounce-illusion.astro|src/content/entries/stream-bounce-illusion.md
+          video/kinetic-depth|0209d4840fa2364c1e6e9b217f4d2dc377da7b33|src/components/illusions/kinetic-depth-effect.astro|src/content/entries/kinetic-depth-effect.md
+          video/motion-aftereffect|f4c2d79d26d506d2ef6db77db69570c1252d08c8|src/components/illusions/motion-aftereffect.astro|src/content/entries/motion-aftereffect.md
+          video/motion-silencing|e823d01a3b5b6f82db9b03f92078ad5b150ea586|src/components/illusions/motion-silencing-illusion.astro|src/content/entries/motion-silencing-illusion.md
+          BRANCHES
