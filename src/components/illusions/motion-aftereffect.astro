@@ -28,8 +28,8 @@ const arms = Array.from({ length: 7 }, (_, index) => {
   <SvgFigure
     name="motion-aftereffect"
     viewBox="0 0 560 370"
-    preserveAspectRatio="xMidYMid slice"
-    class="h-55 w-full sm:h-80"
+    preserveAspectRatio="xMidYMid meet"
+    class="h-55 w-full bg-illusion-neutral sm:h-80"
     title="A spiral pattern that can rotate for twelve seconds and then stop completely"
     desc="Seven blue spiral arms surround a small centre cross. After twelve seconds of rotation the same static SVG paths remain in exactly one fixed position. Any movement perceived after they stop is not drawn."
   >
@@ -90,9 +90,20 @@ const arms = Array.from({ length: 7 }, (_, index) => {
     const status = find<HTMLElement>(root, `#${name}-status`)
     const reveal = find<HTMLElement>(root, `#${name}-reveal`)
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
+    let frame = 0
+    let started: number | undefined
+    let running = false
+    let angle = 0
+    let startAngle = 0
+    const stop = () => {
+      running = false
+      cancelAnimationFrame(frame)
+      play.textContent = "Try again"
+      play.setAttribute("aria-pressed", "false")
+    }
     const choices = bindListenerChoice(root, name, (value) => {
       if (value === "skip") {
-        if (running) finish()
+        if (running) stop()
         status.textContent = "Moving patterns skipped. The explanation is available below."
       }
       reveal.hidden = false
@@ -100,17 +111,13 @@ const arms = Array.from({ length: 7 }, (_, index) => {
         ? "The explanatory text describes the effect without asking you to experience it."
         : "The static test is fixed in one position."
     })
-    let frame = 0
-    let started: number | undefined
-    let running = false
-    let angle = 0
-    let startAngle = 0
+    const cancelRun = () => {
+      stop()
+      status.textContent = "Adaptation stopped early. Try again for a full 12 seconds."
+    }
     const finish = () => {
-      running = false
-      cancelAnimationFrame(frame)
-      play.textContent = "Try again"
-      play.setAttribute("aria-pressed", "false")
-      status.textContent = "The pattern has stopped completely. Does it seem to turn?"
+      stop()
+      status.textContent = "The pattern has stopped completely. Does it seem to move?"
       choices.enable()
     }
     const tick = (now: number) => {
@@ -123,7 +130,7 @@ const arms = Array.from({ length: 7 }, (_, index) => {
       frame = requestAnimationFrame(tick)
     }
     play.addEventListener("click", () => {
-      if (running) return finish()
+      if (running) return cancelRun()
       if (reduced.matches) return
       reveal.hidden = true
       choices.reset()
@@ -142,10 +149,10 @@ const arms = Array.from({ length: 7 }, (_, index) => {
       frame = requestAnimationFrame(tick)
     })
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden && running) finish()
+      if (document.hidden && running) cancelRun()
     })
     const updateMotionPreference = () => {
-      if (reduced.matches && running) finish()
+      if (reduced.matches && running) cancelRun()
       play.disabled = reduced.matches
       play.title = reduced.matches
         ? "Moving patterns are disabled; use the opt-out to read the explanation"
