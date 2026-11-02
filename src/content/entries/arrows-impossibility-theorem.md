@@ -20,7 +20,7 @@ noMaths: true
 sourcesVerified: true
 problem: "Is there a fair way to turn everyone's rankings of three or more options into one ranking for the group?"
 claimA: "A voting rule that fairly combines rankings of three or more options must exist."
-claimB: "Any rule that takes every set of rankings and ranks consistently, respects unanimity and ignores irrelevant options, gives one voter total control."
+claimB: "Any rule for three or more options that takes every set of rankings and ranks consistently, respects unanimity and ignores irrelevant options, gives one voter total control."
 whatBreaks: "The hope that a ranking rule can meet every demand. The theorem settles the clash; it does not settle which demand fairness requires giving up."
 statusNote: "the theorem itself is proved, so each way out drops a demand: allowing only some patterns of preference, allowing ties that need not carry through, letting other options matter, or asking people to grade rather than rank."
 setup: "A committee asks everyone to rank three or more proposals. It wants one ranking for the whole group. It seems reasonable to ask for a consistent result, to respect everyone’s agreement and to give no one person control. It also wants to accept any rankings and to compare two proposals using only people’s preferences between those two."
