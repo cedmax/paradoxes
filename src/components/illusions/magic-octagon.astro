@@ -1,8 +1,6 @@
 ---
 import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
-import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
-import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { illusionSurface, series, stroke } from "~/data/palette"
 
@@ -16,31 +14,24 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 }).join(" ")
 ---
 
-<IllustrationFigure
-  name="magic-octagon"
-  lead="Can you predict where the hidden arrow will point?"
->
+<IllustrationFigure name="magic-octagon" lead="Where will the arrow on the back point?">
   <p class="text-base">
-    The front points up. Flip the octagon to see the back, then turn it over again.
-    Give it a 45° turn and try to predict the back before flipping once more.
+    The front starts pointing up. Turn the octagon 45°, predict the back, then
+    flip to check. Compare both sides to watch what happens to both arrows.
   </p>
 
-  <div class="flex flex-col items-center gap-2">
-    <p id="magic-octagon-face" class="font-bold">Front ↑</p>
-    <button
-      id="magic-octagon-coin"
-      type="button"
-      class="mx-auto block w-full max-w-sm cursor-pointer bg-transparent p-0"
-      aria-label="Flip the octagon to show its back"
-      aria-describedby="magic-octagon-hint magic-octagon-state"
-      aria-pressed="false"
-    >
+  <div
+    id="magic-octagon-views"
+    class="mx-auto flex w-full max-w-sm items-start justify-center gap-2 sm:gap-5"
+  >
+    <div class="min-w-0 flex-1">
+      <p id="magic-octagon-face" class="text-center text-base font-bold">Front ↑</p>
       <SvgFigure
-        name="magic-octagon"
+        name="magic-octagon-main"
         viewBox="0 0 360 290"
         class="w-full"
-        title="A two-sided octagonal coin with an arrow on each face"
-        desc="The front arrow starts up. The back arrow points left when flipped about the vertical screen axis. A black dot marks one corner of the coin. Buttons rotate the coin in 45-degree steps or flip it. The optional dashed arrow previews where the other face would point after the selected turn and flip."
+        title="A two-sided octagonal coin"
+        desc="A coin with a blue arrow on the front, a gold arrow on the back and a dot marking one physical corner. The coin turns and flips. A separate view of the other face can be shown beside it."
       >
         <g id="magic-octagon-flip">
           <g id="magic-octagon-turn">
@@ -75,109 +66,142 @@ const corners = Array.from({ length: 8 }, (_, index) => {
             <circle cx="180" cy="47" r="5" fill={stroke} />
           </g>
         </g>
-        <g id="magic-octagon-other-face-preview">
+      </SvgFigure>
+    </div>
+
+    <div id="magic-octagon-other" class="min-w-0 flex-1" hidden>
+      <p id="magic-octagon-other-face" class="text-center text-base font-bold">Back ←</p>
+      <SvgFigure
+        name="magic-octagon-other-svg"
+        viewBox="0 0 360 290"
+        class="w-full"
+        title="The other face of the octagonal coin"
+        desc="A second view of the same octagonal coin, shown as though flipped about the fixed vertical axis. Both views update when either turn button is used."
+      >
+        <g id="magic-octagon-other-mirror">
+          <g id="magic-octagon-other-turn">
+            <polygon
+              points={corners}
+              fill={illusionSurface.paper}
+              stroke={stroke}
+              stroke-width="3"
+              stroke-linejoin="round"
+            />
             <g
-              id="magic-octagon-ghost-front"
+              id="magic-octagon-other-front"
               visibility="hidden"
               fill="none"
               stroke={series.blue}
-              stroke-width="5"
-              stroke-dasharray="7 6"
+              stroke-width="8"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
               <path d="M180 190 V99 M160 119 L180 99 L200 119" />
             </g>
             <g
-              id="magic-octagon-ghost-back"
-              visibility="hidden"
+              id="magic-octagon-other-back"
               fill="none"
               stroke={series.gold}
-              stroke-width="5"
-              stroke-dasharray="7 6"
+              stroke-width="8"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
               <path d="M133 145 H227 M206 124 L227 145 L206 166" />
             </g>
+            <circle cx="180" cy="47" r="5" fill={stroke} />
+          </g>
         </g>
-        <MeasurementGuides name="magic-octagon" d="M180 22 V268" />
       </SvgFigure>
-    </button>
-    <p id="magic-octagon-hint" class="text-base text-center">
-      Click, tap or press Enter to flip the coin. The dot marks the same corner throughout.
-    </p>
+    </div>
   </div>
 
   <div
-    id="magic-octagon-turn-controls"
-    class="flex flex-wrap justify-center gap-3"
+    class="mx-auto grid w-full max-w-lg grid-cols-[1fr_1.5fr_1fr] gap-2 sm:gap-3"
     role="group"
-    aria-label="Turn the front face"
+    aria-label="Turn or flip the coin"
   >
     <button
       type="button"
-      class="btn-ghost"
+      class="btn-ghost min-w-0 px-2 text-sm sm:px-5 sm:text-base"
       id="magic-octagon-left"
-      aria-label="Turn the front 45 degrees anticlockwise"
+      aria-label="Turn the visible face 45 degrees anticlockwise"
     >
-      ↶ Turn 45°
+      ↶ 45°
     </button>
     <button
       type="button"
-      class="btn-ghost"
-      id="magic-octagon-right"
-      aria-label="Turn the front 45 degrees clockwise"
+      class="btn min-w-0 px-2 text-sm sm:px-5 sm:text-base"
+      id="magic-octagon-flip-button"
+      aria-label="Flip the coin to the other face"
+      aria-pressed="false"
     >
-      Turn 45° ↷
+      Flip the coin
+    </button>
+    <button
+      type="button"
+      class="btn-ghost min-w-0 px-2 text-sm sm:px-5 sm:text-base"
+      id="magic-octagon-right"
+      aria-label="Turn the visible face 45 degrees clockwise"
+    >
+      45° ↷
     </button>
   </div>
 
-  <p id="magic-octagon-state" class="text-base" aria-live="polite">
-    Front: up. Predict the back, then flip the coin.
-  </p>
-
   <div class="flex flex-wrap items-center gap-3">
+    <button
+      type="button"
+      class="btn-toggle"
+      id="magic-octagon-compare"
+      aria-controls="magic-octagon-other"
+      aria-pressed="false"
+    >
+      Compare both sides
+    </button>
     <button type="button" class="btn-link" id="magic-octagon-reset">Reset</button>
-    <div id="magic-octagon-proof-controls" hidden>
-      <IllusionControls
-        name="magic-octagon"
-        play={false}
-        proofLabel="Compare both sides"
-        proof="The dashed arrow previews the other face as it would point after the flip, including the selected 45° turn. The arrows are 90° apart on the physical coin, but can look aligned or opposite when their faces are compared. The red line is the fixed vertical flip axis."
-      />
-    </div>
   </div>
+
+  <p id="magic-octagon-state" class="text-base" aria-live="polite">
+    Front arrow: up. Turn, predict, then flip the coin.
+  </p>
+  <p id="magic-octagon-compare-note" class="text-base" hidden>
+    Both views show the same coin, with each side facing you after a flip about
+    the fixed vertical axis. As the coin turns, the two arrows rotate in opposite
+    directions on screen because one face is mirrored.
+  </p>
 
   <Fragment slot="caption">
     Redrawn for this site after the Magic Octagon demonstrated by David Masunaga in
     <ExternalLink href="https://blog.mrmeyer.com/2013/the-magic-octagon/" after=".">
       Dan Meyer's 2013 account
     </ExternalLink>
-    The two arrows are fixed on opposite faces, not independently animated.
+    Both arrows are fixed on the same physical coin.
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import { bindIllusionProof, find, illustrationRoot } from "~/scripts/illustration"
+  import { find, illustrationRoot } from "~/scripts/illustration"
 
   const root = illustrationRoot("magic-octagon")
   if (root) {
-    const coin = find<HTMLButtonElement>(root, "#magic-octagon-coin")
+    const views = find<HTMLElement>(root, "#magic-octagon-views")
+    const other = find<HTMLElement>(root, "#magic-octagon-other")
     const left = find<HTMLButtonElement>(root, "#magic-octagon-left")
     const right = find<HTMLButtonElement>(root, "#magic-octagon-right")
-    const reset = find<HTMLButtonElement>(root, "#magic-octagon-reset")
-    const turnControls = find<HTMLElement>(root, "#magic-octagon-turn-controls")
+    const flipButton = find<HTMLButtonElement>(root, "#magic-octagon-flip-button")
+    const compareButton = find<HTMLButtonElement>(root, "#magic-octagon-compare")
+    const resetButton = find<HTMLButtonElement>(root, "#magic-octagon-reset")
     const faceLabel = find<HTMLElement>(root, "#magic-octagon-face")
+    const otherFaceLabel = find<HTMLElement>(root, "#magic-octagon-other-face")
     const status = find<HTMLElement>(root, "#magic-octagon-state")
-    const proofControls = find<HTMLElement>(root, "#magic-octagon-proof-controls")
-    const proofButton = find<HTMLButtonElement>(root, "#magic-octagon-guide-toggle")
+    const compareNote = find<HTMLElement>(root, "#magic-octagon-compare-note")
     const flipGroup = find<SVGGElement>(root, "#magic-octagon-flip")
     const turnGroup = find<SVGGElement>(root, "#magic-octagon-turn")
     const front = find<SVGGElement>(root, "#magic-octagon-front")
     const back = find<SVGGElement>(root, "#magic-octagon-back")
-    const ghostFront = find<SVGGElement>(root, "#magic-octagon-ghost-front")
-    const ghostBack = find<SVGGElement>(root, "#magic-octagon-ghost-back")
+    const otherMirror = find<SVGGElement>(root, "#magic-octagon-other-mirror")
+    const otherTurn = find<SVGGElement>(root, "#magic-octagon-other-turn")
+    const otherFront = find<SVGGElement>(root, "#magic-octagon-other-front")
+    const otherBack = find<SVGGElement>(root, "#magic-octagon-other-back")
 
     const directions = [
       "up",
@@ -189,41 +213,35 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       "left",
       "up-left",
     ]
-    const arrows = ["↑", "↗", "→", "↘", "↓", "↙", "←", "↖"]
-    const wrap = (index: number) => ((index % 8) + 8) % 8
+    const symbols = ["↑", "↗", "→", "↘", "↓", "↙", "←", "↖"]
+    const wrap = (value: number) => ((value % 8) + 8) % 8
+    const scaleAroundCentre = (factor: number) =>
+      "translate(180 145) scale(" + factor + " 1) translate(-180 -145)"
 
+    // Angle is measured on the original front. The back view is its reflection
+    // about the fixed vertical axis, not a separately rotated illustration.
     let angle = 0
     let flipped = false
+    let comparing = false
     let displayedAngle = 0
     let displayedFlip = 0
     let frame = 0
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
-    const show = () => {
-      // The inner group turns the physical coin. The outer group projects a flip about
-      // the *screen's* vertical axis, so the hidden arrow changes direction correctly.
+    const draw = () => {
       const width = Math.cos((displayedFlip * Math.PI) / 180)
-      const backVisible = displayedFlip > 90
-      const through = proofButton.getAttribute("aria-pressed") === "true"
+      const showingBack = displayedFlip > 90
+      flipGroup.setAttribute("transform", scaleAroundCentre(width))
       turnGroup.setAttribute("transform", "rotate(" + displayedAngle + " 180 145)")
-      flipGroup.setAttribute(
-        "transform",
-        "translate(180 145) scale(" + width + " 1) translate(-180 -145)",
-      )
-      front.setAttribute("visibility", backVisible ? "hidden" : "visible")
-      back.setAttribute("visibility", backVisible ? "visible" : "hidden")
-      // Compare both faces in the same screen coordinates. The hidden back is
-      // rotated with the coin and THEN reflected about the vertical flip axis.
-      // A literal see-through drawing would omit that reflection and would not
-      // preview where the arrow points when that face is shown to the reader.
-      ghostFront.setAttribute("transform", `rotate(${displayedAngle} 180 145)`)
-      ghostBack.setAttribute(
-        "transform",
-        `translate(180 145) scale(-1 1) translate(-180 -145) rotate(${displayedAngle} 180 145)`,
-      )
-      const resting = Math.abs(displayedFlip - (flipped ? 180 : 0)) < 0.01
-      ghostFront.setAttribute("visibility", through && resting && backVisible ? "visible" : "hidden")
-      ghostBack.setAttribute("visibility", through && resting && !backVisible ? "visible" : "hidden")
+      front.setAttribute("visibility", showingBack ? "hidden" : "visible")
+      back.setAttribute("visibility", showingBack ? "visible" : "hidden")
+
+      // The neighbouring view shows the other side facing the reader.
+      // Both use the same physical rotation, with a mirror for the back.
+      otherMirror.setAttribute("transform", scaleAroundCentre(flipped ? 1 : -1))
+      otherTurn.setAttribute("transform", "rotate(" + displayedAngle + " 180 145)")
+      otherFront.setAttribute("visibility", flipped ? "visible" : "hidden")
+      otherBack.setAttribute("visibility", flipped ? "hidden" : "visible")
     }
 
     const describe = () => {
@@ -232,92 +250,105 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       const backIndex = wrap(6 - steps)
       const frontDirection = directions[frontIndex]
       const backDirection = directions[backIndex]
-      if (flipped) {
-        faceLabel.textContent = "Back " + arrows[backIndex]
-        const difference = wrap(backIndex - frontIndex)
-        const relation =
-          difference === 0
-            ? "Both arrows now point the same way."
-            : difference === 4
-              ? "They now point in opposite directions."
-              : difference === 2 || difference === 6
-                ? "They are at right angles."
-                : "They point in different directions."
-        status.textContent =
-          "The front pointed " +
-          frontDirection +
-          ". The back points " +
-          backDirection +
-          ". " +
-          relation +
-          " Flip back to try another turn."
-      } else {
-        faceLabel.textContent = "Front " + arrows[frontIndex]
-        status.textContent =
-          "Front: " +
-          frontDirection +
-          ". Imagine where the back arrow points, then flip the coin to find out."
-      }
-      coin.setAttribute(
+      faceLabel.textContent = flipped
+        ? "Back " + symbols[backIndex]
+        : "Front " + symbols[frontIndex]
+      otherFaceLabel.textContent = flipped
+        ? "Front " + symbols[frontIndex]
+        : "Back " + symbols[backIndex]
+      flipButton.setAttribute("aria-pressed", String(flipped))
+      flipButton.setAttribute(
         "aria-label",
-        flipped ? "Flip the octagon back to its front" : "Flip the octagon to show its back",
+        flipped ? "Flip the coin to the front" : "Flip the coin to the back",
       )
-      coin.setAttribute("aria-pressed", String(flipped))
+
+      const difference = wrap(backIndex - frontIndex)
+      const relation =
+        difference === 0
+          ? "Both arrows point the same way."
+          : difference === 4
+            ? "The arrows point in opposite directions."
+            : difference === 2 || difference === 6
+              ? "The arrows are at right angles in these two views."
+              : "The arrows point in different directions."
+
+      if (comparing) {
+        status.textContent =
+          "Front: " + frontDirection + ". Back: " + backDirection + ". " +
+          relation + " The turn controls move both views."
+      } else if (flipped) {
+        status.textContent =
+          "Back arrow: " + backDirection + ". The front pointed " +
+          frontDirection + ". " + relation
+      } else {
+        status.textContent =
+          "Front arrow: " + frontDirection +
+          ". Predict the back, then flip the coin."
+      }
     }
 
-    const animate = (nextAngle: number, nextFlip: number) => {
+    const animate = (targetAngle: number, targetFlip: number) => {
       cancelAnimationFrame(frame)
-      const startAngle = displayedAngle
-      const startFlip = displayedFlip
+      const initialAngle = displayedAngle
+      const initialFlip = displayedFlip
+      describe()
       if (reducedMotion.matches) {
-        displayedAngle = nextAngle
-        displayedFlip = nextFlip
-        show()
-        describe()
+        displayedAngle = targetAngle
+        displayedFlip = targetFlip
+        draw()
         return
       }
-      const duration = startFlip !== nextFlip ? 520 : 260
+      const duration = initialFlip !== targetFlip ? 500 : 250
       let started = -1
       const tick = (now: number) => {
         if (started < 0) started = now
-        const t = Math.min(1, (now - started) / duration)
-        const ease = t * t * (3 - 2 * t)
-        displayedAngle = startAngle + (nextAngle - startAngle) * ease
-        displayedFlip = startFlip + (nextFlip - startFlip) * ease
-        show()
-        if (t < 1) {
-          frame = requestAnimationFrame(tick)
-        } else {
-          describe()
-        }
+        const fraction = Math.min(1, (now - started) / duration)
+        const eased = fraction * fraction * (3 - 2 * fraction)
+        displayedAngle = initialAngle + (targetAngle - initialAngle) * eased
+        displayedFlip = initialFlip + (targetFlip - initialFlip) * eased
+        draw()
+        if (fraction < 1) frame = requestAnimationFrame(tick)
       }
       frame = requestAnimationFrame(tick)
     }
 
     const turn = (amount: number) => {
-      if (flipped) return
-      angle += amount
-      animate(angle, 0)
+      // The buttons always rotate the visible face in the stated direction.
+      // When showing the back, the original front's angle changes oppositely.
+      angle += flipped ? -amount : amount
+      animate(angle, flipped ? 180 : 0)
     }
 
-    coin.addEventListener("click", () => {
-      flipped = !flipped
-      turnControls.hidden = flipped
-      proofControls.hidden = false
-      animate(angle, flipped ? 180 : 0)
-    })
     left.addEventListener("click", () => turn(-45))
     right.addEventListener("click", () => turn(45))
-    reset.addEventListener("click", () => {
+    flipButton.addEventListener("click", () => {
+      flipped = !flipped
+      animate(angle, flipped ? 180 : 0)
+    })
+    compareButton.addEventListener("click", () => {
+      comparing = !comparing
+      other.hidden = !comparing
+      compareNote.hidden = !comparing
+      views.classList.toggle("max-w-sm", !comparing)
+      views.classList.toggle("max-w-2xl", comparing)
+      compareButton.setAttribute("aria-pressed", String(comparing))
+      compareButton.textContent = comparing ? "Hide comparison" : "Compare both sides"
+      draw()
+      describe()
+    })
+    resetButton.addEventListener("click", () => {
       angle = 0
       flipped = false
-      turnControls.hidden = false
+      comparing = false
+      other.hidden = true
+      compareNote.hidden = true
+      views.classList.add("max-w-sm")
+      views.classList.remove("max-w-2xl")
+      compareButton.setAttribute("aria-pressed", "false")
+      compareButton.textContent = "Compare both sides"
       animate(0, 0)
     })
-
-    bindIllusionProof(root, "magic-octagon", "Compare both sides", "Hide comparison")
-    proofButton.addEventListener("click", show)
-    show()
+    draw()
     describe()
   }
 </script>
