@@ -2,6 +2,7 @@
 import ExternalLink from "~/components/ExternalLink.astro"
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import Coin from "./magic-octagon/Coin.astro"
+import Narration from "./magic-octagon/Narration.astro"
 
 import { angles, labels, symbols } from "~/scripts/magic-octagon-coin"
 
@@ -18,6 +19,20 @@ const corners = labels.map((label, index) => {
 })
 const previewAngles = angles
 ---
+
+<!-- The explanation is visible without JavaScript. Activate the prediction gate
+     before parsing the figure so the answer cannot flash on interactive pages. -->
+<script is:inline>
+  document.documentElement.classList.add("magic-octagon-interactive")
+</script>
+
+<style is:global>
+  html.magic-octagon-interactive [data-illusion-explanation]:not([data-revealed]) {
+    display: none !important;
+  }
+</style>
+
+<Narration />
 
 <IllustrationFigure name="magic-octagon" lead="Where will the arrow point when flipped?">
   <section class="flex flex-col gap-3" aria-labelledby="magic-octagon-coin-heading">
@@ -245,7 +260,6 @@ const previewAngles = angles
 </IllustrationFigure>
 
 <script>
-  import "~/scripts/magic-octagon-accessibility"
   import { find, illustrationRoot } from "~/scripts/illustration"
   import {
     directionIndexes,
@@ -266,7 +280,7 @@ const previewAngles = angles
     const puzzleScrub = find<HTMLElement>(root, "#magic-octagon-puzzle-scrub")
     const puzzleSlider = find<HTMLInputElement>(root, "#magic-octagon-puzzle-slider")
     const puzzleSliderState = find<HTMLElement>(root, "#magic-octagon-puzzle-slider-state")
-    const why = find<HTMLElement>(document.documentElement, "#magic-octagon-why")
+    const why = find<HTMLElement>(document.documentElement, "[data-illusion-explanation]")
     const variations = find<HTMLElement>(root, "#magic-octagon-variations")
     const variantSliders = Array.from(
       root.querySelectorAll<HTMLInputElement>("[data-magic-variant]"),
@@ -425,7 +439,7 @@ const previewAngles = angles
       reveal.hidden = true
       puzzleScrub.hidden = false
       variations.hidden = false
-      why.hidden = false
+      why.dataset.revealed = "true"
       answer.focus()
       animatePuzzleReveal()
     })
@@ -434,7 +448,7 @@ const previewAngles = angles
       cancelAnimationFrame(puzzleFrame)
       variations.hidden = true
       puzzleScrub.hidden = true
-      why.hidden = true
+      delete why.dataset.revealed
       selectors.hidden = false
       choice.hidden = false
       reveal.hidden = false
