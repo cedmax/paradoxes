@@ -178,16 +178,28 @@ async def interaction(page, pr):
         require(88 <= rotation <= 125, f"Kinetic playback speed drifted from 30 degrees/s: {rotation}")
         require(await dots.first.get_attribute("cx") != first, "Kinetic dot did not move")
         await answer.click()
-        require(await play.inner_text() == "Play", "Answer must stop kinetic motion")
+        require(await play.inner_text() == "Pause", "Answer must preserve kinetic playback")
+        require(await play.get_attribute("aria-pressed") == "true",
+                "Judgement must not clear playing state")
         require(await proof.is_enabled(), "Kinetic judgement did not unlock the depth proof")
         await proof.click()
         require(await dots.first.get_attribute("fill") != "var(--color-stroke)",
                 "Depth proof did not recolour dots")
+        moving_dot = await dots.first.get_attribute("cx")
+        await page.wait_for_timeout(170)
+        require(await dots.first.get_attribute("cx") != moving_dot,
+                "Kinetic coloured dots stopped moving after reveal")
+        require(await play.inner_text() == "Pause",
+                "Showing kinetic depth cues should not stop playback")
         require("may reverse" in await page.locator(f"#{prefix}-proof").inner_text(),
                 "Depth proof does not acknowledge rotation ambiguity")
         await slider.evaluate("(el) => { el.value = '180'; el.dispatchEvent(new Event('input', { bubbles: true })) }")
+        require(await play.inner_text() == "Play", "Manual slider must pause rotation")
         require(await slider.get_attribute("aria-valuetext") == "Rotation 180 degrees",
                 "Manual slider angle is not accessible")
+        await play.click()
+        await page.locator(f'#{prefix}-choices [data-choice="skip"]').click()
+        require(await play.inner_text() == "Play", "Explicit skip must stop motion")
     elif pr == 141:
         skip = page.locator('#motion-aftereffect-choices [data-choice="skip"]')
         require(await skip.is_visible() and await skip.is_enabled(), "Motion aftereffect opt-out unavailable before Start")
