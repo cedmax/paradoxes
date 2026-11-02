@@ -18,8 +18,8 @@ const dots = Array.from({ length: count }, (_, index) => {
   lead="Do the changing dots seem to become steady when the ring starts turning?"
 >
   <p class="text-base">
-    Start with the ring still, watching the central cross. Then make the ring turn. The dots
-    continue changing colour in both cases. Stop if motion is uncomfortable.
+    Start the colour changes while the ring is still, watching the central cross. Then make the
+    ring turn. Compare what you notice. Stop if motion is uncomfortable.
   </p>
   <SvgFigure
     name="motion-silencing-illusion"
@@ -68,11 +68,15 @@ const dots = Array.from({ length: count }, (_, index) => {
     ]}
     skipLabel="I cannot watch the motion"
   />
-  <div id="motion-silencing-illusion-reveal" hidden>
+  <div id="motion-silencing-illusion-reveal" class="flex flex-col gap-3" hidden>
+    <p class="text-base">
+      The dots keep changing hue even when the ring turns. Motion can make those changes seem
+      to stop, but the animation never pauses them.
+    </p>
     <IllusionControls
       name="motion-silencing-illusion"
       play={false}
-      proof="The dots keep cycling through exactly the same hues in both states. The proof control freezes only the ring's rotation, not the colour changes, so the changes can be inspected again."
+      proof="Each dot follows the same hue cycle whether the ring is turning or still. While the animation is running, freezing the ring's rotation does not freeze those colour changes."
       proofLabel="Freeze rotation to check"
     />
   </div>
@@ -89,32 +93,34 @@ const dots = Array.from({ length: count }, (_, index) => {
   const root = illustrationRoot(name)
   if (root) {
     const dots = Array.from(root.querySelectorAll<SVGCircleElement>("[data-dot]"))
-    const ring = find<SVGGElement>(root, `#${name}-ring`)
-    const play = find<HTMLButtonElement>(root, `#${name}-play`)
-    const turn = find<HTMLButtonElement>(root, `#${name}-turn`)
-    const proof = find<HTMLButtonElement>(root, `#${name}-guide-toggle`)
-    const proofText = find<HTMLElement>(root, `#${name}-proof`)
-    const reveal = find<HTMLElement>(root, `#${name}-reveal`)
-    const status = find<HTMLElement>(root, `#${name}-status`)
+    const ring = find<SVGGElement>(root, `#${name}-ring»)
+    const play = find<HTMLButtonElement>(root, `#${name}-play»)
+    const turn = find<HTMLButtonElement>(root, `#${name}-turn»)
+    const proof = find<HTMLButtonElement>(root, `#${name}-guide-toggle»)
+    const proofText = find<HTMLElement>(root, `#${name}-proof»)
+    const reveal = find<HTMLElement>(root, `#${name}-reveal»)
+    const status = find<HTMLElement>(root, `#${name}-status»)
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const answers = Array.from(
+      root.querySelectorAll<HTMLButtonElement>(
+        `#${name}-choices button[data-choice]:not([data-choice="skip"])»,
+      ),
+    )
+    const answerAfterMs = 2000
     let running = false
     let turning = false
     let frame = 0
     let last: number | undefined
     let elapsed = 0
     let rotation = 0
-    const choices = bindListenerChoice(root, name, (value) => {
-      reveal.hidden = false
-      return value === "skip"
-        ? "The proof explains that colour changes continue, without asking you to watch them."
-        : "The dot colours change throughout, even if they seem to hold steady."
-    })
-    const render = () => {
-      dots.forEach((dot, index) => {
-        const hue = (index * 137.5 + elapsed / 25) % 360
-        dot.setAttribute("fill", `hsl(${hue.toFixed(1)} 65% 55%)`)
-      })
-      ring.setAttribute("transform", `rotate(${rotation.toFixed(2)} 280 190)`)
+    let turningElapsed = 0
+    let canAnswer = false
+    let turningBeforeProof = false
+
+    const updateTurn = () => {
+      turn.textContent = turning ? "Stop turning the ring" : "Start turning the ring"
+      turn.setAttribute("aria-pressed", String(turning))
+      turn.disabled = !running || reduced.matches || proof.getAttribute("aria-pressed") === "true"
     }
     const stop = () => {
       running = false
@@ -123,61 +129,138 @@ const dots = Array.from({ length: count }, (_, index) => {
       last = undefined
       play.textContent = "Start changing colours"
       play.setAttribute("aria-pressed", "false")
-      turn.textContent = "Start turning the ring"
-      turn.setAttribute("aria-pressed", "false")
-      turn.disabled = true
+      proof.disabled = true
+      updateTurn()
+    }
+    const choices = bindListenerChoice(root, name, (value) => {
+      if (value === "skip") {
+        stop()
+        proof.hidden = true
+        proofText.hidden = true
+        status.textContent = "Moving patterns skipped. The explanation is below."
+      } else {
+        proof.hidden = false
+        proof.disabled = !running
+        status.textContent = running
+          ? "Judgement recorded. Freeze the rotation to check."
+          : "Judgement recorded. The explanation is below."
+      }
+      reveal.hidden = false
+      return value === "skip"
+        ? "The explanation is available without watching the animation."
+        : "The explanation is below; freeze the rotation to compare if it is still running."
+    })
+    const resetAttempt = () => {
+      reveal.hidden = true
+      choices.reset()
+      for (const button of answers) button.disabled = true
+      proof.hidden = false
+      proof.disabled = false
+      proof.setAttribute("aria-pressed", "false")
+      proof.textContent = "Freeze rotation to check"
+      proofText.hidden = true
+      turningBeforeProof = false
+      turningElapsed = 0
+      canAnswer = false
+      turning = false
+      updateTurn()
+    }
+    const render = () => {
+      dots.forEach((dot, index) => {
+        const hue = (index * 137.5 + elapsed / 25) % 360
+        dot.setAttribute("fill", `hsl(${hue.toFixed(1)} 65% 55%)»)
+      })
+      ring.setAttribute("transform", `rotate(${rotation.toFixed(2)} 280 190)»)
     }
     const tick = (now: number) => {
       if (!running) return
-      const delta = last === undefined ? 0 : Math.min(70, now - last)
+      const delta = last === undefined ? 0 : Math.min(70, Math.max(0, now - last))
       last = now
       elapsed += delta
-      if (turning) rotation += delta * 0.12
+      if (turning) {
+        rotation += delta * 0.12
+        turningElapsed += delta
+        if (!canAnswer && turningElapsed >= answerAfterMs) {
+          canAnswer = true
+          choices.enable()
+          status.textContent = "The ring has been turning. What did you notice?"
+        }
+      }
       render()
       frame = requestAnimationFrame(tick)
     }
     play.addEventListener("click", () => {
-      if (running) return stop()
-      if (reduced.matches) {
-        reveal.hidden = false
-        status.textContent = "Motion is disabled by your accessibility settings."
+      if (running) {
+        stop()
+        status.textContent = reveal.hidden
+          ? "Animation stopped. Start again to compare."
+          : "Animation stopped. The explanation remains below."
         return
       }
+      if (reduced.matches) return
+      resetAttempt()
       running = true
       last = undefined
       play.textContent = "Stop"
       play.setAttribute("aria-pressed", "true")
-      turn.disabled = false
-      status.textContent = "Dots are changing colour. Keep your gaze on the cross."
+      updateTurn()
+      status.textContent = "Watch the ring while it is still. Keep your gaze on the cross."
       frame = requestAnimationFrame(tick)
     })
     turn.addEventListener("click", () => {
-      if (!running) return
+      if (!running || proof.getAttribute("aria-pressed") === "true") return
       turning = !turning
-      turn.textContent = turning ? "Stop turning the ring" : "Start turning the ring"
-      turn.setAttribute("aria-pressed", String(turning))
+      updateTurn()
       status.textContent = turning
-        ? "The ring turns. Every dot is still changing colour."
-        : "The ring is still. The colour changes continue."
-      if (turning) choices.enable()
+        ? "The ring is turning. Keep your gaze on the cross."
+        : "The ring is still. Look at the dots."
     })
     proof.addEventListener("click", () => {
+      if (!running || proof.hidden) return
       const shown = proof.getAttribute("aria-pressed") !== "true"
+      if (shown) {
+        turningBeforeProof = turning
+        turning = false
+      } else {
+        turning = turningBeforeProof
+        turningBeforeProof = false
+      }
       proof.setAttribute("aria-pressed", String(shown))
       proof.textContent = shown ? "Return to the experiment" : "Freeze rotation to check"
       proofText.hidden = !shown
-      turning = !shown && running
-      turn.setAttribute("aria-pressed", String(turning))
-      turn.textContent = turning ? "Stop turning the ring" : "Start turning the ring"
+      updateTurn()
       status.textContent = shown
-        ? "Rotation is paused. The hues continue to change."
-        : "Rotation can resume, with the same hue changes."
+        ? "Rotation is paused. The colour changes continue."
+        : turning
+          ? "The ring is turning again. Compare what you notice."
+          : "The ring remains still. You can turn it again."
     })
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) stop()
+      if (document.hidden && running) {
+        stop()
+        status.textContent = "Animation stopped when the tab was hidden."
+      }
     })
-    reduced.addEventListener("change", () => {
-      if (reduced.matches) stop()
-    })
+    const motionChanged = () => {
+      if (reduced.matches) {
+        if (running) stop()
+        for (const button of answers) button.disabled = true
+      }
+      play.disabled = reduced.matches
+      play.title = reduced.matches
+        ? "Moving patterns are disabled; choose the opt-out for the explanation"
+        : ""
+      updateTurn()
+      if (reduced.matches) {
+        status.textContent =
+          "Motion is disabled in your settings. Choose the opt-out to read the explanation."
+      } else if (!running) {
+        status.textContent = reveal.hidden
+          ? "At rest. Press Start to begin colour changes."
+          : "The animation is stopped. The explanation is below."
+      }
+    }
+    reduced.addEventListener("change", motionChanged)
+    motionChanged()
   }
 </script>
