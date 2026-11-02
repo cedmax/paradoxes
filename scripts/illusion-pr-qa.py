@@ -168,7 +168,15 @@ async def interaction(page, pr):
             const y = Number(e.getAttribute('cy')) - 190
             return Math.hypot(x, y) > 120
         }).length""")
-        require(rim < 20, f"Too many dots still make a circular rim: {rim} of 108")
+        require(5 <= rim < 20, f"Spherical shell needs a soft, visible edge: {rim} of 108")
+        extent = await dots.evaluate_all("""(els) => els.map(e => {
+            const x = Number(e.getAttribute('cx')) - 300
+            const y = Number(e.getAttribute('cy')) - 190
+            return Math.hypot(x, y)
+        })""")
+        require(25 <= sum(r > 100 for r in extent) <= 50,
+                "Spherical silhouette should be distinct without a hard circular rim")
+        require(max(extent) < 128, "Kinetic dots extend outside the spherical shell")
         require(await answer.is_disabled(), "Kinetic answer must wait for movement")
         require(await proof.is_disabled(), "Depth cues must wait for a judgement")
         require(await readout.get_attribute("aria-live") != "polite",

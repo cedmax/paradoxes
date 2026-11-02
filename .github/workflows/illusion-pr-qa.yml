@@ -101,4 +101,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Validate soft-edged volumetric scattering and retained kinetic-depth behaviour
+# Validate the intermediate spherical shell and motion controls on current stacked PR heads
