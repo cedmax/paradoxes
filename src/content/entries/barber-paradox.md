@@ -10,8 +10,8 @@ order: 20
 sourcesVerified: true
 reviewed: true
 problem: "A barber shaves everyone who doesn't shave themselves, and nobody else. Who shaves the barber?"
-claimA: "A barber can follow any rule they like about who they shave."
-claimB: "The barber is one of the people their rule is about."
+claimA: "A barber can follow any rule about who they shave, including shaving exactly those who do not shave themselves."
+claimB: "A barber in the village breaks that rule whether or not they shave themselves."
 whatBreaks: "The assumption that any rule about who to shave is one a barber could follow."
 statusNote: "either answer breaks the barber’s rule, so no barber can follow it. Nobody disputes this, and giving up the idea that any rule can be followed costs nothing."
 setup: "In a village there is one barber. Their rule is that they shave everyone in the village who does not shave themselves, and nobody else. It sounds like a tidy arrangement. Then someone asks the obvious question, does the barber shave themselves?"

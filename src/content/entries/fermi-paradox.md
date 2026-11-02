@@ -9,11 +9,11 @@ order: 20
 sourcesVerified: true
 reviewed: true
 problem: "If the galaxy is so big and so old, where is everybody?"
-claimA: "With billions of habitable planets and billions of years, intelligent life should have appeared elsewhere and left some sign."
-claimB: "No sign of it has been found."
+claimA: "With vast numbers of potentially habitable planets and billions of years, intelligent life should have appeared elsewhere and left some sign."
+claimB: "No confirmed sign of it has been found."
 whatBreaks: "Guesses about how common intelligent life is, and how it behaves."
 statusNote: "the main answers are that life or intelligence is rare, that civilisations do not last, or that they exist but cannot be seen. With one known case of life, none has been established."
-setup: "In 1950, the physicist Enrico Fermi was walking to lunch with colleagues at Los Alamos, talking about reports of flying saucers and whether travel faster than light was possible. At the table he asked a question that everyone took to be about alien life. Edward Teller remembered it as “Where is everybody?”, and the others recalled slightly different words. His point was that if intelligent civilisations are common, some of them should have spread across the galaxy or been visible from Earth by now. The Milky Way has billions of planets that could be habitable, and it has existed for a very long time. Yet decades of searching have found no clear sign of aliens."
+setup: "In 1950, the physicist Enrico Fermi was walking to lunch with colleagues at Los Alamos, talking about reports of flying saucers and whether travel faster than light was possible. At the table he asked a question that everyone took to be about alien life. Edward Teller remembered it as “Where is everybody?”, and the others recalled slightly different words. His point was that if intelligent civilisations are common, some of them should have spread across the galaxy or been visible from Earth by now. Even a cautious NASA estimate puts hundreds of millions of potentially habitable planets in the Milky Way, and it has existed for a very long time. Yet decades of searching have found no clear sign of aliens."
 whyWrong: "This is not a contradiction in physics. It is a clash between an expectation and an observation, and the expectation rests on assumptions. Nobody knows how likely life is to start, how often it becomes intelligent, whether civilisations last, or whether they would travel or make themselves visible. The Drake equation, written down by Frank Drake in 1961, lists the factors, but several of them are completely unknown, so it cannot give a trustworthy number."
 resolution:
   - "Many answers have been proposed. They fall into a few families, and none has been shown to be right. The honest summary is that only one example of life is known, on Earth, and it is not possible to tell which family is closest to the truth."
@@ -32,4 +32,7 @@ sources:
     url: https://en.wikipedia.org/wiki/Fermi_paradox
   - title: "Eric M. Jones, “Where is everybody?” An account of Fermi’s question (Los Alamos report LA-10311-MS, 1985)"
     url: https://www.osti.gov/biblio/5746675
+  - title: "NASA (2020): About half of Sun-like stars could host rocky, potentially habitable planets"
+    url: https://www.nasa.gov/missions/kepler/about-half-of-sun-like-stars-could-host-rocky-potentially-habitable-planets/
+    note: "Source for the estimate of at least 300 million potentially habitable worlds in the Milky Way, from the most conservative reading of Kepler data."
 ---

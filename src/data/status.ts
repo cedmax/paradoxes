@@ -13,7 +13,7 @@ export const statuses: Record<Status, { label: string; bg: string; definition: s
     label: "Defused",
     bg: "bg-defused",
     definition:
-      "The contradiction is real and never goes away, but it proves one of the claims false, and experts agree which.",
+      "The reasoning is sound, so the clash can't be avoided, but it shows that one of the claims must be false, and experts agree which.",
   },
   disputed: {
     label: "Disputed",
