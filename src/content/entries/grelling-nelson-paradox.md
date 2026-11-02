@@ -9,7 +9,7 @@ order: 40
 sourcesVerified: true
 noMaths: true
 problem: "Is the word “heterological” a heterological word?"
-claimA: "Every describing word, “heterological” included, either describes itself or does not."
+claimA: "Every describing word either describes itself or does not."
 claimB: "“Heterological” describes itself exactly when it does not."
 whatBreaks: "How to keep the ordinary rules for describing words when a word’s definition includes its own case. The responses give up different parts of those rules."
 statusNote: "as for the [liar paradox](liar-paradox), the fixes say a word may only describe words of a lower level, that such a word is neither self-describing nor not, or that it is both."
