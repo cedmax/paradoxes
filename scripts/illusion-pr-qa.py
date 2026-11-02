@@ -247,7 +247,12 @@ async def interaction(page, pr):
         await play.click()
         require(await answer.is_enabled(), "Stopped adaptation should allow judgement")
         after_stop = await spiral.get_attribute("transform")
-        require(after_stop == before_stop, "Spiral snapped to a new angle when stopped")
+        require("rotate(" in after_stop, "Stopped spiral snapped back to its starting angle")
+        # One animation frame may render between the measurement and the Stop click.
+        before_angle = float(before_stop.split("(")[1].split()[0])
+        after_angle = float(after_stop.split("(")[1].split()[0])
+        change = abs(((after_angle - before_angle + 180) % 360) - 180)
+        require(change < 12, f"Stopped spiral jumped instead of freezing: {change} degrees")
         await page.wait_for_timeout(180)
         require(await spiral.get_attribute("transform") == after_stop,
                 "Spiral continued rotating after Stop")

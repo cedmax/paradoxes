@@ -101,4 +101,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Validate final formatted #141 and rebased #142 with no temporary formatting step
+# Check stop-frame continuity with one-frame timing allowance on latest #141 and #142
