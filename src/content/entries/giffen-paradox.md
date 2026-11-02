@@ -13,7 +13,7 @@ claimA: "When the price of a good goes up, people buy less of it."
 claimB: "For some goods used by the very poor, a rise in price makes people buy more."
 whatBreaks: "The assumption that a price rise only ever makes people want less of that good. It can also cut what people can afford, and that effect can win."
 statusNote: "a price rise on a staple food can leave a person poorer, so they buy more of it and give up dearer treats. It needs an inferior good with no close substitutes, so clear real-world cases are rare."
-setup: "In ordinary markets, a higher price means lower demand. A Giffen good is a rare exception. Alfred Marshall credited the idea to Robert Giffen in his Principles of Economics (1890), based on the buying habits of the Victorian poor. George Stigler’s 1947 article corrected an error in Marshall’s attribution."
+setup: "In ordinary markets, a higher price means lower demand. A Giffen good is a rare exception. Alfred Marshall credited the idea to Robert Giffen in the third edition of his Principles of Economics (1895), based on the buying habits of the Victorian poor. George Stigler’s 1947 article corrected an error in Marshall’s attribution."
 whyWrong: "A price rise has two effects. People switch to cheaper alternatives, which lowers demand. But the rise also makes them poorer in real terms, and a poorer person may buy more of the cheap staple and less of everything dearer. For most goods the first effect dominates or the two point the same way. For a Giffen good the second effect is stronger."
 resolution:
   - "Take a daily food budget of six dollars for three meals, with bread at one dollar a meal and cake at four dollars a meal. The budget buys two meals of bread and one of cake. Now bread rises to two dollars. The same budget buys three meals of bread and no cake. Bread went up in price, and bread eaten rose from two meals to three."
@@ -22,5 +22,8 @@ finePrint: "A 2007 field experiment by Jensen and Miller, reported in the Americ
 sources:
   - title: "Wikipedia: Giffen good"
     url: "https://en.wikipedia.org/wiki/Giffen_good"
-    note: "Source for the definition, the three conditions, the bread and cake example, the Marshall, Giffen and Stigler attribution, the Jensen and Miller field experiment, and the caveats. The example was recomputed: two bread plus one cake costs 2 + 4 = 6 dollars, and three bread costs 3 × 2 = 6 dollars. The page gives no figures for the field experiment."
+    note: "Source for the definition, the three conditions, the bread and cake example, the Stigler attribution, the Jensen and Miller field experiment, and the caveats. The example was recomputed: two bread plus one cake costs 2 + 4 = 6 dollars, and three bread costs 3 × 2 = 6 dollars. The page gives no figures for the field experiment."
+  - title: "Jensen and Miller (2008): Giffen Behavior and Subsistence Consumption"
+    url: "https://doi.org/10.1257/aer.98.4.1553"
+    note: "American Economic Review 98, pp. 1553-1577, full text read in the authors’ copy. Source for Marshall first publicising the idea in the 1895 edition, and for the Hunan rice and Gansu wheat results."
 ---

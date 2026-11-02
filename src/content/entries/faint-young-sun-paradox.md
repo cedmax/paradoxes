@@ -32,5 +32,14 @@ finePrint: "Other suggestions include tidal heating, which Heller and colleagues
 sources:
   - title: "Wikipedia: Faint young Sun paradox"
     url: "https://en.wikipedia.org/wiki/Faint_young_Sun_paradox"
-    note: "Source for the 1972 statement (the 1.4 factor is cited to a paper on low-mass stars, so its basis is unclear), the 70 and 30 percent figures, the 1.4 factor, the proposed solutions and their problems, and the statement that the problem is unsolved. Not checked against the original papers."
+    note: "Source for the 1972 statement (the 1.4 factor is cited to a paper on low-mass stars, so its basis is unclear), the 70 and 30 percent figures, the 1.4 factor, the proposed solutions and their problems, and the statement that the problem is unsolved. Not checked against the original papers. Still the only source for the lunar and meteorite constraints on a brighter young Sun and for the claim that the cosmic-ray mechanism does not work."
+  - title: "Sagan and Mullen (1972): Earth and Mars: Evolution of Atmospheres and Surface Temperatures"
+    url: "https://doi.org/10.1126/science.177.4043.52"
+    note: "Science 177, pp. 52-56. Source for the 1972 statement: with today’s atmosphere and reflectivity, early Earth would have been below freezing, contrary to geological evidence, and an ammonia greenhouse was proposed."
+  - title: "Feulner (2012): The faint young Sun problem"
+    url: "https://doi.org/10.1029/2011RG000375"
+    note: "Reviews of Geophysics review, full text read on arXiv (1204.4449). Source for the Sun about 30 percent fainter (section 2), carbon dioxide as the most discussed and likeliest solution and methane (section 5), ammonia, its destruction by sunlight and the cooling haze (section 5.1), clouds and reflection (section 6), a heavier young Sun (section 4), Shaviv’s cosmic-ray idea (section 6), and the problem being unsolved."
+  - title: "Heller, Duda, Winkler, Reitner and Gizon (2021): Habitability of the early Earth: liquid water under a faint young Sun facilitated by strong tidal heating due to a closer Moon"
+    url: "https://doi.org/10.1007/s12542-021-00582-7"
+    note: "Paläontologische Zeitschrift, open access, full text read on arXiv (2007.03423). Source for tidal heating of up to about five degrees Celsius, not enough alone."
 ---
