@@ -69,7 +69,7 @@ import { illusionSurface, series, stroke } from "~/data/palette"
 </IllustrationFigure>
 
 <script>
-  import { audioAvailable, playSamples, stopAudio } from "~/scripts/audio"
+  import { audioAvailable, audioOutputTime, playSamples, stopAudio } from "~/scripts/audio"
   import { bindListenerChoice, find, illustrationRoot } from "~/scripts/illustration"
 
   const name = "sound-induced-flash-illusion"
@@ -99,28 +99,6 @@ import { illusionSurface, series, stroke } from "~/data/palette"
       disc.setAttribute("fill", neutral)
     }
 
-    // Map an AudioContext clock position to the estimated time at the output device.
-    // getOutputTimestamp includes output-device timing; the fallback uses reported
-    // processing and output latency. Neither can calibrate the actual screen or headset.
-    const outputTime = (audio: AudioContext, contextTime: number) => {
-      const timestamp = audio.getOutputTimestamp?.()
-      const outputContextTime = timestamp?.contextTime
-      const outputPerformanceTime = timestamp?.performanceTime
-      if (
-        typeof outputContextTime === "number" &&
-        Number.isFinite(outputContextTime) &&
-        outputContextTime > 0 &&
-        typeof outputPerformanceTime === "number" &&
-        Number.isFinite(outputPerformanceTime) &&
-        outputPerformanceTime > 0
-      ) {
-        return outputPerformanceTime + (contextTime - outputContextTime) * 1000
-      }
-      const latency =
-        Math.max(0, audio.baseLatency || 0) + Math.max(0, audio.outputLatency || 0)
-      return performance.now() + (contextTime - audio.currentTime + latency) * 1000
-    }
-
     const scheduleFlash = (
       audio: AudioContext,
       startedAt: number,
@@ -132,7 +110,7 @@ import { illusionSurface, series, stroke } from "~/data/palette"
       const step = (now: number) => {
         if (currentTrial !== trial) return
         if (firstVisibleFrame === undefined) {
-          if (now >= outputTime(audio, audioFlashTime)) {
+          if (now >= audioOutputTime(audio, audioFlashTime)) {
             disc.setAttribute("fill", "var(--color-series-gold)")
             firstVisibleFrame = now
           }
