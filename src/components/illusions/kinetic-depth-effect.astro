@@ -1,6 +1,7 @@
 ---
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { illusionSurface, stroke } from "~/data/palette"
@@ -59,13 +60,26 @@ const points = Array.from({ length: 108 }, () => {
     describedby="kinetic-depth-effect-readout"
     valuetext="0 degrees"
   >
-    <p id="kinetic-depth-effect-readout" class="text-base" aria-live="polite">
+    <p id="kinetic-depth-effect-readout" class="text-base">
       Rotation 0 degrees. All dots remain at fixed locations on one sphere.
     </p>
   </Slider>
+  <p id="kinetic-depth-effect-status" class="text-base" aria-live="polite">
+    Play or rotate the dots by hand, then record what shape you saw.
+  </p>
+  <ListenerChoice
+    name="kinetic-depth-effect"
+    question="What did the moving dots seem to form?"
+    options={[
+      { value: "sphere", label: "A rotating sphere" },
+      { value: "flat", label: "A flat pattern" },
+      { value: "unsure", label: "Couldn't tell" },
+    ]}
+    skipLabel="I cannot see or follow the motion"
+  />
   <IllusionControls
     name="kinetic-depth-effect"
-    proof="Each dot stays at a fixed point on the same invisible sphere. Red marks points on the nearer half and blue marks points on the farther half of the mathematical construction. The uncoloured motion, not a change in screen depth, creates the impression."
+    proof="The dots are fixed on a mathematical sphere. Red marks its nearer half and blue its farther half, but this is only one possible interpretation of the uncoloured motion. Without depth cues, the perceived rotation can go either way and may reverse. The dot paths never change."
     proofLabel="Show depth cues"
   />
   <Fragment slot="caption">
@@ -75,7 +89,7 @@ const points = Array.from({ length: 108 }, () => {
 </IllustrationFigure>
 
 <script>
-  import { bindSliderLoopPlayback, find, illustrationRoot } from "~/scripts/illustration"
+  import { bindListenerChoice, find, illustrationRoot } from "~/scripts/illustration"
 
   const name = "kinetic-depth-effect"
   const root = illustrationRoot(name)
@@ -85,16 +99,26 @@ const points = Array.from({ length: 108 }, () => {
     const proof = find<HTMLButtonElement>(root, `#${name}-guide-toggle`)
     const proofText = find<HTMLElement>(root, `#${name}-proof`)
     const readout = find<HTMLElement>(root, `#${name}-readout`)
+    const status = find<HTMLElement>(root, `#${name}-status`)
     const dots = Array.from(root.querySelectorAll<SVGCircleElement>("[data-index]"))
-    // The same fixed coordinates used for the first SVG render.
     const points = dots.map((dot) => ({
       x: Number(dot.dataset.x),
       y: Number(dot.dataset.y),
       z: Number(dot.dataset.z),
     }))
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const degreesPerMs = 360 / 12000
+    const answerAfterDegrees = 90
     let angle = 0
+    let observedDegrees = 0
+    let canAnswer = false
+    let running = false
+    let frame = 0
+    let previousFrame: number | null = null
+
     const draw = () => {
       const theta = (angle * Math.PI) / 180
+      const showingDepth = proof.getAttribute("aria-pressed") === "true"
       for (const [index, point] of points.entries()) {
         const x = point.x * Math.cos(theta) + point.z * Math.sin(theta)
         const depth = point.z * Math.cos(theta) - point.x * Math.sin(theta)
@@ -102,31 +126,109 @@ const points = Array.from({ length: 108 }, () => {
         dots[index].setAttribute("cy", String(190 + point.y))
         dots[index].setAttribute(
           "fill",
-          proof.getAttribute("aria-pressed") === "true"
+          showingDepth
             ? depth > 0
               ? "var(--color-series-red)"
               : "var(--color-series-blue)"
             : "var(--color-stroke)",
         )
       }
+      const degrees = Math.round(angle) % 360
+      if (Number(slider.value) !== degrees) {
+        slider.value = String(degrees)
+        slider.setAttribute("aria-valuetext", `Rotation ${degrees} degrees`)
+        readout.textContent = `Rotation ${degrees} degrees. All dots stay on the same sphere.`
+      }
     }
-    bindSliderLoopPlayback(
-      slider,
-      play,
-      (value) => {
-        angle = value
-        draw()
-        readout.textContent = `Rotation ${value} degrees. All dots stay on the same sphere.`
-        return `Rotation ${value} degrees`
-      },
-      25,
-    )
-    proof.addEventListener("click", () => {
-      const shown = proof.getAttribute("aria-pressed") !== "true"
+
+    const stop = () => {
+      running = false
+      cancelAnimationFrame(frame)
+      previousFrame = null
+      play.textContent = "Play"
+      play.setAttribute("aria-pressed", "false")
+    }
+
+    const showDepth = (shown: boolean) => {
       proof.setAttribute("aria-pressed", String(shown))
       proof.textContent = shown ? "Hide depth cues" : "Show depth cues"
       proofText.hidden = !shown
       draw()
+    }
+
+    const choices = bindListenerChoice(root, name, (value) => {
+      stop()
+      proof.disabled = false
+      if (value === "skip") {
+        showDepth(true)
+        status.textContent = "The mathematical explanation is shown below."
+        return "The text explains the dot paths without recreating the visual experience."
+      }
+      status.textContent = "Judgement recorded. You can now show the depth cues."
+      return "Show the depth cues to compare what you saw with one possible depth arrangement."
     })
+    proof.disabled = true
+
+    const recordMotion = (degrees: number) => {
+      if (canAnswer) return
+      observedDegrees += Math.abs(degrees)
+      if (observedDegrees >= answerAfterDegrees) {
+        canAnswer = true
+        choices.enable()
+        status.textContent = "The dots have rotated. Record what shape you saw."
+      }
+    }
+
+    const tick = (now: number) => {
+      if (!running) return
+      if (previousFrame !== null) {
+        const advance = Math.max(0, now - previousFrame) * degreesPerMs
+        angle = (angle + advance) % 360
+        draw()
+        recordMotion(advance)
+      }
+      previousFrame = now
+      frame = requestAnimationFrame(tick)
+    }
+
+    play.addEventListener("click", () => {
+      if (running) {
+        stop()
+        if (!canAnswer) status.textContent = "Paused. Rotate farther to record your impression."
+        return
+      }
+      if (reducedMotion.matches) return
+      running = true
+      previousFrame = null
+      play.textContent = "Pause"
+      play.setAttribute("aria-pressed", "true")
+      frame = requestAnimationFrame(tick)
+    })
+
+    slider.addEventListener("input", () => {
+      stop()
+      const next = Number(slider.value)
+      const distance = Math.abs(((next - angle + 540) % 360) - 180)
+      angle = next
+      draw()
+      slider.setAttribute("aria-valuetext", `Rotation ${next} degrees`)
+      readout.textContent = `Rotation ${next} degrees. All dots stay on the same sphere.`
+      recordMotion(distance)
+    })
+
+    proof.addEventListener("click", () => {
+      showDepth(proof.getAttribute("aria-pressed") !== "true")
+    })
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop()
+    })
+    const motionChanged = () => {
+      if (reducedMotion.matches) stop()
+      play.disabled = reducedMotion.matches
+      play.title = reducedMotion.matches ? "Use the slider without animation" : ""
+    }
+    reducedMotion.addEventListener("change", motionChanged)
+    motionChanged()
+    draw()
   }
 </script>
