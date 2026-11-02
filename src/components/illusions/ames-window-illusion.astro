@@ -15,7 +15,7 @@ import { series, stroke } from "~/data/palette"
     viewBox="0 0 600 380"
     class="mx-auto w-full max-w-xl"
     title="A flat trapezoidal window, drawn in perspective as it rotates around a vertical axis"
-    desc="The left vertical edge is taller than the right. The window's plane rotates in one continuous direction. Perspective sometimes makes it seem to reverse direction. A top-down orientation indicator can be revealed below the window."
+    desc="The left vertical edge is taller than the right. The window's plane rotates in one continuous direction. Perspective sometimes makes it seem to reverse direction. A top-down orientation indicator can be revealed in the upper-right corner."
   >
     <g
       id="ames-window-frame"
@@ -24,24 +24,24 @@ import { series, stroke } from "~/data/palette"
       stroke-width="8"
       stroke-linejoin="round"
     >
-      <path id="ames-window-outline" d="M190 92 L410 150 L410 230 L190 288 Z"></path>
-      <path id="ames-window-bar" d="M190 190 L410 190" stroke-width="5"></path>
-      <path id="ames-window-mid" d="M300 121 L300 259" stroke-width="5"></path>
+      <path id="ames-window-outline" d="M141.67 44.33 L458.33 129.20 L458.33 250.80 L141.67 335.67 Z"></path>
+      <path id="ames-window-bar" d="M141.67 190 L458.33 190" stroke-width="5"></path>
+      <path id="ames-window-mid" d="M300 86.77 L300 293.23" stroke-width="5"></path>
     </g>
     <g id="ames-window-guides" visibility="hidden">
-      <circle cx="300" cy="334" r="30" fill="none" stroke={stroke} stroke-width="1.5" />
-      <line x1="264" y1="334" x2="336" y2="334" stroke={stroke} stroke-dasharray="3 5" />
+      <circle cx="530" cy="70" r="30" fill="none" stroke={stroke} stroke-width="1.5" />
+      <line x1="494" y1="70" x2="566" y2="70" stroke={stroke} stroke-dasharray="3 5" />
       <line
         id="ames-window-axis"
-        x1="270"
-        y1="334"
-        x2="330"
-        y2="334"
+        x1="500"
+        y1="70"
+        x2="560"
+        y2="70"
         stroke={series.red}
         stroke-width="4"
       />
-      <circle id="ames-window-near" cx="330" cy="334" r="5" fill={series.red} />
-      <text x="342" y="338" font-size="13" fill={stroke}>
+      <circle id="ames-window-near" cx="560" cy="70" r="5" fill={series.red} />
+      <text x="530" y="119" text-anchor="middle" font-size="13" fill={stroke}>
         Top view
       </text>
     </g>
@@ -97,7 +97,7 @@ import { series, stroke } from "~/data/palette"
       const xr = x * Math.cos(a)
       const depth = x * Math.sin(a)
       const scale = 760 / (900 - depth)
-      return [300 + xr * scale, 190 - y * scale]
+      return [300 + xr * scale * 1.5, 190 - y * scale * 1.5]
     }
     const pos = (xy: number[]) => xy.map((value) => value.toFixed(2)).join(" ")
     const render = (angle: number) => {
@@ -115,12 +115,12 @@ import { series, stroke } from "~/data/palette"
       const a = (angle * Math.PI) / 180
       const dx = 30 * Math.cos(a)
       const dy = 30 * Math.sin(a)
-      axis.setAttribute("x1", String(300 - dx))
-      axis.setAttribute("y1", String(334 - dy))
-      axis.setAttribute("x2", String(300 + dx))
-      axis.setAttribute("y2", String(334 + dy))
-      near.setAttribute("cx", String(300 + dx))
-      near.setAttribute("cy", String(334 + dy))
+      axis.setAttribute("x1", String(530 - dx))
+      axis.setAttribute("y1", String(70 - dy))
+      axis.setAttribute("x2", String(530 + dx))
+      axis.setAttribute("y2", String(70 + dy))
+      near.setAttribute("cx", String(530 + dx))
+      near.setAttribute("cy", String(70 + dy))
     }
     // Four seconds per turn, continuously, until Pause or a judgement.
     // Use elapsed time so speed is consistent across displays.
