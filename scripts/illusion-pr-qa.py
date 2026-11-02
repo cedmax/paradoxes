@@ -92,6 +92,28 @@ async def run(pr):
             overflow = await page.evaluate("document.documentElement.scrollWidth - window.innerWidth")
             require(overflow <= 1, f"horizontal overflow PR {pr}, width {width}: {overflow}px")
             await interaction(page, pr)
+            if pr == 137:
+                # Compare the prior perspective (580), chosen weaker perspective (900),
+                # and an even weaker one (1200) at the same apparent drawing size.
+                # This is a geometric/display comparison, not a human percept test.
+                for distance in (580, 900, 1200):
+                    await page.evaluate("""distance => {
+                      const a = 55 * Math.PI / 180
+                      const scaleAtCentre = 490 / 580
+                      const project = (x,y) => {
+                        const depth = x * Math.sin(a)
+                        const scale = (scaleAtCentre * distance) / (distance - depth)
+                        return [300 + x * Math.cos(a) * scale, 190 - y * scale]
+                      }
+                      const line = xs => xs.map(([x,y]) => x.toFixed(2) + ' ' + y.toFixed(2)).join(' L')
+                      const corners=[project(-125,115),project(125,48),project(125,-48),project(-125,-115)]
+                      document.querySelector('#ames-window-outline').setAttribute('d','M'+line(corners)+' Z')
+                      document.querySelector('#ames-window-bar').setAttribute('d','M'+line([project(-125,0),project(125,0)]))
+                      document.querySelector('#ames-window-mid').setAttribute('d','M'+line([project(0,81.5),project(0,-81.5)]))
+                    }""", distance)
+                    await page.locator('[data-illustration="ames-window"]').screenshot(path=str(out / f"pr137-{width}-perspective-{distance}.png"))
+                print(f"Compared Ames perspective distances 580, 900, 1200 at {width}px, fixed 55 degree angle", flush=True)
+                await page.locator("#ames-window-angle").evaluate("(el) => { el.value = '75'; el.dispatchEvent(new Event('input', { bubbles: true })) }")
             await page.wait_for_timeout(100)
             overflow = await page.evaluate("document.documentElement.scrollWidth - window.innerWidth")
             require(overflow <= 1, f"horizontal overflow after interaction PR {pr}, width {width}: {overflow}px")
