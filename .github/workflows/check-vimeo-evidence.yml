@@ -1,0 +1,22 @@
+name: Verify Vimeo video formats and provenance
+
+on:
+  push:
+    branches:
+      - checks/vimeo-evidence
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -q yt-dlp
+      - name: Inspect public uploader metadata and available playback formats
+        run: python scripts/check-vimeo-evidence.py
