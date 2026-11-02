@@ -22,9 +22,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 
   <div
     id="magic-octagon-views"
-    class="mx-auto flex w-full max-w-sm items-start justify-center gap-2 sm:gap-5"
+    class="mx-auto flex w-full max-w-xs flex-col items-center justify-center gap-2 md:flex-row md:items-start md:gap-5"
   >
-    <div class="min-w-0 flex-1">
+    <div class="w-full max-w-xs md:min-w-0 md:flex-1">
       <p class="text-center text-base font-bold">
         Front <span id="magic-octagon-face">↑</span>
       </p>
@@ -71,7 +71,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       </SvgFigure>
     </div>
 
-    <div id="magic-octagon-other" class="min-w-0 flex-1" hidden>
+    <div id="magic-octagon-other" class="w-full max-w-xs md:min-w-0 md:flex-1" hidden>
       <p class="text-center text-base font-bold">
         Flipped <span id="magic-octagon-other-face">←</span>
       </p>
@@ -343,7 +343,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       comparing = !comparing
       other.hidden = !comparing
       compareNote.hidden = !comparing
-      views.classList.toggle("max-w-sm", !comparing)
+      views.classList.toggle("max-w-xs", !comparing)
       views.classList.toggle("max-w-2xl", comparing)
       compareButton.setAttribute("aria-pressed", String(comparing))
       compareButton.textContent = comparing ? "Hide comparison" : "Compare both sides"
@@ -356,7 +356,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       comparing = false
       other.hidden = true
       compareNote.hidden = true
-      views.classList.add("max-w-sm")
+      views.classList.add("max-w-xs")
       views.classList.remove("max-w-2xl")
       compareButton.setAttribute("aria-pressed", "false")
       compareButton.textContent = "Compare both sides"
