@@ -23,7 +23,10 @@ const ExplanationFigure = loadExplanation ? (await loadExplanation()).default : 
 <section aria-label={ExplanationFigure ? "Illusion" : "Illusion and its proof"}>
   <Figure />
 </section>
-<section id={slug === "magic-octagon" ? "magic-octagon-why" : undefined} hidden={slug === "magic-octagon"}>
+<section
+  id={slug === "magic-octagon" ? "magic-octagon-why" : undefined}
+  hidden={slug === "magic-octagon"}
+>
   <h2 class="display text-5xl">Why it happens</h2>
   <p>{why}</p>
   {ExplanationFigure && <ExplanationFigure />}
