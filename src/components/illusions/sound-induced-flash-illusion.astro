@@ -117,7 +117,12 @@ import { illusionSurface, series, stroke } from "~/data/palette"
       return performance.now() + (contextTime - audio.currentTime + latency) * 1000
     }
 
-    const scheduleFlash = (audio: AudioContext, startedAt: number, currentTrial: number) => {
+    const scheduleFlash = (
+      audio: AudioContext,
+      startedAt: number,
+      currentTrial: number,
+      beeps: number,
+    ) => {
       const audioFlashTime = startedAt + flashOffset
       let firstVisibleFrame: number | undefined
       const step = (now: number) => {
@@ -129,6 +134,13 @@ import { illusionSurface, series, stroke } from "~/data/palette"
           }
         } else if (now - firstVisibleFrame >= flashDurationMs) {
           disc.setAttribute("fill", neutral)
+          if (beeps === 1) playedOne = true
+          else playedTwo = true
+          status.textContent =
+            playedOne && playedTwo
+              ? "Both versions played. Choose how many flashes you saw with two beeps."
+              : `Played the ${beeps === 1 ? "one-beep" : "two-beep"} version. Try the other one too.`
+          if (playedOne && playedTwo) choices.enable()
           return
         }
         frame = requestAnimationFrame(step)
@@ -157,15 +169,10 @@ import { illusionSurface, series, stroke } from "~/data/palette"
       resetFlash()
       stopAudio()
       const played = await playSamples((rate) => sound(beeps, rate), {
-        onStart: (audio, startedAt) => scheduleFlash(audio, startedAt, currentTrial),
+        onStart: (audio, startedAt) => scheduleFlash(audio, startedAt, currentTrial, beeps),
       })
       if (!played || currentTrial !== trial) return
-      if (beeps === 1) playedOne = true
-      else playedTwo = true
-      status.textContent = playedOne && playedTwo
-        ? "Both versions played. Choose how many flashes you saw with two beeps."
-        : `Started the ${beeps === 1 ? "one-beep" : "two-beep"} version. Try the other one too.`
-      if (playedOne && playedTwo) choices.enable()
+      status.textContent = `Playing the ${beeps === 1 ? "one-beep" : "two-beep"} version.`
     }
     if (audioAvailable()) {
       one.addEventListener("click", () => void play(1))
