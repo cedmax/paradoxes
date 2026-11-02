@@ -10,6 +10,8 @@ def check(item):
     try:
         d=get_json("https://vimeo.com/api/oembed.json?"+urllib.parse.urlencode({"url":row["url"]}))
         row["oembed"]={k:d.get(k) for k in ["title","author_name","author_url","width","height","duration","upload_date","video_id"]}
+        bigger=get_json("https://vimeo.com/api/oembed.json?"+urllib.parse.urlencode({"url":row["url"],"maxwidth":1920,"maxheight":1080}))
+        row["large_oembed"]={k:bigger.get(k) for k in ["width","height"]}
     except Exception as e: row["oembed_error"]=repr(e)
     try:
         d=get_json("https://player.vimeo.com/video/"+id+"/config")
