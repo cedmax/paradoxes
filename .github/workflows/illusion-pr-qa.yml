@@ -1,0 +1,89 @@
+name: QA six native illusion draft PRs
+on:
+  push:
+    branches:
+      - checks/illusion-pr-qa-20261102
+    paths:
+      - .github/workflows/illusion-pr-qa.yml
+permissions:
+  contents: read
+jobs:
+  qa:
+    name: PR ${{ matrix.pr }} check and browser
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { pr: 137, branch: video/ames-window }
+          - { pr: 138, branch: video/flash-beep }
+          - { pr: 139, branch: video/stream-bounce }
+          - { pr: 140, branch: video/kinetic-depth }
+          - { pr: 141, branch: video/motion-aftereffect }
+          - { pr: 142, branch: video/motion-silencing }
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: qa
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+          path: site
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.9.1
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: site/.nvmrc
+          cache: pnpm
+          cache-dependency-path: site/pnpm-lock.yaml
+      - name: Record exact PR branch revision
+        run: git -C site rev-parse HEAD
+      - name: Install
+        working-directory: site
+        run: pnpm install --frozen-lockfile
+      - name: Lint
+        working-directory: site
+        run: pnpm lint
+      - name: Astro check
+        working-directory: site
+        run: pnpm check
+      - name: Prettier
+        working-directory: site
+        run: pnpm exec prettier --check .
+      - name: Knip
+        working-directory: site
+        run: pnpm knip
+      - name: Production build
+        working-directory: site
+        run: pnpm build
+      - name: Noindex preview with unverified entries
+        working-directory: site
+        env:
+          SITE_INDEXING: noindex
+          PREVIEW_UNVERIFIED: "true"
+        run: pnpm build
+      - name: SEO validation on preview
+        working-directory: site
+        env:
+          SITE_INDEXING: noindex
+        run: pnpm check:seo
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install --quiet playwright
+          python -m playwright install --with-deps chromium
+      - name: Exercise page at 1280 and 350 pixels
+        working-directory: site
+        run: |
+          python -m http.server 4321 --bind 127.0.0.1 --directory dist > /tmp/illusion-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          python ../qa/scripts/illusion-pr-qa.py --pr ${{ matrix.pr }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: illusion-${{ matrix.pr }}-screenshots
+          path: site/screenshots/*.png
+          if-no-files-found: ignore
