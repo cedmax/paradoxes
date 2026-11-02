@@ -25,11 +25,11 @@ finePrint: "The story needs an everlasting writer and an endless future, so it i
 sources:
   - title: "Bertrand Russell, The Principles of Mathematics (1903), section 340, full text at the Internet Archive"
     url: "https://archive.org/download/principlesofmath01russ/principlesofmath01russ_djvu.txt"
-    note: "Source for Russell’s retelling, the quotes “no part of his biography would have remained unwritten” and “strictly correlative to the Achilles”, the step-by-step argument (the nth day written in the nth year) and the point about whole and part. Checked in the full text of the 1903 edition."
+    note: "Source for Russell’s retelling and quotes, and the step-by-step argument."
   - title: "Laurence Sterne, Tristram Shandy, Project Gutenberg"
     url: "https://www.gutenberg.org/cache/epub/1079/pg1079.txt"
-    note: "Source for the narrator’s complaint that he is a year older, has reached only his first day, and has 364 more days to write about than when he set out."
+    note: "Source for the narrator having written only his first day after a year."
   - title: "Wikipedia: The Life and Opinions of Tristram Shandy, Gentleman"
     url: "https://en.wikipedia.org/wiki/The_Life_and_Opinions_of_Tristram_Shandy,_Gentleman"
-    note: "Source for the publication dates (1759 to 1767), the naming of the paradox by Russell in The Principles of Mathematics, and Popper’s 1950 argument that Tristram could never finish. Day counts recomputed by hand."
+    note: "Source for the publication dates and Russell naming the paradox. Day counts recomputed."
 ---

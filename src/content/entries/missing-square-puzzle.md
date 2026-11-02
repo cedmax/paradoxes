@@ -23,10 +23,10 @@ finePrint: "The slopes are 3/8 and 2/5. A true 13 by 5 triangle would cover 32.5
 sources:
   - title: "Wikipedia: Missing square puzzle"
     url: "https://en.wikipedia.org/wiki/Missing_square_puzzle"
-    note: "The four pieces and the 13 by 5 outline, the slopes, the areas 32, 32.5 and 33, the bend of about 1.245 degrees, the 15 and 16 square rectangles, the Fibonacci side lengths, the attribution to Paul Curry in 1953 via Martin Gardner, and its use in teaching. The piece areas, slopes and the 1/13 offset were recomputed."
+    note: "Main source for the pieces, slopes and areas, the slight bend, and Paul Curry (1953). Areas and slopes recomputed."
   - title: "Alexander Bogomolny, Cut the Knot: Curry’s Paradox"
     url: "https://www.cut-the-knot.org/Curriculum/Fallacies/CurryParadox.shtml"
-    note: "Independent account: Paul Curry, a New York amateur magician, devised the puzzle in 1953, as described by Martin Gardner in Mathematics, Magic and Mystery (1956); the 8 by 3 and 5 by 2 triangles; the 5 by 3 and 8 by 2 rectangles; the different slopes; and the Fibonacci identity behind the difference of one."
+    note: "Source for Paul Curry devising the puzzle in 1953, and the slopes and Fibonacci numbers behind it."
   - title: "Wolfram MathWorld: Dissection Fallacy"
     url: "https://mathworld.wolfram.com/DissectionFallacy.html"
     note: "The slopes 2/5 = 0.4 and 3/8 = 0.375 as the diagonals of two dissimilar rectangles, too close for the eye to tell apart."

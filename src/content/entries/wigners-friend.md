@@ -40,14 +40,14 @@ finePrint: "The outside description assumes ordinary evolution without collapse 
 sources:
   - title: "Wikipedia: Wigner's friend"
     url: "https://en.wikipedia.org/wiki/Wigner%27s_friend"
-    note: "Source for Wigner’s 1961 essay and set-up, his consciousness view, Ballentine’s report of Wigner’s change of mind by 1987, the responses of the main interpretations including Rovelli (1996) and QBism, Deutsch (1985), Frauchiger and Renner and the dispute over their argument, and Bong et al. (2020) with the comments of Vaidman and Maudlin."
+    note: "Main source for Wigner’s 1961 set-up and views, the interpretations’ responses, and the later theorems."
   - title: "Frauchiger and Renner: Quantum theory cannot consistently describe the use of itself (Nature Communications, 2018)"
     url: "https://www.nature.com/articles/s41467-018-05739-8"
-    note: "Source for the three assumptions, the theorem that they cannot all hold, the fact that it does not say which to drop, and the classification of interpretations by which assumption each gives up."
+    note: "Source for the three assumptions that cannot all hold, and which interpretation gives up which."
   - title: "Stanford Encyclopedia of Philosophy: Philosophical Issues in Quantum Theory"
     url: "https://plato.stanford.edu/entries/qt-issues/"
-    note: "Source for the no-consensus statement, Wigner’s view being speculative and giving consciousness an influence not captured by quantum laws, the misattribution to von Neumann, extended Wigner’s friend results as no-go theorems rather than refutations, and the costs given for many-worlds, Bohmian mechanics and collapse theories."
+    note: "Source for the lack of consensus, Wigner’s view, and the costs of the main interpretations."
   - title: "Stanford Encyclopedia of Philosophy: Relational Quantum Mechanics"
     url: "https://plato.stanford.edu/entries/qm-relational/"
-    note: "Source for the relational treatment of Wigner’s friend, the concern that the view may seem to imply perspectival solipsism (raised in the article by Rovelli himself, as a concern about his own theory), and Emily Adlam’s 2022 worry, from Does science need intersubjectivity?, that observers who cannot escape their own perspective cannot confirm the theory."
+    note: "Source for the relational treatment and the worry about perspectival solipsism."
 ---

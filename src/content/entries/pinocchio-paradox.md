@@ -34,17 +34,17 @@ finePrint: "The rule here concerns saying something false, not knowingly lying. 
 sources:
   - title: "Wikipedia: Pinocchio paradox"
     url: https://en.wikipedia.org/wiki/Pinocchio_paradox
-    note: "Origin in February 2001 with Veronique Eldridge-Smith; Collodi’s 1883 novel; the present-tense version as the usual form; Eldridge-Smith’s arguments that “is growing” is not a semantic predicate and that Tarski’s hierarchy cannot resolve the case; Buridan’s bridge; Vallicella’s criticism, including that he had not read the Analysis articles."
+    note: "Main source for the 2001 origin, the usual form, Eldridge-Smith’s arguments, and Vallicella’s criticism."
   - title: "Peter Eldridge-Smith and Veronique Eldridge-Smith, “The Pinocchio paradox”, Analysis 70(2), 2010, pp. 212-215 (ANU record with extract)"
     url: https://researchportalplus.anu.edu.au/en/publications/the-pinocchio-paradox/
-    note: "Co-authorship, journal and year; the Liar explained to his elder children; Veronique aged 11; the original wording “My nose will be growing”; the question of how soon the nose grows; the version where everything else Pinocchio says is true."
+    note: "Source for the original wording and how the paradox was found."
   - title: "Peter Eldridge-Smith, “Pinocchio against the dialetheists”, Analysis 71(2), 2011, pp. 306-308 (ANU record)"
     url: https://researchportalplus.anu.edu.au/en/publications/pinocchio-against-the-dialetheists/
     note: "Title, journal, year and pages of the 2011 paper aimed at dialetheists."
   - title: "Jc Beall, “Dialetheists against Pinocchio”, Analysis, 2011 (pre-final version)"
     url: https://mail.entailments.net/papers/pinocchio.pdf
-    note: "Beall’s reply: the Pinocchio case is handled like the barber, the contradiction holds only according to the story, nothing shows how fictional truths carry over to the real world, and the story is “an enjoyable story without noteworthy metaphysical consequences”."
+    note: "Source for Beall’s reply treating the case like the barber."
   - title: "Peter Eldridge-Smith, “Pinocchio beards the barber”, Analysis 72(4), 2012, pp. 749-752 (ANU record with abstract)"
     url: https://researchportalplus.anu.edu.au/en/publications/pinocchio-beards-the-barber/
-    note: "“One dialetheia too many” for semantic dialetheists; Beall’s view of the case as an impossible story like the barber; the reply that the barber is self-contradictory while Pinocchio needs a principle of truth, so it is a version of the Liar; why some Liars would be impossible if others generate dialetheias."
+    note: "Source for Eldridge-Smith’s reply that, unlike the barber, Pinocchio is a version of the Liar."
 ---

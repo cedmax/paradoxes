@@ -30,14 +30,14 @@ finePrint: "Even read strictly, as “every statement made by a Cretan is false�
 sources:
   - title: "Wikipedia: Epimenides paradox"
     url: https://en.wikipedia.org/wiki/Epimenides_paradox
-    note: "Epimenides alive circa 600 BC; Hofstadter’s description, with an inaccurate quote; the claim that there is no paradox because the statement may simply be false; Fowler’s 1869 version and its logic error, made by Fowler and many others; the negation as “at least one Cretan is honest”; Russell’s 1908 version, quoted from Mathematical Logic as Based on the Theory of Types; the reading of “liar” as prone to deception for gain; the line as an opinion, seen as a paradox only since the 19th century; Eubulides’ modification; the usual classification as a variation on the Liar."
+    note: "Main source for the history, Russell’s 1908 version, the negation, and its classification as a variant of the Liar."
   - title: "Encyclopaedia Britannica: Liar paradox"
     url: https://www.britannica.com/topic/liar-paradox
     note: "On the reading that all statements made by Cretans are false, Epimenides’ statement must itself be false, so not all Cretans are liars."
   - title: "Stanford Encyclopedia of Philosophy: Insolubles"
     url: https://plato.stanford.edu/entries/insolubles/
-    note: "The line in the Epistle to Titus, “The Cretians are always liars, evil beasts, slow bellies”, traditionally attributed to Epimenides, and the Liar sometimes being called “the Epimenides”."
+    note: "Source for the line in the Epistle to Titus and the Liar sometimes being called “the Epimenides”."
   - title: "Internet Encyclopedia of Philosophy: Liar Paradox (Bradley Dowden)"
     url: https://iep.utm.edu/liar-paradox/
-    note: "Eubulides’ version, “A man says that he is lying”; contingent liars, which may or may not lead to a paradox depending on what happens in the world beyond the sentence."
+    note: "Source for Eubulides’ version and contingent liars."
 ---

@@ -24,8 +24,8 @@ finePrint: "The answer depends on the warden’s rule. The figures above assume 
 sources:
   - title: "Wikipedia: Three prisoners problem"
     url: https://en.wikipedia.org/wiki/Three_prisoners_problem
-    note: "The problem as stated here, including A’s request and the coin flip; Gardner’s column (Scientific American 201(4), October 1959, with a follow-up in 201(5)); the answer 1/3 for A and 2/3 for C and its calculation; the equivalence with Monty Hall; the dependence on the warden’s rule and on the question asked; Pearl’s use of the puzzle (Probabilistic Reasoning in Intelligent Systems, 1988). All fractions recomputed exactly. The case where the warden always names B is worked out separately from the same rule."
+    note: "Main source for the problem, Gardner’s 1959 column, the answers 1/3 and 2/3, and the link to Monty Hall. Fractions recomputed."
   - title: "Scientific American blog: Let's make a deal: Revisiting the Monty Hall problem"
     url: https://www.scientificamerican.com/blog/observations/lets-make-a-deal-revisiting-the-monty-hall-problem/
-    note: "Gardner introduced the problem in the October 1959 Scientific American and saved the answer for his next column; the problem is mathematically equivalent to Monty Hall."
+    note: "Source for Gardner introducing the problem in October 1959, and its equivalence with Monty Hall."
 ---

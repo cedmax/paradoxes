@@ -37,10 +37,10 @@ finePrint: "Here, “known” means known by someone at some time, and “never 
 sources:
   - title: "Stanford Encyclopedia of Philosophy: Fitch's Paradox of Knowability"
     url: "https://plato.stanford.edu/entries/fitch-paradox/"
-    note: "Source for the knowability and non-omniscience premises, the proof, Fitch 1963 and his use in a theory of value, the 1945 referee and Church’s identification, Hart and McGinn 1976, Williamson’s “embarrassment” remark, Mackie (1980) and Routley (1981), Kvanvig and Brogaard and Salerno, Tennant’s and Dummett’s restrictions and their objections, Edgington (1985) and the criticism of it, Williamson’s intuitionistic proposal and its costs, Beall, and the statement that there is no consensus."
+    note: "Main source for the premises, the proof, its history, the proposed restrictions and their costs, and the lack of consensus."
   - title: "Wikipedia: Fitch's paradox of knowability"
     url: "https://en.wikipedia.org/wiki/Fitch%27s_paradox_of_knowability"
-    note: "Source for the 1963 paper title and journal, Hart’s 1979 “unjustly neglected logical gem”, the concern for anti-realist accounts of truth, and the statement that the knowability principle is generally held to be at fault."
+    note: "Source for the 1963 paper, Hart’s “unjustly neglected logical gem”, and the knowability principle usually being blamed."
   - title: "Stanford Encyclopedia of Philosophy: Epistemic Paradoxes"
     url: "https://plato.stanford.edu/entries/epistemic-paradoxes/"
     note: "Source for Salerno’s archival research identifying Church as the referee and the suggestion that Church may have been inspired by Moore’s sentence."

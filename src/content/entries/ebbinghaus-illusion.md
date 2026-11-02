@@ -25,9 +25,9 @@ sources:
     note: "Reports context and contour effects on perceived circle size."
   - title: "Vicario (2008): Optical-geometrical illusions, the nomenclature"
     url: https://www.gestalttheory.net/uploads/pdf/GTH-Archive/Vicario2008Optical-GeometricalIllusions.pdf
-    note: "Vicario identifies Thiéry (1896) as the first publication of the circles figure and states that Wundt (1898) reproduces it without naming an author. Other historical accounts differ, including on whether Wundt credited Ebbinghaus."
+    note: "Source for Thiéry (1896) as the first publication of the circles figure. Other historical accounts differ."
   - title: "Burton (2001): The Tenacity of Historical Misinformation: Titchener Did Not Invent the Titchener Illusion"
     url: https://doi.org/10.1037/1093-4510.4.3.228
-    note: "History of Psychology 4(3), pp. 228–244, on the attribution history. Bibliographic details and conclusion checked through the abstract; the full article was not inspected."
+    note: "Source for the history of the figure’s attribution."
 sourcesVerified: true
 ---

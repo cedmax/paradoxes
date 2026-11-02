@@ -23,8 +23,8 @@ finePrint: "The name was coined by the clinician Alvan Feinstein and two colleag
 sources:
   - title: "Wikipedia: Will Rogers phenomenon"
     url: "https://en.wikipedia.org/wiki/Will_Rogers_phenomenon"
-    note: "Source for the statement, the name and the doubtful attribution, Feinstein and stage migration, and the condition that the moved value lies between the two averages. The sets 1 to 4 and 5 to 9 are an example that gives the averages the page lists (2.5, 7, 3, 7.5). Averages recomputed by hand."
+    note: "Main source for the statement, the name, and stage migration. The example sets give the listed averages, recomputed."
   - title: "Feinstein, Sosin and Wells (1985), The Will Rogers phenomenon: stage migration and new diagnostic techniques as a source of misleading statistics for survival in cancer, New England Journal of Medicine (PMID 4000199)"
     url: "https://themednet.org/publications/the-will-rogers-phenomenon-stage-migration-and-new-diagnostic-techniques-as-a-source-of-misleading-statistics-for-survival-in-cancer"
-    note: "Citation record with abstract. Source for the 1985 paper, its authors and date (20 June 1985), and the finding that survival rose in each stage without any change in individual outcomes."
+    note: "Source for the 1985 paper and survival rising in each stage without any patient doing better."
 ---

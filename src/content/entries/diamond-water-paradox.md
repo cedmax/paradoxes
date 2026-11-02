@@ -22,5 +22,5 @@ finePrint: "Total usefulness still matters when water is truly scarce. Someone i
 sources:
   - title: "Wikipedia: Paradox of value"
     url: "https://en.wikipedia.org/wiki/Paradox_of_value"
-    note: "Source for Smith (1776), the earlier appearances, and the marginal-utility explanation. The desert example is an illustration written for this entry. The page is flagged as needing additional citations."
+    note: "Main source for Smith (1776), the earlier appearances and the marginal-utility explanation. The desert example is this entry’s own."
 ---

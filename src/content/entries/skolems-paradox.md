@@ -28,8 +28,8 @@ finePrint: "Skolem drew attention to this result in 1922. The Löwenheim–Skole
 sources:
   - title: "Wikipedia: Skolem's paradox"
     url: https://en.wikipedia.org/wiki/Skolem%27s_paradox
-    note: "Statement of the paradox; Cantor 1874; Löwenheim 1915 and Skolem’s generalisations of 1920 and 1922; Skolem’s 1922 explanation and the “paradoxical state of affairs” quotation; relativity and absoluteness; Kleene’s “no absolute notion of countability”; Zermelo’s “hoax” reaction and 1931 attack on “relativism”, his turn to second-order logic, and the result’s quick acceptance by the mathematical community; no countable models in second-order logic with full semantics; the Skolemite view of Goodstein and Wang; Putnam treating it as a paradox of the philosophy of language."
+    note: "Main source for the statement, its history, Skolem’s 1922 explanation, and the later views."
   - title: "Stanford Encyclopedia of Philosophy: Skolem's Paradox (Timothy Bays)"
     url: https://plato.stanford.edu/entries/paradox-skolem/
-    note: "Exact statement of the Löwenheim–Skolem theorem (Löwenheim 1915 for one sentence, Skolem for countable sets of sentences with infinite models); the formula for “x is uncountable” read inside a model and outside it, for countable transitive models, and the note that non-transitive models need further analysis; the solution as an equivocation, essentially Skolem’s own of 1922; the mathematical consensus; Skolem’s view that set theory cannot serve as a foundation; the conclusion that the mathematics alone does not yield Skolemite conclusions."
+    note: "Source for the theorem, “uncountable” read inside and outside a model, and the solution as an equivocation."
 ---

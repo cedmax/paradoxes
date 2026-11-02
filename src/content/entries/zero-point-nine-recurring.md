@@ -33,5 +33,5 @@ finePrint: "Many students resist this. Education researchers since David Tall in
 sources:
   - title: "Wikipedia: 0.999..."
     url: "https://en.wikipedia.org/wiki/0.999..."
-    note: "Source for the definition as the smallest number at least as big as all cut-off versions (least upper bound), the limit argument with gaps of one divided by 10 to the power n, Euler’s Elements of Algebra (1770), the one-third and multiply-by-10 arguments and the criticisms by Byers, Richman, Eisenmann and Cheng, the education research (Tall, Byers), the alternative number systems including Richman’s, and the example 0.25 = 0.24999…. Gaps recomputed in Python with exact fractions."
+    note: "Main source for the definition, the limit argument, Euler, the teaching research and the alternative number systems. Gaps recomputed."
 ---

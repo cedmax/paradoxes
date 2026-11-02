@@ -23,10 +23,10 @@ finePrint: "This only applies when arrivals are uneven and you turn up at a rand
 sources:
   - title: "Allen Downey: The Inspection Paradox is Everywhere"
     url: https://allendowney.substack.com/p/the-inspection-paradox-is-everywhere
-    note: "source of the Red Line figures (7.8 and 4.4), which come from the arrival times of 70 trains. Downey gives the expected wait as 3.8 minutes and the gap as about 15%. Half of 7.8 is 3.9, which gives about 13%. The 5 and 15 minute example is worked out here."
+    note: "Source for the Red Line figures (7.8 and 4.4). The 13% is worked out here from half of 7.8; Downey gives about 15%."
   - title: "Wikipedia: Inspection paradox"
     url: https://en.wikipedia.org/wiki/Inspection_paradox
-    note: "lands on a section of the Renewal theory article. It supports the general idea that a random moment tends to fall in a longer gap and the alternative name “bus waiting time paradox”."
+    note: "Source for a random moment tending to fall in a longer gap, and the name “bus waiting time paradox”."
 sourcesVerified: true
 reviewed: true
 ---

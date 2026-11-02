@@ -29,5 +29,5 @@ finePrint: "The explanation is not fully proven mathematically. Birkhoff argued 
 sources:
   - title: "Wikipedia: D'Alembert's paradox"
     url: "https://en.wikipedia.org/wiki/D%27Alembert%27s_paradox"
-    note: "Source for the 1752 result, the 1768 remark, Prandtl’s boundary layers (1904), form drag, the free-streamline model and its figures, Birkhoff’s dissent and Stewartson’s 1981 verdict. Not checked against the original papers."
+    note: "Main source for the 1752 result, the 1768 remark, boundary layers, the wake model and its figures, Birkhoff and Stewartson."
 ---

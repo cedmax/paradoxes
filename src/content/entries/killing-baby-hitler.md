@@ -37,11 +37,11 @@ finePrint: "No time machine is known to be possible. This entry is filed as a va
 sources:
   - title: "Stanford Encyclopedia of Philosophy: Time Travel"
     url: "https://plato.stanford.edu/entries/time-travel/"
-    note: "Lewis (1976) and failure “for some commonplace reason”; the objections of Horwich, Riggs and Ismael; Meiland (1974), Goddu (2003) and van Inwagen (2010) on two time dimensions and hypertime; Smith on “avoiding the past”; Deutsch and Lockwood (1994) on parallel universes and whether that counts as time travel. The entry does not discuss Hitler."
+    note: "Source for Lewis’s “commonplace reason” reply, two time dimensions, and parallel universes. It does not discuss Hitler."
   - title: "Wikipedia: Killing baby Hitler"
     url: "https://en.wikipedia.org/wiki/Killing_baby_Hitler"
-    note: "The thought experiment, the stories in Weird Tales (1941) and Astounding Science Fiction (1942), the name “Hitler’s murder paradox”, the link to the grandfather paradox, the inference from Hitler’s death in 1945, Koberlein (2015) on a parallel universe, and the 2015 New York Times poll."
+    note: "Main source for the thought experiment, its 1940s stories, the link to the grandfather paradox, and the 2015 poll."
   - title: "Wikipedia: Temporal paradox"
     url: "https://en.wikipedia.org/wiki/Temporal_paradox"
-    note: "Lists the Hitler paradox as a variant of the grandfather paradox in which the act removes the reason for the trip rather than the traveller; Hawking on a single self-consistent history."
+    note: "Source for the Hitler case as a grandfather variant, and Hawking on a single self-consistent history."
 ---

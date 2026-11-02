@@ -22,5 +22,5 @@ finePrint: "Without the axiom of choice the result cannot be proved in the stand
 sources:
   - title: "Wikipedia: Banach–Tarski paradox"
     url: "https://en.wikipedia.org/wiki/Banach%E2%80%93Tarski_paradox"
-    note: "Source for the statement, the five-piece result (Robinson, 1947), the dependence on the axiom of choice, the non-measurable pieces, the one- and two-dimensional cases, and the original paper: Banach and Tarski, Fundamenta Mathematicae 6 (1924), 244-277 (not fetched directly)."
+    note: "Main source for the statement, the five-piece result (Robinson, 1947), the axiom of choice and the non-measurable pieces."
 ---

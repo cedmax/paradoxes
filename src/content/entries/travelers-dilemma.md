@@ -31,8 +31,8 @@ finePrint: "Undercutting gives weakly better payoffs than the next larger claim 
 sources:
   - title: "Basu, The Traveler's Dilemma: Paradoxes of Rationality in Game Theory (American Economic Review, 1994)"
     url: "https://www.researchgate.net/profile/Kaushik_Basu/publication/4980634_The_Traveler%27s_Dilemma_Paradoxes_of_Rationality_in_Game_Theory/links/5766fa9908aedbc345f5f4ce/The-Travelers-Dilemma-Paradoxes-of-Rationality-in-Game-Theory.pdf"
-    note: "Source for the game (claims from 2 to 100, bonus and penalty of 2), the unique strict equilibrium and unique rationalizable outcome, the contrast with the centipede game, backward induction in a one-shot game, the quoted sentence, Basu's statement that he could not resolve the paradox, and his tentative lines of attack."
+    note: "Source for the game, its unique equilibrium, and Basu’s view that the paradox is unresolved."
   - title: "Wikipedia: Traveler's dilemma"
     url: "https://en.wikipedia.org/wiki/Traveler%27s_dilemma"
-    note: "Source for the airline story in dollars, the example payments for 100 and 99, the dominance argument, the experimental findings (most players pick high values and earn more; Capra, Goeree, Gomez and Holt 1999; Morone, Morone and Germani 2014), Capraro's 2013 model, the Bayesian equilibrium remark, the two-choice link to the prisoner's dilemma and the 2007 Scientific American article. All payments were recomputed."
+    note: "Main source for the airline story, the dominance argument and the experimental findings. Payments recomputed."
 ---

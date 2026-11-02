@@ -35,7 +35,7 @@ finePrint: "The puzzle concerns particular groups of patients, not a general cla
 sources:
   - title: "Wikipedia: Obesity paradox"
     url: "https://en.wikipedia.org/wiki/Obesity_paradox"
-    note: "Source for the definition, the 1999 dialysis origin, the heart failure figures (twice the risk; lower mortality at BMI 30.0 to 34.9), the diseases where it has been reported, Kalantar-Zadeh’s 2003 term, reverse causation, smoking (Stokes; Flegal and colleagues 2007; the study of 1.46 million white adults), collider bias as one probable explanation, Diercks and colleagues 2006, Hong and colleagues 2011, Dixon and colleagues 2015, the waist size criticism, and the statement that studies reducing reverse causation find higher risk above a BMI of 25."
+    note: "Main source for the definition and history, the reported diseases, and the proposed explanations, from reverse causation to collider bias."
   - title: "Sperrin and others: Collider Bias Is Only a Partial Explanation for the Obesity Paradox (Epidemiology, 2016)"
     url: "https://livrepository.liverpool.ac.uk/id/eprint/3035006"
     note: "Source for the conclusion that collider bias can be a partial explanation but is unlikely to be the main one."

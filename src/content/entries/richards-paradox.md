@@ -30,10 +30,10 @@ finePrint: "Richard published the paradox in 1905, using French. “Number” he
 sources:
   - title: "Wikipedia: Richard's paradox"
     url: "https://en.wikipedia.org/wiki/Richard%27s_paradox"
-    note: "Source for the statement in English (the 17.1010… example, the ordering of phrases, the digits 1 and 2 in the definition of r), Richard 1905, the link to Cantor’s diagonal argument and Berry, I. J. Good 1966 (Mind), the halting problem, the ZFC and Tarski points, Gödel’s citation, Richard’s predicative answer and the different reason accepted today, and Weyl. The value 1693/99 = 17.1010… was recomputed."
+    note: "Main source for the statement, Richard (1905), the links to Cantor and Berry, and later answers. Value recomputed."
   - title: "Stanford Encyclopedia of Philosophy: Paradoxes and Contemporary Logic"
     url: "https://plato.stanford.edu/entries/paradoxes-contemporary-logic/"
-    note: "Source for Richard teaching at a lycée in Dijon and working in French, his vicious-circle diagnosis, Poincaré’s restatement as “no definable enumeration of definable reals” and his predicativism, Peano 1906, Gödel’s remark, and Berry’s paradox as a finite-number relative."
+    note: "Source for Richard’s diagnosis, Poincaré’s restatement and Peano’s reply."
   - title: "MathWorld: Richard's Paradox"
     url: "https://mathworld.wolfram.com/RichardsParadox.html"
     note: "Source for the publication details of Richard 1905 in the Revue générale des sciences pures et appliquées."

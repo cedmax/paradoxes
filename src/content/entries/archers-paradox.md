@@ -31,11 +31,11 @@ finePrint: "Another way round the problem, a technique called khatra, is to twis
 sources:
   - title: "Wikipedia: Archer's paradox"
     url: https://en.wikipedia.org/wiki/Archer%27s_paradox
-    note: "Source for the definition, Rendtorff in Forest and Stream (1913), Ford’s 1859 book, the bending as the explanation rather than the paradox, dynamic spine, the effects of too stiff and too flexible arrows, centre shot bows, the flexing caused by the string leaving the fingers, khatra, and the common misuse of the term."
+    note: "Main source for the definition, its history (Rendtorff 1913, Ford 1859), dynamic spine and arrow stiffness."
   - title: "Kooi (1998), The Archer’s Paradox and Modelling, a Review, History of Technology 20"
     url: https://www.bio.vu.nl/thb/users/kooi/kooi98.pdf
-    note: "Source for the arrow seeming to fly left of the target because it passes on the left side of the bow, Rendtorff (1913), Hickman’s first high-speed pictures in 1930 at 2,000 frames a second, Hickman inventing the centre shot bow, the arrow bending around the bow and oscillating in flight, the string moving to the left off the fingers and a force acting off the arrow’s axis causing the first bend (Nagler’s account), and arrow flexibility having to match the bow’s weight."
+    note: "Source for the history, Hickman’s 1930 high-speed pictures, the arrow bending around the bow and the string’s sideways push."
   - title: "Kooi and Sparenberg (1997), On the Mechanics of the Arrow: Archer’s Paradox, Journal of Engineering Mathematics 31, 285"
     url: https://www.bio.vu.nl/thb/users/kooi/kosp97.pdf
-    note: "Source for the grip being in the way on ancient bows, the string slipping off the finger tips and moving the back of the arrow sideways, the arrow snaking around the grip, leaving the string still curved and vibrating, and the model fitting high-speed film data."
+    note: "Source for the arrow snaking around the grip after the string slips off the fingers, matching high-speed film."
 ---

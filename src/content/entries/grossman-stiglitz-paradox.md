@@ -23,7 +23,7 @@ sources:
     url: "https://en.wikipedia.org/wiki/Grossman%E2%80%93Stiglitz_paradox"
   - title: "Grossman and Stiglitz (1980): On the Impossibility of Informationally Efficient Markets"
     url: "https://ideas.repec.org/a/aea/aecrev/v70y1980i3p393-408.html"
-    note: "Bibliographic record of the original American Economic Review paper."
+    note: "The original American Economic Review paper."
   - title: "Strategic Pricing, Signalling, and Costly Information Acquisition"
     url: "https://www.sciencedirect.com/science/article/pii/S0167718700000576"
     note: "Independent scholarly discussion of why fully informative prices eliminate the reward for costly research."

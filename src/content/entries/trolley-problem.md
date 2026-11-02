@@ -36,7 +36,7 @@ finePrint: "Earlier versions appeared in a 1905 questionnaire by Frank Chapman S
 sources:
   - title: "Wikipedia: Trolley problem"
     url: "https://en.wikipedia.org/wiki/Trolley_problem"
-    note: "Source for the origins, the two cases, the survey figures (about 90 percent in many surveys; Bourget and Chalmers 2009: 68, 8 and 24 percent), the utilitarian view and the criticisms."
+    note: "Main source for the origins, the two cases, the survey figures and the criticisms."
   - title: "Stanford Encyclopedia of Philosophy: Doctrine of Double Effect"
     url: "https://plato.stanford.edu/entries/double-effect/"
     note: "Source for the means and side-effect explanation, the objections to it, and the three groups (Mikhail 2011; Thomson 2008 and Anscombe 1982; McIntyre 2001)."

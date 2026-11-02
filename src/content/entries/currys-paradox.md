@@ -31,14 +31,14 @@ finePrint: "The proof is heavily compressed. The principles at issue include unr
 sources:
   - title: "Wikipedia: Curry's paradox"
     url: "https://en.wikipedia.org/wiki/Curry%27s_paradox"
-    note: "Source for the Germany and China sentence, the step-by-step informal proof, the rules used (conditional proof, contraction and modus ponens) and that they are part of most common logics including first-order logic, Curry (1942), the name Löb’s paradox, the set-theory version and its avoidance in modern set theory."
+    note: "Main source for the example sentence, the informal proof and its rules, Curry (1942) and the set-theory version."
   - title: "Stanford Encyclopedia of Philosophy: Curry's Paradox (Lionel Shapiro and Jc Beall)"
     url: "https://plato.stanford.edu/entries/curry-paradox/"
-    note: "Source for the absence of negation, Geach’s 1955 remark, the point that some logics that handle the liar do not handle Curry, the groups of responses (topic-specific, contraction-free, rejecting conditional proof or modus ponens) and the objections to each, Moh Shaw-Kwei (1954), Geach and Löb (1955), and the lack of any response reported as widely accepted."
+    note: "Source for the lack of negation, the families of response and their objections, and no response being widely accepted."
   - title: "Stanford Encyclopedia of Philosophy: Self-Reference"
     url: "https://plato.stanford.edu/entries/self-reference/"
-    note: "Supports the description of Curry’s paradox as a paradox of self-reference that does not directly involve negation and needs fewer assumptions about logic than the liar."
+    note: "Source for Curry’s paradox needing no negation and fewer assumptions than the liar."
   - title: "Stanford Encyclopedia of Philosophy: Liar Paradox"
     url: "https://plato.stanford.edu/entries/liar-paradox/"
-    note: "Source for the point that paraconsistent approaches must treat Curry’s paradox separately from the liar, and for the cost of level-based fixes: self-reference occurs without trouble in natural languages."
+    note: "Source for paraconsistent approaches treating Curry separately, and for the cost of level-based fixes."
 ---

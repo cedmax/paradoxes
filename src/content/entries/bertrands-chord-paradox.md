@@ -23,8 +23,8 @@ finePrint: "The physicist Edwin Jaynes argued in 1973 that the problem becomes w
 sources:
   - title: "Wikipedia: Bertrand paradox (probability)"
     url: "https://en.wikipedia.org/wiki/Bertrand_paradox_(probability)"
-    note: "Source for the three methods and their answers (1/3, 1/2, 1/4), Bertrand's 1889 source (Calcul des probabilités, pp. 5-6), and the summary of Jaynes and Drory. All three answers also recomputed by hand."
+    note: "Source for the three methods and their answers, Bertrand’s 1889 book, and Jaynes and Drory. Answers recomputed by hand."
   - title: "Jaynes (1973), The Well-Posed Problem, Foundations of Physics 3, 477-493"
     url: "https://bayes.wustl.edu/etj/articles/well.pdf"
-    note: "Checked: rotation, scale and translation invariance leave only the uniform distribution over distance from the centre, which gives one half."
+    note: "Source for rotation, scale and translation invariance leaving only the uniform distribution over distance from the centre, which gives one half."
 ---

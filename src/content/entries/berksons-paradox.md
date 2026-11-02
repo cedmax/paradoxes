@@ -22,5 +22,5 @@ finePrint: "The paradox is named after Joseph Berkson, who described it in 1946 
 sources:
   - title: "Wikipedia: Berkson's paradox"
     url: "https://en.wikipedia.org/wiki/Berkson%27s_paradox"
-    note: "Source for the statement, the 1946 origin, the hospital example and the stamp example. Stamp figures recomputed by hand: 300 + 100 − 30 = 370 displayed, 100 of 370 is 27 percent, 30 of 300 is 10 percent, and the 70 plain displayed stamps are all rare."
+    note: "Source for the statement, the 1946 origin and the hospital example. Stamp figures recomputed by hand."
 ---

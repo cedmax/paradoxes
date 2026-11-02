@@ -31,14 +31,14 @@ finePrint: "By the end of the 16th century, many in the Christian world took the
 sources:
   - title: "Wikipedia: Chicken or the egg"
     url: "https://en.wikipedia.org/wiki/Chicken_or_the_egg"
-    note: "Source for the question and its use as a metaphor, Plutarch’s Symposiacs, Aristotle, the 16th-century Christian view and the Enlightenment, the evolutionary answer, the amniotic egg at around 312 million years, chickens arising from junglefowl “little more than eight thousand years ago, at most”, the mutation argument and the somewhat arbitrary line, and the ovocleidin-17 argument with the turkey and finch findings."
+    note: "Main source for the question’s history, the evolutionary answer, the amniotic egg and the ovocleidin-17 argument."
   - title: "University of Warwick press release: Researchers apply computing power to crack egg shell problem (2010)"
     url: "https://warwick.ac.uk/news/pressreleases/researchers_apply_computing/"
-    note: "Source for the 2010 Sheffield and Warwick simulation study of ovocleidin-17 (published in Angewandte Chemie), the phrase “may also give a partial answer”, and Mark Rodger’s later comment that it is “a fun but pointless question”."
+    note: "Source for the 2010 ovocleidin-17 simulation and the researcher calling it “a fun but pointless question”."
   - title: "BioNumbers: Estimated time range of diversification of birds and mammals"
     url: "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=105155"
-    note: "Source, citing Donoghue and Benton (2007), for 312.3 million years as the minimum age of the amniote group, based on the oldest amniote fossils, which is why the entry says “at least about 312 million years”."
+    note: "Source for about 312 million years as the minimum age of the amniotes."
   - title: "Ludger Jansen: It’s Chicken and Eggs again: Vagueness, Quasi-Species, and Evolution (Conceptus, 2006)"
     url: "https://philarchive.org/rec/JANICA-3"
-    note: "Abstract only. Source for the philosophical point that the answer depends on the biological theory assumed and on the vagueness of species words."
+    note: "Source for the answer depending on the biological theory and on vague species words."
 ---

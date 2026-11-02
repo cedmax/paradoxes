@@ -37,8 +37,8 @@ finePrint: "The standard options are: 1A, a sure $1 million; 1B, a 10 percent ch
 sources:
   - title: "Wikipedia: Allais paradox"
     url: "https://en.wikipedia.org/wiki/Allais_paradox"
-    note: "Source for the four gambles and the usual choices, the role of the independence axiom and the shared 89 percent, Allais’s 1952 presentation and 1953 Econometrica paper, his view that the choices are not irrational, the certainty effect as the most common explanation, the zero effect, and the alternative theories. Expected values recomputed."
+    note: "Main source for the four gambles, the usual choices, Allais’s papers, the certainty effect and the alternative theories. Expected values recomputed."
   - title: "Stanford Encyclopedia of Philosophy: Normative Theories of Rational Choice: Expected Utility"
     url: "https://plato.stanford.edu/entries/rationality-normative-utility/"
-    note: "Source for the ticket version, the statement of Independence, the remark that the preferences seem reasonable, Savage and Raiffa, Buchak’s risk-weighted theory, Loomes and Sugden, Weirich, and Broome’s objection, and the absence of a settled verdict."
+    note: "Source for the independence axiom, the defences of the choices, the alternative theories and the lack of a settled verdict."
 ---

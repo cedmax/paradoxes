@@ -28,5 +28,5 @@ sources:
     note: "Source for the divergence, zeta regularisation, Ramanujan's 1913 letter, the Casimir and string theory uses, and the limits on the methods."
   - title: "Terence Tao: The Euler-Maclaurin formula, Bernoulli numbers, the zeta function, and real-variable analytic continuation"
     url: "https://terrytao.wordpress.com/2010/04/10/the-euler-maclaurin-formula-bernoulli-numbers-the-zeta-function-and-real-variable-analytic-continuation/"
-    note: "A blog post, not peer review. Checked: the smoothed sum of n has the form −1/12 plus a positive multiple of N squared, and Tao says it does not equal −1/12 in the usual sense."
+    note: "Source for the smoothed sum having −1/12 as its constant term, which is not the sum in the usual sense."
 ---

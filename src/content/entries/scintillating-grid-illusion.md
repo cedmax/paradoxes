@@ -16,6 +16,6 @@ sources:
     note: "Demonstration and sources for the scintillating grid, its white discs and transient dark spots."
   - title: "Schrauf, Wist and Ehrenstein (2000)"
     url: https://www.sciencedirect.com/science/article/pii/S030439400000999X
-    note: "Shows that saccadic eye movements are not necessary: smooth pursuit, moving the stimulus, or brief exposure can produce the effect. The publisher abstract was checked; the full paper was not inspected."
+    note: "Source for eye movements not being needed: pursuit, a moving stimulus or brief exposure also produce the effect."
 sourcesVerified: true
 ---

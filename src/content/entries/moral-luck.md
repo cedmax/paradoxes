@@ -28,5 +28,5 @@ finePrint: "Many philosophers take mixed positions, treating different kinds of 
 sources:
   - title: "Stanford Encyclopedia of Philosophy: Moral Luck"
     url: "https://plato.stanford.edu/entries/moral-luck/"
-    note: "Source for the control principle, Nagel’s four kinds of luck, the dates (Williams 1976, Nagel 1979), the three families of response and their costs. The drink-driving example is an illustration written for this entry, not taken from the page."
+    note: "Source for the control principle, Nagel’s four kinds of luck, and the responses and their costs. The drink-driving example is this entry’s own."
 ---

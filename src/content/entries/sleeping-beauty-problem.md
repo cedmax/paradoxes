@@ -31,8 +31,8 @@ sources:
     note: "Still the only source for the two-questions view, double-halfer accounts and the betting arguments."
   - title: "Elga (2000): Self-locating belief and the Sleeping Beauty problem"
     url: "https://doi.org/10.1093/analys/60.2.143"
-    note: "Analysis 60, pp. 143-147, full text read in the author’s copy. Source for the one-third answer, the two symmetry steps, and the credit to unpublished work by Zuboff."
+    note: "Source for the one-third answer, the two symmetry steps, and the credit to Zuboff."
   - title: "Lewis (2001): Sleeping Beauty: reply to Elga"
     url: "https://doi.org/10.1093/analys/61.3.171"
-    note: "Analysis 61, pp. 171-176, full text read. Source for the one-half answer on waking and two thirds for heads once she learns it is Monday."
+    note: "Source for the one-half answer on waking and two thirds for heads once she learns it is Monday."
 ---

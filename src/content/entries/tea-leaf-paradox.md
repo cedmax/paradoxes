@@ -30,14 +30,14 @@ finePrint: "Einstein’s paper, Die Ursache der Mäanderbildung der Flußläufe 
 sources:
   - title: "Wikipedia: Tea leaf paradox"
     url: https://en.wikipedia.org/wiki/Tea_leaf_paradox
-    note: "Source for the phenomenon, friction at the bottom weakening the outward push, the circulation pattern, Thomson (1857), Boussinesq (1868), Einstein’s 1926 paper and its title, and the uses in blood separation, weather systems and brewing."
+    note: "Main source for the phenomenon, its explanation and history, and its uses."
   - title: "Wikipedia: Secondary flow"
     url: https://en.wikipedia.org/wiki/Secondary_flow
-    note: "Source for the surface dipping towards the middle and the pressure rising from the middle of the cup to the rim, the slower water in the boundary layer being unable to balance it and spiralling inwards, the leaves being swept into a pile, and the same flow moving water towards the inner bank in river bends."
+    note: "Source for the pressure difference, the slower boundary layer spiralling inwards, and the same flow in river bends."
   - title: "Barkley (2020), A fluid mechanic’s analysis of the teacup singularity, arXiv:1902.05993"
     url: https://arxiv.org/abs/1902.05993
-    note: "Source for Einstein’s 1926 paper on river meanders beginning with the secondary flow in a stirred teacup, the paper’s citation (Naturwissenschaften 14, 223 to 224), and the variation in swirl with depth being due to a boundary layer at the bottom of the cup."
+    note: "Source for Einstein’s 1926 paper and the boundary layer at the bottom of the cup."
   - title: "Tandon and Marshall (2010), Einstein’s Tea Leaves and Pressure Systems in the Atmosphere, The Physics Teacher 48, 292"
     url: https://dspace.mit.edu/handle/1721.1/118473
-    note: "Record page only (the full text could not be fetched). Its summary supports the secondary circulation from rim to centre driven by friction at the bottom of the cup, and the link to weather systems."
+    note: "Source for the friction-driven circulation from rim to centre, and the link to weather systems."
 ---

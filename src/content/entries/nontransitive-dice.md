@@ -22,7 +22,7 @@ finePrint: "This is for a single roll each, and for these dice. The 2 in 3 odds 
 sources:
   - title: "Wikipedia: Intransitive dice"
     url: https://en.wikipedia.org/wiki/Intransitive_dice
-    note: "gives Efron's faces and the 2 in 3 odds. All pairings were checked separately."
+    note: "Source for Efron's faces and the 2 in 3 odds. All pairings recomputed."
   - title: "Wikipedia: Penney's game"
     url: https://en.wikipedia.org/wiki/Penney%27s_game
   - title: "Wikipedia: Bradley Efron"

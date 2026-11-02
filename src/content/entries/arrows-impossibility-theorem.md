@@ -42,8 +42,8 @@ finePrint: "The five demands here follow the Stanford Encyclopedia’s formulati
 sources:
   - title: "Stanford Encyclopedia of Philosophy: Arrow's Theorem"
     url: "https://plato.stanford.edu/entries/arrows-theorem/"
-    note: "Source for the five conditions (unrestricted domain, social ordering, weak Pareto, non-dictatorship, independence of irrelevant alternatives) in the canonical form since the 1963 edition, the statement for more than two alternatives, Arrow's 1950 paper and 1951 book, the value judgments quotation, Black (1948) and single-peakedness, Sen and Gibbard on relaxing the ordering condition, the Borda count and manipulation, Sen on interpersonal comparability, the close relative of the impossibility under differing grading scales (Morreau 2016), and the link to Condorcet's cycle."
+    note: "Main source for the five conditions, the theorem’s history, single-peaked preferences, ways of relaxing the conditions and the link to Condorcet’s cycle."
   - title: "Wikipedia: Arrow's impossibility theorem"
     url: "https://en.wikipedia.org/wiki/Arrow%27s_impossibility_theorem"
-    note: "Source for the weaker non-imposition condition, rated rules not being affected, the common misconception, Gibbard's theorem, the limits of single-peaked preferences, Arrow's early rejection of cardinal utility and later reversal, the nihilism reading and Pearce's criticism, and the 2012 quotation."
+    note: "Source for rated rules, Gibbard’s theorem, the common misconception, Arrow’s later views and the 2012 quotation."
 ---

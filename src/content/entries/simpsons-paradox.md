@@ -24,7 +24,7 @@ sources:
     url: "https://en.wikipedia.org/wiki/Simpson%27s_paradox"
   - title: "BMJ: Charig et al., 1986, Comparison of treatment of renal calculi"
     url: "https://www.bmj.com/content/292/6524/879"
-    note: "All figures here checked against Tables I and II of the paper (BMJ 292:879, 29 March 1986): open procedures 81 of 87 and 192 of 263, percutaneous nephrolithotomy 234 of 270 and 55 of 80."
+    note: "Source for all the kidney stone figures, from Tables I and II."
   - title: "Europe PMC: Charig et al., 1986, abstract"
     url: "https://europepmc.org/article/MED/3083922"
 ---

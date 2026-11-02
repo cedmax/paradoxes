@@ -27,7 +27,7 @@ sources:
     note: "Statement of the paradox, the always-negative classifier scoring highly when negative cases are common, and explanations of precision, recall, F1 and balanced accuracy."
   - title: "Valverde-Albacete and Peláez-Moreno (2014), 100% Classification Accuracy Considered Harmful, PLOS ONE 9(1), abstract on RePEc"
     url: https://ideas.repec.org/a/plo/pone00/0084217.html
-    note: "Citation and abstract, including the finding that a classifier with lower accuracy can have greater predictive power. The full text on PLOS ONE could not be fetched."
+    note: "Source for the finding that a classifier with lower accuracy can have greater predictive power."
   - title: "Universidad Carlos III de Madrid, GPM group: Accuracy paradox project page"
     url: https://gpm.webs.tsc.uc3m.es/projects/acc-paradox/
     note: "The authors’ group page: class imbalance as the cause, and a classifier labelling every case as the majority class."

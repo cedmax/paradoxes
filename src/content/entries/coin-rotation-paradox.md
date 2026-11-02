@@ -25,11 +25,11 @@ finePrint: "This exact trap appeared in the SAT, a US college admissions test, o
 sources:
   - title: "Wikipedia: Coin rotation paradox"
     url: "https://en.wikipedia.org/wiki/Coin_rotation_paradox"
-    note: "The two turns for equal coins, the formula R/r + 1, the flatten-and-slide decomposition, the extra turn for any simple closed curve and the subtraction for a coin rolling inside, the SAT question of 1 May 1982 and the three students’ names (citing the New York Times, 25 May 1982, which could not be fetched), and the 366.25 sidereal days against 365.25 solar days."
+    note: "Main source for the two turns, the formula R/r + 1, the 1982 SAT question, and sidereal and solar days."
   - title: "Wolfram MathWorld: Coin Paradox"
     url: "https://mathworld.wolfram.com/CoinParadox.html"
-    note: "The centre’s path of length 2π(R + r), giving (R + r)/r = R/r + 1 turns, and two turns for equal coins; the 1982 SAT question with R = 3r, expected answer 3 and correct answer 4; three of about 300,000 test takers reporting it and the exams being rescored."
+    note: "Source for the formula, the 1982 SAT question with answer 4 instead of 3, and the rescoring."
   - title: "Scientific American: The SAT Problem That Everybody Got Wrong"
     url: "https://www.scientificamerican.com/article/the-sat-problem-that-everybody-got-wrong/"
-    note: "The SAT question with a radius ratio of three, the five choices (3/2, 3, 6, 9/2, 9), the intended answer 3 and the correct answer 4; three test takers reporting the error; 300,000 exams rescored; the turn from rolling and the extra turn from going round."
+    note: "Source for the SAT question, its choices, the correct answer 4, and the extra turn from going round."
 ---
