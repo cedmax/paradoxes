@@ -13,6 +13,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 ---
 
 <IllustrationFigure name="magic-octagon" lead="Where will the arrow point when flipped?">
+  <p id="magic-octagon-stage-label" class="mono-label">Step 1 of 2 · The puzzle</p>
   <p id="magic-octagon-setup-note" class="text-base">
     First, study both views of the coin. The black dot marks the top on each side.
     The front arrow points up; the flipped arrow points left. Remember both before
@@ -79,7 +80,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         viewBox="0 0 360 290"
         class="w-full"
         title="The flipped view of the same octagonal coin"
-        desc="The flipped view of the same octagon. Because it faces the viewer from the opposite side, its rotation appears reversed. Both views animate together when the coin is flipped."
+        desc="The same octagon viewed from the flipped side. Its gold arrow starts pointing left, and a black dot marks the top corner."
       >
         <g
           id="magic-octagon-other-mirror"
@@ -155,6 +156,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         45° clockwise ↷
       </button>
     </div>
+    <p id="magic-octagon-puzzle-status" class="text-base" aria-live="polite">
+      Choose a turn to begin.
+    </p>
     <div id="magic-octagon-prediction" class="flex flex-col gap-3" hidden>
       <p class="font-bold">
         After the flip, where will the arrow point?
@@ -196,9 +200,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       Both views now show the same turned coin. Use the controls to turn or flip
       it, or hide the comparison to study one view at a time.
     </p>
-  <div
-    class="mx-auto grid w-full max-w-lg grid-cols-[1fr_1.5fr_1fr] gap-2 sm:gap-3"
-    role="group"
+    <div
+      class="mx-auto grid w-full max-w-lg grid-cols-[1fr_1.5fr_1fr] gap-2 sm:gap-3"
+      role="group"
     aria-label="Turn or flip the coin"
   >
     <button
@@ -226,13 +230,13 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     >
       45° ↷
     </button>
-  </div>
+    </div>
 
-  <div class="flex flex-wrap items-center gap-3">
-    <button
-      type="button"
-      class="btn-toggle"
-      id="magic-octagon-compare"
+    <div class="flex flex-wrap items-center gap-3">
+      <button
+        type="button"
+        class="btn-toggle"
+        id="magic-octagon-compare"
       aria-controls="magic-octagon-other"
       aria-pressed="false"
     >
@@ -241,9 +245,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     <button type="button" class="btn-link" id="magic-octagon-reset">
       Reset
     </button>
-  </div>
+    </div>
 
-  <p id="magic-octagon-state" class="text-base" aria-live="polite">
+    <p id="magic-octagon-state" class="text-base" aria-live="polite">
     Front arrow: up. Turn, predict, then flip the coin.
   </p>
   <p id="magic-octagon-compare-note" class="text-base" hidden>
@@ -268,6 +272,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 
   const root = illustrationRoot("magic-octagon")
   if (root) {
+    const stageLabel = find<HTMLElement>(root, "#magic-octagon-stage-label")
     const views = find<HTMLElement>(root, "#magic-octagon-views")
     const other = find<HTMLElement>(root, "#magic-octagon-other")
     const setupNote = find<HTMLElement>(root, "#magic-octagon-setup-note")
@@ -277,6 +282,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     const puzzleLeft = find<HTMLButtonElement>(root, "#magic-octagon-puzzle-left")
     const puzzleRight = find<HTMLButtonElement>(root, "#magic-octagon-puzzle-right")
     const prediction = find<HTMLElement>(root, "#magic-octagon-prediction")
+    const puzzleStatus = find<HTMLElement>(root, "#magic-octagon-puzzle-status")
     const guesses = Array.from(
       root.querySelectorAll<HTMLButtonElement>("button[data-magic-guess]"),
     )
@@ -335,6 +341,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     }
 
     const showStage = () => {
+      stageLabel.textContent = stage === "explanation"
+        ? "Step 2 of 2 · The explanation"
+        : "Step 1 of 2 · The puzzle"
       setupNote.hidden = stage !== "setup"
       startControls.hidden = stage !== "setup"
       challenge.hidden = stage !== "challenge"
@@ -434,6 +443,8 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       puzzleRight.setAttribute("aria-pressed", String(nextAngle === 45))
       prediction.hidden = false
       revealButton.disabled = true
+      puzzleStatus.textContent =
+        "The front now points " + directions[faces().front] + ". Make your prediction."
       animate()
     }
 
@@ -451,6 +462,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       for (const button of guesses) button.setAttribute("aria-pressed", "false")
       prediction.hidden = true
       revealButton.disabled = true
+      puzzleStatus.textContent = "Choose a turn to begin."
       showStage()
       draw()
       describe()
