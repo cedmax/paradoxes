@@ -14,10 +14,10 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 }).join(" ")
 ---
 
-<IllustrationFigure name="magic-octagon" lead="Where will the arrow on the back point?">
+<IllustrationFigure name="magic-octagon" lead="Where will the arrow point when flipped?">
   <p class="text-base">
-    The front starts pointing up. Turn the octagon 45°, predict the back, then
-    flip to check. Compare both sides to see the front and back of the same coin.
+    The front starts pointing up. Turn the octagon 45°, predict what the flipped
+    view will show, then flip to check. Compare both views of the same coin.
   </p>
 
   <div
@@ -31,7 +31,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         viewBox="0 0 360 290"
         class="w-full"
         title="A two-sided octagonal coin"
-        desc="A coin with a blue arrow on the front, a gold arrow on the back and a dot marking one physical corner. The coin turns and flips. A separate view of the other face can be shown beside it."
+        desc="A coin with a blue arrow in the front view, a gold arrow in the flipped view, and a dot marking one physical corner. The coin turns and flips. The opposite view can be shown alongside it."
       >
         <g id="magic-octagon-flip">
           <g id="magic-octagon-turn">
@@ -70,13 +70,13 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     </div>
 
     <div id="magic-octagon-other" class="min-w-0 flex-1" hidden>
-      <p id="magic-octagon-other-face" class="text-center text-base font-bold">Back ←</p>
+      <p id="magic-octagon-other-face" class="text-center text-base font-bold">Flipped ←</p>
       <SvgFigure
         name="magic-octagon-other-svg"
         viewBox="0 0 360 290"
         class="w-full"
-        title="The opposite face of the same octagonal coin"
-        desc="The other face of the same octagon. It faces the viewer from the opposite side, so it rotates in the opposite apparent direction. Both views flip together when Flip the coin is pressed."
+        title="The flipped view of the same octagonal coin"
+        desc="The flipped view of the same octagon. Because it faces the viewer from the opposite side, its rotation appears reversed. Both views animate together when the coin is flipped."
       >
         <g id="magic-octagon-other-mirror">
           <g id="magic-octagon-other-turn">
@@ -164,9 +164,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     Front arrow: up. Turn, predict, then flip the coin.
   </p>
   <p id="magic-octagon-compare-note" class="text-base" hidden>
-    Two views of the same coin: front and back. Turn one side clockwise and the
-    other appears to turn anticlockwise, because you are looking from the opposite
-    side. Flip the coin to exchange which face each view shows.
+    Two views of the same coin: front and flipped. Turn the front clockwise and
+    the flipped view appears to turn anticlockwise, because you are looking from
+    the opposite side. Flip the coin to exchange the views.
   </p>
 
   <Fragment slot="caption">
@@ -258,8 +258,8 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 
     const describe = () => {
       const main = directions(angle)
-      const mainFace = flipped ? "Back" : "Front"
-      const otherFace = flipped ? "Front" : "Back"
+      const mainFace = flipped ? "Flipped" : "Front"
+      const otherFace = flipped ? "Front" : "Flipped"
       const mainIndex = flipped ? main.backIndex : main.frontIndex
       const otherIndex = flipped ? main.frontIndex : main.backIndex
 
@@ -267,12 +267,12 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       otherFaceLabel.textContent = otherFace + " " + symbols[otherIndex]
       flipButton.setAttribute("aria-pressed", String(flipped))
       flipButton.textContent = "Flip the coin"
-      flipButton.setAttribute("aria-label", "Flip the coin to the other face")
+      flipButton.setAttribute("aria-label", "Flip the coin to show the other view")
 
       if (comparing) {
         status.textContent =
-          "Left coin: " + mainFace.toLowerCase() + " points " + directionsList[mainIndex] +
-          ". Right coin: " + otherFace.toLowerCase() + " points " +
+          "Left view: " + mainFace.toLowerCase() + " points " + directionsList[mainIndex] +
+          ". Right view: " + otherFace.toLowerCase() + " points " +
           directionsList[otherIndex] +
           ". Both views show the same coin from opposite sides."
       } else if (flipped) {
@@ -286,12 +286,12 @@ const corners = Array.from({ length: 8 }, (_, index) => {
                 ? "The two directions are at right angles."
                 : "The two directions are different."
         status.textContent =
-          "Back arrow: " + directionsList[main.backIndex] +
+          "Flipped arrow: " + directionsList[main.backIndex] +
           ". The front pointed " + directionsList[main.frontIndex] + ". " + relation
       } else {
         status.textContent =
           "Front arrow: " + directionsList[main.frontIndex] +
-          ". Predict the back, then flip the coin."
+          ". Predict the flipped view, then flip the coin."
       }
     }
 
