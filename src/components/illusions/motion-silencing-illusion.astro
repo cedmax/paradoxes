@@ -31,7 +31,7 @@ const dots = Array.from({ length: count }, (_, index) => {
     <rect x="12" y="12" width="536" height="356" fill={illusionSurface.neutral} />
     <g id="motion-silencing-illusion-ring">
       {dots.map(({ index, x, y, hue }) => (
-        <circle cx={x} cy={y} r="12" fill={`hsl(${hue} 65% 55%)`} data-dot={index} />
+        <circle cx={x} cy={y} r="5.2" fill={`hsl(${hue} 65% 55%)`} data-dot={index} />
       ))}
     </g>
     <path d="M270 190 H290 M280 180 V200" stroke={stroke} stroke-width="3" />
