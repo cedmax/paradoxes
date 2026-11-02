@@ -99,8 +99,15 @@ async def interaction(page, pr):
         flashes = len([c for c in changes if c["colour"] == "var(--color-series-gold)"])
         require(flashes == previous + 1, f"Rapid replay produced spurious flashes: {changes}")
     elif pr == 139:
-        # Inspect the actual synthesised PCM handed to Web Audio. Keep this
-        # independent from subjective listening or a physical-device claim.
+        prefix = "stream-bounce-illusion"
+        silent = page.locator(f"#{prefix}-silent")
+        sound = page.locator(f"#{prefix}-sound")
+        stream = page.locator(f'#{prefix}-choices [data-choice="stream"]')
+        bounce = page.locator(f'#{prefix}-choices [data-choice="bounce"]')
+        note = page.locator(f"#{prefix}-choice-note")
+        reveal = page.locator(f"#{prefix}-reveal")
+        require(await stream.is_disabled(), "Cannot judge before a trial")
+        # Inspect PCM handed to Web Audio, not a subjective loudness claim.
         await page.evaluate("""() => {
           window.__bounceSound = null
           const copy = AudioBuffer.prototype.copyToChannel
@@ -113,26 +120,38 @@ async def interaction(page, pr):
                 if (abs > peak) peak = abs
                 if (firstNonzero === -1 && abs > 0.0001) firstNonzero = i
               }
-              window.__bounceSound = {
-                peak, firstNonzero, rate: this.sampleRate,
-                count: samples.length
-              }
+              window.__bounceSound = { peak, firstNonzero, rate: this.sampleRate }
             }
             return copy.call(this, samples, ...rest)
           }
         }""")
-        await page.locator("#stream-bounce-illusion-sound").click()
+        await silent.click()
+        require(await stream.is_disabled(), "Silent trial should not unlock judgement at start")
+        await page.wait_for_timeout(1800)
+        require(await stream.is_enabled(), "Silent trial must unlock judgement after motion finishes")
+        await stream.click()
+        require(await stream.get_attribute("aria-pressed") == "true", "Silent answer not selected")
+        require(not await reveal.is_visible(), "Reveal shown after only one judgement")
+        require(await note.is_visible(), "First answer should invite the other trial")
+        await sound.click()
+        require(await stream.is_disabled(), "Sound trial should lock judgement until crossing completes")
+        require(await stream.get_attribute("aria-pressed") == "false", "Old silent choice remained selected")
+        require(not await note.is_visible(), "Old feedback stayed visible during second version")
         sample = await page.evaluate("window.__bounceSound")
         require(sample is not None, "No stream/bounce PCM created by click playback")
         require(0.25 <= sample["peak"] < 0.31, f"Click peak should be louder and unclipped: {sample}")
         require(abs(sample["firstNonzero"] / sample["rate"] - 0.85) < 0.005,
                 f"Click onset should remain at centre crossing: {sample}")
-        await page.wait_for_timeout(1800)
-        await page.locator('#stream-bounce-illusion-choices [data-choice="skip"]').click()
-        require(await page.locator("#stream-bounce-illusion-reveal").is_visible(), "Stream/bounce proof unavailable")
-        await page.locator("#stream-bounce-illusion-guide-toggle").click()
-        require(await page.locator("#stream-bounce-illusion-guides").get_attribute("visibility") == "visible", "Stream/bounce paths not revealed")
-        print(f"PASS click PCM peak {sample['peak']:.3f}, onset {sample['firstNonzero'] / sample['rate']:.3f}s", flush=True)
+        await page.wait_for_timeout(1850)
+        require(await bounce.is_enabled(), "Sound trial must unlock judgement after motion finishes")
+        await bounce.click()
+        require(await reveal.is_visible(), "Both judgements must unlock the tracking proof")
+        require("Without sound: stream. With click: bounce" in await note.inner_text(),
+                "The paired answers should remain attached to the right trials")
+        await page.locator(f"#{prefix}-guide-toggle").click()
+        require(await page.locator(f"#{prefix}-guides").get_attribute("visibility") == "visible",
+                "Stream/bounce paths not revealed")
+        print(f"PASS stream/bounce level peak={sample['peak']:.3f}; click onset={sample['firstNonzero'] / sample['rate']:.3f}s; paired answers reset", flush=True)
     elif pr == 140:
         dots = page.locator("#kinetic-depth-effect-dots circle[data-index]")
         require(await dots.count() == 108, "Kinetic depth must have 108 seeded dots")
@@ -225,6 +244,28 @@ async def compensated_flash_interaction(page):
             f"Compensated flash should follow simulated 180 ms output latency + 160 ms: {delay}")
     print(f"PASS simulated 180ms audio-output delay: visual onset {delay:.1f}ms from audio start", flush=True)
 
+async def compensated_stream_interaction(page):
+    await page.evaluate("""() => {
+      window.__crossingTime = null
+      const left = document.querySelector('#stream-bounce-illusion-left')
+      new MutationObserver(() => {
+        if (window.__crossingTime === null && Number(left.getAttribute('cx')) >= 280)
+          window.__crossingTime = performance.now()
+      }).observe(left, { attributes: true, attributeFilter: ['cx'] })
+    }""")
+    await page.locator("#stream-bounce-illusion-sound").click()
+    await page.wait_for_timeout(1250)
+    timings = await page.evaluate("""() => ({
+      soundStart: window.__bounceSoundStart,
+      crossing: window.__crossingTime
+    })""")
+    require(timings["crossing"] is not None and timings["soundStart"] is not None,
+            f"Did not capture the audio/crossing timing: {timings}")
+    delta = timings["crossing"] - timings["soundStart"]
+    require(abs(delta - 1030) < 80,
+            f"With 180ms output delay, crossing should follow audio start by 850+180ms: {delta}")
+    print(f"PASS stream/bounce simulated 180ms output latency: crossing {delta:.1f}ms after audio start", flush=True)
+
 async def run(pr):
     slug, name = FIGURES[pr]
     out = Path("screenshots")
@@ -273,6 +314,26 @@ async def run(pr):
             require(not errors, f"console/page errors PR {pr}, width {width}: {errors}")
             print(f"PASS browser PR {pr} at {width}px; no overflow/errors/third-party; interactions checked", flush=True)
             await page.close()
+            if pr == 139:
+                compensated = await browser.new_page(
+                    viewport={"width": width, "height": 900 if width == 1280 else 780},
+                    device_scale_factor=1
+                )
+                await compensated.add_init_script("""(() => {
+                  const start = AudioBufferSourceNode.prototype.start
+                  AudioBufferSourceNode.prototype.start = function (...args) {
+                    if (this.buffer && this.buffer.length > 50000)
+                      window.__bounceSoundStart = performance.now()
+                    return start.apply(this, args)
+                  }
+                  AudioContext.prototype.getOutputTimestamp = function () {
+                    return { contextTime: this.currentTime, performanceTime: performance.now() + 180 }
+                  }
+                })()""")
+                response = await compensated.goto(f"{BASE}/entries/{slug}/", wait_until="networkidle", timeout=45000)
+                require(response is not None and response.status == 200, "Stream latency test page failed")
+                await compensated_stream_interaction(compensated)
+                await compensated.close()
             if pr == 138:
                 # Simulate a device with 180 ms output latency to exercise the
                 # output timestamp path instead of relying on headless audio latency.
