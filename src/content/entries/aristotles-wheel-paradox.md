@@ -21,6 +21,7 @@ resolution:
   - "Both circles share the same forward motion, but that does not make each circumference equal the distance travelled. The two circles are carried along together."
 finePrint: "The classic puzzle appears in a work traditionally linked to Aristotle but not securely written by him. The connection with [Galileo’s paradox](galileos-paradox) is a shared trap about comparing sizes, not an identical mathematical mechanism."
 sources:
-  - title: "Wikipedia: Aristotle’s wheel paradox"
-    url: "https://en.wikipedia.org/wiki/Aristotle%27s_wheel_paradox"
+  - title: "John D. Norton, The Measure Paradox, Aristotle's Wheel"
+    url: "https://sites.pitt.edu/~jdnorton/teaching/paradox/chapters/measure_paradox/measure_paradox.html"
+    note: "Full University of Pittsburgh explanation of Aristotle's wheel: concentric circles translate together, but only the outer circumference rolls without slipping; discusses the disputed ancient attribution."
 ---

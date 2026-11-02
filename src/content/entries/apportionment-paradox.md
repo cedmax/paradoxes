@@ -20,6 +20,10 @@ resolution:
   - "The outcome depends on how fractional shares are rounded and awarded. It is not the same mechanism as a majority-voting cycle, so this puzzle stands on its own."
 finePrint: "The Alabama paradox was identified in historical United States apportionment calculations. Methods designed to prevent seat losses when the total grows may give up other desirable rules."
 sources:
-  - title: "Wikipedia: Apportionment paradox"
-    url: "https://en.wikipedia.org/wiki/Apportionment_paradox"
+  - title: "United States Census Bureau, Historical Apportionment Methods"
+    url: "https://www.census.gov/about/history/historical-censuses-and-surveys/census-programs-surveys/decennial-census/methods.html"
+    note: "Official historical account: the Hamilton largest-remainder method and the Alabama paradox, in which an increase in the House size can cost a state a seat."
+  - title: "United States Census Bureau, Congressional Apportionment: Historical Perspective"
+    url: "https://www.census.gov/topics/public-sector/congressional-apportionment/about/historical-perspective.html"
+    note: "Official historical account of the United States apportionment process and House-size changes. The entry's 6:6:2 numerical example is independently reproducible."
 ---

@@ -24,8 +24,7 @@ resolution:
   - "The underlying fact is that an infinite collection can be matched up, one to one, with a part of itself. That is not a flaw. It is what makes a collection infinite. Finite collections cannot do it."
 finePrint: "This is a thought experiment, and no such hotel could be built. It also does not mean that any group of guests fits. Some infinite groups are bigger than others, and a group with one guest for every real number, that is every point on a line, cannot be given rooms even in an infinite hotel. Cantor's diagonal argument shows that the real numbers cannot be matched one to one with the room numbers. This entry covers only the simplest kind of infinity."
 sources:
-  - title: "Wikipedia: Hilbert's paradox of the Grand Hotel"
-    url: https://en.wikipedia.org/wiki/Hilbert%27s_paradox_of_the_Grand_Hotel
-  - title: "Wikipedia: Uncountable set"
-    url: https://en.wikipedia.org/wiki/Uncountable_set
+  - title: "Stanford Encyclopedia of Philosophy, Infinity"
+    url: "https://plato.stanford.edu/entries/infinity/"
+    note: "Full scholarly entry on infinite sets and one-to-one correspondences. Supports a countably infinite collection's correspondence with a proper subset and the contrast with uncountable real numbers."
 ---

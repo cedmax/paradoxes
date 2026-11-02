@@ -20,7 +20,10 @@ resolution:
   - "The construction uses the axiom of choice, which permits selections from infinitely many groups without a specified recipe. It is a result about sets of points, not a way to duplicate physical material. The [Hausdorff paradox](hausdorff-paradox) uses related reasoning on a sphere’s surface."
 finePrint: "Without the axiom of choice the result cannot be proved in the standard system of set theory (known as ZF, assuming that system is consistent). The decomposition cannot be carried out in a practical way: it describes sets of points, not objects that could be cut with a tool. The result is sometimes called the pea and the Sun paradox."
 sources:
-  - title: "Wikipedia: Banach–Tarski paradox"
-    url: "https://en.wikipedia.org/wiki/Banach%E2%80%93Tarski_paradox"
-    note: "Source for the statement, the five-piece result (Robinson, 1947), the dependence on the axiom of choice, the non-measurable pieces, the one- and two-dimensional cases, and the original paper: Banach and Tarski, Fundamenta Mathematicae 6 (1924), 244-277 (not fetched directly)."
+  - title: "Wolfram MathWorld, Banach-Tarski Paradox"
+    url: "https://mathworld.wolfram.com/Banach-TarskiParadox.html"
+    note: "Technical mathematical account: decomposition of one ball into two, axiom of choice, non-measurable pieces, and the five-piece result attributed to Robinson in 1947."
+  - title: "MIT seminar exposition, The Banach-Tarski Paradox"
+    url: "https://web.mit.edu/andersk/Public/banach-tarski.pdf"
+    note: "Full mathematical exposition of the construction and role of the axiom of choice. Supports the distinction between non-measurable sets of points and physically cut pieces."
 ---

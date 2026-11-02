@@ -19,6 +19,10 @@ resolution:
   - "Finding out what people actually prefer can prevent the pattern. That requires room to express doubts before a decision is made."
 finePrint: This is a description of a pattern in groups, not a mathematical result, and the story is an anecdote used as a thought experiment. The evidence for how common it is comes mostly from case studies and small surveys, which the sources below describe only briefly. Calling it a paradox is a figure of speech. Nothing in it contradicts itself, once you notice that stated and private preferences can differ.
 sources:
+  - title: "Harvey, The Abilene Paradox and Other Meditations on Management (later reprint)"
+    url: "https://web.mit.edu/curhan/www/docs/Articles/15341_Readings/Group_Dynamics/Harvey_Abilene_Paradox.pdf"
+    note: "Full authorial essay in a later reprint, opening anecdote and discussion: a family publicly agrees despite private objections because members misread one another. The accessible reprint is not the first 1974 publication."
   - title: "Wikipedia: Abilene paradox"
     url: https://en.wikipedia.org/wiki/Abilene_paradox
+    note: "Background on the named management concept; the prevalence of the behaviour is not established by the original anecdote alone."
 ---

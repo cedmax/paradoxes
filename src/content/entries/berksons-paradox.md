@@ -18,11 +18,11 @@ whyWrong: "A big group feels like a fair picture of the whole. That is only true
 resolution:
   - "Nothing in the collection links the two traits. The link appears only in the display. This is the general pattern: when something is chosen because it has at least one of two traits, the traits start to look as if they trade off against each other. Statisticians describe the choosing step as conditioning on a collider, a thing that is influenced by both traits."
   - "So the first claim is false for a group chosen on the traits, and the second is true of the display. To see the real relationship, look at the full collection, not just the part that was picked."
-finePrint: "The paradox is named after Joseph Berkson, who described it in 1946 in a paper on hospital data. His example was that among hospital patients, two unrelated diseases can look negatively linked, because a patient without one disease must have been admitted for some other reason. The paper is sometimes miscited as a 1949 paper in a different journal."
+finePrint: "The paradox is named after Joseph Berkson, who described it in 1946 in a paper on hospital data. His example was that among hospital patients, two unrelated diseases can look negatively linked, because a patient without one disease must have been admitted for some other reason."
 sources:
   - title: "Wikipedia: Berkson's paradox"
     url: "https://en.wikipedia.org/wiki/Berkson%27s_paradox"
-    note: "Still the only source for the 1949 miscitation. Source for the stamp example. Stamp figures recomputed by hand: 300 + 100 − 30 = 370 displayed, 100 of 370 is 27 percent, 30 of 300 is 10 percent, and the 70 plain displayed stamps are all rare."
+    note: "Background for the stamp example. Stamp figures recomputed by hand: 300 + 100 − 30 = 370 displayed, 100 of 370 is 27 percent, 30 of 300 is 10 percent, and the 70 plain displayed stamps are all rare."
   - title: "Snoep, Morabia, Hernández-Díaz, Hernán and Vandenbroucke (2014): A structural approach to Berkson’s fallacy and a guide to a history of opinions about it"
     url: "https://doi.org/10.1093/ije/dyu026"
     note: "International Journal of Epidemiology 43, pp. 515-521, full text read. Source for Berkson’s 1946 paper on hospital data, unrelated diseases appearing linked among hospital patients, and the collider explanation."

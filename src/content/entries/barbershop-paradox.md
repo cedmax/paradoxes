@@ -20,6 +20,7 @@ resolution:
   - "The [material implication puzzle](paradoxes-of-material-implication) explains why a statement starting with “if Allen is out” does not mean Allen really must be out."
 finePrint: "This is Carroll’s barbershop story, not the separate [barber paradox](barber-paradox) about a barber who shaves exactly those who do not shave themselves."
 sources:
-  - title: "Wikipedia: Barbershop paradox"
-    url: "https://en.wikipedia.org/wiki/Barbershop_paradox"
+  - title: "Lewis Carroll (1894), A Logical Paradox"
+    url: "https://schnark.github.io/lewis-carroll/html/magazines/a-logical-paradox.html"
+    note: "Full text of Carroll's original Mind puzzle with Allen, Brown and Carr. Carr may be absent when Allen remains in the shop; the conditional rule does not force Carr to be present."
 ---

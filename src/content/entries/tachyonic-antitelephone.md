@@ -20,6 +20,7 @@ resolution:
   - "This creates a time-loop issue akin to the [grandfather paradox](grandfather-paradox). It does not show that a physical antitelephone exists."
 finePrint: "The result relies on the ability to send and control faster-than-light signals and on the usual relativity of simultaneity. Some proposed nonstandard theories change these assumptions."
 sources:
-  - title: "Wikipedia: Tachyonic antitelephone"
-    url: "https://en.wikipedia.org/wiki/Tachyonic_antitelephone"
+  - title: "John D. Norton, Spacetime, Tachyons, Twins and Clocks"
+    url: "https://sites.pitt.edu/~jdnorton/teaching/HPS_0410/chapters/spacetime_tachyon/index.html"
+    note: "Full University of Pittsburgh course chapter on hypothetical faster-than-light signals, the relativity of simultaneity and how suitable observers can see backward-in-time transmission. Supports the conditional antitelephone mechanism; no working tachyon signals are known."
 ---

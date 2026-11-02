@@ -19,6 +19,7 @@ resolution:
   - "Each moment of walking adds a smaller fraction of the growing rope, but those fractions keep accumulating and eventually add up to the whole length."
 finePrint: "The conclusion assumes uniform stretching and constant positive walking speed relative to the rope. The arrival time can be astronomically large. Change the stretching rule and the ant might never arrive."
 sources:
-  - title: "Wikipedia: Ant on a rubber rope"
-    url: "https://en.wikipedia.org/wiki/Ant_on_a_rubber_rope"
+  - title: "Hsiao, The Ant on a Rubber Rope"
+    url: "https://math.illinois.edu/system/files/2021-04/T.-Y.%20Hsiao-1.pdf"
+    note: "Full mathematical treatment: successive fractional gains accumulate even while the rope grows, and the ant reaches the far end under constant positive walking speed and regular uniform stretching. The presentation uses discrete stretches as an analogue."
 ---

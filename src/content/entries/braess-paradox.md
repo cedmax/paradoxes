@@ -19,6 +19,7 @@ resolution:
   - "The new road does not physically remove an option. It changes which routes people choose. Closing it can restore the faster arrangement in this example."
 finePrint: "The numbers are a standard textbook example, chosen so the sums are easy. The effect only appears when drivers choose selfishly and the roads slow down as more cars use them. A new road does not always cause it, and often a new road helps. It is a surprising result, not a contradiction, so it is a paradox only in the everyday sense."
 sources:
-  - title: "Wikipedia: Braess's paradox"
-    url: https://en.wikipedia.org/wiki/Braess%27s_paradox
+  - title: "Braess (1968; English translation 2005), On a Paradox of Traffic Planning"
+    url: "https://supernet.isenberg.umass.edu/braess/braess-new.html"
+    note: "University-hosted introduction to Braess's original traffic-network result and English translation. Supports individual route choice producing a worse network equilibrium; the entry's 4,000-driver figures are separately calculable."
 ---
