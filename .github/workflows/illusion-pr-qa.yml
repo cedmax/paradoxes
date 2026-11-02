@@ -6,7 +6,7 @@ on:
     paths:
       - .github/workflows/illusion-pr-qa.yml
 permissions:
-  contents: read
+  contents: write
 jobs:
   qa:
     name: PR ${{ matrix.pr }} check and browser
@@ -40,6 +40,18 @@ jobs:
       - name: Install
         working-directory: site
         run: pnpm install --frozen-lockfile
+      - name: Apply project Prettier to the #141 source
+        if: matrix.pr == 141
+        working-directory: site
+        run: |
+          pnpm exec prettier --write src/components/illusions/motion-aftereffect.astro
+          if ! git diff --quiet -- src/components/illusions/motion-aftereffect.astro; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src/components/illusions/motion-aftereffect.astro
+            git commit -m "Format motion-aftereffect component"
+            git push origin HEAD:refs/heads/video/motion-aftereffect
+          fi
       - name: Capture exact formatting for stream-bounce
         if: matrix.pr == 139
         working-directory: site
