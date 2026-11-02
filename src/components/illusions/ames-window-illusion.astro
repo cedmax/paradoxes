@@ -15,7 +15,7 @@ import { series, stroke } from "~/data/palette"
     viewBox="0 0 600 380"
     class="mx-auto w-full max-w-xl"
     title="A flat trapezoidal window, drawn in perspective as it rotates around a vertical axis"
-    desc="The left vertical edge is taller than the right. The window's plane rotates in one continuous direction. Perspective sometimes makes it seem to reverse direction. A top-down orientation indicator can be revealed in the upper-right corner."
+    desc="The left vertical edge is taller than the right. The window's plane rotates in one continuous direction. Perspective sometimes makes it seem to reverse direction. A red dot can be revealed on the window’s upper edge, paired with a matching red dot in the circular top view at the upper right."
   >
     <g
       id="ames-window-frame"
@@ -29,6 +29,7 @@ import { series, stroke } from "~/data/palette"
       <path id="ames-window-mid" d="M300 86.77 L300 293.23" stroke-width="5"></path>
     </g>
     <g id="ames-window-guides" visibility="hidden">
+      <circle id="ames-window-frame-marker" cx="458.33" cy="129.20" r="7" fill={series.red} />
       <circle cx="530" cy="70" r="30" fill="none" stroke={stroke} stroke-width="1.5" />
       <line x1="494" y1="70" x2="566" y2="70" stroke={stroke} stroke-dasharray="3 5" />
       <line
@@ -63,7 +64,7 @@ import { series, stroke } from "~/data/palette"
     <IllusionControls
       name="ames-window"
       play={false}
-      proof="The top view shows the window's orientation. Press Play again with the top view showing: the red endpoint travels around the circle in one direction, even when the window seems to swing back."
+      proof="Both red dots mark the same end of the window: one on its upper corner, the other in the top view. Press Play again to see them turn together without reversing."
       proofLabel="Show the top view"
     />
   </div>
@@ -90,6 +91,7 @@ import { series, stroke } from "~/data/palette"
     const mid = find<SVGPathElement>(root, "#ames-window-mid")
     const axis = find<SVGLineElement>(root, "#ames-window-axis")
     const near = find<SVGCircleElement>(root, "#ames-window-near")
+    const frameMarker = find<SVGCircleElement>(root, "#ames-window-frame-marker")
     const reveal = find<HTMLElement>(root, "#ames-window-reveal")
     // Four corners are coplanar. Left edge is 2.4 times the height of the right.
     const project = (x: number, y: number, angle: number) => {
@@ -108,6 +110,8 @@ import { series, stroke } from "~/data/palette"
         project(-125, -115, angle),
       ]
       outline.setAttribute("d", `M${corners.map(pos).join(" L")} Z`)
+      frameMarker.setAttribute("cx", String(corners[1][0]))
+      frameMarker.setAttribute("cy", String(corners[1][1]))
       const sides = [project(-125, 0, angle), project(125, 0, angle)]
       bar.setAttribute("d", `M${sides.map(pos).join(" L")}`)
       const centres = [project(0, 81.5, angle), project(0, -81.5, angle)]
