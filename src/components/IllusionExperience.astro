@@ -23,14 +23,9 @@ const ExplanationFigure = loadExplanation ? (await loadExplanation()).default : 
 <section aria-label={ExplanationFigure ? "Illusion" : "Illusion and its proof"}>
   <Figure />
 </section>
-<section>
+<section id={slug === "magic-octagon" ? "magic-octagon-why" : undefined} hidden={slug === "magic-octagon"}>
   <h2 class="display text-5xl">Why it happens</h2>
   <p>{why}</p>
   {ExplanationFigure && <ExplanationFigure />}
   {finePrint && <FinePrint text={finePrint} />}
 </section>
-
-<!-- Independent from the illustration scripts; only runs for the Magic Octagon entry. -->
-<script>
-  import "~/scripts/magic-octagon-accessibility"
-</script>
