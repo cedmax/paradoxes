@@ -1,0 +1,122 @@
+---
+import { Image } from "astro:assets"
+import type { ImageMetadata } from "astro"
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+
+interface Props {
+  /** Unique figure name for analytics. */
+  name: string
+  provider: "youtube" | "vimeo"
+  id: string
+  /** Seconds from the start of the video. Defaults to zero. */
+  start?: number
+  /** An imported local image at least 1280×720, with a 16:9 aspect ratio. */
+  poster: ImageMetadata
+  title: string
+  description: string
+  linkLabel: string
+}
+
+const { name, provider, id, start = 0, poster, title, description, linkLabel } = Astro.props
+
+if (
+  (provider === "youtube" && !/^[\w-]{11}$/.test(id)) ||
+  (provider === "vimeo" && !/^\d+$/.test(id))
+) {
+  throw new Error(`Invalid ${provider} video ID for ${name}`)
+}
+if (!Number.isSafeInteger(start) || start < 0) {
+  throw new Error(`Invalid video start time for ${name}`)
+}
+if (
+  poster.width < 1280 ||
+  poster.height < 720 ||
+  poster.width * 9 !== poster.height * 16
+) {
+  throw new Error(`Video poster for ${name} must be at least 1280×720 and 16:9`)
+}
+
+const videoUrl =
+  provider === "youtube"
+    ? `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` : ""}`
+    : `https://vimeo.com/${id}${start ? `#t=${start}s` : ""}`
+---
+
+<IllustrationFigure name={name} lead={title}>
+  <div
+    class="relative aspect-video w-full overflow-hidden bg-ink"
+    data-video-container
+    data-provider={provider}
+    data-video-id={id}
+    data-start={start}
+    data-title={title}
+  >
+    <Image
+      src={poster}
+      alt="Video poster. The video has not loaded."
+      class="block h-full w-full object-contain"
+      loading="lazy"
+    />
+    <button
+      type="button"
+      data-load-video
+      hidden
+      class="absolute inset-0 w-full cursor-pointer text-center focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-accent"
+      aria-label={`Load video: ${title}`}
+    >
+      <span
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-ink bg-paper px-4 py-3 font-bold text-ink"
+      >
+        Load video
+      </span>
+    </button>
+  </div>
+  <p class="text-base">{description}</p>
+  <p class="text-base">
+    <a href={videoUrl} class="underline underline-offset-4">{linkLabel}</a>
+  </p>
+</IllustrationFigure>
+
+<script>
+  // The iframe is absent from the HTML and created only after a real visitor action.
+  // A browser with JavaScript disabled retains the self-hosted poster and direct link.
+  for (const container of document.querySelectorAll<HTMLElement>("[data-video-container]")) {
+    const button = container.querySelector<HTMLButtonElement>("[data-load-video]")
+    if (!button) continue
+
+    button.hidden = false
+    button.addEventListener(
+      "click",
+      () => {
+        const provider = container.dataset.provider
+        const id = container.dataset.videoId ?? ""
+        const start = Number(container.dataset.start ?? 0)
+        const title = container.dataset.title ?? "Video demonstration"
+        if (!Number.isSafeInteger(start) || start < 0) return
+
+        let url: string
+        if (provider === "youtube" && /^[\w-]{11}$/.test(id)) {
+          // YouTube no longer permits an embed to force playback quality.
+          // An HD original is therefore a content acceptance requirement.
+          url = `https://www.youtube-nocookie.com/embed/${id}?autoplay=0&start=${start}`
+        } else if (provider === "vimeo" && /^\d+$/.test(id)) {
+          // Vimeo supports an initial HD request; adaptive playback remains in its control.
+          url = `https://player.vimeo.com/video/${id}?dnt=1&autoplay=0&initial_quality=720p&min_quality=720p${start ? `#t=${start}s` : ""}`
+        } else {
+          return
+        }
+
+        const frame = document.createElement("iframe")
+        frame.src = url
+        frame.title = title
+        frame.className = "absolute inset-0 h-full w-full border-0"
+        frame.allow = "encrypted-media; picture-in-picture; fullscreen"
+        frame.referrerPolicy = "strict-origin-when-cross-origin"
+        frame.allowFullscreen = true
+        frame.addEventListener("load", () => frame.focus(), { once: true })
+        container.replaceChildren(frame)
+      },
+      { once: true },
+    )
+  }
+</script>
