@@ -122,23 +122,19 @@ const outcomes = angles.map((angle, index) => ({
               <div class="flex min-w-0 flex-col gap-2">
                 <p class="text-center text-base font-bold">{angle}° rotation</p>
                 <Coin
-                  id={"proof-variant-" + angle}
+                  id={`proof-variant-${angle}`}
                   initialTurn={angle}
-                  title={"Marked octagonal coin rotated " + angle + " degrees"}
-                  desc={
-                    "Coin pre-rotated " +
-                    angle +
-                    " degrees with a black corner dot; flip it about the fixed red Y axis to follow the dot."
-                  }
+                  title={`Marked octagonal coin rotated ${angle} degrees`}
+                  desc={`Coin pre-rotated ${angle} degrees with a black corner dot; the vertical Y axis stays fixed.`}
                   showMarker
                   oversized
                 />
                 <div class="flex flex-col gap-2 md:hidden">
-                  <label for={"magic-octagon-proof-variant-" + angle} class="text-sm font-bold">
+                  <label for={`magic-octagon-proof-variant-${angle}`} class="text-sm font-bold">
                     Flip this coin
                   </label>
                   <input
-                    id={"magic-octagon-proof-variant-" + angle}
+                    id={`magic-octagon-proof-variant-${angle}`}
                     data-magic-proof-variant={angle}
                     class="w-full accent-current"
                     type="range"
@@ -146,11 +142,11 @@ const outcomes = angles.map((angle, index) => ({
                     max="180"
                     step="1"
                     value="0"
-                    aria-describedby={"magic-octagon-proof-variant-state-" + angle}
+                    aria-describedby={`magic-octagon-proof-variant-state-${angle}`}
                     aria-valuetext="Front · 0°"
                   />
                   <p
-                    id={"magic-octagon-proof-variant-state-" + angle}
+                    id={`magic-octagon-proof-variant-state-${angle}`}
                     class="text-center text-sm"
                   >
                     Front · 0°
@@ -265,8 +261,8 @@ const outcomes = angles.map((angle, index) => ({
     const variantUpdates: Array<(degrees: number) => void> = []
     for (const slider of variantSliders) {
       const angle = Number(slider.dataset.magicProofVariant)
-      const svg = find<SVGSVGElement>(root, '[data-magic-coin="proof-variant-' + angle + '"]')
-      const state = find<HTMLElement>(root, "#magic-octagon-proof-variant-state-" + angle)
+      const svg = find<SVGSVGElement>(root, `[data-magic-coin="proof-variant-${angle}"]`)
+      const state = find<HTMLElement>(root, `#magic-octagon-proof-variant-state-${angle}`)
       const update = (degrees: number) => {
         slider.value = String(degrees)
         drawCoin(svg, angle, degrees)
