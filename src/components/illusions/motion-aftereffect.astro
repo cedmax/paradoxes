@@ -1,0 +1,135 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { illusionSurface, series, stroke } from "~/data/palette"
+
+const arms = Array.from({ length: 7 }, (_, index) => {
+  const shift = (2 * Math.PI * index) / 7
+  const points = Array.from({ length: 75 }, (_, step) => {
+    const r = 17 + step * 1.65
+    const angle = shift + step * 0.06
+    const x = 280 + r * Math.cos(angle)
+    const y = 185 + r * Math.sin(angle)
+    return `${step === 0 ? "M" : "L"}${x.toFixed(2)} ${y.toFixed(2)}`
+  })
+  return points.join(" ")
+})
+---
+
+<IllustrationFigure
+  name="motion-aftereffect"
+  lead="Watch a turning pattern, then look at the picture when it stops. Does it still move?"
+>
+  <p class="text-base">
+    Only start if moving patterns are comfortable to look at. The adaptation lasts 12 seconds
+    and can be stopped at any time. There is no flashing or automatic movement.
+  </p>
+  <SvgFigure
+    name="motion-aftereffect"
+    viewBox="0 0 560 370"
+    class="mx-auto w-full max-w-md"
+    title="A spiral pattern that can rotate for twelve seconds and then stop completely"
+    desc="Seven blue spiral arms surround a small centre cross. After twelve seconds of rotation the same static SVG paths remain in exactly one fixed position. Any movement perceived after they stop is not drawn."
+  >
+    <rect x="15" y="10" width="530" height="350" fill={illusionSurface.neutral} />
+    <g id="motion-aftereffect-spirals" fill="none" stroke={series.blue} stroke-width="6" stroke-linecap="round">
+      {arms.map((path) => <path d={path} />)}
+    </g>
+    <path d="M274 185 H286 M280 179 V191" stroke={stroke} stroke-width="2" />
+  </SvgFigure>
+  <button id="motion-aftereffect-play" type="button" class="btn-ghost self-start" aria-pressed="false">
+    Start 12-second adaptation
+  </button>
+  <p id="motion-aftereffect-status" class="text-base" aria-live="polite">
+    The spiral is stationary. It will not move until you press Start.
+  </p>
+  <div id="motion-aftereffect-answer" hidden>
+    <ListenerChoice
+      name="motion-aftereffect"
+      question="When the spiral stopped, what did you see?"
+      options={[
+        { value: "opposite", label: "It seemed to turn the other way" },
+        { value: "still", label: "It stayed still" },
+        { value: "unsure", label: "Not sure" },
+      ]}
+      skipLabel="I prefer not to watch moving patterns"
+    />
+  </div>
+  <p id="motion-aftereffect-reveal" class="text-base" hidden>
+    The same SVG paths stay in exactly one fixed position after the rotation ends. A sense
+    of continued or reversed motion is an aftereffect, not an animation. Seeing no apparent
+    motion is also a valid result.
+  </p>
+  <Fragment slot="caption">
+    Original rotating spiral, following the principles described by Anstis, Verstraten and
+    Mather (1998). The stationary test has no movement.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindListenerChoice, find, illustrationRoot } from "~/scripts/illustration"
+
+  const name = "motion-aftereffect"
+  const root = illustrationRoot(name)
+  if (root) {
+    const spiral = find<SVGGElement>(root, `#${name}-spirals`)
+    const play = find<HTMLButtonElement>(root, `#${name}-play`)
+    const status = find<HTMLElement>(root, `#${name}-status`)
+    const answer = find<HTMLElement>(root, `#${name}-answer`)
+    const reveal = find<HTMLElement>(root, `#${name}-reveal`)
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const choices = bindListenerChoice(root, name, (value) => {
+      reveal.hidden = false
+      return value === "skip"
+        ? "The explanatory text describes the effect without asking you to experience it."
+        : "The static test is fixed in one position."
+    })
+    let frame = 0
+    let started: number | undefined
+    let running = false
+    const finish = () => {
+      running = false
+      cancelAnimationFrame(frame)
+      spiral.setAttribute("transform", "")
+      play.textContent = "Try again"
+      play.setAttribute("aria-pressed", "false")
+      status.textContent = "The pattern has stopped completely. Does it seem to turn?"
+      answer.hidden = false
+      choices.enable()
+    }
+    const tick = (now: number) => {
+      if (!running) return
+      started ??= now
+      const elapsed = now - started
+      if (elapsed >= 12000) return finish()
+      spiral.setAttribute("transform", `rotate(${(elapsed / 1000) * 115} 280 185)`)
+      frame = requestAnimationFrame(tick)
+    }
+    play.addEventListener("click", () => {
+      if (running) return finish()
+      if (reduced.matches) {
+        answer.hidden = false
+        choices.enable()
+        reveal.hidden = false
+        status.textContent = "Motion is disabled in your accessibility settings."
+        return
+      }
+      answer.hidden = true
+      reveal.hidden = true
+      choices.reset()
+      started = undefined
+      running = true
+      play.textContent = "Stop adaptation"
+      play.setAttribute("aria-pressed", "true")
+      status.textContent = "Watch the centre without following the spiral. Stop if uncomfortable."
+      frame = requestAnimationFrame(tick)
+    })
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && running) finish()
+    })
+    reduced.addEventListener("change", () => {
+      if (reduced.matches && running) finish()
+    })
+  }
+</script>
