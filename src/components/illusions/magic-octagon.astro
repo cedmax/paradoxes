@@ -40,7 +40,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         viewBox="0 0 360 290"
         class="w-full"
         title="A two-sided octagonal coin with an arrow on each face"
-        desc="The front has a blue arrow initially pointing up. The back has a gold arrow initially pointing left when flipped towards the viewer about a vertical axis. A small dark dot marks the same corner on both sides. The whole coin turns in 45-degree steps and can be flipped, revealing one face at a time."
+        desc="The front arrow starts up. The back arrow points left when flipped about the vertical screen axis. A black dot marks one corner of the coin. Buttons rotate the coin in 45-degree steps or flip it. The optional dashed arrow previews where the other face would point after the selected turn and flip."
       >
         <g id="magic-octagon-flip">
           <g id="magic-octagon-turn">
@@ -72,6 +72,10 @@ const corners = Array.from({ length: 8 }, (_, index) => {
             >
               <path d="M133 145 H227 M206 124 L227 145 L206 166" />
             </g>
+            <circle cx="180" cy="47" r="5" fill={stroke} />
+          </g>
+        </g>
+        <g id="magic-octagon-other-face-preview">
             <g
               id="magic-octagon-ghost-front"
               visibility="hidden"
@@ -96,8 +100,6 @@ const corners = Array.from({ length: 8 }, (_, index) => {
             >
               <path d="M133 145 H227 M206 124 L227 145 L206 166" />
             </g>
-            <circle cx="180" cy="47" r="5" fill={stroke} />
-          </g>
         </g>
         <MeasurementGuides name="magic-octagon" d="M180 22 V268" />
       </SvgFigure>
@@ -141,8 +143,8 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       <IllusionControls
         name="magic-octagon"
         play={false}
-        proofLabel="See through the coin"
-        proof="The dashed arrow is the arrow on the hidden face, seen through the coin. It is fixed at right angles to the visible arrow. The dot marks one physical corner, and the red line marks the vertical axis used to flip the octagon."
+        proofLabel="Compare both sides"
+        proof="The dashed arrow previews the other face as it would point after the flip, including the selected 45° turn. The arrows are 90° apart on the physical coin, but can look aligned or opposite when their faces are compared. The red line is the fixed vertical flip axis."
       />
     </div>
   </div>
@@ -210,8 +212,18 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       )
       front.setAttribute("visibility", backVisible ? "hidden" : "visible")
       back.setAttribute("visibility", backVisible ? "visible" : "hidden")
-      ghostFront.setAttribute("visibility", through && backVisible ? "visible" : "hidden")
-      ghostBack.setAttribute("visibility", through && !backVisible ? "visible" : "hidden")
+      // Compare both faces in the same screen coordinates. The hidden back is
+      // rotated with the coin and THEN reflected about the vertical flip axis.
+      // A literal see-through drawing would omit that reflection and would not
+      // preview where the arrow points when that face is shown to the reader.
+      ghostFront.setAttribute("transform", `rotate(${displayedAngle} 180 145)`)
+      ghostBack.setAttribute(
+        "transform",
+        `translate(180 145) scale(-1 1) translate(-180 -145) rotate(${displayedAngle} 180 145)`,
+      )
+      const resting = Math.abs(displayedFlip - (flipped ? 180 : 0)) < 0.01
+      ghostFront.setAttribute("visibility", through && resting && backVisible ? "visible" : "hidden")
+      ghostBack.setAttribute("visibility", through && resting && !backVisible ? "visible" : "hidden")
     }
 
     const describe = () => {
@@ -303,7 +315,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       animate(0, 0)
     })
 
-    bindIllusionProof(root, "magic-octagon", "See through the coin", "Hide the hidden arrow")
+    bindIllusionProof(root, "magic-octagon", "Compare both sides", "Hide comparison")
     proofButton.addEventListener("click", show)
     show()
     describe()
