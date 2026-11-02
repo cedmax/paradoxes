@@ -1,0 +1,126 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { illusionSurface, stroke } from "~/data/palette"
+
+// Regularly spaced latitudes with staggered longitudes. The points are fixed on a sphere.
+const points = Array.from({ length: 9 }, (_, row) => {
+  const latitude = ((row + 0.5) / 9 - 0.5) * Math.PI
+  return Array.from({ length: 12 }, (_, column) => {
+    const longitude = (2 * Math.PI * (column + row * 0.37)) / 12
+    const radius = 126 * Math.cos(latitude)
+    const y = 190 + 126 * Math.sin(latitude)
+    return { x: 300 + radius * Math.cos(longitude), y, depth: radius * Math.sin(longitude) }
+  })
+}).flat()
+---
+
+<IllustrationFigure
+  name="kinetic-depth-effect"
+  lead="Look at the dots while they are still. What shape appears when they rotate?"
+>
+  <SvgFigure
+    name="kinetic-depth-effect"
+    viewBox="0 0 600 380"
+    class="mx-auto w-full max-w-xl"
+    title="A field of dots projected from a sphere rotating around its vertical axis"
+    desc="There are 108 fixed dots on a mathematically defined sphere. At rest their two-dimensional positions do not reveal a solid object. When played, their changing positions can suggest a rotating three-dimensional sphere. Colour cues for nearer and farther dots can be shown after inspection."
+  >
+    <rect x="30" y="15" width="540" height="350" fill={illusionSurface.neutral} />
+    <g id="kinetic-depth-effect-dots">
+      {points.map((point, index) => (
+        <circle cx={point.x} cy={point.y} r="3.7" fill={stroke} data-index={index} />
+      ))}
+    </g>
+  </SvgFigure>
+  <Slider
+    id="kinetic-depth-effect-angle"
+    label="Rotate by hand"
+    min={0}
+    max={359}
+    step={1}
+    value={0}
+    startLabel="Start"
+    endLabel="Full turn"
+    describedby="kinetic-depth-effect-readout"
+    valuetext="0 degrees"
+  >
+    <p id="kinetic-depth-effect-readout" class="text-base" aria-live="polite">
+      Rotation 0 degrees. All dots remain at fixed locations on one sphere.
+    </p>
+  </Slider>
+  <IllusionControls
+    name="kinetic-depth-effect"
+    proof="Each dot stays at a fixed point on the same invisible sphere. Red marks points on the nearer half and blue marks points on the farther half of the mathematical construction. The uncoloured motion, not a change in screen depth, creates the impression."
+    proofLabel="Show depth cues"
+  />
+  <Fragment slot="caption">
+    Original orthographic dot projection, after Wallach and O'Connell (1953) and Mather (1989).
+    The same fixed set of points is displayed in every frame.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindSliderLoopPlayback, find, illustrationRoot } from "~/scripts/illustration"
+
+  const name = "kinetic-depth-effect"
+  const root = illustrationRoot(name)
+  if (root) {
+    const slider = find<HTMLInputElement>(root, `#${name}-angle`)
+    const play = find<HTMLButtonElement>(root, `#${name}-play`)
+    const proof = find<HTMLButtonElement>(root, `#${name}-guide-toggle`)
+    const proofText = find<HTMLElement>(root, `#${name}-proof`)
+    const readout = find<HTMLElement>(root, `#${name}-readout`)
+    const dots = Array.from(root.querySelectorAll<SVGCircleElement>("[data-index]"))
+    const points = Array.from({ length: 9 }, (_, row) => {
+      const latitude = ((row + 0.5) / 9 - 0.5) * Math.PI
+      return Array.from({ length: 12 }, (_, column) => {
+        const longitude = (2 * Math.PI * (column + row * 0.37)) / 12
+        const radius = 126 * Math.cos(latitude)
+        return {
+          x: radius * Math.cos(longitude),
+          z: radius * Math.sin(longitude),
+          y: 190 + 126 * Math.sin(latitude),
+        }
+      })
+    }).flat()
+    let angle = 0
+    const draw = () => {
+      const theta = (angle * Math.PI) / 180
+      for (const [index, point] of points.entries()) {
+        const x = point.x * Math.cos(theta) + point.z * Math.sin(theta)
+        const depth = point.z * Math.cos(theta) - point.x * Math.sin(theta)
+        dots[index].setAttribute("cx", String(300 + x))
+        dots[index].setAttribute("cy", String(point.y))
+        dots[index].setAttribute(
+          "fill",
+          proof.getAttribute("aria-pressed") === "true"
+            ? depth > 0
+              ? "var(--color-series-red)"
+              : "var(--color-series-blue)"
+            : "var(--color-stroke)",
+        )
+      }
+    }
+    bindSliderLoopPlayback(
+      slider,
+      play,
+      (value) => {
+        angle = value
+        draw()
+        readout.textContent = `Rotation ${value} degrees. All dots stay on the same sphere.`
+        return `Rotation ${value} degrees`
+      },
+      25,
+    )
+    proof.addEventListener("click", () => {
+      const shown = proof.getAttribute("aria-pressed") !== "true"
+      proof.setAttribute("aria-pressed", String(shown))
+      proof.textContent = shown ? "Hide depth cues" : "Show depth cues"
+      proofText.hidden = !shown
+      draw()
+    })
+  }
+</script>
