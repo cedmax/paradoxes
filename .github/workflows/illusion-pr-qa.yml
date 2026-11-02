@@ -90,4 +90,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Validate sound-induced flash latency, two-version gating and frame timing
+# Validate strict timestamp types, completed trials and compensated flash onset
