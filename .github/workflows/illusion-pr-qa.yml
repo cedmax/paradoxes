@@ -90,4 +90,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Check Ames reduced-motion slider and 75-degree/second playback (no rebase)
+# Validate Ames judgement stays playing; only Pause and motion opt-out stop it
