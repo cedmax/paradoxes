@@ -88,4 +88,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Rerun against formatted draft heads
+# Revalidate rebased draft heads and continuous Ames playback
