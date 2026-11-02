@@ -11,6 +11,13 @@ const loaders = import.meta.glob<{ default: AstroComponentFactory }>("./illusion
 const load = loaders[`./illusions/${slug}.astro`]
 if (!load) throw new Error(`Missing illusion figure: ${slug}`)
 const Figure = (await load()).default
+// An optional explanation-only illustration belongs beside the "why" copy,
+// not inside the puzzle figure. Entries without one keep their existing layout.
+const explanationLoaders = import.meta.glob<{ default: AstroComponentFactory }>(
+  "./illusions/explanations/*.astro",
+)
+const loadExplanation = explanationLoaders[`./illusions/explanations/${slug}.astro`]
+const ExplanationFigure = loadExplanation ? (await loadExplanation()).default : null
 ---
 
 <section aria-label="Illusion and its proof">
@@ -19,5 +26,6 @@ const Figure = (await load()).default
 <section>
   <h2 class="display text-5xl">Why it happens</h2>
   <p>{why}</p>
+  {ExplanationFigure && <ExplanationFigure />}
   {finePrint && <FinePrint text={finePrint} />}
 </section>
