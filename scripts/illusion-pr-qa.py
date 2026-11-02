@@ -59,8 +59,44 @@ async def interaction(page, pr):
         await page.locator('#ames-window-choices [data-choice="skip"]').click()
         require(await play.inner_text() == "Play", "Motion opt-out must stop animation")
     elif pr == 138:
-        await page.locator('#sound-induced-flash-illusion-choices [data-choice="skip"]').click()
-        require(await page.locator("#sound-induced-flash-illusion-reveal").is_visible(), "Flash text reveal unavailable")
+        prefix = "sound-induced-flash-illusion"
+        one = page.locator(f"#{prefix}-one")
+        two = page.locator(f"#{prefix}-two")
+        answer = page.locator(f'#{prefix}-choices [data-choice="two"]')
+        reveal = page.locator(f"#{prefix}-reveal")
+        require(await answer.is_disabled(), "Flash judgement available without listening")
+        require(not await reveal.is_visible(), "Flash reveal appears before judgement")
+        require("Each version shows one" not in await page.locator(f'[data-illustration="{prefix}"] p').first.inner_text(), "Visible setup gives away answer")
+        await page.evaluate("""() => {
+          window.__flashChanges = []
+          const disc = document.querySelector('#sound-induced-flash-illusion-disc')
+          new MutationObserver(() => {
+            window.__flashChanges.push({colour: disc.getAttribute('fill'), time: performance.now()})
+          }).observe(disc, { attributes: true, attributeFilter: ['fill'] })
+        }""")
+        await one.click()
+        require(await answer.is_disabled(), "One-beep version alone should not unlock answer")
+        require("other one too" in await page.locator(f"#{prefix}-status").inner_text(), "First version should invite comparison")
+        await page.wait_for_timeout(520)
+        await two.click()
+        require(await answer.is_enabled(), "Both versions should unlock answer")
+        await page.wait_for_timeout(520)
+        changes = await page.evaluate("window.__flashChanges")
+        starts = [i for i, c in enumerate(changes) if c["colour"] == "var(--color-series-gold)"]
+        require(len(starts) == 2, f"Expected exactly one flash for each version: {changes}")
+        durations = [changes[i+1]["time"] - changes[i]["time"] for i in starts]
+        require(all(20 <= d <= 90 for d in durations), f"Flash duration not frame-aware: {durations}")
+        await answer.click()
+        require(await reveal.is_visible(), "Flash answer did not unlock explanation")
+        # Rapidly restarting a trial must cancel a still-scheduled previous flash.
+        previous = len(starts)
+        await two.click()
+        await page.wait_for_timeout(35)
+        await one.click()
+        await page.wait_for_timeout(520)
+        changes = await page.evaluate("window.__flashChanges")
+        flashes = len([c for c in changes if c["colour"] == "var(--color-series-gold)"])
+        require(flashes == previous + 1, f"Rapid replay produced spurious flashes: {changes}")
     elif pr == 139:
         await page.locator('#stream-bounce-illusion-choices [data-choice="skip"]').click()
         require(await page.locator("#stream-bounce-illusion-reveal").is_visible(), "Stream/bounce proof unavailable")
@@ -141,6 +177,23 @@ async def reduced_ames_interaction(page):
     }""")
     require(all(abs(v) < 0.01 for v in values), f"Dot positions out of sync with angle: {values}")
 
+async def compensated_flash_interaction(page):
+    await page.evaluate("""() => {
+      window.__outputFlashOnsets = []
+      window.__audioStartedAt = 0
+      const disc = document.querySelector('#sound-induced-flash-illusion-disc')
+      new MutationObserver(() => {
+        if (disc.getAttribute('fill') === 'var(--color-series-gold)')
+          window.__outputFlashOnsets.push(performance.now())
+      }).observe(disc, { attributes: true, attributeFilter: ['fill'] })
+    }""")
+    await page.locator("#sound-induced-flash-illusion-one").click()
+    await page.wait_for_timeout(550)
+    delay = await page.evaluate("""() => window.__outputFlashOnsets[0] - window.__audioStartedAt""")
+    require(delay is not None and 295 <= delay <= 450,
+            f"Compensated flash should follow simulated 180 ms output latency + 160 ms: {delay}")
+    print(f"PASS simulated 180ms audio-output delay: visual onset {delay:.1f}ms from audio start", flush=True)
+
 async def run(pr):
     slug, name = FIGURES[pr]
     out = Path("screenshots")
@@ -189,6 +242,27 @@ async def run(pr):
             require(not errors, f"console/page errors PR {pr}, width {width}: {errors}")
             print(f"PASS browser PR {pr} at {width}px; no overflow/errors/third-party; interactions checked", flush=True)
             await page.close()
+            if pr == 138:
+                # Simulate a device with 180 ms output latency to exercise the
+                # output timestamp path instead of relying on headless audio latency.
+                compensated = await browser.new_page(
+                    viewport={"width": width, "height": 900 if width == 1280 else 780},
+                    device_scale_factor=1
+                )
+                await compensated.add_init_script("""() => {
+                  const actual = AudioBufferSourceNode.prototype.start
+                  AudioBufferSourceNode.prototype.start = function (...args) {
+                    if (this.buffer && this.buffer.length > 1000) window.__audioStartedAt = performance.now()
+                    return actual.apply(this, args)
+                  }
+                  AudioContext.prototype.getOutputTimestamp = function () {
+                    return { contextTime: this.currentTime, performanceTime: performance.now() + 180 }
+                  }
+                }""")
+                response = await compensated.goto(f"{BASE}/entries/{slug}/", wait_until="networkidle", timeout=45000)
+                require(response is not None and response.status == 200, "Latency test page failed to load")
+                await compensated_flash_interaction(compensated)
+                await compensated.close()
             if pr == 137:
                 reduced_page = await browser.new_page(
                     viewport={"width": width, "height": 900 if width == 1280 else 780},
