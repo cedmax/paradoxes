@@ -6,11 +6,11 @@ import { illusionSurface, series, stroke } from "~/data/palette"
 
 const arms = Array.from({ length: 7 }, (_, index) => {
   const shift = (2 * Math.PI * index) / 7
-  const points = Array.from({ length: 75 }, (_, step) => {
-    const r = 17 + step * 1.65
-    const angle = shift + step * 0.06
+  const points = Array.from({ length: 150 }, (_, step) => {
+    const r = 17 + step * 1.6
+    const angle = shift + step * 0.03
     const x = 280 + r * Math.cos(angle)
-    const y = 185 + r * Math.sin(angle)
+    const y = 280 + r * Math.sin(angle)
     return `${step === 0 ? "M" : "L"}${x.toFixed(2)} ${y.toFixed(2)}`
   })
   return points.join(" ")
@@ -27,12 +27,12 @@ const arms = Array.from({ length: 7 }, (_, index) => {
   </p>
   <SvgFigure
     name="motion-aftereffect"
-    viewBox="0 0 560 370"
-    class="mx-auto w-full max-w-md"
+    viewBox="0 0 560 560"
+    class="w-full"
     title="A spiral pattern that can rotate for twelve seconds and then stop completely"
     desc="Seven blue spiral arms surround a small centre cross. After twelve seconds of rotation the same static SVG paths remain in exactly one fixed position. Any movement perceived after they stop is not drawn."
   >
-    <rect x="15" y="10" width="530" height="350" fill={illusionSurface.neutral} />
+    <rect x="0" y="0" width="560" height="560" fill={illusionSurface.neutral} />
     <g
       id="motion-aftereffect-spirals"
       fill="none"
@@ -44,7 +44,7 @@ const arms = Array.from({ length: 7 }, (_, index) => {
         <path d={path} />
       ))}
     </g>
-    <path d="M274 185 H286 M280 179 V191" stroke={stroke} stroke-width="2" />
+    <path d="M274 280 H286 M280 274 V286" stroke={stroke} stroke-width="2" />
   </SvgFigure>
   <button
     id="motion-aftereffect-play"
@@ -61,16 +61,16 @@ const arms = Array.from({ length: 7 }, (_, index) => {
     name="motion-aftereffect"
     question="When the spiral stopped, what did you see?"
     options={[
-      { value: "opposite", label: "It seemed to turn the other way" },
+      { value: "motion", label: "It seemed to move" },
       { value: "still", label: "It stayed still" },
       { value: "unsure", label: "Not sure" },
     ]}
     skipLabel="I prefer not to watch moving patterns"
   />
   <p id="motion-aftereffect-reveal" class="text-base" hidden>
-    The same SVG paths stay in exactly one fixed position after the rotation ends. A sense of
-    continued or reversed motion is an aftereffect, not an animation. Seeing no apparent motion
-    is also a valid result.
+    When the spiral stops, its paths stay fixed. It can nevertheless seem to turn, expand
+    or contract. That movement is perceived, not animated. Seeing no apparent motion is also a
+    valid result.
   </p>
   <Fragment slot="caption">
     Original rotating spiral, following the principles described by Mather and colleagues
@@ -102,10 +102,11 @@ const arms = Array.from({ length: 7 }, (_, index) => {
     let frame = 0
     let started: number | undefined
     let running = false
+    let angle = 0
+    let startAngle = 0
     const finish = () => {
       running = false
       cancelAnimationFrame(frame)
-      spiral.setAttribute("transform", "")
       play.textContent = "Try again"
       play.setAttribute("aria-pressed", "false")
       status.textContent = "The pattern has stopped completely. Does it seem to turn?"
@@ -116,17 +117,13 @@ const arms = Array.from({ length: 7 }, (_, index) => {
       started ??= now
       const elapsed = now - started
       if (elapsed >= 12000) return finish()
-      spiral.setAttribute("transform", `rotate(${(elapsed / 1000) * 115} 280 185)`)
+      angle = (startAngle + (elapsed / 1000) * 115) % 360
+      spiral.setAttribute("transform", `rotate(${angle} 280 280)`)
       frame = requestAnimationFrame(tick)
     }
     play.addEventListener("click", () => {
       if (running) return finish()
-      if (reduced.matches) {
-        choices.enable()
-        reveal.hidden = false
-        status.textContent = "Motion is disabled in your accessibility settings."
-        return
-      }
+      if (reduced.matches) return
       reveal.hidden = true
       choices.reset()
       for (const button of root.querySelectorAll<HTMLButtonElement>(
@@ -135,6 +132,7 @@ const arms = Array.from({ length: 7 }, (_, index) => {
         button.disabled = true
       }
       started = undefined
+      startAngle = angle
       running = true
       play.textContent = "Stop adaptation"
       play.setAttribute("aria-pressed", "true")
@@ -145,8 +143,17 @@ const arms = Array.from({ length: 7 }, (_, index) => {
     document.addEventListener("visibilitychange", () => {
       if (document.hidden && running) finish()
     })
-    reduced.addEventListener("change", () => {
+    const updateMotionPreference = () => {
       if (reduced.matches && running) finish()
-    })
+      play.disabled = reduced.matches
+      play.title = reduced.matches
+        ? "Moving patterns are disabled; use the opt-out to read the explanation"
+        : ""
+      if (reduced.matches) {
+        status.textContent = "Motion is disabled in your settings. Choose the opt-out to read the explanation."
+      }
+    }
+    reduced.addEventListener("change", updateMotionPreference)
+    updateMotionPreference()
   }
 </script>
