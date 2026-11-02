@@ -9,9 +9,18 @@ interface Props {
   flipped?: boolean
   showMarker?: boolean
   initialTurn?: number
+  oversized?: boolean
 }
 
-const { id, title, desc, flipped = false, showMarker = false, initialTurn = 0 } = Astro.props
+const {
+  id,
+  title,
+  desc,
+  flipped = false,
+  showMarker = false,
+  initialTurn = 0,
+  oversized = false,
+} = Astro.props
 const turnRadians = (initialTurn * Math.PI) / 180
 const cosTurn = Math.cos(turnRadians)
 const sinTurn = Math.sin(turnRadians)
@@ -33,7 +42,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
   name={`magic-octagon-${id}`}
   data-magic-coin={id}
   viewBox="0 0 360 310"
-  class="w-full"
+  class={oversized ? "w-[120%] -translate-x-[10%]" : "w-full"}
   title={title}
   desc={desc}
 >
