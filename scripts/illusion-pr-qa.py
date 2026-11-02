@@ -26,7 +26,7 @@ async def interaction(page, pr):
         play = page.locator("#ames-window-play")
         outline = page.locator("#ames-window-outline")
         answer = page.locator('#ames-window-choices [data-choice="swings"]')
-        require(await page.locator("#ames-window-angle").count() == 0, "Ames slider must be removed")
+        require(not await page.locator("#ames-window-angle").is_visible(), "Ames slider must stay hidden during ordinary playback")
         require(not await proof.is_visible(), "Ames proof must be hidden before answer")
         require(await answer.is_disabled(), "Ames answers must await an attempt")
         await play.click()
@@ -88,6 +88,51 @@ async def interaction(page, pr):
         require("paused" in (await page.locator("#motion-silencing-illusion-status").inner_text()), "Motion silencing rotation did not pause")
         await page.locator("#motion-silencing-illusion-play").click()
 
+async def reduced_ames_interaction(page):
+    slider = page.locator("#ames-window-angle")
+    play = page.locator("#ames-window-play")
+    outline = page.locator("#ames-window-outline")
+    answer = page.locator('#ames-window-choices [data-choice="swings"]')
+    proof = page.locator("#ames-window-guide-toggle")
+    require(await slider.is_visible(), "Reduced-motion slider must be visible")
+    require(not await play.is_visible(), "Play must be hidden under reduced motion")
+    require(await answer.is_disabled(), "Answer should await a manual step")
+    require(not await proof.is_visible(), "Top view should be hidden before a judgement")
+    first = await outline.get_attribute("d")
+    await slider.focus()
+    await slider.press("ArrowRight")
+    require(await slider.input_value() == "1", "Keyboard slider did not advance")
+    require(await outline.get_attribute("d") != first, "Window did not move manually")
+    require(await slider.get_attribute("aria-valuetext") == "Angle 1 degrees", "Slider's spoken angle is stale")
+    require("1 degrees" in await page.locator("#ames-window-readout").inner_text(), "Angle readout is stale")
+    require(await answer.is_enabled(), "Manual movement should enable the judgement")
+    await answer.click()
+    require(await proof.is_visible(), "Reduced-motion judgement should enable top view")
+    await proof.click()
+    require(await page.locator("#ames-window-guides").get_attribute("visibility") == "visible", "Reduced-motion top view not revealed")
+    window_dot = page.locator("#ames-window-frame-marker")
+    inset_dot = page.locator("#ames-window-near")
+    before = (await window_dot.get_attribute("cx"), await inset_dot.get_attribute("cy"))
+    await slider.press("ArrowRight")
+    after = (await window_dot.get_attribute("cx"), await inset_dot.get_attribute("cy"))
+    require(before != after, "Both markers must follow manual slider movement")
+    require(await play.get_attribute("aria-pressed") == "false", "Manual motion must not activate playback")
+    # In this test window and top-view markers track the same positive-x endpoint.
+    values = await page.evaluate("""() => {
+      const a = Number(document.querySelector('#ames-window-angle').value) * Math.PI / 180
+      const depth = 125 * Math.sin(a)
+      const scale = 760 / (900 - depth) * 1.5
+      const x = 300 + 125 * Math.cos(a) * scale
+      const y = 190 - 48 * scale
+      const windowDot = document.querySelector('#ames-window-frame-marker')
+      const topDot = document.querySelector('#ames-window-near')
+      return [Number(windowDot.getAttribute('cx')) - x,
+              Number(windowDot.getAttribute('cy')) - y,
+              Number(topDot.getAttribute('cx')) - (530 + 30 * Math.cos(a)),
+              Number(topDot.getAttribute('cy')) - (70 + 30 * Math.sin(a))]
+    }""")
+    require(all(abs(v) < 0.01 for v in values), f"Dot positions out of sync with angle: {values}")
+
 async def run(pr):
     slug, name = FIGURES[pr]
     out = Path("screenshots")
@@ -115,7 +160,7 @@ async def run(pr):
                 for distance in (580, 900, 1200):
                     await page.evaluate("""distance => {
                       const a = 55 * Math.PI / 180
-                      const scaleAtCentre = 490 / 580
+                      const scaleAtCentre = (760 / 900) * 1.5
                       const project = (x,y) => {
                         const depth = x * Math.sin(a)
                         const scale = (scaleAtCentre * distance) / (distance - depth)
@@ -136,6 +181,23 @@ async def run(pr):
             require(not errors, f"console/page errors PR {pr}, width {width}: {errors}")
             print(f"PASS browser PR {pr} at {width}px; no overflow/errors/third-party; interactions checked", flush=True)
             await page.close()
+            if pr == 137:
+                reduced_page = await browser.new_page(
+                    viewport={"width": width, "height": 900 if width == 1280 else 780},
+                    device_scale_factor=1,
+                    reduced_motion="reduce",
+                )
+                reduced_errors = []
+                reduced_page.on("pageerror", lambda exc: reduced_errors.append(str(exc)))
+                reduced_page.on("console", lambda msg: reduced_errors.append(msg.text) if msg.type == "error" else None)
+                response = await reduced_page.goto(f"{BASE}/entries/{slug}/", wait_until="networkidle", timeout=45000)
+                require(response is not None and response.status == 200, "Reduced-motion page failed to load")
+                await reduced_ames_interaction(reduced_page)
+                overflow = await reduced_page.evaluate("document.documentElement.scrollWidth - window.innerWidth")
+                require(overflow <= 1, f"Reduced-motion horizontal overflow at {width}px: {overflow}")
+                require(not reduced_errors, f"Reduced-motion console errors: {reduced_errors}")
+                print(f"PASS Ames reduced motion at {width}px; slider, keyboard, linked dots, no errors", flush=True)
+                await reduced_page.close()
         await browser.close()
 
 if __name__ == "__main__":
