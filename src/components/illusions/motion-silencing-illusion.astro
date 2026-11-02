@@ -122,6 +122,11 @@ const dots = Array.from({ length: count }, (_, index) => {
       turn.setAttribute("aria-pressed", String(turning))
       turn.disabled = !running || reduced.matches || proof.getAttribute("aria-pressed") === "true"
     }
+    const updateProof = () => {
+      const showing = proof.getAttribute("aria-pressed") === "true"
+      proof.hidden = reveal.hidden || !running || (!turning && !showing)
+      proof.disabled = proof.hidden || reduced.matches
+    }
     const stop = () => {
       running = false
       turning = false
@@ -129,8 +134,12 @@ const dots = Array.from({ length: count }, (_, index) => {
       last = undefined
       play.textContent = "Start changing colours"
       play.setAttribute("aria-pressed", "false")
-      proof.disabled = true
+      proof.setAttribute("aria-pressed", "false")
+      proof.textContent = "Freeze rotation to check"
+      proofText.hidden = true
+      turningBeforeProof = false
       updateTurn()
+      updateProof()
     }
     const choices = bindListenerChoice(root, name, (value) => {
       if (value === "skip") {
@@ -140,19 +149,17 @@ const dots = Array.from({ length: count }, (_, index) => {
         canAnswer = false
         turningElapsed = 0
         turningBeforeProof = false
-        proof.hidden = true
-        proof.setAttribute("aria-pressed", "false")
-        proof.textContent = "Freeze rotation to check"
-        proofText.hidden = true
-        status.textContent = "Moving patterns skipped. The explanation is below."
+        status.textContent =
+          "Moving patterns skipped. Both the ring and colour changes are stopped. The explanation is below."
       } else {
-        proof.hidden = false
-        proof.disabled = !running
-        status.textContent = running
-          ? "Judgement recorded. Freeze the rotation to check."
-          : "Judgement recorded. The explanation is below."
+        status.textContent = !running
+          ? "Judgement recorded. The animation is stopped. The explanation is below."
+          : turning
+            ? "Judgement recorded. Freeze the rotation to check."
+            : "Judgement recorded. Start turning the ring again to check the changes."
       }
       reveal.hidden = false
+      updateProof()
       return value === "skip"
         ? "The explanation is available without watching the animation."
         : "The explanation is below; freeze the rotation to compare if it is still running."
@@ -161,8 +168,6 @@ const dots = Array.from({ length: count }, (_, index) => {
       reveal.hidden = true
       choices.reset()
       for (const button of answers) button.disabled = true
-      proof.hidden = false
-      proof.disabled = true
       proof.setAttribute("aria-pressed", "false")
       proof.textContent = "Freeze rotation to check"
       proofText.hidden = true
@@ -171,6 +176,7 @@ const dots = Array.from({ length: count }, (_, index) => {
       canAnswer = false
       turning = false
       updateTurn()
+      updateProof()
     }
     const render = () => {
       dots.forEach((dot, index) => {
@@ -201,7 +207,7 @@ const dots = Array.from({ length: count }, (_, index) => {
         stop()
         status.textContent = reveal.hidden
           ? "Animation stopped. Start again to compare."
-          : "Animation stopped. The explanation remains below."
+          : "Rotation and colour changes are stopped. The explanation remains below."
         return
       }
       if (reduced.matches) return
@@ -218,9 +224,14 @@ const dots = Array.from({ length: count }, (_, index) => {
       if (!running || proof.getAttribute("aria-pressed") === "true") return
       turning = !turning
       updateTurn()
-      status.textContent = turning
-        ? "The ring is turning. Keep your gaze on the cross."
-        : "The ring is still. Look at the dots."
+      updateProof()
+      status.textContent = reveal.hidden
+        ? turning
+          ? "The ring is turning. Keep your gaze on the cross."
+          : "The ring is still. Look at the dots."
+        : turning
+          ? "The ring is turning. Freeze rotation to compare the colour changes."
+          : "The ring is still. Turn it again to compare the colour changes."
     })
     proof.addEventListener("click", () => {
       if (!running || proof.hidden) return
@@ -236,6 +247,7 @@ const dots = Array.from({ length: count }, (_, index) => {
       proof.textContent = shown ? "Return to the experiment" : "Freeze rotation to check"
       proofText.hidden = !shown
       updateTurn()
+      updateProof()
       status.textContent = shown
         ? "Rotation is paused. The colour changes continue."
         : turning
