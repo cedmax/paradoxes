@@ -6,19 +6,29 @@ import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { illusionSurface, stroke } from "~/data/palette"
 
-// A fixed-seed sample of points on a sphere; these coordinates are serialised into the SVG
-// and read back by the browser, so the still frame and moving frame cannot drift apart.
+// Fixed-seed, softly clustered points inside a spherical volume. Sampling its surface
+// instead produces an obvious circular rim before the dots move. These 3D coordinates are
+// serialised into the SVG and reused in every frame.
 let seed = 0x51a7
 const random = () => {
   seed = (1664525 * seed + 1013904223) >>> 0
   return seed / 4294967296
 }
-const points = Array.from({ length: 108 }, () => {
-  const y = 126 * (2 * random() - 1)
-  const longitude = 2 * Math.PI * random()
-  const radius = Math.sqrt(126 * 126 - y * y)
-  return { x: radius * Math.cos(longitude), y, z: radius * Math.sin(longitude) }
-})
+const gaussian = () => Math.sqrt(-2 * Math.log(1 - random())) * Math.cos(2 * Math.PI * random())
+const points: { x: number; y: number; z: number }[] = []
+while (points.length < 108) {
+  const candidate = { x: 65 * gaussian(), y: 65 * gaussian(), z: 65 * gaussian() }
+  // Keep the cloud within the drawing, without putting every dot on its perimeter.
+  if (candidate.x ** 2 + candidate.y ** 2 + candidate.z ** 2 >= 160 ** 2) continue
+  // Avoid overlapping dots in the opening view, without adding latitude rows.
+  const overlaps = points.some(({ x, y }) => {
+    const dx = candidate.x - x
+    const dy = candidate.y - y
+    return dx * dx + dy * dy < 64
+  })
+  if (overlaps) continue
+  points.push(candidate)
+}
 ---
 
 <IllustrationFigure
@@ -29,8 +39,8 @@ const points = Array.from({ length: 108 }, () => {
     name="kinetic-depth-effect"
     viewBox="0 0 600 380"
     class="mx-auto w-full max-w-xl"
-    title="A field of dots projected from a sphere rotating around its vertical axis"
-    desc="There are 108 fixed dots on a mathematically defined sphere. At rest their two-dimensional positions do not reveal a solid object. When played, their changing positions can suggest a rotating three-dimensional sphere. Colour cues for nearer and farther dots can be shown after inspection."
+    title="A scattered cloud of fixed dots rotating together in three dimensions"
+    desc="There are 108 dots scattered inside a three-dimensional spherical volume. At rest they form an irregular two-dimensional cloud. When they rotate together, their motion can suggest a sphere. Colour cues can identify nearer and farther dots after a judgement."
   >
     <rect x="30" y="15" width="540" height="350" fill={illusionSurface.neutral} />
     <g id="kinetic-depth-effect-dots">
@@ -61,7 +71,7 @@ const points = Array.from({ length: 108 }, () => {
     valuetext="0 degrees"
   >
     <p id="kinetic-depth-effect-readout" class="text-base">
-      Rotation 0 degrees. All dots remain at fixed locations on one sphere.
+      Rotation 0 degrees. The dots stay fixed inside one three-dimensional volume.
     </p>
   </Slider>
   <p id="kinetic-depth-effect-status" class="text-base" aria-live="polite">
@@ -79,7 +89,7 @@ const points = Array.from({ length: 108 }, () => {
   />
   <IllusionControls
     name="kinetic-depth-effect"
-    proof="The dots are fixed on a mathematical sphere. Red marks its nearer half and blue its farther half, but this is only one possible interpretation of the uncoloured motion. Without depth cues, the perceived rotation can go either way and may reverse. The dot paths never change."
+    proof="The dots have fixed positions inside a spherical volume. Red marks the nearer half of this model and blue the farther half, but this is only one possible interpretation of the uncoloured motion. Without depth cues, the perceived rotation can go either way and may reverse. The dot paths never change."
     proofLabel="Show depth cues"
   />
   <Fragment slot="caption">
@@ -137,7 +147,7 @@ const points = Array.from({ length: 108 }, () => {
       if (Number(slider.value) !== degrees) {
         slider.value = String(degrees)
         slider.setAttribute("aria-valuetext", `Rotation ${degrees} degrees`)
-        readout.textContent = `Rotation ${degrees} degrees. All dots stay on the same sphere.`
+        readout.textContent = `Rotation ${degrees} degrees. All dots stay within the same volume.`
       }
     }
 
@@ -212,7 +222,7 @@ const points = Array.from({ length: 108 }, () => {
       angle = next
       draw()
       slider.setAttribute("aria-valuetext", `Rotation ${next} degrees`)
-      readout.textContent = `Rotation ${next} degrees. All dots stay on the same sphere.`
+      readout.textContent = `Rotation ${next} degrees. All dots stay within the same volume.`
       recordMotion(distance)
     })
 
