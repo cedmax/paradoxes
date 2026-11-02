@@ -82,7 +82,7 @@ import { illusionSurface, series, stroke } from "~/data/palette"
 </IllustrationFigure>
 
 <script>
-  import { audioAvailable, playSamples, stopAudio } from "~/scripts/audio"
+  import { audioAvailable, audioOutputTime, playSamples, stopAudio } from "~/scripts/audio"
   import {
     bindIllusionProof,
     bindListenerChoice,
@@ -100,6 +100,11 @@ import { illusionSurface, series, stroke } from "~/data/palette"
     const progress = find<HTMLElement>(root, `#${name}-progress`)
     const reveal = find<HTMLElement>(root, `#${name}-reveal`)
     const answers = new Map<string, string>()
+    const judgementButtons = Array.from(
+      root.querySelectorAll<HTMLButtonElement>(
+        `#${name}-choices button[data-choice]:not([data-choice="skip"])`,
+      ),
+    )
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
     const duration = 1700
     let current: "silent" | "sound" = "silent"
@@ -111,6 +116,8 @@ import { illusionSurface, series, stroke } from "~/data/palette"
     }
     const choices = bindListenerChoice(root, name, (value) => {
       if (value === "skip") {
+        stopAudio()
+        stop()
         reveal.hidden = false
         return "Both visual versions have the same trajectories. The text proof below does not reproduce the subjective percept."
       }
@@ -149,26 +156,40 @@ import { illusionSurface, series, stroke } from "~/data/palette"
       playing = true
       silent.disabled = true
       sound.disabled = true
+      choices.reset()
+      judgementButtons.forEach((button) => (button.disabled = true))
+      answers.delete(mode)
       setPositions(0)
       stopAudio()
+
+      // Visual motion follows the time of the audio output, not the moment
+      // playSamples resolves or the first animation frame. At 850 ms the
+      // discs coincide and the click begins in the sound buffer.
+      let audio: AudioContext | undefined
+      let startedAt = 0
       if (mode === "sound") {
-        const started = await playSamples(clickSamples)
-        if (!started) {
+        const started = await playSamples(clickSamples, {
+          onStart: (context, time) => {
+            audio = context
+            startedAt = time
+          },
+        })
+        if (!started || !playing) {
           stop()
           progress.textContent = "Audio could not start. Try the silent version."
           return
         }
       }
+      const silentStart = performance.now()
       progress.textContent = mode === "sound" ? "Playing with a click." : "Playing in silence."
-      choices.enable()
-      let began: number | undefined
       const tick = (now: number) => {
         if (!playing) return
-        began ??= now
-        const fraction = Math.min(1, (now - began) / duration)
+        const begin = audio ? audioOutputTime(audio, startedAt) : silentStart
+        const fraction = Math.max(0, Math.min(1, (now - begin) / duration))
         setPositions(fraction)
         if (fraction === 1) {
           stop()
+          choices.enable()
           progress.textContent = "The dots have crossed. Record what you saw."
         } else frame = requestAnimationFrame(tick)
       }
@@ -182,7 +203,10 @@ import { illusionSurface, series, stroke } from "~/data/palette"
       if (document.hidden) stop()
     })
     reducedMotion.addEventListener("change", () => {
-      if (reducedMotion.matches) stop()
+      if (reducedMotion.matches) {
+        stopAudio()
+        stop()
+      }
     })
   }
 </script>
