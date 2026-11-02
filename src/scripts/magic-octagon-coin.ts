@@ -110,5 +110,5 @@ export const inspectionLabel = (degrees: number) => {
   if (degrees === 0) return "Front · 0°"
   if (degrees === 180) return "Flipped · 180°"
   if (isEdgeOn(degrees)) return `Edge-on · ${degrees}°`
-  return "Turning over · " + degrees + "°"
+  return `Turning over · ${degrees}°`
 }
