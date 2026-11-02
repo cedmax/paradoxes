@@ -2,6 +2,7 @@
 import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
 import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
 import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import { series, stroke } from "~/data/palette"
 ---
@@ -50,9 +51,32 @@ import { series, stroke } from "~/data/palette"
       </text>
     </g>
   </SvgFigure>
-  <button id="ames-window-play" type="button" class="btn-ghost self-start" aria-pressed="false">
+  <button
+    id="ames-window-play"
+    type="button"
+    class="btn-ghost self-start motion-reduce:hidden"
+    aria-pressed="false"
+  >
     Play
   </button>
+  <div class="hidden motion-reduce:block">
+    <Slider
+      id="ames-window-angle"
+      label="Turn by hand"
+      min={0}
+      max={359}
+      step={1}
+      value={0}
+      startLabel="0 degrees"
+      endLabel="359 degrees"
+      describedby="ames-window-readout"
+      valuetext="Angle 0 degrees"
+    >
+      <p id="ames-window-readout" class="text-base" aria-live="polite">
+        Position: 0 degrees.
+      </p>
+    </Slider>
+  </div>
   <ListenerChoice
     name="ames-window"
     question="When the window moves, what does it seem to do?"
@@ -67,7 +91,7 @@ import { series, stroke } from "~/data/palette"
     <IllusionControls
       name="ames-window"
       play={false}
-      proof="Both red dots mark the same end of the window: one on its upper corner, the other in the top view. Press Play again to see them turn together without reversing."
+      proof="Both red dots mark the same end of the window: one on its upper corner, the other in the top view. Replay the movement, or use the angle slider in reduced-motion mode, to follow their matching positions."
       proofLabel="Show the top view"
     />
   </div>
@@ -81,6 +105,7 @@ import { series, stroke } from "~/data/palette"
   import {
     bindIllusionProof,
     bindListenerChoice,
+    bindSlider,
     find,
     illustrationRoot,
   } from "~/scripts/illustration"
@@ -89,6 +114,8 @@ import { series, stroke } from "~/data/palette"
   const root = illustrationRoot(name)
   if (root) {
     const play = find<HTMLButtonElement>(root, "#ames-window-play")
+    const slider = find<HTMLInputElement>(root, "#ames-window-angle")
+    const readout = find<HTMLElement>(root, "#ames-window-readout")
     const outline = find<SVGPathElement>(root, "#ames-window-outline")
     const bar = find<SVGPathElement>(root, "#ames-window-bar")
     const mid = find<SVGPathElement>(root, "#ames-window-mid")
@@ -129,9 +156,9 @@ import { series, stroke } from "~/data/palette"
       near.setAttribute("cx", String(530 + dx))
       near.setAttribute("cy", String(70 + dy))
     }
-    // Four seconds per turn, continuously, until Pause or a judgement.
+    // Just under five seconds per turn, continuously, until Pause or a judgement.
     // Use elapsed time so speed is consistent across displays.
-    const degreesPerSecond = 90
+    const degreesPerSecond = 75
     let angle = 0
     let playing = false
     let frame = 0
@@ -158,7 +185,9 @@ import { series, stroke } from "~/data/palette"
       reveal.hidden = false
       return value === "skip"
         ? "The top view can be inspected without watching the rotation."
-        : "Show the top view, then press Play again to check the continuous rotation."
+        : reducedMotion.matches
+          ? "Show the top view, then move the slider to check the window's orientation."
+          : "Show the top view, then press Play again to check the continuous rotation."
     })
     play.addEventListener("click", () => {
       if (playing) return stop()
@@ -170,16 +199,28 @@ import { series, stroke } from "~/data/palette"
       choices.enable()
       frame = requestAnimationFrame(tick)
     })
+    const updateManual = bindSlider(slider, (value) => {
+      angle = value
+      render(angle)
+      readout.textContent = `Position: ${value} degrees.`
+      return `Angle ${value} degrees`
+    })
+    slider.addEventListener("input", () => {
+      stop()
+      choices.enable()
+    })
     const motionChanged = () => {
-      if (reducedMotion.matches) stop()
+      if (reducedMotion.matches) {
+        stop()
+        slider.value = String(Math.round(angle) % 360)
+        updateManual()
+      }
       play.disabled = reducedMotion.matches
-      play.title = reducedMotion.matches ? "Motion disabled by reduced-motion preferences" : ""
     }
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) stop()
     })
     reducedMotion.addEventListener("change", motionChanged)
-    render(angle)
     motionChanged()
     bindIllusionProof(root, name, "Show the top view", "Hide the top view")
   }
