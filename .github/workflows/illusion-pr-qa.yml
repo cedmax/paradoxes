@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { pr: 138, branch: video/flash-beep }
+          - { pr: 139, branch: video/stream-bounce }
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,13 +38,13 @@ jobs:
       - name: Install
         working-directory: site
         run: pnpm install --frozen-lockfile
-      - name: Capture exact formatting for sound-induced flash
+      - name: Capture exact formatting for stream-bounce
         working-directory: site
         run: |
-          pnpm exec prettier src/components/illusions/sound-induced-flash-illusion.astro > /tmp/sound-flash-prettier.astro
-          echo 'BEGIN_FLASH_FORMAT'
-          node -e "console.log(JSON.stringify(require('fs').readFileSync('/tmp/sound-flash-prettier.astro','utf8')))"
-          echo 'END_FLASH_FORMAT'
+          pnpm exec prettier src/components/illusions/stream-bounce-illusion.astro > /tmp/stream-bounce-prettier.astro
+          echo 'BEGIN_STREAM_FORMAT'
+          node -e "console.log(JSON.stringify(require('fs').readFileSync('/tmp/stream-bounce-prettier.astro','utf8')))"
+          echo 'END_STREAM_FORMAT'
       - name: Lint
         working-directory: site
         run: pnpm lint
@@ -90,4 +90,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Rerun formatted flash and latency browser suite on current #138 head
+# Validate amplified stream-bounce click PCM and unchanged timing on #139
