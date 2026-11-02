@@ -101,4 +101,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Recheck full-width motion aftereffect, unchanged stop frame, broadened answer, reduced-motion opt-out
+# Recheck formatted full-width spiral, freeze frame and reduced-motion opt-out on current stacked heads
