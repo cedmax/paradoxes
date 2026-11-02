@@ -5,7 +5,7 @@ import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
 import MeasurementGuides from "~/components/illustration-kit/MeasurementGuides.astro"
-import { stroke } from "~/data/palette"
+import { series, stroke } from "~/data/palette"
 ---
 
 <IllustrationFigure
@@ -16,9 +16,18 @@ import { stroke } from "~/data/palette"
     name="vertical-horizontal-illusion"
     viewBox="0 0 600 430"
     class="mx-auto w-full max-w-xl"
-    title="Inverted T with a horizontal length that can be rotated onto the equal upright"
-    desc="An upside-down T has a 300-unit upright and a 300-unit horizontal line. Press Compare lengths to reveal a red copy of the horizontal line. Rotate the copy through 90 degrees until it precisely covers the black upright, verifying equal length."
+    title="Inverted T with a horizontal copy rotating around its fixed left endpoint"
+    desc="An upside-down T has a 300-unit upright and a 300-unit horizontal line. Compare lengths reveals a translucent gold quarter-circle centred at the horizontal line’s left endpoint and a red copy of the full horizontal line. The slider rotates this copy around its fixed left endpoint from horizontal to vertical. Its right endpoint follows the gold arc, reaching the same height as the black upright at 90 degrees."
   >
+    <g id="vertical-horizontal-sector" visibility="hidden" aria-hidden="true">
+      <path d="M150 345 H450 A300 300 0 0 0 150 45 Z" fill={series.gold} fill-opacity="0.24" />
+      <path
+        d="M450 345 A300 300 0 0 0 150 45"
+        fill="none"
+        stroke={series.gold}
+        stroke-width="2"
+      />
+    </g>
     <path
       d="M150 345 H450 M300 45 V345"
       fill="none"
@@ -32,22 +41,23 @@ import { stroke } from "~/data/palette"
     name="vertical-horizontal-illusion"
     play={false}
     proofLabel="Compare lengths"
-    proof="The red copy of the entire 300-unit horizontal line can rotate and move over the 300-unit upright. At the end they overlap exactly."
+    proof="Both black lines are 300 units long. The red copy pivots at the horizontal line’s left endpoint and sweeps a gold quarter-circle of radius 300. At 90 degrees it reaches the same height as the upright, without moving sideways."
   />
   <div id="vertical-horizontal-comparison" hidden>
     <Slider
       id="vertical-horizontal-rotation"
-      label="Rotate the red copy onto the upright"
+      label="Rotate the red copy around its left endpoint"
       min={0}
       max={100}
       value={0}
-      startLabel="Matches the horizontal"
-      endLabel="Matches the upright"
+      startLabel="Lies on the horizontal"
+      endLabel="Vertical, level with the upright"
       describedby="vertical-horizontal-note"
-      valuetext="Red comparison copy overlaps the black horizontal line"
+      valuetext="Red 300-unit copy lies over the horizontal line with its left endpoint fixed"
     >
       <p id="vertical-horizontal-note" class="text-base">
-        Only the red copy moves. The black inverted T does not change.
+        Only the red copy rotates around the left endpoint. The black inverted T does not
+        change.
       </p>
     </Slider>
   </div>
@@ -69,17 +79,17 @@ import { stroke } from "~/data/palette"
     const slider = find<HTMLInputElement>(root, "#vertical-horizontal-rotation")
     const comparison = find<HTMLElement>(root, "#vertical-horizontal-comparison")
     const guides = find<SVGPathElement>(root, "#vertical-horizontal-illusion-guides path")
+    const sector = find<SVGGElement>(root, "#vertical-horizontal-sector")
     const toggle = find<HTMLButtonElement>(root, "#vertical-horizontal-illusion-guide-toggle")
     bindSlider(slider, (value) => {
       const t = value / 100
       const theta = (Math.PI * t) / 2
-      const x = 150 + 150 * t
-      const endX = value === 100 ? 300 : x + 300 * Math.cos(theta)
+      const endX = value === 100 ? 150 : 150 + 300 * Math.cos(theta)
       const endY = value === 100 ? 45 : 345 - 300 * Math.sin(theta)
-      guides.setAttribute("d", `M${x} 345 L${endX} ${endY}`)
+      guides.setAttribute("d", `M150 345 L${endX} ${endY}`)
       return value === 100
-        ? "The 300-unit red line now lies exactly over the 300-unit upright"
-        : "The red 300-unit copy rotates toward the black upright"
+        ? "At 90 degrees the 300-unit red line reaches the same height as the upright"
+        : `The 300-unit red line is rotated ${Math.round(90 * t)} degrees around its fixed left endpoint`
     })
     bindIllusionProof(
       root,
@@ -88,7 +98,9 @@ import { stroke } from "~/data/palette"
       "Hide comparison",
     )
     toggle.addEventListener("click", () => {
-      comparison.hidden = toggle.getAttribute("aria-pressed") !== "true"
+      const shown = toggle.getAttribute("aria-pressed") === "true"
+      comparison.hidden = !shown
+      sector.setAttribute("visibility", shown ? "visible" : "hidden")
     })
   }
 </script>
