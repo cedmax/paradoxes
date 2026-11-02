@@ -107,7 +107,7 @@ const initialise = () => {
     if (!(target instanceof Element)) return
     if (target.closest("#magic-octagon-reset")) {
       queueMicrotask(() => sync(true))
-    } else if (target.closest("#magic-octagon-reveal")) {
+    } else if (target.closest("#magic-octagon-guide-toggle")) {
       // The revealed coin animates for 1.8 s (or changes instantly for reduced motion).
       const delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1850
       window.setTimeout(() => sync(true), delay)
