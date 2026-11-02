@@ -162,7 +162,11 @@ const dots = Array.from({ length: count }, (_, index) => {
       updateProof()
       return value === "skip"
         ? "The explanation is available without watching the animation."
-        : "The explanation is below; freeze the rotation to compare if it is still running."
+        : !running
+          ? "The animation is stopped. Read the explanation below."
+          : turning
+            ? "The explanation is below. Freeze rotation to compare."
+            : "The explanation is below. Turn the ring again to use the rotation check."
     })
     const resetAttempt = () => {
       reveal.hidden = true
