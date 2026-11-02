@@ -184,32 +184,34 @@ const outcomes = angles.map((angle, index) => ({
         Show four more rotations
       </button>
     </div>
-    <table class="sr-only">
-      <caption>
-        Eight octagon rotations. Arrow and marked-corner positions before and after the vertical
-        flip.
-      </caption>
-      <thead>
-        <tr>
-          <th scope="col">Clockwise turn</th>
-          <th scope="col">Front arrow</th>
-          <th scope="col">Flipped arrow</th>
-          <th scope="col">Marked corner before flip</th>
-          <th scope="col">Marked corner after flip</th>
-        </tr>
-      </thead>
-      <tbody>
-        {outcomes.map(({ angle, frontArrow, flippedArrow, frontCorner, flippedCorner }) => (
+    <div class="sr-only">
+      <table>
+        <caption>
+          Eight octagon rotations. Arrow and marked-corner positions before and after the vertical
+          flip.
+        </caption>
+        <thead>
           <tr>
-            <th scope="row">{angle}°</th>
-            <td>{frontArrow}</td>
-            <td>{flippedArrow}</td>
-            <td>{frontCorner}</td>
-            <td>{flippedCorner}</td>
+            <th scope="col">Clockwise turn</th>
+            <th scope="col">Front arrow</th>
+            <th scope="col">Flipped arrow</th>
+            <th scope="col">Marked corner before flip</th>
+            <th scope="col">Marked corner after flip</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {outcomes.map(({ angle, frontArrow, flippedArrow, frontCorner, flippedCorner }) => (
+            <tr>
+              <th scope="row">{angle}°</th>
+              <td>{frontArrow}</td>
+              <td>{flippedArrow}</td>
+              <td>{frontCorner}</td>
+              <td>{flippedCorner}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   </div>
 </IllustrationFigure>
 
