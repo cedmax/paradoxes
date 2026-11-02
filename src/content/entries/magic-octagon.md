@@ -17,7 +17,7 @@ sources:
   - title: "Dan Meyer (2013): The Magic Octagon"
     url: "https://blog.mrmeyer.com/2013/the-magic-octagon/"
     note: "Documents David Masunaga’s demonstration of the octagon at NCTM in 2013. The comments discuss the apparent direction reversal; the post does not establish the trick’s original inventor."
-  - title: "Judge Gary R. Brown (2020): The Captain’s Nightmare"
+  - title: "Vanish Magazine #71: The Captain’s Nightmare (Judge Gary Brown)"
     url: "https://www.magicworld.co.uk/vanish-magazine-71-ebook-download"
     note: "Retail listing for Vanish magazine issue 71. Its contents list The Captain’s Nightmare by Judge Gary Brown, but the listing does not establish the issue date, page numbers or details of the trick."
 sourcesVerified: true
