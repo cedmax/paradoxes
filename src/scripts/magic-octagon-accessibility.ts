@@ -1,6 +1,6 @@
-// Spoken equivalents for the Magic Octagon controls.
-// Deliberately independent of drawCoin and the figure event handlers: a failure
-// here must not prevent anyone from manipulating the coins.
+// Spoken equivalents for Magic Octagon controls.
+// Loaded in a separate module so this narration does not share the figure's
+// drawing handlers or update SVG descriptions inside animation frames.
 
 import {
   angles,
