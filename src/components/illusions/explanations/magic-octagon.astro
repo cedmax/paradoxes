@@ -8,72 +8,72 @@ import Coin from "../magic-octagon/Coin.astro"
     The black dots mark the same physical corner on both faces.
     Turn or flip the coin to follow it.
   </p>
-    <div
-      id="magic-octagon-proof-views"
-      class="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-2 md:flex-row md:items-start md:gap-5"
-    >
-      <div class="w-full max-w-xs md:min-w-0 md:flex-1">
-        <p class="text-center text-base font-bold">
-          Front <span id="magic-octagon-proof-front-direction">↗</span>
-        </p>
-        <Coin
-          id="proof-front"
-          title="Front view of the physically linked coin, with its marked corner"
-          desc="The front-facing view of the solid coin, with a black dot on one corner and a fixed red Y-axis. Both faces and the shaded edge move together when the coin is flipped."
-          showMarker
-        />
-      </div>
-      <div id="magic-octagon-proof-other" class="w-full max-w-xs md:min-w-0 md:flex-1">
-        <p class="text-center text-base font-bold">
-          Flipped <span id="magic-octagon-proof-flipped-direction">↙</span>
-        </p>
-        <Coin
-          id="proof-flipped"
-          title="Flipped view of the same coin, with the same marked corner"
-          desc="The opposite view of the same solid octagonal coin, showing its marked corner, gold arrow, shaded thickness and fixed Y-axis. Rotation appears reversed relative to the front."
-          flipped
-          showMarker
-        />
-      </div>
+  <div
+    id="magic-octagon-proof-views"
+    class="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-2 md:flex-row md:items-start md:gap-5"
+  >
+    <div class="w-full max-w-xs md:min-w-0 md:flex-1">
+      <p class="text-center text-base font-bold">
+        Front <span id="magic-octagon-proof-front-direction">↗</span>
+      </p>
+      <Coin
+        id="proof-front"
+        title="Front view of the physically linked coin, with its marked corner"
+        desc="The front-facing view of the solid coin, with a black dot on one corner and a fixed red Y-axis. Both faces and the shaded edge move together when the coin is flipped."
+        showMarker
+      />
     </div>
+    <div id="magic-octagon-proof-other" class="w-full max-w-xs md:min-w-0 md:flex-1">
+      <p class="text-center text-base font-bold">
+        Flipped <span id="magic-octagon-proof-flipped-direction">↙</span>
+      </p>
+      <Coin
+        id="proof-flipped"
+        title="Flipped view of the same coin, with the same marked corner"
+        desc="The opposite view of the same solid octagonal coin, showing its marked corner, gold arrow, shaded thickness and fixed Y-axis. Rotation appears reversed relative to the front."
+        flipped
+        showMarker
+      />
+    </div>
+  </div>
 
-    <div
-      class="mx-auto grid w-full max-w-lg grid-cols-[1fr_1.5fr_1fr] gap-2 sm:gap-3"
-      role="group"
-      aria-label="Rotate or flip the coin during the explanation"
+  <div
+    class="mx-auto grid w-full max-w-lg grid-cols-[1fr_1.5fr_1fr] gap-2 sm:gap-3"
+    role="group"
+    aria-label="Rotate or flip the coin during the explanation"
+  >
+    <button
+      type="button"
+      class="btn-ghost min-w-0 px-2 text-sm sm:px-5 sm:text-base"
+      id="magic-octagon-left"
+      aria-label="Turn the visible front view 45 degrees anticlockwise"
+    >↶ 45°</button>
+    <button
+      type="button"
+      class="btn min-w-0 px-2 text-sm sm:px-5 sm:text-base"
+      id="magic-octagon-flip-button"
+      aria-label="Flip the coin about the Y axis"
+      aria-pressed="false"
+    >Flip the coin</button>
+    <button
+      type="button"
+      class="btn-ghost min-w-0 px-2 text-sm sm:px-5 sm:text-base"
+      id="magic-octagon-right"
+      aria-label="Turn the visible front view 45 degrees clockwise"
+    >45° ↷</button>
+  </div>
+  <div class="flex flex-wrap items-center gap-3">
+    <button
+      type="button"
+      class="btn-toggle"
+      id="magic-octagon-compare"
+      aria-controls="magic-octagon-proof-other"
+      aria-pressed="true"
     >
-      <button
-        type="button"
-        class="btn-ghost min-w-0 px-2 text-sm sm:px-5 sm:text-base"
-        id="magic-octagon-left"
-        aria-label="Turn the visible front view 45 degrees anticlockwise"
-      >↶ 45°</button>
-      <button
-        type="button"
-        class="btn min-w-0 px-2 text-sm sm:px-5 sm:text-base"
-        id="magic-octagon-flip-button"
-        aria-label="Flip the coin about the Y axis"
-        aria-pressed="false"
-      >Flip the coin</button>
-      <button
-        type="button"
-        class="btn-ghost min-w-0 px-2 text-sm sm:px-5 sm:text-base"
-        id="magic-octagon-right"
-        aria-label="Turn the visible front view 45 degrees clockwise"
-      >45° ↷</button>
-    </div>
-    <div class="flex flex-wrap items-center gap-3">
-      <button
-        type="button"
-        class="btn-toggle"
-        id="magic-octagon-compare"
-        aria-controls="magic-octagon-proof-other"
-        aria-pressed="true"
-      >
-        Hide comparison
-      </button>
-    </div>
-    <p id="magic-octagon-state" class="text-base" aria-live="polite"></p>
+      Hide comparison
+    </button>
+  </div>
+  <p id="magic-octagon-state" class="text-base" aria-live="polite"></p>
 
 </IllustrationFigure>
 
