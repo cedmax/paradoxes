@@ -29,11 +29,11 @@ finePrint: "This is an outline, not the full proof. In the standard definition, 
 sources:
   - title: "Wikipedia: Burali-Forti paradox"
     url: https://en.wikipedia.org/wiki/Burali-Forti_paradox
-    note: "Statement; Burali-Forti’s 1897 paper contradicting an earlier result of Cantor, unknown to him; Russell noticing it and crediting the paper in The Principles of Mathematics (1903); the von Neumann proof; the remark that this version is anachronistic, and the order-type version; ZF and ZFC blocking unrestricted comprehension, which naive set theory and Frege’s Basic Law V allowed; New Foundations, where the order types form a set and the order type of the ordinals below an ordinal is not that ordinal; Rosser showing ML inconsistent, and Quine’s revision."
+    note: "Main source for the statement, the 1897 paper, Russell’s credit, and how set theories block or allow the collection of all ordinals."
   - title: "Stanford Encyclopedia of Philosophy: Paradoxes and Contemporary Logic"
     url: https://plato.stanford.edu/entries/paradoxes-contemporary-logic/
-    note: "Burali-Forti as a mathematician of Peano’s school who attempted to prove that the ordinals are not linearly ordered; publication in 1897; Cantor noticing similar difficulties in 1895; Cantor’s view that the multiplicity of ordinals is well-ordered but not a set; in von Neumann’s system the class of all ordinals is not a set; in Zermelo’s system the collection of all order types does not exist as a set; Russell’s contradiction as the second famous published antinomy."
+    note: "Source for Burali-Forti’s aim, the 1897 publication, Cantor’s earlier view, and the class of all ordinals not being a set."
   - title: "Stanford Encyclopedia of Philosophy: The Early Development of Set Theory (José Ferreirós)"
     url: https://plato.stanford.edu/entries/settheory-early/
-    note: "Disagreement among historians over whether Cantor knew of the paradox from 1883 or only from 1896; his use of the argument in a letter to Dedekind in August 1899; Burali-Forti himself failing to formulate the paradox clearly."
+    note: "Source for historians disagreeing over when Cantor knew of the paradox, and his 1899 letter to Dedekind."
 ---

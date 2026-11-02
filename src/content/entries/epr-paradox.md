@@ -41,5 +41,5 @@ sources:
     note: "Source for the 1935 argument, Bohr’s reply, Bell (1964), the assumptions and the interpretations. The later loophole-free experiment is supported by the separate Hensen paper."
   - title: "Hensen and colleagues: Experimental loophole-free violation of a Bell inequality using entangled electron spins separated by 1.3 km (2015)"
     url: "https://arxiv.org/abs/1508.05949"
-    note: "Primary source for the 2015 electron-spin Bell test, its joint closure of detection and locality loopholes, and its violation of the Bell bound. This does not remove every assumption of a Bell test or choose a single interpretation."
+    note: "Source for the 2015 loophole-free Bell test, which does not choose an interpretation."
 ---

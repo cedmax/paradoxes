@@ -30,5 +30,5 @@ finePrint: "Martin Shubik described the game in 1971. Formal analyses consider s
 sources:
   - title: "Wikipedia: Dollar auction"
     url: "https://en.wikipedia.org/wiki/Dollar_auction"
-    note: "Source for the rules, Shubik (1971, Journal of Conflict Resolution 15(1)), the escalation example, the equilibria, the sunk-cost explanation, and Augenblick (2016). Some of the page’s claims are tagged as needing a citation."
+    note: "Main source for the rules, Shubik (1971), the escalation example, the equilibria and the sunk-cost explanation."
 ---

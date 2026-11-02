@@ -31,14 +31,14 @@ finePrint: "The gap is a parallelogram with corners (0, 0), (5, 2), (13, 5) and 
 sources:
   - title: "Wikipedia: Chessboard paradox"
     url: "https://en.wikipedia.org/wiki/Chessboard_paradox"
-    note: "The dissection with cuts of lengths 3, 5 and 8, the areas 64 and 65, the parallelogram gap along the diagonal with an area of exactly 1, the Fibonacci and Cassini generalisation with gap for even index and overlap for odd, the shrinking share for larger numbers, Schlömilch’s 1868 publication, the attribution to Loyd and the 1858 claim made by some (Wikipedia does not say how well supported it is), Carroll’s unpublished notes, and the 63-square layout. The gap’s corners, angles and area were recomputed."
+    note: "Main source for the dissection, the gap of exactly 1, the Fibonacci generalisation and the history. Gap recomputed."
   - title: "Wolfram MathWorld: Dissection Fallacy"
     url: "https://mathworld.wolfram.com/DissectionFallacy.html"
-    note: "The 8 by 8 square cut into four pieces that make a 5 by 13 rectangle and a 63-square shape; the cut in the ratio 5 to 3; the slopes 2/5 = 0.4 and 3/8 = 0.375 as the diagonals of two dissimilar rectangles; better illusions with larger Fibonacci numbers."
+    note: "Source for the 64 to 65 dissection, the slopes 0.4 and 0.375, and larger Fibonacci numbers giving better illusions."
   - title: "The Math Doctors: Disappearing Area?"
     url: "https://www.themathdoctors.org/disappearing-area/"
     note: "Independent explanation that the 5 by 13 rectangle hides a very narrow parallelogram of area 1, because the edges have slopes 3/8 and 2/5."
   - title: "American Statistical Association, Mathematics Awareness Month 2014: Area puzzles"
     url: "https://ww2.amstat.org/mam/2014/calendar/areapuzzles.html"
-    note: "The 8 by 8 to 5 by 13 puzzle first appeared in print in 1868 (citing W. W. Rouse Ball), and the Fibonacci explanation that 8 × 8 and 5 × 13 differ by one."
+    note: "Source for the puzzle first appearing in print in 1868, and its Fibonacci explanation."
 ---

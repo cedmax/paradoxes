@@ -22,8 +22,8 @@ finePrint: "The equivocation shows the argument fails as stated, but it does not
 sources:
   - title: "Wikipedia: Meno"
     url: "https://en.wikipedia.org/wiki/Meno"
-    note: "Source for the statement of the paradox (Meno 80d-e), the slave boy demonstration, the doubts about what the reasoned explanation is, and the statement that no resolution is agreed. The passage is paraphrased, not quoted."
+    note: "Source for the paradox (Meno 80d-e), the slave boy demonstration, and no agreed resolution."
   - title: "S. Marc Cohen: Meno’s Paradox (University of Washington course page)"
     url: "https://staff.washington.edu/smcohen/320/menopar.htm"
-    note: "Source for the three-step form of the argument, the equivocation reply, the objections to recollection, and the remark that a deeper problem remains. A course page, not peer review."
+    note: "Source for the argument’s three steps, the equivocation reply, and the objections to recollection."
 ---

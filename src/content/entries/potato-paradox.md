@@ -24,8 +24,8 @@ finePrint: "This entry is about the arithmetic only. The potatoes are idealised,
 sources:
   - title: "Wikipedia: Potato paradox"
     url: https://en.wikipedia.org/wiki/Potato_paradox
-    note: "The problem as stated here (100 kg, 99% to 98% water, answer 50 kg), its source in Darling’s The Universal Book of Mathematics (Wiley, 2004, p. 253), the solution through the 1 kg of dry matter, Quine’s classification as a veridical paradox, and the Car Talk Puzzler of 19 August 2017. Arithmetic recomputed, including the 60% to 59% comparison, which is an illustration."
+    note: "Main source for the problem, its book source, the 1 kg of dry matter, and Quine’s classification. Arithmetic recomputed."
   - title: "Wolfram MathWorld: Potato Paradox"
     url: https://mathworld.wolfram.com/PotatoParadox.html
-    note: "The same puzzle in pounds (100 pounds, 99% water, then 98% water, weighing 50 pounds), citing J. A. Paulos, A Mathematician Reads the Newspaper (BasicBooks, 1995, p. 81)."
+    note: "Source for the same puzzle in pounds."
 ---

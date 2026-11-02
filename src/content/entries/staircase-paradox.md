@@ -32,14 +32,14 @@ finePrint: "The [coastline paradox](coastline-paradox) is a cousin. There, measu
 sources:
   - title: "Wikipedia: Staircase paradox"
     url: https://en.wikipedia.org/wiki/Staircase_paradox
-    note: "Statement (uniform convergence, length 2 against the square root of 2); Martin Gardner’s phrase; length not continuous under uniform convergence; inscribed polygonal chains on smooth curves converge to arc length, and the staircase’s corners lie off the diagonal; uses in teaching and digital geometry; the Schwarz lantern; the coastline paradox and taxicab geometry. The 10-step figures and the corner distance formula are recomputed here."
+    note: "Main source for the statement, length not surviving the limit, and the related examples. Figures recomputed."
   - title: "Petrunin and Zamora Barrera, What is differential geometry: curves and surfaces (arXiv:2012.11814)"
     url: https://arxiv.org/pdf/2012.11814
-    note: "Theorem 2.8 and Corollary 2.9: if curves converge pointwise, the lower limit of their lengths is at least the length of the limit, so length is lower semicontinuous; the stairs-like polygonal lines approaching the diagonal of the unit square as the example where the inequality is strict."
+    note: "Source for length only being lower semicontinuous, with the staircase as the strict case."
   - title: "Wolfram MathWorld: Diagonal Paradox (Eric W. Weisstein)"
     url: https://mathworld.wolfram.com/DiagonalParadox.html
     note: "Statement: right-or-up steps across the unit square always total 2, however small the steps, while the diagonal is the square root of 2."
   - title: "Encyclopedia of Mathematics: Rectifiable curve"
     url: https://encyclopediaofmath.org/wiki/Rectifiable_curve
-    note: "Definition of the length of a curve as the supremum (least upper bound) of the sums of distances between successive points along it, that is, of inscribed polygonal lines."
+    note: "Source for the length of a curve as the least upper bound of inscribed polygonal lines."
 ---

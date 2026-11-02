@@ -32,7 +32,7 @@ sources:
     url: https://en.wikipedia.org/wiki/The_Open_Society_and_Its_Enemies
   - title: "Karl Popper, The Open Society and Its Enemies, Volume 1 (Routledge, fifth edition 1966), chapter 7, note 4 (Internet Archive scan)"
     url: https://archive.org/details/the-open-society-and-its-enemies-k-r-popper-volume
-    note: "Quotations follow this printing, page 265, where “right” is in italics. The first edition (1945; its 1947 reprint was checked) reads “the right even to suppress them”, without “if necessary even by force”. Wikipedia’s quotation, which cites the 2013 Princeton edition, has no comma after “outside the law”."
+    note: "Source for the quotations, page 265. The first edition’s wording differs slightly."
   - title: "Wikipedia: Brandenburg v. Ohio"
     url: "https://en.wikipedia.org/wiki/Brandenburg_v._Ohio"
   - title: "Stanford Encyclopedia of Philosophy: Toleration"

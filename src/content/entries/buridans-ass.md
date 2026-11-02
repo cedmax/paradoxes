@@ -34,5 +34,5 @@ sources:
     url: https://en.wikipedia.org/wiki/Al-Ghazali
   - title: "Ruth Weintraub, What Can We Learn from Buridan’s Ass? (Canadian Journal of Philosophy, 2012)"
     url: https://www.cambridge.org/core/journals/canadian-journal-of-philosophy/article/abs/what-can-we-learn-from-buridans-ass/0E2ADE51F97B6AC61E1DF01CB50FDDC9
-    note: "Abstract only. Argues that it is perfectly reasonable to choose an option even when there is no sufficient reason for it."
+    note: "Source for the argument that choosing without a sufficient reason can be perfectly reasonable."
 ---

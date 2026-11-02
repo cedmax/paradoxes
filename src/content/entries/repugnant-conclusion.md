@@ -30,5 +30,5 @@ finePrint: "The Stanford Encyclopedia of Philosophy lists more than ten response
 sources:
   - title: "Stanford Encyclopedia of Philosophy: The Repugnant Conclusion"
     url: "https://plato.stanford.edu/entries/repugnant-conclusion/"
-    note: "Source for Parfit’s 1984 statement, the mere addition steps, the positions and their costs, and the statement that no resolution is accepted. Authors: Arrhenius, Ryberg and Tännsjö; first published 2006, revised 2017."
+    note: "Source for Parfit’s 1984 statement, the mere addition steps, the positions and their costs, and no accepted resolution."
 ---

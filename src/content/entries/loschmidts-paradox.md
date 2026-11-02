@@ -30,11 +30,11 @@ finePrint: "Denis Evans and Debra Searles derived a fluctuation theorem that giv
 sources:
   - title: "Wikipedia: Loschmidt's paradox"
     url: "https://en.wikipedia.org/wiki/Loschmidt%27s_paradox"
-    note: "Source for the 1876 objection, Thomson’s 1874 defence, the fluctuation theorem (its date is inconsistent within the page), the low-entropy boundary condition, the dynamical-systems approach, and Binder (2023). The page does not describe Boltzmann’s own reply, and some of its claims are tagged as needing a citation. Still the only source for the fluctuation theorem and the dynamical-systems approach."
+    note: "Main source for the 1876 objection, the low-entropy past, the fluctuation theorem and the dynamical-systems approach."
   - title: "Stanford Encyclopedia of Philosophy: Thermodynamic Asymmetry in Time"
     url: "https://plato.stanford.edu/entries/time-thermo/"
-    note: "Source for Loschmidt’s reversibility objection (section 3), the low-entropy past and the debate over whether it needs explaining (section 3.1), and Gold’s proposal that the arrow flips if the universe contracts (section 3.3)."
+    note: "Source for Loschmidt’s objection, the low-entropy past, and Gold’s proposal that the arrow flips if the universe contracts."
   - title: "Binder (2023): The Reversibility Paradox: Role of the Velocity Reversal Step"
     url: "https://doi.org/10.1007/s10773-023-05458-x"
-    note: "International Journal of Theoretical Physics, open access. Source for Binder’s argument that a reversal needs the molecules’ positions and velocities measured and stored, and that erasing that record costs entropy."
+    note: "Source for Binder’s argument that a reversal needs the molecules measured, and erasing that record costs entropy."
 ---

@@ -23,14 +23,14 @@ finePrint: "Grandi discussed the series in 1703. Cesàro summation averages its 
 sources:
   - title: "Wikipedia: Grandi's series"
     url: "https://en.wikipedia.org/wiki/Grandi%27s_series"
-    note: "Source for the two bracketings giving 0 and 1, the 1 − S = S argument giving 1/2, the running totals 1, 0, 1, 0 and divergence, the warning that informal manipulations ignore what a sum rigorously means, Cesàro and Abel summation as two of the simplest methods, both giving 1/2 (Abel sum as the limit of 1/(1 + x) as x tends to 1), Cesàro’s 1890 method as the first rigorous one, the rule on reordering, and the Eilenberg–Mazur swindle."
+    note: "Main source for the bracketings, the 1/2 argument, divergence, and Cesàro and Abel summation. Sums recomputed."
   - title: "Wikipedia: Series (mathematics)"
     url: "https://en.wikipedia.org/wiki/Series_(mathematics)"
-    note: "Source for the grouping rule: brackets can be moved freely in a finite sum; a bracketed series has running totals that are a selection (subsequence) of the original ones, so bracketing a series that settles gives the same value, while Grandi’s series bracketed in pairs gives 0 and bracketed after the first term gives 1."
+    note: "Source for the bracketing rule, and Grandi’s series giving 0 or 1 depending on the brackets."
   - title: "MathWorld: Grandi's Series"
     url: "https://mathworld.wolfram.com/GrandisSeries.html"
-    note: "Source for the partial sums alternating between 1 and 0, the arithmetic means tending to 1/2 (Cesàro summable to 1/2), and 1 − x + x² − … = 1/(1 + x) tending to 1/2 as x approaches 1 from below (Abel summable to 1/2). Both limits recomputed numerically."
+    note: "Source for the partial sums and the Cesàro and Abel sums of 1/2. Both limits recomputed."
   - title: "MacTutor History of Mathematics: Guido Grandi"
     url: "https://mathshistory.st-andrews.ac.uk/Biographies/Grandi/"
-    note: "Source for Grandi as a Camaldolese monk who worked on geometry and hydraulics, his 1703 treatment of the series, his use of 1/(1 + x) with x = 1 to get 1/2, and his bracketing to 0 + 0 + …"
+    note: "Source for Grandi, his 1703 treatment of the series, and his reasoning to 1/2 and to 0."
 ---

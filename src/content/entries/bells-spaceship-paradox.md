@@ -31,8 +31,8 @@ finePrint: "The “launch frame” is the viewpoint in which both ships begin at
 sources:
   - title: "Wikipedia: Bell's spaceship paradox"
     url: "https://en.wikipedia.org/wiki/Bell%27s_spaceship_paradox"
-    note: "Source for the set-up, Dewan and Beran (1959) and their quoted conclusion, Bell’s 1976 three-ship version, the CERN survey and Bell’s quoted remarks, the two frame accounts, Born rigidity requiring a gentler lead acceleration, Nawrocki (1962), Dewan (1963), Matsuda and Kinoshita (2004), Franklin and Petkov (2009), and the statement that most publications agree the string breaks."
+    note: "Main source for the set-up, Dewan and Beran (1959), Bell’s version and survey, and most publications agreeing the string breaks."
   - title: "Usenet Physics FAQ: Bell's spaceship paradox"
     url: "https://math.ucr.edu/home/baez/physics/Relativity/SR/BellSpaceships/spaceship_puzzle.html"
-    note: "Supports the answer that a real string breaks, the constant separation in the launch frame, the growing separation in the ships’ momentary rest frames, and the role of the relativity of simultaneity."
+    note: "Source for a real string breaking and the role of the relativity of simultaneity."
 ---

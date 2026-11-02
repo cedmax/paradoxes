@@ -18,6 +18,6 @@ sources:
     note: "Credits Jean-Claude Risset with the infinite acceleration rhythm and describes the layered, octave-related construction. A secondary source."
   - title: "Dan Stowell (2011): Scheduling and composing with Risset eternal accelerando rhythms"
     url: "https://quod.lib.umich.edu/i/icmc/bbp2372.2011.096/--scheduling-and-composing-with-risset-eternal-accelerando?rgn=main%3Bview%3Dfulltext"
-    note: "Published paper (International Computer Music Conference 2011) on constructing and scheduling Risset eternal accelerando rhythms. The paper explains octave-related tempo layers and level weighting that create an apparently endless acceleration even though the overall pattern recurs. Its construction and discussion of listener perception support the explanation; the approximately 28-second loop is this site's own setting."
+    note: "Source for building a Risset accelerando from octave-related tempo layers. The 28-second loop is this site’s own."
 sourcesVerified: true
 ---

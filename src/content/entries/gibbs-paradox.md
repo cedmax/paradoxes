@@ -30,20 +30,20 @@ finePrint: "This entry covers the counting version of Gibbs’s paradox. Another
 sources:
   - title: "Wikipedia: Gibbs paradox"
     url: https://en.wikipedia.org/wiki/Gibbs_paradox
-    note: "Source for the thought experiment with two identical boxes, the link to non-extensive entropy and the second law, the Sackur–Tetrode result, and the mention of Jaynes and Swendsen. Its text dates Gibbs’s thought experiment to 1874 to 1875, but its own reference gives 1875 to 1878, as does Darrigol."
+    note: "Main source for the two-box thought experiment, extensive entropy and the Sackur–Tetrode result."
   - title: "Darrigol (2018), The Gibbs Paradox: Early History and Solutions, Entropy 20, 443"
     url: https://www.mdpi.com/1099-4300/20/6/443
-    note: "Source for the memoir dated 1875 to 1878, the mixing entropy having the same value however small the difference between gases, Gibbs introducing the N factorial division in 1902, the many proposed solutions, and authors disagreeing on how entropy depends on the number of molecules. The last part of the page was not read."
+    note: "Source for Gibbs’s memoir (1875 to 1878), the mixing entropy, the N factorial division (1902) and the many proposed solutions."
   - title: "Jaynes (1992), The Gibbs Paradox, in Maximum Entropy and Bayesian Methods"
     url: https://bayes.wustl.edu/etj/articles/gibbs.paradox.pdf
-    note: "Source for Jaynes’s view that entropy depends on the variables an experimenter chooses, that Gibbs resolved the matter in classical terms, and that extensivity fixes the arbitrary function of the number of particles, giving the Sackur–Tetrode form."
+    note: "Source for Jaynes’s view that entropy depends on the variables an experimenter chooses."
   - title: "Swendsen (2018), Probability, Entropy, and Gibbs' Paradox(es), Entropy 20, 450"
     url: https://www.mdpi.com/1099-4300/20/6/450
-    note: "Source for Swendsen’s resolution without quantum mechanics, using distinguishable particles and the exchange of particles between systems, and for the distinction between two puzzles both called Gibbs’ paradox."
+    note: "Source for Swendsen’s resolution without quantum mechanics, and for two puzzles sharing the name."
   - title: "Versteegh and Dieks (2011), The Gibbs paradox and the distinguishability of identical particles, arXiv:1012.4111"
     url: https://arxiv.org/abs/1012.4111
     note: "Source for the view that identical classical particles are distinguishable and that statistical and thermodynamic entropy are not completely identical."
   - title: "Saunders (2018), The Gibbs Paradox, arXiv:1808.01953"
     url: https://arxiv.org/abs/1808.01953
-    note: "Source for treating the puzzle as several questions (the jump in mixing entropy, extensivity) and for a view that indistinguishability applies to classical as well as quantum theory. Only the abstract was read."
+    note: "Source for treating the puzzle as several questions, with indistinguishability in classical as well as quantum theory."
 ---

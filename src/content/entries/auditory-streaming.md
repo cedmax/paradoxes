@@ -14,12 +14,12 @@ finePrint: "Speed matters too: in the research, faster patterns split apart more
 sources:
   - title: "Galloping rhythm (after van Noorden, 1975), University of Oldenburg"
     url: "https://uol.de/f/3/inst/musik/musik-wahrnehmung/SoundExamples/Ex_VanNoorden.html"
-    note: "An interactive version of the A-B-A pattern, with one stream, two streams and switching described as the three possible outcomes. The page says it approximates the original experiment."
+    note: "An interactive version of the galloping pattern, describing one stream, two streams and switching as the possible outcomes."
   - title: "Bregman and Ahad (1996): Demonstrations of auditory scene analysis (booklet and audio)"
     url: "https://webpages.mcgill.ca/staff/Group2/abregm1/web/snd/ASA-Demo-Booklet9V4.pdf"
-    note: "Companion booklet to Bregman's Auditory Scene Analysis demonstrations. Demonstration 3 describes the galloping high-low-high pattern splitting into two streams as speed and frequency separation increase. Demonstration 4 gives 2000 Hz and 700 Hz sine tones, 12.5 ms rise and decay, a low tone 6 dB louder, and groups of 2 to 32 cycles, to show that segregation builds up with repetition. This page uses those tone settings with a low-high-low order and a fixed number of repeats, so it is adapted from the demonstration."
+    note: "Source for the galloping pattern splitting into two streams, and for the tone settings this page adapts."
   - title: "Barniv and Nelken (2015): Auditory Streaming as an Online Classification Process with Evidence Accumulation"
     url: "https://doi.org/10.1371/journal.pone.0144788"
-    note: "The introduction reviews evidence that build-up of stream segregation is most evident at intermediate pitch separations: very small gaps often stay one stream, while large gaps can split immediately. The paper also analyses perceptual switching and proposes an evidence-accumulation model."
+    note: "Source for segregation building up most clearly at medium pitch gaps, and for perceptual switching."
 sourcesVerified: true
 ---

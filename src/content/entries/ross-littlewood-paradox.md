@@ -31,8 +31,8 @@ finePrint: "Not everyone accepts the empty vase. Paul Benacerraf’s view is tha
 sources:
   - title: "Wikipedia: Ross-Littlewood paradox"
     url: "https://en.wikipedia.org/wiki/Ross%E2%80%93Littlewood_paradox"
-    note: "Source for the set-up and timings, Littlewood (1953) and Ross, Ross’s random-removal result, the removal of ball 10, 20 and so on, the procedure leaving any chosen number of balls, and the camps: Allis and Koetsier (empty), Tymoczko and Henle (depends on the order), Benacerraf (underspecified) and Van Bendegem (ill-formed). Counts and removal schemes rechecked by simulation in Python."
+    note: "Main source for the set-up, Littlewood and Ross, and the camps. Counts rechecked by simulation."
   - title: "Stanford Encyclopedia of Philosophy: Supertasks"
     url: "https://plato.stanford.edu/entries/spacetime-supertasks/"
-    note: "Source for Littlewood (1953) and Ross (1976) answering zero, the opposing argument from the growing count, Allis and Koetsier’s continuity principle, Van Bendegem’s challenge, and Earman and Norton’s point that some discontinuity must be accepted. The article does not treat the matter as settled."
+    note: "Source for the answer zero, the opposing argument, and some discontinuity having to be accepted."
 ---

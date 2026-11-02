@@ -31,5 +31,5 @@ finePrint: "Hume himself did not conclude that we should stop reasoning inductiv
 sources:
   - title: "Stanford Encyclopedia of Philosophy: The Problem of Induction"
     url: "https://plato.stanford.edu/entries/induction-problem/"
-    note: "Source for Hume’s two works and dates, the dilemma, the four positions and their costs, and the statement that many philosophers have accepted Hume’s conclusion. Only the first 100,000 of about 113,000 characters were read, so the final section was not checked."
+    note: "Source for Hume’s works, the dilemma, the four positions and their costs, and many accepting Hume’s conclusion."
 ---

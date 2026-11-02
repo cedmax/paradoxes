@@ -40,14 +40,14 @@ finePrint: "The time t can be any future moment, and the argument does not depen
 sources:
   - title: "Wikipedia: New riddle of induction"
     url: "https://en.wikipedia.org/wiki/New_riddle_of_induction"
-    note: "Source for the definitions of grue and bleen, Goodman’s 1946 paper and the book, entrenchment and projectibility, Goodman’s reply that green can be defined from grue and bleen, Carnap (1947), Swinburne (1968), Quine (1970) on natural kinds and its link to Hempel’s raven paradox, Goodman’s objection to Quine-style similarity, the evolutionary suggestion, and Kripke’s quus."
+    note: "Main source for grue and bleen, Goodman’s papers, entrenchment, and the replies by Carnap, Quine and others."
   - title: "Stanford Encyclopedia of Philosophy: Nelson Goodman"
     url: "https://plato.stanford.edu/entries/goodman/"
-    note: "Source for the formal definition of grue, the 1954 London and 1955 Harvard publication of Fact, Fiction, and Forecast, entrenchment as a description rather than a justification and its dependence on language, the symmetry of the two vocabularies, and the fact that the critical literature is large and still growing."
+    note: "Source for the formal definition of grue, Fact, Fiction, and Forecast, and entrenchment as description, not justification."
   - title: "Stanford Encyclopedia of Philosophy: The Problem of Induction"
     url: "https://plato.stanford.edu/entries/induction-problem/"
-    note: "Source for the difference between Hume’s problem and Goodman’s riddle, and for the view of Sober, Norton and Okasha that each inductive inference rests on its own empirical assumption, turning the problem into a regress. Only the first 100,000 of about 113,000 characters were read."
+    note: "Source for the difference between Hume’s problem and Goodman’s riddle."
   - title: "Stanford Encyclopedia of Philosophy: Confirmation"
     url: "https://plato.stanford.edu/entries/confirmation/"
-    note: "Source for the same problem posed for instance confirmation with the parallel predicate “blite”, and the remark that the natural-kinds idea “has not borne much fruit in this discussion”."
+    note: "Source for the parallel predicate “blite” and natural kinds having “not borne much fruit”."
 ---

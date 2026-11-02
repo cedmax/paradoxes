@@ -24,11 +24,11 @@ finePrint: "The fifty-seven-letter count excludes spaces and punctuation. Russel
 sources:
   - title: "Wikipedia: Berry paradox"
     url: "https://en.wikipedia.org/wiki/Berry_paradox"
-    note: "Source for the sixty-letter version (fifty-seven letters long), the history, Russell and Berry, the stratified repair, the Boolos and Chaitin results, and Girard calling it “Richard’s paradox”. Letter count checked by hand."
+    note: "Main source for the sixty-letter version, the history, the repairs and the Boolos and Chaitin results. Letter count checked by hand."
   - title: "Stanford Encyclopedia of Philosophy: Paradoxes and Contemporary Logic"
     url: "https://plato.stanford.edu/entries/paradoxes-contemporary-logic/"
-    note: "Checked: Russell’s 1906 statement, the syllable version, and the treatment of the paradox alongside Russell’s analysis of the Liar. It treats Berry’s and Richard’s paradoxes as two separate paradoxes of definability. This page does not itself state the diagnosis used here."
+    note: "Source for Russell’s 1906 statement, the syllable version and the link to the Liar."
   - title: "Stanford Encyclopedia of Philosophy: Self-Reference and Paradox"
     url: "https://plato.stanford.edu/entries/self-reference/"
-    note: "Source for Kripke’s objection to strict hierarchies (section 3.1, Building Explicit Hierarchies): harmless sentences such as his Nixon and Jones examples cannot even be formulated in a Tarskian hierarchy. Section 1.1 discusses Berry’s paradox. The last 2,131 characters of the page were not read."
+    note: "Source for Kripke’s objection that harmless sentences cannot be stated in a strict hierarchy, and for Berry’s paradox."
 ---

@@ -35,11 +35,11 @@ finePrint: "Quine presented the example in 1962. The wording is deliberately awk
 sources:
   - title: "Wikipedia: Quine's paradox"
     url: "https://en.wikipedia.org/wiki/Quine%27s_paradox"
-    note: "Source for the sentence and how it works, Quine’s 1962 Scientific American article and its 1966 reprint, the point that philosophers blamed “this” and that the sentence has no such word, the role of “its”, Hofstadter’s comment, Quine’s levels proposal (inspired by Russell and Tarski) and Boolos and Ernst on quotation marks."
+    note: "Main source for the sentence and how it works, Quine’s 1962 article, and the proposed remedies."
   - title: "Stanford Encyclopedia of Philosophy: Liar Paradox"
     url: "https://plato.stanford.edu/entries/liar-paradox/"
-    note: "Source for diagonalisation producing Liar sentences in any language that can express basic syntax, and for the costs of the three families of response: the revenge problem for “neither”, the need for a special logic for “both”, and Kripke’s objection to fixed levels."
+    note: "Source for Liar sentences arising in any language that can describe its own syntax, and the costs of the responses."
   - title: "Stanford Encyclopedia of Philosophy: Self-Reference"
     url: "https://plato.stanford.edu/entries/self-reference/"
-    note: "Source for the distinction between direct and indirect self-reference, and for Yablo’s paradox as a candidate paradox without self-reference, and Priest’s objection that it is self-referential."
+    note: "Source for direct and indirect self-reference, and Yablo’s paradox."
 ---

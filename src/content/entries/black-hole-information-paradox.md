@@ -31,11 +31,11 @@ finePrint: "Hawking’s calculation dates from the 1970s. Preserving information
 sources:
   - title: "Wikipedia: Black hole information paradox"
     url: "https://en.wikipedia.org/wiki/Black_hole_information_paradox"
-    note: "Source for Hawking’s 1973-1975 work, the proposals and their problems, the 2019 result, and the statement that it is now generally believed that information is preserved. The page calls the paradox an unsolved problem in physics. The page presents holography as leading some physicists to the preservation view, not as a proof."
+    note: "Main source for Hawking’s work, the proposals and their problems, the 2019 result, and the view that information is generally believed preserved."
   - title: "Polchinski (2016): The Black Hole Information Problem"
     url: "https://arxiv.org/abs/1609.04036"
-    note: "Lecture notes reviewing Hawking’s 1975 calculation and its thermal radiation, information loss, remnants and baby universes (sections 3 to 5), firewalls and fuzzballs (sections 6 and 7). The author holds that information is preserved but does not report a headcount, and does not cover soft hair."
+    note: "Lecture notes on Hawking’s calculation, information loss, remnants, baby universes, firewalls and fuzzballs."
   - title: "Almheiri, Engelhardt, Marolf and Maxfield (2019): The entropy of bulk quantum fields and the entanglement wedge of an evaporating black hole"
     url: "https://doi.org/10.1007/JHEP12(2019)063"
-    note: "Journal of High Energy Physics, open access. Source for the 2019 radiation-entropy calculation in a simplified two-dimensional model, behaving as unitarity requires. It does not claim a complete account of evaporation."
+    note: "Source for the 2019 radiation-entropy calculation in a simplified model, as unitarity requires, without a complete account of evaporation."
 ---

@@ -32,8 +32,8 @@ finePrint: "The best-known story behind it comes from G. H. Hardy and Srinivasa 
 sources:
   - title: "Wikipedia: Interesting number paradox"
     url: "https://en.wikipedia.org/wiki/Interesting_number_paradox"
-    note: "Source for the argument, its description as humorous and semi-humorous, the point that “interesting” is usually subjective and that the paradox is alleviated by an objective definition, the OEIS example, Hardy and Ramanujan and 1729, Beckenbach (1945), Gardner (1958), Wells (1987), Chaitin (1977) and Russell, and the link to Gödel and to the Berry paradox. The sums of cubes recomputed in Python."
+    note: "Main source for the argument, its humour, the OEIS example, Hardy and Ramanujan’s 1729, and the link to Berry. Sums recomputed."
   - title: "Scientific American: The Most Boring Number in the World Is ... (Manon Bischoff, 2023)"
     url: "https://www.scientificamerican.com/article/the-most-boring-number-in-the-world-is/"
-    note: "Source for 20,067 as the smallest number not appearing in the OEIS at the time, and the point that the database stores only the first part of each sequence."
+    note: "Source for 20,067 as the smallest number missing from the OEIS at the time."
 ---

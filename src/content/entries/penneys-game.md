@@ -32,11 +32,11 @@ finePrint: "The odds above were recomputed exactly for all eight first choices a
 sources:
   - title: "Wikipedia: Penney's game"
     url: "https://en.wikipedia.org/wiki/Penney%27s_game"
-    note: "Source for Penney (Journal of Recreational Mathematics, 1969), the rules, the table of best replies and odds (7 to 1, 3 to 1, 2 to 1), the rule for the best reply, and the Humble-Nishiyama card version. All odds recomputed exactly and checked by simulation. The waiting times of 10 and 8 tosses are computed for this entry."
+    note: "Main source for Penney (1969), the rules, the best replies and odds, and the card version. Odds recomputed."
   - title: "Nishiyama and Humble (2010): Winning odds"
     url: "https://plus.maths.org/content/os/issue55/features/nishiyama/index"
-    note: "Plus Magazine. Source for Penney’s 1969 publication, the rules, the rule for the best reply, and THH winning 7 times in 8 against HHH and 3 times in 4 against HHT."
+    note: "Source for the rules, the best reply, and THH winning 7 times in 8 against HHH and 3 in 4 against HHT."
   - title: "Felix (2006): Optimal Penney Ante Strategy via Correlation Polynomial Identities"
     url: "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v13i1r35"
-    note: "Electronic Journal of Combinatorics 13, R35, open access. Source for the result that for runs of three or more the second player can always do strictly better than even."
+    note: "Source for the second player always doing strictly better than even for runs of three or more."
 ---

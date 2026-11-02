@@ -13,9 +13,9 @@ finePrint: "The outcome depends on the flip axis, which stays vertical in the pi
 sources:
   - title: "Shire Post Mint: Magic Octagon Brain Teaser Coin"
     url: "https://www.shirepost.com/products/magic-octagon-brain-teaser-illusion-coin"
-    note: "The maker describes the perpendicular arrows, a 45° turn and two vertical flips. Its history names Screwy Square (1946), Willane’s The Chinese Compass (1947) and Gardner’s Crazy Crackers (1949), credited to Val Evans. The modern coin was designed with Raymond Hall."
+    note: "Source for the coin’s perpendicular arrows and flips, and the earlier puzzles it descends from."
   - title: "Dan Meyer (2013): The Magic Octagon"
     url: "https://blog.mrmeyer.com/2013/the-magic-octagon/"
-    note: "Documents David Masunaga’s demonstration of the octagon at NCTM in 2013. The comments discuss the apparent direction reversal; the post does not establish the trick’s original inventor."
+    note: "Source for Masunaga’s 2013 demonstration. It does not establish who invented the trick."
 sourcesVerified: true
 ---

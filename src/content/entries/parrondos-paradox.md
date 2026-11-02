@@ -26,5 +26,5 @@ sources:
     note: "Source for the statement, the history, the 0.3836 figure, the winning and losing patterns and the dependence explanation."
   - title: "arXiv: Parrondo's Paradox, some new results and new ideas"
     url: "https://arxiv.org/pdf/1602.04783"
-    note: "Source for the exact game definitions (win chances 1/2 minus ε, 3/4 minus ε and 1/10 minus ε, with ε = 0.005). The win chances in the setup (49.5, 74.5 and 9.5 percent) and the figure that ABAB loses were recomputed with an exact calculation of the long-run average, which matched the 0.3836 figure on the Wikipedia page."
+    note: "Source for the exact game definitions. The win chances and the losing ABAB figure were recomputed."
 ---

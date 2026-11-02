@@ -31,7 +31,7 @@ sources:
   - title: "Stanford Encyclopedia of Philosophy: Epistemic Paradoxes"
     url: https://plato.stanford.edu/entries/epistemic-paradoxes/
   - title: "Martin Gardner, The Unexpected Hanging and Other Mathematical Diversions, chapter 1"
-    note: "Book source for the puzzle’s history and the accounts by O’Connor, Scriven, Quine and Shaw. The site owner checked those historical attributions in chapter 1. This book is not used to support an attribution to Fitch (1964)."
+    note: "Source for the puzzle’s history and its early accounts."
 sourcesVerified: true
 noMaths: true
 ---

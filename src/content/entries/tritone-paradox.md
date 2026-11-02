@@ -28,6 +28,6 @@ sources:
     note: "Links the direction heard to the pitch range of the listener's speaking voice."
   - title: "Repp (1997): Spectral envelope and context effects in the tritone paradox"
     url: "https://doi.org/10.1068/p260645"
-    note: "Perception 26(5), pp. 645–665. Found that shifting the spectral envelope changed many listeners’ judgements, that listeners ranged from fully envelope-dependent to mainly pitch-class-based, and that preceding context could sway judgements."
+    note: "Source for the spectral envelope and context changing many listeners’ judgements."
 sourcesVerified: true
 ---

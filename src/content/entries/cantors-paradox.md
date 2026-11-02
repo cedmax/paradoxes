@@ -30,14 +30,14 @@ finePrint: "The proof treats each size, or cardinal number, as a set of that siz
 sources:
   - title: "Wikipedia: Cantor's paradox"
     url: https://en.wikipedia.org/wiki/Cantor%27s_paradox
-    note: "Statement and proof that no set contains every cardinal, using the union of the members and its power set; proper classes; the link to the Burali-Forti paradox; the description as a mistaken intuition; credit to Cantor (1899, or 1895 to 1897) and to Russell (1899 or 1901)."
+    note: "Main source for the statement and proof, proper classes, the link to Burali-Forti, and the credit to Cantor and Russell."
   - title: "Stanford Encyclopedia of Philosophy: The Early Development of Set Theory (José Ferreirós)"
     url: https://plato.stanford.edu/entries/settheory-early/
-    note: "The paradox of the alephs as a consequence of Cantor’s theorem; Cantor communicating it to Hilbert in 1897, not in full detail; the 1899 letters, including the term “inconsistent multiplicities” in those to Dedekind; “simply a verbal answer to the problem”; Zermelo’s 1908 axioms blocking the known paradoxes; Frege and Russell relying on the principle of comprehension and Dedekind taking the universe to be a set; Russell’s belief in a universal set."
+    note: "Source for Cantor’s 1897 and 1899 letters, “inconsistent multiplicities”, and Zermelo’s 1908 axioms blocking the paradoxes."
   - title: "Wolfram MathWorld: Cantor's Paradox (Eric W. Weisstein)"
     url: https://mathworld.wolfram.com/CantorsParadox.html
-    note: "The version stated for the set of all sets: it would be its own power set, so its size would have to be bigger than itself."
+    note: "Source for the version with the set of all sets, which would have to be bigger than itself."
   - title: "Stanford Encyclopedia of Philosophy: Russell's Paradox"
     url: https://plato.stanford.edu/entries/russell-paradox/
-    note: "Russell found the absence of a greatest cardinal “paradoxical” because he believed in a universal set, and reached his own paradox, probably in the late spring of 1901, by applying the reasoning of Cantor’s diagonal argument to a “supposed class of all imaginable objects”; Cantor’s view that some collections are too large to be sets; Zermelo’s Separation axiom; proper classes in von Neumann’s approach."
+    note: "Source for Russell reaching his own paradox from Cantor’s argument in 1901, and collections too large to be sets."
 ---

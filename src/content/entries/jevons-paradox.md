@@ -22,5 +22,5 @@ finePrint: "In the 1980s Daniel Khazzoom and Leonard Brookes revived the idea fo
 sources:
   - title: "Wikipedia: Jevons paradox"
     url: "https://en.wikipedia.org/wiki/Jevons_paradox"
-    note: "Source for Jevons’s 1865 book, the Watt and Newcomen example, the rebound mechanism, the three conditions, the farming example, and the later debate. The page gives no figures for coal use."
+    note: "Main source for Jevons’s 1865 book, the Watt and Newcomen example, the rebound mechanism, the farming example and the later debate."
 ---

@@ -34,20 +34,20 @@ finePrint: "The reapers are numbered in reverse time order: the reaper called �
 sources:
   - title: "Wikipedia: Grim Reaper paradox"
     url: https://en.wikipedia.org/wiki/Grim_Reaper_paradox
-    note: "The set-up and timings; Benardete’s 1964 book and the name “Benardete paradoxes”; the discrete-time reply and Benardete’s walls; causal finitism and its compatibility with an infinite past; Schmid and Malpass on its heavy commitments and others disputing this; Shackel’s pair of conditions; the unsatisfiable pair diagnosis being compatible with causal finitism; the no-actual-infinities reply; Pruss and Koons on a finite past and a first cause."
+    note: "Main source for the set-up, Benardete’s 1964 book, and the replies: discrete time, causal finitism, the unsatisfiable pair."
   - title: "Shackel, “The Form of the Benardete Dichotomy” (British Journal for the Philosophy of Science, 2005)"
     url: https://philarchive.org/rec/SHATFO
-    note: "Benardete’s gods who each intend to raise a barrier if a traveller reaches their position; Shackel’s diagnosis based on the abstract form of the paradox (abstract only)."
+    note: "Source for Benardete’s gods and Shackel’s diagnosis from the paradox’s abstract form."
   - title: "Schmid and Malpass, “Benardete Paradoxes, Causal Finitism, and the Unsatisfiable Pair Diagnosis” (Mind, 2025)"
     url: https://philarchive.org/rec/SCHBPC
-    note: "Definitions of causal finitism (nothing can have infinitely many causes) and the unsatisfiable pair diagnosis; the authors’ defence of the diagnosis; the causal finitists’ “mysterious force” and patchwork objections and the claim that both can be answered (abstract only)."
+    note: "Source for causal finitism, the unsatisfiable pair diagnosis and its defence against objections."
   - title: "Schmid, “Benardete paradoxes, patchwork principles, and the infinite past” (Synthese, 2024)"
     url: https://link.springer.com/article/10.1007/s11229-023-04481-z
-    note: "Benardete paradoxes used to argue against an infinite past via patchwork principles, and the argument that patchwork principles fail to justify the key premise; Koons as the main target and Pruss as a causal finitist (abstract and notes only)."
+    note: "Source for the argument against an infinite past via patchwork principles, and its rebuttal."
   - title: "Oppy, “Jeepers Reapers!” (AGATHEOS: European Journal for Philosophy of Religion, vol. 1, no. 4)"
     url: https://publicera.kb.se/aejpr/article/view/30280/35659
-    note: "No one disputes Shackel’s demonstration that the set-up is logically impossible; Koons’s argument against an infinite past using patchwork; Pruss’s view that the story gives compelling grounds for causal finitism; Oppy’s denial that the scenario makes a good case for causal finitism, and his statement that he does not endorse the unsatisfiable pair diagnosis."
+    note: "Source for the set-up being undisputedly impossible, Koons’s and Pruss’s arguments, and Oppy’s rejection of them."
   - title: "Robert Koons, blog posts on the Grim Reaper"
     url: https://robkoons.net/old-blog-2021-22/category/grim-reaper
-    note: "Koons’s own statement of the argument: the possibility of a single reaper-like scenario, patchwork principles drawn from Lewis, the conclusion that the past is finite, and its generalisation into an argument for causal finitism."
+    note: "Source for Koons’s own argument from a reaper-like scenario to a finite past."
 ---

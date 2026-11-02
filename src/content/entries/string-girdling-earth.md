@@ -30,11 +30,11 @@ finePrint: "The puzzle assumes a perfectly round Earth with nothing in the way a
 sources:
   - title: "Wikipedia: String girdling Earth"
     url: "https://en.wikipedia.org/wiki/String_girdling_Earth"
-    note: "Both versions of the puzzle, the 40,000 km circumference, the answers 1/(2π) metre or about 16 cm and 2π or about 6.3 metres, a cat passing easily, the result holding for any size of sphere from an atom to the Milky Way, and the 2π rule for any simple polygon or closed curve."
+    note: "Main source for both versions, the 40,000 km circumference, the answers, and the rule for any closed curve."
   - title: "Plus Magazine (University of Cambridge, Millennium Mathematics Project): Puzzle page 38"
     url: "https://plus.maths.org/content/puzzle-page-38"
-    note: "The same puzzle with a 1 metre addition and an equator of about 40,000 km; the radius grows by 1/(2π), about 0.16, so the string stands about 16 cm off the ground, whatever the size of the circle."
+    note: "Source for the radius growing by about 16 cm whatever the size of the circle."
   - title: "Montana State University Physics, Problem of the week: rope round the Earth"
     url: "https://www.physics.montana.edu/avorontsov/teaching/problemoftheweek/documents/problem_Math002.pdf"
-    note: "The height h = ℓ/(2π), independent of the Earth’s radius, about 16 cm for 1 metre, so a cat can crawl under; and the version where the slack is pulled up at a single point, with the approximate formula h ≈ (R/2)(3ℓ/2R)^(2/3), giving about 3.5 m for 5 mm of extra rope with R ≈ 6400 km. The figure of about 120 m for 1 metre was computed from the same formula."
+    note: "Source for the height being independent of the Earth’s radius, and the version pulled up at one point."
 ---

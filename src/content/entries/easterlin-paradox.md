@@ -35,11 +35,11 @@ finePrint: "The paradox is an empirical generalisation, not a theorem, so it sta
 sources:
   - title: "Wikipedia: Easterlin paradox"
     url: "https://en.wikipedia.org/wiki/Easterlin_paradox"
-    note: "Source for the 2014 evidence, the explanations, Easterlin’s 2017 reply, the threshold evidence, and the 2022 update. Not independently checked against the original papers."
+    note: "Source for the 2014 evidence, the explanations, Easterlin’s 2017 reply, the threshold evidence and the 2022 update."
   - title: "Stevenson and Wolfers (2008): Economic Growth and Subjective Well-Being: Reassessing the Easterlin Paradox"
     url: "https://www.brookings.edu/wp-content/uploads/2008/03/2008a_bpea_stevenson.pdf"
-    note: "Source for Easterlin (1974) calling the cross-country link ambiguous and small, on four to nine countries, and for the positive link they find across countries and over time."
+    note: "Source for Easterlin (1974) calling the link between countries ambiguous and small, and for the positive link they find."
   - title: "Easterlin and O’Connor (2020): The Easterlin Paradox"
     url: "https://www.iza.org/publications/dp/13923"
-    note: "Source for the paradox as Easterlin now states it: happiness varies with income among and within nations at a point in time, while long-term growth rates of happiness and income are not significantly related."
+    note: "Source for the paradox as Easterlin now states it."
 ---

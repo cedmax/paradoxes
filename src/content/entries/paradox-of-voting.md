@@ -40,8 +40,8 @@ finePrint: "The name “paradox of voting” is also used for a different puzzle
 sources:
   - title: "Wikipedia: Paradox of voting"
     url: "https://en.wikipedia.org/wiki/Paradox_of_voting"
-    note: "Source for the statement of the paradox, the name Downs' paradox, Condorcet (1793), Hegel (1821), Downs (1957), the expressive (Brennan and Lomasky) and altruism (Chiang 2012; Edlin, Gelman and Kaplan) accounts and the study on expected closeness and turnout."
+    note: "Main source for the paradox, Downs, and the expressive and altruism accounts."
   - title: "Stanford Encyclopedia of Philosophy: The Ethics and Rationality of Voting"
     url: "https://plato.stanford.edu/entries/voting/"
-    note: "Source for the expected value comparison, the millionth of a penny estimate (Brennan and Lomasky 1993), the 1 in 10 million figure for very close states (Edlin, Gelman and Kaplan 2007), Downs's insurance idea, civic duty (Mackie 2010) and the particularity problem, Freiman (2020), the causal accounts (Tuck 2008; Goldman 1999), the author's view on result-based goals and the conclusion that rationality depends on what voters are trying to do."
+    note: "Source for the expected value comparison, the small-chance estimates, civic duty, and rationality depending on voters’ aims."
 ---

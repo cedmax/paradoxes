@@ -27,10 +27,10 @@ finePrint: "Euler treated this series and Grandi’s series as two cases of the 
 sources:
   - title: "Wikipedia: 1 − 2 + 3 − 4 + ⋯"
     url: "https://en.wikipedia.org/wiki/1_%E2%88%92_2_%2B_3_%E2%88%92_4_%2B_%E2%8B%AF"
-    note: "Source for the running totals and divergence, the 4s = 1 argument and what it proves about linear and stable methods (citing Hardy, Divergent Series), the work of Cesàro, Borel and others from 1890, Cesàro summation failing (means alternating between 0 and values tending to 1/2) and (C, 2), (H, 2) and Abel summation giving 1/4, Cesàro’s 1891 remark on the Cauchy product with Grandi’s series, the link to the eta and zeta functions, and the countability remark. Shifted sums, running totals, (H, 2) means and the Abel limit recomputed."
+    note: "Main source for the running totals, the 4s = 1 argument, and the summation methods giving 1/4. Figures recomputed."
   - title: "Euler, Remarks on a beautiful relation between direct as well as reciprocal power series (E352), translated by Lucas Willis and Thomas J. Osler"
     url: "https://users.rowan.edu/~nguyen/euler/translations/Translation%20with%20notes%20of%20Eulers%20E%20352%20Aug%201%2006.pdf"
-    note: "Original text in translation. Source for the quotations “must appear paradoxical” and “a more extended meaning”, and for 100 terms giving −50 and 101 terms giving +51 (recomputed)."
+    note: "Source for the quotations “must appear paradoxical” and “a more extended meaning”. Sums recomputed."
   - title: "Euler Archive: E352, Remarques sur un beau rapport entre les séries des puissances tant directes que réciproques"
     url: "https://scholarlycommons.pacific.edu/euler-works/352"
     note: "Source for the paper being written in 1749 and published in 1768 in the Mémoires de l’académie des sciences de Berlin."

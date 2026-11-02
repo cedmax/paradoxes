@@ -36,14 +36,14 @@ finePrint: "Kornhauser and Sager described the court puzzle in 1986. Pettit late
 sources:
   - title: "Stanford Encyclopedia of Philosophy: Social Choice Theory (section 5, The aggregation of judgments)"
     url: "https://plato.stanford.edu/entries/social-choice/"
-    note: "Kornhauser and Sager (1986) and the doctrinal paradox; the premise-based and conclusion-based options and what each ignores; the List and Pettit (2002) theorem and its four conditions; propositionwise majority failing only consistency; Pauly and van Hees (2006) on weakening anonymity; the theorem as a statement of trade-offs. Read through the University of Sydney mirror, because the main site’s page was cut off before section 5."
+    note: "Source for the doctrinal paradox, the premise-based and conclusion-based options, and the List and Pettit theorem."
   - title: "Philippe Mongin, “Judgment Aggregation”, in Introduction to Formal Philosophy (Springer, 2018)"
     url: "https://people.hec.edu/mongin-en/wp-content/uploads/sites/37/2018/12/O26-Mongin-Judgment-Aggregation-Handbook-Formal-Philosophy-18.pdf"
-    note: "The contract case with three judges, two issues (a valid contract and a breach) and their votes; Pettit (2001) and the discursive dilemma as the generalised doctrinal paradox; the premise-based method as often proposed, by Pettit among others; the strengths of each method; the premise-based method also “fraught with difficulties”; the legal literature having no clear-cut solution."
+    note: "Source for the contract case, the discursive dilemma, and the premise-based method’s difficulties."
   - title: "List and Pettit (2002), “Aggregating Sets of Judgments: An Impossibility Result”, Economics and Philosophy 18(1), 89-110 (IDEAS/RePEc record)"
     url: "https://ideas.repec.org/a/cup/ecnphi/v18y2002i01p89-110_00.html"
     note: "Citation and abstract: the difficulty noticed in the doctrinal paradox is an instance of a general impossibility theorem."
   - title: "Wikipedia: Discursive dilemma"
     url: "https://en.wikipedia.org/wiki/Discursive_dilemma"
-    note: "Premise-based and conclusion-based procedures can give opposite results; the road repair example (three groups of 20 percent; 80 percent per condition, 40 percent for all three, recomputed); the link to the Condorcet paradox and Arrow’s theorem; Pettit on holding corporations responsible."
+    note: "Source for the opposite results of the two procedures and the road repair example (recomputed)."
 ---

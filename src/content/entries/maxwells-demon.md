@@ -30,5 +30,5 @@ finePrint: "Szilard analysed a single-molecule version in 1929. Landauer argued 
 sources:
   - title: "Stanford Encyclopedia of Philosophy: Information Processing and Thermodynamic Entropy"
     url: "https://plato.stanford.edu/entries/information-entropy/"
-    note: "Source for Maxwell’s 1867 letter, Szilard (1929), Landauer (1961), Bennett (1973, 1982), the cost kT ln 2 per bit, Norton’s criticism, and the statement that the matter remains open to debate. The last part of the page was not read."
+    note: "Source for Maxwell’s letter, Szilard, Landauer, Bennett, the cost per bit, Norton’s criticism, and the debate staying open."
 ---

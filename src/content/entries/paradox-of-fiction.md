@@ -23,5 +23,5 @@ finePrint: "Other philosophers resolve it differently. Walton (1978) denied the 
 sources:
   - title: "Wikipedia: Paradox of fiction"
     url: "https://en.wikipedia.org/wiki/Paradox_of_fiction"
-    note: "Source for the three claims, Radford and Weston (1975), the three families of response, the statement that the second claim is widely rejected, and the neuroscience remark."
+    note: "Source for the three claims, Radford and Weston (1975), the responses, and the neuroscience remark."
 ---

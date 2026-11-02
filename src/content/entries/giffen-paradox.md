@@ -22,8 +22,8 @@ finePrint: "A 2007 field experiment by Jensen and Miller, reported in the Americ
 sources:
   - title: "Wikipedia: Giffen good"
     url: "https://en.wikipedia.org/wiki/Giffen_good"
-    note: "Source for the definition, the three conditions, the bread and cake example, the Stigler attribution, the Jensen and Miller field experiment, and the caveats. The example was recomputed: two bread plus one cake costs 2 + 4 = 6 dollars, and three bread costs 3 × 2 = 6 dollars. The page gives no figures for the field experiment."
+    note: "Main source for the definition, the three conditions, the Stigler attribution and the field experiment. Bread and cake sums recomputed."
   - title: "Jensen and Miller (2008): Giffen Behavior and Subsistence Consumption"
     url: "https://doi.org/10.1257/aer.98.4.1553"
-    note: "American Economic Review 98, pp. 1553-1577, full text read in the authors’ copy. Source for Marshall first publicising the idea in the 1895 edition, and for the Hunan rice and Gansu wheat results."
+    note: "Source for Marshall first publicising the idea in the 1895 edition, and for the Hunan rice and Gansu wheat results."
 ---
