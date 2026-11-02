@@ -1,0 +1,128 @@
+// Spoken equivalents for Magic Octagon controls.
+// Loaded in a separate module so this narration does not share the figure's
+// drawing handlers or update SVG descriptions inside animation frames.
+
+import {
+  angles,
+  cornerNames as corners,
+  isEdgeOn,
+  labels as directions,
+} from "~/scripts/magic-octagon-coin"
+
+const wrap = (n: number) => ((n % 8) + 8) % 8
+const position = (x: number, y: number) =>
+  wrap(Math.round((Math.atan2(y, x) + Math.PI / 2) / (Math.PI / 4)))
+
+const describe = (turn: number, flip: number, marked: boolean) => {
+  const radians = (turn * Math.PI) / 180
+  const cosFlip = Math.cos((flip * Math.PI) / 180)
+  const degrees = Math.round(flip)
+  if (isEdgeOn(flip)) {
+    return `${degrees} degrees. Edge-on; neither face is visible.`
+  }
+
+  const front = cosFlip > 0
+  const arrowX = front ? Math.sin(radians) * cosFlip : Math.cos(radians) * cosFlip
+  const arrowY = front ? -Math.cos(radians) : Math.sin(radians)
+  const arrow = directions[position(arrowX, arrowY)]
+  const markerX = Math.sin(radians) * cosFlip
+  const markerY = -Math.cos(radians)
+  const markedCorner = marked ? `; marked corner at ${corners[position(markerX, markerY)]}` : ""
+  return `${degrees} degrees. ${front ? "Front" : "Flipped"} face; arrow points ${arrow}${markedCorner}.`
+}
+
+const coinDescriptions = new WeakMap<Element, string>()
+const updateCoinDescription = (id: string, turn: number, flip: number, marked: boolean) => {
+  const svg = document.querySelector<SVGSVGElement>(`[data-magic-coin="${id}"]`)
+  const desc = svg?.querySelector("desc")
+  if (!desc) return
+  if (!coinDescriptions.has(desc)) coinDescriptions.set(desc, desc.textContent?.trim() ?? "")
+  desc.textContent = `${coinDescriptions.get(desc)} Current view: ${describe(turn, flip, marked)}`
+}
+
+const update = (slider: HTMLInputElement, updateGraphicDescription: boolean) => {
+  const id = slider.id
+  const degrees = Number(slider.value)
+  if (!Number.isFinite(degrees)) return
+
+  let spoken: string
+  let descriptions: Array<[string, number, number, boolean]>
+
+  if (id === "magic-octagon-inspect-slider") {
+    spoken = describe(0, degrees, false)
+    descriptions = [["inspect", 0, degrees, false]]
+  } else if (id === "magic-octagon-puzzle-slider") {
+    spoken = describe(45, degrees, false)
+    descriptions = [["puzzle", 45, degrees, false]]
+  } else if (id === "magic-octagon-proof-slider") {
+    spoken = `First view: ${describe(45, degrees, true)} Second view: ${describe(45, 180 - degrees, true)}`
+    descriptions = [
+      ["proof-front", 45, degrees, true],
+      ["proof-flipped", 45, 180 - degrees, true],
+    ]
+  } else if (id === "magic-octagon-proof-variants-shared") {
+    const face = isEdgeOn(degrees) ? "Edge-on" : degrees < 90 ? "Front faces" : "Flipped faces"
+    spoken = `${degrees} degrees. ${face}; all eight marked coins turn together.`
+    descriptions = angles.map((angle) => [`proof-variant-${angle}`, angle, degrees, true])
+  } else {
+    const match = /^magic-octagon-proof-variant-(\d+)$/.exec(id)
+    if (!match) return
+    const turn = Number(match[1])
+    spoken = describe(turn, degrees, true)
+    descriptions = [[`proof-variant-${turn}`, turn, degrees, true]]
+  }
+
+  slider.setAttribute("aria-valuetext", spoken)
+  // SVG descriptions are refreshed on release, not on every animation frame.
+  // Keeping the rendering hot path untouched avoids interfering with scrubbing.
+  if (updateGraphicDescription) {
+    for (const [coinId, turn, flip, marked] of descriptions) {
+      updateCoinDescription(coinId, turn, flip, marked)
+    }
+  }
+}
+
+const initialise = () => {
+  if (!document.querySelector('[data-entry="magic-octagon"]')) return
+  const sliders = Array.from(
+    document.querySelectorAll<HTMLInputElement>('input[type="range"][id^="magic-octagon-"]'),
+  )
+  const sync = (includeGraphics: boolean) => {
+    for (const slider of sliders) update(slider, includeGraphics)
+  }
+
+  // Bubbling listeners run after the figure's own slider handlers.
+  document.addEventListener("input", (event) => {
+    if (event.target instanceof HTMLInputElement && sliders.includes(event.target)) {
+      update(event.target, false)
+    }
+  })
+  document.addEventListener("change", (event) => {
+    if (event.target instanceof HTMLInputElement && sliders.includes(event.target)) {
+      update(event.target, true)
+    }
+  })
+  document.addEventListener("click", (event) => {
+    const target = event.target
+    if (!(target instanceof Element)) return
+    if (target.closest("#magic-octagon-reset")) {
+      queueMicrotask(() => sync(true))
+    } else if (target.closest("#magic-octagon-guide-toggle")) {
+      // The revealed coin animates for 1.8 s (or changes instantly for reduced motion).
+      const delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1850
+      window.setTimeout(() => sync(true), delay)
+    }
+  })
+  window.matchMedia("(min-width: 48rem)").addEventListener("change", () => {
+    queueMicrotask(() => sync(true))
+  })
+
+  sync(true)
+  window.addEventListener("load", () => sync(false), { once: true })
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initialise, { once: true })
+} else {
+  initialise()
+}
