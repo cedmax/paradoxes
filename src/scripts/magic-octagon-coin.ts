@@ -89,6 +89,51 @@ export const drawCoin = (svg: SVGSVGElement, turn: number, flip: number) => {
       quad.map((point) => point.x.toFixed(3) + "," + point.y.toFixed(3)).join(" "),
     )
   }
+  describeSvg(svg, turn, flip)
+}
+
+// Describe the visible projection, not just the slider's numeric value.
+// The corner dot is on the same top vertex of both painted faces.
+const projectedDirection = (x: number, y: number) => {
+  const angle = Math.atan2(y, x)
+  return labels[wrap(Math.round((angle + Math.PI / 2) / (Math.PI / 4)))]
+}
+
+export const describeCoin = (turn: number, flip: number, marked = false) => {
+  const degrees = Math.round(flip)
+  const turnRadians = (turn * Math.PI) / 180
+  const flipCos = Math.cos((flip * Math.PI) / 180)
+  if (Math.abs(flipCos) <= 0.015) {
+    return marked
+      ? degrees + " degrees. Edge-on: the coin's thickness is visible; neither arrow nor dot is visible."
+      : degrees + " degrees. Edge-on: the coin's thickness is visible; neither arrow is visible."
+  }
+
+  const front = flipCos > 0
+  const x = front ? Math.sin(turnRadians) * flipCos : Math.cos(turnRadians) * flipCos
+  const y = front ? -Math.cos(turnRadians) : Math.sin(turnRadians)
+  const arrow = projectedDirection(x, y)
+  const side = front ? "Front" : "Flipped"
+  const cornerX = Math.sin(turnRadians) * flipCos
+  const cornerY = -Math.cos(turnRadians)
+  return (
+    degrees + " degrees. " + side + " face; arrow points " + arrow +
+    (marked ? "; marked corner is " + projectedDirection(cornerX, cornerY) : "") + "."
+  )
+}
+
+// Preserve the contextual SVG description while keeping its current position
+// accurate for anyone navigating back to the graphic after using a slider.
+const startingDescriptions = new WeakMap<SVGSVGElement, string>()
+const describeSvg = (svg: SVGSVGElement, turn: number, flip: number) => {
+  const desc = svg.querySelector("desc")
+  if (!desc) return
+  if (!startingDescriptions.has(svg)) {
+    startingDescriptions.set(svg, desc.textContent?.trim() ?? "")
+  }
+  const marked = svg.querySelector("[data-coin-marker]") !== null
+  desc.textContent =
+    startingDescriptions.get(svg) + " Current view: " + describeCoin(turn, flip, marked)
 }
 
 export const inspectionLabel = (degrees: number) => {
