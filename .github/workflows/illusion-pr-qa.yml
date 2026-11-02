@@ -90,4 +90,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Revalidate rebased draft heads and continuous Ames playback
+# Check Ames reduced-motion slider and 75-degree/second playback (no rebase)
