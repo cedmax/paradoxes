@@ -32,8 +32,44 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         viewBox="0 0 360 290"
         class="w-full"
         title="A two-sided octagonal coin"
-        desc="A two-sided octagon with a blue arrow pointing up on one side. A red dashed vertical line marks the fixed axis about which the coin is flipped. The opposite side can be shown alongside it."
+        desc="A two-sided octagonal coin with a blue arrow pointing up. A fixed red dashed line marks the vertical flip axis. When the coin turns over, its shaded edge becomes visible before the other face appears."
       >
+        <!-- A shallow extruded rim moves sideways as the coin tips. At
+             90 degrees the face is edge-on but its thickness is still visible. -->
+        <g id="magic-octagon-rim" aria-hidden="true" visibility="hidden">
+          <g id="magic-octagon-rim-turn">
+            <polygon
+              points={corners}
+              fill={illusionSurface.midGrey}
+              stroke={stroke}
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+          </g>
+        </g>
+        <g id="magic-octagon-edge" aria-hidden="true" visibility="hidden">
+          <rect
+            id="magic-octagon-edge-body"
+            x="180"
+            y="33"
+            width="0"
+            height="224"
+            rx="3"
+            fill={illusionSurface.midGrey}
+            stroke={stroke}
+            stroke-width="1"
+          />
+          <line
+            id="magic-octagon-edge-highlight"
+            x1="180"
+            y1="38"
+            x2="180"
+            y2="252"
+            stroke={illusionSurface.paper}
+            stroke-width="2"
+            opacity=".65"
+          />
+        </g>
         <g id="magic-octagon-flip">
           <g id="magic-octagon-turn">
             <polygon
@@ -101,8 +137,42 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         viewBox="0 0 360 290"
         class="w-full"
         title="The flipped view of the same octagonal coin"
-        desc="The same octagon viewed from the flipped side, with a gold arrow pointing left. A red dashed vertical line marks the fixed flip axis."
+        desc="The same coin viewed from the flipped side, with a gold arrow initially pointing left. The coin has a shaded edge to show its thickness during the flip. A fixed red dashed line marks the flip axis."
       >
+        <g id="magic-octagon-other-rim" aria-hidden="true" visibility="hidden">
+          <g id="magic-octagon-other-rim-turn">
+            <polygon
+              points={corners}
+              fill={illusionSurface.midGrey}
+              stroke={stroke}
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+          </g>
+        </g>
+        <g id="magic-octagon-other-edge" aria-hidden="true" visibility="hidden">
+          <rect
+            id="magic-octagon-other-edge-body"
+            x="180"
+            y="33"
+            width="0"
+            height="224"
+            rx="3"
+            fill={illusionSurface.midGrey}
+            stroke={stroke}
+            stroke-width="1"
+          />
+          <line
+            id="magic-octagon-other-edge-highlight"
+            x1="180"
+            y1="38"
+            x2="180"
+            y2="252"
+            stroke={illusionSurface.paper}
+            stroke-width="2"
+            opacity=".65"
+          />
+        </g>
         <g
           id="magic-octagon-other-mirror"
           transform="translate(180 145) scale(-1 1) translate(-180 -145)"
@@ -246,9 +316,10 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     </h2>
     <p id="magic-octagon-answer" class="text-base" aria-live="polite"></p>
     <p class="text-base">
-      Both views now show the same turned coin. The black dots mark the same
-      physical corner, making the reversal easier to follow. The red Y axis
-      stays fixed as the coin turns. Use the controls to rotate or flip it.
+      Both views now show the same turned coin. Watch its shaded edge as it
+      flips around the fixed red Y axis. The black dots mark the same physical
+      corner, making the reversal easier to follow. Use the controls to rotate
+      or flip it.
     </p>
     <div
       class="mx-auto grid w-full max-w-lg grid-cols-[1fr_1.5fr_1fr] gap-2 sm:gap-3"
@@ -358,6 +429,19 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     const otherTurn = find<SVGGElement>(root, "#magic-octagon-other-turn")
     const otherFront = find<SVGGElement>(root, "#magic-octagon-other-front")
     const otherBack = find<SVGGElement>(root, "#magic-octagon-other-back")
+    const rim = find<SVGGElement>(root, "#magic-octagon-rim")
+    const rimTurn = find<SVGGElement>(root, "#magic-octagon-rim-turn")
+    const edge = find<SVGGElement>(root, "#magic-octagon-edge")
+    const edgeBody = find<SVGRectElement>(root, "#magic-octagon-edge-body")
+    const edgeHighlight = find<SVGLineElement>(root, "#magic-octagon-edge-highlight")
+    const otherRim = find<SVGGElement>(root, "#magic-octagon-other-rim")
+    const otherRimTurn = find<SVGGElement>(root, "#magic-octagon-other-rim-turn")
+    const otherEdge = find<SVGGElement>(root, "#magic-octagon-other-edge")
+    const otherEdgeBody = find<SVGRectElement>(root, "#magic-octagon-other-edge-body")
+    const otherEdgeHighlight = find<SVGLineElement>(
+      root,
+      "#magic-octagon-other-edge-highlight",
+    )
     const marker = find<SVGCircleElement>(root, "#magic-octagon-marker")
     const otherMarker = find<SVGCircleElement>(root, "#magic-octagon-other-marker")
 
@@ -413,6 +497,22 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     }
 
     const draw = () => {
+      // Approximate a shallow extruded octagon: the rear outline shifts
+      // sideways as the face narrows, exposing an edge at the halfway point.
+      // None of these extra shapes rotate the red Y-axis or the corner mark.
+      const depth = 14 * Math.abs(Math.sin((displayedFlip * Math.PI) / 180))
+      const rimVisible = depth > 0.2 ? "visible" : "hidden"
+      rim.setAttribute("visibility", rimVisible)
+      edge.setAttribute("visibility", rimVisible)
+      rim.setAttribute(
+        "transform",
+        "translate(" + depth + " 0) " + scaleAroundCentre(Math.cos((displayedFlip * Math.PI) / 180)),
+      )
+      rimTurn.setAttribute("transform", "rotate(" + displayedAngle + " 180 145)")
+      edgeBody.setAttribute("x", "180")
+      edgeBody.setAttribute("width", String(depth))
+      edgeHighlight.setAttribute("x1", String(180 + depth * 0.7))
+      edgeHighlight.setAttribute("x2", String(180 + depth * 0.7))
       const width = Math.cos((displayedFlip * Math.PI) / 180)
       const showingBack = displayedFlip > 90
       flipGroup.setAttribute("transform", scaleAroundCentre(width))
@@ -424,6 +524,18 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       // Its complementary flip angle makes both drawings animate together.
       const otherFlip = 180 - displayedFlip
       const otherWidth = Math.cos((otherFlip * Math.PI) / 180)
+      // Viewed from the opposite side, the depth projects to the left.
+      otherRim.setAttribute("visibility", rimVisible)
+      otherEdge.setAttribute("visibility", rimVisible)
+      otherRim.setAttribute(
+        "transform",
+        "translate(" + -depth + " 0) " + scaleAroundCentre(otherWidth),
+      )
+      otherRimTurn.setAttribute("transform", "rotate(" + displayedAngle + " 180 145)")
+      otherEdgeBody.setAttribute("x", String(180 - depth))
+      otherEdgeBody.setAttribute("width", String(depth))
+      otherEdgeHighlight.setAttribute("x1", String(180 - depth * 0.7))
+      otherEdgeHighlight.setAttribute("x2", String(180 - depth * 0.7))
       const otherShowingBack = otherFlip > 90
       otherMirror.setAttribute("transform", scaleAroundCentre(otherWidth))
       otherTurn.setAttribute("transform", "rotate(" + displayedAngle + " 180 145)")
