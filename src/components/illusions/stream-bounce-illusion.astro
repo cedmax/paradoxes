@@ -1,0 +1,173 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { illusionSurface, series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="stream-bounce-illusion"
+  lead="Do the two dots pass through each other, or bounce off one another?"
+>
+  <p class="text-base">
+    Watch both versions. They have identical motion. One adds a click exactly as the discs
+    overlap. Use wired speakers if possible; sound delay can affect the result.
+  </p>
+  <SvgFigure
+    name="stream-bounce-illusion"
+    viewBox="0 0 560 240"
+    class="mx-auto w-full max-w-xl"
+    title="Two identical discs travelling towards each other along a horizontal line"
+    desc="The discs start at opposite ends, meet in the centre, overlap and separate. Their projected positions are exactly the same with and without a click. Later, coloured tracking marks can show the uninterrupted trajectories."
+  >
+    <rect x="10" y="10" width="540" height="220" fill={illusionSurface.neutral} />
+    <path d="M70 120 H490" stroke={stroke} stroke-width="1" stroke-opacity="0.25" />
+    <circle id="stream-bounce-illusion-left" cx="90" cy="120" r="19" fill={stroke} />
+    <circle id="stream-bounce-illusion-right" cx="470" cy="120" r="19" fill={stroke} />
+    <g id="stream-bounce-illusion-guides" visibility="hidden">
+      <path d="M90 76 L470 76 M470 166 L90 166" fill="none" stroke={series.red} stroke-width="3" />
+      <path d="M455 66 L470 76 L455 86 M105 156 L90 166 L105 176" fill="none" stroke={series.red} stroke-width="3" />
+      <text x="280" y="63" text-anchor="middle" font-size="15" fill={stroke}>One continuous path</text>
+      <text x="280" y="191" text-anchor="middle" font-size="15" fill={stroke}>The other continuous path</text>
+    </g>
+  </SvgFigure>
+  <div class="flex flex-wrap gap-3">
+    <button id="stream-bounce-illusion-silent" class="btn-ghost" type="button">
+      Play in silence
+    </button>
+    <button id="stream-bounce-illusion-sound" class="btn-ghost" type="button">
+      Play with a click
+    </button>
+  </div>
+  <p id="stream-bounce-illusion-progress" class="text-base" aria-live="polite">
+    Neither version has played yet.
+  </p>
+  <ListenerChoice
+    name="stream-bounce-illusion"
+    question="In the version you just watched, what seemed to happen?"
+    options={[
+      { value: "stream", label: "Passed through" },
+      { value: "bounce", label: "Bounced" },
+      { value: "unsure", label: "Couldn't tell" },
+    ]}
+    skipLabel="I cannot see or hear the demonstration"
+  />
+  <div id="stream-bounce-illusion-reveal" hidden>
+    <IllusionControls
+      name="stream-bounce-illusion"
+      play={false}
+      proof="The two discs are identical, so the images alone do not tell which object emerged on which side. Red guides show the two uninterrupted trajectories used to draw the animation. No positions changed when the sound was added."
+      proofLabel="Show tracking paths"
+    />
+  </div>
+  <Fragment slot="caption">
+    Original vector and synthesized click, after Sekuler, Sekuler and Lau (1997).
+    The discs and paths are generated for this site.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { audioAvailable, playSamples, stopAudio } from "~/scripts/audio"
+  import {
+    bindIllusionProof,
+    bindListenerChoice,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
+
+  const name = "stream-bounce-illusion"
+  const root = illustrationRoot(name)
+  if (root) {
+    const silent = find<HTMLButtonElement>(root, `#${name}-silent`)
+    const sound = find<HTMLButtonElement>(root, `#${name}-sound`)
+    const left = find<SVGCircleElement>(root, `#${name}-left`)
+    const right = find<SVGCircleElement>(root, `#${name}-right`)
+    const progress = find<HTMLElement>(root, `#${name}-progress`)
+    const reveal = find<HTMLElement>(root, `#${name}-reveal`)
+    const answers = new Map<string, string>()
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const duration = 1700
+    let current: "silent" | "sound" = "silent"
+    let frame = 0
+    let playing = false
+    const setPositions = (fraction: number) => {
+      left.setAttribute("cx", String(90 + 380 * fraction))
+      right.setAttribute("cx", String(470 - 380 * fraction))
+    }
+    const choices = bindListenerChoice(root, name, (value) => {
+      if (value === "skip") {
+        reveal.hidden = false
+        return "Both visual versions have the same trajectories. The text proof below does not reproduce the subjective percept."
+      }
+      answers.set(current, value)
+      if (answers.has("silent") && answers.has("sound")) {
+        reveal.hidden = false
+        return `Without sound: ${answers.get("silent")}. With click: ${answers.get("sound")}. Both paths were identical.`
+      }
+      return "Try the other version and record its result to see the tracking paths."
+    })
+    const stop = () => {
+      playing = false
+      cancelAnimationFrame(frame)
+      silent.disabled = false
+      sound.disabled = !audioAvailable()
+    }
+    const clickSamples = (rate: number) => {
+      const samples = new Float32Array(Math.round((duration / 1000) * rate))
+      const offset = Math.floor(0.85 * rate)
+      const length = Math.floor(0.018 * rate)
+      for (let n = 0; n < length; n++) {
+        const envelope = (1 - n / length) ** 2
+        samples[offset + n] = 0.12 * envelope * Math.sin((2 * Math.PI * 620 * n) / rate)
+      }
+      return samples
+    }
+    const play = async (mode: "silent" | "sound") => {
+      if (playing) return
+      if (reducedMotion.matches) {
+        progress.textContent = "Animation is disabled by reduced-motion settings. The text proof explains the paths."
+        reveal.hidden = false
+        return
+      }
+      current = mode
+      playing = true
+      silent.disabled = true
+      sound.disabled = true
+      setPositions(0)
+      stopAudio()
+      if (mode === "sound") {
+        const started = await playSamples(clickSamples)
+        if (!started) {
+          stop()
+          progress.textContent = "Audio could not start. Try the silent version."
+          return
+        }
+      }
+      progress.textContent = mode === "sound" ? "Playing with a click." : "Playing in silence."
+      choices.enable()
+      let began: number | undefined
+      const tick = (now: number) => {
+        if (!playing) return
+        began ??= now
+        const fraction = Math.min(1, (now - began) / duration)
+        setPositions(fraction)
+        if (fraction === 1) {
+          stop()
+          progress.textContent = "The dots have crossed. Record what you saw."
+        } else frame = requestAnimationFrame(tick)
+      }
+      frame = requestAnimationFrame(tick)
+    }
+    silent.addEventListener("click", () => void play("silent"))
+    sound.addEventListener("click", () => void play("sound"))
+    if (!audioAvailable()) sound.disabled = true
+    bindIllusionProof(root, name, "Show tracking paths", "Hide tracking paths")
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop()
+    })
+    reducedMotion.addEventListener("change", () => {
+      if (reducedMotion.matches) stop()
+    })
+  }
+</script>
