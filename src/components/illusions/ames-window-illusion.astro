@@ -181,6 +181,8 @@ import { series, stroke } from "~/data/palette"
       frame = requestAnimationFrame(tick)
     }
     const choices = bindListenerChoice(root, name, (value) => {
+      // An accessible opt-out must stop motion; ordinary judgements must not.
+      if (value === "skip") stop()
       reveal.hidden = false
       return value === "skip"
         ? "The top view can be inspected without watching the rotation."
