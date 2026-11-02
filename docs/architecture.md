@@ -89,14 +89,40 @@ from `src/components/illusions/<slug>.astro`. Each demonstration owns its initia
 what is true" fields are stored. An optional `finePrint` holds research detail and caveats
 below `why`, in the same "The fine print." box arguments use (`src/components/FinePrint.astro`). Prefer the original media where reuse is
 permitted and faithful; otherwise redraw or synthesise and credit the originator.
-All displayed media must be served from this site's own public assets; third-party
-URLs may only be used for attribution and source links. The checker-shadow
+Images, audio, animations and video posters are served from this site's own
+public assets; never hotlink them. Video may be embedded only under the conditions
+in the create-illusion skill, reproduced below. Source and licence links may point
+to third-party sites. The checker-shadow
 reveal scrubs 24 frames from the freely reusable Wikimedia Commons animation,
 packaged as a local, lossless `public/illustrations/checker-shadow-scrub-frames.png`
 sprite. The earliest source frame (which would appear last in the reverse scrub)
 is intentionally omitted. The original PNG and GIF are not shipped; only the
 sprite is used. There is no fixed-hash or dimension-check gate in the build.
-No media are downloaded by the browser or build.
+The build never downloads media. The browser downloads only site-hosted
+media until a visitor deliberately clicks an approved video poster; only then
+may the YouTube or Vimeo player load.
+A video may be embedded only when **all** of these conditions hold:
+
+(a) It shows a physical object, real demonstration or live action that cannot be
+faithfully redrawn or synthesised.
+(b) The upload is the rights holder's own (creator, publisher or institution), not
+a re-upload. Confirm the uploader with YouTube or Vimeo oEmbed and document the
+rights basis.
+(c) No third-party request occurs before the visitor clicks a locally hosted poster.
+After the click, playback uses `youtube-nocookie.com` or Vimeo with `dnt=1`,
+without autoplay.
+(d) The poster does not reveal the effect. When a prediction or judgement is requested,
+the revealing part of the video must come after the visitor makes it.
+(e) The figure contains a text description of what the video shows and a plain
+link to the original video as a fallback.
+(f) The provider makes the video available at 720p or higher from an HD source,
+not an upscaled standard-definition original. The locally hosted poster must
+be at least 1280×720 and preserve the effect without cropping.
+
+Verify the highest available video resolution in the provider's player or API (not
+from a thumbnail), and record it, the oEmbed uploader and the rights basis in the PR.
+Do not download or self-host video unless its licence explicitly permits reuse.
+
 `format` describes the editorial structure, not which sense the presentation
 uses. A visual vanishing puzzle may remain an argument; audio illusions use the same
 format and schema as visual ones.
