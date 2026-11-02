@@ -94,10 +94,19 @@ export const drawCoin = (svg: SVGSVGElement, turn: number, flip: number) => {
 
 // Describe the visible projection, not just the slider's numeric value.
 // The corner dot is on the same top vertex of both painted faces.
-const projectedDirection = (x: number, y: number) => {
-  const angle = Math.atan2(y, x)
-  return labels[wrap(Math.round((angle + Math.PI / 2) / (Math.PI / 4)))]
-}
+const directionIndex = (x: number, y: number) =>
+  wrap(Math.round((Math.atan2(y, x) + Math.PI / 2) / (Math.PI / 4)))
+
+const cornerNames = [
+  "top",
+  "upper-right",
+  "right",
+  "lower-right",
+  "bottom",
+  "lower-left",
+  "left",
+  "upper-left",
+]
 
 export const describeCoin = (turn: number, flip: number, marked = false) => {
   const degrees = Math.round(flip)
@@ -112,15 +121,22 @@ export const describeCoin = (turn: number, flip: number, marked = false) => {
   const front = flipCos > 0
   const x = front ? Math.sin(turnRadians) * flipCos : Math.cos(turnRadians) * flipCos
   const y = front ? -Math.cos(turnRadians) : Math.sin(turnRadians)
-  const arrow = projectedDirection(x, y)
+  const arrow = labels[directionIndex(x, y)]
   const side = front ? "Front" : "Flipped"
   const cornerX = Math.sin(turnRadians) * flipCos
   const cornerY = -Math.cos(turnRadians)
   return (
     degrees + " degrees. " + side + " face; arrow points " + arrow +
-    (marked ? "; marked corner is " + projectedDirection(cornerX, cornerY) : "") + "."
+    (marked ? "; marked corner is " + cornerNames[directionIndex(cornerX, cornerY)] : "") + "."
   )
 }
+
+// The detailed equivalent for a shared slider is available through its
+// screen-reader description, while each coin can also be read individually.
+export const describeGallery = (angles: readonly number[], flip: number, marked = false) =>
+  angles
+    .map((angle) => angle + "° starting rotation: " + describeCoin(angle, flip, marked))
+    .join(" ")
 
 // Preserve the contextual SVG description while keeping its current position
 // accurate for anyone navigating back to the graphic after using a slider.
