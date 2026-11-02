@@ -27,7 +27,10 @@ resolution:
   - "So the first claim is false and the second is true. The frictionless equations describe the fluid well far from the body, and fail close to it."
 finePrint: "The explanation is not fully proven mathematically. Birkhoff argued in 1950 that blaming viscosity alone is an oversimplification, and Stewartson’s 1981 survey says the paradox may be regarded as largely resolved. Other models, such as the Kirchhoff and Rayleigh wake model, give some drag, but they have problems of their own. For a flat plate, that model predicts a drag coefficient of 0.88, against about 2.0 measured."
 sources:
+  - title: "Grimberg, Pauls and Frisch (2008), Genesis of d'Alembert's paradox and analytical elaboration of the drag problem"
+    url: "https://doi.org/10.1016/j.physd.2008.01.015"
+    note: "Physica D, sections II, IV, VII and VIII: zero drag in ideal potential flow, early hydrodynamics, d'Alembert's 1768 formulation for symmetric bodies and the later viscosity explanation. The entry's broad 1752 proof needs historical review."
   - title: "Wikipedia: D'Alembert's paradox"
     url: "https://en.wikipedia.org/wiki/D%27Alembert%27s_paradox"
-    note: "Source for the 1752 result, the 1768 remark, Prandtl’s boundary layers (1904), form drag, the free-streamline model and its figures, Birkhoff’s dissent and Stewartson’s 1981 verdict. Not checked against the original papers."
+    note: "Birkhoff's 1950 objection, Stewartson's 1981 assessment and the wake-model drag coefficients 0.88 versus 2.0 have not been checked against their original sources."
 ---

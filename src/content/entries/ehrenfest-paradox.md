@@ -21,6 +21,8 @@ resolution:
   - "Observers rotating with the disc use a geometry in which the measured circumference-to-radius relation differs from the ordinary flat one. Like the [ladder paradox](ladder-paradox), this needs attention to which observer measures what."
 finePrint: "In the stationary laboratory frame, the circular rim still has the usual coordinate circumference for its radius. The non-Euclidean relation concerns distances measured using rotating observers and their clocks, not a simple claim that the visible rim literally contracts to a smaller circle."
 sources:
-  - title: "Wikipedia: Ehrenfest paradox"
-    url: "https://en.wikipedia.org/wiki/Ehrenfest_paradox"
+  - title: "Benjamin Crowell, General Relativity, The Metric, Part 2"
+    url: "https://phys.libretexts.org/Bookshelves/Relativity/General_Relativity_%28Crowell%29/03%3A_Differential_Geometry/3.07%3A_The_Metric_%28Part_2%29"
+    note: "Ehrenfest's Paradox and The Metric in the Rotating Frame: no perfectly rigid rotating disc, distinct lab-frame and co-rotating distances, and non-Euclidean measurements."
+
 ---
