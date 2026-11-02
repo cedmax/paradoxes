@@ -25,6 +25,9 @@ report findings without editing anything.
 
 ## Accuracy and approval flags
 
+- Follow the "accurate, not academic" rule in `CLAUDE.md`: a fetched reputable secondary source
+  that supports the claim is sufficient. Replacing or supplementing it with originals is not a
+  goal in itself.
 - Every fact, date, number, quote and attribution must be checked against a source that was
   actually fetched (Wikipedia, Stanford Encyclopedia of Philosophy, the original paper). Never
   invent URLs, quotes or figures. Recompute numbers.

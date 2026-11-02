@@ -15,6 +15,11 @@ Keep the editorial promise: "Paradoxes in plain words."
 - Routes at `/entries/<slug>/` are stable; never rename an entry file without a redirect.
 - Avoid dependencies unless required. Use Tailwind utilities and theme tokens; resort to
   arbitrary values only when necessary. Preserve semantic heading order and keyboard access.
+- Accurate, not academic. Every claim must be correct and supported, but the site is not a
+  paper. A reputable secondary source (Wikipedia, the Stanford Encyclopedia, a textbook) is
+  enough when it supports the claim. Do not chase originals or add references to claims that
+  are already correctly sourced. Dig deeper only when a claim is unsupported, contradicted or
+  doubtful, and then fix the claim, not the bibliography.
 - Prettier uses no semicolons, 2-space indentation and print width 96. Husky and lint-staged
   run at commit time. Never claim a command passed unless it was run.
 
