@@ -62,7 +62,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
         <span>Front</span>
         <span>Flipped</span>
       </div>
-      <p id="magic-octagon-inspect-state" class="text-center text-base">
+      <p id="magic-octagon-inspect-state" class="text-center text-base" aria-live="polite">
         Front · 0°
       </p>
     </div>
@@ -140,7 +140,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
         <p
           id="magic-octagon-puzzle-slider-state"
           class="text-center text-base"
-         
+          aria-live="polite"
         >
           Front · 0°
         </p>
@@ -177,7 +177,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
                 max="180"
                 step="1"
                 value="0"
-                aria-describedby="magic-octagon-variants-shared-state magic-octagon-variants-description"
+                aria-describedby="magic-octagon-variants-shared-state"
                 aria-valuetext="Front · 0°"
               />
               <div class="flex w-full max-w-md justify-between text-sm">
@@ -187,10 +187,10 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
               <p
                 id="magic-octagon-variants-shared-state"
                 class="text-center text-sm"
+                aria-live="polite"
               >
                 Front · 0°
               </p>
-              <p id="magic-octagon-variants-description" class="sr-only"></p>
             </div>
           )}
           <div
@@ -265,14 +265,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
 
 <script>
   import { find, illustrationRoot } from "~/scripts/illustration"
-  import {
-    describeCoin,
-    describeGallery,
-    directionIndexes,
-    drawCoin,
-    inspectionLabel,
-    labels,
-  } from "~/scripts/magic-octagon-coin"
+  import { directionIndexes, drawCoin, inspectionLabel, labels } from "~/scripts/magic-octagon-coin"
 
   const root = illustrationRoot("magic-octagon")
   if (root) {
@@ -299,10 +292,6 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
       root,
       "#magic-octagon-variants-shared-state",
     )
-    const sharedVariantsDescription = find<HTMLElement>(
-      root,
-      "#magic-octagon-variants-description",
-    )
     const reveal = find<HTMLButtonElement>(root, "#magic-octagon-reveal")
     const answer = find<HTMLElement>(root, "#magic-octagon-answer")
     const showMore = find<HTMLButtonElement>(root, "#magic-octagon-show-more")
@@ -315,7 +304,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
       const degrees = Number(inspectSlider.value)
       drawCoin(inspect, 0, degrees)
       inspectState.textContent = inspectionLabel(degrees)
-      inspectSlider.setAttribute("aria-valuetext", describeCoin(0, degrees))
+      inspectSlider.setAttribute("aria-valuetext", inspectionLabel(degrees))
     }
 
     const puzzleAngle = 45
@@ -341,7 +330,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
       puzzleSlider.value = String(rounded)
       const label = inspectionLabel(rounded)
       puzzleSliderState.textContent = label
-      puzzleSlider.setAttribute("aria-valuetext", describeCoin(puzzleAngle, rounded))
+      puzzleSlider.setAttribute("aria-valuetext", label)
     }
 
     // The answer animation flips the SAME puzzle coin, then leaves the slider
@@ -385,7 +374,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
         drawCoin(svg, turn, degrees)
         const label = inspectionLabel(degrees)
         state.textContent = label
-        slider.setAttribute("aria-valuetext", describeCoin(turn, degrees))
+        slider.setAttribute("aria-valuetext", label)
       }
       slider.addEventListener("input", () => update(Number(slider.value)))
       variantUpdates.push(update)
@@ -396,11 +385,7 @@ const previewAngles = [0, 45, 90, 135, 180, 225, 270, 315]
       sharedVariantsSlider.value = String(degrees)
       const label = inspectionLabel(degrees)
       sharedVariantsState.textContent = label
-      sharedVariantsSlider.setAttribute(
-        "aria-valuetext",
-        "All eight coins. " + describeCoin(45, degrees),
-      )
-      sharedVariantsDescription.textContent = describeGallery(previewAngles, degrees)
+      sharedVariantsSlider.setAttribute("aria-valuetext", label)
       for (const update of variantUpdates) update(degrees)
     }
     sharedVariantsSlider.addEventListener("input", () => {
