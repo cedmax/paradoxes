@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { pr: 137, branch: video/ames-window }
+          - { pr: 138, branch: video/flash-beep }
     steps:
       - uses: actions/checkout@v4
         with:
@@ -90,4 +90,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Validate Ames judgement stays playing; only Pause and motion opt-out stop it
+# Validate sound-induced flash latency, two-version gating and frame timing
