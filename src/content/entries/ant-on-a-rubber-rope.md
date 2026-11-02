@@ -19,6 +19,10 @@ resolution:
   - "Each moment of walking adds a smaller fraction of the growing rope, but those fractions keep accumulating and eventually add up to the whole length."
 finePrint: "The conclusion assumes uniform stretching and constant positive walking speed relative to the rope. The arrival time can be astronomically large. Change the stretching rule and the ant might never arrive."
 sources:
+  - title: "Francis Su, Inchworm on a Rubber Rope"
+    url: "https://math.hmc.edu/funfacts/inchworm-on-a-rubber-rope/"
+    note: "Uniform stretching carries the ant and fractional progress accumulates. Its model stretches every second, not continuously."
   - title: "Wikipedia: Ant on a rubber rope"
     url: "https://en.wikipedia.org/wiki/Ant_on_a_rubber_rope"
+    note: "The continuous stretching model and the conditions for reaching the endpoint. Hsiao treats discrete stretching, so is not cited as a continuous model."
 ---

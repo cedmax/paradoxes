@@ -20,6 +20,10 @@ resolution:
   - "The unrestricted sentence loops back on itself, like the [Liar](liar-paradox), rather than describing a practical game rule."
 finePrint: "This is a self-defeating game convention rather than precisely the [Liar paradox](liar-paradox). It shares self-reference but not all of the Liar’s claims about truth."
 sources:
+  - title: "Stanford Encyclopedia of Philosophy, Liar Paradox"
+    url: "https://plato.stanford.edu/entries/liar-paradox/"
+    note: "The self-reference analogy, not the folk game."
   - title: "Wikipedia: Opposite Day"
     url: "https://en.wikipedia.org/wiki/Opposite_Day"
+    note: "The Opposite Day folk-game convention and its usual statement-reversing rule."
 ---

@@ -20,6 +20,13 @@ resolution:
   - "The outcome depends on how fractional shares are rounded and awarded. It is not the same mechanism as a majority-voting cycle, so this puzzle stands on its own."
 finePrint: "The Alabama paradox was identified in historical United States apportionment calculations. Methods designed to prevent seat losses when the total grows may give up other desirable rules."
 sources:
+  - title: "US Census Bureau, Methods of Apportionment"
+    url: "https://www.census.gov/about/history/historical-censuses-and-surveys/census-programs-surveys/decennial-census/methods.html"
+    note: "Official history of seat allocation methods."
+  - title: "US Census Bureau, Historical Perspective"
+    url: "https://www.census.gov/topics/public-sector/congressional-apportionment/about/historical-perspective.html"
+    note: "1850 to 1900: Hamilton's largest remainder method and the Alabama paradox. The 6:6:2 worked example was recalculated."
   - title: "Wikipedia: Apportionment paradox"
     url: "https://en.wikipedia.org/wiki/Apportionment_paradox"
+    note: "The caveat that some alternative allocation methods sacrifice other desirable properties."
 ---

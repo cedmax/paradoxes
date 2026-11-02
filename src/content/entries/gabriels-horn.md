@@ -20,6 +20,13 @@ resolution:
   - "A coat with the same positive thickness everywhere would need infinite paint. Real paint cannot fill the ideal horn either: eventually the tube is too narrow for its molecules. The apparent clash mixes these different assumptions."
 finePrint: "The horn comes from rotating y = 1/x for x ≥ 1 around the x-axis. Its volume is pi cubic units and its surface area is infinite. Torricelli studied it in 1643. A mathematical filling also idealises the time needed for paint to reach an endless tube. The result concerns area and volume, not a practical painting task."
 sources:
+  - title: "Wolfram MathWorld, Gabriel's Horn"
+    url: "https://mathworld.wolfram.com/GabrielsHorn.html"
+    note: "The horn's equation, volume pi and infinite surface area."
+  - title: "MacTutor, Evangelista Torricelli"
+    url: "https://mathshistory.st-andrews.ac.uk/Biographies/Torricelli/"
+    note: "Torricelli communicated results on the hyperbolic solid in 1643 and published relevant work in 1644."
   - title: "Wikipedia: Gabriel's Horn"
     url: https://en.wikipedia.org/wiki/Gabriel%27s_Horn
+    note: "Exact dating of the original discovery and the limits imposed by real paint molecules."
 ---

@@ -19,6 +19,8 @@ resolution:
   - "The endless demand does not expose a flaw in the particular triangle proof. It exposes the difference between knowing a rule and using it."
 finePrint: "This is Lewis Carroll’s logic puzzle, not [Zeno’s race](achilles-and-the-tortoise) with the same characters."
 sources:
-  - title: "Wikipedia: What the Tortoise Said to Achilles"
-    url: "https://en.wikipedia.org/wiki/What_the_Tortoise_Said_to_Achilles"
+  - title: "Lewis Carroll (1895), What the Tortoise Said to Achilles"
+    url: "https://fair-use.org/mind/1895/04/what-the-tortoise-said-to-achilles"
+    note: "Original Mind article, pp. 278 to 280, on why adding premises cannot replace applying an inference rule."
+
 ---

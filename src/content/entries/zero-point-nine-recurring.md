@@ -31,7 +31,16 @@ resolution:
   - "The popular argument that multiplies by 10 (if x is 0.999…, then 10x is 9.999…, so 10x minus x is 9, and x is 1) and the argument from one third reach the right answer. But several writers on teaching, including Richman, Eisenmann and Cheng, point out that their steps quietly assume that 0.999… already has a meaning and that ordinary arithmetic works on it. The definition as a limit is what makes those steps safe."
 finePrint: "Many students resist this. Education researchers since David Tall in the 1970s have found that students often picture 0.999… as a process that keeps getting closer to 1 rather than as a fixed number, and William Byers reports that most of the undergraduate mathematics students he met called it very close to 1, some even infinitely close, without being ready to call it equal. The answer is about the standard real numbers. Some other number systems, such as ones with infinitely small quantities, can be set up so that a string written like 0.999… stands for something infinitely close to 1 but less than it, and in Fred Richman’s system of decimal numbers 0.999… is less than 1. These are different systems with different rules, not corrections to the standard one. Every decimal that stops has a twin of this kind: 0.25 is also 0.24999…."
 sources:
+  - title: "Harvey Mudd College, Why Does 0.999... Equal 1?"
+    url: "https://math.hmc.edu/funfacts/why-does-0-999-1/"
+    note: "The real-number identity, geometric series and equivalent trailing-nine expansions."
+  - title: "Euler Archive, Complete Instruction in Algebra, Book One"
+    url: "https://scholarlycommons.pacific.edu/euler-works/387/"
+    note: "Records Euler's 1770 algebra text and provides the translated discussion of infinite decimal series."
+  - title: "Fred Richman (1999), Is 0.999... = 1?"
+    url: "https://doi.org/10.1080/0025570X.1999.11996777"
+    note: "Mathematics Magazine 72, pp. 396 to 400, section Decimal numbers: a nonstandard decimal system with 0.999... less than 1. Full article read."
   - title: "Wikipedia: 0.999..."
     url: "https://en.wikipedia.org/wiki/0.999..."
-    note: "Source for the definition as the smallest number at least as big as all cut-off versions (least upper bound), the limit argument with gaps of one divided by 10 to the power n, Euler’s Elements of Algebra (1770), the one-third and multiply-by-10 arguments and the criticisms by Byers, Richman, Eisenmann and Cheng, the education research (Tall, Byers), the alternative number systems including Richman’s, and the example 0.25 = 0.24999…. Gaps recomputed in Python with exact fractions."
+    note: "Tall, Byers, Eisenmann and Cheng, and the remaining teaching-study details."
 ---
