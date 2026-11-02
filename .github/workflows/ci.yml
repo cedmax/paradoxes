@@ -45,15 +45,6 @@ jobs:
         run: pnpm exec prettier --check .
         continue-on-error: true
 
-      # Temporary validation output. Remove this step before handing back the PR.
-      - name: Format and test Magic Octagon build
-        if: always()
-        run: |
-          pnpm exec prettier --write src/components/IllusionExperience.astro src/components/illusions/magic-octagon.astro src/components/illusions/explanations/magic-octagon.astro src/scripts/magic-octagon-accessibility.ts
-          node -e 'const fs=require("node:fs");const p=["src/components/IllusionExperience.astro","src/components/illusions/magic-octagon.astro","src/components/illusions/explanations/magic-octagon.astro","src/scripts/magic-octagon-accessibility.ts"];for(let i=0;i<p.length;i++)console.log("FORMAT_CONTENT_"+i+"::"+JSON.stringify(fs.readFileSync(p[i],"utf8")));'
-          pnpm build
-          pnpm check:seo
-
       - name: Unused code
         id: knip
         run: pnpm knip
