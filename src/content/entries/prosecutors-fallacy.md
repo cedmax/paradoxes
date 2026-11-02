@@ -19,15 +19,18 @@ resolution:
   - "Suppose the suspect came from a city of 100,000 people, and nothing else points to them, so each of those people is equally likely to be the culprit. About 1 in 1,000 of those people match, so about 100 people match. One of them is the culprit and about 99 are innocent. A matching person is guilty roughly 1 time in 100, not 999 times in 1,000."
   - "The match is still strong evidence. It narrows 100,000 people to about 100. But it does not on its own prove guilt, and how much it proves depends on how many people could have left the trace and on what other evidence there is."
   - "The name comes from Thompson and Schumann, who in 1987 named this mistake and its mirror image, the defence attorney's fallacy. That is dismissing real evidence by saying that many people would match, without asking how much the match still narrows things down."
-  - "A real example is the case of Sally Clark, a British woman convicted in 1999 of murdering her two baby sons. A paediatrician told the court the chance of two cot deaths in one family was 1 in 73 million, which he got by squaring a figure of 1 in 8,543. That was his estimate for a single cot death in an affluent, non-smoking family like hers. The Royal Statistical Society later said there was no statistical basis for it. The deaths might not be independent, and even a true figure would have been the wrong one to quote. The question is not how rare two cot deaths are. It is how they compare with the rarity of two murders. One calculation reported on the case put double cot death as between 4.5 and 9 times more likely than double murder. Her convictions were overturned in 2003."
+  - "A real example is the case of Sally Clark, a British woman convicted in 1999 of murdering her two baby sons. A paediatrician told the court the chance of two cot deaths in one family was 1 in 73 million, which he got by squaring a figure of 1 in 8,543. That was his estimate for a single cot death in an affluent, non-smoking family like hers. The Royal Statistical Society later said there was no statistical basis for it. The deaths might not be independent, and even a true figure would have been the wrong one to quote. The question is not how rare two cot deaths are. It is how they compare with the rarity of two murders. Ray Hill estimated that double cot death was about nine times more likely than double murder. Her convictions were overturned in 2003."
 finePrint: "The example uses invented round numbers and assumes there is no other evidence, which is rarely true in a real trial. Real forensic cases are harder, because matches are not always yes or no and no one knows exactly how many people could have left the trace. The Sally Clark case also had other failures, including withheld medical evidence, so the statistics were not the only problem."
 sources:
+  - title: "Ray Hill (2005), Reflections on the Cot Death Cases"
+    url: "https://doi.org/10.1111/j.1740-9713.2005.00077.x"
+    note: "Significance 2, pp. 13-16. Hill gives a rough estimate of about nine double cot deaths per double murder."
   - title: "Wikipedia: Base rate fallacy"
     url: https://en.wikipedia.org/wiki/Base_rate_fallacy
     note: "covers the prosecutor's and defence attorney's fallacies and the 1987 naming"
   - title: "Wikipedia: Sally Clark"
     url: https://en.wikipedia.org/wiki/Sally_Clark
-    note: "Still the only source for the 4.5 to 9 times figure, attributed there to a calculation by Ray Hill."
+    note: "Background on the Sally Clark case; Hill's nine-to-one estimate is now supported by his original paper."
   - title: "Thompson and Schumann (1987): Interpretation of Statistical Evidence in Criminal Trials: The Prosecutor’s Fallacy and the Defense Attorney’s Fallacy"
     url: https://doi.org/10.1007/BF01044641
     note: "Law and Human Behavior 11, pp. 167-187, full text read. Source for the naming and definitions of both fallacies."
