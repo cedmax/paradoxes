@@ -26,4 +26,8 @@ finePrint: "The opposing predictions concern the economy as a whole under a slum
 sources:
   - title: "Wikipedia: Paradox of thrift"
     url: "https://en.wikipedia.org/wiki/Paradox_of_thrift"
+    note: "Still the only source for the rival accounts in which extra saving finances investment."
+  - title: "Keynes (1936): The General Theory of Employment, Interest and Money, chapter 7"
+    url: "https://www.hetwebsite.net/het/texts/keynes/gt/chap07.htm"
+    note: "Source for the Keynesian mechanism: an attempt to save more by cutting consumption lowers others’ incomes and defeats itself, with less than full employment."
 ---

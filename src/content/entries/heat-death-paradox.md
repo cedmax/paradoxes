@@ -22,4 +22,13 @@ finePrint: "This is the classic thermodynamic argument against an eternal static
 sources:
   - title: "Wikipedia: Heat death paradox"
     url: "https://en.wikipedia.org/wiki/Heat_death_paradox"
+  - title: "William Thomson (1862): On the Age of the Sun’s Heat"
+    url: "https://zapatopi.net/kelvin/papers/on_the_age_of_the_suns_heat.html"
+    note: "Macmillan’s Magazine 5, pp. 388-393. Source for the nineteenth-century argument that usable energy steadily dissipates and would end in universal rest if the universe were finite."
+  - title: "Müller and Müller (2024): On the Heat Death and the Big Crunch"
+    url: "https://doi.org/10.1007/s10659-022-09926-z"
+    note: "Journal of Elasticity 155, pp. 171-180, open access. Source for Clausius’s heat death and his picture of a static universe, and for gravity making a self-gravitating gas unlike a gas in a container."
+  - title: "NASA: WMAP overview"
+    url: "https://science.nasa.gov/mission/wmap/wmap-overview/"
+    note: "Source for the observed universe expanding and having a finite age of about 13.8 billion years."
 ---
