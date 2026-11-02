@@ -21,7 +21,10 @@ resolution:
   - "So the first claim is true and the second is false. Reading fiction can produce real feelings."
 finePrint: "Other philosophers resolve it differently. Walton (1978) denied the first claim: readers feel something like emotions, which he called quasi-emotions, and do not truly fear a monster on the page. Alan Paskow denied the third by treating fictional characters as real in a way. Neuroscience studies have found weaker responses to things believed to be fictional, which suggests the difference is one of degree, not of kind."
 sources:
+  - title: "Stanford Encyclopedia of Philosophy, Emotional Responses to Fiction"
+    url: "https://plato.stanford.edu/entries/fiction-emotion-response/"
+    note: "Full scholarly treatment of Radford and Weston, belief-based and thought-based accounts, and Walton's quasi-emotion response."
   - title: "Wikipedia: Paradox of fiction"
     url: "https://en.wikipedia.org/wiki/Paradox_of_fiction"
-    note: "Source for the three claims, Radford and Weston (1975), the three families of response, the statement that the second claim is widely rejected, and the neuroscience remark."
+    note: "The particular position attributed to Alan Paskow and the claim that neuroscience finds weaker responses to known fictional events need their original publications."
 ---

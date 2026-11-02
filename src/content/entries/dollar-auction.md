@@ -28,7 +28,10 @@ resolution:
   - "The chance of dropping out in the symmetric strategy does not depend on the bids already made. Rational bidding can therefore continue past a dollar. This defeats the claim that rational bidders never cross that price, without saying that every further bid is compulsory or that a short-term reply is the best plan for the whole game."
 finePrint: "Martin Shubik described the game in 1971. Formal analyses consider stable strategies, including strategies that drop out with some probability. An immediate saving if the opponent stops is not a guarantee about the eventual result. Related penny auctions also differ in their rules. The game illustrates escalation, rather than proving that rational players must bid without limit."
 sources:
+  - title: "Martin Shubik (1971), The Dollar Auction Game: A Paradox in Noncooperative Behavior and Escalation"
+    url: "https://doi.org/10.1177/002200277101500111"
+    note: "Journal of Conflict Resolution 15(1), pp. 109 to 111: the winner and runner-up both pay, and trying to avoid the runner-up's loss can escalate bids past the prize value. This paper does not prove the stationary mixed equilibrium stated in the entry."
   - title: "Wikipedia: Dollar auction"
     url: "https://en.wikipedia.org/wiki/Dollar_auction"
-    note: "Source for the rules, Shubik (1971, Journal of Conflict Resolution 15(1)), the escalation example, the equilibria, the sunk-cost explanation, and Augenblick (2016). Some of the page’s claims are tagged as needing a citation."
+    note: "The symmetric stationary mixed strategy, asymmetric equilibria and constant dropout probability in the entry are not established by Shubik (1971) or the reviewed formal papers. Their precise model still needs a specialist reference."
 ---

@@ -19,6 +19,8 @@ resolution:
   - "Engagement, friendships and meaningful activity can produce pleasure without treating every moment as a measure of pleasure."
 finePrint: "This is a philosophical and psychological observation, not a numerical law or a claim that planning enjoyable activities is bad."
 sources:
-  - title: "Wikipedia: Paradox of hedonism"
-    url: "https://en.wikipedia.org/wiki/Paradox_of_hedonism"
+  - title: "Internet Encyclopedia of Philosophy, Paradox of Hedonism"
+    url: "https://iep.utm.edu/paradox-of-hedonism/"
+    note: "Philosophical overview of why directly pursuing pleasure can frustrate its attainment in some circumstances, without a universal law that happiness-seeking always fails."
+
 ---

@@ -19,6 +19,10 @@ resolution:
   - "Finding out what people actually prefer can prevent the pattern. That requires room to express doubts before a decision is made."
 finePrint: This is a description of a pattern in groups, not a mathematical result, and the story is an anecdote used as a thought experiment. The evidence for how common it is comes mostly from case studies and small surveys, which the sources below describe only briefly. Calling it a paradox is a figure of speech. Nothing in it contradicts itself, once you notice that stated and private preferences can differ.
 sources:
+  - title: "Jerry B. Harvey (1974), The Abilene Paradox: The Management of Agreement"
+    url: "https://doi.org/10.1016/0090-2616(74)90005-9"
+    note: "Original Organizational Dynamics article, the Abilene family anecdote and mistaken group agreement. A later full-text reprint was read; the article is an illustration, not prevalence evidence."
   - title: "Wikipedia: Abilene paradox"
     url: https://en.wikipedia.org/wiki/Abilene_paradox
+    note: "The claim that evidence for frequency comes mostly from case studies and small surveys is not supported by Harvey's anecdote alone."
 ---
