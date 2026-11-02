@@ -1,0 +1,183 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { illusionSurface, stroke } from "~/data/palette"
+
+const count = 64
+const dots = Array.from({ length: count }, (_, index) => {
+  const angle = (2 * Math.PI * index) / count
+  const hue = (index * 137.5) % 360
+  return { index, x: 280 + 126 * Math.cos(angle), y: 190 + 126 * Math.sin(angle), hue }
+})
+---
+
+<IllustrationFigure
+  name="motion-silencing-illusion"
+  lead="Do the changing dots seem to become steady when the ring starts turning?"
+>
+  <p class="text-base">
+    Start with the ring still, watching the central cross. Then make the ring turn. The dots
+    continue changing colour in both cases. Stop if motion is uncomfortable.
+  </p>
+  <SvgFigure
+    name="motion-silencing-illusion"
+    viewBox="0 0 560 380"
+    class="mx-auto w-full max-w-xl"
+    title="A ring of coloured dots with a central fixation cross"
+    desc="Sixty-four dots arranged around a ring continuously cycle through hues after Play is pressed. The ring can then rotate while the individual colour changes continue. Stopping rotation makes the changes easier to notice for many viewers."
+  >
+    <rect x="12" y="12" width="536" height="356" fill={illusionSurface.neutral} />
+    <g id="motion-silencing-illusion-ring">
+      {dots.map(({ index, x, y, hue }) => (
+        <circle cx={x} cy={y} r="5.2" fill={`hsl(${hue} 65% 55%)`} data-dot={index} />
+      ))}
+    </g>
+    <path d="M270 190 H290 M280 180 V200" stroke={stroke} stroke-width="3" />
+  </SvgFigure>
+  <div class="flex flex-wrap gap-3">
+    <button
+      id="motion-silencing-illusion-play"
+      class="btn-ghost"
+      type="button"
+      aria-pressed="false"
+    >
+      Start changing colours
+    </button>
+    <button
+      id="motion-silencing-illusion-turn"
+      class="btn-ghost"
+      type="button"
+      aria-pressed="false"
+      disabled
+    >
+      Start turning the ring
+    </button>
+  </div>
+  <p id="motion-silencing-illusion-status" class="text-base" aria-live="polite">
+    At rest. Press Start to begin colour changes.
+  </p>
+  <ListenerChoice
+    name="motion-silencing-illusion"
+    question="When the ring turned, what happened to the colour changes?"
+    options={[
+      { value: "stopped", label: "They seemed to stop" },
+      { value: "continued", label: "They still changed" },
+      { value: "unsure", label: "Couldn't tell" },
+    ]}
+    skipLabel="I cannot watch the motion"
+  />
+  <div id="motion-silencing-illusion-reveal" hidden>
+    <IllusionControls
+      name="motion-silencing-illusion"
+      play={false}
+      proof="The dots keep cycling through exactly the same hues in both states. The proof control freezes only the ring's rotation, not the colour changes, so the changes can be inspected again."
+      proofLabel="Freeze rotation to check"
+    />
+  </div>
+  <Fragment slot="caption">
+    Original browser-generated stimulus after Suchow and Alvarez (2011). The changing hues are
+    stimulus data rather than decorative palette colours.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import { bindListenerChoice, find, illustrationRoot } from "~/scripts/illustration"
+
+  const name = "motion-silencing-illusion"
+  const root = illustrationRoot(name)
+  if (root) {
+    const dots = Array.from(root.querySelectorAll<SVGCircleElement>("[data-dot]"))
+    const ring = find<SVGGElement>(root, `#${name}-ring`)
+    const play = find<HTMLButtonElement>(root, `#${name}-play`)
+    const turn = find<HTMLButtonElement>(root, `#${name}-turn`)
+    const proof = find<HTMLButtonElement>(root, `#${name}-guide-toggle`)
+    const proofText = find<HTMLElement>(root, `#${name}-proof`)
+    const reveal = find<HTMLElement>(root, `#${name}-reveal`)
+    const status = find<HTMLElement>(root, `#${name}-status`)
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
+    let running = false
+    let turning = false
+    let frame = 0
+    let last: number | undefined
+    let elapsed = 0
+    let rotation = 0
+    const choices = bindListenerChoice(root, name, (value) => {
+      reveal.hidden = false
+      return value === "skip"
+        ? "The proof explains that colour changes continue, without asking you to watch them."
+        : "The dot colours change throughout, even if they seem to hold steady."
+    })
+    const render = () => {
+      dots.forEach((dot, index) => {
+        const hue = (index * 137.5 + elapsed / 25) % 360
+        dot.setAttribute("fill", `hsl(${hue.toFixed(1)} 65% 55%)`)
+      })
+      ring.setAttribute("transform", `rotate(${rotation.toFixed(2)} 280 190)`)
+    }
+    const stop = () => {
+      running = false
+      turning = false
+      cancelAnimationFrame(frame)
+      last = undefined
+      play.textContent = "Start changing colours"
+      play.setAttribute("aria-pressed", "false")
+      turn.textContent = "Start turning the ring"
+      turn.setAttribute("aria-pressed", "false")
+      turn.disabled = true
+    }
+    const tick = (now: number) => {
+      if (!running) return
+      const delta = last === undefined ? 0 : Math.min(70, now - last)
+      last = now
+      elapsed += delta
+      if (turning) rotation += delta * 0.12
+      render()
+      frame = requestAnimationFrame(tick)
+    }
+    play.addEventListener("click", () => {
+      if (running) return stop()
+      if (reduced.matches) {
+        reveal.hidden = false
+        status.textContent = "Motion is disabled by your accessibility settings."
+        return
+      }
+      running = true
+      last = undefined
+      play.textContent = "Stop"
+      play.setAttribute("aria-pressed", "true")
+      turn.disabled = false
+      status.textContent = "Dots are changing colour. Keep your gaze on the cross."
+      frame = requestAnimationFrame(tick)
+    })
+    turn.addEventListener("click", () => {
+      if (!running) return
+      turning = !turning
+      turn.textContent = turning ? "Stop turning the ring" : "Start turning the ring"
+      turn.setAttribute("aria-pressed", String(turning))
+      status.textContent = turning
+        ? "The ring turns. Every dot is still changing colour."
+        : "The ring is still. The colour changes continue."
+      if (turning) choices.enable()
+    })
+    proof.addEventListener("click", () => {
+      const shown = proof.getAttribute("aria-pressed") !== "true"
+      proof.setAttribute("aria-pressed", String(shown))
+      proof.textContent = shown ? "Return to the experiment" : "Freeze rotation to check"
+      proofText.hidden = !shown
+      turning = !shown && running
+      turn.setAttribute("aria-pressed", String(turning))
+      turn.textContent = turning ? "Stop turning the ring" : "Start turning the ring"
+      status.textContent = shown
+        ? "Rotation is paused. The hues continue to change."
+        : "Rotation can resume, with the same hue changes."
+    })
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop()
+    })
+    reduced.addEventListener("change", () => {
+      if (reduced.matches) stop()
+    })
+  }
+</script>
