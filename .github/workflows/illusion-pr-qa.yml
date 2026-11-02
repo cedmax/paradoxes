@@ -38,13 +38,13 @@ jobs:
       - name: Install
         working-directory: site
         run: pnpm install --frozen-lockfile
-      - name: Output exact Prettier formatting for Ames
+      - name: Capture exact formatting for sound-induced flash
         working-directory: site
         run: |
-          pnpm exec prettier src/components/illusions/ames-window-illusion.astro > /tmp/ames-prettier.astro
-          echo 'BEGIN_AMES_FORMAT'
-          node -e "console.log(JSON.stringify(require('fs').readFileSync('/tmp/ames-prettier.astro','utf8')))"
-          echo 'END_AMES_FORMAT'
+          pnpm exec prettier src/components/illusions/sound-induced-flash-illusion.astro > /tmp/sound-flash-prettier.astro
+          echo 'BEGIN_FLASH_FORMAT'
+          node -e "console.log(JSON.stringify(require('fs').readFileSync('/tmp/sound-flash-prettier.astro','utf8')))"
+          echo 'END_FLASH_FORMAT'
       - name: Lint
         working-directory: site
         run: pnpm lint
@@ -90,4 +90,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Validate strict timestamp types, completed trials and compensated flash onset
+# Capture formatting for sound-induced flash on current head
