@@ -20,7 +20,7 @@ const loadExplanation = explanationLoaders[`./illusions/explanations/${slug}.ast
 const ExplanationFigure = loadExplanation ? (await loadExplanation()).default : null
 ---
 
-<section aria-label="Illusion and its proof">
+<section aria-label={ExplanationFigure ? "Illusion" : "Illusion and its proof"}>
   <Figure />
 </section>
 <section>
