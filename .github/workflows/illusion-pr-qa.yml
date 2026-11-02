@@ -101,4 +101,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Check stop-frame continuity with one-frame timing allowance on latest #141 and #142
+# Verify full-width, compact-height spiral and preserved motion controls on latest #141 and #142

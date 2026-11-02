@@ -226,13 +226,19 @@ async def interaction(page, pr):
                 "Motion aftereffect opt-out unavailable before Start")
         require(await answer.is_disabled(), "Motion aftereffect answer available before adaptation")
         require(not await reveal.is_visible(), "Explanation visible before any judgement")
-        require(await svg.get_attribute("viewBox") == "0 0 560 560", "Spiral drawing not square")
+        require(await svg.get_attribute("viewBox") == "0 0 560 370", "Spiral needs landscape proportions")
+        require(await svg.get_attribute("preserveAspectRatio") == "xMidYMid slice",
+                "Spiral should fill the landscape frame without distortion")
+        height = await svg.evaluate("(e) => e.getBoundingClientRect().height")
+        target_height = 320 if page.viewport_size["width"] == 1280 else 220
+        require(abs(height - target_height) < 3,
+                f"Spiral should be compact, not a tall square: {height}px")
         extent = await spiral.evaluate("""e => {
             const bounds = e.getBBox()
             return { width: bounds.width, height: bounds.height }
         }""")
-        require(extent["width"] > 485 and extent["height"] > 485,
-                f"Spiral no longer fills its own drawing: {extent}")
+        require(300 < extent["width"] < 350 and 300 < extent["height"] < 350,
+                f"Spiral should be compact within the landscape drawing: {extent}")
         width_ratio = await svg.evaluate("""e =>
             e.getBoundingClientRect().width / e.parentElement.getBoundingClientRect().width
         """)
