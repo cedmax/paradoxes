@@ -264,7 +264,7 @@ const previewAngles = angles
     const puzzleScrub = find<HTMLElement>(root, "#magic-octagon-puzzle-scrub")
     const puzzleSlider = find<HTMLInputElement>(root, "#magic-octagon-puzzle-slider")
     const puzzleSliderState = find<HTMLElement>(root, "#magic-octagon-puzzle-slider-state")
-    const why = find<HTMLElement>(document, "#magic-octagon-why")
+    const why = find<HTMLElement>(document.documentElement, "#magic-octagon-why")
     const variations = find<HTMLElement>(root, "#magic-octagon-variations")
     const variantSliders = Array.from(
       root.querySelectorAll<HTMLInputElement>("[data-magic-variant]"),
