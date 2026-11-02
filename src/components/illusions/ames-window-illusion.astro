@@ -17,7 +17,13 @@ import { series, stroke } from "~/data/palette"
     title="A flat trapezoidal window, drawn in perspective as it rotates around a vertical axis"
     desc="The left vertical edge is taller than the right. The window's plane rotates in one continuous direction. Perspective sometimes makes it seem to reverse direction. A top-down orientation indicator can be revealed below the window."
   >
-    <g id="ames-window-frame" fill="none" stroke={stroke} stroke-width="8" stroke-linejoin="round">
+    <g
+      id="ames-window-frame"
+      fill="none"
+      stroke={stroke}
+      stroke-width="8"
+      stroke-linejoin="round"
+    >
       <path id="ames-window-outline" d="M190 92 L410 150 L410 230 L190 288 Z"></path>
       <path id="ames-window-bar" d="M190 190 L410 190" stroke-width="5"></path>
       <path id="ames-window-mid" d="M300 121 L300 259" stroke-width="5"></path>
@@ -25,9 +31,19 @@ import { series, stroke } from "~/data/palette"
     <g id="ames-window-guides" visibility="hidden">
       <circle cx="300" cy="334" r="30" fill="none" stroke={stroke} stroke-width="1.5" />
       <line x1="264" y1="334" x2="336" y2="334" stroke={stroke} stroke-dasharray="3 5" />
-      <line id="ames-window-axis" x1="270" y1="334" x2="330" y2="334" stroke={series.red} stroke-width="4" />
+      <line
+        id="ames-window-axis"
+        x1="270"
+        y1="334"
+        x2="330"
+        y2="334"
+        stroke={series.red}
+        stroke-width="4"
+      />
       <circle id="ames-window-near" cx="330" cy="334" r="5" fill={series.red} />
-      <text x="342" y="338" font-size="13" fill={stroke}>Top view</text>
+      <text x="342" y="338" font-size="13" fill={stroke}>
+        Top view
+      </text>
     </g>
   </SvgFigure>
   <Slider
@@ -52,8 +68,8 @@ import { series, stroke } from "~/data/palette"
     proofLabel="Show the top view"
   />
   <Fragment slot="caption">
-    Original vector demonstration of the Ames window, following Ames (1951) and Braunstein
-    and Payne (1968). The rotating shape is a flat trapezoid, not a rectangular window.
+    Original vector demonstration of the Ames window, following Ames (1951) and Braunstein and
+    Payne (1968). The rotating shape is a flat trapezoid, not a rectangular window.
   </Fragment>
 </IllustrationFigure>
 
@@ -93,15 +109,9 @@ import { series, stroke } from "~/data/palette"
         project(-125, -115, angle),
       ]
       outline.setAttribute("d", `M${corners.map(pos).join(" L")} Z`)
-      const sides = [
-        project(-125, 0, angle),
-        project(125, 0, angle),
-      ]
+      const sides = [project(-125, 0, angle), project(125, 0, angle)]
       bar.setAttribute("d", `M${sides.map(pos).join(" L")}`)
-      const centres = [
-        project(0, 81.5, angle),
-        project(0, -81.5, angle),
-      ]
+      const centres = [project(0, 81.5, angle), project(0, -81.5, angle)]
       mid.setAttribute("d", `M${centres.map(pos).join(" L")}`)
       const a = (angle * Math.PI) / 180
       const dx = 30 * Math.cos(a)

@@ -26,10 +26,24 @@ import { illusionSurface, series, stroke } from "~/data/palette"
     <circle id="stream-bounce-illusion-left" cx="90" cy="120" r="19" fill={stroke} />
     <circle id="stream-bounce-illusion-right" cx="470" cy="120" r="19" fill={stroke} />
     <g id="stream-bounce-illusion-guides" visibility="hidden">
-      <path d="M90 76 L470 76 M470 166 L90 166" fill="none" stroke={series.red} stroke-width="3" />
-      <path d="M455 66 L470 76 L455 86 M105 156 L90 166 L105 176" fill="none" stroke={series.red} stroke-width="3" />
-      <text x="280" y="63" text-anchor="middle" font-size="15" fill={stroke}>One continuous path</text>
-      <text x="280" y="191" text-anchor="middle" font-size="15" fill={stroke}>The other continuous path</text>
+      <path
+        d="M90 76 L470 76 M470 166 L90 166"
+        fill="none"
+        stroke={series.red}
+        stroke-width="3"
+      />
+      <path
+        d="M455 66 L470 76 L455 86 M105 156 L90 166 L105 176"
+        fill="none"
+        stroke={series.red}
+        stroke-width="3"
+      />
+      <text x="280" y="63" text-anchor="middle" font-size="15" fill={stroke}>
+        One continuous path
+      </text>
+      <text x="280" y="191" text-anchor="middle" font-size="15" fill={stroke}>
+        The other continuous path
+      </text>
     </g>
   </SvgFigure>
   <div class="flex flex-wrap gap-3">
@@ -62,8 +76,8 @@ import { illusionSurface, series, stroke } from "~/data/palette"
     />
   </div>
   <Fragment slot="caption">
-    Original vector and synthesized click, after Sekuler, Sekuler and Lau (1997).
-    The discs and paths are generated for this site.
+    Original vector and synthesized click, after Sekuler, Sekuler and Lau (1997). The discs and
+    paths are generated for this site.
   </Fragment>
 </IllustrationFigure>
 
@@ -126,7 +140,8 @@ import { illusionSurface, series, stroke } from "~/data/palette"
     const play = async (mode: "silent" | "sound") => {
       if (playing) return
       if (reducedMotion.matches) {
-        progress.textContent = "Animation is disabled by reduced-motion settings. The text proof explains the paths."
+        progress.textContent =
+          "Animation is disabled by reduced-motion settings. The text proof explains the paths."
         reveal.hidden = false
         return
       }

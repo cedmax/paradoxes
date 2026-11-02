@@ -28,11 +28,7 @@ if (
 if (!Number.isSafeInteger(start) || start < 0) {
   throw new Error(`Invalid video start time for ${name}`)
 }
-if (
-  poster.width < 1280 ||
-  poster.height < 720 ||
-  poster.width * 9 !== poster.height * 16
-) {
+if (poster.width < 1280 || poster.height < 720 || poster.width * 9 !== poster.height * 16) {
   throw new Error(`Video poster for ${name} must be at least 1280×720 and 16:9`)
 }
 
@@ -64,16 +60,16 @@ const videoUrl =
       class="absolute inset-0 w-full cursor-pointer text-center focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-accent"
       aria-label={`Load video: ${title}`}
     >
-      <span
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-ink bg-paper px-4 py-3 font-bold text-ink"
-      >
+      <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-ink bg-paper px-4 py-3 font-bold text-ink">
         Load video
       </span>
     </button>
   </div>
   <p class="text-base">{description}</p>
   <p class="text-base">
-    <a href={videoUrl} class="underline underline-offset-4">{linkLabel}</a>
+    <a href={videoUrl} class="underline underline-offset-4">
+      {linkLabel}
+    </a>
   </p>
 </IllustrationFigure>
 

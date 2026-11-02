@@ -31,22 +31,27 @@ const dots = Array.from({ length: count }, (_, index) => {
     <rect x="12" y="12" width="536" height="356" fill={illusionSurface.neutral} />
     <g id="motion-silencing-illusion-ring">
       {dots.map(({ index, x, y, hue }) => (
-        <circle
-          cx={x}
-          cy={y}
-          r="12"
-          fill={`hsl(${hue} 65% 55%)`}
-          data-dot={index}
-        />
+        <circle cx={x} cy={y} r="12" fill={`hsl(${hue} 65% 55%)`} data-dot={index} />
       ))}
     </g>
     <path d="M270 190 H290 M280 180 V200" stroke={stroke} stroke-width="3" />
   </SvgFigure>
   <div class="flex flex-wrap gap-3">
-    <button id="motion-silencing-illusion-play" class="btn-ghost" type="button" aria-pressed="false">
+    <button
+      id="motion-silencing-illusion-play"
+      class="btn-ghost"
+      type="button"
+      aria-pressed="false"
+    >
       Start changing colours
     </button>
-    <button id="motion-silencing-illusion-turn" class="btn-ghost" type="button" aria-pressed="false" disabled>
+    <button
+      id="motion-silencing-illusion-turn"
+      class="btn-ghost"
+      type="button"
+      aria-pressed="false"
+      disabled
+    >
       Start turning the ring
     </button>
   </div>
@@ -78,11 +83,7 @@ const dots = Array.from({ length: count }, (_, index) => {
 </IllustrationFigure>
 
 <script>
-  import {
-    bindListenerChoice,
-    find,
-    illustrationRoot,
-  } from "~/scripts/illustration"
+  import { bindListenerChoice, find, illustrationRoot } from "~/scripts/illustration"
 
   const name = "motion-silencing-illusion"
   const root = illustrationRoot(name)
@@ -110,7 +111,7 @@ const dots = Array.from({ length: count }, (_, index) => {
     })
     const render = () => {
       dots.forEach((dot, index) => {
-        const hue = (index * 137.5 + (elapsed / 25)) % 360
+        const hue = (index * 137.5 + elapsed / 25) % 360
         dot.setAttribute("fill", `hsl(${hue.toFixed(1)} 65% 55%)`)
       })
       ring.setAttribute("transform", `rotate(${rotation.toFixed(2)} 280 190)`)

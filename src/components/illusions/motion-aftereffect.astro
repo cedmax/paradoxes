@@ -33,12 +33,25 @@ const arms = Array.from({ length: 7 }, (_, index) => {
     desc="Seven blue spiral arms surround a small centre cross. After twelve seconds of rotation the same static SVG paths remain in exactly one fixed position. Any movement perceived after they stop is not drawn."
   >
     <rect x="15" y="10" width="530" height="350" fill={illusionSurface.neutral} />
-    <g id="motion-aftereffect-spirals" fill="none" stroke={series.blue} stroke-width="6" stroke-linecap="round">
-      {arms.map((path) => <path d={path} />)}
+    <g
+      id="motion-aftereffect-spirals"
+      fill="none"
+      stroke={series.blue}
+      stroke-width="6"
+      stroke-linecap="round"
+    >
+      {arms.map((path) => (
+        <path d={path} />
+      ))}
     </g>
     <path d="M274 185 H286 M280 179 V191" stroke={stroke} stroke-width="2" />
   </SvgFigure>
-  <button id="motion-aftereffect-play" type="button" class="btn-ghost self-start" aria-pressed="false">
+  <button
+    id="motion-aftereffect-play"
+    type="button"
+    class="btn-ghost self-start"
+    aria-pressed="false"
+  >
     Start 12-second adaptation
   </button>
   <p id="motion-aftereffect-status" class="text-base" aria-live="polite">
@@ -57,9 +70,9 @@ const arms = Array.from({ length: 7 }, (_, index) => {
     />
   </div>
   <p id="motion-aftereffect-reveal" class="text-base" hidden>
-    The same SVG paths stay in exactly one fixed position after the rotation ends. A sense
-    of continued or reversed motion is an aftereffect, not an animation. Seeing no apparent
-    motion is also a valid result.
+    The same SVG paths stay in exactly one fixed position after the rotation ends. A sense of
+    continued or reversed motion is an aftereffect, not an animation. Seeing no apparent motion
+    is also a valid result.
   </p>
   <Fragment slot="caption">
     Original rotating spiral, following the principles described by Anstis, Verstraten and
@@ -122,7 +135,8 @@ const arms = Array.from({ length: 7 }, (_, index) => {
       running = true
       play.textContent = "Stop adaptation"
       play.setAttribute("aria-pressed", "true")
-      status.textContent = "Watch the centre without following the spiral. Stop if uncomfortable."
+      status.textContent =
+        "Watch the centre without following the spiral. Stop if uncomfortable."
       frame = requestAnimationFrame(tick)
     })
     document.addEventListener("visibilitychange", () => {

@@ -3,7 +3,7 @@ import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure
 import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
 import Slider from "~/components/illustration-kit/Slider.astro"
 import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
-import { illusionSurface, series, stroke } from "~/data/palette"
+import { illusionSurface, stroke } from "~/data/palette"
 
 // Regularly spaced latitudes with staggered longitudes. The points are fixed on a sphere.
 const points = Array.from({ length: 9 }, (_, row) => {
@@ -31,13 +31,7 @@ const points = Array.from({ length: 9 }, (_, row) => {
     <rect x="30" y="15" width="540" height="350" fill={illusionSurface.neutral} />
     <g id="kinetic-depth-effect-dots">
       {points.map((point, index) => (
-        <circle
-          cx={point.x}
-          cy={point.y}
-          r="3.7"
-          fill={stroke}
-          data-index={index}
-        />
+        <circle cx={point.x} cy={point.y} r="3.7" fill={stroke} data-index={index} />
       ))}
     </g>
   </SvgFigure>
@@ -63,17 +57,13 @@ const points = Array.from({ length: 9 }, (_, row) => {
     proofLabel="Show depth cues"
   />
   <Fragment slot="caption">
-    Original orthographic dot projection, after Wallach and O'Connell (1953) and Mather
-    (1989). The same fixed set of points is displayed in every frame.
+    Original orthographic dot projection, after Wallach and O'Connell (1953) and Mather (1989).
+    The same fixed set of points is displayed in every frame.
   </Fragment>
 </IllustrationFigure>
 
 <script>
-  import {
-    bindSliderLoopPlayback,
-    find,
-    illustrationRoot,
-  } from "~/scripts/illustration"
+  import { bindSliderLoopPlayback, find, illustrationRoot } from "~/scripts/illustration"
 
   const name = "kinetic-depth-effect"
   const root = illustrationRoot(name)
@@ -89,7 +79,11 @@ const points = Array.from({ length: 9 }, (_, row) => {
       return Array.from({ length: 12 }, (_, column) => {
         const longitude = (2 * Math.PI * (column + row * 0.37)) / 12
         const radius = 126 * Math.cos(latitude)
-        return { x: radius * Math.cos(longitude), z: radius * Math.sin(longitude), y: 190 + 126 * Math.sin(latitude) }
+        return {
+          x: radius * Math.cos(longitude),
+          z: radius * Math.sin(longitude),
+          y: 190 + 126 * Math.sin(latitude),
+        }
       })
     }).flat()
     let angle = 0

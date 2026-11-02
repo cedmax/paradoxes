@@ -53,7 +53,7 @@ Do not change any existing argument entry to the new format.
    Do not infer permission merely because an asset is visible online.
 
    A video may be embedded only when **all** of these conditions hold:
-   
+
    (a) It shows a physical object, real demonstration or live action that cannot be
    faithfully redrawn or synthesised.
    (b) The upload is the rights holder's own (creator, publisher or institution), not
@@ -69,10 +69,11 @@ Do not change any existing argument entry to the new format.
    (f) The provider makes the video available at 720p or higher from an HD source,
    not an upscaled standard-definition original. The locally hosted poster must
    be at least 1280×720 and preserve the effect without cropping.
-   
+
    Verify the highest available video resolution in the provider's player or API (not
    from a thumbnail), and record it, the oEmbed uploader and the rights basis in the PR.
    Do not download or self-host video unless its licence explicitly permits reuse.
+
 2. Keep each implementation in `src/components/illusions/<slug>.astro`, using the
    existing illustration kit for figures and controls. The initial presentation
    should communicate the effect without repeating the same visible setup in prose.

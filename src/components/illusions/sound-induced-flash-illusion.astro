@@ -21,8 +21,18 @@ import { illusionSurface, series, stroke } from "~/data/palette"
     desc="The centre disc briefly changes colour exactly once per trial. Pressing a button also plays either one or two short beeps. The flash never repeats."
   >
     <rect x="10" y="10" width="540" height="210" fill={illusionSurface.neutral} />
-    <circle id="sound-induced-flash-illusion-disc" cx="280" cy="115" r="44" fill={series.blue} />
-    <path d="M280 46 V56 M280 174 V184 M211 115 H221 M339 115 H349" stroke={stroke} stroke-width="2" />
+    <circle
+      id="sound-induced-flash-illusion-disc"
+      cx="280"
+      cy="115"
+      r="44"
+      fill={series.blue}
+    />
+    <path
+      d="M280 46 V56 M280 174 V184 M211 115 H221 M339 115 H349"
+      stroke={stroke}
+      stroke-width="2"
+    />
   </SvgFigure>
   <div class="flex flex-wrap gap-3">
     <button id="sound-induced-flash-illusion-one" type="button" class="btn-ghost">
@@ -47,9 +57,9 @@ import { illusionSurface, series, stroke } from "~/data/palette"
   <div id="sound-induced-flash-illusion-reveal" class="flex flex-col gap-3" hidden>
     <p class="font-bold">Only one flash is ever displayed.</p>
     <p class="text-base">
-      The colour changes once for 30 milliseconds. The two-beep version adds a second sound,
-      but no second flash. Hearing two beeps can make one flash look like two. Seeing only one
-      is also a valid result.
+      The colour changes once for 30 milliseconds. The two-beep version adds a second sound, but
+      no second flash. Hearing two beeps can make one flash look like two. Seeing only one is
+      also a valid result.
     </p>
   </div>
   <Fragment slot="caption">

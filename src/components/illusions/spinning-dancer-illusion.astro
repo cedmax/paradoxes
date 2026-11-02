@@ -19,11 +19,45 @@ import { illusionSurface, series, stroke } from "~/data/palette"
     desc="A simplified dancer with head, torso, triangular skirt, two arms and two legs rotates around a vertical axis. Its silhouette has no front or back colour cues. A reveal adds an orientation reference and colours the near and far parts to make the actual turning easier to see."
   >
     <rect x="15" y="10" width="530" height="350" fill={illusionSurface.neutral} />
-    <g id="spinning-dancer-illusion-shape" fill={stroke} stroke={stroke} stroke-linecap="round" stroke-linejoin="round">
-      <line id="spinning-dancer-illusion-backarm" x1="264" y1="145" x2="224" y2="133" stroke-width="15" />
-      <line id="spinning-dancer-illusion-frontarm" x1="296" y1="145" x2="339" y2="117" stroke-width="15" />
-      <line id="spinning-dancer-illusion-backleg" x1="268" y1="237" x2="262" y2="305" stroke-width="20" />
-      <line id="spinning-dancer-illusion-frontleg" x1="292" y1="237" x2="347" y2="258" stroke-width="20" />
+    <g
+      id="spinning-dancer-illusion-shape"
+      fill={stroke}
+      stroke={stroke}
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <line
+        id="spinning-dancer-illusion-backarm"
+        x1="264"
+        y1="145"
+        x2="224"
+        y2="133"
+        stroke-width="15"
+      />
+      <line
+        id="spinning-dancer-illusion-frontarm"
+        x1="296"
+        y1="145"
+        x2="339"
+        y2="117"
+        stroke-width="15"
+      />
+      <line
+        id="spinning-dancer-illusion-backleg"
+        x1="268"
+        y1="237"
+        x2="262"
+        y2="305"
+        stroke-width="20"
+      />
+      <line
+        id="spinning-dancer-illusion-frontleg"
+        x1="292"
+        y1="237"
+        x2="347"
+        y2="258"
+        stroke-width="20"
+      />
       <path id="spinning-dancer-illusion-torso" d="M259 132 L301 132 L295 205 L265 205 Z" />
       <path id="spinning-dancer-illusion-skirt" d="M265 200 L295 200 L321 250 L239 250 Z" />
       <circle id="spinning-dancer-illusion-head" cx="280" cy="89" r="18" />
@@ -31,10 +65,29 @@ import { illusionSurface, series, stroke } from "~/data/palette"
       <path id="spinning-dancer-illusion-neck" d="M272 101 L288 101 L290 133 L270 133 Z" />
     </g>
     <g id="spinning-dancer-illusion-guides" visibility="hidden">
-      <ellipse cx="280" cy="328" rx="80" ry="15" fill="none" stroke={series.red} stroke-width="2" stroke-dasharray="5 4" />
-      <line id="spinning-dancer-illusion-direction" x1="280" y1="328" x2="340" y2="328" stroke={series.red} stroke-width="4" />
+      <ellipse
+        cx="280"
+        cy="328"
+        rx="80"
+        ry="15"
+        fill="none"
+        stroke={series.red}
+        stroke-width="2"
+        stroke-dasharray="5 4"
+      />
+      <line
+        id="spinning-dancer-illusion-direction"
+        x1="280"
+        y1="328"
+        x2="340"
+        y2="328"
+        stroke={series.red}
+        stroke-width="4"
+      />
       <circle id="spinning-dancer-illusion-front" cx="340" cy="328" r="6" fill={series.red} />
-      <text x="372" y="333" font-size="13" fill={stroke}>Top view</text>
+      <text x="372" y="333" font-size="13" fill={stroke}>
+        Top view
+      </text>
     </g>
   </SvgFigure>
   <Slider
@@ -73,8 +126,8 @@ import { illusionSurface, series, stroke } from "~/data/palette"
     />
   </div>
   <Fragment slot="caption">
-    Original rotating vector figure, not Nobuyuki Kayahara's animation or silhouette.
-    Inspired by his 2003 bistable dancer demonstration.
+    Original rotating vector figure, not Nobuyuki Kayahara's animation or silhouette. Inspired
+    by his 2003 bistable dancer demonstration.
   </Fragment>
 </IllustrationFigure>
 
@@ -121,17 +174,33 @@ import { illusionSurface, series, stroke } from "~/data/palette"
       return { x: 280 + rotated, y: 190 + y, depth }
     }
     const point = (p: { x: number; y: number }) => `${p.x.toFixed(1)} ${p.y.toFixed(1)}`
-    const segment = (element: SVGLineElement, a: number[], b: number[], theta: number, shown: boolean) => {
+    const segment = (
+      element: SVGLineElement,
+      a: number[],
+      b: number[],
+      theta: number,
+      shown: boolean,
+    ) => {
       const p = coord(a[0], a[1], a[2], theta)
       const q = coord(b[0], b[1], b[2], theta)
       element.setAttribute("x1", String(p.x))
       element.setAttribute("y1", String(p.y))
       element.setAttribute("x2", String(q.x))
       element.setAttribute("y2", String(q.y))
-      element.setAttribute("stroke", shown ? (p.depth + q.depth > 0 ? "var(--color-series-red)" : "var(--color-series-blue)") : "var(--color-stroke)")
+      element.setAttribute(
+        "stroke",
+        shown
+          ? p.depth + q.depth > 0
+            ? "var(--color-series-red)"
+            : "var(--color-series-blue)"
+          : "var(--color-stroke)",
+      )
     }
     const polygon = (element: SVGPathElement, vertices: number[][], theta: number) => {
-      element.setAttribute("d", `M${vertices.map(([x, y, z]) => point(coord(x, y, z, theta))).join(" L")} Z`)
+      element.setAttribute(
+        "d",
+        `M${vertices.map(([x, y, z]) => point(coord(x, y, z, theta))).join(" L")} Z`,
+      )
     }
     const show = (angle: number) => {
       const theta = (angle * Math.PI) / 180
@@ -140,9 +209,36 @@ import { illusionSurface, series, stroke } from "~/data/palette"
       segment(parts.frontarm, [22, -48, 10], [75, -80, 38], theta, shown)
       segment(parts.backleg, [-10, 47, -10], [-17, 123, -14], theta, shown)
       segment(parts.frontleg, [10, 47, 10], [78, 65, 36], theta, shown)
-      polygon(torso, [[-23, -67, 0], [23, -67, 0], [16, 18, 0], [-16, 18, 0]], theta)
-      polygon(skirt, [[-16, 10, 0], [16, 10, 0], [49, 62, 0], [-49, 62, 0]], theta)
-      polygon(neck, [[-9, -89, 0], [9, -89, 0], [10, -60, 0], [-10, -60, 0]], theta)
+      polygon(
+        torso,
+        [
+          [-23, -67, 0],
+          [23, -67, 0],
+          [16, 18, 0],
+          [-16, 18, 0],
+        ],
+        theta,
+      )
+      polygon(
+        skirt,
+        [
+          [-16, 10, 0],
+          [16, 10, 0],
+          [49, 62, 0],
+          [-49, 62, 0],
+        ],
+        theta,
+      )
+      polygon(
+        neck,
+        [
+          [-9, -89, 0],
+          [9, -89, 0],
+          [10, -60, 0],
+          [-10, -60, 0],
+        ],
+        theta,
+      )
       const centre = coord(0, -107, 0, theta)
       head.setAttribute("cx", String(centre.x))
       head.setAttribute("cy", String(centre.y))
@@ -157,10 +253,15 @@ import { illusionSurface, series, stroke } from "~/data/palette"
       front.setAttribute("cy", String(328 + dy))
       return `Angle ${angle} degrees`
     }
-    bindSliderLoopPlayback(slider, play, (value) => {
-      readout.textContent = `Angle ${value} degrees. The underlying direction is continuous.`
-      return show(value)
-    }, 28)
+    bindSliderLoopPlayback(
+      slider,
+      play,
+      (value) => {
+        readout.textContent = `Angle ${value} degrees. The underlying direction is continuous.`
+        return show(value)
+      },
+      28,
+    )
     play.addEventListener("click", () => choices.enable())
     slider.addEventListener("input", () => choices.enable())
     proof.addEventListener("click", () => {
