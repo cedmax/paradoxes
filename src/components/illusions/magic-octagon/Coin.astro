@@ -59,7 +59,11 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     {showMarker && <circle cx="180" cy="47" r="5" fill={stroke} />}
   </g>
 
-  <g data-coin-flipped visibility={flipped ? "visible" : "hidden"}>
+  <g
+    data-coin-flipped
+    visibility={flipped ? "visible" : "hidden"}
+    transform={flipped ? "matrix(-1 0 0 1 360 0)" : undefined}
+  >
     <polygon
       points={corners}
       fill={illusionSurface.paper}
