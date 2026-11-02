@@ -29,7 +29,6 @@ const describe = (turn: number, flip: number, marked: boolean) => {
   const markerY = -Math.cos(radians)
   const markedCorner = marked ? `; marked corner at ${corners[position(markerX, markerY)]}` : ""
   return `${degrees} degrees. ${front ? "Front" : "Flipped"} face; arrow points ${arrow}${markedCorner}.`
-
 }
 
 const coinDescriptions = new WeakMap<Element, string>()
