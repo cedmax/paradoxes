@@ -1,0 +1,59 @@
+name: Check proposed video upload metadata
+
+on:
+  push:
+    branches:
+      - checks/video-evidence
+
+permissions:
+  contents: read
+
+jobs:
+  video-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Check uploader and available playback formats without downloading media
+        run: |
+          python -m pip install --quiet --upgrade yt-dlp
+          python - <<'PY'
+          import json,subprocess,urllib.request,urllib.parse
+          candidates = {
+            "hollow-face": "hoLg23xn3HM",
+            "mcgurk": "vB9T9tFOtxI",
+            "monkey-business": "IGQmdoK_ZfY",
+            "archer-beiter": "wGNslUNBrEM",
+            "archer-kaminski": "I9q3zM65KSU",
+            "braess-springs": "Cg73j3QYRJc",
+            "falling-slinky": "uiyMuHuCFo4",
+            "chain-fountain-original": "_dQJBBklpQQ",
+            "chain-fountain-later": "qTLR7FwXUU4",
+            "tennis-racket-space": "L2o9eBl_Gzw"
+          }
+          for label, video_id in candidates.items():
+            url = "https://www.youtube.com/watch?v=" + video_id
+            print("\n===",label,video_id,"===",flush=True)
+            endpoint = "https://www.youtube.com/oembed?" + urllib.parse.urlencode({"url":url,"format":"json"})
+            try:
+              req = urllib.request.Request(endpoint,headers={"User-Agent":"Mozilla/5.0"})
+              with urllib.request.urlopen(req,timeout=12) as resp:
+                meta = json.load(resp)
+              print("OEMBED",json.dumps({"author_name":meta.get("author_name"),"author_url":meta.get("author_url"),"title":meta.get("title")}),flush=True)
+            except Exception as exc:
+              print("OEMBED_ERROR",repr(exc),flush=True)
+            try:
+              p = subprocess.run(["yt-dlp","--no-warnings","--no-playlist","-J",url],capture_output=True,text=True,timeout=45)
+              if p.returncode:
+                print("FORMATS_ERROR",p.stderr[-900:],flush=True)
+                continue
+              info=json.loads(p.stdout)
+              videos=[f for f in info.get("formats",[]) if f.get("vcodec") not in (None,"none") and f.get("height")]
+              heights=sorted({int(f["height"]) for f in videos})
+              print("FORMATS",json.dumps({"extractor_uploader":info.get("uploader"),"heights":heights,"max_height":heights[-1] if heights else None,"width_at_max":max((f.get("width") or 0 for f in videos if f.get("height")==heights[-1]),default=0) if heights else None}),flush=True)
+            except Exception as exc:
+              print("FORMATS_ERROR",repr(exc),flush=True)
+          PY
