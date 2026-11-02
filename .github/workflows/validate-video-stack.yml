@@ -1,0 +1,39 @@
+name: Temporary validation for video and illusion stack
+
+on:
+  push:
+    branches:
+      - video/validation-run
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm lint
+        continue-on-error: true
+      - name: Astro and content check
+        run: pnpm check
+        continue-on-error: true
+      - name: Formatting
+        run: pnpm exec prettier --check .
+        continue-on-error: true
+      - name: Knip
+        run: pnpm knip
+        continue-on-error: true
+      - name: Build
+        run: pnpm build
+        continue-on-error: true
+      - name: SEO
+        run: pnpm check:seo
+        continue-on-error: true
