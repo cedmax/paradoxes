@@ -25,6 +25,31 @@ callouts or SVG wrappers into an illustration, and do not write hex colours or p
 Illustrations must not change the look of the kit: if something is missing, add it to the kit
 (and use it in more than one place) instead of styling around it.
 
+### Media and video
+
+Images, audio, animations and video posters must be self-hosted in the repository.
+Do not hotlink those assets or their proof media. A video may be embedded only when **all** of these conditions hold:
+
+(a) It shows a physical object, real demonstration or live action that cannot be
+faithfully redrawn or synthesised.
+(b) The upload is the rights holder's own (creator, publisher or institution), not
+a re-upload. Confirm the uploader with YouTube or Vimeo oEmbed and document the
+rights basis.
+(c) No third-party request occurs before the visitor clicks a locally hosted poster.
+After the click, playback uses `youtube-nocookie.com` or Vimeo with `dnt=1`,
+without autoplay.
+(d) The poster does not reveal the effect. When a prediction or judgement is requested,
+the revealing part of the video must come after the visitor makes it.
+(e) The figure contains a text description of what the video shows and a plain
+link to the original video as a fallback.
+(f) The provider makes the video available at 720p or higher from an HD source,
+not an upscaled standard-definition original. The locally hosted poster must
+be at least 1280×720 and preserve the effect without cropping.
+
+Verify the highest available video resolution in the provider's player or API (not
+from a thumbnail), and record it, the oEmbed uploader and the rights basis in the PR.
+Do not download or self-host video unless its licence explicitly permits reuse.
+
 ### Components
 
 Import with `~/components/illustration-kit/<Name>.astro`.
