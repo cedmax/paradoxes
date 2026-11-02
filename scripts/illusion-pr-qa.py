@@ -215,15 +215,46 @@ async def interaction(page, pr):
         await page.locator(f'#{prefix}-choices [data-choice="skip"]').click()
         require(await play.inner_text() == "Play", "Explicit skip must stop motion")
     elif pr == 141:
-        skip = page.locator('#motion-aftereffect-choices [data-choice="skip"]')
-        require(await skip.is_visible() and await skip.is_enabled(), "Motion aftereffect opt-out unavailable before Start")
-        require(await page.locator('#motion-aftereffect-choices [data-choice="opposite"]').is_disabled(), "Motion aftereffect answer available before adaptation")
+        prefix = "motion-aftereffect"
+        svg = page.locator(f'[data-illustration="{prefix}"] svg')
+        spiral = page.locator(f"#{prefix}-spirals")
+        play = page.locator(f"#{prefix}-play")
+        skip = page.locator(f'#{prefix}-choices [data-choice="skip"]')
+        answer = page.locator(f'#{prefix}-choices [data-choice="motion"]')
+        reveal = page.locator(f"#{prefix}-reveal")
+        require(await skip.is_visible() and await skip.is_enabled(),
+                "Motion aftereffect opt-out unavailable before Start")
+        require(await answer.is_disabled(), "Motion aftereffect answer available before adaptation")
+        require(not await reveal.is_visible(), "Explanation visible before any judgement")
+        require(await svg.get_attribute("viewBox") == "0 0 560 560", "Spiral drawing not square")
+        extent = await spiral.evaluate("""e => {
+            const bounds = e.getBBox()
+            return { width: bounds.width, height: bounds.height }
+        }""")
+        require(extent["width"] > 485 and extent["height"] > 485,
+                f"Spiral no longer fills its own drawing: {extent}")
+        width_ratio = await svg.evaluate("""e =>
+            e.getBoundingClientRect().width / e.parentElement.getBoundingClientRect().width
+        """)
+        require(width_ratio > 0.86, f"Spiral must fill the figure content width: {width_ratio}")
         await skip.click()
-        require(await page.locator("#motion-aftereffect-reveal").is_visible(), "Skipping did not unlock explanation")
-        await page.locator("#motion-aftereffect-play").click()
-        await page.wait_for_timeout(120)
-        await page.locator("#motion-aftereffect-play").click()
-        require(await page.locator('#motion-aftereffect-choices [data-choice="opposite"]').is_enabled(), "Stopped adaptation should allow judgement")
+        require(await reveal.is_visible(), "Skipping did not unlock explanation")
+        await play.click()
+        require(not await reveal.is_visible(), "New adaptation did not hide previous reveal")
+        await page.wait_for_timeout(250)
+        before_stop = await spiral.get_attribute("transform")
+        require("rotate(" in before_stop, "Spiral did not animate after Start")
+        await play.click()
+        require(await answer.is_enabled(), "Stopped adaptation should allow judgement")
+        after_stop = await spiral.get_attribute("transform")
+        require(after_stop == before_stop, "Spiral snapped to a new angle when stopped")
+        await page.wait_for_timeout(180)
+        require(await spiral.get_attribute("transform") == after_stop,
+                "Spiral continued rotating after Stop")
+        await answer.click()
+        require(await reveal.is_visible(), "Motion judgement did not reveal explanation")
+        require("expand" in await reveal.inner_text(),
+                "Reveal does not describe the non-rotational aftereffect")
     elif pr == 142:
         await page.locator("#motion-silencing-illusion-play").click()
         await page.locator("#motion-silencing-illusion-turn").click()
@@ -407,6 +438,26 @@ async def run(pr):
                 require(response is not None and response.status == 200, "Latency test page failed to load")
                 await compensated_flash_interaction(compensated)
                 await compensated.close()
+            if pr == 141:
+                reduced_page = await browser.new_page(
+                    viewport={"width": width, "height": 900 if width == 1280 else 780},
+                    device_scale_factor=1,
+                    reduced_motion="reduce",
+                )
+                response = await reduced_page.goto(f"{BASE}/entries/{slug}/", wait_until="networkidle", timeout=45000)
+                require(response is not None and response.status == 200, "Reduced-motion aftereffect page failed")
+                play = reduced_page.locator("#motion-aftereffect-play")
+                answer = reduced_page.locator('#motion-aftereffect-choices [data-choice="motion"]')
+                skip = reduced_page.locator('#motion-aftereffect-choices [data-choice="skip"]')
+                reveal = reduced_page.locator("#motion-aftereffect-reveal")
+                require(await play.is_disabled(), "Reduced-motion mode must disable Start")
+                require(await answer.is_disabled(), "Reduced-motion mode exposed motion judgement")
+                require(not await reveal.is_visible(), "Reduced-motion mode revealed before opting out")
+                require(await skip.is_enabled(), "Reduced-motion opt-out unavailable")
+                await skip.click()
+                require(await reveal.is_visible(), "Reduced-motion opt-out did not reveal explanation")
+                print(f"PASS aftereffect reduced motion at {width}px; Start disabled and skip works", flush=True)
+                await reduced_page.close()
             if pr == 140:
                 reduced_page = await browser.new_page(
                     viewport={"width": width, "height": 900 if width == 1280 else 780},
