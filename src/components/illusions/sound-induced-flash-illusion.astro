@@ -116,7 +116,8 @@ import { illusionSurface, series, stroke } from "~/data/palette"
       ) {
         return outputPerformanceTime + (contextTime - outputContextTime) * 1000
       }
-      const latency = Math.max(0, audio.baseLatency || 0) + Math.max(0, audio.outputLatency || 0)
+      const latency =
+        Math.max(0, audio.baseLatency || 0) + Math.max(0, audio.outputLatency || 0)
       return performance.now() + (contextTime - audio.currentTime + latency) * 1000
     }
 
