@@ -16,6 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - { pr: 138, branch: video/flash-beep }
           - { pr: 139, branch: video/stream-bounce }
     steps:
       - uses: actions/checkout@v4
@@ -45,6 +46,14 @@ jobs:
           echo 'BEGIN_STREAM_FORMAT'
           node -e "console.log(JSON.stringify(require('fs').readFileSync('/tmp/stream-bounce-prettier.astro','utf8')))"
           echo 'END_STREAM_FORMAT'
+      - name: Capture shared-audio and flash formatting
+        working-directory: site
+        run: |
+          for file in src/scripts/audio.ts src/components/illusions/sound-induced-flash-illusion.astro; do
+            echo "BEGIN_PRETTIER_$file"
+            pnpm exec prettier "$file" | node -e "let t=''; process.stdin.on('data',d=>t+=d).on('end',()=>console.log(JSON.stringify(t)))"
+            echo "END_PRETTIER_$file"
+          done
       - name: Lint
         working-directory: site
         run: pnpm lint
@@ -90,4 +99,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Validate amplified stream-bounce click PCM and unchanged timing on #139
+# Check shared audio refactor (#138) and stream-bounce output sync (#139)
