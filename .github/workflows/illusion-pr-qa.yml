@@ -101,4 +101,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Validate the intermediate spherical shell and motion controls on current stacked PR heads
+# Validate spherical shell silhouette and continuing rotation with corrected rim bound

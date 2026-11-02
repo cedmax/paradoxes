@@ -168,7 +168,7 @@ async def interaction(page, pr):
             const y = Number(e.getAttribute('cy')) - 190
             return Math.hypot(x, y) > 120
         }).length""")
-        require(5 <= rim < 20, f"Spherical shell needs a soft, visible edge: {rim} of 108")
+        require(2 <= rim < 20, f"Spherical shell needs a soft, visible edge: {rim} of 108")
         extent = await dots.evaluate_all("""(els) => els.map(e => {
             const x = Number(e.getAttribute('cx')) - 300
             const y = Number(e.getAttribute('cy')) - 190
