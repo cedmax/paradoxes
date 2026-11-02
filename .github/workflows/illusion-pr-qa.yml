@@ -90,4 +90,4 @@ jobs:
           path: site/screenshots/*.png
           if-no-files-found: ignore
 
-# Capture formatting for sound-induced flash on current head
+# Rerun formatted flash and latency browser suite on current #138 head
