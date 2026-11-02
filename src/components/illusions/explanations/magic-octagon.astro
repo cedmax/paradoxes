@@ -6,10 +6,7 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
 ---
 
 <IllustrationFigure name="magic-octagon-proof" frame={false}>
-  <p class="text-base">
-    The black dots mark the same physical corner on both faces. Follow the dot
-    as the coin turns about the fixed red axis.
-  </p>
+  <p class="text-base">The black dots mark the same physical corner on both faces.</p>
   <div
     id="magic-octagon-proof-views"
     class="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-2 md:flex-row md:items-start md:gap-5"
@@ -26,7 +23,7 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
         showMarker
       />
     </div>
-    <div id="magic-octagon-proof-other" class="w-full max-w-xs md:min-w-0 md:flex-1">
+    <div class="w-full max-w-xs md:min-w-0 md:flex-1">
       <p class="text-center text-base font-bold">
         Flipped <span id="magic-octagon-proof-flipped-direction">↙</span>
       </p>
@@ -64,23 +61,10 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
       Front · 0°
     </p>
   </div>
-  <button
-    type="button"
-    class="btn-toggle self-start"
-    id="magic-octagon-compare"
-    aria-controls="magic-octagon-proof-other"
-    aria-pressed="true"
-  >
-    Hide comparison
-  </button>
-  <p id="magic-octagon-state" class="text-base" aria-live="polite"></p>
+  <p id="magic-octagon-state" class="sr-only" aria-live="polite"></p>
 
   <div class="flex flex-col gap-4 border-t-2 border-ink pt-6">
     <h3 class="text-xl font-bold">The eight rotations, with the corner marked</h3>
-    <p class="text-base">
-      Try flipping each starting rotation. The dot makes it possible to track
-      the same corner throughout the turn.
-    </p>
     <div class="flex flex-col gap-6">
       {[angles.slice(0, 4), angles.slice(4)].map((rowAngles, rowIndex) => (
         <Fragment>
@@ -189,8 +173,6 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
   if (root) {
     const proofFront = find<SVGSVGElement>(root, '[data-magic-coin="proof-front"]')
     const proofFlipped = find<SVGSVGElement>(root, '[data-magic-coin="proof-flipped"]')
-    const proofViews = find<HTMLElement>(root, "#magic-octagon-proof-views")
-    const proofOther = find<HTMLElement>(root, "#magic-octagon-proof-other")
     const proofFrontDirection = find<HTMLElement>(
       root,
       "#magic-octagon-proof-front-direction",
@@ -204,7 +186,6 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
       root,
       "#magic-octagon-proof-slider-state",
     )
-    const compareButton = find<HTMLButtonElement>(root, "#magic-octagon-compare")
     const status = find<HTMLElement>(root, "#magic-octagon-state")
     const variantSliders = Array.from(
       root.querySelectorAll<HTMLInputElement>("[data-magic-proof-variant]"),
@@ -222,7 +203,6 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
 
     const proofAngle = 45
     const directions = directionIndexes(proofAngle)
-    let comparing = true
 
     const updateProof = () => {
       const degrees = Number(proofSlider.value)
@@ -239,21 +219,10 @@ const angles = [0, 45, 90, 135, 180, 225, 270, 315]
       proofSliderState.textContent = progress
       proofSlider.setAttribute("aria-valuetext", progress)
       status.textContent = edgeOn
-        ? "Both views are edge-on. The shaded sides show the thickness of the coin."
-        : comparing
-          ? "Front view: " + labels[main] + ". Flipped view: " + labels[other] + "."
-          : "Visible arrow: " + labels[main] + "."
+        ? "Both coins are edge-on."
+        : "Front: " + labels[main] + ". Flipped: " + labels[other] + "."
     }
     proofSlider.addEventListener("input", updateProof)
-    compareButton.addEventListener("click", () => {
-      comparing = !comparing
-      proofOther.hidden = !comparing
-      proofViews.classList.toggle("max-w-2xl", comparing)
-      proofViews.classList.toggle("max-w-xs", !comparing)
-      compareButton.setAttribute("aria-pressed", String(comparing))
-      compareButton.textContent = comparing ? "Hide comparison" : "Compare both sides"
-      updateProof()
-    })
 
     const variantUpdates: Array<(degrees: number) => void> = []
     for (const slider of variantSliders) {
