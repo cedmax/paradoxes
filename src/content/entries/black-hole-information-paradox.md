@@ -31,7 +31,7 @@ finePrint: "Hawking’s calculation dates from the 1970s. Preserving information
 sources:
   - title: "Wikipedia: Black hole information paradox"
     url: "https://en.wikipedia.org/wiki/Black_hole_information_paradox"
-    note: "Main source for Hawking’s work, the proposals and their problems, the 2019 result, and the view that information is generally believed preserved."
+    note: "Main source for Hawking’s work, the proposals and their problems, the 2019 result, and the statement that information is now generally believed to be preserved."
   - title: "Polchinski (2016): The Black Hole Information Problem"
     url: "https://arxiv.org/abs/1609.04036"
     note: "Lecture notes on Hawking’s calculation, information loss, remnants, baby universes, firewalls and fuzzballs."

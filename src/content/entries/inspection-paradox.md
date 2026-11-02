@@ -23,7 +23,7 @@ finePrint: "This only applies when arrivals are uneven and you turn up at a rand
 sources:
   - title: "Allen Downey: The Inspection Paradox is Everywhere"
     url: https://allendowney.substack.com/p/the-inspection-paradox-is-everywhere
-    note: "Source for the Red Line figures (7.8 and 4.4) and the 3.8-minute wait. The 5 and 15 minute example is this entry’s own."
+    note: "Source for the Red Line figures (7.8 and 4.4). The 13% is worked out here from half of 7.8; Downey gives about 15%."
   - title: "Wikipedia: Inspection paradox"
     url: https://en.wikipedia.org/wiki/Inspection_paradox
     note: "Source for a random moment tending to fall in a longer gap, and the name “bus waiting time paradox”."

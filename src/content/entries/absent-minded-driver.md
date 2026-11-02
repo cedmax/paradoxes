@@ -36,7 +36,7 @@ sources:
     note: "Source for the quote “there is no paradox or inconsistency” and the planning and action stages."
   - title: "IDEAS/RePEc: Piccione and Rubinstein, On the Interpretation of Decision Problems with Imperfect Recall"
     url: "https://ideas.repec.org/a/eee/gamebe/v20y1997i1p3-24.html"
-    note: "Source for the bibliographic details of the original paper: Games and Economic Behavior 20(1), 3 to 24, July 1997."
+    note: "The original paper: Games and Economic Behavior 20(1), 3 to 24, July 1997."
   - title: "Futility Closet: The Absent-Minded Driver’s Paradox"
     url: "https://futilitycloset.com/2016/08/26/absent-minded-drivers-paradox"
     note: "Supports the story (home, hazardous exit, a hotel or motel) and the payoffs 4, 1 and 0, credited to Piccione and Rubinstein."

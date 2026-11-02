@@ -28,6 +28,6 @@ sources:
     note: "Source for Thiéry (1896) as the first publication of the circles figure. Other historical accounts differ."
   - title: "Burton (2001): The Tenacity of Historical Misinformation: Titchener Did Not Invent the Titchener Illusion"
     url: https://doi.org/10.1037/1093-4510.4.3.228
-    note: "History of Psychology 4(3), pp. 228–244, on the attribution history. Bibliographic details and conclusion checked through the abstract; the full article was not inspected."
+    note: "Source for the history of the figure’s attribution."
 sourcesVerified: true
 ---

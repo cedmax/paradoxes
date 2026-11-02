@@ -26,5 +26,5 @@ sources:
     note: "Source for the three methods and their answers, Bertrand’s 1889 book, and Jaynes and Drory. Answers recomputed by hand."
   - title: "Jaynes (1973), The Well-Posed Problem, Foundations of Physics 3, 477-493"
     url: "https://bayes.wustl.edu/etj/articles/well.pdf"
-    note: "Checked: rotation, scale and translation invariance leave only the uniform distribution over distance from the centre, which gives one half."
+    note: "Source for rotation, scale and translation invariance leaving only the uniform distribution over distance from the centre, which gives one half."
 ---

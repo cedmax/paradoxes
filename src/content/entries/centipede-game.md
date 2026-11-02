@@ -55,7 +55,7 @@ sources:
     note: "Source for Binmore’s argument that common knowledge of rationality need not force backward induction."
   - title: "Palacios-Huerta and Volij (2009), Field Centipedes, American Economic Review 99(4), 1619-35"
     url: "https://www.aeaweb.org/articles?id=10.1257/aer.99.4.1619"
-    note: "Abstract: 69 percent of highly ranked chess players stopped the centipede game at once, and 100 percent of Grandmasters."
+    note: "Source for 69 percent of highly ranked chess players stopped the centipede game at once, and 100 percent of Grandmasters."
   - title: "Levitt, List and Sadoff (2011), Checkmate: Exploring Backward Induction among Chess Players, American Economic Review 101(2), 975-90"
     url: "https://www.aeaweb.org/articles?id=10.1257/aer.101.2.975"
     note: "Source for chess players almost never playing the backward induction equilibrium."

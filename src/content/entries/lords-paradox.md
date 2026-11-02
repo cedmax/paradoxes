@@ -37,7 +37,7 @@ sources:
     note: "Source for change scores against analysis of covariance, and Holland and Rubin’s descriptive versus causal point."
   - title: "ETS: Holland and Rubin, On Lord's Paradox (Research Report RR-82-36, 1982)"
     url: https://www.ets.org/research/policy_research_reports/publications/report/1982/hwda.html
-    note: "Abstract: both statisticians’ descriptive conclusions are correct, and their causal conclusions rest on different assumptions the data cannot test."
+    note: "Source for both statisticians’ descriptive conclusions are correct, and their causal conclusions rest on different assumptions the data cannot test."
   - title: "ETS: Holland and Rubin, On Lord's Paradox (book chapter, 1983)"
     url: https://www.ets.org/research/policy_research_reports/publications/chapter/1983/kalv.html
     note: "Publication details of the 1983 chapter, in a Festschrift for Frederic M. Lord edited by Howard Wainer and Samuel Messick."

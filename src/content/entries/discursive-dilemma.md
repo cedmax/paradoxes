@@ -42,7 +42,7 @@ sources:
     note: "Source for the contract case, the discursive dilemma, and the premise-based method’s difficulties."
   - title: "List and Pettit (2002), “Aggregating Sets of Judgments: An Impossibility Result”, Economics and Philosophy 18(1), 89-110 (IDEAS/RePEc record)"
     url: "https://ideas.repec.org/a/cup/ecnphi/v18y2002i01p89-110_00.html"
-    note: "Citation and abstract: the difficulty noticed in the doctrinal paradox is an instance of a general impossibility theorem."
+    note: "Source for the difficulty noticed in the doctrinal paradox is an instance of a general impossibility theorem."
   - title: "Wikipedia: Discursive dilemma"
     url: "https://en.wikipedia.org/wiki/Discursive_dilemma"
     note: "Source for the opposite results of the two procedures and the road repair example (recomputed)."

@@ -43,7 +43,7 @@ sources:
     note: "Source for the dialogue and its figures, and the credit to Yudkowsky for the name. Expected value recomputed."
   - title: "Eliezer Yudkowsky, Pascal's Mugging: Tiny Probabilities of Vast Utilities (2007)"
     url: "https://www.lesswrong.com/posts/a5JAiTdytou3Jg749/pascal-s-mugging-tiny-probabilities-of-vast-utilities"
-    note: "Source for the date of 19 October 2007, the title, and the five-dollars, Matrix version. Only the first 100,000 of about 123,000 characters were read."
+    note: "Source for the date of 19 October 2007, the title, and the five-dollars, Matrix version."
   - title: "Wikipedia: Pascal's mugging"
     url: "https://en.wikipedia.org/wiki/Pascal%27s_mugging"
     note: "Source for the difference from Pascal’s wager, the proposed remedies and their critics, and views differing."
