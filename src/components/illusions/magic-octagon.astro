@@ -500,20 +500,21 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       // Approximate a shallow extruded octagon: the rear outline shifts
       // sideways as the face narrows, exposing an edge at the halfway point.
       // None of these extra shapes rotate the red Y-axis or the corner mark.
-      const depth = 14 * Math.abs(Math.sin((displayedFlip * Math.PI) / 180))
+      const radians = (displayedFlip * Math.PI) / 180
+      const width = Math.cos(radians)
+      const depth = 14 * Math.abs(Math.sin(radians))
       const rimVisible = depth > 0.2 ? "visible" : "hidden"
       rim.setAttribute("visibility", rimVisible)
       edge.setAttribute("visibility", rimVisible)
       rim.setAttribute(
         "transform",
-        "translate(" + depth + " 0) " + scaleAroundCentre(Math.cos((displayedFlip * Math.PI) / 180)),
+        `translate(${depth} 0) ${scaleAroundCentre(width)}`,
       )
       rimTurn.setAttribute("transform", "rotate(" + displayedAngle + " 180 145)")
       edgeBody.setAttribute("x", "180")
       edgeBody.setAttribute("width", String(depth))
       edgeHighlight.setAttribute("x1", String(180 + depth * 0.7))
       edgeHighlight.setAttribute("x2", String(180 + depth * 0.7))
-      const width = Math.cos((displayedFlip * Math.PI) / 180)
       const showingBack = displayedFlip > 90
       flipGroup.setAttribute("transform", scaleAroundCentre(width))
       turnGroup.setAttribute("transform", "rotate(" + displayedAngle + " 180 145)")
@@ -529,7 +530,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       otherEdge.setAttribute("visibility", rimVisible)
       otherRim.setAttribute(
         "transform",
-        "translate(" + -depth + " 0) " + scaleAroundCentre(otherWidth),
+        `translate(${-depth} 0) ${scaleAroundCentre(otherWidth)}`,
       )
       otherRimTurn.setAttribute("transform", "rotate(" + displayedAngle + " 180 145)")
       otherEdgeBody.setAttribute("x", String(180 - depth))
