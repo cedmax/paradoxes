@@ -2,27 +2,13 @@
 // Deliberately independent of drawCoin and the figure event handlers: a failure
 // here must not prevent anyone from manipulating the coins.
 
-const angles = [0, 45, 90, 135, 180, 225, 270, 315]
-const directions = [
-  "up",
-  "up-right",
-  "right",
-  "down-right",
-  "down",
-  "down-left",
-  "left",
-  "up-left",
-]
-const corners = [
-  "top",
-  "upper-right",
-  "right",
-  "lower-right",
-  "bottom",
-  "lower-left",
-  "left",
-  "upper-left",
-]
+import {
+  angles,
+  cornerNames as corners,
+  isEdgeOn,
+  labels as directions,
+} from "~/scripts/magic-octagon-coin"
+
 const wrap = (n: number) => ((n % 8) + 8) % 8
 const position = (x: number, y: number) =>
   wrap(Math.round((Math.atan2(y, x) + Math.PI / 2) / (Math.PI / 4)))
@@ -31,7 +17,7 @@ const describe = (turn: number, flip: number, marked: boolean) => {
   const radians = (turn * Math.PI) / 180
   const cosFlip = Math.cos((flip * Math.PI) / 180)
   const degrees = Math.round(flip)
-  if (Math.abs(cosFlip) <= 0.015) {
+  if (isEdgeOn(flip)) {
     return degrees + " degrees. Edge-on; neither face is visible."
   }
 
@@ -91,7 +77,7 @@ const update = (slider: HTMLInputElement, updateGraphicDescription: boolean) => 
     id === "magic-octagon-proof-variants-shared"
   ) {
     const marked = id === "magic-octagon-proof-variants-shared"
-    const face = degrees === 90 ? "Edge-on" : degrees < 90 ? "Front faces" : "Flipped faces"
+    const face = isEdgeOn(degrees) ? "Edge-on" : degrees < 90 ? "Front faces" : "Flipped faces"
     spoken = degrees + " degrees. " + face + "; all eight coins turn together."
     descriptions = angles.map((angle) => [
       (marked ? "proof-variant-" : "variant-") + angle,
