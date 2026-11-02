@@ -1,0 +1,97 @@
+---
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { illusionSurface, series, stroke } from "~/data/palette"
+
+interface Props {
+  id: string
+  title: string
+  desc: string
+  flipped?: boolean
+  showMarker?: boolean
+}
+
+const { id, title, desc, flipped = false, showMarker = false } = Astro.props
+const corners = Array.from({ length: 8 }, (_, index) => {
+  const angle = -Math.PI / 2 + (index * Math.PI) / 4
+  return `${(180 + 112 * Math.cos(angle)).toFixed(2)},${(145 + 112 * Math.sin(angle)).toFixed(2)}`
+}).join(" ")
+---
+
+<SvgFigure
+  name={`magic-octagon-${id}`}
+  data-magic-coin={id}
+  viewBox="0 0 360 310"
+  class="w-full"
+  title={title}
+  desc={desc}
+>
+  <!-- Eight actual side panels, projected in 3D by the page script.
+       The wider edge is the coin's thickness, not a separate flat overlay. -->
+  <g data-coin-sides aria-hidden="true">
+    {Array.from({ length: 8 }, (_, index) => (
+      <polygon
+        data-coin-side={index}
+        visibility="hidden"
+        fill={index % 2 ? illusionSurface.neutral : illusionSurface.midGrey}
+        stroke={stroke}
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
+    ))}
+  </g>
+
+  <g data-coin-front visibility={flipped ? "hidden" : "visible"}>
+    <polygon
+      points={corners}
+      fill={illusionSurface.paper}
+      stroke={stroke}
+      stroke-width="3"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M180 190 V99 M160 119 L180 99 L200 119"
+      fill="none"
+      stroke={series.blue}
+      stroke-width="8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    {showMarker && <circle cx="180" cy="47" r="5" fill={stroke} />}
+  </g>
+
+  <g data-coin-flipped visibility={flipped ? "visible" : "hidden"}>
+    <polygon
+      points={corners}
+      fill={illusionSurface.paper}
+      stroke={stroke}
+      stroke-width="3"
+      stroke-linejoin="round"
+    />
+    <!-- Right on the unflipped local face becomes left when seen from behind. -->
+    <path
+      d="M133 145 H227 M206 124 L227 145 L206 166"
+      fill="none"
+      stroke={series.gold}
+      stroke-width="8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    {showMarker && <circle cx="180" cy="47" r="5" fill={stroke} />}
+  </g>
+
+  <!-- This is fixed in picture space, outside the turning coin's groups. -->
+  <g aria-hidden="true">
+    <line
+      x1="180"
+      y1="12"
+      x2="180"
+      y2="279"
+      stroke={series.red}
+      stroke-width="2.5"
+      stroke-dasharray="7 6"
+    />
+    <text x="191" y="299" fill={series.red} font-size="15" font-weight="600">
+      Y · flip axis
+    </text>
+  </g>
+</SvgFigure>
