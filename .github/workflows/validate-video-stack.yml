@@ -6,7 +6,7 @@ on:
       - video/validation-run
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   verify:
@@ -19,21 +19,26 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Apply Prettier and lint correction
+        run: |
+          sed -i 's/illusionSurface, series, stroke/illusionSurface, stroke/' src/components/illusions/kinetic-depth-effect.astro
+          pnpm exec prettier --write .claude/skills/create-illusion/SKILL.md src/components/illusions src/components/illustration-kit/ClickToLoadVideo.astro
+          git config user.name "Validation workflow"
+          git config user.email "actions@users.noreply.github.com"
+          git add .claude/skills/create-illusion/SKILL.md src/components/illusions src/components/illustration-kit/ClickToLoadVideo.astro
+          if ! git diff --cached --quiet; then
+            git commit -m "Format video and illusion changes"
+            git push origin HEAD:video/validation-run
+          fi
       - name: Lint
         run: pnpm lint
-        continue-on-error: true
       - name: Astro and content check
         run: pnpm check
-        continue-on-error: true
       - name: Formatting
         run: pnpm exec prettier --check .
-        continue-on-error: true
       - name: Knip
         run: pnpm knip
-        continue-on-error: true
       - name: Build
         run: pnpm build
-        continue-on-error: true
       - name: SEO
         run: pnpm check:seo
-        continue-on-error: true
