@@ -81,7 +81,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       stroke-linecap="round"
       stroke-linejoin="round"
     />
-    {showMarker && <circle cx="180" cy="47" r="5" fill={stroke} />}
+    {showMarker && <circle data-coin-marker cx="180" cy="47" r="5" fill={stroke} />}
   </g>
 
   <g
@@ -105,7 +105,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       stroke-linecap="round"
       stroke-linejoin="round"
     />
-    {showMarker && <circle cx="180" cy="47" r="5" fill={stroke} />}
+    {showMarker && <circle data-coin-marker cx="180" cy="47" r="5" fill={stroke} />}
   </g>
 
   <!-- This is fixed in picture space, outside the turning coin's groups. -->
