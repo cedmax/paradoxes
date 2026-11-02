@@ -15,9 +15,8 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 <IllustrationFigure name="magic-octagon" lead="Where will the arrow point when flipped?">
   <p id="magic-octagon-stage-label" class="mono-label">Step 1 of 2 · The puzzle</p>
   <p id="magic-octagon-setup-note" class="text-base">
-    First, study both views of the coin. The black dot marks the top on each side.
-    The front arrow points up; the flipped arrow points left. Remember both before
-    trying the puzzle.
+    First, study both views of the coin. The front arrow points up; the flipped
+    arrow points left. Remember both before trying the puzzle.
   </p>
 
   <div
@@ -33,7 +32,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         viewBox="0 0 360 290"
         class="w-full"
         title="A two-sided octagonal coin"
-        desc="A coin with a blue arrow in the front view, a gold arrow in the flipped view, and a dot marking one physical corner. The coin turns and flips. The opposite view can be shown alongside it."
+        desc="A two-sided octagon with a blue arrow pointing up on one side. A red dashed vertical line marks the fixed axis about which the coin is flipped. The opposite side can be shown alongside it."
       >
         <g id="magic-octagon-flip">
           <g id="magic-octagon-turn">
@@ -65,8 +64,30 @@ const corners = Array.from({ length: 8 }, (_, index) => {
             >
               <path d="M133 145 H227 M206 124 L227 145 L206 166" />
             </g>
-            <circle cx="180" cy="47" r="5" fill={stroke} />
+            <circle
+              id="magic-octagon-marker"
+              cx="180"
+              cy="47"
+              r="5"
+              fill={stroke}
+              visibility="hidden"
+            />
           </g>
+        </g>
+        <!-- Fixed to the picture; unlike the coin, this axis never rotates. -->
+        <g aria-hidden="true">
+          <line
+            x1="180"
+            y1="10"
+            x2="180"
+            y2="277"
+            stroke={series.red}
+            stroke-width="2.5"
+            stroke-dasharray="7 6"
+          />
+          <text x="192" y="277" fill={series.red} font-size="15" font-weight="600">
+            Y · flip axis
+          </text>
         </g>
       </SvgFigure>
     </div>
@@ -80,7 +101,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
         viewBox="0 0 360 290"
         class="w-full"
         title="The flipped view of the same octagonal coin"
-        desc="The same octagon viewed from the flipped side. Its gold arrow starts pointing left, and a black dot marks the top corner."
+        desc="The same octagon viewed from the flipped side, with a gold arrow pointing left. A red dashed vertical line marks the fixed flip axis."
       >
         <g
           id="magic-octagon-other-mirror"
@@ -115,12 +136,40 @@ const corners = Array.from({ length: 8 }, (_, index) => {
             >
               <path d="M133 145 H227 M206 124 L227 145 L206 166" />
             </g>
-            <circle cx="180" cy="47" r="5" fill={stroke} />
+            <circle
+              id="magic-octagon-other-marker"
+              cx="180"
+              cy="47"
+              r="5"
+              fill={stroke}
+              visibility="hidden"
+            />
           </g>
+        </g>
+        <!-- Fixed to the picture; unlike the coin, this axis never rotates. -->
+        <g aria-hidden="true">
+          <line
+            x1="180"
+            y1="10"
+            x2="180"
+            y2="277"
+            stroke={series.red}
+            stroke-width="2.5"
+            stroke-dasharray="7 6"
+          />
+          <text x="192" y="277" fill={series.red} font-size="15" font-weight="600">
+            Y · flip axis
+          </text>
         </g>
       </SvgFigure>
     </div>
   </div>
+
+  <p class="text-base">
+    The <span class="font-bold text-series-red">red dashed line</span> marks
+    the vertical (Y) axis. Flipping means turning the coin over around this
+    line, like turning a page. The line stays upright even after a 45° turn.
+  </p>
 
   <div id="magic-octagon-start-controls" class="flex flex-wrap items-center gap-3">
     <button id="magic-octagon-start" type="button" class="btn">
@@ -130,9 +179,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 
   <div id="magic-octagon-challenge" class="flex flex-col gap-4" hidden>
     <p class="text-base">
-      Now only the front is visible. Turn it 45° in either direction. If the coin
-      is then flipped left-to-right about the vertical (Y) axis, which way will
-      the hidden arrow point?
+      Now only the front is visible. Turn it 45° in either direction. Then imagine
+      turning the coin over around the red dashed Y axis, like turning a page.
+      Which way will the hidden arrow point?
     </p>
     <div
       class="flex flex-wrap gap-3"
@@ -197,8 +246,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     </h2>
     <p id="magic-octagon-answer" class="text-base" aria-live="polite"></p>
     <p class="text-base">
-      Both views now show the same turned coin. Use the controls to turn or flip
-      it, or hide the comparison to study one view at a time.
+      Both views now show the same turned coin. The black dots mark the same
+      physical corner, making the reversal easier to follow. The red Y axis
+      stays fixed as the coin turns. Use the controls to rotate or flip it.
     </p>
     <div
       class="mx-auto grid w-full max-w-lg grid-cols-[1fr_1.5fr_1fr] gap-2 sm:gap-3"
@@ -308,6 +358,8 @@ const corners = Array.from({ length: 8 }, (_, index) => {
     const otherTurn = find<SVGGElement>(root, "#magic-octagon-other-turn")
     const otherFront = find<SVGGElement>(root, "#magic-octagon-other-front")
     const otherBack = find<SVGGElement>(root, "#magic-octagon-other-back")
+    const marker = find<SVGCircleElement>(root, "#magic-octagon-marker")
+    const otherMarker = find<SVGCircleElement>(root, "#magic-octagon-other-marker")
 
     const directions = [
       "up",
@@ -348,6 +400,10 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       startControls.hidden = stage !== "setup"
       challenge.hidden = stage !== "challenge"
       explanation.hidden = stage !== "explanation"
+      // The corner dots are the proof, so don't reveal them during the puzzle.
+      const markerVisibility = stage === "explanation" ? "visible" : "hidden"
+      marker.setAttribute("visibility", markerVisibility)
+      otherMarker.setAttribute("visibility", markerVisibility)
       // The initial pair is only a reference. Hide the answer in the puzzle.
       const showOther = stage === "setup" || (stage === "explanation" && comparing)
       other.hidden = !showOther
