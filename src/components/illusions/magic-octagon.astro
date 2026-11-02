@@ -192,9 +192,9 @@ const corners = Array.from({ length: 8 }, (_, index) => {
   </div>
 
   <div id="magic-octagon-explanation" class="flex flex-col gap-4" hidden>
-    <h3 id="magic-octagon-explanation-heading" tabindex="-1" class="font-bold">
+    <h2 id="magic-octagon-explanation-heading" tabindex="-1" class="font-bold">
       What happens
-    </h3>
+    </h2>
     <p id="magic-octagon-answer" class="text-base" aria-live="polite"></p>
     <p class="text-base">
       Both views now show the same turned coin. Use the controls to turn or flip
@@ -243,7 +243,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       Compare both sides
     </button>
     <button type="button" class="btn-link" id="magic-octagon-reset">
-      Reset
+      Try again
     </button>
     </div>
 
@@ -462,6 +462,8 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       for (const button of guesses) button.setAttribute("aria-pressed", "false")
       prediction.hidden = true
       revealButton.disabled = true
+      answer.hidden = false
+      answer.textContent = ""
       puzzleStatus.textContent = "Choose a turn to begin."
       showStage()
       draw()
@@ -491,6 +493,7 @@ const corners = Array.from({ length: 8 }, (_, index) => {
       flipped = false
       const result = faces()
       const expected = directions[result.flipped]
+      answer.hidden = false
       answer.textContent =
         "You predicted " + guess + ". After the vertical flip, the arrow points " +
         expected + (guess === expected ? " — correct." : ". The prediction was different.")
@@ -501,12 +504,14 @@ const corners = Array.from({ length: 8 }, (_, index) => {
 
     // The explanation keeps the existing linked front/flipped interaction.
     const turn = (amount: number) => {
+      answer.hidden = true
       angle += flipped ? -amount : amount
       animate()
     }
     left.addEventListener("click", () => turn(-45))
     right.addEventListener("click", () => turn(45))
     flipButton.addEventListener("click", () => {
+      answer.hidden = true
       flipped = !flipped
       animate()
     })
