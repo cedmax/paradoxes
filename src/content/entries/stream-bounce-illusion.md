@@ -16,5 +16,5 @@ sources:
   - title: "Sekuler, Sekuler and Lau (1997): Sound alters visual motion perception"
     url: "https://people.brandeis.edu/~sekuler/papers/SekulerNature1997.pdf"
     note: "Author-hosted original paper: identical discs converge and overlap; clicking at or near coincidence increases reports of bouncing."
-sourcesVerified: false
+sourcesVerified: true
 ---
