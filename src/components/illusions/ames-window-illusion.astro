@@ -1,0 +1,228 @@
+---
+import IllustrationFigure from "~/components/illustration-kit/IllustrationFigure.astro"
+import IllusionControls from "~/components/illustration-kit/IllusionControls.astro"
+import ListenerChoice from "~/components/illustration-kit/ListenerChoice.astro"
+import Slider from "~/components/illustration-kit/Slider.astro"
+import SvgFigure from "~/components/illustration-kit/SvgFigure.astro"
+import { series, stroke } from "~/data/palette"
+---
+
+<IllustrationFigure
+  name="ames-window"
+  lead="Watch the window turn. Does it keep rotating or swing back and forth?"
+>
+  <SvgFigure
+    name="ames-window"
+    viewBox="0 0 600 380"
+    class="mx-auto w-full max-w-xl"
+    title="A flat trapezoidal window, drawn in perspective as it rotates around a vertical axis"
+    desc="The left vertical edge is taller than the right. The window's plane rotates in one continuous direction. Perspective sometimes makes it seem to reverse direction. A red dot can be revealed on the window’s upper edge, paired with a matching red dot in the circular top view at the upper right."
+  >
+    <g
+      id="ames-window-frame"
+      fill="none"
+      stroke={stroke}
+      stroke-width="8"
+      stroke-linejoin="round"
+    >
+      <path
+        id="ames-window-outline"
+        d="M141.67 44.33 L458.33 129.20 L458.33 250.80 L141.67 335.67 Z"
+      ></path>
+      <path id="ames-window-bar" d="M141.67 190 L458.33 190" stroke-width="5"></path>
+      <path id="ames-window-mid" d="M300 86.77 L300 293.23" stroke-width="5"></path>
+    </g>
+    <g id="ames-window-guides" visibility="hidden">
+      <circle id="ames-window-frame-marker" cx="458.33" cy="129.20" r="7" fill={series.red} />
+      <circle cx="530" cy="70" r="30" fill="none" stroke={stroke} stroke-width="1.5" />
+      <line x1="494" y1="70" x2="566" y2="70" stroke={stroke} stroke-dasharray="3 5" />
+      <line
+        id="ames-window-axis"
+        x1="500"
+        y1="70"
+        x2="560"
+        y2="70"
+        stroke={series.red}
+        stroke-width="4"
+      />
+      <circle id="ames-window-near" cx="560" cy="70" r="5" fill={series.red} />
+      <text x="530" y="119" text-anchor="middle" font-size="13" fill={stroke}>
+        Top view
+      </text>
+    </g>
+  </SvgFigure>
+  <button
+    id="ames-window-play"
+    type="button"
+    class="btn-ghost self-start motion-reduce:hidden"
+    aria-pressed="false"
+  >
+    Play
+  </button>
+  <div class="hidden motion-reduce:block">
+    <Slider
+      id="ames-window-angle"
+      label="Turn by hand"
+      min={0}
+      max={359}
+      step={1}
+      value={0}
+      startLabel="0 degrees"
+      endLabel="359 degrees"
+      describedby="ames-window-readout"
+      valuetext="Angle 0 degrees"
+    >
+      <p id="ames-window-readout" class="text-base" aria-live="polite">
+        Position: 0 degrees.
+      </p>
+    </Slider>
+  </div>
+  <ListenerChoice
+    name="ames-window"
+    question="When the window moves, what does it seem to do?"
+    options={[
+      { value: "turns", label: "Keeps turning" },
+      { value: "swings", label: "Swings back" },
+      { value: "unsure", label: "Not sure" },
+    ]}
+    skipLabel="I cannot watch moving patterns"
+  />
+  <div id="ames-window-reveal" hidden>
+    <IllusionControls
+      name="ames-window"
+      play={false}
+      proof="Both red dots mark the same end of the window: one on its upper corner, the other in the top view. Watch them move together, or use the angle slider in reduced-motion mode, to follow their matching positions."
+      proofLabel="Show the top view"
+    />
+  </div>
+  <Fragment slot="caption">
+    Original vector demonstration of the Ames window, after Braunstein and Payne (1968). The
+    rotating shape is a flat trapezoid, not a rectangular window.
+  </Fragment>
+</IllustrationFigure>
+
+<script>
+  import {
+    bindIllusionProof,
+    bindListenerChoice,
+    bindSlider,
+    find,
+    illustrationRoot,
+  } from "~/scripts/illustration"
+
+  const name = "ames-window"
+  const root = illustrationRoot(name)
+  if (root) {
+    const play = find<HTMLButtonElement>(root, "#ames-window-play")
+    const slider = find<HTMLInputElement>(root, "#ames-window-angle")
+    const readout = find<HTMLElement>(root, "#ames-window-readout")
+    const outline = find<SVGPathElement>(root, "#ames-window-outline")
+    const bar = find<SVGPathElement>(root, "#ames-window-bar")
+    const mid = find<SVGPathElement>(root, "#ames-window-mid")
+    const axis = find<SVGLineElement>(root, "#ames-window-axis")
+    const near = find<SVGCircleElement>(root, "#ames-window-near")
+    const frameMarker = find<SVGCircleElement>(root, "#ames-window-frame-marker")
+    const reveal = find<HTMLElement>(root, "#ames-window-reveal")
+    // Four corners are coplanar. Left edge is 2.4 times the height of the right.
+    const project = (x: number, y: number, angle: number) => {
+      const a = (angle * Math.PI) / 180
+      const xr = x * Math.cos(a)
+      const depth = x * Math.sin(a)
+      const scale = 760 / (900 - depth)
+      return [300 + xr * scale * 1.5, 190 - y * scale * 1.5]
+    }
+    const pos = (xy: number[]) => xy.map((value) => value.toFixed(2)).join(" ")
+    const render = (angle: number) => {
+      const corners = [
+        project(-125, 115, angle),
+        project(125, 48, angle),
+        project(125, -48, angle),
+        project(-125, -115, angle),
+      ]
+      outline.setAttribute("d", `M${corners.map(pos).join(" L")} Z`)
+      frameMarker.setAttribute("cx", String(corners[1][0]))
+      frameMarker.setAttribute("cy", String(corners[1][1]))
+      const sides = [project(-125, 0, angle), project(125, 0, angle)]
+      bar.setAttribute("d", `M${sides.map(pos).join(" L")}`)
+      const centres = [project(0, 81.5, angle), project(0, -81.5, angle)]
+      mid.setAttribute("d", `M${centres.map(pos).join(" L")}`)
+      const a = (angle * Math.PI) / 180
+      const dx = 30 * Math.cos(a)
+      const dy = 30 * Math.sin(a)
+      axis.setAttribute("x1", String(530 - dx))
+      axis.setAttribute("y1", String(70 - dy))
+      axis.setAttribute("x2", String(530 + dx))
+      axis.setAttribute("y2", String(70 + dy))
+      near.setAttribute("cx", String(530 + dx))
+      near.setAttribute("cy", String(70 + dy))
+    }
+    // Just under five seconds per turn; a judgement reveals the proof without pausing.
+    // Use elapsed time so speed is consistent across displays.
+    const degreesPerSecond = 75
+    let angle = 0
+    let playing = false
+    let frame = 0
+    let previousTime: number | undefined
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const stop = () => {
+      playing = false
+      cancelAnimationFrame(frame)
+      previousTime = undefined
+      play.textContent = "Play"
+      play.setAttribute("aria-pressed", "false")
+    }
+    const tick = (now: number) => {
+      if (!playing) return
+      if (previousTime !== undefined) {
+        angle = (angle + (Math.min(now - previousTime, 100) * degreesPerSecond) / 1000) % 360
+        render(angle)
+      }
+      previousTime = now
+      frame = requestAnimationFrame(tick)
+    }
+    const choices = bindListenerChoice(root, name, (value) => {
+      // An accessible opt-out must stop motion; ordinary judgements must not.
+      if (value === "skip") stop()
+      reveal.hidden = false
+      return value === "skip"
+        ? "The top view can be inspected without watching the rotation."
+        : reducedMotion.matches
+          ? "Show the top view, then move the slider to check the window's orientation."
+          : "Show the top view while the window continues rotating."
+    })
+    play.addEventListener("click", () => {
+      if (playing) return stop()
+      if (reducedMotion.matches) return
+      playing = true
+      previousTime = undefined
+      play.textContent = "Pause"
+      play.setAttribute("aria-pressed", "true")
+      choices.enable()
+      frame = requestAnimationFrame(tick)
+    })
+    const updateManual = bindSlider(slider, (value) => {
+      angle = value
+      render(angle)
+      readout.textContent = `Position: ${value} degrees.`
+      return `Angle ${value} degrees`
+    })
+    slider.addEventListener("input", () => {
+      stop()
+      choices.enable()
+    })
+    const motionChanged = () => {
+      if (reducedMotion.matches) {
+        stop()
+        slider.value = String(Math.round(angle) % 360)
+        updateManual()
+      }
+      play.disabled = reducedMotion.matches
+    }
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop()
+    })
+    reducedMotion.addEventListener("change", motionChanged)
+    motionChanged()
+    bindIllusionProof(root, name, "Show the top view", "Hide the top view")
+  }
+</script>
