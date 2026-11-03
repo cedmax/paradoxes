@@ -20,5 +20,5 @@ sources:
   - title: "Rogers (2021): Optic Flow: Perceiving and Acting in a 3-D World"
     url: "https://journals.sagepub.com/doi/full/10.1177/2041669520987257"
     note: "Discusses the 1953 shadow experiments, parallel (orthographic) projection and spontaneous reversals of perceived rotation."
-sourcesVerified: false
+sourcesVerified: true
 ---

@@ -17,5 +17,5 @@ sources:
   - title: "Shams, Kamitani and Shimojo (2002): Visual illusion induced by sound"
     url: "https://shamslab.psych.ucla.edu/wp-content/uploads/sites/57/2016/01/CogBrainRes-reprint.pdf"
     note: "Author-hosted paper reporting illusory extra flashes and an approximate 100 ms audio-visual interaction window."
-sourcesVerified: false
+sourcesVerified: true
 ---

@@ -20,5 +20,5 @@ sources:
   - title: "Mather et al. (2008): The motion aftereffect reloaded"
     url: "https://www.georgemather.com/PDF/Mather_etal_2008.pdf"
     note: "Reviews variants and cautions that adaptation is not confined to a single processing stage."
-sourcesVerified: false
+sourcesVerified: true
 ---

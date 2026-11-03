@@ -18,5 +18,5 @@ sources:
   - title: "Braunstein and Payne (1968): Perspective and the Rotating Trapezoid"
     url: "https://doi.org/10.1364/JOSA.58.000399"
     note: "Experimental evidence that perspective and viewing distance affect reports of direction and oscillation."
-sourcesVerified: false
+sourcesVerified: true
 ---
