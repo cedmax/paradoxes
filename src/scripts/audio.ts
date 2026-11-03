@@ -27,6 +27,29 @@ const contextClass = () =>
 export const audioAvailable = () => contextClass() !== undefined
 
 /**
+ * Estimate when an AudioContext sample will reach the output device, expressed
+ * as a performance.now() timestamp for requestAnimationFrame comparisons.
+ * Device- and display-specific delay (especially wireless) can remain uncertain.
+ */
+export function audioOutputTime(audio: AudioContext, contextTime: number) {
+  const timestamp = audio.getOutputTimestamp?.()
+  const outputContextTime = timestamp?.contextTime
+  const outputPerformanceTime = timestamp?.performanceTime
+  if (
+    typeof outputContextTime === "number" &&
+    Number.isFinite(outputContextTime) &&
+    outputContextTime > 0 &&
+    typeof outputPerformanceTime === "number" &&
+    Number.isFinite(outputPerformanceTime) &&
+    outputPerformanceTime > 0
+  ) {
+    return outputPerformanceTime + (contextTime - outputContextTime) * 1000
+  }
+  const latency = Math.max(0, audio.baseLatency || 0) + Math.max(0, audio.outputLatency || 0)
+  return performance.now() + (contextTime - audio.currentTime + latency) * 1000
+}
+
+/**
  * Create the context inside the click. iOS plays Web Audio as "ambient" by default, which the
  * ringer switch silences, so ask for "playback" where Safari supports it. A silent one-sample
  * buffer started in the same gesture unlocks older iOS versions that ignore resume().
@@ -73,10 +96,16 @@ export function stopAudio() {
  * sound. Replaces anything already playing. `onStop` runs when it ends or is stopped.
  * Resolves to true only if the sound started; false if it was stopped or replaced while the
  * browser was still waking the audio, or the context never began running.
+ * onStart exposes the actual audio clock for synchronising a visual stimulus without
+ * changing the timing or return value of existing callers.
  */
 export async function playSamples(
   render: (sampleRate: number) => Float32Array,
-  options: { loop?: boolean; onStop?: () => void } = {},
+  options: {
+    loop?: boolean
+    onStop?: () => void
+    onStart?: (audio: AudioContext, startedAt: number) => void
+  } = {},
 ) {
   stopAudio()
   const request = generation
@@ -99,7 +128,9 @@ export async function playSamples(
       entry.onStop?.()
     }
   }
-  source.start()
+  const startedAt = audio.currentTime
+  source.start(startedAt)
+  options.onStart?.(audio, startedAt)
   return true
 }
 
