@@ -2,6 +2,12 @@
 // accordion. The ids and data-attributes come from EntryFilters, ChapterGroup and EntryCard.
 import { matchesSearch, normaliseSearch } from "~/data/search"
 import { createSuggest } from "~/scripts/home-suggest"
+import {
+  catalogueUrl,
+  catalogueStore,
+  readCatalogueState,
+  type CatalogueState,
+} from "~/data/catalogue-state"
 
 interface Switches {
   hideVariants: boolean
@@ -19,10 +25,12 @@ const reset = document.getElementById("clear-filters") as HTMLButtonElement
 const filters = document.getElementById("entry-filters") as HTMLDetailsElement
 const filterSummary = document.getElementById("filter-summary") as HTMLElement
 const starters = document.getElementById("starter-entries")
+const directory = document.getElementById("chapter-directory")
 const mobile = window.matchMedia("(max-width: 767.98px)")
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 const STORE = "open-chapter"
-let status = "all"
+let status: CatalogueState["status"] = "all"
+let chapterChoice: string | null | undefined
 // What the visitor chose with the switch. While a search is active the switch is forced off
 // and disabled, and this is restored when the search is cleared.
 let hideChoice = input.value.trim() ? true : hideVariants.checked
@@ -52,7 +60,7 @@ const writeOpen = (id: string) => {
   }
 }
 // Below md only one chapter is open: the one remembered from last time, else the first.
-const chapterIds = chapters.map((c) => c.dataset.chapter)
+const chapterIds = chapters.map((c) => c.dataset.chapter ?? "")
 const storedId = readOpen()
 let openId = chapterIds.some((id) => id === storedId) ? storedId : (chapterIds[0] ?? null)
 let filtering = false
@@ -74,7 +82,7 @@ function renderChapters() {
   }
 }
 
-function apply() {
+function apply(historyMode?: "push" | "replace") {
   const q = normaliseSearch(input.value)
   hideVariants.disabled = q !== ""
   hideVariants.checked = q === "" && hideChoice
@@ -92,6 +100,7 @@ function apply() {
     : "More filters"
   reset.hidden = q === "" && activeFilters === 0
   if (starters) starters.hidden = filtering || !hideChoice
+  if (directory) directory.hidden = filtering
   let shown = 0
   for (const card of cards) {
     const facts = card.dataset
@@ -119,7 +128,9 @@ function apply() {
     const filter = chip.dataset.filter ?? "all"
     const count = cards.filter(
       (card) =>
-        matchesFilter(card.dataset, filter) && isShownBySwitches(card.dataset, switches),
+        matchesFilter(card.dataset, filter) &&
+        matchesSearch(card.dataset.text ?? "", q) &&
+        isShownBySwitches(card.dataset, switches),
     ).length
     const label = chip.querySelector("[data-count]")
     if (label) label.textContent = String(count)
@@ -134,6 +145,48 @@ function apply() {
   renderChapters()
   updateSuggest(q, shown, filtering, typing)
   typing = false
+  if (historyMode) {
+    const url = catalogueUrl(new URL(location.href), {
+      query: input.value,
+      status,
+      hideVariants: hideChoice,
+      onlyReviewed: onlyReviewed.checked,
+      chapter: chapterChoice,
+    })
+    if (url.href !== location.href) {
+      try {
+        if (historyMode === "push") history.pushState(history.state, "", url)
+        else history.replaceState(history.state, "", url)
+      } catch {
+        // History can be restricted. Filtering still works in the current page.
+      }
+    }
+  }
+  try {
+    sessionStorage.setItem(catalogueStore, location.href)
+  } catch {
+    // Return links fall back to the plain index when storage is unavailable.
+  }
+}
+
+function restoreFromLocation() {
+  const state = readCatalogueState(new URLSearchParams(location.search), chapterIds)
+  input.value = state.query
+  status = state.status
+  hideChoice = state.hideVariants
+  onlyReviewed.checked = state.onlyReviewed
+  chapterChoice = state.chapter
+  const remembered = readOpen()
+  openId =
+    state.chapter === undefined
+      ? chapterIds.includes(remembered ?? "")
+        ? remembered
+        : (chapterIds[0] ?? null)
+      : state.chapter
+  chips.forEach((chip) =>
+    chip.setAttribute("aria-pressed", String(chip.dataset.filter === status)),
+  )
+  apply()
 }
 
 for (const chapter of chapters) {
@@ -141,8 +194,9 @@ for (const chapter of chapters) {
     if (!mobile.matches || filtering) return
     const id = chapter.dataset.chapter ?? null
     openId = openId === id ? null : id
+    chapterChoice = openId
     if (id && openId) writeOpen(id)
-    renderChapters()
+    apply("push")
     // Opening one closes the one above it, which would push the heading off screen.
     if (openId) {
       chapter.scrollIntoView({
@@ -167,25 +221,28 @@ reset.addEventListener("click", () => {
   chips.forEach((chip) =>
     chip.setAttribute("aria-pressed", String(chip.dataset.filter === "all")),
   )
-  apply()
+  apply("push")
   input.focus()
 })
 
 input.addEventListener("input", () => {
   typing = true
-  apply()
+  apply("replace")
 })
 hideVariants.addEventListener("change", () => {
   hideChoice = hideVariants.checked
-  apply()
+  apply("push")
 })
-onlyReviewed.addEventListener("change", apply)
+onlyReviewed.addEventListener("change", () => apply("push"))
 for (const button of chips) {
   button.addEventListener("click", () => {
-    status = button.dataset.filter ?? "all"
+    status = (button.dataset.filter ?? "all") as CatalogueState["status"]
     chips.forEach((c) => c.setAttribute("aria-pressed", String(c === button)))
-    apply()
+    apply("push")
   })
 }
-// Browsers can restore the switch and the search box on reload, so sync the page to them.
-apply()
+window.addEventListener("popstate", restoreFromLocation)
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) restoreFromLocation()
+})
+restoreFromLocation()

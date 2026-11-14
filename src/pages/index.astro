@@ -3,6 +3,7 @@ import Base from "~/layouts/Base.astro"
 import EntryFilters from "~/components/home/EntryFilters.astro"
 import EntryList from "~/components/home/EntryList.astro"
 import HomeHero from "~/components/home/HomeHero.astro"
+import ChapterDirectory from "~/components/home/ChapterDirectory.astro"
 import { byOrder, getPublishedEntries } from "~/data/entries"
 
 const entries = (await getPublishedEntries()).sort(byOrder)
@@ -12,6 +13,7 @@ const entries = (await getPublishedEntries()).sort(byOrder)
   <main id="main-content">
     <HomeHero entries={entries} />
     <EntryFilters entries={entries} />
+    <ChapterDirectory entries={entries} />
     <EntryList entries={entries} />
   </main>
 </Base>

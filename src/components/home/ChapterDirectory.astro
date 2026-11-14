@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content"
+import { groupByChapter, isListed } from "~/data/entries"
+
+interface Props {
+  entries: CollectionEntry<"entries">[]
+}
+const groups = groupByChapter(Astro.props.entries.filter(isListed))
+---
+
+<details id="chapter-directory" class="group px-gutter pt-5">
+  <summary class="flex min-h-11 cursor-pointer items-center gap-2 font-bold">
+    Browse by chapter
+    <span class="font-mono text-sm">({groups.length})</span>
+    <span
+      aria-hidden="true"
+      class="transition-transform group-open:rotate-180 motion-reduce:transition-none"
+    >
+      ↓
+    </span>
+  </summary>
+  <nav aria-label="Chapters" class="grid gap-3 pt-3 pb-5 sm:grid-cols-2 lg:grid-cols-3">
+    {groups.map(({ chapter, items }) => (
+      <a
+        class="flex min-h-14 items-center justify-between gap-3 border-2 border-ink p-3 font-bold no-underline hover:bg-ink hover:text-paper"
+        href={`/chapters/${chapter.id}/`}
+      >
+        <span>{chapter.title}</span>
+        <span class="font-mono text-sm">{items.length} →</span>
+      </a>
+    ))}
+  </nav>
+</details>
