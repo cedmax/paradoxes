@@ -9,7 +9,10 @@ Tailwind CSS 4 via the Vite plugin. Fonts are self-hosted with `@fontsource-vari
 in `src/styles/global.css`. `~` maps to `/src`.
 
 - `src/content/entries/*.md` — one paradox per file, YAML frontmatter only, no Markdown body.
-  Schema in `src/content.config.ts`.
+  Collection loader in `src/content.config.ts`; its testable schema is `src/data/entry-schema.ts`.
+  Published entries require sources, published arguments require a resolution, and published
+  disputed/unreconciled arguments require two to four positions. Required text cannot be blank.
+  Approval flags still require the owner's explicit authorisation.
 - `src/data/chapters.ts` — chapter ids, titles and blurbs. An entry's `chapter` must be one of
   these ids.
 - `src/data/status.ts` — status and simplification labels and definitions (shown on the site).

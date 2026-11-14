@@ -54,6 +54,7 @@ for (const file of files.filter((file) => file.endsWith(".html"))) {
 
   pages.set(canonical, {
     file,
+    figures: tags(html, "figure").map((match) => attributes(match[0])["data-illustration"]),
     description,
     image: meta.find((item) => item.property === "og:image")?.content,
     noindex,
@@ -87,6 +88,7 @@ async function pngSize(file) {
   return [header.readUInt32BE(16), header.readUInt32BE(20)]
 }
 const entryImages = new Map()
+const figureNames = new Map()
 for (const [canonical, page] of pages) {
   const entry = new URL(canonical).pathname.match(/^\/entries\/([^/]+)\/$/)?.[1]
   if (!entry) {
@@ -96,6 +98,14 @@ for (const [canonical, page] of pages) {
       `${page.file}: expected the shared /og.png as og:image`,
     )
     continue
+  }
+  for (const name of page.figures) {
+    assert(name?.trim(), `${page.file}: figure is missing its analytics name`)
+    assert(
+      !figureNames.has(name),
+      `${page.file}: figure name ${name} is also used in ${figureNames.get(name)}`,
+    )
+    figureNames.set(name, page.file)
   }
   assert(page.image, `${page.file}: missing og:image`)
   const image = new URL(page.image)

@@ -5,12 +5,13 @@ interface Props extends HTMLAttributes<"figure"> {
   /** Bold lead-in line above the picture. Use the `lead` slot when it needs markup. */
   lead?: string
   /** Renders data-illustration="<name>", the root that a page script looks up. */
-  name?: string
+  name: string
   /** Draw the bordered box. Turn off when the figure only holds bordered tables. */
   frame?: boolean
 }
 
 const { lead, name, frame = true, class: className, ...rest } = Astro.props
+if (!name.trim()) throw new Error("Illustration figures require a non-empty name")
 ---
 
 <figure
