@@ -1,13 +1,19 @@
 name: CI
 
 on:
+  workflow_call:
+    inputs:
+      upload_artifact:
+        description: Upload the validated production output for deployment
+        type: boolean
+        default: false
   pull_request:
     # Draft PRs consume no CI runner minutes. Run checks when marked ready.
     # A conversion back to draft cancels superseded runs via concurrency.
     types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -15,7 +21,7 @@ permissions:
 
 jobs:
   checks:
-    if: github.event.pull_request.draft == false
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -78,6 +84,28 @@ jobs:
           SITE_INDEXING: index
         continue-on-error: true
 
+      - name: Install test browser
+        id: browser_setup
+        if: steps.build.outcome == 'success'
+        run: pnpm exec playwright install --with-deps chromium
+        continue-on-error: true
+
+      - name: Browser regressions
+        id: browser
+        if: steps.build.outcome == 'success' && steps.browser_setup.outcome == 'success'
+        run: pnpm test:browser
+        continue-on-error: true
+
+      - name: Browser failure reports
+        if: always() && steps.browser.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-failures-${{ github.sha }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+
       - name: Report failed checks
         if: always()
         run: |
@@ -87,7 +115,18 @@ jobs:
                 "${{ steps.knip.outcome }}" != "success" ||
                 "${{ steps.test.outcome }}" != "success" ||
                 "${{ steps.build.outcome }}" != "success" ||
-                "${{ steps.seo.outcome }}" != "success" ]]; then
+                "${{ steps.seo.outcome }}" != "success" ||
+                "${{ steps.browser_setup.outcome }}" != "success" ||
+                "${{ steps.browser.outcome }}" != "success" ]]; then
             echo "One or more checks failed. Review the steps above." >&2
             exit 1
           fi
+
+      - name: Upload validated production site
+        if: inputs.upload_artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: validated-site-${{ github.sha }}
+          path: dist/
+          retention-days: 1
+          if-no-files-found: error

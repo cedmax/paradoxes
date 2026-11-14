@@ -109,6 +109,18 @@ in `src/styles/global.css`. `~` maps to `/src`.
 
 Routes (`/entries/<slug>/`) are stable: never rename an entry file without adding a redirect.
 
+## Browser checks and deployment validation
+
+`playwright.config.ts` starts Astro preview on port 4173 and runs `tests/browser/` in Chromium
+at desktop and phone sizes. Tests assert behavior rather than implementation snapshots; failure
+traces/screenshots are retained. An installed Chromium can be selected through
+`PLAYWRIGHT_CHROMIUM_EXECUTABLE`. CI installs its matching browser and runs these checks after
+the production build. The `checks` job runs both directly on ready PRs and through
+`workflow_call` for production deployments. Only a fully successful validation uploads
+`validated-site-<commit>`; production downloads and deploys that artifact rather than rebuilding.
+Opt-in same-repository PR previews retain their separate noindex build. No hosting credentials
+are passed to validation. No production deployment is triggered by running the local checks.
+
 ## Guided reading paths
 
 `src/data/reading-paths.ts` defines five short, ordered routes through existing entries. Each

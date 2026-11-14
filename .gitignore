@@ -21,3 +21,7 @@ pnpm-debug.log*
 
 # local
 .netlify
+
+# browser test output
+playwright-report/
+test-results/
