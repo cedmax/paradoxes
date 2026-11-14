@@ -19,6 +19,25 @@ deploy, so a failure blocks the deploy.
 Every ready pull request also runs a production build, the generated SEO checks and the
 dependency-free search and recommendation regression tests. Preview deployment remains opt-in.
 
+## Browser regression tests
+
+After building, install Chromium once and run the desktop and phone checks:
+
+```bash
+pnpm exec playwright install chromium
+pnpm test:browser
+```
+
+The runner starts Astro preview on port 4173. Set `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to an
+installed Chromium executable when needed. Failures retain screenshots and traces in
+`test-results/`; CI uploads the failure report. Tests cover search/history, filters, reading
+paths, keyboard access, illustration controls, reduced motion, the audio skip option and late
+analytics. They do not replace listening tests on physical devices.
+
+Production deployment reuses the same CI validation workflow, including browser checks, and
+downloads its build artifact for the exact commit. Opt-in PR deployments still build their
+own noindex preview, including unverified illusions for review.
+
 PR deployments use `SITE_INDEXING=noindex`. To check that build locally:
 
 ```bash

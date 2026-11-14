@@ -15,16 +15,27 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  validate:
+    if: >-
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+    with:
+      upload_artifact: true
+
   deploy:
+    needs: validate
     # Production: push to main or manual dispatch on main only.
     # PR: same-repo PR with the deploy-preview label, not any other new label.
     if: >-
-      github.event_name == 'push' ||
-      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      !cancelled() &&
+      ((github.event_name != 'pull_request' && needs.validate.result == 'success') ||
       (github.event_name == 'pull_request' &&
         github.event.pull_request.head.repo.full_name == github.repository &&
         contains(github.event.pull_request.labels.*.name, 'deploy-preview') &&
-        (github.event.action != 'labeled' || github.event.label.name == 'deploy-preview'))
+        (github.event.action != 'labeled' || github.event.label.name == 'deploy-preview')))
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -47,6 +58,7 @@ jobs:
       # cache, so the build only renders the images that changed. The build removes images that no
       # entry uses, so the saved cache does not carry stale files.
       - uses: actions/cache@v5
+        if: github.event_name == 'pull_request'
         with:
           path: node_modules/.cache/og
           key: og-${{ hashFiles('src/content/entries/**', 'src/og/**', 'src/data/title.ts', 'src/styles/global.css', 'pnpm-lock.yaml') }}
@@ -54,14 +66,23 @@ jobs:
 
       # Astro builds on the GitHub runner, not on Netlify.
       - run: pnpm build
+        if: github.event_name == 'pull_request'
         env:
           SITE_INDEXING: ${{ github.event_name == 'pull_request' && 'noindex' || 'index' }}
           PREVIEW_UNVERIFIED: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
 
       # Check the built output before it is deployed. A failure blocks the deploy.
       - run: pnpm check:seo
+        if: github.event_name == 'pull_request'
         env:
           SITE_INDEXING: ${{ github.event_name == 'pull_request' && 'noindex' || 'index' }}
+
+      # Production deploys exactly what passed the shared validation job for this commit.
+      - uses: actions/download-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          name: validated-site-${{ github.sha }}
+          path: dist/
 
       # Fork PRs are excluded by the job-level condition above.
       # Netlify only hosts the output: the build already happened, so --no-build.

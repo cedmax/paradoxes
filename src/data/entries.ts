@@ -2,6 +2,7 @@ import { getCollection, type CollectionEntry } from "astro:content"
 import { chapters, type Chapter } from "~/data/chapters"
 import { statusKeys } from "~/data/status"
 import { anchorSlug, uniquenessOf } from "~/data/uniqueness"
+import { isPublishedEntry } from "~/data/publishing"
 
 type Entry = CollectionEntry<"entries">
 
@@ -11,12 +12,12 @@ export type ArgumentData = Extract<Entry["data"], { format: "argument" }>
 // Production never includes entries lacking human-approved source verification.
 // Explicit noindex PR previews can show new illusions for review without changing either flag.
 export function getPublishedEntries() {
-  const preview =
-    (import.meta.env.DEV || process.env.SITE_INDEXING === "noindex") &&
-    process.env.PREVIEW_UNVERIFIED === "true"
-  return getCollection(
-    "entries",
-    ({ data }) => data.sourcesVerified || (preview && data.format === "illusion"),
+  return getCollection("entries", ({ data }) =>
+    isPublishedEntry(data, {
+      development: import.meta.env.DEV,
+      indexing: process.env.SITE_INDEXING,
+      previewUnverified: process.env.PREVIEW_UNVERIFIED,
+    }),
   )
 }
 

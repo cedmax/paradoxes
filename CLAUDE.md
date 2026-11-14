@@ -49,6 +49,7 @@ pnpm preview      # serve the build
 pnpm lint         # ESLint + Stylelint
 pnpm check        # Astro types and content schema
 pnpm test         # search and recommendation regression tests
+pnpm test:browser # desktop/phone flows against the production build
 pnpm check:seo    # generated HTML, sitemap, links and structured data; run after build
 pnpm format       # Prettier (writes files)
 pnpm knip         # unused dependencies/exports
