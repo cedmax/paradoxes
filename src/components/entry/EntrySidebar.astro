@@ -5,14 +5,12 @@ import { uniqueness, uniquenessOf } from "~/data/uniqueness"
 interface Props {
   // Related and variant entries that point at this one.
   echoes: CollectionEntry<"entries">[]
-  // Other listed entries in the same chapter.
-  siblings: CollectionEntry<"entries">[]
   // The absolute URL of this entry, for the correction form.
   url: string
 }
 
 // The slot holds any card that comes before the lists (see WhatBreaks).
-const { echoes, siblings, url } = Astro.props
+const { echoes, url } = Astro.props
 ---
 
 <aside class="flex grow basis-65 flex-col gap-6 lg:max-w-85" aria-label="About this entry">
@@ -30,19 +28,6 @@ const { echoes, siblings, url } = Astro.props
             <span class="mono-label shrink-0 font-medium opacity-65">
               {uniqueness[uniquenessOf(e.data)].label}
             </span>
-          </a>
-        ))}
-      </div>
-    )}
-    {siblings.length > 0 && (
-      <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
-        <div class="mono-label mb-1.5 text-accent-deep">Same chapter</div>
-        {siblings.map((e) => (
-          <a
-            class="inline-flex text-balance min-h-11 items-center font-bold no-underline hover:text-accent"
-            href={`/entries/${e.id}/`}
-          >
-            {e.data.title}&nbsp;→
           </a>
         ))}
       </div>

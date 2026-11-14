@@ -5,7 +5,7 @@ chapter: probability
 status: explained
 relatedTo: st-petersburg-paradox
 simplification: light
-noMaths: true
+noMaths: false
 order: 30
 sourcesVerified: true
 problem: "Two envelopes hold money, one with double the other. Should you swap the one you picked?"

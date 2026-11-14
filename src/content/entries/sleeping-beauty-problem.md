@@ -4,7 +4,7 @@ format: argument
 chapter: belief
 status: disputed
 simplification: light
-noMaths: true
+noMaths: false
 order: 10
 sourcesVerified: true
 problem: "A coin is tossed while Sleeping Beauty sleeps. When she wakes, how likely is it that it landed heads?"

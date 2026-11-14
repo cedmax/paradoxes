@@ -13,7 +13,10 @@ const { entries } = Astro.props
 const groups = groupByChapter(entries)
 ---
 
-<main class="px-gutter flex flex-col gap-8 pt-6 pb-20 md:gap-18">
+<section
+  aria-label="All entries by chapter"
+  class="px-gutter flex flex-col gap-8 pt-6 pb-20 md:gap-18"
+>
   {groups.map(({ chapter, items }, index) => (
     <ChapterGroup chapter={chapter} items={items} all={entries} open={index === 0} />
   ))}
@@ -24,7 +27,7 @@ const groups = groupByChapter(entries)
       }
     </style>
   </noscript>
-  <p id="none" hidden class="font-display text-4xl font-extrabold tracking-tight">
-    Nothing matches. That's not a paradox, just a typo.
+  <p id="none" hidden class="font-display text-2xl font-extrabold tracking-tight sm:text-4xl">
+    No matching entries. Try another spelling or clear the filters.
   </p>
-</main>
+</section>

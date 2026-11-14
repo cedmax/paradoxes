@@ -8,10 +8,12 @@ import EntryHeader from "~/components/entry/EntryHeader.astro"
 import EntrySidebar from "~/components/entry/EntrySidebar.astro"
 import Sources from "~/components/entry/Sources.astro"
 import WhatBreaks from "~/components/entry/WhatBreaks.astro"
+import RecommendedEntries from "~/components/RecommendedEntries.astro"
 import { chapterById } from "~/data/chapters"
 import { getPublishedEntries, relatedEntries } from "~/data/entries"
 import { entrySeo } from "~/data/seo"
 import { anchorOf } from "~/data/uniqueness"
+import { nextEntries } from "~/data/recommendations"
 
 export async function getStaticPaths() {
   const entries = await getPublishedEntries()
@@ -25,7 +27,8 @@ interface Props {
 const { entry } = Astro.props
 const d = entry.data
 const all = await getPublishedEntries()
-const { echoes, siblings } = relatedEntries(entry, all)
+const echoes = relatedEntries(entry, all)
+const next = nextEntries(entry, all)
 const seo = entrySeo(entry, chapterById(d.chapter), Astro.site)
 // `format` is required, so anything that is not an illusion is an argument.
 const isIllusion = d.format === "illusion"
@@ -54,9 +57,18 @@ const isIllusion = d.format === "illusion"
       {d.sources.length > 0 && <Sources sources={d.sources} />}
     </article>
 
-    <EntrySidebar echoes={echoes} siblings={siblings} url={seo.url}>
+    <EntrySidebar echoes={echoes} url={seo.url}>
       {!isIllusion && <WhatBreaks data={d} />}
     </EntrySidebar>
+    <div class="flex w-full flex-col gap-5 border-t-2 border-ink pt-8">
+      <RecommendedEntries id="read-next" heading="Read next" entries={next} />
+      <a
+        class="inline-flex min-h-11 self-start items-center font-bold underline"
+        href={`/chapters/${d.chapter}/`}
+      >
+        Explore this chapter →
+      </a>
+    </div>
   </main>
 </Base>
 

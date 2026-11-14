@@ -2,7 +2,7 @@
 interface Props {
   id: string
   label: string
-  count: number
+  count?: number
   title: string
   checked?: boolean
   // Searching disables the switch (see home-filters), so it needs the disabled styles.
@@ -29,6 +29,12 @@ const { id, label, count, title, checked = false, disableable = false } = Astro.
     ]}
   ></span>
   <span class={disableable ? "peer-disabled:opacity-50" : undefined}>
-    {label} <span class="font-mono text-xs font-medium">{count}</span>
+    {label}
+    {count !== undefined && (
+      <>
+        {" "}
+        <span class="font-mono text-xs font-medium">{count}</span>
+      </>
+    )}
   </span>
 </label>

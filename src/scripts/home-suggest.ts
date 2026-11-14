@@ -2,7 +2,7 @@
 // the cards the search already left visible, and tells the visitor how many results there are
 // below the filter bar. The ids come from EntryFilters.
 import { statuses, type Status } from "~/data/status"
-import { normaliseSearch } from "~/data/search"
+import { matchesSearch, normaliseSearch } from "~/data/search"
 
 const MAX = 6
 const LIVE_DELAY = 500
@@ -115,7 +115,7 @@ export function createSuggest({ input, cards, chapters, reducedMotion }: Options
       const title = link?.textContent?.trim() ?? ""
       if (!link || !title) continue
       const name = normaliseSearch(title)
-      const rank = name.startsWith(q) ? 0 : name.includes(q) ? 1 : 2
+      const rank = name === q ? 0 : name.startsWith(q) ? 1 : matchesSearch(name, q) ? 2 : 3
       const { status, format } = card.dataset
       const tag = format === "illusion" ? "Illusion" : (statuses[status as Status]?.label ?? "")
       ranked.push({ rank, suggestion: { title, href: link.href, tag } })
@@ -131,7 +131,7 @@ export function createSuggest({ input, cards, chapters, reducedMotion }: Options
     count.textContent = filtering ? `${results} ↓` : ""
     clearTimeout(liveTimer)
     liveTimer = setTimeout(() => {
-      live.textContent = filtering ? results : ""
+      live.textContent = results
     }, LIVE_DELAY)
     if (q === "") {
       items = []

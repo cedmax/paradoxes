@@ -4,7 +4,7 @@ format: argument
 chapter: individual
 status: unreconciled
 simplification: light
-noMaths: true
+noMaths: false
 order: 10
 sourcesVerified: true
 problem: "A coin game has an infinite average prize. Why would nobody pay much to play it?"

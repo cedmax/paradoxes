@@ -7,6 +7,7 @@ Paradoxes in plain words. [logicbenders.com](https://logicbenders.com)
 ```bash
 pnpm lint
 pnpm check
+pnpm test
 pnpm build
 pnpm check:seo
 ```
@@ -14,6 +15,9 @@ pnpm check:seo
 The SEO check reads the generated site and validates page metadata, canonical URLs, internal
 links, the sitemap and JSON-LD. The deploy workflow runs it on the built output before every
 deploy, so a failure blocks the deploy.
+
+Every ready pull request also runs a production build, the generated SEO checks and the
+dependency-free search and recommendation regression tests. Preview deployment remains opt-in.
 
 PR deployments use `SITE_INDEXING=noindex`. To check that build locally:
 

@@ -15,6 +15,6 @@ const sizes = {
 const { size = "prose" } = Astro.props
 ---
 
-<h1 class={sizes[size]}>
+<h1 class:list={[sizes[size], "wrap-anywhere"]}>
   <slot />
 </h1>

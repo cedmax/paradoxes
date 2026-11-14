@@ -54,22 +54,9 @@ export function countEntries(entries: Entry[]) {
   }
 }
 
-// Related and variant entries that point at this one, and its neighbours in the chapter.
-export function relatedEntries(entry: Entry, all: Entry[]) {
-  const echoes = all.filter((e) => anchorSlug(e.data) === entry.id).sort(byTitle)
-  // Variants are not listed as neighbours. They are reached through their anchor. Entries already
-  // shown in the box above are not repeated.
-  const siblings = all
-    .filter(
-      (e) =>
-        e.data.chapter === entry.data.chapter &&
-        e.id !== entry.id &&
-        isListed(e) &&
-        !echoes.some((x) => x.id === e.id),
-    )
-    .sort((a, b) => a.data.order - b.data.order)
-  return { echoes, siblings }
-}
+// Keep related and variant entries discoverable from the entry they point to.
+export const relatedEntries = (entry: Entry, all: Entry[]) =>
+  all.filter((e) => anchorSlug(e.data) === entry.id).sort(byTitle)
 
 // The entries listed on a chapter page, in reading order. Variants are reached through their anchor.
 export const chapterEntries = (chapter: Chapter, all: Entry[]) =>

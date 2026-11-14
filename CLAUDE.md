@@ -48,13 +48,14 @@ pnpm build        # production build
 pnpm preview      # serve the build
 pnpm lint         # ESLint + Stylelint
 pnpm check        # Astro types and content schema
+pnpm test         # search and recommendation regression tests
 pnpm check:seo    # generated HTML, sitemap, links and structured data; run after build
 pnpm format       # Prettier (writes files)
 pnpm knip         # unused dependencies/exports
 ```
 
-There is no test script. Run appropriate checks for the change; normally `pnpm lint`,
-`pnpm check` and `pnpm build`. Before pushing substantial changes, also check Prettier and
+Run appropriate checks for the change; normally `pnpm lint`, `pnpm check`, `pnpm test`
+and `pnpm build`. Before pushing substantial changes, also check Prettier and
 Knip. After SEO or routing changes run `pnpm check:seo` on the generated production build;
 for preview builds use `SITE_INDEXING=noindex pnpm check:seo`.
 

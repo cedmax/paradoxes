@@ -29,7 +29,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # Run all four checks even when one fails, with a single install and runner.
+      # Run independent checks even when one fails, with a single install and runner.
       - name: Lint
         id: lint
         run: pnpm lint
@@ -50,13 +50,44 @@ jobs:
         run: pnpm knip
         continue-on-error: true
 
+      - name: Regression tests
+        id: test
+        run: pnpm test
+        continue-on-error: true
+
+      - uses: actions/cache@v5
+        with:
+          path: node_modules/.cache/og
+          key: og-${{ hashFiles('src/content/entries/**', 'src/og/**', 'src/data/title.ts', 'src/styles/global.css', 'pnpm-lock.yaml') }}
+          restore-keys: og-
+
+      # Validate production output on every ready PR, even without a deploy-preview label.
+      - name: Production build
+        id: build
+        run: pnpm build
+        env:
+          SITE_INDEXING: index
+          PREVIEW_UNVERIFIED: "false"
+        continue-on-error: true
+
+      - name: Generated SEO
+        id: seo
+        if: steps.build.outcome == 'success'
+        run: pnpm check:seo
+        env:
+          SITE_INDEXING: index
+        continue-on-error: true
+
       - name: Report failed checks
         if: always()
         run: |
           if [[ "${{ steps.lint.outcome }}" != "success" ||
                 "${{ steps.check.outcome }}" != "success" ||
                 "${{ steps.format.outcome }}" != "success" ||
-                "${{ steps.knip.outcome }}" != "success" ]]; then
+                "${{ steps.knip.outcome }}" != "success" ||
+                "${{ steps.test.outcome }}" != "success" ||
+                "${{ steps.build.outcome }}" != "success" ||
+                "${{ steps.seo.outcome }}" != "success" ]]; then
             echo "One or more checks failed. Review the steps above." >&2
             exit 1
           fi
