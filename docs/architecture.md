@@ -58,6 +58,12 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/components/StructuredData.astro` — safely serialises JSON-LD. `Base` adds `WebSite`
   data on the homepage; entry and chapter pages pass their breadcrumbs and content data.
   Do not invent authors or publication dates for structured data.
+- Illustration analytics use the existing production Umami loader, injected through Cloudflare
+  Zaraz (`stats.dsgn.it`), rather than a script in `Base`. Local/preview pages may have no loader.
+  `deferred-tracker.ts` queues at most 100 in-memory events for up to 20 retries at 250 ms while
+  the loader starts, then discards them. It never loads analytics, uses storage or sends its own
+  requests. Leaving the page clears the queue. Existing trusted-event and once-per-figure rules
+  remain in `track-illustrations.ts`, so autoplay still does not count as an interaction.
 - `SITE_INDEXING=noindex` adds a robots `noindex` tag to every HTML page. The deploy workflow
   sets it for pull-request previews and explicitly uses `index` for production builds.
   Preview robots.txt still allows crawling so search engines can read the noindex tag.

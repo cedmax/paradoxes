@@ -6,6 +6,7 @@
 // scripts that dispatch synthetic ones are ignored, so autoplay never registers as interaction.
 
 type Control = "button" | "range" | "details" | "svg-node" | "other"
+import { createDeferredTracker } from "~/data/deferred-tracker"
 
 declare global {
   interface Window {
@@ -13,8 +14,9 @@ declare global {
   }
 }
 
-// A late or blocked Umami script must never throw, hence the optional chain.
-const track = (event: string, data: Record<string, string>) => window.umami?.track(event, data)
+const analytics = createDeferredTracker(() => window.umami)
+const track = analytics.track
+window.addEventListener("pagehide", analytics.clear)
 
 const figureOf = (target: EventTarget | null) =>
   target instanceof Element ? target.closest<HTMLElement>("[data-illustration]") : null
