@@ -13,7 +13,7 @@ claimA: "Every sentence is true or false."
 claimB: "A sentence is true if what it says is right, and false if it isn't."
 whatBreaks: "Whether to restrict self-applied truth, allow gaps or allow contradictions. The proposals give up different parts of the ordinary rules."
 statusNote: the fixes say the sentence is neither true nor false, that it is both, or that a sentence may speak only of the truth of sentences one level below it.
-setup: "Consider “This statement is false”. If it is true, what it says holds, so it is false. If it is false, what it says holds, so it is true. Either answer leads to the other."
+setup: "Consider “This statement is false”. If it is true, then it is false, as it says. If it is false, then its claim to be false is wrong, so it is true. Either answer leads to the other."
 whyWrong: "Ordinary truth rules let a statement say something about itself and let its truth follow what it says. They also seem to require one answer, true or false. For this statement those demands cannot all hold."
 resolution:
   - "There is no agreed fix. The difficulty is choosing which rule to change while preserving useful reasoning and ordinary talk about truth."

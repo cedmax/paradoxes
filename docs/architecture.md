@@ -19,15 +19,26 @@ in `src/styles/global.css`. `~` maps to `/src`.
   unknown, a variant, or part of a loop.
 - `src/pages/index.astro` — index with search and status filter (client script). Search matches
   `title`, `searchTerms`, `alternativeNames`, `problem`, `claimA`, `claimB`, `statusNote`, plus the
-  anchor's title for related and variant entries. Search matches the query as a contiguous
-  phrase. Search ignores case and straight/curly apostrophe differences. The index lists
+  anchor's title for related and variant entries. Search matches every query word in any order.
+  Search ignores accents, case, whitespace and straight/curly apostrophe differences; suggestions
+  rank exact titles and title prefixes first. The index lists
   canonical and related entries. Variants are hidden by the "Hide variants" switch in the
   filters block (on by default); turning it off shows them.
   The switch is disabled and off while a search is active, so search always includes variants.
   A second switch, "Only reviewed" (off by default), lists only entries with `reviewed: true`.
   It works with or without a search. Both switches sit in their own row below the status chips.
+  Filters and their definitions are in a native disclosure, initially closed below `md` and open
+  from `md` up. With JavaScript unavailable, the disclosure starts open. A reset button clears
+  the search and status/review filters, restores hidden variants, and returns focus to search.
   The index and entry pages only include entries with `sourcesVerified: true`
   (`getPublishedEntries()` in `src/data/entries.ts`).
+- `src/data/recommendations.ts` — three editorial starting points on the homepage and four
+  curated choices per chapter for entry-page "Read next" sections. Excluding the current entry
+  leaves up to three recommendations, each with a reason to read it. Only published non-variant
+  entries are eligible. The shared `RecommendedEntries` component renders both sections; homepage
+  starting points are hidden while searching or filtering. The entry sidebar preserves direct
+  related/variant links; the full same-chapter list is replaced by the curated cards and a link
+  to the chapter page.
   Chapters are always open from `md` up. Below `md` they fold up, one open at a time (the first
   by default, the last one opened is kept in `sessionStorage`). A search or a filter opens every
   chapter with results and the headings stop toggling until it is cleared.
@@ -65,7 +76,8 @@ in `src/styles/global.css`. `~` maps to `/src`.
   takes optional `image` and `imageAlt`).
 - OG cache: rendered PNGs live in `node_modules/.cache/og/`, are reused when the hash matches
   and are pruned when no entry uses them. `deploy.yml` restores and saves that directory with
-  `actions/cache`. `ci.yml` does not build. `pnpm check:seo` verifies each entry's image is a
+  `actions/cache`. `ci.yml` also caches OG output and runs a production build and SEO check on
+  every ready PR, independent of preview deployment. `pnpm check:seo` verifies each entry's image is a
   1200×630 PNG in `dist`, that entries do not share one and that other pages use `/og.png`.
 - Default image: `public/og.png` is generated, not drawn by hand. `pnpm og:default` renders it
   from the same template as the entry images (same mark, margins and orange bar) and writes the

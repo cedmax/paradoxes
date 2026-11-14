@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content"
 import FilterChip from "~/components/home/FilterChip.astro"
 import FilterSwitch from "~/components/home/FilterSwitch.astro"
+import HowItEnds from "~/components/home/HowItEnds.astro"
 import { countEntries } from "~/data/entries"
 import { statuses, statusKeys } from "~/data/status"
 
@@ -14,7 +15,7 @@ const counts = countEntries(Astro.props.entries)
 ---
 
 <section
-  class="px-gutter border-y-2 border-ink bg-accent py-10"
+  class="px-gutter border-y-2 border-ink bg-accent py-6 md:py-10"
   aria-label="Search and filter entries"
 >
   <div class="flex flex-wrap items-end gap-x-8 gap-y-4">
@@ -46,30 +47,45 @@ const counts = countEntries(Astro.props.entries)
         class="absolute top-full right-0 left-0 z-20 max-h-[60vh] overflow-y-auto border-2 border-t-0 border-ink bg-paper text-ink"
       ></ul>
       <p id="q-live" class="sr-only" role="status"></p>
+      <button id="clear-filters" type="button" class="btn-link self-start" hidden>
+        Clear search and filters
+      </button>
     </div>
-    <div class="flex flex-wrap gap-2" id="chips">
-      <FilterChip filter="all" label="All" count={counts.all} pressed />
-      {statusKeys.map((k) => (
-        <FilterChip filter={k} label={statuses[k].label} count={counts.status[k]} />
-      ))}
-      <FilterChip filter="illusions" label="Illusions" count={counts.illusions} />
-    </div>
-  </div>
-  <!-- The two switches change what is listed, not the kind of paradox, so they sit apart from the status chips. -->
-  <div class="mt-5 flex flex-wrap items-center gap-x-8 gap-y-1 border-t-2 border-ink pt-4">
-    <FilterSwitch
-      id="hide-variants"
-      label="Hide variants"
-      count={counts.variants}
-      title="Variants are the same puzzle as another entry, in a different setting. Searching always includes them."
-      checked
-      disableable
-    />
-    <FilterSwitch
-      id="only-reviewed"
-      label="Only reviewed"
-      count={counts.reviewed}
-      title="Show only entries that a person has also reviewed."
-    />
+    <details id="entry-filters" open class="group/filters min-w-0 grow basis-160">
+      <summary class="flex min-h-11 cursor-pointer items-center gap-2 font-bold md:hidden">
+        <span id="filter-summary">More filters</span>
+        <span
+          aria-hidden="true"
+          class="transition-transform group-open/filters:rotate-180 motion-reduce:transition-none"
+        >
+          ↓
+        </span>
+      </summary>
+      <div class="flex flex-col gap-4 max-md:pt-4">
+        <div class="flex flex-wrap gap-2" id="chips">
+          <FilterChip filter="all" label="All" count={counts.all} pressed />
+          {statusKeys.map((k) => (
+            <FilterChip filter={k} label={statuses[k].label} count={counts.status[k]} />
+          ))}
+          <FilterChip filter="illusions" label="Illusions" count={counts.illusions} />
+        </div>
+        <HowItEnds />
+        <div class="flex flex-wrap items-center gap-x-8 gap-y-1 border-t-2 border-ink pt-4">
+          <FilterSwitch
+            id="hide-variants"
+            label="Hide variants"
+            count={counts.variants}
+            title="Variants are the same puzzle as another entry, in a different setting. Searching always includes them."
+            checked
+            disableable
+          />
+          <FilterSwitch
+            id="only-reviewed"
+            label="Only reviewed"
+            title="All published entries are source-checked. Show only those also reviewed by the site owner."
+          />
+        </div>
+      </div>
+    </details>
   </div>
 </section>

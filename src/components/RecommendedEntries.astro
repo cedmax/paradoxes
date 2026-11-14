@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content"
+
+interface Props {
+  id: string
+  heading: string
+  entries: { entry: CollectionEntry<"entries">; reason: string }[]
+}
+
+const { id, heading, entries } = Astro.props
+---
+
+{entries.length > 0 && (
+  <section id={id} aria-labelledby={`${id}-heading`} class="flex w-full flex-col gap-5">
+    <h2 id={`${id}-heading`} class="display text-3xl sm:text-4xl">
+      {heading}
+    </h2>
+    <div class="grid gap-4 md:grid-cols-3">
+      {entries.map(({ entry, reason }) => (
+        <a
+          href={`/entries/${entry.id}/`}
+          class="flex min-w-0 flex-col gap-3 border-2 border-ink p-5 no-underline transition-colors hover:bg-ink hover:text-paper motion-reduce:transition-none"
+        >
+          <h3 class="display wrap-anywhere text-2xl">{entry.data.title} →</h3>
+          <p class="text-base leading-normal">{reason}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

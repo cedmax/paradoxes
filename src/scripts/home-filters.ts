@@ -1,6 +1,6 @@
 // DOM wiring for the index page: search, status chips, the two switches and the chapter
 // accordion. The ids and data-attributes come from EntryFilters, ChapterGroup and EntryCard.
-import { normaliseSearch } from "~/data/search"
+import { matchesSearch, normaliseSearch } from "~/data/search"
 import { createSuggest } from "~/scripts/home-suggest"
 
 interface Switches {
@@ -15,6 +15,10 @@ const chapters = Array.from(document.querySelectorAll<HTMLElement>("[data-chapte
 const none = document.getElementById("none") as HTMLElement
 const hideVariants = document.getElementById("hide-variants") as HTMLInputElement
 const onlyReviewed = document.getElementById("only-reviewed") as HTMLInputElement
+const reset = document.getElementById("clear-filters") as HTMLButtonElement
+const filters = document.getElementById("entry-filters") as HTMLDetailsElement
+const filterSummary = document.getElementById("filter-summary") as HTMLElement
+const starters = document.getElementById("starter-entries")
 const mobile = window.matchMedia("(max-width: 767.98px)")
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 const STORE = "open-chapter"
@@ -81,22 +85,30 @@ function apply() {
   }
   // A search, a status filter or "Only reviewed" opens every chapter that has results.
   filtering = q !== "" || status !== "all" || switches.onlyReviewed
+  const activeFilters =
+    Number(status !== "all") + Number(switches.onlyReviewed) + Number(!hideChoice)
+  filterSummary.textContent = activeFilters
+    ? `More filters (${activeFilters} active)`
+    : "More filters"
+  reset.hidden = q === "" && activeFilters === 0
+  if (starters) starters.hidden = filtering || !hideChoice
   let shown = 0
   for (const card of cards) {
     const facts = card.dataset
     const ok =
       matchesFilter(facts, status) &&
-      (facts.text ?? "").includes(q) &&
+      matchesSearch(facts.text ?? "", q) &&
       isShownBySwitches(facts, switches)
     card.hidden = !ok
     if (ok) shown++
     // The card ends on the question. A search reveals the claim or status note it matched, unless
     // the match is already in what the card shows.
-    const revealed = ok && q !== "" && !(facts.shown ?? "").includes(q)
+    const revealed = ok && q !== "" && !matchesSearch(facts.shown ?? "", q)
     const hits = card.querySelectorAll<HTMLElement>("[data-hit]")
     let any = false
     hits.forEach((hit) => {
-      const on = revealed && (hit.dataset.text ?? "").includes(q)
+      const on =
+        revealed && q.split(" ").some((term) => (hit.dataset.text ?? "").includes(term))
       hit.hidden = !on
       any ||= on
     })
@@ -140,7 +152,24 @@ for (const chapter of chapters) {
     }
   })
 }
-mobile.addEventListener("change", renderChapters)
+const syncViewport = () => {
+  filters.open = !mobile.matches
+  renderChapters()
+}
+mobile.addEventListener("change", syncViewport)
+syncViewport()
+
+reset.addEventListener("click", () => {
+  input.value = ""
+  status = "all"
+  hideChoice = true
+  onlyReviewed.checked = false
+  chips.forEach((chip) =>
+    chip.setAttribute("aria-pressed", String(chip.dataset.filter === "all")),
+  )
+  apply()
+  input.focus()
+})
 
 input.addEventListener("input", () => {
   typing = true
