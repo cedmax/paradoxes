@@ -109,6 +109,17 @@ in `src/styles/global.css`. `~` maps to `/src`.
 
 Routes (`/entries/<slug>/`) are stable: never rename an entry file without adding a redirect.
 
+## Guided reading paths
+
+`src/data/reading-paths.ts` defines five short, ordered routes through existing entries. Each
+step has a reason connecting it to the path. Resolve steps against published non-variant entries;
+publish a path only when all its steps are available, preserving the editorial sequence. `/paths/` lists routes
+and `/paths/<id>/` provides introductions, ordered steps, breadcrumbs and collection metadata.
+Entry links carry `?path=<id>`. `PathNavigation` offers the previous/next steps and a completion
+message, selecting only the requested path in the browser. Without JavaScript, memberships
+remain visible as static navigation. Unknown path parameters show no path controls. Entry
+canonical URLs remain clean, and the ordinary three recommendations remain available.
+
 ## Illusions
 
 Every entry sets `format`: `illusion` for visual and auditory illusions, `argument` for the

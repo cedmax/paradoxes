@@ -205,7 +205,12 @@ for (const [canonical, page] of pages) {
       for (const entry of item.mainEntity.itemListElement) {
         assert(pages.has(entry.url), `${path}: collection points to a missing entry`)
         assert(
-          page.links.some((href) => new URL(href, canonical).href === entry.url),
+          page.links.some((href) => {
+            const linked = new URL(href, canonical)
+            linked.search = ""
+            linked.hash = ""
+            return linked.href === entry.url
+          }),
           `${path}: collection entry is not linked on the page`,
         )
       }
