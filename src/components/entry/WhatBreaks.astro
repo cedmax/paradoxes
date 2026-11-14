@@ -11,13 +11,17 @@ const { data: d } = Astro.props
 const s = statuses[d.status]
 ---
 
-<div class="flex flex-col gap-3 border-2 border-ink p-6 text-lg leading-normal">
-  <div class="mono-label text-accent-deep">What breaks</div>
-  <div>
+<section
+  aria-labelledby="entry-takeaway"
+  class="flex flex-col gap-3 border-2 border-ink p-5 text-lg leading-normal sm:p-6"
+>
+  <h2 id="entry-takeaway" class="display text-3xl">
+    The takeaway
+  </h2>
+  <p>
     <Linked text={d.whatBreaks} />
-  </div>
-  <div class="mono-label text-accent-deep">Status</div>
-  <div>
-    {s.label}: <Linked text={d.statusNote} />
-  </div>
-</div>
+  </p>
+  <p>
+    <strong>{s.label}:</strong> <Linked text={d.statusNote} />
+  </p>
+</section>

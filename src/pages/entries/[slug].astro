@@ -41,33 +41,34 @@ const isIllusion = d.format === "illusion"
   image={seo.image}
   imageAlt={seo.imageAlt}
 >
-  <EntryHeader entry={entry} anchor={anchorOf(entry, all)} />
-  {!isIllusion && <ClaimsBand claimA={d.claimA} claimB={d.claimB} />}
+  <main id="main-content" tabindex="-1">
+    <EntryHeader entry={entry} anchor={anchorOf(entry, all)} />
+    {!isIllusion && <ClaimsBand claimA={d.claimA} claimB={d.claimB} />}
 
-  <main class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
-    <article
-      data-entry={entry.id}
-      class="flex w-full max-w-190 min-w-0 grow basis-140 flex-col gap-14 text-lg leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4"
-    >
-      {isIllusion ? (
-        <IllusionExperience slug={entry.id} why={d.why} finePrint={d.finePrint} />
-      ) : (
-        <ArgumentBody slug={entry.id} data={d} />
-      )}
-      {d.sources.length > 0 && <Sources sources={d.sources} />}
-    </article>
-
-    <EntrySidebar echoes={echoes} url={seo.url}>
-      {!isIllusion && <WhatBreaks data={d} />}
-    </EntrySidebar>
-    <div class="flex w-full flex-col gap-5 border-t-2 border-ink pt-8">
-      <RecommendedEntries id="read-next" heading="Read next" entries={next} />
-      <a
-        class="inline-flex min-h-11 self-start items-center font-bold underline"
-        href={`/chapters/${d.chapter}/`}
+    <div class="px-gutter flex flex-wrap items-start gap-10 pt-8 pb-16 sm:gap-16 sm:pt-16 sm:pb-24">
+      <article
+        data-entry={entry.id}
+        class="flex w-full max-w-190 min-w-0 grow basis-140 flex-col gap-8 text-lg sm:gap-14 leading-relaxed [&>section]:flex [&>section]:flex-col [&>section]:gap-4"
       >
-        Explore this chapter →
-      </a>
+        {isIllusion ? (
+          <IllusionExperience slug={entry.id} why={d.why} finePrint={d.finePrint} />
+        ) : (
+          <ArgumentBody slug={entry.id} data={d} />
+        )}
+        {!isIllusion && <WhatBreaks data={d} />}
+        {d.sources.length > 0 && <Sources sources={d.sources} />}
+      </article>
+
+      <EntrySidebar echoes={echoes} url={seo.url} />
+      <div class="flex w-full flex-col gap-5 border-t-2 border-ink pt-8">
+        <RecommendedEntries id="read-next" heading="Read next" entries={next} />
+        <a
+          class="inline-flex min-h-11 self-start items-center font-bold underline"
+          href={`/chapters/${d.chapter}/`}
+        >
+          Explore this chapter →
+        </a>
+      </div>
     </div>
   </main>
 </Base>

@@ -10,6 +10,13 @@ import { statuses, simplifications } from "~/data/status"
 >
   <PageTitle>How we write these</PageTitle>
   <p>
+    Maintained by{" "}
+    <a class="underline" href="https://cedmax.net">
+      cedmax
+    </a>
+    . The site owner reviews correction reports and records approval of individual entries.
+  </p>
+  <p>
     Every argument says what the paradox claims, in two sentences that both seem true. Then it
     says what gives. Where the answer is settled, we say so. Where it isn't, we say that instead
     and show the competing positions.
@@ -19,7 +26,9 @@ import { statuses, simplifications } from "~/data/status"
     what is known about why it happens.
   </p>
 
-  <h2 class="display mt-3 text-3xl">How a paradox ends</h2>
+  <h2 id="how-a-paradox-ends" class="display mt-3 text-3xl">
+    How a paradox ends
+  </h2>
   <dl class="grid gap-3.5">
     {Object.values(statuses).map((s) => (
       <div>
@@ -29,7 +38,9 @@ import { statuses, simplifications } from "~/data/status"
     ))}
   </dl>
 
-  <h2 class="display mt-3 text-3xl">How much we simplified</h2>
+  <h2 id="simplification" class="display mt-3 text-3xl">
+    How much we simplified
+  </h2>
   <p>Every entry flags where the explanation is simplified, using one of three levels.</p>
   <dl class="grid gap-3.5">
     {Object.values(simplifications).map((s) => (
@@ -40,18 +51,22 @@ import { statuses, simplifications } from "~/data/status"
     ))}
   </dl>
 
-  <h2 class="display mt-3 text-3xl">Sources</h2>
+  <h2 id="sources" class="display mt-3 text-3xl">
+    Sources
+  </h2>
   <p>
     Each entry lists its sources. An entry is published only once its cited sources have been
     checked and its claims brought into line with them. That does not mean every claim is
     undisputed: where experts disagree, the entry says so.
   </p>
 
-  <h2 class="display mt-3 text-3xl">Human review</h2>
+  <h2 id="human-review" class="display mt-3 text-3xl">
+    Review by the site owner
+  </h2>
   <p>
-    Source checking and human review are recorded separately. A “Human reviewed” badge appears
-    only after the site owner has also reviewed the content and marked the entry as approved.
-    Source checking is required before that approval can be recorded.
+    Source checking and owner approval are recorded separately. A “Reviewed by site owner” badge
+    appears only after the site owner has also reviewed the content and marked the entry as
+    approved. Source checking is required before that approval can be recorded.
   </p>
 
   <h2 class="display mt-3 text-3xl">Corrections</h2>

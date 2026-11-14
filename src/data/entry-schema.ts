@@ -41,7 +41,7 @@ const common = z.object({
   // Publishing gate: source checks and claims must be manually approved by the site owner.
   sourcesVerified: z.boolean().default(false),
   // Human approval. Set true only by the site owner after personal review; requires sourcesVerified.
-  // Controls the "Human reviewed" badge.
+  // Controls the "Reviewed by site owner" badge.
   reviewed: z.boolean().default(false),
   // Display order within the chapter.
   order: z.number().default(100),

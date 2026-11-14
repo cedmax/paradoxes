@@ -10,7 +10,7 @@ const entries = (await getPublishedEntries()).sort(byOrder)
 ---
 
 <Base title="Paradoxes explained in plain words | Logic Benders">
-  <main id="main-content">
+  <main id="main-content" tabindex="-1">
     <HomeHero entries={entries} />
     <EntryFilters entries={entries} />
     <ChapterDirectory entries={entries} />
