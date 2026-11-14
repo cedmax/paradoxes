@@ -1,0 +1,32 @@
+---
+import Base from "~/layouts/Base.astro"
+import PageTitle from "~/components/PageTitle.astro"
+import { getPublishedEntries } from "~/data/entries"
+import { readingPaths } from "~/data/reading-paths"
+const paths = readingPaths(await getPublishedEntries())
+---
+
+<Base
+  title="Guided reading paths | Logic Benders"
+  description="Choose a short route through paradoxes and illusions, with a reason for each next step. Start with the classics or follow probability, numbers, identity and perception."
+>
+  <main id="main-content" tabindex="-1" class="px-gutter flex flex-col gap-8 pt-10 pb-20">
+    <PageTitle>Reading paths</PageTitle>
+    <p class="max-w-190 text-xl">
+      Choose a short route through the collection. Each path connects four entries and explains
+      why the next one follows.
+    </p>
+    <div class="grid gap-5 md:grid-cols-2">
+      {paths.map((path) => (
+        <a
+          href={`/paths/${path.id}/`}
+          class="flex flex-col gap-4 border-2 border-ink p-5 no-underline hover:bg-ink hover:text-paper sm:p-7"
+        >
+          <span class="mono-label">{path.steps.length} entries</span>
+          <h2 class="display text-3xl">{path.title} →</h2>
+          <p class="max-w-190">{path.introduction}</p>
+        </a>
+      ))}
+    </div>
+  </main>
+</Base>

@@ -1,0 +1,86 @@
+---
+import Base from "~/layouts/Base.astro"
+import PageTitle from "~/components/PageTitle.astro"
+import Breadcrumb from "~/components/Breadcrumb.astro"
+import { getPublishedEntries } from "~/data/entries"
+import { pathEntryUrl, readingPaths, type ReadingPath } from "~/data/reading-paths"
+import { breadcrumbData } from "~/data/seo"
+
+export async function getStaticPaths() {
+  return readingPaths(await getPublishedEntries()).map((path) => ({
+    params: { path: path.id },
+    props: { path },
+  }))
+}
+interface Props {
+  path: ReadingPath
+}
+const { path } = Astro.props
+const url = new URL(`/paths/${path.id}/`, Astro.site).href
+const structuredData = [
+  breadcrumbData(
+    [
+      { name: "Index", path: "/" },
+      { name: "Reading paths", path: "/paths/" },
+      { name: path.title, path: `/paths/${path.id}/` },
+    ],
+    Astro.site,
+  ),
+  {
+    "@type": "CollectionPage",
+    "@id": url,
+    url,
+    name: path.title,
+    description: path.introduction,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: path.steps.map(({ entry }, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: entry.data.title,
+        url: new URL(`/entries/${entry.id}/`, Astro.site).href,
+      })),
+    },
+  },
+]
+---
+
+<Base
+  title={`${path.title}: a reading path | Logic Benders`}
+  description={path.introduction}
+  structuredData={structuredData}
+>
+  <main
+    id="main-content"
+    tabindex="-1"
+    class="px-gutter flex max-w-225 flex-col gap-7 pt-5 pb-20"
+  >
+    <Breadcrumb
+      items={[
+        { href: "/", label: "Index" },
+        { href: "/paths/", label: "Reading paths" },
+      ]}
+    />
+    <PageTitle>{path.title}</PageTitle>
+    <p class="text-xl">{path.introduction}</p>
+    <ol class="flex flex-col gap-5" aria-label="Entries in this reading path">
+      {path.steps.map(({ entry, reason }, index) => (
+        <li>
+          <a
+            href={pathEntryUrl(path, index)}
+            class="flex flex-col gap-3 border-2 border-ink p-5 no-underline hover:bg-ink hover:text-paper"
+          >
+            <span class="mono-label">
+              Step {index + 1} of {path.steps.length}
+            </span>
+            <h2 class="display text-3xl">{entry.data.title} →</h2>
+            <p>{reason}</p>
+          </a>
+        </li>
+      ))}
+    </ol>
+    <a href="/paths/" class="inline-flex min-h-11 items-center font-bold underline">
+      Choose another path →
+    </a>
+  </main>
+</Base>

@@ -1,0 +1,62 @@
+---
+import { pathEntryUrl, type ReadingPath } from "~/data/reading-paths"
+interface Props {
+  entry: string
+  paths: ReadingPath[]
+}
+const { entry, paths } = Astro.props
+const memberships = paths.flatMap((path) => {
+  const index = path.steps.findIndex((step) => step.entry.id === entry)
+  return index >= 0 ? [{ path, index }] : []
+})
+---
+
+{memberships.map(({ path, index }) => (
+  <section
+    data-reading-path={path.id}
+    aria-labelledby={`path-${path.id}-heading`}
+    class="flex w-full flex-col gap-4 border-t-2 border-ink pt-8"
+  >
+    <h2 id={`path-${path.id}-heading`} class="display text-3xl">
+      Continue this path
+    </h2>
+    <p>
+      <a class="font-bold underline" href={`/paths/${path.id}/`}>
+        {path.title}
+      </a>
+      {" · "}Step {index + 1} of {path.steps.length}
+    </p>
+    {index + 1 < path.steps.length ? (
+      <a
+        href={pathEntryUrl(path, index + 1)}
+        class="flex flex-col gap-3 border-2 border-ink p-5 no-underline hover:bg-ink hover:text-paper"
+      >
+        <span class="display text-2xl">Next: {path.steps[index + 1].entry.data.title} →</span>
+        <span>{path.steps[index + 1].reason}</span>
+      </a>
+    ) : (
+      <p>
+        You have reached the end of this path.{" "}
+        <a class="font-bold underline" href="/paths/">
+          Choose another path
+        </a>
+        .
+      </p>
+    )}
+    {index > 0 && (
+      <a
+        class="inline-flex min-h-11 self-start items-center underline"
+        href={pathEntryUrl(path, index - 1)}
+      >
+        ← Previous: {path.steps[index - 1].entry.data.title}
+      </a>
+    )}
+  </section>
+))}
+
+<script>
+  const selected = new URLSearchParams(location.search).get("path")
+  for (const section of document.querySelectorAll<HTMLElement>("[data-reading-path]")) {
+    section.hidden = section.dataset.readingPath !== selected
+  }
+</script>
