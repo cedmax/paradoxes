@@ -6,7 +6,11 @@ type Props = ComponentProps<typeof Base>
 ---
 
 <Base {...Astro.props}>
-  <main class="px-gutter flex max-w-225 flex-col gap-7 pt-12 pb-24">
+  <main
+    id="main-content"
+    tabindex="-1"
+    class="px-gutter flex max-w-225 flex-col gap-7 pt-12 pb-24"
+  >
     <slot />
   </main>
 </Base>

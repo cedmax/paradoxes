@@ -47,6 +47,7 @@ export function entrySeo(
         "@id": `${url}#article`,
         url,
         headline: d.title,
+        image: new URL(ogPath(entry.id, og), site).href,
         description,
         inLanguage: "en-GB",
         mainEntityOfPage: url,

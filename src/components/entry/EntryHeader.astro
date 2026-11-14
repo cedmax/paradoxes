@@ -20,10 +20,11 @@ const isIllusion = d.format === "illusion"
 const s = isIllusion ? undefined : statuses[d.status]
 const u = uniqueness[uniquenessOf(d)]
 const simp = simplifications[d.simplification]
-const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-sm font-bold"
+const badge =
+  "inline-flex min-h-11 items-center border-2 border-ink px-3.5 py-1.5 text-sm font-bold"
 ---
 
-<section class="px-gutter flex flex-col gap-6 pt-4 pb-12">
+<section class="px-gutter flex flex-col gap-6 pt-4 pb-8 sm:pb-12">
   <Breadcrumb
     items={[
       { href: "/", label: "Index" },
@@ -43,12 +44,31 @@ const badge = "inline-flex items-center border-2 border-ink px-3.5 py-1.5 text-s
     </p>
   </div>
   <div class="flex flex-wrap items-center gap-2.5">
-    {s && <div class:list={[badge, s.bg]}>{s.label}</div>}
+    {s && (
+      <a href="/about/#how-a-paradox-ends" class:list={[badge, s.bg, "no-underline"]}>
+        {s.label}
+      </a>
+    )}
     {anchor && <div class={badge}>{u.label}</div>}
     {d.noMaths && <div class={badge}>No maths needed</div>}
-    <div class={badge}>{simp.label}</div>
-    {d.reviewed && <div class={badge}>Human reviewed</div>}
+    <a href="/about/#simplification" class:list={[badge, "no-underline"]}>
+      {simp.label}
+    </a>
+    {d.reviewed && (
+      <a href="/about/#human-review" class:list={[badge, "no-underline"]}>
+        Reviewed by site owner
+      </a>
+    )}
   </div>
+  {d.sourcesVerified && (
+    <p class="text-sm">
+      Sources checked.{" "}
+      <a class="underline" href="/about/#sources">
+        About the checks
+      </a>
+      .
+    </p>
+  )}
   {anchor && (
     <a
       class="flex w-full max-w-190 flex-col gap-1.5 border-2 border-ink p-5 text-ink no-underline transition-colors duration-100 hover:bg-ink hover:text-paper focus-visible:-outline-offset-4 focus-visible:outline-accent motion-reduce:transition-none"

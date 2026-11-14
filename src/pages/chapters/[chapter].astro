@@ -25,7 +25,7 @@ const seo = chapterSeo(chapter, entries, Astro.site)
 ---
 
 <Base title={seo.title} description={seo.description} structuredData={seo.structuredData}>
-  <main class="px-gutter flex flex-col pb-20">
+  <main id="main-content" tabindex="-1" class="px-gutter flex flex-col pb-20">
     <ChapterHeader chapter={chapter} />
     <section class="flex flex-col gap-5" aria-labelledby="chapter-entries">
       <h2 class="display text-3xl" id="chapter-entries">

@@ -9,28 +9,30 @@ interface Props {
   url: string
 }
 
-// The slot holds any card that comes before the lists (see WhatBreaks).
 const { echoes, url } = Astro.props
 ---
 
 <aside class="flex grow basis-65 flex-col gap-6 lg:max-w-85" aria-label="About this entry">
   <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] items-start gap-6">
-    <slot />
     {echoes.length > 0 && (
-      <div class="flex flex-col gap-0.5 border-2 border-ink p-6 text-lg">
-        <div class="mono-label mb-1.5 text-accent-deep">Variants and related</div>
-        {echoes.map((e) => (
-          <a
-            class="flex min-h-11 items-center justify-between gap-x-3 font-bold no-underline hover:text-accent"
-            href={`/entries/${e.id}/`}
-          >
-            <span>{e.data.title}&nbsp;→</span>
-            <span class="mono-label shrink-0 font-medium opacity-65">
-              {uniqueness[uniquenessOf(e.data)].label}
-            </span>
-          </a>
-        ))}
-      </div>
+      <details class="border-2 border-ink p-5 text-lg">
+        <summary class="flex min-h-11 cursor-pointer items-center justify-between gap-3 font-bold">
+          Variants and related <span class="font-mono text-sm">{echoes.length} +</span>
+        </summary>
+        <div class="flex flex-col gap-0.5 pt-3">
+          {echoes.map((e) => (
+            <a
+              class="flex min-h-11 items-center justify-between gap-x-3 font-bold no-underline hover:text-accent"
+              href={`/entries/${e.id}/`}
+            >
+              <span>{e.data.title}&nbsp;→</span>
+              <span class="mono-label shrink-0 font-medium opacity-65">
+                {uniqueness[uniquenessOf(e.data)].label}
+              </span>
+            </a>
+          ))}
+        </div>
+      </details>
     )}
   </div>
   <div class="flex flex-col gap-2">

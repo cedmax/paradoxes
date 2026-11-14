@@ -24,7 +24,7 @@ const ExplanationFigure = loadExplanation ? (await loadExplanation()).default : 
   <Figure />
 </section>
 <section data-illusion-explanation={ExplanationFigure ? "" : undefined}>
-  <h2 class="display text-5xl">Why it happens</h2>
+  <h2 class="display text-4xl sm:text-5xl">Why it happens</h2>
   <p>{why}</p>
   {ExplanationFigure && <ExplanationFigure />}
   {finePrint && <FinePrint text={finePrint} />}

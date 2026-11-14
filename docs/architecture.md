@@ -51,6 +51,12 @@ in `src/styles/global.css`. `~` maps to `/src`.
   by default, the last one opened is kept in `sessionStorage`). A search or a filter opens every
   chapter with results and the headings stop toggling until it is cleared.
 - `src/pages/entries/[slug].astro` — entry page. `src/pages/about.astro` — "How we write these".
+  Entry introductions, claims and article all belong to the main landmark, reached by the shared
+  keyboard skip link. Arguments finish with their existing assumption/status summary as "The
+  takeaway", before sources. Related/variant links remain available in a native disclosure.
+  Headings and vertical spacing are smaller on phones. Review/status/simplification badges link
+  to their definitions; source checks are distinguished from the owner's separate approval.
+  Article JSON-LD includes the actual entry OG image, without inventing authors or dates.
 - `src/pages/chapters/[chapter].astro` — chapter landing pages with introductions and links
   to published canonical and related entries. On the index, the chapter heading links to its
   page from `md` up; below `md` the heading toggles the chapter, so the open chapter shows an
