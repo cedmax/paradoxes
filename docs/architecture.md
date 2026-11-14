@@ -30,6 +30,11 @@ in `src/styles/global.css`. `~` maps to `/src`.
   Filters and their definitions are in a native disclosure, initially closed below `md` and open
   from `md` up. With JavaScript unavailable, the disclosure starts open. A reset button clears
   the search and status/review filters, restores hidden variants, and returns focus to search.
+  `q`, `status`, `variants=show`, `reviewed=1` and `chapter` query parameters preserve browsing
+  state. Typing replaces the current history entry; discrete filter/chapter choices push one.
+  Back/Forward and restored pages read the URL again. Canonicals remain query-free. Chip counts
+  include the query and switches, independently of the selected status. A compact chapter
+  directory links to chapter landing pages and is hidden while searching/filtering.
   The index and entry pages only include entries with `sourcesVerified: true`
   (`getPublishedEntries()` in `src/data/entries.ts`).
 - `src/data/recommendations.ts` — three editorial starting points on the homepage and four
