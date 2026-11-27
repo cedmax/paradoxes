@@ -9,8 +9,8 @@ noMaths: false
 order: 180
 sourcesVerified: true
 problem: "Can a ball that is perfectly still begin to move at an arbitrary time under Newton’s laws?"
-claimA: "Norton’s ideal dome is a legitimate Newtonian example in which a ball can start moving without a push."
-claimB: "Norton’s ideal dome is not a legitimate Newtonian example of spontaneous motion."
+claimA: "A ball can sit still on Norton’s dome, then move unprompted, without breaking Newton’s laws."
+claimB: "Norton’s dome relies on a force and idealisations that Newtonian physics should rule out."
 whatBreaks: "Whether the unusual force and idealisations belong among legitimate Newtonian systems, or must be excluded."
 statusNote: "on Norton’s argument a ball can sit still and then move at an arbitrary time without breaking Newton’s equations, while critics reject the dome’s force and idealisations as legitimate Newtonian physics."
 setup: "A point-sized ball rests at the summit of a specially shaped, frictionless dome. Norton’s chosen shape gives a force equation with an unusual property near the top."

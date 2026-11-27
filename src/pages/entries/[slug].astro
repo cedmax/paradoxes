@@ -39,7 +39,7 @@ const isIllusion = d.format === "illusion"
   imageAlt={seo.imageAlt}
 >
   <EntryHeader entry={entry} anchor={anchorOf(entry, all)} />
-  {!isIllusion && <ClaimsBand claimA={d.claimA} claimB={d.claimB} />}
+  {!isIllusion && <ClaimsBand entry={d} />}
 
   <main class="px-gutter flex flex-wrap items-start gap-16 pt-16 pb-24">
     <article

@@ -19,8 +19,8 @@ simplification: light
 noMaths: false
 sourcesVerified: true
 problem: "Does being among the first 117 billion or so humans ever born make an early end for humanity more likely?"
-claimA: "An early birth rank is evidence that the total number of humans will be smaller."
-claimB: "An early birth rank gives no reason to expect a smaller total."
+claimA: "An early birth rank is evidence of a smaller human total, if you are a random pick from everyone who will ever live."
+claimB: "An early birth rank gives no reason to expect a smaller total, because a larger future also gives you more chances to exist."
 whatBreaks: "Whether a person may treat their birth rank as a random sample from everyone who will ever live."
 statusNote: "defenders read an early birth rank as evidence of a smaller human total. Critics say a larger future also gives you more chances to exist, or that being alive now makes you no fair pick from all humans."
 setup: "Imagine numbering every human in order of birth. Compare two possible futures: one in which humanity ends fairly soon and one in which vastly more people are born. Your place is near the beginning of the second future but somewhere more ordinary in the first."

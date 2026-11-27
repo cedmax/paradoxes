@@ -5,7 +5,7 @@ import { anchorSlug, uniquenessOf } from "~/data/uniqueness"
 
 type Entry = CollectionEntry<"entries">
 
-// The frontmatter of an entry in the argument format (two claims and a status).
+// The frontmatter of an entry in the argument format (two or three claims and a status).
 export type ArgumentData = Extract<Entry["data"], { format: "argument" }>
 
 // Production never includes entries lacking human-approved source verification.

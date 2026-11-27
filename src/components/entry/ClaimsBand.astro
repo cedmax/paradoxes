@@ -1,19 +1,19 @@
 ---
+import { claimLayout, claimsOf } from "~/data/claims"
+import type { ArgumentData } from "~/data/entries"
+
 interface Props {
-  claimA: string
-  claimB: string
+  entry: ArgumentData
 }
 
-const { claimA, claimB } = Astro.props
-const claims = [
-  { label: "Seems true", text: claimA },
-  { label: "Also seems true", text: claimB },
-]
+const { entry } = Astro.props
+const claims = claimsOf(entry)
+const { joiners } = claimLayout(entry)
 ---
 
 <section
   class="flex flex-col items-stretch min-[920px]:flex-row border-y-2 border-ink"
-  aria-label="The two claims"
+  aria-label="The claims"
 >
   {claims.map((claim, index) => (
     <>
@@ -22,7 +22,7 @@ const claims = [
           class="font-display flex-none self-center px-2 py-4 text-center text-4xl leading-none font-extrabold tracking-tight text-accent uppercase sm:text-6xl"
           aria-hidden="true"
         >
-          but
+          {joiners[index - 1]}
         </div>
       )}
       <div class="px-gutter flex grow min-[920px]:basis-90 flex-col justify-center gap-2.5 py-10">

@@ -8,8 +8,9 @@ noMaths: true
 order: 70
 sourcesVerified: true
 problem: Replace every plank of a ship, one at a time. Is it still the same ship?
-claimA: Each swap leaves it the same ship.
-claimB: "A ship with none of its original planks is not the original ship."
+claimA: "Each swap leaves it the same ship."
+claimB: "A ship that stays the same through every swap is still the original at the end."
+claimC: "A ship with none of its original planks is not the original ship."
 whatBreaks: "Either the idea that a single swap never changes which ship it is, or the idea that a ship with none of its original planks is a different ship, has to go. Experts split on which."
 statusNote: "one view says continuity makes the repaired ship the original, another that losing any part ends the original at the first repair, a third that “same ship” has no single answer. Hobbes’s rebuilt ship splits them."
 setup: "A ship’s worn planks are replaced one at a time. Eventually none of the original timber remains. Each repair seems to leave the same ship, but the final vessel has none of its original material. Is it still Theseus’s ship?"

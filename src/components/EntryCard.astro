@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content"
+import { claimsOf } from "~/data/claims"
 import { statuses } from "~/data/status"
 import { uniqueness, uniquenessOf } from "~/data/uniqueness"
 import { normaliseSearch, stripLinks } from "~/data/search"
@@ -21,7 +22,7 @@ const u = uniqueness[kind]
 const searchText = (...parts: (string | undefined)[]) =>
   normaliseSearch(parts.filter(Boolean).join(" "))
 // What the card shows, and what it keeps back. The index card ends on the question, so a search
-// that only matches claimA, claimB or statusNote reveals that text on the card (see index.astro).
+// that only matches a claim or statusNote reveals that text on the card (see index.astro).
 const shown = searchText(
   d.title,
   ...d.searchTerms,
@@ -34,11 +35,7 @@ const shown = searchText(
 const note = isIllusion ? undefined : stripLinks(d.statusNote)
 const hits: { label: string; text: string; match?: string }[] = isIllusion
   ? [{ label: "Why it happens", text: d.why }]
-  : [
-      { label: "Seems true", text: d.claimA },
-      { label: "Also seems true", text: d.claimB },
-      { label: "How it ends", text: `${s?.label}: ${note}`, match: note },
-    ]
+  : [...claimsOf(d), { label: "How it ends", text: `${s?.label}: ${note}`, match: note }]
 const haystack = searchText(shown, ...hits.map((h) => h.match ?? h.text))
 ---
 

@@ -17,8 +17,8 @@ noMaths: false
 order: 130
 sourcesVerified: true
 problem: "Why does a calculation say that opening a door between two boxes of identical gas raises entropy, when the gas looks and behaves just as before?"
-claimA: "Opening and closing a door between identical gases at the same temperature and pressure leaves their total entropy unchanged."
-claimB: "Counting swaps of identical particles as new arrangements gives the correct entropy, though it predicts a change."
+claimA: "Counting swaps of identical particles as new arrangements gives the correct entropy, and that count says opening a door between identical gases raises it."
+claimB: "Opening and closing a door between identical gases at the same temperature and pressure leaves their total entropy unchanged."
 whatBreaks: "The assumption that the naive particle count gives the correct entropy for different amounts of gas."
 statusNote: "the naive formula gives the wrong thermodynamic result. The corrected result is agreed, though the deeper reason for the correction is still debated."
 setup: "Two boxes hold the same gas at the same temperature and pressure. Open a door between them. The particles wander across, but the gas looks and behaves just as before. Close the door and the original situation returns. Entropy measures how many microscopic arrangements fit the visible state."

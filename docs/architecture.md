@@ -13,12 +13,14 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/data/chapters.ts` — chapter ids, titles and blurbs. An entry's `chapter` must be one of
   these ids.
 - `src/data/status.ts` — status and simplification labels and definitions (shown on the site).
+- `src/data/claims.ts` — labels and joining words for an argument's claims, by status, `claimFraming`
+  and the optional `claimC`. Used by `ClaimsBand` and the search reveal on `EntryCard`.
 - `src/data/uniqueness.ts` — uniqueness labels and definitions. `uniquenessOf` derives an
   entry's kind from `relatedTo` and `variantOf` (neither means canonical), `anchorSlug` returns
   the slug it points to, and `anchorOf` resolves that anchor and fails the build if it is
   unknown, a variant, or part of a loop.
 - `src/pages/index.astro` — index with search and status filter (client script). Search matches
-  `title`, `searchTerms`, `alternativeNames`, `problem`, `claimA`, `claimB`, `statusNote`, plus the
+  `title`, `searchTerms`, `alternativeNames`, `problem`, `claimA`, `claimB`, `claimC`, `statusNote`, plus the
   anchor's title for related and variant entries. Search matches the query as a contiguous
   phrase. Search ignores case and straight/curly apostrophe differences. The index lists
   canonical and related entries. Variants are hidden by the "Hide variants" switch in the
@@ -50,7 +52,7 @@ in `src/styles/global.css`. `~` maps to `/src`.
 - `src/components/PuzzleIllustration.astro` — loads `illustrations/setup/<slug>.astro` or
   `illustrations/explanation/<slug>.astro` based on placement. See the build-illustration skill.
 - `src/components/EntryCard.astro` — index card. It shows title, status, anchor link and
-  `problem` only, so the card ends on the question. `claimA`, `claimB` and `statusNote` (with its
+  `problem` only, so the card ends on the question. `claimA`, `claimB`, `claimC` and `statusNote` (with its
   status label) stay on the entry page; the card carries them hidden and the index script reveals the ones a search
   matched when the match is not in the shown text.
 - `src/pages/og/[file].png.ts` and `src/og/` — one 1200×630 Open Graph PNG per published entry

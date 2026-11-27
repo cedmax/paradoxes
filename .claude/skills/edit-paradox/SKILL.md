@@ -64,7 +64,7 @@ without explicit authorisation.
 
 How to apply them:
 
-- `claimA` and `claimB` must genuinely conflict: they cannot both be true.
+- `claimA` and `claimB` (with `claimC`, if set) must genuinely conflict: they cannot all be true.
 - If the real wrong step is a hidden premise, make that premise one of the displayed claims.
 - **explained** and **defused**: `whatBreaks`, `statusNote` and `resolution` all
   name the same wrong claim. The test between them: if the reasoning that produces the clash
@@ -147,6 +147,22 @@ enforces anchor integrity. Do not duplicate definitions here.
 - **explained** and **defused**: `claimA` states the wrong premise that `whatBreaks` names, and
   `claimB` states the fact that breaks it. **disputed** and **unreconciled**:
   each claim is one camp's commitment; common ground goes in `setup`.
+- The site labels the claims by role (`src/data/claims.ts` is authoritative). Explained and
+  defused: "Seems true" / "Is true". Disputed: "One view" / "The other view". Unreconciled:
+  "Seems true" / "Also seems true". Never label a claim "Actually" or similar: it reads as
+  paternalistic.
+- A disputed claim is a camp's commitment with its reason, not a bare "X" and "not X". Write
+  "Voting can be rational, because the benefit reaches many people", not "Voting can be rational".
+- `claimFraming: model` suits a prediction set against an observation (plankton, Fermi, Olbers):
+  "Theory says" / "Observation shows". Use it only when claimB is an agreed observation; if the
+  observation itself is contested (Peto), keep the disputed labels.
+- Explained and defused: `claimA` is the claim that seems true and fails, `claimB` is shown as
+  "Is true", so it must be a plain fact. A value given by a special method is not an ordinary sum:
+  say "the method gives the value", not "the sum is".
+- `claimC` adds a third claim to a true triad: three claims that each seem true and cannot all
+  be (problem of evil, liar, sorites). All three are labelled "Seems true", so each camp can drop
+  a different one, which keeps religious and political entries neutral. Put the claim that
+  creates the clash last, and use it only when the third claim is a real premise, not a restatement.
 - Before keeping a pair, check that the claims clash under the same assumptions (for a scientific
   paradox, a prediction against an observation counts), and that the premise `whatBreaks` calls
   wrong appears in the claim.
