@@ -18,6 +18,7 @@ sourcesVerified: true
 problem: "If richer people are happier, why have countries that grew richer over time not become happier?"
 claimA: "If richer people are happier, a country whose people all grow richer over time must become happier."
 claimB: "In the data Easterlin reported, a country’s happiness stayed flat while its incomes rose."
+claimFraming: model
 whatBreaks: "The contested choice is between accepting that rising income lifts happiness over time, which others say the data show, and accepting that it does not, which needs an explanation."
 statusNote: "on Easterlin’s account happiness stays flat as incomes rise, while Stevenson and Wolfers (2008) find a positive link once surveys are made consistent. A third view has it levelling off at higher incomes."
 setup: "In 1974 the economist Richard Easterlin, who was among the first economists to study happiness data, reported two findings. Within a country at a given moment, richer people report being happier. Over time, rising incomes do not produce a rising trend in happiness. Later evidence through 2014 reportedly showed US happiness flat or slightly down while real incomes more than tripled over about seven decades. The page describes the paradox as an empirical generalisation, not a theorem."

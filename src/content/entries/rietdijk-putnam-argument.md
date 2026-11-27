@@ -9,8 +9,8 @@ noMaths: true
 order: 80
 sourcesVerified: true
 problem: "Does disagreement about what is happening now mean tomorrow already exists?"
-claimA: "Special relativity shows that events which one observer calls future are already real."
-claimB: "Special relativity does not establish that future events already exist."
+claimA: "No observer’s “now” has priority, so every event on any observer’s “now” already exists."
+claimB: "Which events count as simultaneous depends on the observer, so it cannot decide which events exist."
 whatBreaks: "The disputed step from different ways of dividing spacetime into present moments to a claim about what exists."
 statusNote: "because observers moving differently disagree about what happens at the same time, Rietdijk and Putnam argue the future already exists, while critics such as Howard Stein deny that this settles what exists."
 setup: "Two observers moving relative to one another draw different lines across spacetime for events they call simultaneous. A faraway event on one person’s line of “now” may lie to the future of another person’s line."

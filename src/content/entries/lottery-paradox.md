@@ -8,6 +8,7 @@ order: 40
 problem: "If you believe every ticket will lose, do you believe that no ticket will win?"
 claimA: "It is reasonable to believe each ticket will lose, since each almost certainly will."
 claimB: "If it is reasonable to believe each of several things, it is reasonable to believe them all together."
+claimC: "It is not reasonable to believe that every ticket will lose, because one ticket must win."
 whatBreaks: "Either the high-odds rule or the combining rule has to go, and experts split on which."
 statusNote: "reasonable beliefs may not combine, high odds may not be enough for belief, or high odds justify belief except in cases like this."
 setup: "A fair lottery has 1,000 tickets and exactly one winner. Any particular ticket is almost certain to lose. It seems reasonable to believe it will. The same reasoning applies to every ticket, yet believing all those losses together means believing there will be no winner."

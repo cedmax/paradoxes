@@ -19,6 +19,7 @@ sourcesVerified: true
 problem: "In an endless list where each sentence says that all the later ones are untrue, is any sentence true?"
 claimA: "Every sentence on the list is either true or untrue."
 claimB: "A sentence on the list is true if what it says is right, and untrue if it isn’t."
+claimC: "Each sentence on the list says that all the later sentences are untrue."
 whatBreaks: "The ordinary rules for truth cannot all hold for this endless list. Whether to change those rules or the reasoning about infinity is contested."
 statusNote: "the answers say the list’s description is secretly circular, like a liar sentence, that the step from single sentences to the whole endless list is unsound, or that the rules for truth must change."
 setup: "Write an endless list. The first sentence says every later sentence is untrue. The second says every sentence after it is untrue. Every sentence says the same about the ones after it. None mentions itself."

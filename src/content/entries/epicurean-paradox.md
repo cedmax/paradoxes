@@ -9,8 +9,8 @@ noMaths: true
 order: 140
 sourcesVerified: true
 problem: "If God can stop suffering and wants to, why is suffering still here?"
-claimA: "The suffering in the world rules out a God who is both all-good and all-powerful."
-claimB: "The suffering in the world does not rule out a God who is both all-good and all-powerful."
+claimA: "Suffering rules out a God who is all-good and all-powerful, because such a being would stop it."
+claimB: "A God who is all-good and all-powerful could have a good enough reason to permit suffering."
 whatBreaks: "Whether even one instance of suffering contradicts perfect goodness combined with unlimited power."
 statusNote: "defenders such as Plantinga say God and suffering are not logically incompatible, while critics deny that any adequate reason for permitting suffering exists. The familiar wording is not securely attested in Epicurus’s writings."
 setup: "An old dilemma asks whether a God can prevent suffering, whether God wants to prevent it and why suffering still exists. If God lacks the power, that seems to challenge unlimited power. If God lacks the wish, that seems to challenge perfect goodness."

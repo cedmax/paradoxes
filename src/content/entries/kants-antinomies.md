@@ -9,8 +9,8 @@ noMaths: true
 order: 150
 sourcesVerified: true
 problem: "Can reason establish both that the world began and that it never began?"
-claimA: "Reason alone can settle whether the world as a whole had a first moment."
-claimB: "Reason alone cannot settle whether the world as a whole had a first moment."
+claimA: "Reason alone can settle whether the world began, by arguing about infinity and explanation."
+claimB: "Reason alone cannot settle it, because both proofs wrongly treat the world as a whole as an object."
 whatBreaks: "Whether reasoning that works about things within experience can decide the beginning of all time."
 statusNote: "some accounts say arguments about infinity and explanation can settle whether the world began, while Kant held that both proofs wrongly treat the whole world as an object, so neither can be asserted."
 setup: "Kant presented arguments that time must have a beginning and arguments that time cannot have a beginning. Both look persuasive when the world is treated as one complete thing."
