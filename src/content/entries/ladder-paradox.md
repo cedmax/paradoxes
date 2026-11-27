@@ -8,8 +8,8 @@ noMaths: true
 order: 40
 sourcesVerified: true
 problem: "Can a ladder too long for a barn fit inside it, if it runs through fast enough?"
-claimA: "Seen from the barn, the squashed ladder is inside with both doors shut at the same moment."
-claimB: "Whether both doors are shut at the same moment is a fact every observer must agree on."
+claimA: "Whether both doors are shut at the same moment is a fact every observer must agree on."
+claimB: "Seen from the barn, both doors shut at the same moment with the ladder inside; seen from the ladder, they do not."
 whatBreaks: "The assumption that all observers agree which events happen at the same time."
 statusNote: "the two doors shut together only in the barn’s frame: seen from the ladder, the far door shuts first and the near door later."
 setup: "A ladder is 20 metres long when at rest. A barn is 12 metres long, with a door at each end. Someone runs the ladder through the barn at about 87 percent of the speed of light. Special relativity says moving objects are measured as shorter in the direction they move. For this speed, the factor is exactly two. From the barn, the ladder is 10 metres long, and it fits inside with room to spare. From the ladder, the barn is 6 metres long, and the ladder is far too big. Both cannot be true."

@@ -9,7 +9,7 @@ order: 170
 sourcesVerified: true
 problem: "How can an all-powerful, perfectly good God exist when suffering exists?"
 claimA: "A God who is all-powerful, all-knowing and perfectly good would prevent suffering."
-claimB: "Such a God exists."
+claimB: "A God who is all-powerful, all-knowing and perfectly good exists."
 claimC: "Suffering exists."
 whatBreaks: "Whether the existence of suffering rules out a God who is all-powerful, all-knowing and perfectly good."
 statusNote: "defenders such as Plantinga argue that God and suffering are logically compatible, while Rowe argues that apparently pointless suffering makes such a God less likely."

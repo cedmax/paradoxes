@@ -57,7 +57,7 @@ const argument = common.extend({
   // Optional third claim for a triad: three claims that each seem true but cannot all be.
   claimC: z.string().optional(),
   // Overrides the labels a status gives the claims (see src/data/claims.ts).
-  claimFraming: z.enum(["model", "arguments"]).optional(),
+  claimFraming: z.enum(["model"]).optional(),
   // Sidebar: what assumption fails, and the status note.
   whatBreaks: z.string(),
   statusNote: z.string(),

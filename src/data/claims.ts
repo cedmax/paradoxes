@@ -2,7 +2,7 @@ import type { Status } from "./status"
 
 // How the claims of an argument are labelled and joined. The labels follow the role the claims
 // play, so a reader is never told that a fact "also seems true".
-export type ClaimFraming = "model" | "arguments"
+export type ClaimFraming = "model"
 
 type ClaimFields = { status: Status; claimFraming?: ClaimFraming; claimC?: string }
 
@@ -19,9 +19,6 @@ export const claimLayout = ({ status, claimFraming, claimC }: ClaimFields): Clai
   }
   if (claimFraming === "model") {
     return { labels: ["Theory says", "Observation shows"], joiners: ["but"] }
-  }
-  if (claimFraming === "arguments") {
-    return { labels: ["One argument", "The other argument"], joiners: ["but"] }
   }
   switch (status) {
     case "explained":

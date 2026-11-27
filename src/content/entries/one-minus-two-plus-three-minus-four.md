@@ -12,8 +12,8 @@ noMaths: false
 order: 180
 sourcesVerified: true
 problem: "How can 1 − 2 + 3 − 4 + … be said to equal one quarter, when its running totals swing wider and wider?"
-claimA: "The running totals swing ever wider, so 1 − 2 + 3 − 4 + … cannot add up to 1/4."
-claimB: "1 − 2 + 3 − 4 + … equals 1/4, as Euler found and summation methods still give."
+claimA: "A value for 1 − 2 + 3 − 4 + … must be its ordinary total, and the running totals swing ever wider, so it cannot be 1/4."
+claimB: "Abel summation gives 1 − 2 + 3 − 4 + … the value 1/4, as Euler found."
 whatBreaks: "The assumption that the equals sign means the ordinary sum. Here it stands for a value given by a summation method, because the ordinary sum does not exist."
 statusNote: "its running totals never settle, so 1/4 is not an ordinary sum. It is the value Abel summation assigns, which answers a different, precisely defined question."
 setup: "The series 1 − 2 + 3 − 4 + … has the whole numbers as its terms, with signs that alternate. Its running totals go 1, −1, 2, −2, 3, and so on. Yet Leonhard Euler, in a paper written in 1749 and published in 1768, said its sum is 1/4. He knew how that sounded: “when it is said that the sum of this series 1-2+3-4+5-6 etc. is 1/4, that must appear paradoxical.”"

@@ -153,9 +153,12 @@ enforces anchor integrity. Do not duplicate definitions here.
   paternalistic.
 - A disputed claim is a camp's commitment with its reason, not a bare "X" and "not X". Write
   "Voting can be rational, because the benefit reaches many people", not "Voting can be rational".
-- `claimFraming: model` suits a prediction set against an observation (plankton, Fermi, Peto):
-  "Theory says" / "Observation shows". `claimFraming: arguments` suits a disputed pair that is two
-  arguments rather than two camps (unexpected hanging): "One argument" / "The other argument".
+- `claimFraming: model` suits a prediction set against an observation (plankton, Fermi, Olbers):
+  "Theory says" / "Observation shows". Use it only when claimB is an agreed observation; if the
+  observation itself is contested (Peto), keep the disputed labels.
+- Explained and defused: `claimA` is the claim that seems true and fails, `claimB` is shown as
+  "Is true", so it must be a plain fact. A value given by a special method is not an ordinary sum:
+  say "the method gives the value", not "the sum is".
 - `claimC` adds a third claim to a true triad: three claims that each seem true and cannot all
   be (problem of evil, liar, sorites). All three are labelled "Seems true", so each camp can drop
   a different one, which keeps religious and political entries neutral. Put the claim that
